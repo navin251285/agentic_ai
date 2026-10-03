@@ -77,6 +77,7 @@ def test_snapshot_shows_open_orders_with_countdown_and_badges(client, app):
     assert (order["product_name"], order["status"], order["seconds_left"]) == ("Milk", "PLACED", 60)
     products = {p["id"]: p for p in snap["products"]}
     assert products["milk"]["state"] == "AWAITING" and products["milk"]["badge"] == "+12 arriving in 60s"
+    assert products["milk"]["badge_kind"] == "arriving" and products["bread"]["badge_kind"] == "agent"
     assert products["bread"]["state"] == "DANGER" and products["bread"]["badge"].startswith("Agent checks in")
     assert snap["orders_on_the_way"] == 1
 

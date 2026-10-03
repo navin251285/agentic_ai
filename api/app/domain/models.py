@@ -161,9 +161,13 @@ class AgentStatus(BaseModel):
 ProductStateName = Literal["EMPTY", "AWAITING", "DANGER", "RESTOCKED", "SELLING"]  # rules.ProductState
 
 
+BadgeKindName = Literal["arriving", "agent", "delivered"]  # rules.BadgeKind
+
+
 class ProductView(Product):
     state: ProductStateName
     badge: str | None = None
+    badge_kind: BadgeKindName | None = None  # so the UI can color the badge without parsing it
 
 
 class OrderView(Order):

@@ -17,6 +17,12 @@ class ProductState(StrEnum):
     SELLING = "SELLING"
 
 
+class BadgeKind(StrEnum):
+    ARRIVING = "arriving"  # an open order is on its way
+    AGENT = "agent"  # at/below the mark, nothing ordered: waiting for the agent
+    DELIVERED = "delivered"  # just restocked
+
+
 class Zone(StrEnum):
     COVERED = "COVERED"  # has an open order
     MUST_ORDER = "MUST_ORDER"
@@ -74,21 +80,21 @@ def product_state(product: Product, orders: Iterable[Order], sim_s: float) -> Pr
 
 def product_badge(
     product: Product, orders: Iterable[Order], sim_s: float, next_agent_check_s: float, agent_enabled: bool
-) -> str | None:
-    """Badge text, independent of state: open order, else must-order zone, else just restocked."""
+) -> tuple[BadgeKind, str] | None:
+    """(kind, text), independent of state: open order, else must-order zone, else just restocked."""
     orders = list(orders)
     incoming = sorted(open_orders_for(product.id, orders), key=lambda o: o.due_at_s)
     if incoming:
         o = incoming[0]
-        return f"+{o.qty} arriving in {seconds_left(o.due_at_s, sim_s)}s"
+        return BadgeKind.ARRIVING, f"+{o.qty} arriving in {seconds_left(o.due_at_s, sim_s)}s"
     if product.stock <= product.reorder_point:  # DANGER, or EMPTY with nothing ordered
         if not agent_enabled:
-            return "Agent is off"
-        return f"Agent checks in {seconds_left(next_agent_check_s, sim_s)}s"
+            return BadgeKind.AGENT, "Agent is off"
+        return BadgeKind.AGENT, f"Agent checks in {seconds_left(next_agent_check_s, sim_s)}s"
     delivered = [o for o in orders if o.product_id == product.id and o.delivered_at_s is not None]
     if delivered and product_state(product, orders, sim_s) == ProductState.RESTOCKED:
         last = max(delivered, key=lambda o: o.delivered_at_s)
-        return f"+{last.qty} delivered just now"
+        return BadgeKind.DELIVERED, f"+{last.qty} delivered just now"
     return None
 
 

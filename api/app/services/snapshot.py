@@ -7,6 +7,7 @@ from app.domain.models import (
     HistoryMarker,
     HistoryPoint,
     OrderView,
+    Product,
     ProductView,
     Snapshot,
 )
@@ -21,14 +22,7 @@ def build_snapshot(sim: Simulation) -> Snapshot:
     state, rt = sim.state, sim.state.runtime
     names = {p.id: p.name for p in state.products}
     open_orders = [o for o in state.orders if o.is_open]
-    products = [
-        ProductView(
-            **p.model_dump(),
-            state=rules.product_state(p, state.orders, rt.sim_s),
-            badge=rules.product_badge(p, state.orders, rt.sim_s, rt.next_agent_check_s, rt.agent_enabled),
-        )
-        for p in state.products
-    ]
+    products = [_product_view(sim, p) for p in state.products]
     orders = [
         OrderView(
             **o.model_dump(),
@@ -53,6 +47,18 @@ def build_snapshot(sim: Simulation) -> Snapshot:
         orders=orders,
         events=state.events[-RECENT_EVENTS:],
         agent=sim.agent.status(state),
+    )
+
+
+def _product_view(sim: Simulation, p: Product) -> ProductView:
+    state, rt = sim.state, sim.state.runtime
+    badge = rules.product_badge(p, state.orders, rt.sim_s, rt.next_agent_check_s, rt.agent_enabled)
+    kind, text = badge if badge else (None, None)
+    return ProductView(
+        **p.model_dump(),
+        state=rules.product_state(p, state.orders, rt.sim_s),
+        badge=text,
+        badge_kind=kind,
     )
 
 
