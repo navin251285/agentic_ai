@@ -76,6 +76,10 @@ cd web
 npm run dev                            # http://localhost:5173
 ```
 
+If your browser runs on another machine than the app (for example, the app is on a cloud VM), start the dashboard
+with `npm run dev -- --host 0.0.0.0`. Then open `http://<VM address>:5173`, or forward port 5173 (for example, from
+the VS Code Ports tab).
+
 To run the API on another port, for example 8010, start it with `--port 8010` and start the dashboard with
 `VITE_API_TARGET=http://localhost:8010 npm run dev` (or set `VITE_API_TARGET` in `.env`).
 
