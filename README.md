@@ -31,7 +31,8 @@ The real `.env` is git-ignored. The key is never logged or sent to the browser.
 
 ## Run
 
-For step-by-step start, stop, health checks, logs and troubleshooting, see [RUNNING.md](RUNNING.md).
+For step-by-step start, stop, health checks, logs and troubleshooting, see [RUNNING.md](RUNNING.md). On Vertex AI
+Workbench, follow RUNNING.md: the dashboard opens through JupyterLab's proxy instead of `localhost:5173`.
 
 ### Docker (recommended)
 

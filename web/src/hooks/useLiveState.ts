@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 
-import type { Snapshot } from '../api/client'
+import { API_ROOT, type Snapshot } from '../api/client'
 import { useShopStore } from '../store/useShopStore'
 
-export const STREAM_URL = '/api/stream'
+export const STREAM_URL = `${API_ROOT}/stream`
 /** EventSource retries by itself after a dropped connection, but gives up for good when the
  * server answers with an error (e.g. the dev proxy's 502 while the api restarts). Then we
  * open a new one after this delay. */

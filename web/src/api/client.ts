@@ -29,8 +29,11 @@ export class ApiError extends Error {
   }
 }
 
+/** "/api" normally; under a path prefix (VITE_BASE, e.g. the Jupyter proxy) it follows the page's base. */
+export const API_ROOT = `${import.meta.env.BASE_URL}api`
+
 async function request<T>(method: string, path: string, body?: unknown): Promise<T> {
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${API_ROOT}${path}`, {
     method,
     headers: body === undefined ? undefined : { 'Content-Type': 'application/json' },
     body: body === undefined ? undefined : JSON.stringify(body),

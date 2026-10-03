@@ -7,13 +7,23 @@ import { defineConfig, loadEnv } from 'vite'
 const envDir = '..'
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, envDir, 'VITE_')
+  const env = loadEnv(mode, envDir, 'VITE_') // also reads VITE_* from the shell
+  // VITE_BASE serves the dashboard under a path prefix, e.g. /proxy/absolute/5173/ behind Jupyter's proxy
+  // on Vertex AI Workbench. The API is then at <base>api and is proxied to the backend's /api.
+  const base = env.VITE_BASE || '/'
   return {
     envDir,
+    base,
     plugins: [react(), tailwindcss()],
     server: {
+      // Behind a proxy the Host header is the proxy's, which Vite would otherwise reject.
+      allowedHosts: base === '/' ? undefined : true,
       proxy: {
-        '/api': { target: env.VITE_API_TARGET || 'http://localhost:8000', changeOrigin: true },
+        [`${base}api`]: {
+          target: env.VITE_API_TARGET || 'http://localhost:8000',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(base, '/'),
+        },
       },
     },
     test: {
