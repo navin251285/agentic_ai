@@ -45,6 +45,14 @@ def test_pending_products_are_batched_into_one_call(repo):
     assert sim.agent.llm_ready and sim.agent.status(sim.state).llm_calls == 1
 
 
+def test_every_call_is_logged_with_the_window_count(repo, caplog):
+    caplog.set_level("INFO", logger="app.services.agent")
+    sim, vc = gemini_sim(repo, FakeEngine(cautious))
+    quiet(sim)
+    run_ticks(sim, vc, 11)
+    assert "Gemini call #1 (decision: milk): 1/10 in the last 60s" in caplog.messages
+
+
 def test_wait_is_final_until_the_zone_changes(repo):
     engine = FakeEngine(cautious)
     sim, vc = gemini_sim(repo, engine)

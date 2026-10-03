@@ -22,6 +22,16 @@ from app.services.snapshot import build_snapshot
 log = logging.getLogger(__name__)
 
 
+def _show_app_logs() -> None:
+    """Uvicorn sets up only its own loggers; without this, app INFO lines (Gemini calls, startup) are lost."""
+    app_log = logging.getLogger("app")
+    if not app_log.handlers:
+        handler = logging.StreamHandler()
+        handler.setFormatter(logging.Formatter("%(levelname)s:     %(name)s: %(message)s"))
+        app_log.addHandler(handler)
+        app_log.setLevel(logging.INFO)
+
+
 def build_repository(settings: Settings) -> CsvInventoryRepository:
     return CsvInventoryRepository(
         settings.data_dir,
@@ -35,6 +45,7 @@ def build_repository(settings: Settings) -> CsvInventoryRepository:
 
 
 def create_app(settings: Settings | None = None, repo: InventoryRepository | None = None) -> FastAPI:
+    _show_app_logs()
     settings = settings or get_settings()
     repo = repo or build_repository(settings)
 

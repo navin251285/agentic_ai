@@ -157,12 +157,24 @@ class Agent:
         if not self.llm.limiter.try_acquire():
             return self._budget_fallback(state)
         ids = sorted(self._pending)
+        self._log_call("decision", ids)
         self._pending.clear()
         self._denied.difference_update(ids)
         job = _Job(ids)
         self._job = job
         self.llm.spawn(self._call(job, build_context(state, ids, for_llm=True)))
         return []
+
+    def _log_call(self, kind: str, ids: list[str]) -> None:
+        limiter = self.llm.limiter
+        log.info(
+            "Gemini call #%d (%s%s): %d/%d in the last 60s",
+            limiter.total,
+            kind,
+            f": {', '.join(ids)}" if ids else "",
+            limiter.calls_last_window(),
+            limiter.max_calls,
+        )
 
     def _budget_fallback(self, state: PersistedState) -> list[Decision]:
         zones = self._zones(state)
@@ -233,6 +245,7 @@ class Agent:
         warm_up = getattr(self.llm.engine, "warm_up", None)
         if warm_up is None or not self.llm.limiter.try_acquire():
             return False
+        self._log_call("warm-up", [])
 
         async def run() -> None:
             started = time.monotonic()
