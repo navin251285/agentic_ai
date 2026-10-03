@@ -200,6 +200,7 @@ def test_curveball_presets_and_validation(client, data_dir):
     presets = client.get("/api/curveballs").json()
     assert [p["id"] for p in presets] == ["heatwave", "strike", "cricket"]
     assert presets[1]["effect"].startswith("Orders to the main supplier")
+    assert presets[0]["effect"].startswith("Twice as many customers")
     snap = client.post("/api/curveball", json={"preset": "strike"}).json()
     [cb] = snap["curveballs"]
     assert (cb["preset"], cb["title"], cb["seconds_left"]) == ("strike", "Supplier strike", 180)

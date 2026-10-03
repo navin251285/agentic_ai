@@ -192,7 +192,10 @@ class Simulation:
         rt.next_curveball_id += 1
         rt.curveballs.append(curveball)
         self.emit(EventType.CURVEBALL, ref=preset or curveballs.CUSTOM, message=curveball.text)
-        self.agent.mark_news_pending(rt.curveballs)
+        if rt.agent_mode == "rules":  # the rules cannot read news; the shadow shop still shows what they do
+            self.update_settings(agent_mode="gemini")  # also marks the news pending
+        else:
+            self.agent.mark_news_pending(rt.curveballs)
         return curveball
 
     def load_scenario(self, name: str, event_type: EventType = EventType.SCENARIO_LOADED) -> None:

@@ -19,15 +19,17 @@ class Preset:
     text: str
     effect: str
     demand: dict[str, float] = field(default_factory=dict)  # product id → sell_weight multiplier
+    crowd: bool = False  # customers arrive as in rush hour (about twice as many)
     strike: bool = False  # main supplier ships nothing new until it ends
 
 
 PRESETS: dict[str, Preset] = {
     "heatwave": Preset(
         "Heatwave",
-        "Heatwave this afternoon: everyone wants something cold.",
-        "Cold drinks sell 3× more.",
+        "Heatwave this afternoon: the shop will be packed and everyone wants something cold.",
+        "Twice as many customers; cold drinks sell 3× more.",
         demand={"cold-drink": 3},
+        crowd=True,
     ),
     "strike": Preset(
         "Supplier strike",
@@ -37,9 +39,10 @@ PRESETS: dict[str, Preset] = {
     ),
     "cricket": Preset(
         "Cricket final",
-        "Cricket final tonight: expect a run on snacks.",
-        "Chips, cold drinks and biscuits sell 2.5× more.",
+        "Cricket final tonight: the shop will be packed, with a run on snacks and drinks.",
+        "Twice as many customers; chips, cold drinks and biscuits sell 2.5× more.",
         demand={"chips": 2.5, "cold-drink": 2.5, "biscuits": 2.5},
+        crowd=True,
     ),
 }
 
@@ -68,6 +71,10 @@ def active(curveballs: list[Curveball], sim_s: float) -> list[Curveball]:
 
 def demand_multiplier(curveballs: list[Curveball], product_id: str) -> float:
     return math.prod(PRESETS[c.preset].demand.get(product_id, 1) for c in curveballs if c.preset in PRESETS)
+
+
+def crowd(curveballs: list[Curveball]) -> bool:
+    return any(PRESETS[c.preset].crowd for c in curveballs if c.preset in PRESETS)
 
 
 def strike_ends_at_s(curveballs: list[Curveball]) -> float | None:

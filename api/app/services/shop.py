@@ -1,6 +1,7 @@
 """Customer simulator.
 
-Next arrival every 2–4 sim_s (1–2 with rush hour). Basket = 1–4 distinct items picked one at a time,
+Next arrival every 2–4 sim_s (1–2 with rush hour or a crowd curveball).
+Basket = 1–4 distinct items picked one at a time,
 weighted by sell_weight (× any curveball demand multiplier), qty 1 each. The seed stock values are calibrated
 to exactly this. tick() returns the baskets it drew, so the shadow shop serves the very same customers.
 """
@@ -8,7 +9,7 @@ to exactly this. tick() returns the baskets it drew, so the shadow shop serves t
 import random
 from collections.abc import Callable
 
-from app.domain.curveballs import demand_multiplier
+from app.domain.curveballs import crowd, demand_multiplier
 from app.domain.models import EventType, PersistedState, Product
 
 ARRIVAL_S = (2.0, 4.0)
@@ -29,7 +30,7 @@ class Shop:
         baskets = []
         while rt.next_customer_at_s <= rt.sim_s:
             baskets.append(self._serve_customer(state))
-            lo, hi = RUSH_ARRIVAL_S if rt.rush_hour else ARRIVAL_S
+            lo, hi = RUSH_ARRIVAL_S if rt.rush_hour or crowd(rt.curveballs) else ARRIVAL_S
             rt.next_customer_at_s += self.rng.uniform(lo, hi)
         return baskets
 

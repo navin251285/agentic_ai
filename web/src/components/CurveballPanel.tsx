@@ -84,7 +84,7 @@ export function CurveballPanel({ snapshot }: Props) {
         </p>
       )}
       {snapshot.agent.mode === 'rules' && (
-        <p className="mt-2 text-xs text-amber-ink">The Rules brain can’t read news — switch the brain to Gemini.</p>
+        <p className="mt-2 text-xs text-muted">The Rules brain can’t read news, so a curveball switches the brain to Gemini.</p>
       )}
 
       {snapshot.curveballs.length > 0 && (

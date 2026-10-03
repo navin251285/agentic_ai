@@ -8,9 +8,9 @@
 
 from app.domain.models import Product, SupplierName
 
-# Calibrated (phase 8, strike at 1x, 8 seeds): an agent that bridges the strike with backup orders always
-# beats the rules; refilling every low shelf from backup can lose.
-# Re-run test_economics_reward_judgment before changing these.
+# Calibrated (phase 8, one curveball at 1x, 8 seeds): an agent that acts on the news, orders early from main
+# and uses the backup only to avoid a long stockout always beats the rules; overusing the backup can lose.
+# Re-run test_one_press_gives_a_sensible_agent_a_real_win before changing these or the presets.
 PROFIT_PER_SALE = 15  # ₹ lost per missed sale
 BACKUP_FEE_PER_UNIT = 2  # ₹
 BACKUP_LEAD_FACTOR = 0.4

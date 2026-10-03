@@ -75,6 +75,14 @@ describe('TopBar', () => {
     expect(fiveX).toHaveAccessibleDescription('Gemini is limited at 5x — rules will cover most decisions')
     expect(screen.getByRole('button', { name: 'Gemini' })).toHaveAttribute('aria-pressed', 'true')
   })
+
+  it('shows the 5x hint on screen only while running at 5x', () => {
+    const hint = () => screen.getByText('Gemini is limited at 5x — rules will cover most decisions')
+    const { rerender } = render(<TopBar snapshot={gemini()} />)
+    expect(hint()).toHaveClass('sr-only')
+    rerender(<TopBar snapshot={{ ...gemini(), speed: 5 }} />)
+    expect(hint()).not.toHaveClass('sr-only')
+  })
 })
 
 describe('BudgetMeter', () => {

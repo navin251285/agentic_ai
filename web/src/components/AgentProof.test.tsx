@@ -40,7 +40,7 @@ describe('CurveballPanel', () => {
 
     const active = screen.getByRole('list', { name: 'Active curveballs' })
     expect(within(active).getByText('1m 35s left')).toBeInTheDocument()
-    expect(screen.queryByText(/Rules brain can’t read news/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/switches the brain to Gemini/)).not.toBeInTheDocument()
   })
 
   it('shows the server error inline and the rules hint', async () => {
@@ -48,7 +48,7 @@ describe('CurveballPanel', () => {
     render(<CurveballPanel snapshot={makeSnapshot()} />)
     fireEvent.click(await screen.findByRole('button', { name: 'Supplier strike' }))
     expect(await screen.findByRole('alert')).toHaveTextContent('At most 3 curveballs')
-    expect(screen.getByText(/Rules brain can’t read news/)).toBeInTheDocument()
+    expect(screen.getByText(/switches the brain to Gemini/)).toBeInTheDocument()
   })
 })
 

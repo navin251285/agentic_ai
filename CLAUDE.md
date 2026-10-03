@@ -331,9 +331,11 @@ Economics (constants in `domain/economics.py`, shown in the UI)
 - Two suppliers. `main`: lead_time_s (× 1.5 with supplier_delay), no fee — the only one the rules use.
   `backup`: lead = max(5, round(lead_time_s × 0.4)) sim_s, ₹2 per unit extra (`BACKUP_FEE_PER_UNIT`);
   not affected by supplier_delay or a strike.
-- Calibrated with scripted agents (strike at 1x, 8 seeds, 500 sim_s): bridging the strike with backup orders
-  beats the rules shop by ₹170–₹500; refilling every low shelf from backup can lose. So the scoreboard rewards
-  judgment, not just using the backup. Guarded by `test_economics_reward_judgment`.
+- Calibrated so ONE press shows a real win: one curveball at 1x (no other setting) makes the rules shop miss
+  ≥ 10 sales, and a scripted agent that acts sensibly on the news (expects the demand before sales show it,
+  orders early from main, uses backup only to avoid a long stockout) beats it on every seed (10 seeds:
+  heatwave median +₹142, cricket +₹228, strike +₹333). Overusing the backup can lose, so the scoreboard rewards
+  judgment. Guarded by `test_one_press_gives_a_sensible_agent_a_real_win`.
 - `Order.supplier` ("main" | "backup", default main) → new last column in orders.csv (old files load as main).
 - Counters gain `extra_fees` (₹ paid to the backup supplier). ORDER_PLACED message for backup ends with
   " · backup supplier, +₹N".
@@ -343,16 +345,20 @@ Curveball
   preset, text outside 3–200 chars, or when 3 curveballs are already active. Logs a CURVEBALL event
   (message = the news text, ref = preset id or "CUSTOM").
 - Presets (each lasts 180 sim_s; the effect changes the simulated world for both shops):
-  - `heatwave` "Heatwave this afternoon: everyone wants something cold." → cold-drink demand ×3.
+  - `heatwave` "Heatwave this afternoon: the shop will be packed and everyone wants something cold."
+    → crowd + cold-drink demand ×3.
   - `strike` "Our main supplier is on strike for the next 3 minutes." → main-supplier orders placed while it is
     active are due at strike end + lead time. Orders already placed are not affected.
-  - `cricket` "Cricket final tonight: expect a run on snacks." → chips, cold-drink, biscuits demand ×2.5.
+  - `cricket` "Cricket final tonight: the shop will be packed, with a run on snacks and drinks."
+    → crowd + chips, cold-drink, biscuits demand ×2.5.
+  - Crowd = customers arrive as in rush hour (every 1–2 sim_s) while it lasts.
 - Custom text: no world effect; only the agent is told (lasts 180 sim_s).
 - Demand ×N multiplies that product's sell_weight when customers pick items (basket size unchanged).
   Multipliers of active curveballs multiply. Active curveballs persist in runtime.json; expired ones are removed.
 - The agent is told ONLY the news text and seconds left, never the mechanics.
-- Rules brain: ignores news (that is the point). Gemini brain: at the next agent check after a curveball (or when
-  switching to Gemini while one is active), ONE call covers every product without an open order, not just the
+- The rules cannot read news, so throwing a curveball while the brain is Rules switches it to Gemini (logged as
+  SETTINGS_CHANGED); the shadow shop keeps showing what the rules do. Gemini brain: at the next agent check after
+  a curveball (or when switching to Gemini while one is active), ONE call covers every product without an open order, not just the
   watch/must zones. Every Gemini call includes active news, both suppliers and the economics.
 - Gemini output adds `situation` (≤ 30 words: how it reads the situation) and per decision `supplier`.
   Guardrails unchanged (rules fallbacks always use main). AGENT_WAIT is logged only for watch/must products.
@@ -373,8 +379,9 @@ Shadow shop (counterfactual twin, `services/shadow.py`, no LLM calls)
 
 UI (phase 8)
 - New row under MetricsRow: CurveballPanel | AgentPlanCard | Scoreboard.
-- CurveballPanel: preset buttons, a text box + Send, active curveballs with seconds left. In rules mode a hint:
-  "The Rules brain can't read news — switch to Gemini."
+- CurveballPanel: preset buttons, a text box + Send, active curveballs with seconds left. In rules mode a note
+  that a curveball switches the brain to Gemini.
+- The "Gemini is limited at 5x" text is visible only while running at 5x (the 5x button keeps its dot).
 - AgentPlanCard: trigger and time, the situation sentence, steps (product · order N from main/backup · reason),
   each step tagged Gemini/Fallback. Rules mode: "The Rules brain follows a fixed formula; it doesn't plan."
 - Scoreboard: "Agent vs Rules · same customers" with both columns and a headline (e.g. "Agent ahead by ₹240").

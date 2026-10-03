@@ -43,6 +43,7 @@ def test_shadow_shop_matches_the_real_shop_with_the_rules_brain(repo, scenario, 
         t = i * 0.5
         if t in presets:
             sim.add_curveball(presets[t])
+            sim.update_settings(agent_mode="rules")  # a curveball switches to gemini; this test is the rules
         if i == 300:  # mirrored actions
             sim.sell("milk", 5)
             sim.edit_product("eggs", stock=3, lead_time_s=30)
@@ -152,13 +153,25 @@ def test_curveballs_expire_and_at_most_three_run_at_once(repo):
     assert sim.state.runtime.curveballs == []
 
 
-def test_the_rules_brain_ignores_news(repo):
-    sim = make_sim(repo)
-    quiet(sim)
+def test_a_curveball_switches_the_rules_brain_to_gemini(repo):
+    sim = make_sim(repo)  # rules brain, no API key: gemini checks fall back to the rules
     sim.add_curveball("heatwave")
-    for _ in range(20):
-        sim.tick(0.5)
-    assert events(sim, EventType.ORDER_PLACED) == [] and sim.agent.plan is None
+    assert sim.state.runtime.agent_mode == "gemini"
+    assert events(sim, EventType.SETTINGS_CHANGED)[-1].message == "agent_mode → gemini"
+
+
+def test_crowd_presets_bring_customers_twice_as_fast(repo):
+    def customers(preset: str | None) -> int:
+        sim = make_sim(repo, seed=5)
+        sim.update_settings(agent_enabled=False)
+        if preset:
+            sim.add_curveball(preset)
+        for _ in range(240):
+            sim.tick(0.5)
+        return sim.state.runtime.next_customer_id
+
+    assert customers("cricket") > 1.7 * customers(None)
+    assert customers("strike") == customers(None)
 
 
 # ---- gemini and curveballs ----------------------------------------------------------
@@ -198,7 +211,7 @@ def test_a_curveball_asks_about_every_uncovered_product_once(repo):
     sim.add_curveball("heatwave")
     run_ticks(sim, vc, 11)  # check at sim 5 → call; applied on the next tick
     assert engine.asked() == [[pid for pid in ALL if pid != "bread"]]
-    assert engine.contexts[0].news == [("Heatwave this afternoon: everyone wants something cold.", 175)]
+    assert engine.contexts[0].news == [(curveballs.PRESETS["heatwave"].text, 175)]
     order = next(o for o in sim.state.orders if o.product_id == "cold-drink")
     assert (order.qty, order.supplier) == (16, "backup")  # clamped to the room
     assert sim.state.runtime.counters.extra_fees == 32
@@ -219,10 +232,7 @@ def test_switching_to_gemini_during_a_curveball_asks_about_everything(repo):
     sim, vc = gemini_sim(repo, engine)
     sim.state.runtime.agent_mode = "rules"
     quiet(sim)
-    sim.add_curveball("strike")
-    run_ticks(sim, vc, 11)
-    assert engine.asked() == []
-    sim.update_settings(agent_mode="gemini")
+    sim.add_curveball("strike")  # switches the brain itself
     run_ticks(sim, vc, 11)
     assert engine.asked() == [ALL]
     assert sim.agent.plan.trigger == "Curveball: Supplier strike"
@@ -243,48 +253,51 @@ def test_a_failed_call_still_shows_a_plan(repo):
     assert [(s.product_id, s.source) for s in plan.steps if s.action == "order"] == [("bread", "fallback")]
 
 
-# ---- economics calibration ------------------------------------------------------------
+# ---- calibration: one press, real benefit --------------------------------------------
 
 
-def _strike_agent(bridge: bool):
-    """Scripted agent: normal = rules. On strike news, backup orders for must-order products, either just
-    enough to bridge until a main order could arrive (judgment) or a full refill (wasteful)."""
-
-    def respond(context):
-        strike = [left for text, left in context.news if "strike" in text.lower()]
-        out = []
-        for p in context.products:
-            zone = product_zone(p, context.orders)
-            if zone != Zone.MUST_ORDER:
-                continue
-            room = p.max_stock - inventory_position(p, context.orders)
-            qty, supplier = room, "main"
-            if strike:
-                supplier = "backup"
-                if bridge:
-                    rate = max(context.sales_last_60s.get(p.id, 0), 1) / 60
-                    qty = max(1, min(room, math.ceil(rate * (strike[0] + p.lead_time_s)) - p.stock))
+def _sensible_agent(context):
+    """A scripted stand-in for a sensible Gemini: read the news, expect more demand before the sales
+    data shows it, order early from the free main supplier, use the backup only to avoid a long stockout."""
+    text = " ".join(t.lower() for t, _ in context.news)
+    fresh = any(left > 120 for _, left in context.news)  # sales data has not caught up with the news yet
+    strike_left = max((left for t, left in context.news if "strike" in t.lower()), default=0)
+    out = []
+    for p in context.products:
+        zone = product_zone(p, context.orders)
+        room = p.max_stock - inventory_position(p, context.orders)
+        if zone == Zone.COVERED or room <= 0:
+            continue
+        factor = 2.0 if "packed" in text else 1.0
+        if "cold" in text and p.id == "cold-drink":
+            factor *= 3
+        if "snacks" in text and p.id in ("chips", "biscuits", "cold-drink"):
+            factor *= 2.5
+        rate = max(context.sales_last_60s.get(p.id, 0), 1) / 60 * (factor if fresh else 1)
+        main_wait = p.lead_time_s + strike_left
+        if zone == Zone.MUST_ORDER or p.stock - rate * main_wait <= p.reorder_point:
+            backup = p.stock / rate < 0.6 * main_wait
+            qty = max(1, min(room, math.ceil(rate * main_wait) - p.stock)) if backup else room
+            supplier = "backup" if backup else "main"
             out.append(
                 Decision(
                     product_id=p.id, action="order", qty=qty, supplier=supplier, reason="x", source="gemini"
                 )
             )
-        return out
-
-    return respond
+    return out
 
 
-@pytest.mark.parametrize("seed", range(1, 9))
-def test_economics_reward_judgment(repo, seed):
-    """The scoreboard must reward a sensible agent under a strike (see economics.py first)."""
-    results = {}
-    for bridge in (True, False):
-        sim, vc = gemini_sim(repo, FakeEngine(_strike_agent(bridge)), seed=seed)
-        for i in range(1000):  # 500 sim_s at 1x; strike at 60
+@pytest.mark.parametrize("preset", ["heatwave", "cricket", "strike"])
+def test_one_press_gives_a_sensible_agent_a_real_win(repo, preset):
+    """Calibration (see economics.py before changing): one curveball at 1x hurts the rules shop,
+    and an agent that acts on the news beats it on every seed."""
+    for seed in range(1, 9):
+        sim, vc = gemini_sim(repo, FakeEngine(_sensible_agent), seed=seed)
+        for i in range(800):  # 400 sim_s at 1x; one press at 60 s
             if i == 120:
-                sim.add_curveball("strike")
+                sim.add_curveball(preset)
             run_ticks(sim, vc, 1)
-        results[bridge] = build_scoreboard(sim)
-    assert results[True].agent_ahead_by > 100
-    assert results[False].agent_ahead_by > 0  # even a full backup refill pays off for must-order shelves
-    assert results[True].agent.extra_fees < results[False].agent.extra_fees
+        board = build_scoreboard(sim)
+        assert board.rules.missed_sales >= 10, (seed, board)
+        assert board.agent_ahead_by > 0, (seed, board)
+        assert board.agent.missed_sales < board.rules.missed_sales, (seed, board)

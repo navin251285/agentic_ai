@@ -15,7 +15,8 @@ Suppliers:
 - main: delivers after lead_time_s (x1.5 when supplier_delay is true). No fee.
 - backup: delivers after backup_lead_time_s. Costs ₹{BACKUP_FEE_PER_UNIT} extra per unit.
 "news" lists things the shop manager just told you (may be empty). Work out what each item means for demand \
-and for the suppliers, and act on it. Nobody will tell you the exact effect.
+and for the suppliers, and act on it. Nobody will tell you the exact effect. News arrives before the \
+sales figures show it, so plan for the demand you expect, not just recent sales.
 
 First write "situation": at most 30 words, how you read the situation right now (mention the news \
 if any).

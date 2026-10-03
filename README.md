@@ -92,8 +92,9 @@ count its call.
   covers every product that just entered the watch zone or the danger zone. Gemini may order early or order less.
   Guardrails clamp every order, and no shelf is ever left to run empty. On a timeout, an error or no budget, the rules
   take over and the feed shows `Agent · Fallback`.
-- **Curveball.** Type news for the agent (or pick a preset: heatwave, supplier strike, cricket final). The
-  Rules brain ignores it. Gemini reads it, re-plans every shelf in one call, and can switch to a faster
+- **Curveball.** One press: pick a preset (heatwave or cricket final pack the shop; supplier strike stops the
+  main supplier) or type any news. The Rules brain can't read news, so a curveball switches the brain to
+  Gemini. Gemini reads it, re-plans every shelf in one call, orders before the sales figures catch up, and can switch to a faster
   **backup supplier** (₹2 extra per unit). The **Agent plan** card shows its reading of the situation and each step.
 - **Shadow shop.** A second copy of the shop serves exactly the same customers, but is run by the Rules. The
   **Agent vs Rules** scoreboard compares missed sales, lost profit (₹15 per missed sale) and backup fees. With the
@@ -128,10 +129,11 @@ Before you go live: open the app one minute early so the Gemini warm-up finishes
    `Agent · Gemini` reasons in the feed.
 5. **(3:15)** Turn Rush hour **on**. Gemini re-checks the watch-zone items, orders some of them early and says why.
    You can also turn Supplier delay on and show it ordering earlier again.
-6. **(4:15)** Prove it's an agent. Turn Rush hour off and ask someone in the audience for a curveball, or press
-   **Supplier strike**. Point at the **Agent plan** card: Gemini explains how it reads the news and orders from the
+6. **(4:15)** Prove it's an agent. Turn Rush hour off and press one curveball (**Cricket final** shows the
+   clearest win; **Supplier strike** shows the backup supplier), or take one from the audience. Point at the **Agent plan** card: Gemini explains how it reads the news and orders from the
    backup supplier. Rules can't do this: their shadow shop's line drops on the stock chart and the
-   **Agent vs Rules** scoreboard swings to the agent.
+   **Agent vs Rules** scoreboard swings to the agent. Give it 1–2 minutes at 1x: the gap opens once the rules
+   shop starts running out.
 7. **(5:30)** Close with the scoreboard, the activity feed and the CSV files on disk.
 
 Keep Gemini mode at 1x or 0.5x. Use 5x only with the rules brain: at 5x the budget runs out and the rules make most

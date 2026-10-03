@@ -46,7 +46,8 @@ export function AgentBar({ snapshot }: Props) {
       <AgentStatusChip agent={agent} />
       {gemini && <BudgetMeter agent={agent} />}
       {gemini && (
-        <p id={GEMINI_5X_HINT_ID} className="ml-auto text-xs text-amber-ink">
+        // Visible only while at 5x; otherwise kept for screen readers as the 5x button's description.
+        <p id={GEMINI_5X_HINT_ID} className={snapshot.speed === 5 ? 'ml-auto text-xs text-amber-ink' : 'sr-only'}>
           Gemini is limited at 5x — rules will cover most decisions
         </p>
       )}
