@@ -31,6 +31,8 @@ The real `.env` is git-ignored. The key is never logged or sent to the browser.
 
 ## Run
 
+For step-by-step start, stop, health checks, logs and troubleshooting, see [RUNNING.md](RUNNING.md).
+
 ### Docker (recommended)
 
 ```bash
