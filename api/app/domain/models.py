@@ -206,6 +206,7 @@ class HistoryMarker(BaseModel):
     sim_s: float
     shop_time: str
     qty: int | None
+    stock_after: int | None
     ref: str
 
 

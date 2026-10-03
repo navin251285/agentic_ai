@@ -76,7 +76,14 @@ def build_history(sim: Simulation, product_id: str, window_s: float) -> History:
             if e.stock_after is not None
         ],
         markers=[
-            HistoryMarker(type=e.type.value, sim_s=e.sim_s, shop_time=e.shop_time, qty=e.qty, ref=e.ref)
+            HistoryMarker(
+                type=e.type.value,
+                sim_s=e.sim_s,
+                shop_time=e.shop_time,
+                qty=e.qty,
+                stock_after=e.stock_after,
+                ref=e.ref,
+            )
             for e in events
             if e.type in MARKER_TYPES
         ],

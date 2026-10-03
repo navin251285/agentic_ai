@@ -333,6 +333,8 @@ export interface components {
             shop_time: string;
             /** Qty */
             qty: number | null;
+            /** Stock After */
+            stock_after: number | null;
             /** Ref */
             ref: string;
         };

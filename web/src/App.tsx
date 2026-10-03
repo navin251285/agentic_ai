@@ -7,6 +7,7 @@ import { MetricsRow } from './components/MetricsRow'
 import { OrdersPipeline } from './components/OrdersPipeline'
 import { ProductGrid } from './components/ProductGrid'
 import { ShopCounter } from './components/ShopCounter'
+import { StockChart } from './components/StockChart'
 import { TopBar } from './components/TopBar'
 import { useLiveState } from './hooks/useLiveState'
 import { useShopStore } from './store/useShopStore'
@@ -25,7 +26,6 @@ export default function App() {
         <main className="mx-auto max-w-[1440px] space-y-4 p-4">
           <TopBar snapshot={snapshot} />
           <MetricsRow snapshot={snapshot} />
-          {/* Phase 7 adds the StockChart below this row. */}
           <div className="grid grid-cols-[260px_minmax(0,1fr)_300px] items-start gap-4">
             <ShopCounter snapshot={snapshot} />
             <ProductGrid products={snapshot.products} onEdit={setEditingId} />
@@ -34,6 +34,7 @@ export default function App() {
               <ActivityFeed events={snapshot.events} products={snapshot.products} />
             </div>
           </div>
+          <StockChart snapshot={snapshot} />
         </main>
       ) : (
         <p className="py-16 text-center text-muted">Connecting to the shop…</p>

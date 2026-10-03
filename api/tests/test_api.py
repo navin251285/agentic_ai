@@ -172,7 +172,10 @@ def test_history_is_current_run_with_markers(client, app):
     sim.tick(60)  # delivered
     hist = client.get("/api/history/milk").json()
     assert [p["stock_after"] for p in hist["points"]] == [18, 17, 16, 16, 16, 16, 30]
-    assert [m["type"] for m in hist["markers"]] == ["ORDER_PLACED", "DELIVERED"]
+    assert [(m["type"], m["stock_after"]) for m in hist["markers"]] == [
+        ("ORDER_PLACED", 16),
+        ("DELIVERED", 30),
+    ]
     assert hist["points"][0]["sim_s"] == 0  # RESET gives the starting point
     recent = client.get("/api/history/milk", params={"window_s": 30}).json()
     assert [m["type"] for m in recent["markers"]] == ["DELIVERED"]
