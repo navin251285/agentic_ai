@@ -1,4 +1,4 @@
-# docker compose up  → api on http://localhost:8000 (web is added in phase 6)
+# docker compose up  → dashboard on http://localhost:5173, api on http://localhost:8000
 services:
   api:
     build: ./api
@@ -12,3 +12,16 @@ services:
     volumes:
       - ./api/data:/app/data
     stop_grace_period: 15s
+
+  web:
+    build: ./web
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_TARGET: http://api:8000
+    volumes:
+      # Edit web/src on the host and Vite hot-reloads; node_modules stays the container's own.
+      - ./web/src:/app/src
+    depends_on:
+      api:
+        condition: service_healthy

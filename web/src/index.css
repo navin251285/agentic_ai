@@ -28,6 +28,11 @@
   --color-red-wash: #fff6f5;
   --color-red-line: #eaa5a2;
 
+  /* Agent chips in the feed are violet in the design; used only for agent labels and the brain switch. */
+  --color-violet: #5b3fb0;
+  --color-violet-tint: #ece7fa;
+  --color-violet-line: #b9a8e6;
+
   --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
@@ -38,6 +43,39 @@
     }
     to {
       box-shadow: 0 0 0 4px rgb(217 138 0 / 0.28);
+    }
+  }
+
+  /* Shop counter: each scanned item slides in with an amber flash (staggered via animation-delay). */
+  --animate-scan-in: scan-in 450ms ease-out both;
+  @keyframes scan-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-4px);
+      background-color: var(--color-amber-tint);
+    }
+    40% {
+      opacity: 1;
+      transform: none;
+      background-color: var(--color-amber-tint);
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+
+  --animate-fade-in: fade-in 300ms ease-out both;
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-3px);
+    }
+  }
+
+  --animate-thinking: thinking 600ms ease-in-out infinite alternate;
+  @keyframes thinking {
+    to {
+      opacity: 0.3;
     }
   }
 }
