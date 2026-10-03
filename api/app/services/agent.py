@@ -11,6 +11,9 @@ Gemini mode (event-driven, batched):
 - No budget: watch products stay pending; must-order products get one agent interval of grace, then
   the rules engine orders them ("Gemini budget reached").
 - No API key: every check falls back to rules with no call made.
+- Curveball (news): the next check asks about every product without an open order, with the news in the
+  context. Every call includes active news, both suppliers and the economics. The rules brain ignores news.
+- Each call's result (or its fallback) becomes the plan shown on the dashboard.
 """
 
 import asyncio
@@ -21,8 +24,17 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from app.config import Settings
-from app.domain.models import AgentStatus, Decision, EventType, PersistedState, Product
+from app.domain.models import (
+    AgentPlan,
+    AgentStatus,
+    Curveball,
+    Decision,
+    EventType,
+    PersistedState,
+    PlanStep,
+)
 from app.domain.rules import Zone, product_zone
+from app.services import clock
 from app.services.engines import rules_engine
 from app.services.engines.base import AgentContext, DecisionEngine
 from app.services.engines.guardrails import apply_guardrails
@@ -65,8 +77,10 @@ def build_llm_setup(settings: Settings, clock: Callable[[], float] = time.monoto
 @dataclass
 class _Job:
     product_ids: list[str]
+    trigger: str = "Routine check"
     done: bool = False
     decisions: list[Decision] = field(default_factory=list)
+    situation: str = ""
     error: str | None = None
     latency_ms: int | None = None
 
@@ -74,7 +88,7 @@ class _Job:
 class Agent:
     def __init__(
         self,
-        place_order: Callable[[PersistedState, Product, int, str], object],
+        place_order: Callable[..., object],  # (state, product, qty, message, supplier)
         emit: Callable[..., object],
         llm: LlmSetup | None = None,
     ):
@@ -88,6 +102,8 @@ class Agent:
         self._last_zone: dict[str, Zone] | None = None  # None = start tracking at the next tick
         self._pending: set[str] = set()
         self._denied: set[str] = set()  # must-order products already given their one interval of grace
+        self._news_trigger: str | None = None  # set by a curveball: the next check asks about every product
+        self.plan: AgentPlan | None = None
 
     # ---- hooks (scenario load, settings changes) ----------------------------
 
@@ -97,6 +113,8 @@ class Agent:
         self._last_zone = zones
         self._pending = {pid for pid, z in zones.items() if z in ASKABLE}
         self._denied.clear()
+        self._news_trigger = None
+        self.plan = None
 
     def mark_askable_pending(self, state: PersistedState) -> None:
         """Switching to gemini: everything in the watch or must zone is pending."""
@@ -105,6 +123,11 @@ class Agent:
     def mark_watch_pending(self, state: PersistedState) -> None:
         """Rush hour / supplier delay toggled: new information for watch-zone products."""
         self._pending |= {pid for pid, z in self._zones(state).items() if z == Zone.WATCH}
+
+    def mark_news_pending(self, curveballs: list[Curveball]) -> None:
+        """New news: the next Gemini check covers every product without an open order."""
+        if curveballs:
+            self._news_trigger = f"Curveball: {curveballs[-1].title}"
 
     # ---- tick -----------------------------------------------------------------
 
@@ -119,6 +142,7 @@ class Agent:
         self._track_zones(state)
         if rt.agent_mode == "rules":
             self._pending.clear()  # only gemini mode asks; switching to it re-marks (mark_askable_pending)
+            self._news_trigger = None  # the rules brain cannot read news
             context = build_context(state)
             decisions = apply_guardrails(rules_engine.decide(context), context)
         else:
@@ -146,21 +170,30 @@ class Agent:
             return []
         if self.llm.engine is None:  # no API key: rules, no call made
             self._pending.clear()
+            self._news_trigger = None
             context = build_context(state)
             decisions = apply_guardrails(rules_engine.decide(context), context)
             decisions = [d.model_copy(update={"source": "fallback"}) for d in decisions]
             if any(d.action == "order" for d in decisions):
                 self._fallback(state, "no API key")
             return decisions
-        if not self._pending:
+        trigger = self._news_trigger
+        uncovered: set[str] = set()
+        if trigger is not None:
+            uncovered = {p.id for p in state.products if product_zone(p, state.orders) != Zone.COVERED}
+            if not uncovered:  # everything already on order: nothing to ask
+                self._news_trigger = trigger = None
+        if not self._pending and trigger is None:
             return []
         if not self.llm.limiter.try_acquire():
             return self._budget_fallback(state)
-        ids = sorted(self._pending)
-        self._log_call("decision", ids)
+        asked = self._pending | uncovered
+        ids = [p.id for p in state.products if p.id in asked]  # shelf order
+        self._log_call("curveball" if trigger else "decision", ids)
         self._pending.clear()
+        self._news_trigger = None
         self._denied.difference_update(ids)
-        job = _Job(ids)
+        job = _Job(ids, trigger or "Routine check")
         self._job = job
         self.llm.spawn(self._call(job, build_context(state, ids, for_llm=True)))
         return []
@@ -195,7 +228,11 @@ class Agent:
     async def _call(self, job: _Job, context: AgentContext) -> None:
         started = time.monotonic()
         try:
-            job.decisions = await asyncio.wait_for(self.llm.engine.decide(context), self.llm.timeout_s)
+            plan = getattr(self.llm.engine, "plan", None)  # Gemini also explains how it reads the situation
+            if plan is not None:
+                job.situation, job.decisions = await asyncio.wait_for(plan(context), self.llm.timeout_s)
+            else:
+                job.decisions = await asyncio.wait_for(self.llm.engine.decide(context), self.llm.timeout_s)
         except TimeoutError:
             job.error = f"timeout after {self.llm.timeout_s:g}s"
         except Exception as exc:  # LlmError, validation, anything: the agent must keep going
@@ -214,12 +251,39 @@ class Agent:
         if job.error is None:
             self.llm_ready = True
             decisions = [d for d in job.decisions if d.product_id in job.product_ids]
+            situation = job.situation or "No summary given."
         else:
             self._fallback(state, job.error)
             decisions = [d.model_copy(update={"source": "fallback"}) for d in rules_engine.decide(context)]
+            situation = f"Gemini unavailable ({job.error}); the rules decided."
         decisions = apply_guardrails(decisions, context)
+        self.plan = self._make_plan(state, job.trigger, situation, decisions)
         self.act(state, decisions)
         return decisions
+
+    def _make_plan(
+        self, state: PersistedState, trigger: str, situation: str, decisions: list[Decision]
+    ) -> AgentPlan:
+        names = {p.id: p.name for p in state.products}
+        rt = state.runtime
+        return AgentPlan(
+            sim_s=rt.sim_s,
+            shop_time=clock.shop_time(rt.sim_s),
+            trigger=trigger,
+            situation=situation,
+            steps=[
+                PlanStep(
+                    product_id=d.product_id,
+                    product_name=names.get(d.product_id, d.product_id),
+                    action=d.action,
+                    qty=d.qty,
+                    supplier=d.supplier,
+                    reason=d.reason,
+                    source=d.source,
+                )
+                for d in decisions
+            ],
+        )
 
     def _fallback(self, state: PersistedState, reason: str) -> None:
         self.fallbacks += 1
@@ -231,11 +295,13 @@ class Agent:
     def act(self, state: PersistedState, decisions: list[Decision]) -> None:
         products = {p.id: p for p in state.products}
         for d in decisions:
+            product = products[d.product_id]
             if d.action == "order":
-                self.place_order(state, products[d.product_id], d.qty, f"[{d.source}] {d.reason}")
-            elif d.source == "gemini":
+                self.place_order(state, product, d.qty, f"[{d.source}] {d.reason}", d.supplier)
+            elif d.source == "gemini" and product_zone(product, state.orders) in ASKABLE:
                 # Asked only once per zone change, so this is logged at most once per product per zone.
-                self.emit(EventType.AGENT_WAIT, products[d.product_id], message=f"[gemini] {d.reason}")
+                # Waits on comfortable shelves (asked because of a curveball) show only on the plan card.
+                self.emit(EventType.AGENT_WAIT, product, message=f"[gemini] {d.reason}")
             # Rules waits are not logged; they would flood the feed.
 
     # ---- warm-up & status ---------------------------------------------------------
@@ -274,6 +340,7 @@ class Agent:
             call_limit=limiter.max_calls,
             next_call_allowed_in_s=round(limiter.next_call_allowed_in_s(), 1),
             pending_products=sorted(self._pending) if rt.agent_mode == "gemini" else [],
+            plan=self.plan,
         )
 
 
@@ -301,4 +368,5 @@ def build_context(
         supplier_delay=rt.supplier_delay,
         agent_interval_s=rt.agent_interval_s,
         sales_last_60s=sales,
+        news=[(c.text, max(0, round(c.ends_at_s - rt.sim_s))) for c in rt.curveballs] if for_llm else [],
     )

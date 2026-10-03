@@ -19,6 +19,7 @@ def context(**kw) -> AgentContext:
         orders=[make_order(product_id="bread", qty=10, due_at_s=130)],
         rush_hour=True,
         sales_last_60s={"milk": 9},
+        news=[("Heatwave this afternoon.", 120)],
     )
     return AgentContext(**{**base, **kw})
 
@@ -34,13 +35,14 @@ def test_context_json_is_compact_and_complete():
         "stock": 12,
         "max_stock": 30,
         "reorder_point": 12,
-        "watch_up_to": 18,
         "room": 18,
         "lead_time_s": 60,
+        "backup_lead_time_s": 24,
         "sales_last_60s": 9,
     }
     assert eggs["zone"] == "watch" and eggs["sales_last_60s"] == 0
-    assert data["open_orders"] == [{"product_id": "bread", "qty": 10, "arrives_in_s": 30}]
+    assert data["open_orders"] == [{"product_id": "bread", "qty": 10, "supplier": "main", "arrives_in_s": 30}]
+    assert data["news"] == [{"text": "Heatwave this afternoon.", "ends_in_s": 120}]
 
 
 def test_engine_maps_structured_output_to_decisions():

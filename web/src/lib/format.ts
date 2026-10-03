@@ -18,3 +18,9 @@ export function clockTime(shopTime: string): string {
 export function customerLabel(ref: string): string {
   return ref.startsWith('C-') ? `#${Number(ref.slice(2))}` : 'Manual'
 }
+
+/** 1240 → "₹1,240"; −48 → "−₹48". */
+export function rupees(amount: number): string {
+  const text = `₹${Math.abs(amount).toLocaleString('en-IN')}`
+  return amount < 0 ? `−${text}` : text
+}

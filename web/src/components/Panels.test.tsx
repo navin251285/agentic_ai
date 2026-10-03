@@ -16,7 +16,7 @@ afterEach(() => vi.restoreAllMocks())
 describe('MetricsRow', () => {
   it('shows counters and orders on the way', () => {
     render(
-      <MetricsRow snapshot={makeSnapshot({ counters: { sales: 142, missed_sales: 2, orders_placed: 6 }, orders_on_the_way: 3 })} />,
+      <MetricsRow snapshot={makeSnapshot({ counters: { sales: 142, missed_sales: 2, orders_placed: 6, extra_fees: 0 }, orders_on_the_way: 3 })} />,
     )
     expect(screen.getByText('Sales').nextSibling).toHaveTextContent('142')
     expect(screen.getByText('Missed sales (empty shelf)').nextSibling).toHaveTextContent('2')

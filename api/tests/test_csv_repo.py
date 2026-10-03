@@ -234,3 +234,15 @@ def test_pending_events_flush_on_next_successful_save(repo, data_dir, monkeypatc
 
     repo.save_orders([])
     assert [e.sim_s for e in repo.read_events(1)] == [7]
+
+
+def test_orders_without_a_supplier_column_load_as_main(repo, data_dir):
+    (data_dir / "orders.csv").write_text(
+        "id,product_id,qty,status,placed_at_s,due_at_s,delivered_at_s\nO-0001,milk,10,PLACED,0,60,\n",
+        encoding="utf-8-sig",
+    )
+    [order] = repo.load().orders
+    assert order.supplier == "main"
+    repo.save_orders([order.model_copy(update={"supplier": "backup"})])
+    assert repo.load().orders[0].supplier == "backup"
+    assert (data_dir / "orders.csv").read_text(encoding="utf-8-sig").splitlines()[0].endswith(",supplier")

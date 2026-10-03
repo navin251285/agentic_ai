@@ -1,4 +1,4 @@
-# Restock Agent Demo — Project Spec (v1.6, locked)
+# Restock Agent Demo — Project Spec (v1.7, locked; v1.7 adds Curveball + Shadow shop, see below)
 
 A minimal autonomous inventory agent for a live demo, built with an
 enterprise-style architecture. A simulated shop sells items (stock goes down),
@@ -40,7 +40,8 @@ Run
 - Must work on Windows, macOS and Linux (use pathlib, no OS-specific commands in code).
 
 Out of scope for v1: auth, Kubernetes, message queues, microservices, a real database,
-partial deliveries, multiple shops, multi-step LLM tool-calling agents.
+partial deliveries, multiple shops, multi-step LLM tool-calling agents. (v1.7: the agent picks actions
+from a fixed menu — order from main/backup supplier, or wait — in ONE structured call; still no multi-step loop.)
 
 ## Folder structure
 ```
@@ -321,6 +322,65 @@ Validation (Pydantic, return 422 with a clear message), checked against the prod
 - The real `.env` (with the key) is in `.gitignore` and is never printed, logged or sent to the UI.
 - Docker Compose passes it to the api service with `env_file: .env`.
 
+## v1.7: Curveball and Shadow shop (phase 8)
+Goal: prove on screen that the Gemini brain is an autonomous agent, not event-driven automation.
+Curveball = the agent handles news nobody wrote a handler for. Shadow shop = a measured comparison with the rules.
+
+Economics (constants in `domain/economics.py`, shown in the UI)
+- A missed sale loses ₹15 profit (`PROFIT_PER_SALE`).
+- Two suppliers. `main`: lead_time_s (× 1.5 with supplier_delay), no fee — the only one the rules use.
+  `backup`: lead = max(5, round(lead_time_s × 0.4)) sim_s, ₹2 per unit extra (`BACKUP_FEE_PER_UNIT`);
+  not affected by supplier_delay or a strike.
+- Calibrated with scripted agents (strike at 1x, 8 seeds, 500 sim_s): bridging the strike with backup orders
+  beats the rules shop by ₹170–₹500; refilling every low shelf from backup can lose. So the scoreboard rewards
+  judgment, not just using the backup. Guarded by `test_economics_reward_judgment`.
+- `Order.supplier` ("main" | "backup", default main) → new last column in orders.csv (old files load as main).
+- Counters gain `extra_fees` (₹ paid to the backup supplier). ORDER_PLACED message for backup ends with
+  " · backup supplier, +₹N".
+
+Curveball
+- `POST /api/curveball {preset?, text?}` (exactly one). `GET /api/curveballs` lists presets. 422 for an unknown
+  preset, text outside 3–200 chars, or when 3 curveballs are already active. Logs a CURVEBALL event
+  (message = the news text, ref = preset id or "CUSTOM").
+- Presets (each lasts 180 sim_s; the effect changes the simulated world for both shops):
+  - `heatwave` "Heatwave this afternoon: everyone wants something cold." → cold-drink demand ×3.
+  - `strike` "Our main supplier is on strike for the next 3 minutes." → main-supplier orders placed while it is
+    active are due at strike end + lead time. Orders already placed are not affected.
+  - `cricket` "Cricket final tonight: expect a run on snacks." → chips, cold-drink, biscuits demand ×2.5.
+- Custom text: no world effect; only the agent is told (lasts 180 sim_s).
+- Demand ×N multiplies that product's sell_weight when customers pick items (basket size unchanged).
+  Multipliers of active curveballs multiply. Active curveballs persist in runtime.json; expired ones are removed.
+- The agent is told ONLY the news text and seconds left, never the mechanics.
+- Rules brain: ignores news (that is the point). Gemini brain: at the next agent check after a curveball (or when
+  switching to Gemini while one is active), ONE call covers every product without an open order, not just the
+  watch/must zones. Every Gemini call includes active news, both suppliers and the economics.
+- Gemini output adds `situation` (≤ 30 words: how it reads the situation) and per decision `supplier`.
+  Guardrails unchanged (rules fallbacks always use main). AGENT_WAIT is logged only for watch/must products.
+- Agent plan (in AgentStatus.plan, memory only): sim_s, shop_time, trigger ("Curveball: <title>" or
+  "Routine check"), situation, steps = final decisions after guardrails (product, action, qty, supplier, reason,
+  source). Updated on every Gemini call result, including fallbacks.
+
+Shadow shop (counterfactual twin, `services/shadow.py`, no LLM calls)
+- A second copy of the shop managed by the rules engine. It gets exactly the same customers (the same baskets,
+  drawn once), manual sales, product edits, settings and curveball effects as the real shop. Its agent runs at
+  the same moments and is on/off with the real agent. So with the Rules brain both shops stay identical.
+- It writes nothing to events.csv or the feed. Its stock, open orders and counters persist in runtime.json
+  (`shadow`), reset on reset/scenario load. Product attributes always mirror the real shop.
+- It keeps a stock history (current run) for the chart's ghost line.
+- Snapshot `scoreboard`: for agent and rules shop — missed_sales, lost_profit (₹), extra_fees (₹),
+  total_cost (₹) — plus `agent_ahead_by` (rules total − agent total) and `same_brain` (agent_mode is rules).
+  Snapshot `shadow_stock` {product_id: stock}. History adds `shadow_points`.
+
+UI (phase 8)
+- New row under MetricsRow: CurveballPanel | AgentPlanCard | Scoreboard.
+- CurveballPanel: preset buttons, a text box + Send, active curveballs with seconds left. In rules mode a hint:
+  "The Rules brain can't read news — switch to Gemini."
+- AgentPlanCard: trigger and time, the situation sentence, steps (product · order N from main/backup · reason),
+  each step tagged Gemini/Fallback. Rules mode: "The Rules brain follows a fixed formula; it doesn't plan."
+- Scoreboard: "Agent vs Rules · same customers" with both columns and a headline (e.g. "Agent ahead by ₹240").
+- StockChart: dashed grey "Rules shop" line for the selected product.
+- OrdersPipeline marks backup orders. Feed: CURVEBALL → label "Curveball".
+
 ## Build phases (stop after each)
 0. Plan: confirm structure, list questions, `git init`. No code.
 1. Backend skeleton, domain models, rules, repository interface, CSV repo, scenarios, runtime.json, tests.
@@ -334,6 +394,8 @@ Validation (Pydantic, return 422 with a clear message), checked against the prod
 5. Web scaffold, generated types, useLiveState + store, ProductGrid/ProductCard with all states and badges.
 6. TopBar, MetricsRow, ShopCounter, OrdersPipeline, ActivityFeed, EditDrawer, ConnectionBanner; web in Compose.
 7. StockChart, demo polish, README (setup, run, the demo script below, how to swap storage).
+8. (v1.7) Curveball + Shadow shop + backup supplier, with tests (twin identical to the real shop in rules mode
+   over 600 sim_s on every scenario, with and without presets; fake-LLM curveball tests).
 
 ## Final acceptance test
 - `docker compose up`, open http://localhost:5173.
@@ -347,6 +409,8 @@ Validation (Pydantic, return 422 with a clear message), checked against the prod
 - Remove the API key (or block network) → every check falls back to rules, shelves still never run empty in normal mode.
 - Gemini mode for 5 real minutes at 1x (with rush hour toggled once): budget meter never exceeds 10; logs confirm it.
 - All backend tests pass; `npm run build` and type check pass.
+- (v1.7) Rules brain: scoreboard shows identical scores. Gemini brain at 1x + Supplier strike: the plan card shows
+  backup orders with reasons, and the scoreboard shows the agent ahead of the rules shop.
 
 ## Demo script (about 4.5 minutes, ≈ 10–12 Gemini calls total)
 Numbers below come from simulating these exact rules (20 seeds).
@@ -360,7 +424,9 @@ Numbers below come from simulating these exact rules (20 seeds).
 4. (2:45) Switch brain to Gemini (already warmed up). Point at the budget meter and "Agent · Gemini" reasons.
 5. (3:15) Turn rush hour ON: Gemini re-evaluates watch-zone items and orders some early, explaining why.
    Optionally turn supplier delay ON and show it ordering earlier again.
-6. (4:15) Close: metrics row, the activity feed, and the CSV files on disk.
+6. (4:15) (v1.7) Rush hour OFF; take a curveball from the audience or press Supplier strike. Show the plan card
+   (situation + backup orders), the rules shop's ghost line dropping, and the scoreboard swinging to the agent.
+7. (5:30) Close: scoreboard, metrics row, the activity feed, and the CSV files on disk.
 Rules for the presenter: keep Gemini mode at 1x or 0.5x; use 5x only with the rules brain.
 Before going live: open the app 1 minute early so warm-up finishes, and rehearse with a fixed SIM_SEED.
 

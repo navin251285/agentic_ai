@@ -15,6 +15,13 @@ export type History = Schemas['History']
 export type ProductPatch = Schemas['ProductPatch']
 export type SettingsPatch = Schemas['SettingsPatch']
 export type Speed = Schemas['SpeedRequest']['speed']
+export type Curveball = Schemas['CurveballView']
+export type CurveballPreset = Schemas['CurveballPreset']
+export type CurveballRequest = Schemas['CurveballRequest']
+export type Scoreboard = Schemas['Scoreboard']
+export type Score = Schemas['Score']
+export type AgentPlan = Schemas['AgentPlan']
+export type PlanStep = Schemas['PlanStep']
 type ValidationIssue = Schemas['ValidationError']
 
 /** A non-2xx response; for 422 `issues` holds FastAPI's validation details. */
@@ -57,6 +64,8 @@ export const api = {
   scenarios: () => request<string[]>('GET', '/scenarios'),
   loadScenario: (name: string) => request<Snapshot>('POST', '/scenario', { name }),
   reset: () => request<Snapshot>('POST', '/reset'),
+  curveballs: () => request<CurveballPreset[]>('GET', '/curveballs'),
+  addCurveball: (body: CurveballRequest) => request<Snapshot>('POST', '/curveball', body),
   history: (id: string, windowS = 600) =>
     request<History>('GET', `/history/${encodeURIComponent(id)}?window_s=${windowS}`),
 }

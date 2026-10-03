@@ -8,7 +8,10 @@ from fastapi import APIRouter, Path, Query, Request
 from fastapi.exceptions import RequestValidationError
 from pydantic import ValidationError
 
+from app.domain import curveballs
 from app.domain.models import (
+    CurveballPreset,
+    CurveballRequest,
     History,
     ProductPatch,
     ScenarioRequest,
@@ -18,7 +21,7 @@ from app.domain.models import (
     SpeedRequest,
 )
 from app.repositories.base import ScenarioNotFound
-from app.services.simulation import Simulation, UnknownProduct
+from app.services.simulation import Simulation, TooManyCurveballs, UnknownProduct
 from app.services.snapshot import build_history, build_snapshot
 
 router = APIRouter(prefix="/api")
@@ -124,6 +127,30 @@ async def reset(request: Request) -> Snapshot:
     sim = _sim(request)
     async with sim.lock:
         sim.reset()
+        return build_snapshot(sim)
+
+
+@router.get("/curveballs", summary="Curveball presets")
+def list_curveballs() -> list[CurveballPreset]:
+    return [
+        CurveballPreset(id=k, title=p.title, text=p.text, effect=p.effect)
+        for k, p in curveballs.PRESETS.items()
+    ]
+
+
+@router.post("/curveball", summary="Tell the agent some news (a preset also changes the world)")
+async def add_curveball(body: CurveballRequest, request: Request) -> Snapshot:
+    sim = _sim(request)
+    async with sim.lock:
+        try:
+            sim.add_curveball(body.preset, body.text)
+        except KeyError:
+            known = ", ".join(curveballs.PRESETS)
+            raise _invalid(
+                ("body", "preset"), f"Unknown preset '{body.preset}' (known: {known})", body.preset
+            ) from None
+        except TooManyCurveballs as exc:
+            raise _invalid(("body",), str(exc)) from None
         return build_snapshot(sim)
 
 

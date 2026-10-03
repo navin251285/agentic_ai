@@ -1,11 +1,14 @@
 import { useCallback, useState } from 'react'
 
 import { ActivityFeed } from './components/ActivityFeed'
+import { AgentPlanCard } from './components/AgentPlanCard'
 import { ConnectionBanner } from './components/ConnectionBanner'
+import { CurveballPanel } from './components/CurveballPanel'
 import { EditDrawer } from './components/EditDrawer'
 import { MetricsRow } from './components/MetricsRow'
 import { OrdersPipeline } from './components/OrdersPipeline'
 import { ProductGrid } from './components/ProductGrid'
+import { ScoreboardPanel } from './components/ScoreboardPanel'
 import { ShopCounter } from './components/ShopCounter'
 import { StockChart } from './components/StockChart'
 import { TopBar } from './components/TopBar'
@@ -26,6 +29,11 @@ export default function App() {
         <main className="mx-auto max-w-[1440px] space-y-4 p-4">
           <TopBar snapshot={snapshot} />
           <MetricsRow snapshot={snapshot} />
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_minmax(0,1fr)] items-start gap-4">
+            <CurveballPanel snapshot={snapshot} />
+            <AgentPlanCard agent={snapshot.agent} />
+            <ScoreboardPanel scoreboard={snapshot.scoreboard} />
+          </div>
           <div className="grid grid-cols-[260px_minmax(0,1fr)_300px] items-start gap-4">
             <ShopCounter snapshot={snapshot} />
             <ProductGrid products={snapshot.products} onEdit={setEditingId} />

@@ -1,15 +1,17 @@
 """Order lifecycle and deliveries.
 
-Lead time = product.lead_time_s (× 1.5 if supplier_delay is on when the order is placed).
-CONFIRMED at 10% of lead time, SHIPPED at 30%, DELIVERED at 100% (stock capped at max_stock).
-Lead time is fixed at placement, so later edits or delay toggles only affect new orders.
+Due time comes from economics.due_at_s: main supplier = lead_time_s (× 1.5 with supplier_delay, and after
+any strike); backup = 40% of it, for a fee. CONFIRMED at 10% of the time to delivery, SHIPPED at 30%,
+DELIVERED at 100% (stock capped at max_stock). Fixed at placement: later edits or toggles affect
+new orders only.
 """
 
 from collections.abc import Callable
 
-from app.domain.models import EventType, Order, OrderStatus, PersistedState, Product
+from app.domain import economics
+from app.domain.curveballs import strike_ends_at_s
+from app.domain.models import EventType, Order, OrderStatus, PersistedState, Product, SupplierName
 
-DELAY_FACTOR = 1.5
 STAGES = (  # (status, fraction of lead time, event)
     (OrderStatus.CONFIRMED, 0.1, EventType.ORDER_CONFIRMED),
     (OrderStatus.SHIPPED, 0.3, EventType.ORDER_SHIPPED),
@@ -21,18 +23,26 @@ class Supplier:
     def __init__(self, emit: Callable[..., None]):
         self.emit = emit
 
-    def place_order(self, state: PersistedState, product: Product, qty: int, message: str) -> Order:
+    def place_order(
+        self, state: PersistedState, product: Product, qty: int, message: str, supplier: SupplierName = "main"
+    ) -> Order:
         rt = state.runtime
-        lead = product.lead_time_s * (DELAY_FACTOR if rt.supplier_delay else 1)
         order = Order(
             id=f"O-{rt.next_order_id:04d}",
             product_id=product.id,
             qty=qty,
             placed_at_s=rt.sim_s,
-            due_at_s=rt.sim_s + lead,
+            due_at_s=economics.due_at_s(
+                product, supplier, rt.sim_s, rt.supplier_delay, strike_ends_at_s(rt.curveballs)
+            ),
+            supplier=supplier,
         )
         rt.next_order_id += 1
         rt.counters.orders_placed += 1
+        fee = economics.order_fee(supplier, qty)
+        if fee:
+            rt.counters.extra_fees += fee
+            message += f" · backup supplier, +₹{fee}"
         state.orders.append(order)
         self.emit(EventType.ORDER_PLACED, product, qty, order.id, message)
         return order

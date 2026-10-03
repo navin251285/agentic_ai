@@ -157,6 +157,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/curveballs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Curveball presets */
+        get: operations["list_curveballs_api_curveballs_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/curveball": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Tell the agent some news (a preset also changes the world) */
+        post: operations["add_curveball_api_curveball_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/history/{product_id}": {
         parameters: {
             query?: never;
@@ -198,6 +232,22 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /**
+         * AgentPlan
+         * @description The latest Gemini decision (or its fallback), for the plan card. Memory only.
+         */
+        AgentPlan: {
+            /** Sim S */
+            sim_s: number;
+            /** Shop Time */
+            shop_time: string;
+            /** Trigger */
+            trigger: string;
+            /** Situation */
+            situation: string;
+            /** Steps */
+            steps: components["schemas"]["PlanStep"][];
+        };
         /**
          * AgentStatus
          * @description Live agent view (in memory only; part of the phase 4 Snapshot).
@@ -249,6 +299,7 @@ export interface components {
             next_call_allowed_in_s: number;
             /** Pending Products */
             pending_products?: string[];
+            plan?: components["schemas"]["AgentPlan"] | null;
         };
         /** Counters */
         Counters: {
@@ -267,6 +318,45 @@ export interface components {
              * @default 0
              */
             orders_placed: number;
+            /**
+             * Extra Fees
+             * @default 0
+             */
+            extra_fees: number;
+        };
+        /** CurveballPreset */
+        CurveballPreset: {
+            /** Id */
+            id: string;
+            /** Title */
+            title: string;
+            /** Text */
+            text: string;
+            /** Effect */
+            effect: string;
+        };
+        /**
+         * CurveballRequest
+         * @description Exactly one of preset or text.
+         */
+        CurveballRequest: {
+            /** Preset */
+            preset?: string | null;
+            /** Text */
+            text?: string | null;
+        };
+        /** CurveballView */
+        CurveballView: {
+            /** Id */
+            id: number;
+            /** Preset */
+            preset: string | null;
+            /** Title */
+            title: string;
+            /** Text */
+            text: string;
+            /** Seconds Left */
+            seconds_left: number;
         };
         /** Event */
         Event: {
@@ -303,7 +393,7 @@ export interface components {
          * EventType
          * @enum {string}
          */
-        EventType: "SALE" | "MISSED_SALE" | "CROSSED_MARK" | "ORDER_PLACED" | "ORDER_CONFIRMED" | "ORDER_SHIPPED" | "DELIVERED" | "EDIT" | "SETTINGS_CHANGED" | "SCENARIO_LOADED" | "RESET" | "AGENT_WAIT" | "AGENT_FALLBACK";
+        EventType: "SALE" | "MISSED_SALE" | "CROSSED_MARK" | "ORDER_PLACED" | "ORDER_CONFIRMED" | "ORDER_SHIPPED" | "DELIVERED" | "EDIT" | "SETTINGS_CHANGED" | "SCENARIO_LOADED" | "RESET" | "AGENT_WAIT" | "AGENT_FALLBACK" | "CURVEBALL";
         /** HTTPValidationError */
         HTTPValidationError: {
             /** Detail */
@@ -319,6 +409,8 @@ export interface components {
             points: components["schemas"]["HistoryPoint"][];
             /** Markers */
             markers: components["schemas"]["HistoryMarker"][];
+            /** Shadow Points */
+            shadow_points: components["schemas"]["HistoryPoint"][];
         };
         /** HistoryMarker */
         HistoryMarker: {
@@ -368,10 +460,42 @@ export interface components {
             due_at_s: number;
             /** Delivered At S */
             delivered_at_s?: number | null;
+            /**
+             * Supplier
+             * @default main
+             * @enum {string}
+             */
+            supplier: "main" | "backup";
             /** Product Name */
             product_name: string;
             /** Seconds Left */
             seconds_left: number;
+        };
+        /** PlanStep */
+        PlanStep: {
+            /** Product Id */
+            product_id: string;
+            /** Product Name */
+            product_name: string;
+            /**
+             * Action
+             * @enum {string}
+             */
+            action: "order" | "wait";
+            /** Qty */
+            qty: number;
+            /**
+             * Supplier
+             * @enum {string}
+             */
+            supplier: "main" | "backup";
+            /** Reason */
+            reason: string;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "rules" | "gemini" | "fallback";
         };
         /**
          * ProductPatch
@@ -419,6 +543,29 @@ export interface components {
         ScenarioRequest: {
             /** Name */
             name: string;
+        };
+        /** Score */
+        Score: {
+            /** Missed Sales */
+            missed_sales: number;
+            /** Lost Profit */
+            lost_profit: number;
+            /** Extra Fees */
+            extra_fees: number;
+            /** Total Cost */
+            total_cost: number;
+        };
+        /**
+         * Scoreboard
+         * @description The real shop (agent) against the shadow shop (rules), same customers.
+         */
+        Scoreboard: {
+            agent: components["schemas"]["Score"];
+            rules: components["schemas"]["Score"];
+            /** Agent Ahead By */
+            agent_ahead_by: number;
+            /** Same Brain */
+            same_brain: boolean;
         };
         /** SellRequest */
         SellRequest: {
@@ -515,6 +662,13 @@ export interface components {
             /** Events */
             events: components["schemas"]["Event"][];
             agent: components["schemas"]["AgentStatus"];
+            /** Curveballs */
+            curveballs: components["schemas"]["CurveballView"][];
+            scoreboard: components["schemas"]["Scoreboard"];
+            /** Shadow Stock */
+            shadow_stock: {
+                [key: string]: number;
+            };
         };
         /** SpeedRequest */
         SpeedRequest: {
@@ -791,6 +945,59 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Snapshot"];
+                };
+            };
+        };
+    };
+    list_curveballs_api_curveballs_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CurveballPreset"][];
+                };
+            };
+        };
+    };
+    add_curveball_api_curveball_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CurveballRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Snapshot"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

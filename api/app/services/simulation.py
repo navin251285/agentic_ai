@@ -1,4 +1,4 @@
-"""Owns the in-memory state. Tick: clock → shop → supplier → agent → publish.
+"""Owns the in-memory state. Tick: clock → shop → supplier → agent → shadow shop → publish.
 
 All methods here are synchronous. In the server, the loop and every API action run them while
 holding `self.lock`, so they never interleave. Tests drive `tick(dt_sim)` directly and never sleep.
@@ -11,8 +11,10 @@ import time
 from collections.abc import Callable
 from datetime import UTC, datetime
 
+from app.domain import curveballs
 from app.domain.models import (
     Counters,
+    Curveball,
     Event,
     EventType,
     Order,
@@ -24,6 +26,7 @@ from app.domain.models import (
 from app.repositories.base import InventoryRepository
 from app.services import clock
 from app.services.agent import Agent, LlmSetup
+from app.services.shadow import ShadowShop
 from app.services.shop import Shop
 from app.services.supplier import Supplier
 
@@ -31,6 +34,10 @@ log = logging.getLogger(__name__)
 
 
 class UnknownProduct(KeyError):
+    pass
+
+
+class TooManyCurveballs(ValueError):
     pass
 
 
@@ -58,6 +65,7 @@ class Simulation:
         self.shop = Shop(rng, self.emit)
         self.supplier = Supplier(self.emit)
         self.agent = Agent(self.supplier.place_order, self.emit, llm)
+        self.shadow = ShadowShop(state)
 
     # ---- events -------------------------------------------------------------
 
@@ -93,10 +101,14 @@ class Simulation:
     def tick(self, dt_sim: float) -> None:
         """Advance the world by dt_sim. Nothing reacts while paused (dt_sim 0)."""
         if dt_sim > 0:
-            clock.advance(self.state.runtime, dt_sim)
-            self.shop.tick(self.state)
+            rt = self.state.runtime
+            clock.advance(rt, dt_sim)
+            rt.curveballs = curveballs.active(rt.curveballs, rt.sim_s)
+            baskets = self.shop.tick(self.state)
             self.supplier.tick(self.state)
+            agent_checks = rt.agent_enabled and rt.sim_s >= rt.next_agent_check_s
             self.agent.tick(self.state)
+            self.shadow.tick(self.state, baskets, agent_checks)
         for listener in self.tick_listeners:
             listener()
 
@@ -118,6 +130,7 @@ class Simulation:
     def sell(self, product_id: str, qty: int) -> None:
         """Manual sale. Works while paused: stock changes, nothing else reacts until play resumes."""
         self.shop.sell_manual(self.state, self.product(product_id), qty)
+        self.shadow.sell(product_id, qty, self.state.runtime.sim_s)
 
     def update_settings(self, **changes) -> SimSettings:
         """Apply setting changes (validated), log SETTINGS_CHANGED, and tell the agent what is new."""
@@ -133,6 +146,8 @@ class Simulation:
             rt.next_agent_check_s = rt.sim_s + rt.agent_interval_s
         if diff.get("agent_mode") == "gemini":
             self.agent.mark_askable_pending(self.state)
+            if rt.curveballs:
+                self.agent.mark_news_pending(rt.curveballs)
         if "rush_hour" in diff or "supplier_delay" in diff:
             self.agent.mark_watch_pending(self.state)
         self.emit(EventType.SETTINGS_CHANGED, message=", ".join(f"{k} → {v}" for k, v in diff.items()))
@@ -148,6 +163,7 @@ class Simulation:
         was_above = product.stock > product.reorder_point
         for k, v in diff.items():
             setattr(product, k, v)
+        self.shadow.edit(product, set(diff), self.state.runtime.sim_s)
         self.emit(
             EventType.EDIT,
             product,
@@ -165,6 +181,20 @@ class Simulation:
     def place_order(self, product_id: str, qty: int, message: str) -> Order:
         return self.supplier.place_order(self.state, self.product(product_id), qty, message)
 
+    def add_curveball(self, preset: str | None = None, text: str | None = None) -> Curveball:
+        """Raises KeyError for an unknown preset, TooManyCurveballs when MAX_ACTIVE are running."""
+        rt = self.state.runtime
+        if len(rt.curveballs) >= curveballs.MAX_ACTIVE:
+            raise TooManyCurveballs(
+                f"At most {curveballs.MAX_ACTIVE} curveballs at a time; wait for one to end"
+            )
+        curveball = curveballs.make(rt.next_curveball_id, rt.sim_s, preset, text)
+        rt.next_curveball_id += 1
+        rt.curveballs.append(curveball)
+        self.emit(EventType.CURVEBALL, ref=preset or curveballs.CUSTOM, message=curveball.text)
+        self.agent.mark_news_pending(rt.curveballs)
+        return curveball
+
     def load_scenario(self, name: str, event_type: EventType = EventType.SCENARIO_LOADED) -> None:
         """Start a new run from a scenario: new run_id, sim_s 0, no orders, fresh counters."""
         products = self.repo.load_scenario(name)  # raises ScenarioNotFound before anything changes
@@ -177,6 +207,7 @@ class Simulation:
         rt.next_customer_at_s = 0
         rt.next_customer_id = 1
         rt.next_agent_check_s = rt.agent_interval_s
+        rt.curveballs = []
         # next_order_id keeps counting so order ids stay unique across runs in events.csv.
         self.state.products = products
         self.state.orders = []
@@ -185,6 +216,7 @@ class Simulation:
         for p in products:  # one per product, so the chart has a starting point
             self.emit(event_type, p, message=f"{label}: {p.name} starts at {p.stock}")
         self.agent.start_run(self.state)
+        self.shadow.reset(self.state)
         self.save()
 
     def reset(self) -> None:
@@ -193,6 +225,7 @@ class Simulation:
     # ---- persistence & loop ---------------------------------------------------
 
     def save(self) -> bool:
+        self.state.runtime.shadow = self.shadow.export()
         ok = self.repo.save_products(self.state.products)
         ok = self.repo.save_orders(self.state.orders) and ok
         ok = self.repo.save_runtime(self.state.runtime.model_dump(mode="json")) and ok

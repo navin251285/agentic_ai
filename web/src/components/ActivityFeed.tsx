@@ -11,6 +11,7 @@ const TONES: Record<FeedTone, string> = {
   agent: 'bg-violet-tint text-violet',
   fallback: 'bg-amber-tint text-amber-ink ring-1 ring-violet-line',
   system: 'bg-ground text-ink',
+  curveball: 'bg-ink text-white',
 }
 
 interface Props {

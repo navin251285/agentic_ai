@@ -92,6 +92,12 @@ count its call.
   covers every product that just entered the watch zone or the danger zone. Gemini may order early or order less.
   Guardrails clamp every order, and no shelf is ever left to run empty. On a timeout, an error or no budget, the rules
   take over and the feed shows `Agent · Fallback`.
+- **Curveball.** Type news for the agent (or pick a preset: heatwave, supplier strike, cricket final). The
+  Rules brain ignores it. Gemini reads it, re-plans every shelf in one call, and can switch to a faster
+  **backup supplier** (₹2 extra per unit). The **Agent plan** card shows its reading of the situation and each step.
+- **Shadow shop.** A second copy of the shop serves exactly the same customers, but is run by the Rules. The
+  **Agent vs Rules** scoreboard compares missed sales, lost profit (₹15 per missed sale) and backup fees. With the
+  Rules brain both shops score the same; any gap comes from the agent's decisions.
 - **Screen.** React only displays the snapshot that the API sends on every tick (0.5 s). The snapshot already
   contains every state, badge, countdown and "saved ago" value.
 
@@ -108,7 +114,7 @@ count its call.
 If `products.csv` is broken, the app renames it to `products.csv.bad-<timestamp>` and loads the default scenario.
 If a file is locked (for example, open in Excel), the app logs a warning and retries on the next save.
 
-## Demo script (about 4.5 minutes, about 10–12 Gemini calls)
+## Demo script (about 6 minutes, about 15 Gemini calls)
 
 Before you go live: open the app one minute early so the Gemini warm-up finishes, and rehearse with a fixed `SIM_SEED`.
 
@@ -122,7 +128,11 @@ Before you go live: open the app one minute early so the Gemini warm-up finishes
    `Agent · Gemini` reasons in the feed.
 5. **(3:15)** Turn Rush hour **on**. Gemini re-checks the watch-zone items, orders some of them early and says why.
    You can also turn Supplier delay on and show it ordering earlier again.
-6. **(4:15)** Close with the metrics row, the activity feed and the CSV files on disk.
+6. **(4:15)** Prove it's an agent. Turn Rush hour off and ask someone in the audience for a curveball, or press
+   **Supplier strike**. Point at the **Agent plan** card: Gemini explains how it reads the news and orders from the
+   backup supplier. Rules can't do this: their shadow shop's line drops on the stock chart and the
+   **Agent vs Rules** scoreboard swings to the agent.
+7. **(5:30)** Close with the scoreboard, the activity feed and the CSV files on disk.
 
 Keep Gemini mode at 1x or 0.5x. Use 5x only with the rules brain: at 5x the budget runs out and the rules make most
 decisions.

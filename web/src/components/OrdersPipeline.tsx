@@ -44,6 +44,9 @@ function OrderRow({ order }: { order: OpenOrder }) {
       <div className="flex items-baseline justify-between">
         <span className="text-[13px] font-semibold">
           {order.product_name} × {order.qty}
+          {order.supplier === 'backup' && (
+            <span className="ml-1.5 rounded bg-violet-tint px-1 py-px text-[10px] font-semibold text-violet">Backup</span>
+          )}
         </span>
         <span className="font-mono text-[13px] font-medium text-blue tabular-nums">
           {formatDuration(order.seconds_left)}

@@ -46,6 +46,8 @@ def test_docs_list_every_endpoint(client):
         ("post", "/api/scenario"),
         ("post", "/api/reset"),
         ("get", "/api/history/{product_id}"),
+        ("get", "/api/curveballs"),
+        ("post", "/api/curveball"),
     }
     assert {(m, p) for p, ops in paths.items() for m in ops} == expected
     stream = paths["/api/stream"]["get"]["responses"]["200"]["content"]["text/event-stream"]
@@ -63,8 +65,12 @@ def test_snapshot_has_everything_the_screen_needs(client):
     assert snap["agent"]["mode"] == "rules" and snap["agent"]["call_limit"] == 10
     assert snap["settings"]["agent_interval_s"] == 5
     assert snap["events"] == []  # fresh data dir: nothing has happened yet
-    assert set(snap["counters"]) == {"sales", "missed_sales", "orders_placed"}
+    assert set(snap["counters"]) == {"sales", "missed_sales", "orders_placed", "extra_fees"}
     assert snap["orders"] == [] and snap["orders_on_the_way"] == 0
+    assert snap["curveballs"] == [] and snap["agent"]["plan"] is None
+    zero = {"missed_sales": 0, "lost_profit": 0, "extra_fees": 0, "total_cost": 0}
+    assert snap["scoreboard"] == {"agent": zero, "rules": zero, "agent_ahead_by": 0, "same_brain": True}
+    assert snap["shadow_stock"]["milk"] == 18
 
 
 def test_snapshot_shows_open_orders_with_countdown_and_badges(client, app):
@@ -188,3 +194,38 @@ def test_saved_ago_counts_from_last_save(client, app):
     assert client.get("/api/snapshot").json()["saved_ago_s"] == 0
     app.state.sim.last_saved_at -= 7
     assert client.get("/api/snapshot").json()["saved_ago_s"] == 7
+
+
+def test_curveball_presets_and_validation(client, data_dir):
+    presets = client.get("/api/curveballs").json()
+    assert [p["id"] for p in presets] == ["heatwave", "strike", "cricket"]
+    assert presets[1]["effect"].startswith("Orders to the main supplier")
+    snap = client.post("/api/curveball", json={"preset": "strike"}).json()
+    [cb] = snap["curveballs"]
+    assert (cb["preset"], cb["title"], cb["seconds_left"]) == ("strike", "Supplier strike", 180)
+    snap = client.post("/api/curveball", json={"text": "Diwali sale this weekend"}).json()
+    assert (
+        snap["curveballs"][-1]["preset"] is None
+        and snap["curveballs"][-1]["title"] == "Diwali sale this weekend"
+    )
+    assert errors(client.post("/api/curveball", json={"preset": "earthquake"}))[0].startswith(
+        "Unknown preset 'earthquake'"
+    )
+    assert errors(client.post("/api/curveball", json={})) == ["Value error, send either a preset or a text"]
+    assert errors(client.post("/api/curveball", json={"preset": "strike", "text": "both"}))
+    assert errors(client.post("/api/curveball", json={"text": "hi"}))  # too short
+    client.post("/api/curveball", json={"preset": "heatwave"})
+    assert errors(client.post("/api/curveball", json={"preset": "cricket"}))[0].startswith(
+        "At most 3 curveballs"
+    )
+    with open(data_dir / "events.csv", encoding="utf-8-sig", newline="") as f:
+        rows = [r for r in csv.DictReader(f) if r["type"] == "CURVEBALL"]
+    assert [(r["ref"], r["message"]) for r in rows][:2] == [
+        ("strike", "Our main supplier is on strike for the next 3 minutes."),
+        ("CUSTOM", "Diwali sale this weekend"),
+    ]
+
+
+def test_history_has_the_rules_shop_line(client):
+    hist = client.get("/api/history/milk").json()
+    assert hist["shadow_points"][0]["stock_after"] == 18

@@ -5,7 +5,7 @@ import { api, type History } from '../api/client'
 import { makeEvent, makeSnapshot } from '../test/fixtures'
 import { StockChart } from './StockChart'
 
-const empty = (product_id: string): History => ({ product_id, window_s: 600, points: [], markers: [] })
+const empty = (product_id: string): History => ({ product_id, window_s: 600, points: [], markers: [], shadow_points: [] })
 
 describe('StockChart', () => {
   let history: ReturnType<typeof vi.spyOn>

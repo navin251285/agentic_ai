@@ -1,4 +1,4 @@
-"""Gemini engine: one structured-output call decides on all listed products.
+"""Gemini engine: one structured-output call decides on all listed products and sums up the situation.
 
 Errors are re-raised as LlmError with a short, key-free reason; the agent turns them into a fallback.
 """
@@ -13,6 +13,7 @@ from app.services.engines.base import AgentContext
 from app.services.engines.prompts import SYSTEM_PROMPT, build_context
 
 MAX_REASON_WORDS = 20
+MAX_SITUATION_WORDS = 30
 WARMUP_PROMPT = "Reply with the single word: ready"
 
 
@@ -20,10 +21,12 @@ class LlmDecision(BaseModel):
     product_id: str = Field(description="One of the product_id values given")
     action: Literal["order", "wait"]
     qty: int = Field(description="Units to order; 0 when waiting")
+    supplier: Literal["main", "backup"] = Field("main", description="Who to order from; main when waiting")
     reason: str = Field(description="At most 20 words, plain English")
 
 
 class LlmPlan(BaseModel):
+    situation: str = Field("", description="At most 30 words: how you read the situation right now")
     decisions: list[LlmDecision]
 
 
@@ -64,6 +67,10 @@ class GeminiEngine:
         self._secret = secret
 
     async def decide(self, context: AgentContext) -> list[Decision]:
+        return (await self.plan(context))[1]
+
+    async def plan(self, context: AgentContext) -> tuple[str, list[Decision]]:
+        """(situation, decisions)."""
         messages = [("system", SYSTEM_PROMPT), ("human", build_context(context))]
         try:
             plan = await self._structured.ainvoke(messages)
@@ -71,16 +78,18 @@ class GeminiEngine:
             raise LlmError(short_reason(exc, self._secret)) from exc
         if not isinstance(plan, LlmPlan):
             raise LlmError(f"invalid output: {type(plan).__name__}")
-        return [
+        decisions = [
             Decision(
                 product_id=d.product_id,
                 action=d.action,
                 qty=max(0, d.qty) if d.action == "order" else 0,
                 reason=trim_words(d.reason.strip()) or "No reason given.",
                 source="gemini",
+                supplier=d.supplier if d.action == "order" else "main",
             )
             for d in plan.decisions
         ]
+        return trim_words(plan.situation.strip(), MAX_SITUATION_WORDS), decisions
 
     async def warm_up(self) -> None:
         try:

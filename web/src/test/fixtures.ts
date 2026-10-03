@@ -1,4 +1,4 @@
-import type { AgentStatus, OpenOrder, Product, ShopEvent, Snapshot } from '../api/client'
+import type { AgentStatus, OpenOrder, Product, Score, Scoreboard, ShopEvent, Snapshot } from '../api/client'
 
 export function makeProduct(overrides: Partial<Product> = {}): Product {
   return {
@@ -48,6 +48,7 @@ export function makeAgent(overrides: Partial<AgentStatus> = {}): AgentStatus {
     call_limit: 10,
     next_call_allowed_in_s: 0,
     pending_products: [],
+    plan: null,
     ...overrides,
   }
 }
@@ -61,7 +62,7 @@ export function makeSnapshot(overrides: Partial<Snapshot> = {}): Snapshot {
     last_speed: 1,
     scenario: 'normal_day',
     settings: { rush_hour: false, supplier_delay: false, agent_enabled: true, agent_mode: 'rules', agent_interval_s: 5 },
-    counters: { sales: 0, missed_sales: 0, orders_placed: 0 },
+    counters: { sales: 0, missed_sales: 0, orders_placed: 0, extra_fees: 0 },
     orders_on_the_way: 0,
     next_agent_check_s: 15,
     saved_ago_s: 2,
@@ -69,6 +70,9 @@ export function makeSnapshot(overrides: Partial<Snapshot> = {}): Snapshot {
     orders: [],
     events: [],
     agent: makeAgent(),
+    curveballs: [],
+    scoreboard: makeScoreboard(),
+    shadow_stock: { milk: 18, eggs: 22 },
     ...overrides,
   }
 }
@@ -84,6 +88,13 @@ export function makeOrder(overrides: Partial<OpenOrder> = {}): OpenOrder {
     due_at_s: 60,
     delivered_at_s: null,
     seconds_left: 38,
+    supplier: 'main',
     ...overrides,
   }
+}
+
+const zero: Score = { missed_sales: 0, lost_profit: 0, extra_fees: 0, total_cost: 0 }
+
+export function makeScoreboard(overrides: Partial<Scoreboard> = {}): Scoreboard {
+  return { agent: zero, rules: zero, agent_ahead_by: 0, same_brain: true, ...overrides }
 }

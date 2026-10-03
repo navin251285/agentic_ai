@@ -2,6 +2,7 @@
 
 from app.domain import rules
 from app.domain.models import (
+    CurveballView,
     EventType,
     History,
     HistoryMarker,
@@ -9,9 +10,11 @@ from app.domain.models import (
     OrderView,
     Product,
     ProductView,
+    Scoreboard,
     Snapshot,
 )
 from app.services import clock
+from app.services.shadow import score
 from app.services.simulation import Simulation
 
 RECENT_EVENTS = 50
@@ -47,6 +50,28 @@ def build_snapshot(sim: Simulation) -> Snapshot:
         orders=orders,
         events=state.events[-RECENT_EVENTS:],
         agent=sim.agent.status(state),
+        curveballs=[
+            CurveballView(
+                id=c.id,
+                preset=c.preset,
+                title=c.title,
+                text=c.text,
+                seconds_left=rules.seconds_left(c.ends_at_s, rt.sim_s),
+            )
+            for c in rt.curveballs
+        ],
+        scoreboard=build_scoreboard(sim),
+        shadow_stock=sim.shadow.stock(),
+    )
+
+
+def build_scoreboard(sim: Simulation) -> Scoreboard:
+    agent, rules_shop = score(sim.state.runtime.counters), score(sim.shadow.counters)
+    return Scoreboard(
+        agent=agent,
+        rules=rules_shop,
+        agent_ahead_by=rules_shop.total_cost - agent.total_cost,
+        same_brain=sim.state.runtime.agent_mode == "rules",
     )
 
 
@@ -86,5 +111,9 @@ def build_history(sim: Simulation, product_id: str, window_s: float) -> History:
             )
             for e in events
             if e.type in MARKER_TYPES
+        ],
+        shadow_points=[
+            HistoryPoint(sim_s=t, shop_time=clock.shop_time(t), stock_after=stock)
+            for t, stock in sim.shadow.points(product_id, max(0, since))
         ],
     )

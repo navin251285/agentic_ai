@@ -47,7 +47,8 @@ export function StockChart({ snapshot }: Props) {
   const productId = product?.id ?? ''
   // Reload the history whenever the live snapshot shows a new event for this product.
   const latest = snapshot.events.filter((e) => e.product_id === productId).at(-1)
-  const history = useStockHistory(productId, snapshot.run_id, latest?.ts_real ?? '')
+  const shadowNow = snapshot.shadow_stock[productId]
+  const history = useStockHistory(productId, snapshot.run_id, `${latest?.ts_real ?? ''}|${shadowNow ?? ''}`)
 
   if (!product) return null
   const now = snapshot.sim_s
@@ -56,6 +57,9 @@ export function StockChart({ snapshot }: Props) {
   // The server's points, plus "now" so the line reaches the present between events.
   const points: Point[] = (history?.points ?? []).map((p) => ({ sim_s: p.sim_s, stock: p.stock_after, time: p.shop_time }))
   points.push({ sim_s: now, stock: product.stock, time: snapshot.shop_time })
+  // The rules shop (same customers), as a ghost line to compare with.
+  const shadow: Point[] = (history?.shadow_points ?? []).map((p) => ({ sim_s: p.sim_s, stock: p.stock_after, time: p.shop_time }))
+  if (shadowNow !== undefined && shadow.length > 0) shadow.push({ sim_s: now, stock: shadowNow, time: snapshot.shop_time })
   const start = points[0].sim_s
   const end = Math.max(now, order?.due_at_s ?? now)
   const pad = Math.max(10, (end - start) * 0.06)
@@ -63,9 +67,15 @@ export function StockChart({ snapshot }: Props) {
   return (
     <section aria-labelledby="chart-title" className={`${panel} p-4`}>
       <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-        <h2 id="chart-title" className="text-[15px] font-semibold">
-          {product.name} · stock over time
-        </h2>
+        <div className="flex items-baseline gap-3">
+          <h2 id="chart-title" className="text-[15px] font-semibold">
+            {product.name} · stock over time
+          </h2>
+          <span className="text-xs text-muted" aria-hidden="true">
+            <span className="mr-1 inline-block h-0.5 w-4 bg-green align-middle" /> Agent’s shop
+            <span className="mr-1 ml-3 inline-block w-4 border-t-2 border-dashed border-muted align-middle" /> Rules shop
+          </span>
+        </div>
         <div role="group" aria-label="Chart product" className="flex flex-wrap gap-1.5">
           {snapshot.products.map((p) => {
             const active = p.id === product.id
@@ -131,6 +141,22 @@ export function StockChart({ snapshot }: Props) {
               />
             )}
             <Tooltip content={<PointTooltip />} isAnimationActive={false} />
+            {shadow.length > 0 && (
+              <Line
+                data={shadow}
+                type="stepAfter"
+                dataKey="stock"
+                name="Rules shop"
+                stroke={C.muted}
+                strokeWidth={1.5}
+                strokeDasharray="5 4"
+                strokeOpacity={0.7}
+                dot={false}
+                activeDot={false}
+                tooltipType="none"
+                isAnimationActive={false}
+              />
+            )}
             <Line
               type="stepAfter"
               dataKey="stock"

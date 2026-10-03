@@ -145,6 +145,14 @@ watch -n 1 "curl -s localhost:8000/api/snapshot | jq -c '{shop_time, speed, save
 | `saved_ago_s` | Should stay below about 3 while the app runs. If it keeps growing, saves are failing (see the logs). |
 | `counters.missed_sales` | Should stay at or near 0 with the agent on and rush hour off. |
 
+### Agent vs Rules scoreboard and curveballs
+
+```bash
+watch -n 1 "curl -s localhost:8000/api/snapshot | jq -c '{scoreboard, curveballs: [.curveballs[] | {title, seconds_left}], plan: .agent.plan.trigger}'"
+```
+
+`scoreboard.agent_ahead_by` is in ₹ (positive: the agent is ahead of the rules shop).
+
 ### Agent and Gemini budget
 
 ```bash

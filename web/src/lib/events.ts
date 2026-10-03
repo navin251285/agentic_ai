@@ -2,7 +2,7 @@
 import type { ShopEvent } from '../api/client'
 import { clockTime, customerLabel } from './format'
 
-export type FeedTone = 'shop' | 'alert' | 'supplier' | 'agent' | 'fallback' | 'system'
+export type FeedTone = 'shop' | 'alert' | 'supplier' | 'agent' | 'fallback' | 'system' | 'curveball'
 
 export interface FeedLine {
   key: string
@@ -102,6 +102,9 @@ export function feedLines(events: ShopEvent[], names: Names, limit = 30): FeedLi
       case 'CROSSED_MARK':
       case 'AGENT_FALLBACK':
         lines.push({ ...base, label: 'Alert', tone: 'alert', text: e.message })
+        break
+      case 'CURVEBALL':
+        lines.push({ ...base, label: 'Curveball', tone: 'curveball', text: e.message })
         break
       case 'EDIT':
       case 'SETTINGS_CHANGED':

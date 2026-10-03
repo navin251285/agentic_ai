@@ -11,6 +11,7 @@ SLUG = r"^[a-z0-9]+(-[a-z0-9]+)*$"
 Speed = Literal[0, 0.5, 1, 5]  # 0 = paused
 PlaySpeed = Literal[0.5, 1, 5]
 AgentMode = Literal["rules", "gemini"]
+SupplierName = Literal["main", "backup"]
 
 
 class OrderStatus(StrEnum):
@@ -34,6 +35,7 @@ class EventType(StrEnum):
     RESET = "RESET"
     AGENT_WAIT = "AGENT_WAIT"
     AGENT_FALLBACK = "AGENT_FALLBACK"
+    CURVEBALL = "CURVEBALL"
 
 
 class Product(BaseModel):
@@ -62,6 +64,7 @@ class Order(BaseModel):
     placed_at_s: float = Field(ge=0)
     due_at_s: float = Field(ge=0)
     delivered_at_s: float | None = None
+    supplier: SupplierName = "main"  # last column in orders.csv; older files load as main
 
     @property
     def is_open(self) -> bool:
@@ -98,6 +101,28 @@ class Counters(BaseModel):
     sales: int = 0
     missed_sales: int = 0
     orders_placed: int = 0
+    extra_fees: int = 0  # ₹ paid to the backup supplier
+
+
+class Curveball(BaseModel):
+    """A piece of news the agent is told about; presets also change the simulated world."""
+
+    id: int = Field(ge=1)
+    preset: str | None = None  # None = custom text (no world effect)
+    title: str
+    text: str
+    started_at_s: float = Field(ge=0)
+    ends_at_s: float = Field(ge=0)
+
+
+class ShadowState(BaseModel):
+    """The shadow (rules-only) shop, persisted in runtime.json. Product attributes mirror the real shop."""
+
+    run_id: int = Field(1, ge=1)
+    stock: dict[str, int] = Field(default_factory=dict)
+    orders: list[Order] = Field(default_factory=list)  # open orders only
+    counters: Counters = Field(default_factory=Counters)
+    next_order_id: int = Field(1, ge=1)
 
 
 class Runtime(SimSettings):
@@ -113,6 +138,9 @@ class Runtime(SimSettings):
     counters: Counters = Field(default_factory=Counters)
     next_customer_id: int = Field(1, ge=1)
     next_order_id: int = Field(1, ge=1)
+    curveballs: list[Curveball] = Field(default_factory=list)  # active only
+    next_curveball_id: int = Field(1, ge=1)
+    shadow: ShadowState | None = None  # written on save; None until the first save
 
     def settings(self) -> SimSettings:
         return SimSettings.model_validate(self.model_dump(include=set(SimSettings.model_fields)))
@@ -137,6 +165,27 @@ class Decision(BaseModel):
     qty: int = Field(0, ge=0)
     reason: str = ""
     source: Literal["rules", "gemini", "fallback"]
+    supplier: SupplierName = "main"
+
+
+class PlanStep(BaseModel):
+    product_id: str
+    product_name: str
+    action: Literal["order", "wait"]
+    qty: int
+    supplier: SupplierName
+    reason: str
+    source: Literal["rules", "gemini", "fallback"]
+
+
+class AgentPlan(BaseModel):
+    """The latest Gemini decision (or its fallback), for the plan card. Memory only."""
+
+    sim_s: float
+    shop_time: str
+    trigger: str  # "Curveball: Heatwave" or "Routine check"
+    situation: str  # Gemini's reading of the situation, or why the rules decided
+    steps: list[PlanStep]
 
 
 class AgentStatus(BaseModel):
@@ -153,6 +202,7 @@ class AgentStatus(BaseModel):
     call_limit: int = 10
     next_call_allowed_in_s: float = 0
     pending_products: list[str] = Field(default_factory=list)
+    plan: AgentPlan | None = None
 
 
 # ---- API view models (Snapshot, history) ------------------------------------------
@@ -175,6 +225,30 @@ class OrderView(Order):
     seconds_left: int  # due_at_s − sim_s, rounded up, never negative
 
 
+class CurveballView(BaseModel):
+    id: int
+    preset: str | None
+    title: str
+    text: str
+    seconds_left: int
+
+
+class Score(BaseModel):
+    missed_sales: int
+    lost_profit: int  # ₹
+    extra_fees: int  # ₹
+    total_cost: int  # ₹
+
+
+class Scoreboard(BaseModel):
+    """The real shop (agent) against the shadow shop (rules), same customers."""
+
+    agent: Score
+    rules: Score
+    agent_ahead_by: int  # ₹, rules.total_cost − agent.total_cost
+    same_brain: bool  # the agent uses the rules brain, so both shops match
+
+
 class Snapshot(BaseModel):
     """Everything the screen shows; also the SSE payload. React only formats it."""
 
@@ -193,6 +267,9 @@ class Snapshot(BaseModel):
     orders: list[OrderView]  # open orders only
     events: list[Event]  # last 50 of the current run, oldest first
     agent: AgentStatus
+    curveballs: list[CurveballView]
+    scoreboard: Scoreboard
+    shadow_stock: dict[str, int]  # the rules shop's stock, for the chart's ghost line
 
 
 class HistoryPoint(BaseModel):
@@ -215,6 +292,7 @@ class History(BaseModel):
     window_s: float
     points: list[HistoryPoint]
     markers: list[HistoryMarker]
+    shadow_points: list[HistoryPoint]  # the rules shop, same window
 
 
 # ---- API request bodies -------------------------------------------------------------
@@ -249,3 +327,23 @@ class SettingsPatch(BaseModel):
 
 class ScenarioRequest(BaseModel):
     name: str
+
+
+class CurveballPreset(BaseModel):
+    id: str
+    title: str
+    text: str
+    effect: str  # plain-English world effect, for the panel's tooltip
+
+
+class CurveballRequest(BaseModel):
+    """Exactly one of preset or text."""
+
+    preset: str | None = None
+    text: str | None = Field(None, min_length=3, max_length=200)
+
+    @model_validator(mode="after")
+    def _one_of(self) -> "CurveballRequest":
+        if (self.preset is None) == (self.text is None or not self.text.strip()):
+            raise ValueError("send either a preset or a text")
+        return self
