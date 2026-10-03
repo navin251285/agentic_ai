@@ -52,7 +52,8 @@ def test_empty_shelf_gives_missed_sales(sim):
 
 
 def test_crossed_mark_emitted_once_per_crossing(sim):
-    run(sim, 600)  # no agent yet: every shelf runs down through its mark exactly once
+    sim.state.runtime.agent_enabled = False  # no restocking: every shelf runs down through its mark once
+    run(sim, 600)
     crossed = Counter(e.product_id for e in of_type(sim, EventType.CROSSED_MARK))
     assert crossed == {p.id: 1 for p in sim.state.products}
     for e in of_type(sim, EventType.CROSSED_MARK):

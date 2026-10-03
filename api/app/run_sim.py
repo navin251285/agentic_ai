@@ -47,6 +47,8 @@ def parse_args(argv: list[str] | None) -> argparse.Namespace:
     p.add_argument("--seed", type=int, default=None, help="random seed (default: SIM_SEED, else random)")
     p.add_argument("--rush-hour", action="store_true", help="turn rush hour on")
     p.add_argument("--supplier-delay", action="store_true", help="turn supplier delay on")
+    p.add_argument("--no-agent", action="store_true", help="turn the agent off")
+    p.add_argument("--agent-interval", type=int, default=None, help="agent check interval in sim_s")
     p.add_argument(
         "--order",
         type=parse_order,
@@ -86,6 +88,10 @@ def main(argv: list[str] | None = None) -> int:
     rt = sim.state.runtime
     rt.rush_hour = rt.rush_hour or args.rush_hour
     rt.supplier_delay = args.supplier_delay
+    rt.agent_enabled = not args.no_agent
+    if args.agent_interval is not None:
+        rt.agent_interval_s = args.agent_interval
+        rt.next_agent_check_s = rt.agent_interval_s
     sim.set_speed(args.speed)
 
     orders = sorted(args.order, key=lambda o: o.at_s)
@@ -115,7 +121,10 @@ def main(argv: list[str] | None = None) -> int:
 
 def print_summary(sim: Simulation, scenario: str, seed: int, args, ticks: int, wall_s: float) -> None:
     rt, c = sim.state.runtime, sim.state.runtime.counters
-    flags = [f for f, on in (("rush hour", rt.rush_hour), ("supplier delay", rt.supplier_delay)) if on]
+    agent = f"agent {rt.agent_mode} every {rt.agent_interval_s}s" if rt.agent_enabled else "agent off"
+    flags = [agent] + [
+        f for f, on in (("rush hour", rt.rush_hour), ("supplier delay", rt.supplier_delay)) if on
+    ]
     print()
     print(
         f"=== {rt.sim_s:g} sim_s ({clock.shop_time(rt.sim_s)}) · scenario {scenario} · {args.speed:g}x"

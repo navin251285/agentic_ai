@@ -13,7 +13,7 @@ def test_parse_order():
 
 
 def test_fast_run_with_manual_order(capsys):
-    code = run_sim.main(["--fast", "--duration", "100", "--seed", "1", "--order", "milk:20@30"])
+    code = run_sim.main(["--fast", "--no-agent", "--duration", "100", "--seed", "1", "--order", "milk:20@30"])
     out = capsys.readouterr().out
     assert code == 0
     placed = [line for line in out.splitlines() if "ORDER_PLACED" in line]

@@ -1,4 +1,4 @@
-"""Owns the in-memory state. Tick: clock → shop → supplier → agent (phase 3) → publish.
+"""Owns the in-memory state. Tick: clock → shop → supplier → agent → publish.
 
 All methods here are synchronous. In the server, the loop and every API action run them while
 holding `self.lock`, so they never interleave. Tests drive `tick(dt_sim)` directly and never sleep.
@@ -14,6 +14,7 @@ from datetime import UTC, datetime
 from app.domain.models import Counters, Event, EventType, Order, PersistedState, Product, Speed
 from app.repositories.base import InventoryRepository
 from app.services import clock
+from app.services.agent import Agent
 from app.services.shop import Shop
 from app.services.supplier import Supplier
 
@@ -43,6 +44,7 @@ class Simulation:
         self.tick_listeners: list[Callable[[], None]] = []  # SSE publish hooks in phase 4
         self.shop = Shop(rng, self.emit)
         self.supplier = Supplier(self.emit)
+        self.agent = Agent(self.supplier.place_order)
 
     # ---- events -------------------------------------------------------------
 
@@ -81,7 +83,7 @@ class Simulation:
             clock.advance(self.state.runtime, dt_sim)
             self.shop.tick(self.state)
             self.supplier.tick(self.state)
-            # Phase 3: agent.tick(...)
+            self.agent.tick(self.state)
         for listener in self.tick_listeners:
             listener()
 
