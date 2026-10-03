@@ -2,11 +2,15 @@
 
     python -m app.run_sim --speed 5 --duration 600 --fast
     python -m app.run_sim --fast --duration 120 --order milk:20@30 --order eggs:10@45
+    python -m app.run_sim --mode gemini --duration 300 --rush-hour      (real time; real Gemini calls)
 
 --duration is in sim seconds. --fast runs ticks back to back with no real-time waiting.
+--mode gemini cannot be combined with --fast: the call budget is measured in real seconds.
+Do not run --mode gemini while the demo server is running (its limiter cannot see this process).
 """
 
 import argparse
+import asyncio
 import random
 import re
 import sys
@@ -19,7 +23,11 @@ from app.domain.rules import product_state
 from app.repositories.csv_repo import CsvInventoryRepository
 from app.repositories.memory_repo import InMemoryInventoryRepository
 from app.services import clock
+from app.services.agent import LlmSetup, build_llm_setup
+from app.services.engines.rate_limiter import max_calls_in_window
 from app.services.simulation import Simulation, UnknownProduct
+
+STATUS_EVERY_S = 15  # real seconds between agent status lines in gemini mode
 
 ORDER_RE = re.compile(r"^(?P<product>[a-z0-9-]+):(?P<qty>[1-9]\d*)@(?P<at>\d+(\.\d+)?)$")
 
@@ -49,6 +57,7 @@ def parse_args(argv: list[str] | None) -> argparse.Namespace:
     p.add_argument("--supplier-delay", action="store_true", help="turn supplier delay on")
     p.add_argument("--no-agent", action="store_true", help="turn the agent off")
     p.add_argument("--agent-interval", type=int, default=None, help="agent check interval in sim_s")
+    p.add_argument("--mode", choices=["rules", "gemini"], default="rules", help="agent brain (default rules)")
     p.add_argument(
         "--order",
         type=parse_order,
@@ -79,8 +88,15 @@ def main(argv: list[str] | None = None) -> int:
     if scenario not in scenarios.list_scenarios():
         print(f"Unknown scenario {scenario!r}. Available: {', '.join(scenarios.list_scenarios())}")
         return 2
+    if args.mode == "gemini" and args.fast:
+        print("--mode gemini needs real time (the call budget is in real seconds); drop --fast")
+        return 2
+    llm = build_llm_setup(settings) if args.mode == "gemini" else LlmSetup()
+    if args.mode == "gemini" and llm.engine is None:
+        print("No GOOGLE_CLOUD_API_KEY: every check will fall back to rules")
+
     repo = InMemoryInventoryRepository(scenarios, scenario)
-    sim = Simulation(repo.load(), repo, random.Random(seed))
+    sim = Simulation(repo.load(), repo, random.Random(seed), llm=llm)
     if not args.quiet:
         sim.event_listeners.append(lambda e: print(format_event(e), flush=True))
 
@@ -89,9 +105,11 @@ def main(argv: list[str] | None = None) -> int:
     rt.rush_hour = rt.rush_hour or args.rush_hour
     rt.supplier_delay = args.supplier_delay
     rt.agent_enabled = not args.no_agent
+    rt.agent_mode = args.mode
     if args.agent_interval is not None:
         rt.agent_interval_s = args.agent_interval
         rt.next_agent_check_s = rt.agent_interval_s
+    sim.agent.start_run(sim.state)
     sim.set_speed(args.speed)
 
     orders = sorted(args.order, key=lambda o: o.at_s)
@@ -103,20 +121,58 @@ def main(argv: list[str] | None = None) -> int:
             return 2
 
     started = time.monotonic()
-    dt = clock.sim_dt(rt)
-    ticks = 0
-    while rt.sim_s < args.duration:
-        while orders and orders[0].at_s <= rt.sim_s:
-            o = orders.pop(0)
-            name = sim.product(o.product_id).name
-            sim.place_order(o.product_id, o.qty, f"[manual] Ordered {o.qty} {name} (run_sim --order)")
-        sim.tick(dt)
-        ticks += 1
-        if not args.fast:
-            time.sleep(clock.TICK_REAL_S)
+    if args.fast:
+        ticks = 0
+        while rt.sim_s < args.duration:
+            step(sim, orders)
+            ticks += 1
+    else:
+        ticks = asyncio.run(run_realtime(sim, orders, args))
 
     print_summary(sim, scenario, seed, args, ticks, time.monotonic() - started)
     return 0
+
+
+def step(sim: Simulation, orders: list[ManualOrder]) -> None:
+    rt = sim.state.runtime
+    while orders and orders[0].at_s <= rt.sim_s:
+        o = orders.pop(0)
+        name = sim.product(o.product_id).name
+        sim.place_order(o.product_id, o.qty, f"[manual] Ordered {o.qty} {name} (run_sim --order)")
+    sim.tick(clock.sim_dt(rt))
+
+
+async def run_realtime(sim: Simulation, orders: list[ManualOrder], args) -> int:
+    """One tick per 0.5 real seconds on an event loop, so Gemini calls run in the background."""
+    rt = sim.state.runtime
+    if rt.agent_mode == "gemini" and sim.agent.start_warmup():
+        print("[agent] Gemini warm-up sent", flush=True)
+    ticks = 0
+    next_tick = next_status = time.monotonic()
+    while rt.sim_s < args.duration:
+        step(sim, orders)
+        ticks += 1
+        if rt.agent_mode == "gemini" and time.monotonic() >= next_status:
+            print_agent_status(sim)
+            next_status += STATUS_EVERY_S
+        next_tick += clock.TICK_REAL_S
+        await asyncio.sleep(max(0.0, next_tick - time.monotonic()))
+    while sim.agent.status(sim.state).thinking:  # let an in-flight call land so it is counted
+        await asyncio.sleep(clock.TICK_REAL_S)
+        sim.agent.collect_finished_call(sim.state)
+    return ticks
+
+
+def print_agent_status(sim: Simulation) -> None:
+    s = sim.agent.status(sim.state)
+    latency = "-" if s.last_latency_ms is None else f"{s.last_latency_ms} ms"
+    print(
+        f"[agent] {clock.shop_time(sim.state.runtime.sim_s)} · calls/min {s.calls_last_60s}/{s.call_limit}"
+        f" · total calls {s.llm_calls} · fallbacks {s.fallbacks} · ready {'yes' if s.llm_ready else 'no'}"
+        f" · last latency {latency}{' · thinking' if s.thinking else ''}"
+        f" · pending {','.join(s.pending_products) or '-'}",
+        flush=True,
+    )
 
 
 def print_summary(sim: Simulation, scenario: str, seed: int, args, ticks: int, wall_s: float) -> None:
@@ -132,6 +188,14 @@ def print_summary(sim: Simulation, scenario: str, seed: int, args, ticks: int, w
     )
     print(f"    {ticks} ticks in {wall_s:.2f}s real{' (fast)' if args.fast else ''}")
     print(f"    sales {c.sales} · missed sales {c.missed_sales} · orders placed {c.orders_placed}")
+    if rt.agent_mode == "gemini":
+        s, limiter = sim.agent.status(sim.state), sim.agent.llm.limiter
+        minutes = max(wall_s / 60, 1 / 60)
+        print(
+            f"    gemini calls {s.llm_calls} (incl. warm-up) · {s.llm_calls / minutes:.1f}/min avg"
+            f" · busiest 60s window {max_calls_in_window(list(limiter.history))}/{s.call_limit}"
+            f" · fallbacks {s.fallbacks} · llm_ready {s.llm_ready}"
+        )
     print(f"    {'product':<11} {'stock':>9}  state")
     for p in sim.state.products:
         state = product_state(p, sim.state.orders, rt.sim_s)

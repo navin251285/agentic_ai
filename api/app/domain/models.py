@@ -137,3 +137,19 @@ class Decision(BaseModel):
     qty: int = Field(0, ge=0)
     reason: str = ""
     source: Literal["rules", "gemini", "fallback"]
+
+
+class AgentStatus(BaseModel):
+    """Live agent view (in memory only; part of the phase 4 Snapshot)."""
+
+    mode: AgentMode
+    enabled: bool
+    thinking: bool = False
+    llm_ready: bool = False
+    last_latency_ms: int | None = None
+    llm_calls: int = 0
+    fallbacks: int = 0
+    calls_last_60s: int = 0
+    call_limit: int = 10
+    next_call_allowed_in_s: float = 0
+    pending_products: list[str] = Field(default_factory=list)

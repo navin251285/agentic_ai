@@ -11,10 +11,10 @@ import time
 from collections.abc import Callable
 from datetime import UTC, datetime
 
-from app.domain.models import Counters, Event, EventType, Order, PersistedState, Product, Speed
+from app.domain.models import Counters, Event, EventType, Order, PersistedState, Product, SimSettings, Speed
 from app.repositories.base import InventoryRepository
 from app.services import clock
-from app.services.agent import Agent
+from app.services.agent import Agent, LlmSetup
 from app.services.shop import Shop
 from app.services.supplier import Supplier
 
@@ -34,6 +34,7 @@ class Simulation:
         *,
         save_interval_s: float = 3,
         now: Callable[[], datetime] = lambda: datetime.now(UTC),
+        llm: LlmSetup | None = None,
     ):
         self.state = state
         self.repo = repo
@@ -44,7 +45,7 @@ class Simulation:
         self.tick_listeners: list[Callable[[], None]] = []  # SSE publish hooks in phase 4
         self.shop = Shop(rng, self.emit)
         self.supplier = Supplier(self.emit)
-        self.agent = Agent(self.supplier.place_order)
+        self.agent = Agent(self.supplier.place_order, self.emit, llm)
 
     # ---- events -------------------------------------------------------------
 
@@ -106,6 +107,25 @@ class Simulation:
         """Manual sale. Works while paused: stock changes, nothing else reacts until play resumes."""
         self.shop.sell_manual(self.state, self.product(product_id), qty)
 
+    def update_settings(self, **changes) -> SimSettings:
+        """Apply setting changes (validated), log SETTINGS_CHANGED, and tell the agent what is new."""
+        rt = self.state.runtime
+        before = rt.settings()
+        after = SimSettings.model_validate({**before.model_dump(), **changes})
+        diff = {k: v for k, v in after.model_dump().items() if getattr(before, k) != v}
+        if not diff:
+            return after
+        for k, v in diff.items():
+            setattr(rt, k, v)
+        if "agent_interval_s" in diff or diff.get("agent_enabled") is True:
+            rt.next_agent_check_s = rt.sim_s + rt.agent_interval_s
+        if diff.get("agent_mode") == "gemini":
+            self.agent.mark_askable_pending(self.state)
+        if "rush_hour" in diff or "supplier_delay" in diff:
+            self.agent.mark_watch_pending(self.state)
+        self.emit(EventType.SETTINGS_CHANGED, message=", ".join(f"{k} → {v}" for k, v in diff.items()))
+        return after
+
     def place_order(self, product_id: str, qty: int, message: str) -> Order:
         return self.supplier.place_order(self.state, self.product(product_id), qty, message)
 
@@ -128,6 +148,7 @@ class Simulation:
         label = "Reset" if event_type == EventType.RESET else f"Scenario {name} loaded"
         for p in products:  # one per product, so the chart has a starting point
             self.emit(event_type, p, message=f"{label}: {p.name} starts at {p.stock}")
+        self.agent.start_run(self.state)
         self.save()
 
     def reset(self) -> None:

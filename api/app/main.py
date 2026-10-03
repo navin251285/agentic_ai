@@ -15,6 +15,7 @@ from app.api.routes import router
 from app.config import Settings, get_settings
 from app.repositories.base import InventoryRepository
 from app.repositories.csv_repo import CsvInventoryRepository
+from app.services.agent import build_llm_setup
 from app.services.simulation import Simulation
 
 log = logging.getLogger(__name__)
@@ -41,12 +42,17 @@ def create_app(settings: Settings | None = None, repo: InventoryRepository | Non
         state = repo.load()
         state.runtime = state.runtime.paused_for_startup()
         rng = random.Random(settings.sim_seed)
-        sim = Simulation(state, repo, rng, save_interval_s=settings.save_interval_s)
+        llm = build_llm_setup(settings)
+        sim = Simulation(state, repo, rng, save_interval_s=settings.save_interval_s, llm=llm)
         app.state.repo = repo
         app.state.data = state
         app.state.sim = sim
         log.info("Loaded %d products, run %d", len(state.products), state.runtime.run_id)
         task = asyncio.create_task(sim.run())
+        if llm.engine is not None:
+            sim.agent.start_warmup()  # background; llm_ready turns true when it succeeds
+        else:
+            log.info("No GOOGLE_CLOUD_API_KEY: gemini mode will fall back to rules")
         yield
         task.cancel()
         with contextlib.suppress(asyncio.CancelledError):

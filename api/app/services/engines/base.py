@@ -14,6 +14,7 @@ class AgentContext:
     rush_hour: bool = False
     supplier_delay: bool = False
     agent_interval_s: int = 5
+    sales_last_60s: dict[str, int] = field(default_factory=dict)  # by product id, in sim seconds
 
 
 class DecisionEngine(Protocol):
