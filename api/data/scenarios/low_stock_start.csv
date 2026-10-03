@@ -1,0 +1,11 @@
+id,name,stock,max_stock,reorder_point,sell_weight,lead_time_s
+milk,Milk,14,30,12,5,60
+bread,Bread,18,25,9,4,45
+eggs,Eggs,15,40,13,4,60
+rice,Rice 1kg,22,30,10,2,90
+sugar,Sugar,16,24,10,2,90
+biscuits,Biscuits,25,40,12,3,90
+chips,Chips,11,30,9,4,45
+soap,Soap,12,15,7,1,90
+toothpaste,Toothpaste,12,15,7,1,90
+cold-drink,Cold drink,11,36,9,4,30
