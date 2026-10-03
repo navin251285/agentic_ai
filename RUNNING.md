@@ -21,6 +21,19 @@ Edit `.env`:
 
 ## 2. Start the app
 
+### First, check whether it is already running
+
+Run **only one API at a time.** Every API instance saves to the same `api/data` files, so two of them overwrite each
+other's data.
+
+```bash
+curl -s http://localhost:8000/api/health       # {"status":"ok"} means an API is already running
+docker ps --filter name=api                    # shows it if it is the Docker container
+```
+
+If an API is already running, either use it and start only the dashboard (`npm run dev` in `web/`), or stop it first
+with `docker compose stop api` (or `Ctrl+C` in the terminal where it runs). Both ways of stopping it save its state.
+
 ### Option A: Docker (recommended)
 
 ```bash
@@ -35,23 +48,54 @@ The `web` service waits until the API passes its health check, so the dashboard 
 
 ### Option B: Without Docker
 
-Use two terminals:
+**One-time install.** Skip this if `api/.venv` and `web/node_modules` already exist. Running `python -m venv .venv`
+again on an existing venv rebuilds it, and fails if another user created it.
 
 ```bash
-# Terminal 1: API. Use exactly one worker, because all state is in memory.
 cd api
 python -m venv .venv
 source .venv/bin/activate              # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
+
+cd ../web
+npm install
+```
+
+**Every run.** Use two terminals:
+
+```bash
+# Terminal 1: API. Use exactly one worker, because all state is in memory.
+cd api
+source .venv/bin/activate              # Windows: .venv\Scripts\activate
 uvicorn app.main:app --port 8000
 ```
 
 ```bash
 # Terminal 2: dashboard
 cd web
-npm install
 npm run dev                            # http://localhost:5173
 ```
+
+To run the API on another port, for example 8010, start it with `--port 8010` and start the dashboard with
+`VITE_API_TARGET=http://localhost:8010 npm run dev` (or set `VITE_API_TARGET` in `.env`).
+
+### Shared machines (for example, JupyterLab and VS Code on one VM)
+
+A JupyterLab terminal and a VS Code terminal can be logged in as **different Linux users**. Check with `whoami`. The
+user that runs the app needs to:
+
+- read `api/.venv`, `web/node_modules` and `.env`
+- write to `api/data`, `web/node_modules/.vite` and `web/node_modules/.vite-temp`
+
+If you get `Permission denied`, have the owner of the project folder run:
+
+```bash
+mkdir -p web/node_modules/.vite web/node_modules/.vite-temp
+chmod -R o+rwX api/data web/node_modules/.vite web/node_modules/.vite-temp
+```
+
+After a run, the data files belong to the user who ran it. Before running as a different user, have the last user run
+the same `chmod` on `api/data`.
 
 ### After it starts
 
@@ -165,8 +209,10 @@ curl -N http://localhost:8000/api/stream
 
 | Problem | Fix |
 |---|---|
+| `Permission denied: '.../api/.venv/pyvenv.cfg'` | You ran `python -m venv .venv` on an existing venv as another user. Skip that step and run `source .venv/bin/activate` (see Option B). |
+| Other `Permission denied` errors when starting | See [Shared machines](#shared-machines-for-example-jupyterlab-and-vs-code-on-one-vm). |
 | `permission denied ... docker.sock` | On Linux, add yourself to the docker group with `sudo usermod -aG docker $USER`, then log out and back in. |
-| Port 8000 is already in use | **Docker:** set `API_PORT=8010` in `.env` (the API is then at http://localhost:8010). **Without Docker:** run `uvicorn app.main:app --port 8010` and set `VITE_API_TARGET=http://localhost:8010` in `.env` before `npm run dev`. To see what holds the port: `lsof -i :8000`. |
+| Port 8000 is already in use | Often an API container that is still running from `docker compose up -d`; check with `docker ps`. Use that API (start only the dashboard), or stop it with `docker compose stop api`. To use another port instead, see Option B. To find what holds the port: `lsof -i :8000`. |
 | Port 5173 is already in use | **Without Docker:** `npm run dev -- --port 5180`. **Docker:** stop whatever uses 5173. |
 | Dashboard says "Connecting to the shop…" or "Reconnecting…" | The API is down or restarting. Check `/api/health` and the API logs. The page reconnects by itself. |
 | "saved Ns ago" keeps growing | Saving is failing; look for `Could not save` in the logs. On Linux with Docker, check `HOST_UID`/`HOST_GID`, and close any CSV open in Excel. |
