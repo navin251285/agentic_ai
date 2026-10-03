@@ -10,19 +10,15 @@ See [README.md](README.md) for what the app does and the demo script.
 
 Open a terminal in JupyterLab (**File → New → Terminal**). All commands in this guide run there.
 
-```bash
-cd /home/jupyter/agentic_ai_tutorial/autonomous_agent
-cp .env.example .env            # skip if .env already exists
-```
+`.env` in the project folder holds only your Vertex AI key, `GOOGLE_CLOUD_API_KEY`. The Gemini brain needs it;
+without it the rules brain makes every decision. Leave `.env` as it is. Every other setting in this guide is typed on
+the command line when you start the app:
 
-Edit `.env`:
-
-| Setting | Value |
+| Setting | When to use it |
 |---|---|
-| `VITE_BASE` | **`/proxy/absolute/5173/`**. Required on Workbench: it serves the dashboard under JupyterLab's proxy. |
-| `GOOGLE_CLOUD_API_KEY` | Your Vertex AI key. Needed only for the Gemini brain; without it the rules brain makes every decision. |
-| `SIM_SEED` | A number (for example `7`) to make rehearsals repeatable. |
-| `HOST_UID` / `HOST_GID` | Docker only: `1000` and `1001`, the `jupyter` user's ids (check with `id -u` and `id -g`). |
+| `VITE_BASE=/proxy/absolute/5173/` | **Always on Workbench.** It serves the dashboard under JupyterLab's proxy. |
+| `SIM_SEED=7` | Optional, for the API: the same seed and the same clicks give the same demo, which helps rehearsals. |
+| `HOST_UID=$(id -u) HOST_GID=$(id -g)` | Docker only: the CSV files the container writes then belong to you. |
 
 Then install the dependencies, unless `api/.venv` and `web/node_modules` already exist. Running `python -m venv .venv`
 again on an existing venv rebuilds it, and fails if another user created it.
@@ -76,29 +72,26 @@ If an API is already running, either use it and start only the dashboard, or sto
 # Terminal 1: API. Use exactly one worker, because all state is in memory.
 cd /home/jupyter/agentic_ai_tutorial/autonomous_agent/api
 source .venv/bin/activate
-uvicorn app.main:app --port 8000
+uvicorn app.main:app --port 8000              # rehearsal: SIM_SEED=7 uvicorn app.main:app --port 8000
 ```
 
 ```bash
 # Terminal 2: dashboard
 cd /home/jupyter/agentic_ai_tutorial/autonomous_agent/web
-npm run dev
+VITE_BASE=/proxy/absolute/5173/ npm run dev
 ```
 
 Wait for `Uvicorn running on http://127.0.0.1:8000` in terminal 1 and `Local: http://localhost:5173/proxy/absolute/5173/`
 in terminal 2, then open your [dashboard address](#your-dashboard-address).
 
-If you have not set `VITE_BASE` in `.env`, start the dashboard with `VITE_BASE=/proxy/absolute/5173/ npm run dev`.
-
 ### Option B: Docker
 
 ```bash
 cd /home/jupyter/agentic_ai_tutorial/autonomous_agent
-docker compose up --build -d     # first time, or after dependency changes
-docker compose up -d             # later runs
+VITE_BASE=/proxy/absolute/5173/ HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose up --build -d
 ```
 
-Compose passes `VITE_BASE` from `.env` to the dashboard, so the same dashboard address works.
+Leave out `--build` on later runs unless dependencies changed. The dashboard address is the same as with Option A.
 
 ### After it starts
 
@@ -244,14 +237,14 @@ the same `chmod`.
 |---|---|
 | Dashboard address returns **404** | Check the trailing slash (`/proxy/absolute/5173/`). If the page says "did you mean to visit …", `VITE_BASE` and the dashboard's port don't match; they must use the same port. |
 | Dashboard address returns **500** or "connection refused" | The dashboard is not running on port 5173. Start it, or check terminal 2 for errors. |
-| Page loads but stays **blank** | `VITE_BASE` is not set, so the page's scripts load from outside the proxy. Set it in `.env` (or start with `VITE_BASE=/proxy/absolute/5173/ npm run dev`). Terminal 2's `Local:` line must end in `/proxy/absolute/5173/`. |
+| Page loads but stays **blank** | `VITE_BASE` is not set, so the page's scripts load from outside the proxy. Start the dashboard with `VITE_BASE=/proxy/absolute/5173/ npm run dev`. Terminal 2's `Local:` line must end in `/proxy/absolute/5173/`. |
 | Page says "Connecting to the shop…" or "Reconnecting…" | The API is down or restarting. Check `curl localhost:8000/api/health` and the API logs. The page reconnects by itself. |
 | `Permission denied: '.../api/.venv/pyvenv.cfg'` | You ran `python -m venv .venv` on an existing venv as another user. Skip that step and just run `source .venv/bin/activate`. |
 | Other `Permission denied` errors when starting | See [section 5](#5-running-as-a-different-user-jupyterlab-and-vs-code). |
 | Port 8000 is already in use | Usually an API that is still running; see [First, check whether it is already running](#first-check-whether-it-is-already-running). To use another port, start the API with `--port 8010` and the dashboard with `VITE_API_TARGET=http://localhost:8010 npm run dev`. |
 | Port 5173 is already in use | Run the dashboard on another port **and** change the base to match: `VITE_BASE=/proxy/absolute/5180/ npm run dev -- --port 5180`, then open `.../proxy/absolute/5180/`. |
-| "saved Ns ago" keeps growing | Saving is failing; look for `Could not save` in the logs. Usually permissions (section 5); with Docker, check `HOST_UID`/`HOST_GID`. |
-| Gemini stays on "warming up" | Check the key in `.env` and look for `warm-up failed` in the logs. The demo keeps working on the rules. |
+| "saved Ns ago" keeps growing | Saving is failing; look for `Could not save` in the logs. Usually permissions (section 5); with Docker, check that you passed `HOST_UID`/`HOST_GID`. |
+| Gemini stays on "warming up" | Check `GOOGLE_CLOUD_API_KEY` in `.env` and look for `warm-up failed` in the logs. The demo keeps working on the rules. |
 | Many `Agent · Fallback` lines in Gemini mode | Expected at 5x, because the budget runs out. Use Gemini at 1x or 0.5x. |
 | Restore a clean demo | Press **Reset** (or load `normal_day` from the edit panel). To start over completely, stop the app and delete `products.csv`, `orders.csv`, `events.csv` and `runtime.json` from `api/data`. Do not delete `scenarios/`. |
 

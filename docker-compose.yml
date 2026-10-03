@@ -19,7 +19,7 @@ services:
       - "5173:5173"
     environment:
       VITE_API_TARGET: http://api:8000
-      # Vertex AI Workbench: set VITE_BASE=/proxy/absolute/5173/ in .env (see RUNNING.md).
+      # Vertex AI Workbench: start with VITE_BASE=/proxy/absolute/5173/ docker compose up (see RUNNING.md).
       VITE_BASE: ${VITE_BASE:-/}
     volumes:
       # Edit web/src on the host and Vite hot-reloads; node_modules stays the container's own.
