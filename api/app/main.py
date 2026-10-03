@@ -11,12 +11,13 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from app.api.routes import router
+from app.api import routes, stream
 from app.config import Settings, get_settings
 from app.repositories.base import InventoryRepository
 from app.repositories.csv_repo import CsvInventoryRepository
 from app.services.agent import build_llm_setup
 from app.services.simulation import Simulation
+from app.services.snapshot import build_snapshot
 
 log = logging.getLogger(__name__)
 
@@ -47,6 +48,9 @@ def create_app(settings: Settings | None = None, repo: InventoryRepository | Non
         app.state.repo = repo
         app.state.data = state
         app.state.sim = sim
+        app.state.hub = hub = stream.SnapshotHub(lambda: build_snapshot(sim).model_dump_json())
+        sim.tick_listeners.append(hub.publish)
+        stream.end_streams_on_exit_signal(hub)
         log.info("Loaded %d products, run %d", len(state.products), state.runtime.run_id)
         task = asyncio.create_task(sim.run())
         if llm.engine is not None:
@@ -54,6 +58,7 @@ def create_app(settings: Settings | None = None, repo: InventoryRepository | Non
         else:
             log.info("No GOOGLE_CLOUD_API_KEY: gemini mode will fall back to rules")
         yield
+        hub.close()
         task.cancel()
         with contextlib.suppress(asyncio.CancelledError):
             await task
@@ -61,7 +66,8 @@ def create_app(settings: Settings | None = None, repo: InventoryRepository | Non
         sim.save()
 
     app = FastAPI(title="Restock Agent", lifespan=lifespan)
-    app.include_router(router)
+    app.include_router(routes.router)
+    app.include_router(stream.router)
     return app
 
 

@@ -1,0 +1,14 @@
+# docker compose up  → api on http://localhost:8000 (web is added in phase 6)
+services:
+  api:
+    build: ./api
+    ports:
+      - "${API_PORT:-8000}:8000"
+    env_file: .env
+    # Linux: set HOST_UID/HOST_GID (id -u / id -g) in .env so CSVs written to ./api/data stay yours.
+    user: "${HOST_UID:-0}:${HOST_GID:-0}"
+    environment:
+      DATA_DIR: /app/data
+    volumes:
+      - ./api/data:/app/data
+    stop_grace_period: 15s

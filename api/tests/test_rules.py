@@ -1,5 +1,6 @@
 import pytest
 
+from app.domain.models import OrderStatus
 from app.domain.rules import ProductState, Zone, inventory_position, product_state, product_zone, watch_limit
 from tests.conftest import make_order, make_product
 
@@ -59,3 +60,29 @@ class TestProductState:
     def test_other_products_orders_ignored(self):
         p = make_product(stock=5)
         assert product_state(p, [make_order(product_id="eggs")], sim_s=10) == ProductState.DANGER
+
+
+def badge(product, orders=(), sim_s=100, next_check=103, enabled=True):
+    from app.domain.rules import product_badge
+
+    return product_badge(product, orders, sim_s, next_check, enabled)
+
+
+def test_badge_open_order_counts_down_rounded_up():
+    order = make_order(qty=18, placed_at_s=90, due_at_s=130.5)
+    assert badge(make_product(stock=5), [order]) == "+18 arriving in 31s"
+    assert badge(make_product(stock=5), [order], sim_s=131) == "+18 arriving in 0s"
+
+
+def test_badge_danger_shows_agent_check_or_off():
+    assert badge(make_product(stock=12)) == "Agent checks in 3s"
+    assert badge(make_product(stock=0)) == "Agent checks in 3s"  # EMPTY with nothing ordered
+    assert badge(make_product(stock=12), enabled=False) == "Agent is off"
+    assert badge(make_product(stock=12), next_check=90) == "Agent checks in 0s"
+
+
+def test_badge_restocked_then_none():
+    delivered = make_order(qty=18, status=OrderStatus.DELIVERED, due_at_s=98, delivered_at_s=98)
+    assert badge(make_product(stock=28), [delivered]) == "+18 delivered just now"
+    assert badge(make_product(stock=28), [delivered], sim_s=103) is None
+    assert badge(make_product(stock=20)) is None

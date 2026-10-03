@@ -153,3 +153,94 @@ class AgentStatus(BaseModel):
     call_limit: int = 10
     next_call_allowed_in_s: float = 0
     pending_products: list[str] = Field(default_factory=list)
+
+
+# ---- API view models (Snapshot, history) ------------------------------------------
+
+
+ProductStateName = Literal["EMPTY", "AWAITING", "DANGER", "RESTOCKED", "SELLING"]  # rules.ProductState
+
+
+class ProductView(Product):
+    state: ProductStateName
+    badge: str | None = None
+
+
+class OrderView(Order):
+    product_name: str
+    seconds_left: int  # due_at_s − sim_s, rounded up, never negative
+
+
+class Snapshot(BaseModel):
+    """Everything the screen shows; also the SSE payload. React only formats it."""
+
+    run_id: int
+    sim_s: float
+    shop_time: str
+    speed: Speed
+    last_speed: PlaySpeed
+    scenario: str
+    settings: SimSettings
+    counters: Counters
+    orders_on_the_way: int
+    next_agent_check_s: float
+    saved_ago_s: int | None  # None until the first successful save
+    products: list[ProductView]
+    orders: list[OrderView]  # open orders only
+    events: list[Event]  # last 50 of the current run, oldest first
+    agent: AgentStatus
+
+
+class HistoryPoint(BaseModel):
+    sim_s: float
+    shop_time: str
+    stock_after: int
+
+
+class HistoryMarker(BaseModel):
+    type: Literal["ORDER_PLACED", "DELIVERED"]
+    sim_s: float
+    shop_time: str
+    qty: int | None
+    ref: str
+
+
+class History(BaseModel):
+    product_id: str
+    window_s: float
+    points: list[HistoryPoint]
+    markers: list[HistoryMarker]
+
+
+# ---- API request bodies -------------------------------------------------------------
+
+
+class SpeedRequest(BaseModel):
+    speed: Speed
+
+
+class SellRequest(BaseModel):
+    product_id: str
+    qty: int = Field(1, ge=1, le=999)
+
+
+class ProductPatch(BaseModel):
+    """Every field optional; limits are checked on the product AFTER merging (Product validators)."""
+
+    stock: int | None = None
+    max_stock: int | None = None
+    reorder_point: int | None = None
+    sell_weight: int | None = None
+    lead_time_s: int | None = None
+
+
+class SettingsPatch(BaseModel):
+    rush_hour: bool | None = None
+    supplier_delay: bool | None = None
+    agent_enabled: bool | None = None
+    agent_mode: AgentMode | None = None
+    agent_interval_s: int | None = Field(None, ge=1, le=60)
+
+
+class ScenarioRequest(BaseModel):
+    name: str

@@ -11,7 +11,16 @@ import time
 from collections.abc import Callable
 from datetime import UTC, datetime
 
-from app.domain.models import Counters, Event, EventType, Order, PersistedState, Product, SimSettings, Speed
+from app.domain.models import (
+    Counters,
+    Event,
+    EventType,
+    Order,
+    PersistedState,
+    Product,
+    SimSettings,
+    Speed,
+)
 from app.repositories.base import InventoryRepository
 from app.services import clock
 from app.services.agent import Agent, LlmSetup
@@ -35,14 +44,17 @@ class Simulation:
         save_interval_s: float = 3,
         now: Callable[[], datetime] = lambda: datetime.now(UTC),
         llm: LlmSetup | None = None,
+        monotonic: Callable[[], float] = time.monotonic,
     ):
         self.state = state
         self.repo = repo
         self.save_interval_s = save_interval_s
         self._now = now
+        self._monotonic = monotonic
+        self.last_saved_at: float | None = None  # monotonic time of the last fully successful save
         self.lock = asyncio.Lock()
         self.event_listeners: list[Callable[[Event], None]] = []
-        self.tick_listeners: list[Callable[[], None]] = []  # SSE publish hooks in phase 4
+        self.tick_listeners: list[Callable[[], None]] = []  # SSE publishing
         self.shop = Shop(rng, self.emit)
         self.supplier = Supplier(self.emit)
         self.agent = Agent(self.supplier.place_order, self.emit, llm)
@@ -126,6 +138,30 @@ class Simulation:
         self.emit(EventType.SETTINGS_CHANGED, message=", ".join(f"{k} → {v}" for k, v in diff.items()))
         return after
 
+    def edit_product(self, product_id: str, **changes) -> Product:
+        """Merge the changes, validate the whole product (raises ValidationError), log EDIT, save now."""
+        product = self.product(product_id)
+        merged = Product.model_validate({**product.model_dump(), **changes})
+        diff = {k: v for k, v in merged.model_dump().items() if getattr(product, k) != v}
+        if not diff:
+            return product
+        was_above = product.stock > product.reorder_point
+        for k, v in diff.items():
+            setattr(product, k, v)
+        self.emit(
+            EventType.EDIT,
+            product,
+            message=f"{product.name}: " + ", ".join(f"{k} → {v}" for k, v in diff.items()),
+        )
+        if was_above and product.stock <= product.reorder_point:  # e.g. "Drop to mark"
+            self.emit(
+                EventType.CROSSED_MARK,
+                product,
+                message=f"{product.name} at {product.stock}, reached its mark {product.reorder_point}",
+            )
+        self.save()
+        return product
+
     def place_order(self, product_id: str, qty: int, message: str) -> Order:
         return self.supplier.place_order(self.state, self.product(product_id), qty, message)
 
@@ -159,7 +195,16 @@ class Simulation:
     def save(self) -> bool:
         ok = self.repo.save_products(self.state.products)
         ok = self.repo.save_orders(self.state.orders) and ok
-        return self.repo.save_runtime(self.state.runtime.model_dump(mode="json")) and ok
+        ok = self.repo.save_runtime(self.state.runtime.model_dump(mode="json")) and ok
+        if ok:
+            self.last_saved_at = self._monotonic()
+        return ok
+
+    def saved_ago_s(self) -> int | None:
+        """Real seconds since the last successful save (a failed save keeps counting up)."""
+        if self.last_saved_at is None:
+            return None
+        return int(self._monotonic() - self.last_saved_at)
 
     async def run(self) -> None:
         """Real-time loop: one tick every 0.5s, save every save_interval_s. Cancel to stop."""

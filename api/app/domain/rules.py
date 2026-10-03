@@ -70,3 +70,28 @@ def product_state(product: Product, orders: Iterable[Order], sim_s: float) -> Pr
     if delivered is not None and 0 <= sim_s - delivered < RESTOCKED_WINDOW_S:
         return ProductState.RESTOCKED
     return ProductState.SELLING
+
+
+def product_badge(
+    product: Product, orders: Iterable[Order], sim_s: float, next_agent_check_s: float, agent_enabled: bool
+) -> str | None:
+    """Badge text, independent of state: open order, else must-order zone, else just restocked."""
+    orders = list(orders)
+    incoming = sorted(open_orders_for(product.id, orders), key=lambda o: o.due_at_s)
+    if incoming:
+        o = incoming[0]
+        return f"+{o.qty} arriving in {seconds_left(o.due_at_s, sim_s)}s"
+    if product.stock <= product.reorder_point:  # DANGER, or EMPTY with nothing ordered
+        if not agent_enabled:
+            return "Agent is off"
+        return f"Agent checks in {seconds_left(next_agent_check_s, sim_s)}s"
+    delivered = [o for o in orders if o.product_id == product.id and o.delivered_at_s is not None]
+    if delivered and product_state(product, orders, sim_s) == ProductState.RESTOCKED:
+        last = max(delivered, key=lambda o: o.delivered_at_s)
+        return f"+{last.qty} delivered just now"
+    return None
+
+
+def seconds_left(due_s: float, sim_s: float) -> int:
+    """Whole seconds until due_s, rounded up, never negative."""
+    return max(0, math.ceil(due_s - sim_s - 1e-9))
