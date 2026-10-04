@@ -1,5 +1,13 @@
-# Secrets
+# Secrets: keys, passwords and credentials are never committed (.env.example is the template)
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*credentials*.json
+*service-account*.json
+*-sa-key*.json
 
 # Python
 .venv/

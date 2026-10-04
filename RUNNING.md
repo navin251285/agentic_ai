@@ -8,9 +8,12 @@ See [README.md](README.md) for what the app does and the demo script.
 
 ## 1. One-time setup
 
-Open a terminal in JupyterLab (**File → New → Terminal**). All commands in this guide run there.
+Open a terminal in JupyterLab (**File → New → Terminal**). All commands in this guide run there, starting from the
+**project folder**: the folder that holds this file. If you cloned the repository, that is
+`agentic_ai/autonomous_agents` (see [Getting started](README.md#getting-started-new-users) in the README).
 
-`.env` in the project folder holds only your Vertex AI key, `GOOGLE_CLOUD_API_KEY`. The Gemini brain needs it;
+`.env` in the project folder holds only your Vertex AI key, `GOOGLE_CLOUD_API_KEY` (to create it, see
+[Getting started](README.md#getting-started-new-users)). The Gemini brain needs it;
 without it the rules brain makes every decision. Leave `.env` as it is. Every other setting in this guide is typed on
 the command line when you start the app:
 
@@ -70,14 +73,14 @@ If an API is already running, either use it and start only the dashboard, or sto
 
 ```bash
 # Terminal 1: API. Use exactly one worker, because all state is in memory.
-cd /home/jupyter/agentic_ai_tutorial/autonomous_agent/api
+cd api                                        # from the project folder
 source .venv/bin/activate
 uvicorn app.main:app --port 8000              # rehearsal: SIM_SEED=7 uvicorn app.main:app --port 8000
 ```
 
 ```bash
 # Terminal 2: dashboard
-cd /home/jupyter/agentic_ai_tutorial/autonomous_agent/web
+cd web                                        # from the project folder
 VITE_BASE=/proxy/absolute/5173/ npm run dev
 ```
 
@@ -87,7 +90,7 @@ in terminal 2, then open your [dashboard address](#your-dashboard-address).
 ### Option B: Docker
 
 ```bash
-cd /home/jupyter/agentic_ai_tutorial/autonomous_agent
+# from the project folder
 VITE_BASE=/proxy/absolute/5173/ HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose up --build -d
 ```
 
@@ -206,7 +209,7 @@ Activity is written to `api/data/events.csv` as it happens. You can also open th
 browser.
 
 ```bash
-cd /home/jupyter/agentic_ai_tutorial/autonomous_agent
+# from the project folder
 tail -f api/data/events.csv
 grep -E "ORDER_PLACED|AGENT_FALLBACK|MISSED_SALE" api/data/events.csv | tail -20
 ```
@@ -231,7 +234,7 @@ A JupyterLab terminal runs as the `jupyter` user. A VS Code remote session can r
 If you get `Permission denied`, have the user who owns those files run:
 
 ```bash
-cd /home/jupyter/agentic_ai_tutorial/autonomous_agent
+# from the project folder
 mkdir -p web/node_modules/.vite web/node_modules/.vite-temp
 chmod -R o+rwX api/data web/node_modules/.vite web/node_modules/.vite-temp
 ```

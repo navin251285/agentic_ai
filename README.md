@@ -12,6 +12,34 @@ The audience sees each product go **selling → danger zone → order placed (co
 
 `CLAUDE.md` is the full spec.
 
+## Getting started (new users)
+
+1. **Get the code.** This project is the `autonomous_agents` folder of the
+   [agentic_ai](https://github.com/navin251285/agentic_ai) repository:
+
+   ```bash
+   git clone https://github.com/navin251285/agentic_ai.git
+   cd agentic_ai/autonomous_agents          # the "project folder" in this README and RUNNING.md
+   ```
+
+2. **Create your own Vertex AI API key** (only needed for the Gemini brain; the rules brain works without one).
+   Keys are never shared or committed, so each user makes their own:
+   - In the [Google Cloud console](https://console.cloud.google.com/), pick or create a project with billing enabled.
+   - Enable the **Vertex AI API** (APIs & Services → Library).
+   - Create a key: APIs & Services → Credentials → **Create credentials → API key**. Under *API restrictions*,
+     restrict it to the Vertex AI API.
+
+3. **Create `.env`** in the project folder with just your key:
+
+   ```bash
+   echo "GOOGLE_CLOUD_API_KEY=<your key>" > .env
+   ```
+
+   Every other setting has a default (see [Setup](#setup)). `.env` is git-ignored: never commit it, and never put
+   keys, passwords or project IDs in any other file.
+
+4. **Install and run.** On Vertex AI Workbench, follow [RUNNING.md](RUNNING.md). Anywhere else, see [Run](#run).
+
 ## Setup
 
 ```bash
