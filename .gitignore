@@ -9,6 +9,11 @@
 *service-account*.json
 *-sa-key*.json
 
+# Python / Jupyter
+.venv/
 __pycache__/
 .ipynb_checkpoints/
+
+# Local databases (checkpointer files from lesson 13 onward)
 *.db
+*.sqlite
