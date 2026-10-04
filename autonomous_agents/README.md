@@ -10,7 +10,10 @@ The audience sees each product go **selling → danger zone → order placed (co
 - Frontend: React 18, Vite, TypeScript, Zustand, Recharts and Tailwind.
 - Gemini: Gemini 2.5 Flash-Lite on Vertex AI, called through LangChain. It never makes more than 10 calls per minute.
 
-`CLAUDE.md` is the full spec.
+`CLAUDE.md` is the full spec. Illustrated guides (open these links; GitHub's file view only shows the HTML source):
+
+- [What it does](https://navin251285.github.io/agentic_ai/autonomous_agents/docs/what-it-does.html)
+- [Architecture](https://navin251285.github.io/agentic_ai/autonomous_agents/docs/architecture.html)
 
 ## Getting started (new users)
 
