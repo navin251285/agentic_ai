@@ -6,6 +6,8 @@ Gemini, and you can switch between them live.
 
 The audience sees each product go **selling → danger zone → order placed (countdown) → restocked**.
 
+![The live dashboard during a run with the Gemini brain and a heatwave curveball](docs/images/dashboard.png)
+
 - Backend: Python 3.11+, FastAPI, Pydantic v2. State lives in memory and is saved to CSV files. Live updates use SSE.
 - Frontend: React 18, Vite, TypeScript, Zustand, Recharts and Tailwind.
 - Gemini: Gemini 2.5 Flash-Lite on Vertex AI, called through LangChain. It never makes more than 10 calls per minute.

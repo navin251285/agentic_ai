@@ -38,6 +38,7 @@
   .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; vertical-align: baseline; }
   figure { margin: 20px 0; }
   figure svg { width: 100%; height: auto; display: block; }
+  figure img { width: 100%; height: auto; display: block; border: 1px solid var(--border); border-radius: 8px; }
   figcaption { color: var(--muted); font-size: 13px; margin-top: 6px; text-align: center; }
   blockquote { margin: 16px 0 0; padding: 10px 16px; border-left: 3px solid var(--accent); background: var(--accent-tint); border-radius: 0 8px 8px 0; font-style: italic; }
   .tip { color: var(--muted); font-size: 14px; }
@@ -67,6 +68,10 @@
 
   <h2>What you see on screen</h2>
   <p>Everything sits on one page and updates by itself twice a second.</p>
+  <figure>
+    <a href="images/dashboard.png"><img src="images/dashboard.png" alt="The live dashboard: controls and brain switch at the top, sales counters, the curveball panel, the agent's plan, the Agent vs Rules scoreboard, ten product cards, orders on the way, the activity feed and a stock-over-time chart" loading="lazy"></a>
+    <figcaption>The dashboard during a live run with the Gemini brain and a heatwave curveball. Click to enlarge.</figcaption>
+  </figure>
   <table>
     <thead><tr><th>Part of the screen</th><th>What it shows</th></tr></thead>
     <tbody>
