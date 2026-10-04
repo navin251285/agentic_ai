@@ -34,7 +34,7 @@ Press **Shift+Tab** to switch to plan mode (it shows a plan before touching file
 
 ```
 Do sections 3, 4 and 6 of BUILD_LANGGRAPH_TUTORIAL.md: folder layout, requirements.txt,
-.env.example, .gitignore, llm_setup.py, README skeleton, empty GLOSSARY.md.
+env.example, .gitignore, llm_setup.py, README skeleton, empty GLOSSARY.md.
 Create a venv and install. Then build only notebook 00. Run it and show me
 the versions installed.
 ```
@@ -134,7 +134,7 @@ langgraph-calculator-tutorial/
 ├── README.md                 # what this is, setup, how to run, lesson index
 ├── GLOSSARY.md               # every LangGraph term, one or two lines each
 ├── requirements.txt
-├── .env.example              # GOOGLE_CLOUD_API_KEY=your-key-here
+├── env.example              # GOOGLE_CLOUD_API_KEY=your-key-here
 ├── .gitignore                # .env, __pycache__, .ipynb_checkpoints, *.db
 ├── llm_setup.py              # the ONLY shared code: get_llm()
 ├── notebooks/
@@ -289,7 +289,7 @@ Total LLM calls in this lesson: aim for under 10.
 
 ## 6. Supporting files
 
-- **README.md**: one-paragraph intro, prerequisites (Python 3.10+), setup steps (venv, `pip install -r requirements.txt`, copy `.env.example` to `.env`, `jupyter notebook`), a lesson table (number, title, concept, needs LLM yes/no), and troubleshooting (missing key, Vertex AI permission errors, `ImportError` from old tutorials using `create_react_agent`).
+- **README.md**: one-paragraph intro, prerequisites (Python 3.10+), setup steps (venv, `pip install -r requirements.txt`, copy `env.example` to `.env`, `jupyter notebook`), a lesson table (number, title, concept, needs LLM yes/no), and troubleshooting (missing key, Vertex AI permission errors, `ImportError` from old tutorials using `create_react_agent`).
 - **GLOSSARY.md**: alphabetical, every term from section 1, each with a one-line definition and the lesson that teaches it.
 - **solutions/exercises_solutions.ipynb**: working answers to every "Try it", grouped by lesson.
 
