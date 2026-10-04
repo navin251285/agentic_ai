@@ -48,7 +48,7 @@ The audience sees each product go **selling → danger zone → order placed (co
 ## Setup
 
 ```bash
-cp .env.example .env        # then edit .env
+cp env.example .env        # then edit .env
 ```
 
 | Variable | Meaning |
