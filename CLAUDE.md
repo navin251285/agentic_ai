@@ -90,7 +90,7 @@ web/
   Dockerfile
 design/
   restock-agent-dashboard.pdf   # visual reference (see Design reference)
-docker-compose.yml  .env.example  README.md  .gitignore
+docker-compose.yml  env.example  README.md  .gitignore
 ```
 `.gitignore` excludes live data files (`data/products.csv`, `orders.csv`, `events.csv`, `runtime.json`) and quarantined `products.csv.bad-*`,
 but keeps `data/scenarios/`.
@@ -314,7 +314,7 @@ Validation (Pydantic, return 422 with a clear message), checked against the prod
   React may only format, group events for display, and animate.
 - Target 1280–1440 wide (projector). Animations: CSS transitions only, ≤ 600ms. Respect prefers-reduced-motion.
 
-## .env.example
+## env.example
 `SIM_SEED=`, `DATA_DIR=./data`, `DEFAULT_SCENARIO=normal_day`, `AGENT_INTERVAL_S=5`,
 `SAVE_INTERVAL_S=3`, `API_PORT=8000`, `VITE_API_TARGET=http://localhost:8000`,
 `AGENT_MODE=rules`, `GOOGLE_CLOUD_API_KEY=`, `LLM_MODEL=gemini-2.5-flash-lite`, `LLM_TIMEOUT_S=8`,
