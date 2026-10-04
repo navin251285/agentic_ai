@@ -24,7 +24,7 @@ pip install -r requirements.txt
 python -m ipykernel install --user --name langgraph-tutorial --display-name "Python (langgraph-tutorial)"
 
 # Only needed for the LLM lessons: add your key
-cp .env.example .env    # then edit .env and paste your key
+cp env.example .env    # then edit .env and paste your key
 
 jupyter notebook
 ```
@@ -78,7 +78,7 @@ API key; lesson 19 ran with a key.
 ## Troubleshooting
 
 - **`AssertionError: GOOGLE_CLOUD_API_KEY is not set`**: you ran an LLM lesson without a key. Create `.env` from
-  `.env.example` and restart the kernel. Lessons 01–18 don't need a key.
+  `env.example` and restart the kernel. Lessons 01–18 don't need a key.
 - **`ModuleNotFoundError: No module named 'langgraph'`**: the notebook is using the wrong kernel. Pick
   **Python (langgraph-tutorial)** from the kernel menu.
 - **`403 PERMISSION_DENIED` or "Vertex AI API has not been used in project"**: your key's project doesn't have the
