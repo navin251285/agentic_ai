@@ -1,4 +1,14 @@
+# Secrets: keys, passwords and cloud credentials are never committed (.env.example is the template)
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*credentials*.json
+*service-account*.json
+*-sa-key*.json
+
 __pycache__/
 .ipynb_checkpoints/
 *.db
