@@ -37,33 +37,35 @@ JupyterLab (for example on Vertex AI Workbench), open the folder there and pick 
 | # | Notebook | Concept | Needs LLM |
 |---|---|---|---|
 | 00 | [Setup and check](notebooks/00_setup_and_check.ipynb) | Install, kernel, `.env`, optional LLM test | Optional |
-| 01 | What is a graph? | Nodes, edges, state, and why LangGraph | No |
-| 02 | State | `TypedDict` state (and `dataclass` / Pydantic) | No |
-| 03 | Nodes | A node is a function returning a partial update | No |
-| 04 | Edges, START, END, compile, invoke | Your first runnable graph | No |
-| 05 | Conditional edges | Routing to one node or another | No |
-| 06 | Reducers | How updates are merged (`operator.add`, custom) | No |
-| 07 | Loops and the recursion limit | Cycles and `GraphRecursionError` | No |
-| 08 | Parallel branches | Fan-out / fan-in and supersteps | No |
-| 09 | Map-reduce with `Send` | Run a node once per item | No |
-| 10 | `Command` | Update state and route from inside a node | No |
-| 11 | Input, output and private schemas | `input_schema` / `output_schema` | No |
-| 12 | Runtime context | `context_schema` and `Runtime` | No |
-| 13 | Checkpointers and threads | Short-term memory, history, time travel | No |
-| 14 | Human-in-the-loop | `interrupt` and `Command(resume=...)` | No |
-| 15 | Streaming | `values`, `updates`, `custom` stream modes | No |
-| 16 | Subgraphs | A compiled graph used as a node | No |
-| 17 | Long-term memory | The store, shared across threads | No |
-| 18 | Tools and `ToolNode` | Tool calls without an LLM | No |
-| 19 | The agent loop with Gemini | `bind_tools`, ReAct loop, `create_agent` | Yes |
-| 20 | Capstone: calculator assistant | Everything together + Functional API | Yes (optional) |
+| 01 | [What is a graph?](notebooks/01_what_is_a_graph.ipynb) | Nodes, edges, state, and why LangGraph | No |
+| 02 | [State](notebooks/02_state.ipynb) | `TypedDict` state (and `dataclass` / Pydantic) | No |
+| 03 | [Nodes](notebooks/03_nodes.ipynb) | A node is a function returning a partial update | No |
+| 04 | [Edges, START, END, compile, invoke](notebooks/04_edges_start_end_compile_invoke.ipynb) | Your first runnable graph | No |
+| 05 | [Conditional edges](notebooks/05_conditional_edges.ipynb) | Routing to one node or another | No |
+| 06 | [Reducers](notebooks/06_reducers.ipynb) | How updates are merged (`operator.add`, custom) | No |
+| 07 | [Loops and the recursion limit](notebooks/07_loops_and_recursion_limit.ipynb) | Cycles and `GraphRecursionError` | No |
+| 08 | [Parallel branches](notebooks/08_parallel_branches.ipynb) | Fan-out / fan-in and supersteps | No |
+| 09 | [Map-reduce with `Send`](notebooks/09_map_reduce_with_send.ipynb) | Run a node once per item | No |
+| 10 | [`Command`](notebooks/10_command.ipynb) | Update state and route from inside a node | No |
+| 11 | [Input, output and private schemas](notebooks/11_input_output_private_schemas.ipynb) | `input_schema` / `output_schema` | No |
+| 12 | [Runtime context](notebooks/12_runtime_context.ipynb) | `context_schema` and `Runtime` | No |
+| 13 | [Checkpointers and threads](notebooks/13_checkpointers_and_threads.ipynb) | Short-term memory, history, time travel | No |
+| 14 | [Human-in-the-loop](notebooks/14_human_in_the_loop_interrupt.ipynb) | `interrupt` and `Command(resume=...)` | No |
+| 15 | [Streaming](notebooks/15_streaming.ipynb) | `values`, `updates`, `custom` stream modes | No |
+| 16 | [Subgraphs](notebooks/16_subgraphs.ipynb) | A compiled graph used as a node | No |
+| 17 | [Long-term memory](notebooks/17_long_term_memory_store.ipynb) | The store, shared across threads | No |
+| 18 | [Tools and `ToolNode`](notebooks/18_tools_and_toolnode.ipynb) | Tool calls without an LLM | No |
+| 19 | [The agent loop with Gemini](notebooks/19_agent_loop_with_gemini.ipynb) | `bind_tools`, ReAct loop, `create_agent` | Yes |
+| 20 | Capstone: calculator assistant *(not written yet)* | Everything together + Functional API | Yes (optional) |
 
 Answers to every "Try it" exercise are in [solutions/exercises_solutions.ipynb](solutions/exercises_solutions.ipynb).
 Every term is defined in [GLOSSARY.md](GLOSSARY.md).
 
 ## Versions used
 
-Built and tested with Python 3.12 and:
+Built and tested with Python 3.12 and the versions below. These are also exactly what a fresh virtualenv installs
+from `requirements.txt` (checked on 2026-10-04). Lessons 00–18 ran top to bottom in that fresh environment with no
+API key; lesson 19 ran with a key.
 
 | Package | Version |
 |---|---|
