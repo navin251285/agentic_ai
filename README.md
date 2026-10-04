@@ -4,7 +4,7 @@ Hands-on agentic AI projects. Each folder is a self-contained project with its o
 
 | Folder | What it is |
 |---|---|
-| [autonomous_agents](autonomous_agents/) | **Restock Agent Demo**: a simulated corner shop where an agent (fixed rules or Gemini on Vertex AI) watches stock, reorders from suppliers and reacts to news. FastAPI backend, React dashboard. |
+| [autonomous_agents](autonomous_agents/) | **Restock Agent Demo**: a simulated corner shop where an agent (fixed rules or Gemini on Vertex AI) watches stock, reorders from suppliers and reacts to news. FastAPI backend, React dashboard. Guides: [What it does](https://navin251285.github.io/agentic_ai/autonomous_agents/docs/what-it-does.html) · [Architecture](https://navin251285.github.io/agentic_ai/autonomous_agents/docs/architecture.html) |
 
 ## Getting started
 
