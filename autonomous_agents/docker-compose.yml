@@ -1,0 +1,29 @@
+# docker compose up  → dashboard on http://localhost:5173, api on http://localhost:8000
+services:
+  api:
+    build: ./api
+    ports:
+      - "${API_PORT:-8000}:8000"
+    env_file: .env
+    # Linux: set HOST_UID/HOST_GID (id -u / id -g) in .env so CSVs written to ./api/data stay yours.
+    user: "${HOST_UID:-0}:${HOST_GID:-0}"
+    environment:
+      DATA_DIR: /app/data
+    volumes:
+      - ./api/data:/app/data
+    stop_grace_period: 15s
+
+  web:
+    build: ./web
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_TARGET: http://api:8000
+      # Vertex AI Workbench: start with VITE_BASE=/proxy/absolute/5173/ docker compose up (see RUNNING.md).
+      VITE_BASE: ${VITE_BASE:-/}
+    volumes:
+      # Edit web/src on the host and Vite hot-reloads; node_modules stays the container's own.
+      - ./web/src:/app/src
+    depends_on:
+      api:
+        condition: service_healthy

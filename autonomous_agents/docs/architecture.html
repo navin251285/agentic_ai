@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restock Agent Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ground: #f3f4f1; --card: #ffffff; --ink: #17201b; --muted: #56615b; --border: #dce0da;
+    --accent: #1f4fb8; --accent-tint: #e6edfb; --line: #9aa39d; --code-bg: #f3f4f1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #141a17; --card: #1c2420; --ink: #e8ece9; --muted: #a3ada7; --border: #33403a;
+      --accent: #7d9ef0; --accent-tint: #1f2a44; --line: #6b766f; --code-bg: #243029;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font: 16px/1.6 'IBM Plex Sans', system-ui, sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 40px 16px 64px; }
+  article { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 32px 36px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 4px; }
+  .byline { color: var(--muted); font-size: 14px; margin: 0 0 20px; }
+  nav { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+  nav a { color: var(--accent); text-decoration: none; margin-right: 12px; white-space: nowrap; }
+  h2 { font-size: 21px; margin: 36px 0 8px; padding-top: 20px; border-top: 1px solid var(--border); }
+  h3 { font-size: 16px; margin: 20px 0 6px; }
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  code { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.88em; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+  .table-wrap { overflow-x: auto; margin: 12px 0 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; vertical-align: top; padding: 7px 10px; border-bottom: 1px solid var(--border); }
+  thead th { color: var(--muted); font-weight: 600; font-size: 13px; white-space: nowrap; }
+  tbody th { font-weight: 600; }
+  figure { margin: 20px 0; }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption { color: var(--muted); font-size: 13px; margin-top: 6px; text-align: center; }
+  @media (max-width: 600px) { article { padding: 22px 16px; } }
+  /* diagram colours */
+  .d-box { fill: none; stroke: var(--line); stroke-width: 1.25; }
+  .d-main { fill: var(--accent-tint); stroke: var(--accent); stroke-width: 2; }
+  .d-zone { fill: var(--code-bg); stroke: var(--line); stroke-width: 1; stroke-dasharray: 4 4; }
+  .d-edge { fill: none; stroke: var(--line); stroke-width: 1.25; }
+  .d-head { fill: var(--line); }
+  .d-ink { fill: var(--ink); }
+  .d-quiet { fill: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<article>
+  <h1>Restock Agent Architecture</h1>
+  <p class="byline">Technical architecture · spec v1.7 (phase 8) · October 2026</p>
+  <nav>
+    <a href="#overview">Overview</a><a href="#system">System</a><a href="#tick">Tick</a><a href="#agent">Agent</a>
+    <a href="#proof">Curveball &amp; shadow shop</a><a href="#data">Data</a><a href="#api">API</a>
+    <a href="#web">Frontend</a><a href="#deploy">Deployment</a><a href="#tests">Testing</a><a href="#decisions">Design decisions</a>
+  </nav>
+
+  <h2 id="overview">Overview</h2>
+  <p>One Python process owns all state and runs the simulation. The browser only displays a snapshot that the server pushes every 0.5 seconds. The backend is FastAPI on uvicorn with exactly one worker, because state lives in memory. It persists to CSV files through a repository interface and calls Gemini 2.5 Flash-Lite on Vertex AI, under a hard budget of 10 calls per minute. The frontend is React 18 with TypeScript, a Zustand store fed by Server-Sent Events, Recharts and Tailwind, served by Vite.</p>
+  <p>All business rules (product states, badges, countdowns, the scoreboard) are computed in the backend. React only formats, groups and animates.</p>
+
+  <h2 id="system">System architecture</h2>
+  <figure>
+    <svg viewBox="0 0 760 470" role="img" aria-label="One API process owns all state; the browser only displays it" font-size="13" font-family="IBM Plex Sans, system-ui, sans-serif">
+      <defs>
+        <marker id="sys-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="d-head"/></marker>
+      </defs>
+      <text x="24" y="30" font-size="15" font-weight="600" class="d-ink">One API process owns all state; the browser only displays it</text>
+      <!-- column 1: client path -->
+      <rect class="d-box" x="24" y="64" width="200" height="72" rx="8"/>
+      <text x="124" y="88" text-anchor="middle" font-weight="600" class="d-ink">Dashboard (browser)</text>
+      <text x="124" y="106" text-anchor="middle" font-size="11.5" class="d-quiet">React 18 · Zustand</text>
+      <text x="124" y="122" text-anchor="middle" font-size="11.5" class="d-quiet">Recharts · Tailwind</text>
+      <rect class="d-box" x="24" y="176" width="200" height="72" rx="8"/>
+      <text x="124" y="200" text-anchor="middle" font-weight="600" class="d-ink">JupyterLab proxy</text>
+      <text x="124" y="218" text-anchor="middle" font-size="11.5" class="d-quiet">/proxy/absolute/5173/</text>
+      <text x="124" y="234" text-anchor="middle" font-size="11.5" class="d-quiet">Google sign-in</text>
+      <rect class="d-box" x="24" y="288" width="200" height="72" rx="8"/>
+      <text x="124" y="312" text-anchor="middle" font-weight="600" class="d-ink">Vite dev server :5173</text>
+      <text x="124" y="330" text-anchor="middle" font-size="11.5" class="d-quiet">Serves the UI</text>
+      <text x="124" y="346" text-anchor="middle" font-size="11.5" class="d-quiet">Proxies /api to :8000</text>
+      <!-- column 2: API process -->
+      <rect class="d-zone" x="256" y="52" width="304" height="400" rx="10"/>
+      <text x="408" y="76" text-anchor="middle" font-size="11.5" font-weight="600" class="d-quiet">API process · FastAPI + uvicorn, 1 worker</text>
+      <rect class="d-box" x="280" y="92" width="256" height="72" rx="8"/>
+      <text x="408" y="116" text-anchor="middle" font-weight="600" class="d-ink">REST routes + SSE stream</text>
+      <text x="408" y="134" text-anchor="middle" font-size="11.5" class="d-quiet">Actions run under one asyncio lock</text>
+      <text x="408" y="150" text-anchor="middle" font-size="11.5" class="d-quiet">Full snapshot to clients every 0.5 s</text>
+      <rect class="d-main" x="280" y="184" width="256" height="72" rx="8"/>
+      <text x="408" y="208" text-anchor="middle" font-weight="600" class="d-ink">Simulation (in-memory state)</text>
+      <text x="408" y="226" text-anchor="middle" font-size="11.5" class="d-ink">Tick: clock, shop, supplier,</text>
+      <text x="408" y="242" text-anchor="middle" font-size="11.5" class="d-ink">agent, shadow shop, publish</text>
+      <rect class="d-box" x="280" y="276" width="256" height="72" rx="8"/>
+      <text x="408" y="300" text-anchor="middle" font-weight="600" class="d-ink">Agent</text>
+      <text x="408" y="318" text-anchor="middle" font-size="11.5" class="d-quiet">Rules engine or Gemini engine</text>
+      <text x="408" y="334" text-anchor="middle" font-size="11.5" class="d-quiet">Rate limiter · guardrails · fallback</text>
+      <rect class="d-box" x="280" y="368" width="256" height="56" rx="8"/>
+      <text x="408" y="392" text-anchor="middle" font-weight="600" class="d-ink">CSV repository</text>
+      <text x="408" y="410" text-anchor="middle" font-size="11.5" class="d-quiet">The only code that touches files</text>
+      <!-- column 3: external -->
+      <rect class="d-box" x="592" y="276" width="144" height="72" rx="8"/>
+      <text x="664" y="300" text-anchor="middle" font-weight="600" class="d-ink">Gemini, Vertex AI</text>
+      <text x="664" y="318" text-anchor="middle" font-size="11.5" class="d-quiet">2.5 Flash-Lite</text>
+      <text x="664" y="334" text-anchor="middle" font-size="11.5" class="d-quiet">≤ 10 calls / min</text>
+      <rect class="d-box" x="592" y="360" width="144" height="72" rx="8"/>
+      <text x="664" y="384" text-anchor="middle" font-weight="600" class="d-ink">api/data files</text>
+      <text x="664" y="402" text-anchor="middle" font-size="11.5" class="d-quiet">products, orders,</text>
+      <text x="664" y="418" text-anchor="middle" font-size="11.5" class="d-quiet">events, runtime</text>
+      <!-- connectors -->
+      <path class="d-edge" d="M124 136V174" marker-start="url(#sys-arrow)" marker-end="url(#sys-arrow)"/>
+      <path class="d-edge" d="M124 248V286" marker-start="url(#sys-arrow)" marker-end="url(#sys-arrow)"/>
+      <path class="d-edge" d="M224 324H240V128H278" marker-start="url(#sys-arrow)" marker-end="url(#sys-arrow)"/>
+      <path class="d-edge" d="M408 164V182" marker-start="url(#sys-arrow)" marker-end="url(#sys-arrow)"/>
+      <path class="d-edge" d="M408 256V274" marker-end="url(#sys-arrow)"/>
+      <path class="d-edge" d="M280 220H268V396H278" marker-end="url(#sys-arrow)"/>
+      <path class="d-edge" d="M536 312H590" marker-end="url(#sys-arrow)"/>
+      <path class="d-edge" d="M536 396H590" marker-end="url(#sys-arrow)"/>
+    </svg>
+    <figcaption>Requests and the SSE stream go browser → JupyterLab proxy → Vite → API. The agent calls Gemini through LangChain; only the repository writes files.</figcaption>
+  </figure>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Component</th><th>Responsibility</th><th>Code</th></tr></thead>
+    <tbody>
+      <tr><th>App factory</th><td>Settings, lifespan (load on start, save on Ctrl+C or <code>docker compose stop</code>), starts the tick task and the Gemini warm-up</td><td><code>api/app/main.py</code>, <code>config.py</code></td></tr>
+      <tr><th>Routes + SSE</th><td>REST actions return a fresh snapshot; <code>/api/stream</code> pushes the latest snapshot per client, with a heartbeat every 15 s</td><td><code>api/app/api/</code></td></tr>
+      <tr><th>Simulation</th><td>Owns state; runs the tick; applies actions under one lock; saves every 3 s</td><td><code>services/simulation.py</code></td></tr>
+      <tr><th>Clock, shop, supplier</th><td>Sim time and speed; customers and baskets; order lifecycle, main and backup suppliers</td><td><code>services/clock.py</code>, <code>shop.py</code>, <code>supplier.py</code></td></tr>
+      <tr><th>Agent</th><td>Check schedule, zone tracking, Gemini batching, plan, fallback</td><td><code>services/agent.py</code></td></tr>
+      <tr><th>Engines</th><td>Rules engine, Gemini engine (structured output), prompt, guardrails, rate limiter</td><td><code>services/engines/</code></td></tr>
+      <tr><th>Shadow shop</th><td>Rules-only twin with the same customers, for the scoreboard</td><td><code>services/shadow.py</code></td></tr>
+      <tr><th>Domain</th><td>Pydantic models; pure rules (states, badges, zones); economics; curveball presets</td><td><code>api/app/domain/</code></td></tr>
+      <tr><th>Repository</th><td>Interface plus the CSV implementation and an in-memory one for tests and headless runs</td><td><code>api/app/repositories/</code></td></tr>
+      <tr><th>Dashboard</th><td>Live store, panels, chart, edit drawer; generated API types</td><td><code>web/src/</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="tick">The simulation tick</h2>
+  <p>One asyncio task ticks every 0.5 real seconds. Simulated time (<code>sim_s</code>) advances by 0.5 × speed per tick, so all durations are in sim seconds and freeze when paused. Each tick runs, in order:</p>
+  <ol>
+    <li><strong>Clock.</strong> Advance <code>sim_s</code>; drop curveballs that have ended.</li>
+    <li><strong>Shop.</strong> Serve every customer due: a basket of 1–4 distinct items, weighted by popularity and any curveball multiplier. Customers arrive every 2–4 sim s, or every 1–2 in rush hour or a crowd curveball. Returns the baskets it drew.</li>
+    <li><strong>Supplier.</strong> Move open orders through confirmed (10%), shipped (30%) and delivered (100% of the time to delivery). A delivery is capped at the shelf's maximum.</li>
+    <li><strong>Agent.</strong> Apply any finished Gemini answer, then run a check if one is due (every 5 sim s by default).</li>
+    <li><strong>Shadow shop.</strong> Serve the same baskets, deliver, and run its rules check at the same moment.</li>
+    <li><strong>Publish.</strong> Hand the snapshot to the SSE hub. It is serialised once per tick, and only when someone is listening.</li>
+  </ol>
+  <p>Every API action (sell, edit, settings, curveball, reset) takes the same lock, so actions and ticks never interleave. Services take an injected random generator and are driven by <code>tick(dt)</code>, so tests replay exact runs without sleeping.</p>
+
+  <h2 id="agent">Agent decision flow</h2>
+  <figure>
+    <svg viewBox="0 0 760 490" role="img" aria-label="Gemini decides when it can; the rules always back it up" font-size="13" font-family="IBM Plex Sans, system-ui, sans-serif">
+      <defs>
+        <marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="d-head"/></marker>
+      </defs>
+      <text x="24" y="30" font-size="15" font-weight="600" class="d-ink">Gemini decides when it can; the rules always back it up</text>
+      <text x="420" y="56" text-anchor="middle" font-size="11.5" class="d-quiet">budget left + something new</text>
+      <!-- row 1 -->
+      <rect class="d-box" x="24" y="64" width="140" height="64" rx="8"/>
+      <text x="94" y="90" text-anchor="middle" font-weight="600" class="d-ink">Agent check</text>
+      <text x="94" y="108" text-anchor="middle" font-size="11.5" class="d-quiet">every 5 sim s</text>
+      <polygon class="d-box" points="194,96 250,60 306,96 250,132"/>
+      <text x="250" y="100" text-anchor="middle" class="d-ink">Brain?</text>
+      <polygon class="d-box" points="364,96 420,60 476,96 420,132"/>
+      <text x="420" y="100" text-anchor="middle" class="d-ink">Ask now?</text>
+      <rect class="d-main" x="520" y="60" width="180" height="72" rx="8"/>
+      <text x="610" y="84" text-anchor="middle" font-weight="600" class="d-ink">Ask Gemini</text>
+      <text x="610" y="102" text-anchor="middle" font-size="11.5" class="d-ink">One call, in background</text>
+      <text x="610" y="118" text-anchor="middle" font-size="11.5" class="d-ink">≤ 8 s, ≤ 10 calls/min</text>
+      <!-- row 2 -->
+      <rect class="d-box" x="186" y="174" width="128" height="72" rx="8"/>
+      <text x="250" y="198" text-anchor="middle" font-weight="600" class="d-ink">Rules engine</text>
+      <text x="250" y="216" text-anchor="middle" font-size="11.5" class="d-quiet">Refill to max</text>
+      <text x="250" y="232" text-anchor="middle" font-size="11.5" class="d-quiet">at the mark</text>
+      <rect class="d-box" x="330" y="174" width="180" height="72" rx="8"/>
+      <text x="420" y="198" text-anchor="middle" font-weight="600" class="d-ink">Wait or rules fallback</text>
+      <text x="420" y="216" text-anchor="middle" font-size="11.5" class="d-quiet">Low shelves: rules order</text>
+      <text x="420" y="232" text-anchor="middle" font-size="11.5" class="d-quiet">after one check of grace</text>
+      <polygon class="d-box" points="554,210 610,174 666,210 610,246"/>
+      <text x="610" y="214" text-anchor="middle" class="d-ink">Answer OK?</text>
+      <!-- row 3 and 4 -->
+      <rect class="d-box" x="290" y="284" width="260" height="72" rx="8"/>
+      <text x="420" y="308" text-anchor="middle" font-weight="600" class="d-ink">Guardrails</text>
+      <text x="420" y="326" text-anchor="middle" font-size="11.5" class="d-quiet">No overfill, one open order per product,</text>
+      <text x="420" y="342" text-anchor="middle" font-size="11.5" class="d-quiet">a low shelf is always ordered</text>
+      <rect class="d-box" x="290" y="394" width="260" height="72" rx="8"/>
+      <text x="420" y="418" text-anchor="middle" font-weight="600" class="d-ink">Act</text>
+      <text x="420" y="436" text-anchor="middle" font-size="11.5" class="d-quiet">Orders (main or backup), feed lines,</text>
+      <text x="420" y="452" text-anchor="middle" font-size="11.5" class="d-quiet">plan card</text>
+      <!-- connectors -->
+      <g class="d-edge">
+        <path class="d-edge" d="M164 96H192" marker-end="url(#flow-arrow)"/>
+        <path class="d-edge" d="M306 96H362" marker-end="url(#flow-arrow)"/>
+        <path class="d-edge" d="M476 96H518" marker-end="url(#flow-arrow)"/>
+        <path class="d-edge" d="M250 132V172" marker-end="url(#flow-arrow)"/>
+        <path class="d-edge" d="M420 132V172" marker-end="url(#flow-arrow)"/>
+        <path class="d-edge" d="M610 132V172" marker-end="url(#flow-arrow)"/>
+        <path class="d-edge" d="M554 210H512" marker-end="url(#flow-arrow)"/>
+        <path class="d-edge" d="M250 246V320H288" marker-end="url(#flow-arrow)"/>
+        <path class="d-edge" d="M420 246V282" marker-end="url(#flow-arrow)"/>
+        <path class="d-edge" d="M610 246V320H552" marker-end="url(#flow-arrow)"/>
+        <path class="d-edge" d="M420 356V392" marker-end="url(#flow-arrow)"/>
+      </g>
+      <!-- edge labels -->
+      <text x="335" y="88" text-anchor="middle" font-size="11.5" class="d-quiet">Gemini</text>
+      <text x="497" y="88" text-anchor="middle" font-size="11.5" class="d-quiet">yes</text>
+      <text x="258" y="158" font-size="11.5" class="d-quiet">Rules</text>
+      <text x="428" y="158" font-size="11.5" class="d-quiet">no</text>
+      <text x="532" y="202" text-anchor="middle" font-size="11.5" class="d-quiet">error</text>
+      <text x="618" y="290" font-size="11.5" class="d-quiet">yes</text>
+    </svg>
+    <figcaption>"Ask now?" = the rate limiter allows a call and something changed (a product entered a low zone, or there is news). Errors and timeouts fall back to the rules.</figcaption>
+  </figure>
+
+  <h3>Zones and when Gemini is asked</h3>
+  <ul>
+    <li><strong>Must-order zone:</strong> no open order and stock at or below the reorder mark. <strong>Watch zone:</strong> no open order and stock up to 1.5 × the mark.</li>
+    <li>A product becomes <em>pending</em> when it newly enters either zone. At a check, one call covers every pending product. A "wait" answer stands until the product changes zone.</li>
+    <li>A curveball, or switching to Gemini while one is active, makes the next call cover every product without an open order.</li>
+    <li>The call runs in the background, with at most one in flight. Its answer is applied on a later tick against the state at that moment, so the simulation never waits for the AI.</li>
+  </ul>
+  <h3>Call budget</h3>
+  <p><code>LlmRateLimiter</code> keeps a rolling window of real-time call timestamps (<code>time.monotonic</code>, so speed changes can't exceed the budget). It allows a call only with fewer than 10 calls in the last 60 s and at least 6 s since the previous one. It is checked before a request is built, and every call counts, including the warm-up and failed calls. Configuration can lower the limits but never raise them.</p>
+  <h3>The call itself</h3>
+  <p>LangChain's <code>ChatGoogleGenerativeAI</code> with <code>with_structured_output</code> against a Pydantic schema, temperature 0, no retries. The compact JSON context holds:</p>
+  <ul>
+    <li><strong>For each product asked about:</strong> its zone, stock, maximum, mark, room, both lead times and sales in the last 60 sim s.</li>
+    <li><strong>Shop-wide:</strong> open orders with their supplier, rush hour, supplier delay and any active news.</li>
+  </ul>
+  <p>The answer is a one-line <em>situation</em> plus, for each product, order (with quantity and supplier) or wait, with a reason of at most 20 words. Timeout (8 s), errors and invalid output trigger a rules fallback, an <code>AGENT_FALLBACK</code> event and a warning log. Each call is logged with its count for the current minute.</p>
+  <h3>Guardrails (every engine, rules included)</h3>
+  <p>Drop unknown products and products that already have an open order; clamp quantity to 1 … room; and if a must-order product was skipped or answered "wait", the rules order it (source "fallback"). An engine may order earlier or smaller, but can never leave a shelf to run empty.</p>
+
+  <h2 id="proof">Curveball and shadow shop</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Curveball</th><th>Effect on the world (both shops)</th><th>What the agent is told</th></tr></thead>
+    <tbody>
+      <tr><th>Heatwave</th><td>Crowd (rush-hour arrivals) + cold drinks × 3, for 180 sim s</td><td rowspan="4">The news text and the seconds left; never the mechanics</td></tr>
+      <tr><th>Cricket final</th><td>Crowd + chips, cold drinks, biscuits × 2.5, for 180 sim s</td></tr>
+      <tr><th>Supplier strike</th><td>Main-supplier orders placed during it are due at strike end + lead time</td></tr>
+      <tr><th>Typed text</th><td>None (agent only)</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><strong>Suppliers:</strong> main = lead time (× 1.5 with supplier delay), no fee. Backup = 40% of the lead time (at least 5 sim s), ₹2 per unit, never delayed. The rules always use main.</li>
+    <li><strong>Brain switch:</strong> a curveball switches a Rules brain to Gemini, because the rules can't read news.</li>
+    <li><strong>Shadow shop:</strong> it receives the same baskets (drawn once by the real shop), manual sales, edits, settings and curveball effects, and checks at the same moments. It writes no events. Its stock, orders and counters persist in <code>runtime.json</code>. With the Rules brain both shops stay identical; a test checks this every tick for 600 sim s on every scenario.</li>
+    <li><strong>Scoreboard:</strong> missed sales × ₹15 + backup fees, for each shop; <code>agent_ahead_by</code> = rules total − agent total.</li>
+    <li><strong>Calibration:</strong> one press at 1x makes the rules shop miss at least 10 sales, and a scripted news-aware agent beats it on every seed (median +₹142 heatwave, +₹228 cricket, +₹333 strike). Overusing the backup can lose. A test guards this.</li>
+  </ul>
+
+  <h2 id="data">Data and persistence</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>File (api/data)</th><th>Written</th><th>Contents</th></tr></thead>
+    <tbody>
+      <tr><th><code>products.csv</code></th><td>Every 3 s and on edit (temp file + <code>os.replace</code>)</td><td>id, name, stock, max_stock, reorder_point, sell_weight, lead_time_s</td></tr>
+      <tr><th><code>orders.csv</code></th><td>Every 3 s (atomic)</td><td>id, product, qty, status, placed/due/delivered sim s, supplier</td></tr>
+      <tr><th><code>events.csv</code></th><td>Appended and flushed per event</td><td>run_id, real time, sim s, shop time, type, product, qty, stock after, ref, message</td></tr>
+      <tr><th><code>runtime.json</code></th><td>Every 3 s (atomic)</td><td>Clock, speed, settings, counters, next ids, active curveballs, shadow shop</td></tr>
+      <tr><th><code>scenarios/*.csv</code></th><td>Read only</td><td>normal_day, rush_hour, low_stock_start</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><strong>Encoding:</strong> files are UTF-8 with a BOM, so they open correctly in Excel.</li>
+    <li><strong>Failed writes:</strong> a write that fails (for example, a file locked open in Excel) logs a warning and is retried. Events that fail to append are queued and written in order on the next success.</li>
+    <li><strong>Broken products.csv:</strong> it is renamed to <code>products.csv.bad-&lt;timestamp&gt;</code> and the default scenario loads.</li>
+    <li><strong>Startup:</strong> always paused; the last speed is restored, so Play resumes it.</li>
+    <li><strong>Runs:</strong> each reset or scenario load starts a new <code>run_id</code> and restarts sim time at 0. History is filtered by run.</li>
+  </ul>
+  <p>Storage sits behind <code>InventoryRepository</code> (load, save products/orders/runtime, append/read events, scenarios). A Postgres implementation can replace the CSV one without touching services, API or UI.</p>
+
+  <h2 id="api">API</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Endpoint</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><code>GET /api/health</code></td><td>Liveness (Docker health check)</td></tr>
+      <tr><td><code>GET /api/snapshot</code></td><td>Everything the screen needs: products with state and badge, open orders, counters, last 50 events, agent status and plan, curveballs, scoreboard, shadow stock</td></tr>
+      <tr><td><code>GET /api/stream</code></td><td>SSE: the snapshot every tick, heartbeat every 15 s; <code>Cache-Control: no-cache</code>, <code>X-Accel-Buffering: no</code></td></tr>
+      <tr><td><code>POST /api/speed</code></td><td>0 (pause), 0.5, 1 or 5</td></tr>
+      <tr><td><code>POST /api/sell</code></td><td>Manual sale; works while paused</td></tr>
+      <tr><td><code>PATCH /api/products/{id}</code></td><td>Edit a product; validated after merging; logs EDIT and saves at once</td></tr>
+      <tr><td><code>POST /api/settings</code></td><td>Rush hour, supplier delay, agent on/off, brain, check interval</td></tr>
+      <tr><td><code>GET /api/scenarios</code>, <code>POST /api/scenario</code>, <code>POST /api/reset</code></td><td>Start a new run from a scenario</td></tr>
+      <tr><td><code>GET /api/curveballs</code>, <code>POST /api/curveball</code></td><td>Presets; throw a preset or typed news (max 3 active)</td></tr>
+      <tr><td><code>GET /api/history/{id}</code></td><td>Stock points, order and delivery markers, and the shadow shop's points, for the chart</td></tr>
+    </tbody>
+  </table></div>
+  <p>Invalid input returns 422 with FastAPI's error format and a plain message (for example, "reorder_point (40) must be &lt; max_stock (35)"). The OpenAPI schema at <code>/openapi.json</code> generates the frontend's TypeScript types.</p>
+
+  <h2 id="web">Frontend</h2>
+  <ul>
+    <li><code>useLiveState</code> opens an <code>EventSource</code> on the stream and writes each snapshot to a Zustand store. If the connection drops, it reconnects and shows a banner.</li>
+    <li>Actions call typed fetch wrappers and apply the returned snapshot at once, before the next tick arrives.</li>
+    <li>The chart fetches <code>/api/history</code> when the selected product gets a new event or a new run starts. It draws the agent's line, the rules shop's dashed line, the reorder mark, the danger zone and order/delivery markers.</li>
+    <li><code>VITE_BASE</code> serves the whole UI under a path prefix, for JupyterLab's proxy; API and SSE calls follow it. In development, Vite proxies <code>/api</code> to <code>VITE_API_TARGET</code>, so no CORS is needed.</li>
+    <li>Animations are CSS transitions of at most 600 ms, and they respect reduced-motion settings.</li>
+  </ul>
+
+  <h2 id="deploy">Deployment</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Setup</th><th>How</th><th>Open</th></tr></thead>
+    <tbody>
+      <tr><th>Vertex AI Workbench (usual)</th><td>Two JupyterLab terminals: <code>uvicorn app.main:app --port 8000</code>, and <code>VITE_BASE=/proxy/absolute/5173/ npm run dev</code></td><td><code>https://&lt;instance&gt;.notebooks.googleusercontent.com/proxy/absolute/5173/</code></td></tr>
+      <tr><th>Docker Compose</th><td><code>api</code> (health-checked) and <code>web</code>; <code>./api/data</code> mounted; <code>.env</code> passed to api</td><td>Same proxy path on Workbench, or <code>localhost:5173</code></td></tr>
+      <tr><th>Local machine</th><td>The same two commands without <code>VITE_BASE</code></td><td><code>http://localhost:5173</code></td></tr>
+    </tbody>
+  </table></div>
+  <p><code>.env</code> holds only <code>GOOGLE_CLOUD_API_KEY</code>; other settings are passed on the command line. The key is never logged or sent to the browser. Run exactly one API instance per data folder. See <code>RUNNING.md</code> for start, stop, monitoring and troubleshooting.</p>
+
+  <h2 id="tests">Testing</h2>
+  <ul>
+    <li><strong>Backend:</strong> 217 pytest tests, with ruff for linting. They cover rules, the CSV repository (atomic writes, bad files, queued events), the simulation, agent batching, the limiter (10 virtual minutes at 5x, never more than 10 calls in any 60 s), guardrails, the API, SSE, curveballs and shadow-shop equality.</li>
+    <li><strong>Calibration tests:</strong> the seed stock keeps a normal day at ≤ 3 missed sales over 600 sim s, and one curveball press gives a sensible agent a real win.</li>
+    <li><strong>No real AI calls in tests:</strong> they use fake LLMs. One opt-in <code>pytest -m live</code> makes a single real call; never run it while the demo is running.</li>
+    <li><strong>Frontend:</strong> 63 Vitest + React Testing Library tests, plus a strict TypeScript check, ESLint and a production build.</li>
+    <li><strong>Headless runs:</strong> <code>python -m app.run_sim --fast</code> replays runs without real-time waiting and never writes the live files.</li>
+  </ul>
+
+  <h2 id="decisions">Design decisions</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Decision</th><th>Why</th><th>Trade-off</th></tr></thead>
+    <tbody>
+      <tr><th>In-memory state, one worker</th><td>Simple, fast, one lock prevents races</td><td>No horizontal scaling; restart reloads from files</td></tr>
+      <tr><th>Full snapshot over SSE every tick</th><td>The UI is a pure view; reconnecting is trivial</td><td>More bytes than deltas (small at 10 products)</td></tr>
+      <tr><th>Sim time separate from real time</th><td>Pause and speed-up work everywhere; tests need no sleeps</td><td>The AI budget must use real time, handled separately</td></tr>
+      <tr><th>Gemini in the background, event-driven</th><td>The shop never waits; few calls (about 3–5 a minute at 1x)</td><td>Decisions can land one tick later</td></tr>
+      <tr><th>Rules as guardrail and fallback</th><td>The demo never breaks; shelves never run dry</td><td>The AI can order earlier or less, but never skip a low shelf</td></tr>
+      <tr><th>One structured call, no tool-calling loop</th><td>Predictable cost and latency</td><td>The agent picks from a fixed menu of actions</td></tr>
+      <tr><th>Shadow shop for comparison</th><td>Same customers make the gap attributable to decisions</td><td>Duplicated state; typed news cannot change the world</td></tr>
+      <tr><th>CSV behind a repository</th><td>Visible and editable on disk for the demo</td><td>Not for real volumes; swap in Postgres via the interface</td></tr>
+    </tbody>
+  </table></div>
+</article>
+</main>
+</body>
+</html>

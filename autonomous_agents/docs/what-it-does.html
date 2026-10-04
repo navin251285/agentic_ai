@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restock Agent: What It Does</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ground: #f3f4f1; --card: #ffffff; --ink: #17201b; --muted: #56615b; --border: #dce0da;
+    --green: #2e8b5e; --amber: #d98a00; --blue: #1f4fb8; --red: #c9302c;
+    --accent: #1f4fb8; --accent-tint: #e6edfb; --line: #9aa39d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #141a17; --card: #1c2420; --ink: #e8ece9; --muted: #a3ada7; --border: #33403a;
+      --accent: #7d9ef0; --accent-tint: #1f2a44; --line: #6b766f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font: 16px/1.6 'IBM Plex Sans', system-ui, sans-serif;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; }
+  article { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 32px 36px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 4px; }
+  .byline { color: var(--muted); font-size: 14px; margin: 0 0 24px; }
+  h2 { font-size: 21px; margin: 36px 0 8px; padding-top: 20px; border-top: 1px solid var(--border); }
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 16px; font-size: 14.5px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  thead th { color: var(--muted); font-weight: 600; font-size: 13px; }
+  tbody th { font-weight: 600; }
+  .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; vertical-align: baseline; }
+  figure { margin: 20px 0; }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption { color: var(--muted); font-size: 13px; margin-top: 6px; text-align: center; }
+  blockquote { margin: 16px 0 0; padding: 10px 16px; border-left: 3px solid var(--accent); background: var(--accent-tint); border-radius: 0 8px 8px 0; font-style: italic; }
+  .tip { color: var(--muted); font-size: 14px; }
+  @media (max-width: 600px) {
+    article { padding: 22px 18px; }
+    table { font-size: 13.5px; }
+    th, td { padding: 6px 6px; }
+  }
+  /* diagram colours */
+  .d-box { fill: none; stroke: var(--line); stroke-width: 1.25; }
+  .d-main { fill: var(--accent-tint); stroke: var(--accent); stroke-width: 2; }
+  .d-edge { fill: none; stroke: var(--line); stroke-width: 1.25; }
+  .d-head { fill: var(--line); }
+  .d-ink { fill: var(--ink); }
+  .d-quiet { fill: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<article>
+  <h1>Restock Agent: What It Does</h1>
+  <p class="byline">A plain-English guide · October 2026</p>
+
+  <h2>What it is</h2>
+  <p>The Restock Agent is a live demo of an AI assistant that runs a small corner shop's stock room on its own. Customers come in and buy things, shelves empty, and the agent decides when to reorder, how much, and from which supplier, with nobody pressing a button.</p>
+  <p>The shop is simulated: ten everyday products (milk, bread, eggs, rice, sugar, biscuits, chips, soap, toothpaste, cold drinks), pretend customers, and pretend suppliers. Everything happens on one screen, so an audience can watch each shelf go from busy, to running low, to reordered, to restocked.</p>
+
+  <h2>What you see on screen</h2>
+  <p>Everything sits on one page and updates by itself twice a second.</p>
+  <table>
+    <thead><tr><th>Part of the screen</th><th>What it shows</th></tr></thead>
+    <tbody>
+      <tr><th>Top bar</th><td>The shop clock, speed (pause, half, normal, five times), rush hour and supplier delay switches, and which brain the agent uses</td></tr>
+      <tr><th>Shop counter</th><td>Each customer's items being scanned, plus recent receipts</td></tr>
+      <tr><th>Product cards</th><td>Every shelf: how much is left, a mark showing when it is running low, and its status in colour</td></tr>
+      <tr><th>Orders on the way</th><td>Each order moving from placed, to confirmed, to shipped, to delivered, with a countdown</td></tr>
+      <tr><th>Activity feed</th><td>A plain-English diary of what happened and why, newest first</td></tr>
+      <tr><th>Stock chart</th><td>One product's stock over time, with dots where the agent ordered and where deliveries arrived</td></tr>
+      <tr><th>Curveball, Agent plan, Agent vs Rules</th><td>The three panels that prove it is a real agent (explained below)</td></tr>
+    </tbody>
+  </table>
+  <p>A shelf's colour tells its story:
+    <span class="swatch" style="background:var(--green)"></span>green is selling well,
+    <span class="swatch" style="background:var(--amber)"></span>amber means running low,
+    <span class="swatch" style="background:var(--blue)"></span>blue means an order is on its way, and
+    <span class="swatch" style="background:var(--red)"></span>red means empty.</p>
+
+  <h2>How the agent decides</h2>
+  <p>The agent checks the shelves every few seconds and can use one of two "brains". You can switch between them at any time.</p>
+  <table>
+    <thead><tr><th></th><th>Rules brain</th><th>Gemini brain (AI)</th></tr></thead>
+    <tbody>
+      <tr><th>How it decides</th><td>One fixed formula: when a shelf drops to its mark, refill it to full</td><td>Looks at the whole situation and uses judgement</td></tr>
+      <tr><th>What it takes into account</th><td>Only the shelf count</td><td>Recent sales, delivery times, rush hour, delays, and any news you give it</td></tr>
+      <tr><th>When it orders</th><td>Only once a shelf is already low</td><td>Can order early if it expects a rush</td></tr>
+      <tr><th>How it explains itself</th><td>The same sentence every time</td><td>A short reason in plain English for each choice</td></tr>
+      <tr><th>News it was never told about</th><td>Ignores it</td><td>Reads it and changes its plan</td></tr>
+    </tbody>
+  </table>
+  <p>The Rules brain is plain automation: it works, but only for what someone thought of in advance. The Gemini brain is the autonomous agent: it notices, decides, acts, and says why.</p>
+
+  <h2>Proving it is a real agent</h2>
+  <p>Three panels show the difference between an agent and plain automation, live, with one button press.</p>
+  <p><strong>Curveball: news nobody planned for.</strong> You press a button or type a sentence, and the agent hears it like a shop manager would. Three ready-made curveballs change the shop for real:</p>
+  <ul>
+    <li><strong>Heatwave</strong>: the shop gets packed and cold drinks sell three times faster.</li>
+    <li><strong>Cricket final</strong>: the shop gets packed with a run on chips, biscuits and drinks.</li>
+    <li><strong>Supplier strike</strong>: the usual supplier stops shipping for three minutes.</li>
+  </ul>
+  <p>The agent is only told the news, never the exact effect, so it has to work out what it means.</p>
+  <p><strong>A backup supplier.</strong> Besides the usual supplier, the agent can use a faster backup that costs ₹2 extra per item. It should use it only when that is cheaper than losing sales.</p>
+  <p><strong>Agent plan.</strong> Within seconds of the news, this card shows how the agent read the situation, in its own words, and every order it placed, with the reason.</p>
+  <p><strong>Agent vs Rules.</strong> Behind the scenes, a hidden copy of the shop gets exactly the same customers and news but is run by the fixed rules. The scoreboard compares the two: missed sales, profit lost from empty shelves (₹15 each) and backup fees. Because everything else is identical, any gap is the agent's doing.</p>
+
+  <figure>
+    <svg viewBox="0 0 760 280" role="img" aria-label="One crowd of customers, two shops: any gap comes from the agent" font-size="13" font-family="IBM Plex Sans, system-ui, sans-serif">
+      <defs>
+        <marker id="twin-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0 0L10 5L0 10z" class="d-head"/>
+        </marker>
+      </defs>
+      <text x="24" y="32" font-size="15" font-weight="600" class="d-ink">One crowd of customers, two shops: any gap comes from the agent</text>
+      <g>
+        <path class="d-edge" d="M204 150H242V100H278" marker-end="url(#twin-arrow)"/>
+        <path class="d-edge" d="M204 170H242V220H278" marker-end="url(#twin-arrow)"/>
+        <path class="d-edge" d="M530 100H553V150H574" marker-end="url(#twin-arrow)"/>
+        <path class="d-edge" d="M530 220H553V170H574" marker-end="url(#twin-arrow)"/>
+      </g>
+      <g>
+        <rect class="d-box" x="24" y="124" width="180" height="72" rx="8"/>
+        <text x="114" y="148" text-anchor="middle" font-weight="600" class="d-ink">Customers</text>
+        <text x="114" y="166" text-anchor="middle" font-size="11.5" class="d-quiet">Same buyers and</text>
+        <text x="114" y="182" text-anchor="middle" font-size="11.5" class="d-quiet">the same news</text>
+      </g>
+      <g>
+        <rect class="d-main" x="280" y="64" width="250" height="72" rx="8"/>
+        <text x="405" y="88" text-anchor="middle" font-weight="600" class="d-ink">Agent's shop (Gemini)</text>
+        <text x="405" y="106" text-anchor="middle" font-size="11.5" class="d-ink">Reads the news, orders early,</text>
+        <text x="405" y="122" text-anchor="middle" font-size="11.5" class="d-ink">uses the backup if needed</text>
+      </g>
+      <g>
+        <rect class="d-box" x="280" y="184" width="250" height="72" rx="8"/>
+        <text x="405" y="208" text-anchor="middle" font-weight="600" class="d-ink">Rules shop (hidden twin)</text>
+        <text x="405" y="226" text-anchor="middle" font-size="11.5" class="d-quiet">Fixed formula, ignores news,</text>
+        <text x="405" y="242" text-anchor="middle" font-size="11.5" class="d-quiet">same customers and edits</text>
+      </g>
+      <g>
+        <rect class="d-box" x="576" y="124" width="160" height="72" rx="8"/>
+        <text x="656" y="148" text-anchor="middle" font-weight="600" class="d-ink">Scoreboard</text>
+        <text x="656" y="166" text-anchor="middle" font-size="11.5" class="d-quiet">Agent vs Rules:</text>
+        <text x="656" y="182" text-anchor="middle" font-size="11.5" class="d-quiet">missed sales, cost</text>
+      </g>
+    </svg>
+    <figcaption>How the scoreboard stays fair · one crowd, two shops</figcaption>
+  </figure>
+
+  <p>In our test runs, one curveball at normal speed left the rules shop missing 18 to 51 sales. An agent that acts sensibly on the news finished ahead in every run, typically by ₹140 to ₹330.</p>
+
+  <h2>Safety nets</h2>
+  <p>The agent acts on its own, but inside firm limits.</p>
+  <ul>
+    <li><strong>A shelf is never left to run dry.</strong> If the AI decides to wait on a shelf that is already low, the fixed rules order it anyway.</li>
+    <li><strong>Orders are kept sensible.</strong> The agent can't order more than a shelf can hold, or order a product that already has an order on the way.</li>
+    <li><strong>A cap on AI use.</strong> The AI is asked at most 10 times a minute, at least 6 seconds apart. A meter on screen shows how much of that budget is used.</li>
+    <li><strong>Automatic fallback.</strong> If the AI is slow (over 8 seconds), unavailable, or out of budget, the fixed rules take over and the feed marks it "Agent · Fallback". The shop never stops.</li>
+    <li><strong>Everything is recorded.</strong> Every sale, order, delivery and decision, with its reason, is saved to a file you can open in Excel.</li>
+  </ul>
+
+  <h2>Honest limits</h2>
+  <p>It is a demo, and a few claims would go too far.</p>
+  <ul>
+    <li><strong>It is simulated.</strong> The customers, suppliers and prices are pretend. It shows how an agent behaves, not results from a real store.</li>
+    <li><strong>Typed news informs the agent but doesn't change the shop.</strong> Type "cold wave tonight" and the agent will understand it and change its plan, with reasons. Customers keep buying as before, though, so the scoreboard can't show whether that was a good call. Only the three ready-made curveballs change the shop.</li>
+    <li><strong>The AI can still make poor calls.</strong> If it leans on the expensive backup supplier too much, the scoreboard will honestly show the rules ahead.</li>
+    <li><strong>A ready-made curveball could also be handled by a hand-written rule.</strong> The agent's real edge is news no one planned for. Its value is handling the unexpected without anyone writing new instructions.</li>
+  </ul>
+  <blockquote>"Type anything — a cold wave, a festival, a road closure. No rule exists for it, yet the agent understands it, changes its plan, and explains why."</blockquote>
+
+  <h2>The demo in about six minutes</h2>
+  <ol>
+    <li><strong>Start (0:00).</strong> The shop is paused, on the Rules brain. Explain the screen in 20 seconds, then press normal speed.</li>
+    <li><strong>One full cycle (0:20).</strong> Watch Milk sell down, cross its mark, get ordered, count down and restock in about a minute. Point at the sawtooth line on the stock chart.</li>
+    <li><strong>Without the agent (1:45).</strong> Turn the agent off, turn rush hour on and run five times faster for about 20 seconds: around five shelves go red and missed sales climb. Turn the agent back on and rush hour off to recover.</li>
+    <li><strong>Switch to the AI (2:45).</strong> Change the brain to Gemini. Point at the budget meter and the plain-English reasons in the feed.</li>
+    <li><strong>Rush hour (3:15).</strong> Turn rush hour on. The AI re-checks shelves that are getting low and orders some early, saying why.</li>
+    <li><strong>Prove it is an agent (4:15).</strong> Turn rush hour off and press one curveball: Cricket final shows the clearest win, Supplier strike shows the backup supplier. Read the Agent plan card aloud, then watch the scoreboard swing over one to two minutes.</li>
+    <li><strong>Close (5:30).</strong> Finish on the scoreboard, the activity feed and the saved files.</li>
+  </ol>
+  <p class="tip">Tip: open the page a minute early so the AI is warmed up, and keep the AI brain at normal or half speed.</p>
+</article>
+</main>
+</body>
+</html>
