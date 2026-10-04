@@ -1,0 +1,15 @@
+# Secrets: keys, passwords and credentials are never committed, in any project folder
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*credentials*.json
+*service-account*.json
+*-sa-key*.json
+
+# Common local clutter
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
