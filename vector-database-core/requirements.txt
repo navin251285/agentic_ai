@@ -1,0 +1,51 @@
+# Vector Databases: Foundations to Enterprise  (Python >= 3.12)
+# Lower bounds verified in RESEARCH.md §12 (2026-10-05).
+
+# core
+numpy>=2.5
+pandas
+pyarrow
+qdrant-client>=1.19.1
+qdrant-edge-py>=0.8.0
+fastembed>=0.8.1
+sentence-transformers>=6.1.0
+faiss-cpu>=1.15.1
+pymilvus>=3.0.2
+weaviate-client>=4.23.1
+psycopg[binary]>=3.3.6
+pgvector>=0.5.0
+lancedb>=0.39.0
+bm25s>=0.3.12
+ranx>=0.3.21
+datasets>=5.0.1
+datasketch>=2.0.0
+usearch>=2.26.3
+matplotlib
+
+# serving, testing, operations
+fastapi>=0.142.2
+uvicorn
+httpx>=0.28.1
+pydantic>=2.13.5
+pytest>=9.1.1
+testcontainers>=4.15.0
+locust>=2.46.7
+prometheus-client>=0.26.0
+opentelemetry-sdk>=1.45.0
+pyjwt
+boto3
+
+# LLM (lessons 25 and 71, recorded with llm_replay)
+langchain-google-genai>=4.4.0
+langchain-core>=1.6.6
+vcrpy
+
+# notebooks
+ipykernel
+nbformat
+nbclient
+python-dotenv
+
+# GPU only (lesson 58, needs-gpu; not installed by default)
+# faiss-gpu-cuvs>=1.15.1
+# cuvs-cu12>=26.8.1

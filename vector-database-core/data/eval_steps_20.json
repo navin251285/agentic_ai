@@ -1,0 +1,85 @@
+{
+ "model": "sentence-transformers/all-MiniLM-L6-v2",
+ "qrels": {
+  "how long do I rest the dough?": {
+   "margherita-pizza": 2,
+   "vegetable-samosas": 2,
+   "apple-pie": 1,
+   "chocolate-chip-cookies": 1
+  },
+  "how do I check it is cooked in the middle?": {
+   "chocolate-brownies": 2,
+   "roast-chicken": 2,
+   "lasagne": 1
+  },
+  "what temperature should the oil be for frying?": {
+   "vegetable-samosas": 2,
+   "falafel-wrap": 2
+  },
+  "how long should the meat rest before carving?": {
+   "roast-chicken": 2
+  },
+  "how do I keep the eggs from scrambling?": {
+   "spaghetti-carbonara": 2,
+   "vanilla-ice-cream": 2
+  },
+  "how much water do I need for the rice?": {
+   "sushi-rolls": 2
+  },
+  "how long does it take to caramelise onions?": {
+   "french-onion-soup": 2
+  },
+  "how do I get crispy skin?": {
+   "grilled-salmon": 2,
+   "roast-chicken": 1
+  },
+  "how long does it need to set in the fridge?": {
+   "strawberry-cheesecake": 2,
+   "tiramisu": 2,
+   "panna-cotta": 2
+  },
+  "how much gelatine should I use?": {
+   "panna-cotta": 2
+  },
+  "how long do I soak dried chickpeas?": {
+   "hummus": 2,
+   "falafel-wrap": 2
+  },
+  "when do I add the basil?": {
+   "margherita-pizza": 2,
+   "thai-green-curry": 2
+  },
+  "why let it rest before cutting?": {
+   "lasagne": 2,
+   "apple-pie": 2,
+   "chocolate-brownies": 1,
+   "roast-chicken": 1
+  },
+  "how do I freeze it without a machine?": {
+   "vanilla-ice-cream": 2,
+   "lemon-sorbet": 2
+  },
+  "how long do I soak the noodles?": {
+   "shrimp-pad-thai": 2
+  },
+  "how long should I simmer the broth?": {
+   "ramen": 2,
+   "beef-stew": 1
+  },
+  "how do I stop a soggy bottom crust?": {
+   "apple-pie": 2,
+   "margherita-pizza": 1
+  },
+  "when should I flip them?": {
+   "pancakes": 2,
+   "grilled-salmon": 1
+  },
+  "why chill the dough before baking?": {
+   "chocolate-chip-cookies": 2,
+   "apple-pie": 2
+  },
+  "how do I make the curry paste fragrant?": {
+   "thai-green-curry": 2
+  }
+ }
+}

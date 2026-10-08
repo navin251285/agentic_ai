@@ -1,0 +1,25 @@
+{
+ "version": "1.19.2",
+ "answers": [
+  [
+   "Gazpacho",
+   0.399
+  ],
+  [
+   "Lemon sorbet",
+   0.348
+  ],
+  [
+   "Hummus",
+   0.328
+  ]
+ ],
+ "after_restart": 50,
+ "two_clients": [
+  50,
+  50
+ ],
+ "quirks": {
+  "update_only re-creates deleted id 50": false
+ }
+}

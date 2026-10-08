@@ -1,0 +1,145 @@
+{
+ "model": "all-MiniLM-L6-v2",
+ "qrels": {
+  "a chocolate dessert": {
+   "chocolate-brownies": 2,
+   "chocolate-chip-cookies": 2,
+   "tiramisu": 1
+  },
+  "cold soup for a hot day": {
+   "gazpacho": 2
+  },
+  "something to dip tortilla chips in": {
+   "guacamole": 2,
+   "mango-salsa": 2,
+   "hummus": 1
+  },
+  "a quick vegetarian breakfast": {
+   "pancakes": 2,
+   "avocado-toast": 2,
+   "overnight-oats": 2,
+   "shakshuka": 1
+  },
+  "mussels in white wine": {
+   "moules-marinieres": 2
+  },
+  "eggs cooked in a spicy tomato sauce": {
+   "shakshuka": 2
+  },
+  "a frozen treat for summer": {
+   "lemon-sorbet": 2,
+   "vanilla-ice-cream": 2
+  },
+  "Thai prawn noodles": {
+   "shrimp-pad-thai": 2
+  },
+  "a fried Indian pastry snack": {
+   "vegetable-samosas": 2
+  },
+  "pizza night": {
+   "margherita-pizza": 2
+  },
+  "a slow-cooked beef stew": {
+   "beef-stew": 2,
+   "spicy-beef-stew": 2,
+   "smoky-beef-stew": 2,
+   "lemon-garlic-beef-stew": 2,
+   "creamy-beef-stew": 2,
+   "honey-ginger-beef-stew": 2,
+   "herby-beef-stew": 2,
+   "chili-con-carne": 1
+  },
+  "Indian cottage cheese curry": {
+   "spicy-paneer-curry": 2,
+   "lemon-garlic-paneer-curry": 2,
+   "creamy-paneer-curry": 2,
+   "honey-ginger-paneer-curry": 2,
+   "spicy-paneer-green-curry": 1,
+   "smoky-paneer-green-curry": 1,
+   "lemon-garlic-paneer-green-curry": 1,
+   "creamy-paneer-green-curry": 1,
+   "honey-ginger-paneer-green-curry": 1
+  },
+  "lamb skewers": {
+   "spicy-lamb-skewers": 2,
+   "smoky-lamb-skewers": 2,
+   "lemon-garlic-lamb-skewers": 2,
+   "creamy-lamb-skewers": 2,
+   "honey-ginger-lamb-skewers": 2,
+   "herby-lamb-skewers": 2
+  },
+  "a veggie burger made with beans": {
+   "spicy-black-bean-burger": 2,
+   "smoky-black-bean-burger": 2,
+   "lemon-garlic-black-bean-burger": 2,
+   "creamy-black-bean-burger": 2,
+   "honey-ginger-black-bean-burger": 2,
+   "herby-black-bean-burger": 2,
+   "spicy-chickpea-burger": 1,
+   "smoky-chickpea-burger": 1,
+   "lemon-garlic-chickpea-burger": 1,
+   "creamy-chickpea-burger": 1,
+   "honey-ginger-chickpea-burger": 1,
+   "herby-chickpea-burger": 1
+  },
+  "honey ginger duck stir-fry": {
+   "lemon-garlic-duck-stir-fry": 1,
+   "creamy-duck-stir-fry": 1,
+   "honey-ginger-duck-stir-fry": 2,
+   "herby-duck-stir-fry": 1
+  },
+  "chickpea wrap": {
+   "spicy-chickpea-wrap": 2,
+   "smoky-chickpea-wrap": 2,
+   "lemon-garlic-chickpea-wrap": 2,
+   "creamy-chickpea-wrap": 2,
+   "honey-ginger-chickpea-wrap": 2,
+   "herby-chickpea-wrap": 2,
+   "falafel-wrap": 1
+  },
+  "a fish traybake": {
+   "spicy-salmon-traybake": 2,
+   "lemon-garlic-salmon-traybake": 2,
+   "creamy-salmon-traybake": 2,
+   "honey-ginger-salmon-traybake": 2,
+   "herby-salmon-traybake": 2,
+   "smoky-cod-traybake": 2,
+   "lemon-garlic-cod-traybake": 2,
+   "creamy-cod-traybake": 2,
+   "honey-ginger-cod-traybake": 2,
+   "herby-cod-traybake": 2,
+   "spicy-tuna-traybake": 2,
+   "smoky-tuna-traybake": 2,
+   "lemon-garlic-tuna-traybake": 2,
+   "honey-ginger-tuna-traybake": 2,
+   "herby-tuna-traybake": 2
+  },
+  "grilled cheese on skewers": {
+   "spicy-halloumi-skewers": 2,
+   "smoky-halloumi-skewers": 2,
+   "lemon-garlic-halloumi-skewers": 2,
+   "honey-ginger-halloumi-skewers": 2,
+   "herby-halloumi-skewers": 2,
+   "spicy-paneer-skewers": 1,
+   "smoky-paneer-skewers": 1,
+   "lemon-garlic-paneer-skewers": 1,
+   "creamy-paneer-skewers": 1,
+   "honey-ginger-paneer-skewers": 1,
+   "herby-paneer-skewers": 1
+  },
+  "salmon noodle bowl": {
+   "spicy-salmon-noodle-bowl": 2,
+   "lemon-garlic-salmon-noodle-bowl": 2,
+   "creamy-salmon-noodle-bowl": 2,
+   "honey-ginger-salmon-noodle-bowl": 2,
+   "herby-salmon-noodle-bowl": 2
+  },
+  "tofu tacos": {
+   "spicy-tofu-tacos": 2,
+   "smoky-tofu-tacos": 2,
+   "lemon-garlic-tofu-tacos": 2,
+   "creamy-tofu-tacos": 2,
+   "honey-ginger-tofu-tacos": 2
+  }
+ }
+}

@@ -1,0 +1,51 @@
+id,title,description,cuisine,vegetarian,minutes
+1,Tomato soup,"Simmer tomatoes, onion and garlic, blend until smooth and serve hot with crusty bread.",Italian,true,35
+2,Mango salsa,"Diced mango, red onion, lime juice and chili. Fresh and zesty, great with tacos.",Mexican,true,10
+3,Chocolate brownies,Rich fudgy squares of chocolate baked in a tray.,American,true,45
+4,Caesar salad,"Crisp romaine lettuce, croutons, parmesan and a creamy dressing.",Italian,true,15
+5,Lemon sorbet,"Frozen lemon dessert, sharp and refreshing on summer afternoons.",French,true,20
+6,Minestrone,"Hearty Italian vegetable soup with beans, pasta and tomato, simmered slowly.",Italian,true,50
+7,Chicken noodle soup,Comforting broth with shredded chicken and egg noodles for chilly evenings.,American,false,40
+8,Beef stew,"Chunks of beef braised for hours with carrots, potatoes and red wine.",French,false,180
+9,French onion soup,Deeply caramelised onions in beef broth topped with toasted bread and melted cheese.,French,false,75
+10,Red lentil dal,"Red lentils simmered with turmeric, cumin and garlic into a warming golden stew.",Indian,true,30
+11,Butternut squash soup,Roasted squash blended with ginger and coconut milk into a velvety soup.,Thai,true,45
+12,Chili con carne,"Minced beef, kidney beans and chili peppers cooked into a thick, spicy stew.",Mexican,false,60
+13,Vanilla ice cream,"Churned custard of cream, milk and vanilla, served frozen.",French,true,30
+14,Strawberry cheesecake,Creamy baked cheesecake on a biscuit base topped with fresh strawberries.,American,true,90
+15,Apple pie,Spiced apples baked in a buttery double crust; best warm with cream.,American,true,75
+16,Tiramisu,"Layers of coffee-soaked sponge fingers and mascarpone cream, dusted with cocoa.",Italian,true,30
+17,Mango lassi,"Chilled yogurt drink blended with ripe mango and a pinch of cardamom.",Indian,true,5
+18,Chocolate chip cookies,"Chewy cookies packed with chocolate chips, baked golden at the edges.",American,true,25
+19,Panna cotta,Silky set cream flavoured with vanilla and served cold with berry sauce.,Italian,true,20
+20,Greek salad,"Tomatoes, cucumber, red onion, olives and feta dressed with olive oil.",Greek,true,10
+21,Caprese salad,"Sliced tomatoes and fresh mozzarella with basil leaves and olive oil.",Italian,true,10
+22,Quinoa salad,"Fluffy quinoa tossed with chickpeas, herbs, cucumber and a lemon dressing.",Mediterranean,true,20
+23,Waldorf salad,"Crunchy apples, celery and walnuts in a light mayonnaise dressing.",American,true,15
+24,Thai green curry,"Chicken simmered in coconut milk with green curry paste, basil and fiery chilies.",Thai,false,35
+25,Kung pao chicken,"Wok-fried chicken with peanuts, dried chilies and Sichuan pepper.",Chinese,false,25
+26,Vindaloo,Very hot pork curry with vinegar and plenty of red chilies.,Indian,false,70
+27,Spicy tofu stir-fry,"Crispy tofu tossed with broccoli, peppers and a hot chili garlic sauce.",Chinese,true,20
+28,Jalapeno poppers,Jalapeno peppers stuffed with cream cheese and baked until bubbling.,Mexican,true,30
+29,Shakshuka,Eggs poached in a spiced tomato and pepper sauce; eaten from the pan with bread.,Middle Eastern,true,30
+30,Pancakes,"Fluffy stacked pancakes served with maple syrup and butter for breakfast.",American,true,20
+31,Avocado toast,"Toasted sourdough topped with smashed avocado, lemon and chili flakes.",American,true,10
+32,Overnight oats,"Oats soaked in milk overnight with chia seeds and berries, ready for the morning.",American,true,5
+33,Full English breakfast,"Eggs, bacon, sausages, beans, mushrooms and toast on one big plate.",British,false,30
+34,Spaghetti carbonara,"Spaghetti tossed with egg yolks, pecorino, black pepper and crispy guanciale.",Italian,false,20
+35,Pesto pasta,Pasta coated in a bright basil and pine nut pesto with parmesan.,Italian,true,15
+36,Mushroom risotto,"Creamy arborio rice stirred slowly with mushrooms, white wine and parmesan.",Italian,true,40
+37,Lasagne,"Layers of pasta, meat ragu and bechamel baked until golden.",Italian,false,90
+38,Margherita pizza,"Thin crust pizza with tomato sauce, mozzarella and fresh basil.",Italian,true,25
+39,Fish tacos,"Crispy battered fish in soft tortillas with cabbage slaw and lime crema.",Mexican,false,30
+40,Grilled salmon,Salmon fillets grilled with lemon and dill; light and quick.,Nordic,false,15
+41,Shrimp pad thai,"Rice noodles stir-fried with shrimp, egg, tamarind and crushed peanuts.",Thai,false,25
+42,Sushi rolls,"Vinegared rice rolled in seaweed with raw tuna, cucumber and avocado.",Japanese,false,45
+43,Moules marinieres,"Mussels steamed in white wine, garlic and parsley, served with fries.",French,false,25
+44,Falafel wrap,"Crispy chickpea falafel in flatbread with hummus, salad and tahini.",Middle Eastern,true,30
+45,Vegetable samosas,Pastry triangles filled with spiced potato and peas then fried until crisp.,Indian,true,50
+46,Guacamole,"Mashed avocado with lime, coriander, onion and a little chili, served with chips.",Mexican,true,10
+47,Hummus,"Smooth dip of chickpeas, tahini, lemon and garlic.",Middle Eastern,true,10
+48,Roast chicken,Whole chicken roasted with lemon and thyme until the skin is crisp.,British,false,90
+49,Ramen,"Rich pork broth with wheat noodles, soft egg and spring onions; steaming hot.",Japanese,false,240
+50,Gazpacho,"Chilled Spanish soup of raw tomatoes, cucumber and peppers, perfect on a hot day.",Spanish,true,15

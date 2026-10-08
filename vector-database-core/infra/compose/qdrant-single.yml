@@ -1,0 +1,16 @@
+# One Qdrant server for lessons 13+ (single node, no cluster).
+# Start:  docker compose -f qdrant-single.yml up -d
+# Stop:   docker compose -f qdrant-single.yml down -v   (-v also deletes the stored data)
+# RAM: about 200 MB for the course's small collections.
+name: vdb-qdrant-single
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.19.2          # pinned (RESEARCH.md §1); never `latest`
+    ports:
+      - "6333:6333"                       # REST
+      - "6334:6334"                       # gRPC
+    volumes:
+      - qdrant_storage:/qdrant/storage    # data survives a container restart
+    mem_limit: 1g
+volumes:
+  qdrant_storage:

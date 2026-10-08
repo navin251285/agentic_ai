@@ -1,0 +1,43 @@
+{
+ "version": "1.19.2",
+ "timings": {
+  "upsert x 1": [
+   8.714,
+   2000
+  ],
+  "upsert x 16": [
+   1.507,
+   2000
+  ],
+  "upsert x 64": [
+   1.018,
+   2000
+  ],
+  "upsert x 256": [
+   0.902,
+   2000
+  ],
+  "upsert x 1024": [
+   0.865,
+   2000
+  ]
+ },
+ "upload_points": [
+  0.388,
+  2000
+ ],
+ "payload_schema": {
+  "cuisine": [
+   "keyword",
+   2000
+  ],
+  "vegetarian": [
+   "bool",
+   2000
+  ],
+  "minutes": [
+   "integer",
+   2000
+  ]
+ }
+}
