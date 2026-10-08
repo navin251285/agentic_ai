@@ -1,0 +1,209 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which of my notes mention Mars?"}],
+      "role": "user"}], "tools": [{"functionDeclarations": [{"description": "Search
+      the user''s notes. Returns every note whose text contains the query word (case-insensitive),
+      as a list of {id, text}. Use it before answering any question about what the
+      notes say.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "properties": {"query": {"type": "string", "description": "one word to look
+      for, e.g. ''Mars''"}}, "required": ["query"]}}]}], "generationConfig": {"maxOutputTokens":
+      300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '570'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_131434\"\n            },\n            \"thoughtSignature\": \"AY89a1+WyCl7G8FdhWGBKp4vnIyV5aC99kS6aI6p6/mCk3KLJEvKH2gLLvG/aivtZaaBq0F9DCyLmtPIsREilG3IsxyAjZm97KmjWBATYbKckCz1AgRIJI7j0pQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 80,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 96,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 80\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T18:14:14.296642Z\",\n
+        \ \"responseId\": \"dt3HasKNEpzc7bEP7r6DiAU\"\n}\n"
+    headers:
+      content-length:
+      - '1013'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:14:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which of my notes mention Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_131434", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a1-WyCl7G8FdhWGBKp4vnIyV5aC99kS6aI6p6_mCk3KLJEvKH2gLLvG_aivtZaaBq0F9DCyLmtPIsREilG3IsxyAjZm97KmjWBATYbKckCz1AgRIJI7j0pQ="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_131434", "name":
+      "search_notes", "response": {"result": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns every note whose text contains
+      the query word (case-insensitive), as a list of {id, text}. Use it before answering
+      any question about what the notes say.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string", "description":
+      "one word to look for, e.g. ''Mars''"}}, "required": ["query"]}}]}], "generationConfig":
+      {"maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1182'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Your
+        notes that mention Mars are:\\n\\n1. **Note 1:** \\\"Mars has two small moons,
+        Phobos and Deimos.\\\"\\n2. **Note 3:** \\\"A day on Mars lasts about 24 hours
+        and 39 minutes.\\\"\\n3. **Note 5:** \\\"The rover Perseverance landed on
+        Mars in February 2021.\\\"\",\n            \"thoughtSignature\": \"AY89a18TiuZ+S6KtSkfaoGAFlAngbHi1sHu7YJ1ycR73Vpq5kY+lmCrucpWp/auQTycSQa0dELIzmTNp0sK0JQ5dbXVn+/b/TF8EwpBXYrwoPZKLNHfzWYbt75Q=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 148,\n    \"candidatesTokenCount\":
+        76,\n    \"totalTokenCount\": 224,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 148\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 76\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:14:18.302344Z\",\n  \"responseId\": \"et3Haoi6EoeFr8kP-daSkAU\"\n}\n"
+    headers:
+      content-length:
+      - '1097'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:14:19 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which of my notes mention Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_131434", "args": {"query":
+      "Mars"}, "name": "search_notes"}}], "role": "model"}, {"parts": [{"functionResponse":
+      {"id": "call_131434", "name": "search_notes", "response": {"result": [{"id":
+      1, "text": "Mars has two small moons, Phobos and Deimos."}, {"id": 3, "text":
+      "A day on Mars lasts about 24 hours and 39 minutes."}, {"id": 5, "text": "The
+      rover Perseverance landed on Mars in February 2021."}]}}}], "role": "user"}],
+      "tools": [{"functionDeclarations": [{"description": "Search the user''s notes.
+      Returns every note whose text contains the query word (case-insensitive), as
+      a list of {id, text}. Use it before answering any question about what the notes
+      say.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "properties": {"query": {"type": "string", "description": "one word to look
+      for, e.g. ''Mars''"}}, "required": ["query"]}}]}], "generationConfig": {"maxOutputTokens":
+      300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1034'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Function
+        call is missing a thought_signature in functionCall parts. This is required
+        for tools to work correctly, and missing thought_signature may lead to degraded
+        model performance. Additional data, function call `default_api:search_notes`
+        , position 2. Please refer to https://ai.google.dev/gemini-api/docs/thought-signatures
+        for more details.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+    headers:
+      content-length:
+      - '436'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:14:22 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 400
+      message: Bad Request
+version: 1

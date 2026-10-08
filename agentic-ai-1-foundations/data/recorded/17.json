@@ -1,0 +1,200 @@
+[
+ {
+  "task": "lookup",
+  "size": "small",
+  "model": "gemini-3.5-flash-lite",
+  "answer": "Note 5 is about a spacecraft, not a planet.",
+  "in": 156,
+  "out": 12,
+  "cost": 7.68e-05,
+  "seconds": 0.56,
+  "ok": true
+ },
+ {
+  "task": "lookup",
+  "size": "small",
+  "model": "gemini-3.5-flash-lite",
+  "answer": "Note 5 is about a spacecraft rather than a planet.",
+  "in": 156,
+  "out": 12,
+  "cost": 7.68e-05,
+  "seconds": 0.61,
+  "ok": true
+ },
+ {
+  "task": "lookup",
+  "size": "small",
+  "model": "gemini-3.5-flash-lite",
+  "answer": "Note 5 is about a spacecraft rather than a planet.",
+  "in": 156,
+  "out": 12,
+  "cost": 7.68e-05,
+  "seconds": 0.56,
+  "ok": true
+ },
+ {
+  "task": "lookup",
+  "size": "medium",
+  "model": "gemini-3.8-flash",
+  "answer": "Note 5 is about a spacecraft, referring to the rover Perseverance.",
+  "in": 156,
+  "out": 385,
+  "cost": 0.00156075,
+  "seconds": 76.18,
+  "ok": true
+ },
+ {
+  "task": "lookup",
+  "size": "medium",
+  "model": "gemini-3.8-flash",
+  "answer": "Note 5 is about a spacecraft, the rover Perseverance, rather than a planet.",
+  "in": 156,
+  "out": 334,
+  "cost": 0.0013695,
+  "seconds": 2.54,
+  "ok": true
+ },
+ {
+  "task": "lookup",
+  "size": "medium",
+  "model": "gemini-3.8-flash",
+  "answer": "Note 5 is about a spacecraft, specifically the rover Perseverance.",
+  "in": 156,
+  "out": 352,
+  "cost": 0.001437,
+  "seconds": 84.92,
+  "ok": true
+ },
+ {
+  "task": "lookup",
+  "size": "large",
+  "model": "gemini-3.1-pro-preview",
+  "answer": "Note 5 is about a spacecraft.",
+  "in": 156,
+  "out": 536,
+  "cost": 0.006744,
+  "seconds": 7.79,
+  "ok": true
+ },
+ {
+  "task": "lookup",
+  "size": "large",
+  "model": "gemini-3.1-pro-preview",
+  "answer": "Note 5 is about a spacecraft.",
+  "in": 156,
+  "out": 432,
+  "cost": 0.005496,
+  "seconds": 8.06,
+  "ok": true
+ },
+ {
+  "task": "lookup",
+  "size": "large",
+  "model": "gemini-3.1-pro-preview",
+  "answer": "Note 5 is about a spacecraft, as it mentions the rover Perseverance.",
+  "in": 156,
+  "out": 412,
+  "cost": 0.005256,
+  "seconds": 7.86,
+  "ok": true
+ },
+ {
+  "task": "math",
+  "size": "small",
+  "model": "gemini-3.5-flash-lite",
+  "answer": "The notes do not cover how many hours would pass on Earth during 10 Martian days.",
+  "in": 159,
+  "out": 19,
+  "cost": 9.519999999999998e-05,
+  "seconds": 0.71,
+  "ok": false
+ },
+ {
+  "task": "math",
+  "size": "small",
+  "model": "gemini-3.5-flash-lite",
+  "answer": "Based on your notes, a day on Mars lasts about 24 hours and 39 minutes, but the notes do not provide the calculation for 10 Martian days in Earth hours.",
+  "in": 159,
+  "out": 39,
+  "cost": 0.00014519999999999998,
+  "seconds": 0.5,
+  "ok": false
+ },
+ {
+  "task": "math",
+  "size": "small",
+  "model": "gemini-3.5-flash-lite",
+  "answer": "The notes do not cover how many Earth hours would pass during 10 Martian days.",
+  "in": 159,
+  "out": 18,
+  "cost": 9.269999999999999e-05,
+  "seconds": 0.62,
+  "ok": false
+ },
+ {
+  "task": "math",
+  "size": "medium",
+  "model": "gemini-3.8-flash",
+  "answer": "During 10 Martian days, approximately 246.5 hours (or 246 hours and 30 minutes) would pass on Earth.",
+  "in": 159,
+  "out": 703,
+  "cost": 0.0027555,
+  "seconds": 5.68,
+  "ok": true
+ },
+ {
+  "task": "math",
+  "size": "medium",
+  "model": "gemini-3.8-flash",
+  "answer": "During 10 Martian days, about 246.5 hours (or 246 hours and 30 minutes) would pass on Earth.",
+  "in": 159,
+  "out": 613,
+  "cost": 0.002418,
+  "seconds": 5.28,
+  "ok": true
+ },
+ {
+  "task": "math",
+  "size": "medium",
+  "model": "gemini-3.8-flash",
+  "answer": "During 10 Martian days, approximately 246.5 hours (or 246 hours and 30 minutes) would pass on Earth.",
+  "in": 159,
+  "out": 723,
+  "cost": 0.0028305,
+  "seconds": 5.28,
+  "ok": true
+ },
+ {
+  "task": "math",
+  "size": "large",
+  "model": "gemini-3.1-pro-preview",
+  "answer": "During 10 Martian days, about 246.5 hours would pass on Earth.",
+  "in": 159,
+  "out": 706,
+  "cost": 0.00879,
+  "seconds": 8.33,
+  "ok": true
+ },
+ {
+  "task": "math",
+  "size": "large",
+  "model": "gemini-3.1-pro-preview",
+  "answer": "Based on the notes, 246.5 hours would pass on Earth during 10 Martian days.",
+  "in": 159,
+  "out": 999,
+  "cost": 0.012306,
+  "seconds": 23.04,
+  "ok": true
+ },
+ {
+  "task": "math",
+  "size": "large",
+  "model": "gemini-3.1-pro-preview",
+  "answer": "During 10 Martian days, 246.5 hours would pass on Earth.",
+  "in": 159,
+  "out": 830,
+  "cost": 0.010278,
+  "seconds": 10.13,
+  "ok": true
+ }
+]

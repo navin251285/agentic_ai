@@ -1,0 +1,772 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?
+      Save the answer to mars_minutes.txt."}], "role": "user"}]}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '133'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 20,\n  \"totalBillableCharacters\": 63,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 20\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '150'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:38:09 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?
+      Save the answer to mars_minutes.txt."}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Does stuff with notes.", "name": "do_stuff", "parameters_json_schema":
+      {"type": "object", "properties": {"action": {"type": "string"}, "data": {"type":
+      "string"}}, "required": ["action", "data"]}}]}]}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '387'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 28,\n  \"totalBillableCharacters\": 158,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 28\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '151'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:38:12 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?
+      Save the answer to mars_minutes.txt."}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes for a word or phrase (case-insensitive).
+      Returns one page of matching\nnotes as {id, text} (long texts shortened), the
+      total number of matches and next_page (null when\nthere are no more). Use it
+      before answering any question about the notes.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string", "description":
+      "a word or short phrase, e.g. ''Mars''; case is ignored"}, "max_results": {"type":
+      "integer", "description": "notes per page, 1 to 10"}, "page": {"type": "integer",
+      "description": "page number, starting at 1"}}, "required": ["query"]}}, {"description":
+      "Evaluate an arithmetic expression: numbers, + - * / % ** and brackets. Returns
+      the number.\nUse it for every calculation instead of doing arithmetic yourself.",
+      "name": "calculator", "parameters_json_schema": {"type": "object", "properties":
+      {"expression": {"type": "string", "description": "arithmetic only, e.g. ''(24*60+39)/60''"}},
+      "required": ["expression"]}}, {"description": "Save text to a file in Scout''s
+      folder. Returns ''saved N characters to NAME''.\nRefuses an existing file unless
+      overwrite is true.", "name": "write_file", "parameters_json_schema": {"type":
+      "object", "properties": {"filename": {"type": "string", "description": "a plain
+      file name, e.g. ''mars_day.txt''"}, "text": {"type": "string", "description":
+      "the full text to save"}, "overwrite": {"type": "boolean", "description": "true
+      to replace an existing file"}}, "required": ["filename", "text"]}}]}]}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1710'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 151,\n  \"totalBillableCharacters\": 1060,\n
+        \ \"promptTokensDetails\": [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\":
+        151\n    }\n  ]\n}\n"
+    headers:
+      content-length:
+      - '154'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:38:16 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?
+      Save the answer to mars_minutes.txt."}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes for a word or phrase (case-insensitive).
+      Returns one page of matching\nnotes as {id, text} (long texts shortened), the
+      total number of matches and next_page (null when\nthere are no more). Use it
+      before answering any question about the notes.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string", "description":
+      "a word or short phrase, e.g. ''Mars''; case is ignored"}, "max_results": {"type":
+      "integer", "description": "notes per page, 1 to 10"}, "page": {"type": "integer",
+      "description": "page number, starting at 1"}}, "required": ["query"]}}, {"description":
+      "Evaluate an arithmetic expression: numbers, + - * / % ** and brackets. Returns
+      the number.\nUse it for every calculation instead of doing arithmetic yourself.",
+      "name": "calculator", "parameters_json_schema": {"type": "object", "properties":
+      {"expression": {"type": "string", "description": "arithmetic only, e.g. ''(24*60+39)/60''"}},
+      "required": ["expression"]}}, {"description": "Save text to a file in Scout''s
+      folder. Returns ''saved N characters to NAME''.\nRefuses an existing file unless
+      overwrite is true.", "name": "write_file", "parameters_json_schema": {"type":
+      "object", "properties": {"filename": {"type": "string", "description": "a plain
+      file name, e.g. ''mars_day.txt''"}, "text": {"type": "string", "description":
+      "the full text to save"}, "overwrite": {"type": "boolean", "description": "true
+      to replace an existing file"}}, "required": ["filename", "text"]}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_0",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_1",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_2",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_3",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_4",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_5",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_6",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_7",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_8",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_9",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_10",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_11",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_12",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_13",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_14",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_15",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}, {"description":
+      "Look up notes by one field and return the matching notes with every field included,
+      sorted by date, for use when the user asks about that field.", "name": "notes_by_field_16",
+      "parameters_json_schema": {"type": "object", "required": ["value"], "properties":
+      {"value": {"type": "string", "description": "the value to match"}}}}]}]}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '7565'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 787,\n  \"totalBillableCharacters\": 4603,\n
+        \ \"promptTokensDetails\": [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\":
+        787\n    }\n  ]\n}\n"
+    headers:
+      content-length:
+      - '154'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:38:20 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?
+      Save the answer to mars_gemini.txt."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Search the notes first. Use the calculator for arithmetic. If a tool returns
+      an error, fix the call and try again. Answer in one sentence."}], "role": "user"},
+      "tools": [{"functionDeclarations": [{"description": "Search the user''s notes
+      for a word or phrase (case-insensitive). Returns one page of matching\nnotes
+      as {id, text} (long texts shortened), the total number of matches and next_page
+      (null when\nthere are no more). Use it before answering any question about the
+      notes.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "properties": {"query": {"type": "string", "description": "a word or short phrase,
+      e.g. ''Mars''; case is ignored"}, "max_results": {"type": "integer", "description":
+      "notes per page, 1 to 10"}, "page": {"type": "integer", "description": "page
+      number, starting at 1"}}, "required": ["query"]}}, {"description": "Evaluate
+      an arithmetic expression: numbers, + - * / % ** and brackets. Returns the number.\nUse
+      it for every calculation instead of doing arithmetic yourself.", "name": "calculator",
+      "parameters_json_schema": {"type": "object", "properties": {"expression": {"type":
+      "string", "description": "arithmetic only, e.g. ''(24*60+39)/60''"}}, "required":
+      ["expression"]}}, {"description": "Save text to a file in Scout''s folder. Returns
+      ''saved N characters to NAME''.\nRefuses an existing file unless overwrite is
+      true.", "name": "write_file", "parameters_json_schema": {"type": "object", "properties":
+      {"filename": {"type": "string", "description": "a plain file name, e.g. ''mars_day.txt''"},
+      "text": {"type": "string", "description": "the full text to save"}, "overwrite":
+      {"type": "boolean", "description": "true to replace an existing file"}}, "required":
+      ["filename", "text"]}}]}]}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1967'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 195,\n  \"totalBillableCharacters\": 1220,\n
+        \ \"promptTokensDetails\": [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\":
+        195\n    }\n  ]\n}\n"
+    headers:
+      content-length:
+      - '154'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:38:24 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?
+      Save the answer to mars_gemini.txt."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Search the notes first. Use the calculator for arithmetic. If a tool returns
+      an error, fix the call and try again. Answer in one sentence."}], "role": "user"},
+      "tools": [{"functionDeclarations": [{"description": "Search the user''s notes
+      for a word or phrase (case-insensitive). Returns one page of matching\nnotes
+      as {id, text} (long texts shortened), the total number of matches and next_page
+      (null when\nthere are no more). Use it before answering any question about the
+      notes.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "properties": {"query": {"type": "string", "description": "a word or short phrase,
+      e.g. ''Mars''; case is ignored"}, "max_results": {"type": "integer", "description":
+      "notes per page, 1 to 10"}, "page": {"type": "integer", "description": "page
+      number, starting at 1"}}, "required": ["query"]}}, {"description": "Evaluate
+      an arithmetic expression: numbers, + - * / % ** and brackets. Returns the number.\nUse
+      it for every calculation instead of doing arithmetic yourself.", "name": "calculator",
+      "parameters_json_schema": {"type": "object", "properties": {"expression": {"type":
+      "string", "description": "arithmetic only, e.g. ''(24*60+39)/60''"}}, "required":
+      ["expression"]}}, {"description": "Save text to a file in Scout''s folder. Returns
+      ''saved N characters to NAME''.\nRefuses an existing file unless overwrite is
+      true.", "name": "write_file", "parameters_json_schema": {"type": "object", "properties":
+      {"filename": {"type": "string", "description": "a plain file name, e.g. ''mars_day.txt''"},
+      "text": {"type": "string", "description": "the full text to save"}, "overwrite":
+      {"type": "boolean", "description": "true to replace an existing file"}}, "required":
+      ["filename", "text"]}}]}], "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2013'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_2544824\"\n            },\n            \"thoughtSignature\": \"AY89a19VzjMoveFRLd3603ZunC5HzSCwfjLhCdpDnlcaGQAPh8mbVK1AAx4b2joa7Whf64Y/KSSxEm1LXavVLbc1MQVk0hG7czslI5r6XcQT4oROdLZQC2qUVx4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 341,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 357,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 341\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:38:28.965601Z\",\n  \"responseId\": \"JOPHauH3Ov6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '1017'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:38:29 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?
+      Save the answer to mars_gemini.txt."}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_2544824", "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature":
+      "AY89a19VzjMoveFRLd3603ZunC5HzSCwfjLhCdpDnlcaGQAPh8mbVK1AAx4b2joa7Whf64Y_KSSxEm1LXavVLbc1MQVk0hG7czslI5r6XcQT4oROdLZQC2qUVx4="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_2544824", "name":
+      "search_notes", "response": {"output": {"total": 34, "page": 1, "results": [{"id":
+      1, "text": "Mars has two small moons, Phobos and Deimos."}, {"id": 3, "text":
+      "A day on Mars lasts about 24 hours and 39 minutes."}, {"id": 5, "text": "The
+      rover Perseverance landed on Mars in February 2021."}, {"id": 7, "text": "Mars
+      mission briefing: check suits, check air, check water. check suits, check air,
+      check water. check suits, check air,... [+1383 chars]"}, {"id": 101, "text":
+      "Mars habitat log, day 1: routine checks, all systems normal."}], "next_page":
+      2}}}}], "role": "user"}], "systemInstruction": {"parts": [{"text": "You are
+      Scout. Answer questions about the user''s notes. Search the notes first. Use
+      the calculator for arithmetic. If a tool returns an error, fix the call and
+      try again. Answer in one sentence."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes for a word or phrase (case-insensitive).
+      Returns one page of matching\nnotes as {id, text} (long texts shortened), the
+      total number of matches and next_page (null when\nthere are no more). Use it
+      before answering any question about the notes.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string", "description":
+      "a word or short phrase, e.g. ''Mars''; case is ignored"}, "max_results": {"type":
+      "integer", "description": "notes per page, 1 to 10"}, "page": {"type": "integer",
+      "description": "page number, starting at 1"}}, "required": ["query"]}}, {"description":
+      "Evaluate an arithmetic expression: numbers, + - * / % ** and brackets. Returns
+      the number.\nUse it for every calculation instead of doing arithmetic yourself.",
+      "name": "calculator", "parameters_json_schema": {"type": "object", "properties":
+      {"expression": {"type": "string", "description": "arithmetic only, e.g. ''(24*60+39)/60''"}},
+      "required": ["expression"]}}, {"description": "Save text to a file in Scout''s
+      folder. Returns ''saved N characters to NAME''.\nRefuses an existing file unless
+      overwrite is true.", "name": "write_file", "parameters_json_schema": {"type":
+      "object", "properties": {"filename": {"type": "string", "description": "a plain
+      file name, e.g. ''mars_day.txt''"}, "text": {"type": "string", "description":
+      "the full text to save"}, "overwrite": {"type": "boolean", "description": "true
+      to replace an existing file"}}, "required": ["filename", "text"]}}]}], "generationConfig":
+      {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2925'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"calculator\",\n              \"args\": {\n                \"expression\":
+        \"24 * 60 + 39\"\n              },\n              \"id\": \"call_1145486\"\n
+        \           },\n            \"thoughtSignature\": \"AY89a18Vu9b2UigmrR6X7YFiegbC5jqze1X2kq8p3jkFdGIr90o5sHci4ZF/ZnWtHVCCBmCZLGmLUvtYLf0GdSdureOH8mjxL+U2otMeLQoFLOYIesjPMHGVx1w=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 477,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 500,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 477\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 23\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:38:32.959749Z\",\n  \"responseId\": \"KOPHaoXKOv6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '1028'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:38:33 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?
+      Save the answer to mars_gemini.txt."}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_2544824", "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature":
+      "AY89a19VzjMoveFRLd3603ZunC5HzSCwfjLhCdpDnlcaGQAPh8mbVK1AAx4b2joa7Whf64Y_KSSxEm1LXavVLbc1MQVk0hG7czslI5r6XcQT4oROdLZQC2qUVx4="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_2544824", "name":
+      "search_notes", "response": {"output": {"total": 34, "page": 1, "results": [{"id":
+      1, "text": "Mars has two small moons, Phobos and Deimos."}, {"id": 3, "text":
+      "A day on Mars lasts about 24 hours and 39 minutes."}, {"id": 5, "text": "The
+      rover Perseverance landed on Mars in February 2021."}, {"id": 7, "text": "Mars
+      mission briefing: check suits, check air, check water. check suits, check air,
+      check water. check suits, check air,... [+1383 chars]"}, {"id": 101, "text":
+      "Mars habitat log, day 1: routine checks, all systems normal."}], "next_page":
+      2}}}}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_1145486",
+      "args": {"expression": "24 * 60 + 39"}, "name": "calculator"}, "thoughtSignature":
+      "AY89a18Vu9b2UigmrR6X7YFiegbC5jqze1X2kq8p3jkFdGIr90o5sHci4ZF_ZnWtHVCCBmCZLGmLUvtYLf0GdSdureOH8mjxL-U2otMeLQoFLOYIesjPMHGVx1w="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_1145486", "name":
+      "calculator", "response": {"output": 1479}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Search the notes first. Use the calculator for arithmetic. If a tool returns
+      an error, fix the call and try again. Answer in one sentence."}], "role": "user"},
+      "tools": [{"functionDeclarations": [{"description": "Search the user''s notes
+      for a word or phrase (case-insensitive). Returns one page of matching\nnotes
+      as {id, text} (long texts shortened), the total number of matches and next_page
+      (null when\nthere are no more). Use it before answering any question about the
+      notes.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "properties": {"query": {"type": "string", "description": "a word or short phrase,
+      e.g. ''Mars''; case is ignored"}, "max_results": {"type": "integer", "description":
+      "notes per page, 1 to 10"}, "page": {"type": "integer", "description": "page
+      number, starting at 1"}}, "required": ["query"]}}, {"description": "Evaluate
+      an arithmetic expression: numbers, + - * / % ** and brackets. Returns the number.\nUse
+      it for every calculation instead of doing arithmetic yourself.", "name": "calculator",
+      "parameters_json_schema": {"type": "object", "properties": {"expression": {"type":
+      "string", "description": "arithmetic only, e.g. ''(24*60+39)/60''"}}, "required":
+      ["expression"]}}, {"description": "Save text to a file in Scout''s folder. Returns
+      ''saved N characters to NAME''.\nRefuses an existing file unless overwrite is
+      true.", "name": "write_file", "parameters_json_schema": {"type": "object", "properties":
+      {"filename": {"type": "string", "description": "a plain file name, e.g. ''mars_day.txt''"},
+      "text": {"type": "string", "description": "the full text to save"}, "overwrite":
+      {"type": "boolean", "description": "true to replace an existing file"}}, "required":
+      ["filename", "text"]}}]}], "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '3334'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"write_file\",\n              \"args\": {\n                \"filename\":
+        \"mars_gemini.txt\",\n                \"text\": \"A day on Mars is 1479 minutes
+        long.\",\n                \"overwrite\": true\n              },\n              \"id\":
+        \"call_2739241\"\n            },\n            \"thoughtSignature\": \"AY89a1+4/TPc/3vtVeeqNKHCNxEsw6htvXVJFOULQ1kOdXBSN0WgfHra+j/0f5n5DQ1z3kjOeNMARbCpx8BKnkI2dIwGhdOwh9mBh60sfKnwx7n/DooqmqBBmqI=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 503,\n    \"candidatesTokenCount\":
+        43,\n    \"totalTokenCount\": 546,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 503\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 43\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:38:36.977569Z\",\n  \"responseId\": \"LOPHaqHVO-WBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '1127'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:38:37 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?
+      Save the answer to mars_gemini.txt."}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_2544824", "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature":
+      "AY89a19VzjMoveFRLd3603ZunC5HzSCwfjLhCdpDnlcaGQAPh8mbVK1AAx4b2joa7Whf64Y_KSSxEm1LXavVLbc1MQVk0hG7czslI5r6XcQT4oROdLZQC2qUVx4="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_2544824", "name":
+      "search_notes", "response": {"output": {"total": 34, "page": 1, "results": [{"id":
+      1, "text": "Mars has two small moons, Phobos and Deimos."}, {"id": 3, "text":
+      "A day on Mars lasts about 24 hours and 39 minutes."}, {"id": 5, "text": "The
+      rover Perseverance landed on Mars in February 2021."}, {"id": 7, "text": "Mars
+      mission briefing: check suits, check air, check water. check suits, check air,
+      check water. check suits, check air,... [+1383 chars]"}, {"id": 101, "text":
+      "Mars habitat log, day 1: routine checks, all systems normal."}], "next_page":
+      2}}}}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_1145486",
+      "args": {"expression": "24 * 60 + 39"}, "name": "calculator"}, "thoughtSignature":
+      "AY89a18Vu9b2UigmrR6X7YFiegbC5jqze1X2kq8p3jkFdGIr90o5sHci4ZF_ZnWtHVCCBmCZLGmLUvtYLf0GdSdureOH8mjxL-U2otMeLQoFLOYIesjPMHGVx1w="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_1145486", "name":
+      "calculator", "response": {"output": 1479}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_2739241", "args": {"filename": "mars_gemini.txt", "text": "A day
+      on Mars is 1479 minutes long.", "overwrite": true}, "name": "write_file"}, "thoughtSignature":
+      "AY89a1-4_TPc_3vtVeeqNKHCNxEsw6htvXVJFOULQ1kOdXBSN0WgfHra-j_0f5n5DQ1z3kjOeNMARbCpx8BKnkI2dIwGhdOwh9mBh60sfKnwx7n_DooqmqBBmqI="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_2739241", "name":
+      "write_file", "response": {"output": "saved 35 characters to mars_gemini.txt"}}}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout. Answer
+      questions about the user''s notes. Search the notes first. Use the calculator
+      for arithmetic. If a tool returns an error, fix the call and try again. Answer
+      in one sentence."}], "role": "user"}, "tools": [{"functionDeclarations": [{"description":
+      "Search the user''s notes for a word or phrase (case-insensitive). Returns one
+      page of matching\nnotes as {id, text} (long texts shortened), the total number
+      of matches and next_page (null when\nthere are no more). Use it before answering
+      any question about the notes.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string", "description":
+      "a word or short phrase, e.g. ''Mars''; case is ignored"}, "max_results": {"type":
+      "integer", "description": "notes per page, 1 to 10"}, "page": {"type": "integer",
+      "description": "page number, starting at 1"}}, "required": ["query"]}}, {"description":
+      "Evaluate an arithmetic expression: numbers, + - * / % ** and brackets. Returns
+      the number.\nUse it for every calculation instead of doing arithmetic yourself.",
+      "name": "calculator", "parameters_json_schema": {"type": "object", "properties":
+      {"expression": {"type": "string", "description": "arithmetic only, e.g. ''(24*60+39)/60''"}},
+      "required": ["expression"]}}, {"description": "Save text to a file in Scout''s
+      folder. Returns ''saved N characters to NAME''.\nRefuses an existing file unless
+      overwrite is true.", "name": "write_file", "parameters_json_schema": {"type":
+      "object", "properties": {"filename": {"type": "string", "description": "a plain
+      file name, e.g. ''mars_day.txt''"}, "text": {"type": "string", "description":
+      "the full text to save"}, "overwrite": {"type": "boolean", "description": "true
+      to replace an existing file"}}, "required": ["filename", "text"]}}]}], "generationConfig":
+      {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '3846'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"A day
+        on Mars is 1479 minutes long, and I have saved this answer to mars_gemini.txt.\",\n
+        \           \"thoughtSignature\": \"AY89a1+gIxLLUvssUgMu0sP1gUsOEkxdwI/5zDIO0xCuIVh5b275QY1Urq2wSNYFBXjBYngeHKGrzdBd1Ybc68BGANAVKnGC699auA0ZpQqS+a8f3rtK9Rz933w=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 553,\n    \"candidatesTokenCount\":
+        27,\n    \"totalTokenCount\": 580,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 553\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 27\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:38:40.960114Z\",\n  \"responseId\": \"MOPHavLMOpj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '934'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:38:41 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

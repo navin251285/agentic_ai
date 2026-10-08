@@ -1,0 +1,412 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise this note in one short sentence.\nNote
+      5: The rover Perseverance landed on Mars in February 2021."}], "role": "user"}],
+      "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '209'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Perseverance
+        landed on Mars in February 2021.\",\n            \"thoughtSignature\": \"AY89a190dLAnMsHWiQXnNOFDl7eAyH8Iv3SR8w3hYtOl8JCJslKzgDy5wblwREX4UKynegQsy0OsdWkKn0ntx/RtnrG8ORAJekU/SVYi8FnCYD+QUkpbDARn540=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 28,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 42,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 28\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 14\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T16:21:01.346389Z\",\n
+        \ \"responseId\": \"7cLHapWSFZj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '892'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 16:21:01 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise this note in one short sentence.\nNote
+      5: The rover Perseverance landed on Mars in February 2021."}], "role": "user"}],
+      "generationConfig": {"maxOutputTokens": 8}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '208'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        rover Perseverance landed\",\n            \"thoughtSignature\": \"AY89a1/JSHOtyupu/ht/23YbScdBC60q6RLzYveEgJuts98c33wDo1Hxw0BvpEy/pnuxHVRuB83X1zQMei20WPD3rDa5TVqx/aGbcM8YW0KMlRVlqGGbUGqFHdg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"MAX_TOKENS\"\n
+        \   }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 28,\n    \"candidatesTokenCount\":
+        4,\n    \"totalTokenCount\": 32,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 28\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 4\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T16:21:01.890441Z\",\n
+        \ \"responseId\": \"7cLHasmsNvqDidsP6vmrsAc\"\n}\n"
+    headers:
+      content-length:
+      - '880'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 16:21:02 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "List three facts about Mars from these
+      notes, on one line, as ''1. ... 2. ... 3. ...''.\nMars has two small moons,
+      Phobos and Deimos.\nA day on Mars lasts about 24 hours and 39 minutes.\nThe
+      rover Perseverance landed on Mars in February 2021."}], "role": "user"}], "generationConfig":
+      {"maxOutputTokens": 80, "stopSequences": ["3."]}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '367'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"1.
+        Mars has two small moons, Phobos and Deimos. 2. A day on Mars lasts about
+        24 hours and 39 minutes. \",\n            \"thoughtSignature\": \"AY89a1+rGk9hQQ6J7IOTBtJnE/kLqcAf2EP8d6EuIsGgwMyltdUyIOkDMuuVSlDzF0ImDDv92cwvz0zzSTPL4rG1YBmVSeYUyfbLCeODh5mDB6hU2QbcCJlQO6I=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 72,\n    \"candidatesTokenCount\":
+        34,\n    \"totalTokenCount\": 106,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 72\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 34\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T16:21:02.613327Z\",\n  \"responseId\": \"7sLHas-3JYeFr8kP-daSkAU\"\n}\n"
+    headers:
+      content-length:
+      - '950'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 16:21:03 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Use save_note to save an 80-word note
+      about the Perseverance rover."}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Save a note to Scout''s notes.", "name": "save_note", "parameters_json_schema":
+      {"type": "object", "properties": {"text": {"type": "string"}}, "required": ["text"]}}]}],
+      "generationConfig": {"maxOutputTokens": 15}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '391'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\"\n      },\n      \"finishReason\": \"MALFORMED_FUNCTION_CALL\"\n
+        \   }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 44,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 57,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 44\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 13\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T16:21:03.327009Z\",\n
+        \ \"responseId\": \"78LHauH6E5zc7bEP7r6DiAU\"\n}\n"
+    headers:
+      content-length:
+      - '629'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 16:21:04 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise this note in one short sentence.\nNote
+      5: The rover Perseverance landed on Mars in February 2021."}], "role": "user"}],
+      "generationConfig": {"maxOutputTokens": -5}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '209'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Unable to
+        submit request because it has a maxOutputTokens value of -5 but the supported
+        range is from 1 (inclusive) to 65537 (exclusive). Update the value and try
+        again.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+    headers:
+      content-length:
+      - '259'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 16:21:04 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 400
+      message: Bad Request
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise this note in one short sentence.\nNote
+      5: The rover Perseverance landed on Mars in February 2021."}], "role": "user"}],
+      "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '209'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        rover Perseverance successfully landed on Mars in February 2021.\",\n            \"thoughtSignature\":
+        \"AY89a19cLeMhFmPP9HJvP9bwzNJ3+2wNo7og3U5Tr83T8Cb3TyHjA4ymbc15OY4iYLVX0LU16pqLOzgjXAbJ8hKmF7dJKycvLSjbgSxcUbtoD82NiHW2XBGYa8Q=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 28,\n    \"candidatesTokenCount\":
+        15,\n    \"totalTokenCount\": 43,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 28\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 15\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T16:21:04.558031Z\",\n
+        \ \"responseId\": \"8MLHas-HIuWBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '915'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 16:21:04 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise this note in one short sentence.\nNote
+      5: The rover Perseverance landed on Mars in February 2021."}], "role": "user"}],
+      "generationConfig": {"maxOutputTokens": -5}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '209'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Unable to
+        submit request because it has a maxOutputTokens value of -5 but the supported
+        range is from 1 (inclusive) to 65537 (exclusive). Update the value and try
+        again.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+    headers:
+      content-length:
+      - '259'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 16:21:05 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 400
+      message: Bad Request
+version: 1

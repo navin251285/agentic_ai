@@ -1,0 +1,26 @@
+{
+ "stream_times": [
+  0.53,
+  0.596,
+  0.678,
+  0.82,
+  0.933,
+  1.055,
+  1.142,
+  1.215,
+  1.228
+ ],
+ "blocking_total": 1.156,
+ "chunk_texts": [
+  "Mars is",
+  " an amazing planet with some really cool features! Did you know that a day on Mars is",
+  " very similar to a day on Earth? In fact, a Martian day lasts about 24 hours and 39 minutes,",
+  " so the daily schedule there would feel almost the same as ours. \n\nIf you were to look up into the Martian night sky, you would",
+  " see two tiny moons instead of just one like Earth has. These two small moons are named Phobos and Deimos.",
+  " \n\nScientists are super interested in Mars, and we are learning more about it all the time. Humans have even sent robotic",
+  " explorers there to check it out. For example, the rover named Perseverance successfully landed on Mars in February 2021 to explore",
+  " its surface and help us learn more about our planetary neighbor!",
+  ""
+ ],
+ "output_tokens": 163
+}

@@ -1,0 +1,678 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise this note: Mars has two small
+      moons, Phobos and Deimos."}], "role": "user"}], "generationConfig": {"maxOutputTokens":
+      200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '168'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        has two small moons: Phobos and Deimos.\",\n            \"thoughtSignature\":
+        \"AY89a19OZFTfrOj48kn/B81g1Bzptsx4JSU8pzpKvZ9L5QdEAa8Az+ZQip90ZUNABxK5sYhCvznEW4xTjwcjn7n+OpTV9YpfZaa5mVOPB2RoH/Zw9nOo4UWj1fg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 17,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 29,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 17\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 12\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T17:36:05.334853Z\",\n
+        \ \"responseId\": \"hdTHaoW4FIeFr8kP-daSkAU\"\n}\n"
+    headers:
+      content-length:
+      - '891'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:36:05 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise this note: Venus spins backwards
+      compared with most planets."}], "role": "user"}], "generationConfig": {"maxOutputTokens":
+      200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '173'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Venus
+        rotates in the opposite direction (retrograde) to most other planets.\",\n
+        \           \"thoughtSignature\": \"AY89a19QTxdopOn5Ht6H+/4Mh7tPBy5dlsA5VXUgkWx2hhc634NV11kiKhJ2RTiE7bAubX5hw48R7tnZyXHzGrwdCu+Eai+SsQ5HFiNWF71POiEruPrKWQdC8M4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 13,\n    \"candidatesTokenCount\":
+        15,\n    \"totalTokenCount\": 28,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 13\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 15\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T17:36:09.310207Z\",\n
+        \ \"responseId\": \"idTHar_3Epzc7bEP7r6DiAU\"\n}\n"
+    headers:
+      content-length:
+      - '922'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:36:09 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise this note: A day on Mars lasts
+      about 24 hours and 39 minutes."}], "role": "user"}], "generationConfig": {"maxOutputTokens":
+      200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '174'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"**Summary:**
+        \\nA Martian day is approximately 24 hours and 39 minutes long.\",\n            \"thoughtSignature\":
+        \"AY89a18DLBZ36DocihSMFkqIUbGm5Dl8Ni0x3em3lrrhYBTeBaJMW4QlP6HCrbFS1VktsKQ95VDSk2aTWBtNQx/0HeTHFLygw8bBXJ46hRqqlaNj3cnmcJuev8I=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 21,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 42,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 21\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T17:36:13.305004Z\",\n
+        \ \"responseId\": \"jdTHauzOEpj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '922'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:36:13 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise this note: Jupiter is the
+      largest planet in the solar system."}], "role": "user"}], "generationConfig":
+      {"maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '174'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Jupiter
+        is the biggest planet in our solar system.\",\n            \"thoughtSignature\":
+        \"AY89a18V4S0Cz8hxbKjUl4aPadecCNGxl2rInz0+3Mm2ms/F22msoQWkjLBiWYr0a6xkoQ85YnsZ6Od8UIthgWKZ1sxuGnsCfNT+ZhKkBm6Xiwzn8hK53JCNT8k=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 15,\n    \"candidatesTokenCount\":
+        10,\n    \"totalTokenCount\": 25,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 15\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 10\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T17:36:17.324757Z\",\n
+        \ \"responseId\": \"kdTHapXpE_6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '897'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:36:17 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise this note: The rover Perseverance
+      landed on Mars in February 2021."}], "role": "user"}], "generationConfig": {"maxOutputTokens":
+      200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '179'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"**Summary:**
+        The Perseverance rover landed on Mars in February 2021.\",\n            \"thoughtSignature\":
+        \"AY89a1973U7CDde2ja2Fqs4xmq1phAk20xyBLXcDXgpcr1Mp7cP7S11gnvshEzMAAoF3TvCZEGMBsoIxJF/mIcqPIVs5pllqjtpK/5Tmhp7Y/QL/+SaKK/X9OS8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 19,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 36,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 19\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 17\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T17:36:21.311578Z\",\n
+        \ \"responseId\": \"ldTHapqCE_Ov-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '915'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:36:21 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<note>Mars has two small moons, Phobos
+      and Deimos.</note>\n\n<examples>\n<example>\n<note>Neptune has the fastest winds
+      measured on any planet.</note>\n<card>Neptune | Fastest winds of any planet</card>\n</example>\n<example>\n<note>Mercury
+      has almost no atmosphere, so its nights are very cold.</note>\n<card>Mercury
+      | Almost no atmosphere, so nights are very cold</card>\n</example>\n<example>\n<note>The
+      James Webb telescope orbits the Sun about 1.5 million km from Earth.</note>\n<card>Other
+      | James Webb telescope orbits 1.5 million km from Earth</card>\n</example>\n</examples>\n\n<instructions>\nWrite
+      one card for the note above, for a list in Scout''s notes app.\nFormat: the
+      planet the note is about, then \" | \", then a summary of at most 10 words.\n-
+      Use one of: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Other.\n-
+      No full stop at the end, no quotes, no text before or after the card.\nThe app
+      splits each line on \" | \", so anything else breaks the list.\n</instructions>"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout''s
+      note indexer. You turn a user''s research notes into short, exact index cards.
+      You never add facts that are not in the note."}], "role": "user"}, "generationConfig":
+      {"maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1312'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        | Two small moons, Phobos and Deimos\",\n            \"thoughtSignature\":
+        \"AY89a1+a4WSuhMDi7XPuRViVzzRMcrR+9QYx3HDCAsOPifg3z0CwdyaNWAkgaR9HFej4BXtjvcHS/vgzYR/oYti7mHY+/5Izo2bvDQU2kVYwE8kPuEx/i3noq/4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 312,\n    \"candidatesTokenCount\":
+        11,\n    \"totalTokenCount\": 323,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 312\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 11\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T17:36:25.447315Z\",\n  \"responseId\": \"mdTHatOmG-WBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '891'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:36:25 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<note>Venus spins backwards compared
+      with most planets.</note>\n\n<examples>\n<example>\n<note>Neptune has the fastest
+      winds measured on any planet.</note>\n<card>Neptune | Fastest winds of any planet</card>\n</example>\n<example>\n<note>Mercury
+      has almost no atmosphere, so its nights are very cold.</note>\n<card>Mercury
+      | Almost no atmosphere, so nights are very cold</card>\n</example>\n<example>\n<note>The
+      James Webb telescope orbits the Sun about 1.5 million km from Earth.</note>\n<card>Other
+      | James Webb telescope orbits 1.5 million km from Earth</card>\n</example>\n</examples>\n\n<instructions>\nWrite
+      one card for the note above, for a list in Scout''s notes app.\nFormat: the
+      planet the note is about, then \" | \", then a summary of at most 10 words.\n-
+      Use one of: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Other.\n-
+      No full stop at the end, no quotes, no text before or after the card.\nThe app
+      splits each line on \" | \", so anything else breaks the list.\n</instructions>"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout''s
+      note indexer. You turn a user''s research notes into short, exact index cards.
+      You never add facts that are not in the note."}], "role": "user"}, "generationConfig":
+      {"maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1317'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Venus
+        | Spins backwards compared with most planets\",\n            \"thoughtSignature\":
+        \"AY89a1+WNk8JggaGRr55LTev/3jgNGvz2PMlWk6Q+HmhofDPZAGMe6SXreHqeNw/ONmskY105mgtXrfzAxlC+sBc+TGhWBsuCl/+OxduGxQxLw4TTKUnIqD1pXo=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 308,\n    \"candidatesTokenCount\":
+        8,\n    \"totalTokenCount\": 316,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 308\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 8\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T17:36:29.275628Z\",\n
+        \ \"responseId\": \"ndTHaqzpEJzc7bEP7r6DiAU\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:36:29 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<note>A day on Mars lasts about 24 hours
+      and 39 minutes.</note>\n\n<examples>\n<example>\n<note>Neptune has the fastest
+      winds measured on any planet.</note>\n<card>Neptune | Fastest winds of any planet</card>\n</example>\n<example>\n<note>Mercury
+      has almost no atmosphere, so its nights are very cold.</note>\n<card>Mercury
+      | Almost no atmosphere, so nights are very cold</card>\n</example>\n<example>\n<note>The
+      James Webb telescope orbits the Sun about 1.5 million km from Earth.</note>\n<card>Other
+      | James Webb telescope orbits 1.5 million km from Earth</card>\n</example>\n</examples>\n\n<instructions>\nWrite
+      one card for the note above, for a list in Scout''s notes app.\nFormat: the
+      planet the note is about, then \" | \", then a summary of at most 10 words.\n-
+      Use one of: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Other.\n-
+      No full stop at the end, no quotes, no text before or after the card.\nThe app
+      splits each line on \" | \", so anything else breaks the list.\n</instructions>"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout''s
+      note indexer. You turn a user''s research notes into short, exact index cards.
+      You never add facts that are not in the note."}], "role": "user"}, "generationConfig":
+      {"maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1318'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        | A day lasts about 24 hours and 39 minutes\",\n            \"thoughtSignature\":
+        \"AY89a1+hdxcdKC8dnJYEC43YMXXSSAlZDm6VafegVxsHFAjXtVSp7j13InyPWQ+eCTD3YG6Nrd4PNU9nqFLpPYQXJZiZ2FR6Kp0d6ib7VBqUMOqqAbZfy69DTFQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 316,\n    \"candidatesTokenCount\":
+        15,\n    \"totalTokenCount\": 331,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 316\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 15\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T17:36:33.272372Z\",\n  \"responseId\": \"odTHavTPEJj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:36:49 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<note>Jupiter is the largest planet
+      in the solar system.</note>\n\n<examples>\n<example>\n<note>Neptune has the
+      fastest winds measured on any planet.</note>\n<card>Neptune | Fastest winds
+      of any planet</card>\n</example>\n<example>\n<note>Mercury has almost no atmosphere,
+      so its nights are very cold.</note>\n<card>Mercury | Almost no atmosphere, so
+      nights are very cold</card>\n</example>\n<example>\n<note>The James Webb telescope
+      orbits the Sun about 1.5 million km from Earth.</note>\n<card>Other | James
+      Webb telescope orbits 1.5 million km from Earth</card>\n</example>\n</examples>\n\n<instructions>\nWrite
+      one card for the note above, for a list in Scout''s notes app.\nFormat: the
+      planet the note is about, then \" | \", then a summary of at most 10 words.\n-
+      Use one of: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Other.\n-
+      No full stop at the end, no quotes, no text before or after the card.\nThe app
+      splits each line on \" | \", so anything else breaks the list.\n</instructions>"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout''s
+      note indexer. You turn a user''s research notes into short, exact index cards.
+      You never add facts that are not in the note."}], "role": "user"}, "generationConfig":
+      {"maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1318'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Jupiter
+        | Largest planet in the solar system\",\n            \"thoughtSignature\":
+        \"AY89a1/774hatekIW5/cvP16NXZVXIegH+pttANDE11mzjCQNYxon2dE+wPFmHFkMSbDYZuK7PrkHCxy5x9C70HzG7zkwSFLBvkrWl0Msid53fwo8Cbw6qeqog4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 310,\n    \"candidatesTokenCount\":
+        8,\n    \"totalTokenCount\": 318,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 310\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 8\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T17:36:49.371726Z\",\n
+        \ \"responseId\": \"sdTHao7YFpzc7bEP7r6DiAU\"\n}\n"
+    headers:
+      content-length:
+      - '892'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:36:49 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<note>The rover Perseverance landed
+      on Mars in February 2021.</note>\n\n<examples>\n<example>\n<note>Neptune has
+      the fastest winds measured on any planet.</note>\n<card>Neptune | Fastest winds
+      of any planet</card>\n</example>\n<example>\n<note>Mercury has almost no atmosphere,
+      so its nights are very cold.</note>\n<card>Mercury | Almost no atmosphere, so
+      nights are very cold</card>\n</example>\n<example>\n<note>The James Webb telescope
+      orbits the Sun about 1.5 million km from Earth.</note>\n<card>Other | James
+      Webb telescope orbits 1.5 million km from Earth</card>\n</example>\n</examples>\n\n<instructions>\nWrite
+      one card for the note above, for a list in Scout''s notes app.\nFormat: the
+      planet the note is about, then \" | \", then a summary of at most 10 words.\n-
+      Use one of: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Other.\n-
+      No full stop at the end, no quotes, no text before or after the card.\nThe app
+      splits each line on \" | \", so anything else breaks the list.\n</instructions>"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout''s
+      note indexer. You turn a user''s research notes into short, exact index cards.
+      You never add facts that are not in the note."}], "role": "user"}, "generationConfig":
+      {"maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1323'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        | Landed on Mars in February 2021\",\n            \"thoughtSignature\": \"AY89a19DwctyuGf1O//5B4fdpDbWahqEyYR/JpQkkNzm9DcDaOzVZ/mx8LZ5g2rej11ciXVmZK/glzBhTEkiwstBv4dGKsggzNSObaujhmpwcQ24YKntznSLWO0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 314,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 327,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 314\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 13\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T17:36:53.359722Z\",\n  \"responseId\": \"tdTHaqr6Ff6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '888'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:36:53 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

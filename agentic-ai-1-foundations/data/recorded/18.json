@@ -1,0 +1,97 @@
+{
+ "full": {
+  "answers": [
+   "Mars has two small moons, Phobos and Deimos.",
+   "A day on Mars lasts about 24 hours and 39 minutes.",
+   "The rover Perseverance landed on Mars in February 2021.",
+   "Your project is a school talk about the moons of Mars."
+  ],
+  "turns": [
+   [
+    156,
+    12,
+    7.68e-05
+   ],
+   [
+    176,
+    16,
+    9.279999999999999e-05
+   ],
+   [
+    204,
+    14,
+    9.62e-05
+   ],
+   [
+    227,
+    12,
+    9.81e-05
+   ]
+  ],
+  "warnings": []
+ },
+ "no_history": {
+  "answers": [
+   "Mars has two small moons, Phobos and Deimos.",
+   "A day on Mars lasts about 24 hours and 39 minutes.",
+   "The rover Perseverance landed on Mars in February 2021.",
+   "My notes do not contain any information about your project."
+  ],
+  "turns": [
+   [
+    156,
+    12,
+    7.68e-05
+   ],
+   [
+    149,
+    16,
+    8.469999999999999e-05
+   ],
+   [
+    153,
+    14,
+    8.09e-05
+   ],
+   [
+    150,
+    11,
+    7.25e-05
+   ]
+  ],
+  "warnings": []
+ },
+ "small_window": {
+  "answers": [
+   "Mars has two small moons, Phobos and Deimos.",
+   "A day on Mars lasts about 24 hours and 39 minutes.",
+   "The rover Perseverance landed on Mars in February 2021.",
+   "The notes do not cover your project."
+  ],
+  "turns": [
+   [
+    156,
+    12,
+    7.68e-05
+   ],
+   [
+    176,
+    16,
+    9.279999999999999e-05
+   ],
+   [
+    204,
+    14,
+    9.62e-05
+   ],
+   [
+    200,
+    8,
+    8e-05
+   ]
+  ],
+  "warnings": [
+   "! dropped 2 old messages to fit the 280-token window"
+  ]
+ }
+}

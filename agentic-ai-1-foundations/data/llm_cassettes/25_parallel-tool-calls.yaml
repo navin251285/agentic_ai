@@ -1,0 +1,221 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Compare the notes on Mars and Venus."}],
+      "role": "user"}], "tools": [{"functionDeclarations": [{"description": "Search
+      the user''s notes. Returns every note whose text contains the query word (case-insensitive),
+      as a list of {id, text}. Use it before answering any question about what the
+      notes say.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "properties": {"query": {"type": "string", "description": "one word to look
+      for, e.g. ''Mars''"}}, "required": ["query"]}}]}], "generationConfig": {"maxOutputTokens":
+      300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '575'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_2227560\"\n            },\n            \"thoughtSignature\": \"AY89a1//pmiwzfPzSypucaZsW3RAHrXeu9mI8BT+kMbLq0hDMi4wJi6s+oZ2lV2154xpiQn4xQ0zpTRFAxTXwOxXBA47wlUTH78vt7k+zaSnxrHfW8kRlYjIjIY=\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"search_notes\",\n              \"args\": {\n                \"query\": \"Venus\"\n
+        \             },\n              \"id\": \"call_2227561\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 81,\n    \"candidatesTokenCount\":
+        32,\n    \"totalTokenCount\": 113,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 81\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 32\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:19:09.346144Z\",\n  \"responseId\": \"nd7HaqCQFfOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1231'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:19:09 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Compare the notes on Mars and Venus."}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_2227560", "args":
+      {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a1__pmiwzfPzSypucaZsW3RAHrXeu9mI8BT-kMbLq0hDMi4wJi6s-oZ2lV2154xpiQn4xQ0zpTRFAxTXwOxXBA47wlUTH78vt7k-zaSnxrHfW8kRlYjIjIY="},
+      {"functionCall": {"id": "call_2227561", "args": {"query": "Venus"}, "name":
+      "search_notes"}}], "role": "model"}, {"parts": [{"functionResponse": {"id":
+      "call_2227560", "name": "search_notes", "response": {"result": [{"id": 1, "text":
+      "Mars has two small moons, Phobos and Deimos."}, {"id": 3, "text": "A day on
+      Mars lasts about 24 hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance
+      landed on Mars in February 2021."}]}}}, {"functionResponse": {"id": "call_2227561",
+      "name": "search_notes", "response": {"result": [{"id": 2, "text": "Venus spins
+      backwards compared with most planets."}]}}}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns every note whose text contains
+      the query word (case-insensitive), as a list of {id, text}. Use it before answering
+      any question about what the notes say.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string", "description":
+      "one word to look for, e.g. ''Mars''"}}, "required": ["query"]}}]}], "generationConfig":
+      {"maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1451'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Based
+        on the notes, here is a comparison between Mars and Venus:\\n\\n* **Moons:**
+        Mars has two small moons (Phobos and Deimos), whereas no moons are mentioned
+        for Venus.\\n* **Rotation / Day Length:** A day on Mars lasts about 24 hours
+        and 39 minutes, while Venus is unique for spinning backwards compared to most
+        planets.\\n* **Space Exploration:** The rover Perseverance landed on Mars
+        in February 2021, whereas no exploration missions are mentioned for Venus.\",\n
+        \           \"thoughtSignature\": \"AY89a19SjeaS8vsVS5WDTCsv491FBxlSdQfTanBT5AKfNqar4gMDUJRSIyaQbbST5h+sJa0G7rUqseM3N/dShjqh32Pqn46qzlH3Wouhn4/Tnr/NB2FqVIjIlSg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 177,\n    \"candidatesTokenCount\":
+        105,\n    \"totalTokenCount\": 282,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 177\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 105\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:19:13.338184Z\",\n  \"responseId\": \"od7HaojSFP6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '1311'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:19:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Compare the notes on Mars and Venus."}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "Call at most one
+      tool per turn. Wait for its result before calling the next tool."}], "role":
+      "user"}, "tools": [{"functionDeclarations": [{"description": "Search the user''s
+      notes. Returns every note whose text contains the query word (case-insensitive),
+      as a list of {id, text}. Use it before answering any question about what the
+      notes say.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "properties": {"query": {"type": "string", "description": "one word to look
+      for, e.g. ''Mars''"}}, "required": ["query"]}}]}], "generationConfig": {"maxOutputTokens":
+      300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '720'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_2102601\"\n            },\n            \"thoughtSignature\": \"AY89a19eJpmjdb5Z4m/ffVcvC6ULwZgpGqPYP+GjdH6rHl+VeogCnunPIBu585CRlsp+3WXg/DkPAfWN/9QrzdAVTBtmkAIWlndooi+lSS19TEqONv7YdfUSQUA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 99,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 115,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 99\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:19:17.332916Z\",\n  \"responseId\": \"pd7HavSoFOWBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '1015'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:19:17 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

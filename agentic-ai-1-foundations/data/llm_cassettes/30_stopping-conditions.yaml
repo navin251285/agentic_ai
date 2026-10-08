@@ -1,0 +1,320 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout. Answer
+      questions about the user''s notes. Search the notes first. Do every calculation
+      with the calculator tool, never in your head. Answer in one sentence."}], "role":
+      "user"}, "tools": [{"functionDeclarations": [{"description": "Search the user''s
+      notes. Returns every note whose text contains the query word (case-insensitive),
+      as a list of {id, text}. Use it before answering any question about what the
+      notes say.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "required": ["query"], "properties": {"query": {"type": "string", "description":
+      "one word to look for, e.g. ''Mars''"}}}}, {"description": "Evaluate an arithmetic
+      expression with numbers, + - * / and brackets, e.g. ''24*60+39''. Use it for
+      every calculation instead of doing arithmetic yourself.", "name": "calculator",
+      "parameters_json_schema": {"type": "object", "required": ["expression"], "properties":
+      {"expression": {"type": "string", "description": "e.g. ''(3+4)*2''"}}}}]}],
+      "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1165'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_2129362\"\n            },\n            \"thoughtSignature\": \"AY89a18x+CNbeO+MHoYs+y8aLydrYzcnwJYkeT1sOJUM8eCEZl2UGhB5xMM1h1mGnILV5vZGfmOJZ9rQUEkwcGp5wTZEygGZljl61DgiwEMensukQdHijWL8iAA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 185,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 201,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 185\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:45:32.337617Z\",\n  \"responseId\": \"zOTHatHNFOWBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '1017'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:45:32 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_2129362", "args":
+      {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a18x-CNbeO-MHoYs-y8aLydrYzcnwJYkeT1sOJUM8eCEZl2UGhB5xMM1h1mGnILV5vZGfmOJZ9rQUEkwcGp5wTZEygGZljl61DgiwEMensukQdHijWL8iAA="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_2129362", "name":
+      "search_notes", "response": {"output": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout. Answer questions about the user''s notes. Search the
+      notes first. Do every calculation with the calculator tool, never in your head.
+      Answer in one sentence."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns every note whose text contains
+      the query word (case-insensitive), as a list of {id, text}. Use it before answering
+      any question about what the notes say.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string",
+      "description": "one word to look for, e.g. ''Mars''"}}}}, {"description": "Evaluate
+      an arithmetic expression with numbers, + - * / and brackets, e.g. ''24*60+39''.
+      Use it for every calculation instead of doing arithmetic yourself.", "name":
+      "calculator", "parameters_json_schema": {"type": "object", "required": ["expression"],
+      "properties": {"expression": {"type": "string", "description": "e.g. ''(3+4)*2''"}}}}]}],
+      "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1779'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"calculator\",\n              \"args\": {\n                \"expression\":
+        \"24 * 60 + 39\"\n              },\n              \"id\": \"call_2002548\"\n
+        \           },\n            \"thoughtSignature\": \"AY89a1/y2zOQ5q58+MdN31Ns0292NAR3RUbd3O0E08pjRvd8esDwTmg71Md9gqVzVTKcw7uI92LUYLogCaDrl/O3mHWJd+KKKgfRu4j8yzHIocQoX/CWqq255HE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 253,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 276,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 253\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 23\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:45:36.304485Z\",\n  \"responseId\": \"0OTHauXKEv6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '1028'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:45:36 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_2129362", "args":
+      {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a18x-CNbeO-MHoYs-y8aLydrYzcnwJYkeT1sOJUM8eCEZl2UGhB5xMM1h1mGnILV5vZGfmOJZ9rQUEkwcGp5wTZEygGZljl61DgiwEMensukQdHijWL8iAA="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_2129362", "name":
+      "search_notes", "response": {"output": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_2002548", "args": {"expression": "24 * 60 + 39"}, "name": "calculator"},
+      "thoughtSignature": "AY89a1_y2zOQ5q58-MdN31Ns0292NAR3RUbd3O0E08pjRvd8esDwTmg71Md9gqVzVTKcw7uI92LUYLogCaDrl_O3mHWJd-KKKgfRu4j8yzHIocQoX_CWqq255HE="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_2002548", "name":
+      "calculator", "response": {"output": 1479}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Search the notes first. Do every calculation with the calculator tool, never
+      in your head. Answer in one sentence."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns every note whose text contains
+      the query word (case-insensitive), as a list of {id, text}. Use it before answering
+      any question about what the notes say.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string",
+      "description": "one word to look for, e.g. ''Mars''"}}}}, {"description": "Evaluate
+      an arithmetic expression with numbers, + - * / and brackets, e.g. ''24*60+39''.
+      Use it for every calculation instead of doing arithmetic yourself.", "name":
+      "calculator", "parameters_json_schema": {"type": "object", "required": ["expression"],
+      "properties": {"expression": {"type": "string", "description": "e.g. ''(3+4)*2''"}}}}]}],
+      "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2188'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"A day
+        on Mars is 1,479 minutes long.\",\n            \"thoughtSignature\": \"AY89a19+eTIlo5o1j3bb5efzOXIhwX3gwGVomMwKff51agWUjXLO6oGemw4H9J05WlN+dtisMdExwyj7A67x7x7IQ0uBFr8agObBRHvjLbIvrsRRm8CP/nLXvCg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 279,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 293,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 279\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 14\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:45:40.316725Z\",\n  \"responseId\": \"1OTHarWqE4eFr8kP-daSkAU\"\n}\n"
+    headers:
+      content-length:
+      - '886'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:45:41 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout. Answer
+      questions about the user''s notes. Search the notes first. Do every calculation
+      with the calculator tool, never in your head. Answer in one sentence."}], "role":
+      "user"}, "tools": [{"functionDeclarations": [{"description": "Search the user''s
+      notes. Returns every note whose text contains the query word (case-insensitive),
+      as a list of {id, text}. Use it before answering any question about what the
+      notes say.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "required": ["query"], "properties": {"query": {"type": "string", "description":
+      "one word to look for, e.g. ''Mars''"}}}}, {"description": "Evaluate an arithmetic
+      expression with numbers, + - * / and brackets, e.g. ''24*60+39''. Use it for
+      every calculation instead of doing arithmetic yourself.", "name": "calculator",
+      "parameters_json_schema": {"type": "object", "required": ["expression"], "properties":
+      {"expression": {"type": "string", "description": "e.g. ''(3+4)*2''"}}}}]}],
+      "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1165'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_3018424\"\n            },\n            \"thoughtSignature\": \"AY89a1/AW1hpl5iImz5Fg92a5Nx4qujSBySiFExhDZeTyP11t8wcW7Dp8T7ZaeiJMRLPIA8rEl+HLu+L1DdbxKI6R/lneJn5jLPeTmeXYD85OHb5QBsjo6ninBU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 185,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 201,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 185\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:45:44.324774Z\",\n  \"responseId\": \"2OTHaqbpE_Ov-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1017'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:45:44 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

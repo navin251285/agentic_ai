@@ -1,0 +1,1656 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '706'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 156,\n  \"totalBillableCharacters\": 470,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 156\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:11:54 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 120}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '752'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"Mars\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:54.555803Z\",\"responseId\":
+        \"2s7Hapv2IeWBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" has two small moons, Phobos
+        and Deimos.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:54.555803Z\",\"responseId\":
+        \"2s7Hapv2IeWBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"AY89a1/w0vhwYYDoOJ1TQ1+8ExuniAJEucFvycTuY8DkU1IEGR3COexhYVtIOAiwP06YVojW0YoDC7QLmA6y2yZQw9lxaz+ahldvjIJp53laFydov/h+33laHLM=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 156,\"candidatesTokenCount\":
+        12,\"totalTokenCount\": 168,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 156}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 12}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:11:54.555803Z\",\"responseId\": \"2s7Hapv2IeWBr8kP09Or0Qs\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Thu, 08 Oct 2026 17:11:55 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}, {"parts": [{"text": "Mars has
+      two small moons, Phobos and Deimos."}], "role": "model"}, {"parts": [{"text":
+      "How long is a day on Mars?"}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '863'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 176,\n  \"totalBillableCharacters\": 527,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 176\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:11:55 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}, {"parts": [{"text": "Mars has
+      two small moons, Phobos and Deimos."}], "role": "model"}, {"parts": [{"text":
+      "How long is a day on Mars?"}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 120}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '909'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"A day\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:55.248816Z\",\"responseId\":
+        \"287HavCXD5zc7bEP7r6DiAU\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" on Mars lasts about 24 hours
+        and 39 minutes.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:55.248816Z\",\"responseId\":
+        \"287HavCXD5zc7bEP7r6DiAU\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"AY89a19fWeb4HThGIeqw56TN+LeTkO4LskNZq2XrC8qoYhG27I1yi1wXe58bcufAVjxc5cZvldqIE7wP8B4r8MMBCd3vdDThCHllcDKRz91thf9fThnUsqJOVsE=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 176,\"candidatesTokenCount\":
+        16,\"totalTokenCount\": 192,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 176}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 16}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:11:55.248816Z\",\"responseId\": \"287HavCXD5zc7bEP7r6DiAU\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Thu, 08 Oct 2026 17:11:55 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}, {"parts": [{"text": "Mars has
+      two small moons, Phobos and Deimos."}], "role": "model"}, {"parts": [{"text":
+      "How long is a day on Mars?"}], "role": "user"}, {"parts": [{"text": "A day
+      on Mars lasts about 24 hours and 39 minutes."}], "role": "model"}, {"parts":
+      [{"text": "Which rover landed on Mars in 2021?"}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1035'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 204,\n  \"totalBillableCharacters\": 596,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 204\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:11:55 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}, {"parts": [{"text": "Mars has
+      two small moons, Phobos and Deimos."}], "role": "model"}, {"parts": [{"text":
+      "How long is a day on Mars?"}], "role": "user"}, {"parts": [{"text": "A day
+      on Mars lasts about 24 hours and 39 minutes."}], "role": "model"}, {"parts":
+      [{"text": "Which rover landed on Mars in 2021?"}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 120}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1081'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"The rover\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:55.866356Z\",\"responseId\":
+        \"287HarTwNOWBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" Perseverance landed on Mars
+        in February 2021.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:55.866356Z\",\"responseId\":
+        \"287HarTwNOWBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"AY89a1+nvEpUe+Uk0qNskqwYif5TwohYJ1JzUH5OEdxytURMjWE5cTMqjExPtF2r52wxxOPs/5oyehWJ69y6txCIsKcSopzYKQHzSKKQbhiWic9VEpYnSOSqg6I=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 204,\"candidatesTokenCount\":
+        14,\"totalTokenCount\": 218,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 204}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 14}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:11:55.866356Z\",\"responseId\": \"287HarTwNOWBr8kP09Or0Qs\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Thu, 08 Oct 2026 17:11:56 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}, {"parts": [{"text": "Mars has
+      two small moons, Phobos and Deimos."}], "role": "model"}, {"parts": [{"text":
+      "How long is a day on Mars?"}], "role": "user"}, {"parts": [{"text": "A day
+      on Mars lasts about 24 hours and 39 minutes."}], "role": "model"}, {"parts":
+      [{"text": "Which rover landed on Mars in 2021?"}], "role": "user"}, {"parts":
+      [{"text": "The rover Perseverance landed on Mars in February 2021."}], "role":
+      "model"}, {"parts": [{"text": "What did I tell you about my project?"}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "You are Scout, a research
+      assistant. Answer only from the user''s notes below and this chat. If the notes
+      do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."}], "role": "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1214'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 227,\n  \"totalBillableCharacters\": 673,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 227\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:11:56 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}, {"parts": [{"text": "Mars has
+      two small moons, Phobos and Deimos."}], "role": "model"}, {"parts": [{"text":
+      "How long is a day on Mars?"}], "role": "user"}, {"parts": [{"text": "A day
+      on Mars lasts about 24 hours and 39 minutes."}], "role": "model"}, {"parts":
+      [{"text": "Which rover landed on Mars in 2021?"}], "role": "user"}, {"parts":
+      [{"text": "The rover Perseverance landed on Mars in February 2021."}], "role":
+      "model"}, {"parts": [{"text": "What did I tell you about my project?"}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "You are Scout, a research
+      assistant. Answer only from the user''s notes below and this chat. If the notes
+      do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."}], "role": "user"}, "generationConfig": {"maxOutputTokens":
+      120}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1260'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"Your project\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:56.323135Z\",\"responseId\":
+        \"3M7Har_cE_qDidsP6vmrsAc\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" is a school talk about the
+        moons of Mars.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:56.323135Z\",\"responseId\":
+        \"3M7Har_cE_qDidsP6vmrsAc\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"AY89a19Bkk1+YeSmmvuFSI5S1266Ulsq/jUZ8AofjeXCCDXcS7G7WHDojyZb4LDr6OiqAgUa27Y4Fteo8l+8HkJX4s1yDZNxGbK0L1UEyD/sRRtVzNE2TjtYs48=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 227,\"candidatesTokenCount\":
+        12,\"totalTokenCount\": 239,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 227}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 12}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:11:56.323135Z\",\"responseId\": \"3M7Har_cE_qDidsP6vmrsAc\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Thu, 08 Oct 2026 17:11:56 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '706'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 156,\n  \"totalBillableCharacters\": 470,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 156\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:11:56 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 120}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '752'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"Mars\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:56.869422Z\",\"responseId\":
+        \"3M7Haq6INfWRr8kPvJ6DqAY\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" has two small moons, Phobos
+        and Deimos.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:56.869422Z\",\"responseId\":
+        \"3M7Haq6INfWRr8kPvJ6DqAY\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"AY89a1/wgNLcvCIjYv1EKlEHiKIiV+POdgSZGy/nlBnz078Tm41IlpE2OawZdxam5lXh0nwt1yEtL3BncessVSRfrktgMMymeZGZ15SwdIQBH5+GWM8pprd0mS0=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 156,\"candidatesTokenCount\":
+        12,\"totalTokenCount\": 168,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 156}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 12}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:11:56.869422Z\",\"responseId\": \"3M7Haq6INfWRr8kPvJ6DqAY\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Thu, 08 Oct 2026 17:11:57 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How long is a day on Mars?"}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "You are Scout, a research
+      assistant. Answer only from the user''s notes below and this chat. If the notes
+      do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."}], "role": "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '670'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 149,\n  \"totalBillableCharacters\": 440,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 149\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:11:57 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How long is a day on Mars?"}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "You are Scout, a research
+      assistant. Answer only from the user''s notes below and this chat. If the notes
+      do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."}], "role": "user"}, "generationConfig": {"maxOutputTokens":
+      120}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '716'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"A day\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:57.387849Z\",\"responseId\":
+        \"3c7HaonWF5j-7bEPvdqD6A8\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" on Mars lasts about 24 hours
+        and 39 minutes.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:57.387849Z\",\"responseId\":
+        \"3c7HaonWF5j-7bEPvdqD6A8\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"AY89a1/NisUxMRBGlCpwa4vYSETexfx1v026ARcvPIRk/37jPVWFM5njZfnQzqe3xr+3K26GYYcsZkMsUEiCrsv6qbGRYE1MoomCKsNp8K1AEozA0yzw6wBi7b8=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 149,\"candidatesTokenCount\":
+        16,\"totalTokenCount\": 165,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 149}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 16}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:11:57.387849Z\",\"responseId\": \"3c7HaonWF5j-7bEPvdqD6A8\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Thu, 08 Oct 2026 17:11:57 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which rover landed on Mars in 2021?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout, a
+      research assistant. Answer only from the user''s notes below and this chat.
+      If the notes do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."}], "role": "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '679'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 153,\n  \"totalBillableCharacters\": 449,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 153\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:11:58 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which rover landed on Mars in 2021?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout, a
+      research assistant. Answer only from the user''s notes below and this chat.
+      If the notes do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."}], "role": "user"}, "generationConfig": {"maxOutputTokens":
+      120}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '725'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"The rover\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:58.155812Z\",\"responseId\":
+        \"3s7HaqTBCf6pr8kPuqTL6QI\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" Perseverance landed on Mars
+        in February 2021.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:58.155812Z\",\"responseId\":
+        \"3s7HaqTBCf6pr8kPuqTL6QI\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"AY89a18qjQJdTKFykQxr5EX5C7qfwkETvFb6cI3gOYw/ig4lFMSHREHEu0CQtDkBE/rouRhk+0MUprxNKjRpN1hWwX3gdrJRJoT5G0JEJFirm6qNzMZYPVvUqPE=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 153,\"candidatesTokenCount\":
+        14,\"totalTokenCount\": 167,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 153}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 14}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:11:58.155812Z\",\"responseId\": \"3s7HaqTBCf6pr8kPuqTL6QI\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Thu, 08 Oct 2026 17:11:58 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "What did I tell you about my project?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout, a
+      research assistant. Answer only from the user''s notes below and this chat.
+      If the notes do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."}], "role": "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '681'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 150,\n  \"totalBillableCharacters\": 450,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 150\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:11:58 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "What did I tell you about my project?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout, a
+      research assistant. Answer only from the user''s notes below and this chat.
+      If the notes do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."}], "role": "user"}, "generationConfig": {"maxOutputTokens":
+      120}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '727'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"My notes\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:58.872626Z\",\"responseId\":
+        \"3s7HarKhNfWRr8kPvJ6DqAY\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" do not contain any information
+        about your project.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:58.872626Z\",\"responseId\":
+        \"3s7HarKhNfWRr8kPvJ6DqAY\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"AY89a1+eLxbD2zDkYKdTh7+4O90HmNfstyuI9hyf9U4eUen7uupXrZV45UQtdHQjf75bnR7OWlvIvhe4+4iwvMNtAdpBkNZm20gGipuQIMG+B3UAqTH7XRI7bmU=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 150,\"candidatesTokenCount\":
+        11,\"totalTokenCount\": 161,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 150}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 11}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:11:58.872626Z\",\"responseId\": \"3s7HarKhNfWRr8kPvJ6DqAY\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Thu, 08 Oct 2026 17:11:59 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '706'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 156,\n  \"totalBillableCharacters\": 470,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 156\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:11:59 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '751'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"Mars\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:59.695491Z\",\"responseId\":
+        \"387HasO5KvqDidsP6vmrsAc\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" has two small moons, Phobos
+        and Deimos.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:11:59.695491Z\",\"responseId\":
+        \"387HasO5KvqDidsP6vmrsAc\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"AY89a1/sqaXEKNUOA+Q11wcIiZs4o03LDCJlCDfHCu9xrAHQ+uk+T5qhuHnsjuGN8b6X0zkIYcUGNBp4Tjbro3UUY5L3I2dRb6aEA6OurFZHeORGVD6TKe/LI1I=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 156,\"candidatesTokenCount\":
+        12,\"totalTokenCount\": 168,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 156}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 12}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:11:59.695491Z\",\"responseId\": \"387HasO5KvqDidsP6vmrsAc\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Thu, 08 Oct 2026 17:12:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}, {"parts": [{"text": "Mars has
+      two small moons, Phobos and Deimos."}], "role": "model"}, {"parts": [{"text":
+      "How long is a day on Mars?"}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '863'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 176,\n  \"totalBillableCharacters\": 527,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 176\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:12:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}, {"parts": [{"text": "Mars has
+      two small moons, Phobos and Deimos."}], "role": "model"}, {"parts": [{"text":
+      "How long is a day on Mars?"}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '908'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"A day\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:12:00.350286Z\",\"responseId\":
+        \"4M7Has6wFeWBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" on Mars lasts about 24 hours
+        and 39 minutes.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:12:00.350286Z\",\"responseId\":
+        \"4M7Has6wFeWBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"AY89a18ymDKmDQRDVrGM6IKVjvG6HbXCXec8NkWdip16z5/Wi2M1GrvySI/jKC4WV22uz8/uPhlvjgAzf1ckHjI3J6JO8qS5+WltUFttv1hfjKruHKAIXrOfLxM=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 176,\"candidatesTokenCount\":
+        16,\"totalTokenCount\": 192,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 176}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 16}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:12:00.350286Z\",\"responseId\": \"4M7Has6wFeWBr8kP09Or0Qs\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Thu, 08 Oct 2026 17:12:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}, {"parts": [{"text": "Mars has
+      two small moons, Phobos and Deimos."}], "role": "model"}, {"parts": [{"text":
+      "How long is a day on Mars?"}], "role": "user"}, {"parts": [{"text": "A day
+      on Mars lasts about 24 hours and 39 minutes."}], "role": "model"}, {"parts":
+      [{"text": "Which rover landed on Mars in 2021?"}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1035'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 204,\n  \"totalBillableCharacters\": 596,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 204\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:12:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}, {"parts": [{"text": "Mars has
+      two small moons, Phobos and Deimos."}], "role": "model"}, {"parts": [{"text":
+      "How long is a day on Mars?"}], "role": "user"}, {"parts": [{"text": "A day
+      on Mars lasts about 24 hours and 39 minutes."}], "role": "model"}, {"parts":
+      [{"text": "Which rover landed on Mars in 2021?"}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1080'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"The rover\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:12:00.912522Z\",\"responseId\":
+        \"4M7HaorZN_6pr8kPuqTL6QI\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" Perseverance landed on Mars
+        in February 2021.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:12:00.912522Z\",\"responseId\":
+        \"4M7HaorZN_6pr8kPuqTL6QI\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"AY89a1/RmKt+NxtFzFG2SPRlqI0OOe7mewnbP/rHl4muE8oaJnObzD/U8FGDKuk4XjDTbgABO7GqXhcUymWWe/S/Pq9z5itpmO1dn+DXvtXKplk+OqOKGkkaLpI=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 204,\"candidatesTokenCount\":
+        14,\"totalTokenCount\": 218,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 204}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 14}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:12:00.912522Z\",\"responseId\": \"4M7HaorZN_6pr8kPuqTL6QI\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Thu, 08 Oct 2026 17:12:01 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi Scout. My project is a school talk
+      about the moons of Mars."}], "role": "user"}, {"parts": [{"text": "Mars has
+      two small moons, Phobos and Deimos."}], "role": "model"}, {"parts": [{"text":
+      "How long is a day on Mars?"}], "role": "user"}, {"parts": [{"text": "A day
+      on Mars lasts about 24 hours and 39 minutes."}], "role": "model"}, {"parts":
+      [{"text": "Which rover landed on Mars in 2021?"}], "role": "user"}, {"parts":
+      [{"text": "The rover Perseverance landed on Mars in February 2021."}], "role":
+      "model"}, {"parts": [{"text": "What did I tell you about my project?"}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "You are Scout, a research
+      assistant. Answer only from the user''s notes below and this chat. If the notes
+      do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."}], "role": "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1214'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 227,\n  \"totalBillableCharacters\": 673,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 227\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:12:01 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How long is a day on Mars?"}], "role":
+      "user"}, {"parts": [{"text": "A day on Mars lasts about 24 hours and 39 minutes."}],
+      "role": "model"}, {"parts": [{"text": "Which rover landed on Mars in 2021?"}],
+      "role": "user"}, {"parts": [{"text": "The rover Perseverance landed on Mars
+      in February 2021."}], "role": "model"}, {"parts": [{"text": "What did I tell
+      you about my project?"}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are Scout, a research assistant. Answer only from the user''s notes below
+      and this chat. If the notes do not cover it, say so in one sentence. Keep answers
+      to one sentence.\n\nNote 1: Mars has two small moons, Phobos and Deimos.\nNote
+      2: Venus spins backwards compared with most planets.\nNote 3: A day on Mars
+      lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest planet
+      in the solar system.\nNote 5: The rover Perseverance landed on Mars in February
+      2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role": "user"}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1021'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 200,\n  \"totalBillableCharacters\": 586,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 200\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:12:01 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How long is a day on Mars?"}], "role":
+      "user"}, {"parts": [{"text": "A day on Mars lasts about 24 hours and 39 minutes."}],
+      "role": "model"}, {"parts": [{"text": "Which rover landed on Mars in 2021?"}],
+      "role": "user"}, {"parts": [{"text": "The rover Perseverance landed on Mars
+      in February 2021."}], "role": "model"}, {"parts": [{"text": "What did I tell
+      you about my project?"}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are Scout, a research assistant. Answer only from the user''s notes below
+      and this chat. If the notes do not cover it, say so in one sentence. Keep answers
+      to one sentence.\n\nNote 1: Mars has two small moons, Phobos and Deimos.\nNote
+      2: Venus spins backwards compared with most planets.\nNote 3: A day on Mars
+      lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest planet
+      in the solar system.\nNote 5: The rover Perseverance landed on Mars in February
+      2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role": "user"},
+      "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1066'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"The\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-08T17:12:01.737460Z\",\"responseId\":
+        \"4c7HarSBLZzc7bEP7r6DiAU\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" notes do not cover your project.\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:12:01.737460Z\",\"responseId\": \"4c7HarSBLZzc7bEP7r6DiAU\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\",\"thoughtSignature\": \"AY89a18fcMBSjblsKxBhyOM8PF9hdGFutLzjTEcbDJD1eU92yaB0tGVIr7h91e7UABPR0rNYnOZ8/g2nlEFvzVCzf/HtXxvvnhjm+bw+Q7SebrhAZBfo/DuTCw4=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 200,\"candidatesTokenCount\":
+        8,\"totalTokenCount\": 208,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 200}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 8}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-08T17:12:01.737460Z\",\"responseId\": \"4c7HarSBLZzc7bEP7r6DiAU\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Thu, 08 Oct 2026 17:12:02 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

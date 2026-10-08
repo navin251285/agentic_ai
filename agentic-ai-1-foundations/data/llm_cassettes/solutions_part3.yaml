@@ -1,0 +1,482 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "<note>Mars has two small moons, Phobos
+      and Deimos.</note>\n\n<instructions>\nWrite one card for the note above, for
+      a list in Scout''s notes app.\nFormat: the planet the note is about, then \"
+      | \", then a summary of at most 10 words.\n- Use one of: Mercury, Venus, Earth,
+      Mars, Jupiter, Saturn, Uranus, Neptune, Other.\n- No full stop at the end, no
+      quotes, no text before or after the card.\nThe app splits each line on \" |
+      \", so anything else breaks the list.\n</instructions>"}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are Scout''s note indexer. You
+      turn a user''s research notes into short, exact index cards. You never add facts
+      that are not in the note."}], "role": "user"}, "generationConfig": {"maxOutputTokens":
+      200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '786'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        | Two small moons, Phobos and Deimos\",\n            \"thoughtSignature\":
+        \"AY89a1+WLJEXkB2lcPwR2aUtiuj/udgHz+Eb+hx8u9lPx29vztyCpxPbPjGpApUYmNDO7CLPo1vhIEYZkid9CHuDcYgqGHmLYDEtATfAG5sX+6do5DUJFav1gXw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 165,\n    \"candidatesTokenCount\":
+        11,\n    \"totalTokenCount\": 176,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 165\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 11\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:15:06.173150Z\",\n  \"responseId\": \"qt3Hat7ICoeFr8kP-daSkAU\"\n}\n"
+    headers:
+      content-length:
+      - '891'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:15:06 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<note>Venus spins backwards compared
+      with most planets.</note>\n\n<instructions>\nWrite one card for the note above,
+      for a list in Scout''s notes app.\nFormat: the planet the note is about, then
+      \" | \", then a summary of at most 10 words.\n- Use one of: Mercury, Venus,
+      Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Other.\n- No full stop at the
+      end, no quotes, no text before or after the card.\nThe app splits each line
+      on \" | \", so anything else breaks the list.\n</instructions>"}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are Scout''s note indexer. You
+      turn a user''s research notes into short, exact index cards. You never add facts
+      that are not in the note."}], "role": "user"}, "generationConfig": {"maxOutputTokens":
+      200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '791'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Venus
+        | Spins backwards compared with most planets\",\n            \"thoughtSignature\":
+        \"AY89a1/CqkYHdpR5a5OVk+ACgM5DiIlH4hBpUZssyd0yTbVpU8qEc/o/Rk854uWvhx+DeqOGNNTkKFvNsqhTc4dBY+97Y2OD86uOG9nXU17RBt0Boe0BnaR/EMA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 161,\n    \"candidatesTokenCount\":
+        8,\n    \"totalTokenCount\": 169,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 161\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 8\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T18:15:10.166718Z\",\n
+        \ \"responseId\": \"rt3Har6WCpj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:15:10 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<note>A day on Mars lasts about 24 hours
+      and 39 minutes.</note>\n\n<instructions>\nWrite one card for the note above,
+      for a list in Scout''s notes app.\nFormat: the planet the note is about, then
+      \" | \", then a summary of at most 10 words.\n- Use one of: Mercury, Venus,
+      Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Other.\n- No full stop at the
+      end, no quotes, no text before or after the card.\nThe app splits each line
+      on \" | \", so anything else breaks the list.\n</instructions>"}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are Scout''s note indexer. You
+      turn a user''s research notes into short, exact index cards. You never add facts
+      that are not in the note."}], "role": "user"}, "generationConfig": {"maxOutputTokens":
+      200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '792'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        | A day lasts about 24 hours and 39 minutes\",\n            \"thoughtSignature\":
+        \"AY89a19bgz3xxjZhVhj56+c9fKMXwBm1yQdxcfQl1RNVRu0dp27/0YKxZdFRVtrZ2k/GKYL/HCG1Xw43304OLkOZLp/9/DvyPkRuPoH9IC8ZuL2O6pf5WbiMbRQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 169,\n    \"candidatesTokenCount\":
+        15,\n    \"totalTokenCount\": 184,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 169\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 15\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:15:14.165604Z\",\n  \"responseId\": \"st3HauSNCvOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:15:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<note>Jupiter is the largest planet
+      in the solar system.</note>\n\n<instructions>\nWrite one card for the note above,
+      for a list in Scout''s notes app.\nFormat: the planet the note is about, then
+      \" | \", then a summary of at most 10 words.\n- Use one of: Mercury, Venus,
+      Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Other.\n- No full stop at the
+      end, no quotes, no text before or after the card.\nThe app splits each line
+      on \" | \", so anything else breaks the list.\n</instructions>"}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are Scout''s note indexer. You
+      turn a user''s research notes into short, exact index cards. You never add facts
+      that are not in the note."}], "role": "user"}, "generationConfig": {"maxOutputTokens":
+      200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '792'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Jupiter
+        | Largest planet in the solar system\",\n            \"thoughtSignature\":
+        \"AY89a18A7ka1tz1IsnHiztqIaz9vkdMaUM2o9YpB6VYcouOp3Hl7ARBocJARpITn+/Ff3W+7T/3FlcJqGYyxbixz4eu4pD14cVscjJRFCRe0L6eSpetWlcwGO3g=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 163,\n    \"candidatesTokenCount\":
+        8,\n    \"totalTokenCount\": 171,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 163\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 8\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T18:15:18.192641Z\",\n
+        \ \"responseId\": \"tt3HaoHhC-WBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '892'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:15:18 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<note>The rover Perseverance landed
+      on Mars in February 2021.</note>\n\n<instructions>\nWrite one card for the note
+      above, for a list in Scout''s notes app.\nFormat: the planet the note is about,
+      then \" | \", then a summary of at most 10 words.\n- Use one of: Mercury, Venus,
+      Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Other.\n- No full stop at the
+      end, no quotes, no text before or after the card.\nThe app splits each line
+      on \" | \", so anything else breaks the list.\n</instructions>"}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are Scout''s note indexer. You
+      turn a user''s research notes into short, exact index cards. You never add facts
+      that are not in the note."}], "role": "user"}, "generationConfig": {"maxOutputTokens":
+      200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '797'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        | Perseverance rover landed in February 2021\",\n            \"thoughtSignature\":
+        \"AY89a1/PfEkn92kJBf05EmNaCsh9n079ndOJtfOg75t4JXEG+/t4WTm+QGY3xDcrPA6kaBPepCqVx0bux2d/DNUklGqv7SIDduuNLMPaD7ep28fSSthsh5ZQRvM=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 167,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 179,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 167\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 12\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T18:15:22.189124Z\",\n  \"responseId\": \"ut3HasTFC_6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '899'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:15:22 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many notes do I have?"}], "role":
+      "user"}], "tools": [{"functionDeclarations": [{"description": "Search the user''s
+      notes for one word; returns matching notes as a list of {id, text}.", "name":
+      "search_notes", "parameters_json_schema": {"type": "object", "properties": {"query":
+      {"type": "string"}}, "required": ["query"]}}, {"description": "Return how many
+      notes the user has, as {count}.", "name": "count_notes", "parameters_json_schema":
+      {"type": "object", "properties": {}}}]}], "generationConfig": {"maxOutputTokens":
+      300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '566'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"count_notes\",\n              \"args\": {},\n
+        \             \"id\": \"call_2929274\"\n            },\n            \"thoughtSignature\":
+        \"AY89a194qewfbGm00ZRtkO+dMYTuwu0gAxqZx1pZwxG/RSDKkif3pFJE5MKVbLpgwdT3UGd0mI7gztV1BX8ENo0HjMu2/xk+yHXRPieNN1GQ2SDBImEnTyQ137w=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 69,\n    \"candidatesTokenCount\":
+        10,\n    \"totalTokenCount\": 79,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 69\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 10\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T18:15:26.151580Z\",\n
+        \ \"responseId\": \"vt3HapygCfOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '966'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:15:26 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many notes do I have?"}], "role":
+      "user"}, {"parts": [{"functionCall": {"id": "call_2929274", "args": {}, "name":
+      "count_notes"}, "thoughtSignature": "AY89a194qewfbGm00ZRtkO-dMYTuwu0gAxqZx1pZwxG_RSDKkif3pFJE5MKVbLpgwdT3UGd0mI7gztV1BX8ENo0HjMu2_xk-yHXRPieNN1GQ2SDBImEnTyQ137w="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_2929274", "name":
+      "count_notes", "response": {"count": 6}}}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes for one word; returns matching notes
+      as a list of {id, text}.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string"}}, "required":
+      ["query"]}}, {"description": "Return how many notes the user has, as {count}.",
+      "name": "count_notes", "parameters_json_schema": {"type": "object", "properties":
+      {}}}]}], "generationConfig": {"maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '945'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"You
+        have 6 notes.\",\n            \"thoughtSignature\": \"AY89a18AvqyaB4SHjLi50eBIZG/hexucC6EQbvqcQ0pBiq1N1vcswIlNj6zZSX7quQEh/MQl02Oot3LKEL8kiZSDjId4sdXAg5wgi6bN5H5yK64EnzGSL25QdTY=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 85,\n    \"candidatesTokenCount\":
+        6,\n    \"totalTokenCount\": 91,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 85\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 6\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-08T18:15:30.163434Z\",\n
+        \ \"responseId\": \"wt3Haur8CZj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '862'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 18:15:30 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

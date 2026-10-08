@@ -1,0 +1,1371 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which note is about a spacecraft, not
+      a planet? Give its number."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '755'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Note
+        5 is about a spacecraft, not a planet.\",\n            \"thoughtSignature\":
+        \"AY89a1/g1WpQVLQK6x0lV+E6EtZ8RLp6v5LcoTH0e8CI8zQ2qtIQ1prYpPEqzaJNkpAI0DTSWkMzM6z0+hug9DNWIQxaK54UnX5MOX+geaqXPR42e6OZlR2AO0Q=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 156,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 168,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 156\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 12\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T16:57:35.108156Z\",\n  \"responseId\": \"f8vHavzMBpzc7bEP7r6DiAU\"\n}\n"
+    headers:
+      content-length:
+      - '893'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 16:57:35 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which note is about a spacecraft, not
+      a planet? Give its number."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '755'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Note
+        5 is about a spacecraft rather than a planet.\",\n            \"thoughtSignature\":
+        \"AY89a19jaILRXf/mQzqilstHYzWdV5Xqp8aeZu+f4wLXZU+m/8wqi98Eq4r7w9uiforaViSTF5cdAZamHkaTkwTknEMQKa9DAIWKkAEKlj3Ih9Tq/VDExknhJSE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 156,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 168,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 156\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 12\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T16:57:35.585801Z\",\n  \"responseId\": \"f8vHasngI4eFr8kP-daSkAU\"\n}\n"
+    headers:
+      content-length:
+      - '900'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 16:57:36 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which note is about a spacecraft, not
+      a planet? Give its number."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '755'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Note
+        5 is about a spacecraft rather than a planet.\",\n            \"thoughtSignature\":
+        \"AY89a1+Ko+T9KDzmvOBusLVoCTw+/Lc40hugxYRmUa/5urJ+LLszIcbvAkV2X6Tc0ZP8mv/JxFSxxRYL8kwU3hQhEL1CVVXAfepjmCAd+2XNpzfWdtqV8cwzCu8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 156,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 168,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 156\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 12\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T16:57:36.195148Z\",\n  \"responseId\": \"gMvHasz0C-WBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '900'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 16:57:36 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which note is about a spacecraft, not
+      a planet? Give its number."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '755'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.8-flash:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Note
+        5 is about a spacecraft, referring to the rover Perseverance.\",\n            \"thoughtSignature\":
+        \"AY89a1+56jHl6UKUgYX1ZQoan+sByPNbO12rQ6hULF/lHi+hRAP626KaZLugU5qZio+C8R0rjJNMYTJU5ycvfBfxeXBAeGrQnYDddQJEEAM6G1bcBmwW163uJVXhJqpnLYfddZ4TH2XL2L8yXAPbY2FIEEmvIe5bO1j9Lmv+5YRYLlHjMUpLsaY3I4LPIF1tpmffYu/oKAYzLtM8gJr8HkXVsp0JywOXZNDuexUyFS/CKoX/r6WMuIJ2uZCoIpjcFU4MBqqb88u/OzPgHWEgMEjXTPhhsUx/RfrbVg/kFOHXHbrQGh/EeS5t0ZOh/KWetEaqE66DnsTyAwMnR2loULlfQrBkSFBxqfemDzgxZvUbuB4IWs3dv43zjn5F+HDoM5XT7XFaUejH00mATy/u0VXsdLslEF8PX8WM0YiR7ePLMrhVFRqQoF+nbOMg58dFbBQfxHKjww8rOhgFEoLeWsVy76fm0eQ16MDh/WPex6FzmqFm8cn/ntxaNkm7AhbPdEXY4HCs8LsAoXKaYK7enfBLPLxVpBFa6uKe3DZT9hp2dyB1ZLigBQN2EnwUdtj1onlqn8xcGm3Sh0jukb905ZS7bM79hBWgH5WaAXB6hrDDVI0n8xkvVJXu8OGLMxFQi+GXjix1Rjw9yYWapxq2F3gUJuzlJPhJYxq0yosQ3EjkO9DUYxejKwG4rHFs56Bt7ewWhn4JBw7sdS0sOo3KAnyDP6vo6BkusZdgnFWH7EGiToIK3szcEjj9Aq9AjdH5aU/G0X8uepK2ggmUZ2OL37co/4WXFQKzXIe96R/uxhFmF38koTdgMjGD8um2B3U//V/1SBhFWb7ILUNPW21uurTaZjEZ0cflVHRtv1quzerb12A0VFOjyJjWD0csKc0Ort28EAFupDZXFLy+O9TN+T8+HZLp+GzyTFr7bw8+k8JHPwvYEUfuS2TZnYtHorav6ANIG0UvcZtFeRK5XdmdVv8jVZ2V87Q1hEgeHCo76zRshQ81K8TQ9pGPV2xa+BYY7tPJmgbxPJJHwL0Qlj5PoMZVXy0x/bvZotF8p/DbnR6xV2cLadouzu++nFcqcZXXCTyzTQwnW/cWaa1Fgd8/ZhA+g/2ItmmNH0k1pMqjDbqQNzTjeXqNVF/nP2q2XNJI91VooB6Pxh3sl0HB+GHBqMAAHZmJdCmwWg1UTitrAoWkiLraZWUfxfELJ8RT06AgbCzKBVRndCcscSES4zVTYOHMwMGWBjQ1OM4voQbdMWji01t/RIq0tn6lfFgRacNe4gc4iGgE7BukPg2tbDgwAyW3wBFAkQ3T4enikNM04xjzKehEokFBEOBWlgyjtVn+f4+opBZ/USIQdZC5bfG9dlb0W7MGSL/C5BnxM31+rl+fxajojBsU7Hs7O3KgTC9ljvtJqN3MYSwZxbm1HSnfBTJ8JsreDaLijQurLfoZlYKwDwNdIn9SNflZY9mpZHpr7WODqALtWZoZSSjQDw8fzJL2VFBUF6GIhfIfPamkrdiln21iMYKaOP+TyQ4rHVgA3shf/TpeF7UJq3tJRXH6NEGc1uXo4oLMRyjJhtFoV8SlJD/42bAuhEqU+bYuwrokyauTjlQDX7o2yllHJV5R5FZE/QRM+wdIOkdriamoGQuA2rcSeUD3QKLG9mxNRO0vaE8vOFRiLNh13JOgEzNstXHyxiNMyqPlXi39k68q9hRC+CwwaCTfwb6hpEIrWxsGxM4lJ59mdBw6kwbnsKKgLuROF/QJf3wZSkBWv73RdAWFLvj1tn8nc9ogLhvWAJMcndrgkA/a0zPX49Z2vrzDaMUCDx0so819CpYTfg9fLi6Y6qPAQoIfMNYPMxE4fSTPcc8/jhcLFCMVNWBQvqi94yvp4Jq6jZq0Siy4aY6VoZBNt8WP0l9ShxVLQA==\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 156,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 541,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 156\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 14\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 371\n  },\n  \"modelVersion\":
+        \"gemini-3.8-flash\",\n  \"createTime\": \"2026-10-08T16:57:36.766670Z\",\n
+        \ \"responseId\": \"gMvHas7lLvqDidsP6vmrsAc\"\n}\n"
+    headers:
+      content-length:
+      - '2734'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 16:58:52 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which note is about a spacecraft, not
+      a planet? Give its number."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '755'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.8-flash:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Note
+        5 is about a spacecraft, the rover Perseverance, rather than a planet.\",\n
+        \           \"thoughtSignature\": \"AY89a1+6i9xHcIjEiZFgXSEhVRSp7s9s3q1mckEN7hs4r/fffHKudWSHEo3iLEjJDjqw1rbuB9FBh2f4XHX5Upi6o8GIOv9beKqt7c0mh3H5iglbn+i6OPII1ZWZyEUj8MXcoWru1SHA+VGJpohlSM9FAejt6NnsCPHEW5EoKmc0UYWm/sBDrhvGq53ZMKPWKjGMEnN+WYR3Ec9fvI6QJ0e+zh6HbyO2Ob5A816m8y1CtyQ3pf8/U/Tw658yt73OIwZeO9PSNDB6ofhwjeEJzBMeQrXtsiXSAIBkcRwwF/UZ3/Kr/Xfg/w1WRff7oS49yg21vryADTdqMoS5Y6alpr2s1ZDon0gst5q/HSEjRhIGg+VKDhNAXJLHmp9Ml17pWb/eOTc4+DTb1kuFNGdwPjJaWWEFaHk5tRvzG/TCtTtNAKVET7q1LlHnalKCOaN1FPOJ7GGBxr0AkvqaEeT/XSCQ96aSfwqij1zTPs6jGGz3oNbLH//SFOW1P+bPj4VfGBmq7qmP7asBy45yGVCM8EzIhnSNGrNmq8NAV9hnmJO+ICH7B8MK8T4kL4S3PQT5JkrqMJBF/P/dAzfCAAwxie8XCm+Pq/dRI2HDCErwi38IZWgzEHRDqpD0Ku8GVbw1bOZ6O7TtjkfgJqv0ZsgUs2rKOrUmf3GILWRtcW9jwC3UmJUts6W6wdaqka1NsS+V3goLIb08jbOsU7EzHcRRG6HO8pJCzhJeBsnjcqQiom+pKTfkiSJ12KOIQ/UEOHt6GHgA4tMUjwBj4JqVslOLevp43DWQwFjMmH8GQCgGCyx3rVj8UAv0l4wcZtkpwJ87s1uQCHJQre+k7EOQ+iLttoYFqgKPVuSCx5BySBcR4B5SO2vem9RxuPwd+3y3XgDupxEzB6fxuHn1uWUjdPNGwDH5TxAwNPb/Y6wTLVis68gsLsVNzjXJ7Go0kHuVV3xjEcJSgXFjEzHAz25+jeuLk4J9rMjf8bLSAdl3St/OlX+jof9Jt8J1ueWTB0BfFiHZbZWYN67mgQ6zY1TpUEwRIKaYMNtrBR77v3R6oXMIf0j43uo5eBGv2FgvfMsdA8N5IPRUTZ5TXcY1iZTUmV5nbL8TKkm1WVEkjDalq2qGHhme9rHePLQaVDtiAe2JSxT89NEhv1INqj1M9YtmewEU/WppXugigk5Ulf4uJzA8NHcBXUWZXWFM3W0kvjpgwr33qMSOfu25Syex1qRnzQuoupKTlqHvKw9KfNClABjJ4Nx4W0saqq38nuBg48/o+0Bgq0Gxha68a2oCFNJh+gPi8UGX24gosBubUOvI9Ck0+1NvGV4ElOJlr0w8Jn1FUvkHY2Khc6TC41UHlaekwEEtEL054MtX+8UTmh5IE9Nom7j/dDHmknC9sZ2Q2BJwEGjYDmbhQpYOZtO38ZM5fYP2YsMRtkwUrnLxo0CGfJFNtnWj6aVjDZ5JgutGRraIfhsvI/+I5WuGiTFIxp+ZwmxQ/J+1j6yFkXtjkaj07lCrFQoGvdmGJHG3+pN92rxUxE9WAWuThIWZKrzZn6xVW6RBrXveIUbF5Ixvc3Q/IhqOT3htox0ADqFOegNk\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 156,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 490,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 156\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 17\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 317\n  },\n  \"modelVersion\":
+        \"gemini-3.8-flash\",\n  \"createTime\": \"2026-10-08T16:58:52.939446Z\",\n
+        \ \"responseId\": \"zMvHararOfWRr8kPvJ6DqAY\"\n}\n"
+    headers:
+      content-length:
+      - '2419'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 16:58:55 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which note is about a spacecraft, not
+      a planet? Give its number."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '755'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.8-flash:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Note
+        5 is about a spacecraft, specifically the rover Perseverance.\",\n            \"thoughtSignature\":
+        \"AY89a18MWYaeKXouMp27GP5EPfXdbRhd/0rQ5G9qocvP6Qxjl/97hq2117RkMmV+wtKBbnVKMSXkIZc2VwRc17TQAqjWUtvtX8tR73TcPrvRRJkqPUcbIqPEa37LPhmsKqShRxdrbCut+Kg4U6d5j/XaqRENLwU+eldJWdBK+OikxfCF57ok7to8ErHRNBqWsbmudDBVSxfJ6lrWXtwiGgMv44f4wNEuDgqGRJliDT851+4ae35bsUcJ4BNylW3ero7+6zSBr2vC87y8vt7YSAW/UrhDD5uaznj39yQEfccGN21VYfTlAF0phJaVpICTtxwgqejdmwS8KvCLDJBlQhTnbyGp6NILEh+qau7lOf5JQPFlcunPjJKWdHdR0tRif3c+H8uR3jL4sdmNfZP0PEX0tfJEjDVK0gCfkQN/qRZWfQLuQ8cY392Ek2KeEJOszzhM62bkySkGDSFCgIgQ6AouF+0fbKZmSazJNhCHRqhfbgm1+GahkF3YbbiIROj2Vc2mWncElBxW97ukLEOVKNbD+LKAHPoyXg69mHm2Gz3A+QAxeSvm5IqWJxS6j+tzR8p1kVqXQ4RzTIF82wMqh7s9V8aa66oxk7ozaevHiyZNLVLmlDo1GZIcK73HwXE0wKcTpWYblaAqwCQ4ADSt6x8CpT/Ps6IcS597BHSTYu85bKKJ058xXXj4zuVMC4W7eF+jtbMp/1F9mZ96XZX8ZVZoXavtmiPKnhK5cP+gay27RRiEjBkxKzRjoC6/HzeMbS7CFK9+o7dmCAatf77eIUhf21sp00Db7FJSG1Kb4uybt0b4pvwpydq7/BuImWb9L6wkT1f1aA5zJreHPh1G1ajFJ/IwUp4QYCqpW9y2hglnR3j5eoPPatvBJ4hplaaVCEDMOII7tglUaCJ6Et7YdNLKzmI/xz1ODOYem9rlI2sADwXGNviBOs03AkueKaDFM9+pF+iQM6eitv24moYh7ul97juA/3HWIVxwM8KklhLJy1V036lFuc1++aAf6HNVwvOW0RgjwcIvKXN52HlLztuvc6VDfGI7hiyLY4GArFYa3+j98oXPzmTCSDsIpk671Z6QREYx/caCCuHF1BHDBUrMYbkxOwJ4nni2QLnQxa8byW9l/2mx15TLg6VyfmuGwWDuz9ZtzHK/bewtgCpsUFTPMZmg70162cRjRdS7VFfP/NEZphWsr1WfCHsfg7bSiCZOjvQiI9FZreBxdnGs/qwPyjMSicZhjgdxXChYcgMxQdqeQKNsB8jgfVAuUp9ujlaiFqitd96x530HmNv4Hhq6dxxD/Bi/04lczKtt2SRYpDGiygP8eDbbRVUVZaGTDpymCohH87flwhEEHpwOfXPrXALle4UmpRS4Oxet+vk//tdPEGnorojK7SJjIWeDq/83Jod2tZBKjL7C6Yn0spnDdcs0clRBte4O2CaccESO2kHktszIJsAqcTGhBnj2WLio0Yvd0xNbFiZNZdceG/wU9UIPrKB+VfYpZMjIQnh0pSR/xwdK9Y10NXUnx00rTz1OgbbUckFSaAs4YGp6MeYlaV3rnad+PniZdUtJ1TeNFK8QdoXwCfsOGUoL/BQClkiPxc6gQMse+nhdwX8guw3k9JOcNiY1Nfr+lEjiNGPeS9odgjBBMpP1YNhr0yaiofdjCO8vD59WE7KgajhlcVoIPoXhSwJUaBwx8OU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 156,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 508,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 156\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 13\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 339\n  },\n  \"modelVersion\":
+        \"gemini-3.8-flash\",\n  \"createTime\": \"2026-10-08T16:58:55.485251Z\",\n
+        \ \"responseId\": \"z8vHaoPPHf6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '2522'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:00:20 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which note is about a spacecraft, not
+      a planet? Give its number."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '755'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-pro-preview:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Note
+        5 is about a spacecraft.\",\n            \"thoughtSignature\": \"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\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 156,\n    \"candidatesTokenCount\":
+        8,\n    \"totalTokenCount\": 692,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 156\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 8\n      }\n    ],\n    \"thoughtsTokenCount\":
+        528\n  },\n  \"modelVersion\": \"gemini-3.1-pro-preview\",\n  \"createTime\":
+        \"2026-10-08T17:00:20.403400Z\",\n  \"responseId\": \"JMzHasjPGJj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '3429'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:00:28 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which note is about a spacecraft, not
+      a planet? Give its number."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '755'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-pro-preview:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Note
+        5 is about a spacecraft.\",\n            \"thoughtSignature\": \"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\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 156,\n    \"candidatesTokenCount\":
+        8,\n    \"totalTokenCount\": 588,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 156\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 8\n      }\n    ],\n    \"thoughtsTokenCount\":
+        424\n  },\n  \"modelVersion\": \"gemini-3.1-pro-preview\",\n  \"createTime\":
+        \"2026-10-08T17:00:28.209332Z\",\n  \"responseId\": \"LMzHarTjDJzc7bEP7r6DiAU\"\n}\n"
+    headers:
+      content-length:
+      - '2837'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:00:36 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which note is about a spacecraft, not
+      a planet? Give its number."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '755'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-pro-preview:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Note
+        5 is about a spacecraft, as it mentions the rover Perseverance.\",\n            \"thoughtSignature\":
+        \"AY89a18+Ac4YtwRN6rn7tn1xrJx8e/QjvksOE3khh15jqz+8/DEmTJhUyZjQh3fzPHFuFX0mgn7OD7dpASIZfupYZb59xs0iBir88SB3dD+gOQaALsACWS2Lx9XF2qKDoTXfbiU5uWnQ+14fOanoz3v7AzS243pP9XeH1QqDlndJjlr/cSOjVtN4wXJHc9WPX2jV48xJfhjr+t1LO58iQGDUavF2trXlllJgUiyhfeg/eUoL92pkgaXkIoZ3Hi5CSLhI0Yao0K1t7PS6xZ32FUgrtbd/I6HrxLB8OpMExZCK8Qy6la3f0YCbx8zoadiomxuK4OCh9tJqtCtNYVDh7gE5mpcrhi5NnYgtD2iZvhYLvXuXK58rYqCK7rKYNxYvnNwgOP/VS62YT4DIP+SaeTCD/H5dRLCeR3D604dZPe3gYr+gRlaECTZsgBPpBaIKa3zvMAL9EUIOHogbV+c6fiUlhKD11QirKebTXgoxd3W+YvbV7aoadlgpLuCAQVD4o9hWtXmrqMqzJ8+hCpw4ytdUDUVdCwPQmWweEPKKv3BJR8HCxAHyATaSHwQvLwzCJGrBj9KrvJhe2Z4zERVd6MYGRt75Eu88sMUogrxOU9UDsFa7YuCLpEpVPTkpBQpnvrHITb1kiK8KGQX0n/GE7tif4qW0IPxjSgOfZ0X1fxW+YtuByu1UDefP7EF1Z/uxeaOFeKguMa3wHcYYtK331CK3Q2xJc6GdX4SbcA/gsQSRvWRIqos2r4bKU1raNdimWU7fP9VmjKWt9Bnrfj+GIildzP1E0aGreJ0dhKOitG5gpxcXAoKXb9qjr8QJJpbR3k08KPQBjl7NpMTKFysR6AfYhChjmnEZJ+/VQglBGW0QGC9CE8UMSfzSuD593V23T/kMRVgnAu4LCsDJT1HCH7lHL1Kd9ZsXqPnuAgE/OW27k1ZcXZO0g6ZpbRJsE1Yvbaa1oxODqHpdr/SME6oHRp0p36IKBwxjljCPWJxF+rUopTWPsHF+03+NnfkDll6C9p9Y3UbgS32oyXVa4OqLCHCTXjsmu9+FjDVYmxJIX+dYC0wvjTNZhadbCsE9L+D8U+gK+tvyzcNezHM8HmvLsIK/T8tQsZwZ8kgwCEIqdfnevC4rP4BvIsO+FzEZtcgE10LqcBFq9NXr7IxIwGQMC8A45O1W8Dusck5bj243SESx9Zj5mvZAyZywSr0F2xUE2FUsNPZqJfAxdWsanr9V/Dqg3RtZPFDd5zewNQHFr7eoWCuPLnsrf7TjbsKoU8CED1qtUREtO1MPuc4CUVNs7YZfxBRgkOna8OYEU51PC6C+yOzeSYAtl3mZOCJ0zeXK/LDqAuxmYCbUfKKrGyAFo0a5/W0yMxfFI4NIZKQafWlXZsBrLEwrMj9Nh57ZZOISEtYrcx8LCAW6GL7G3zCzTAmcrTCCPnIjm34QtgkLzZA24My18o7JEp3k/GEQziayh+1zCedA2IJtLaAafzha87tAn2s3QvXbMmF7+UWl7+HPA1xRjqMmuzg3lFxKwnU0j2yL8QoZYstFUlICGhZ1bExdoKZfUMSbJP/k4qwKBeTxJnUW9YfaCZvfa3ube5WoUgGXpbLoU0umUwgrDpY3Nc7dgt/V3C6/Nrn/riYXUcbVxXIgqpuj+8IYkLYGl5aaGK0zkRl4nOMTMRM8/kxAi+KS1wIK7GfCvx6riVPwM3rLrdLwHCGnF3wkj0PJw5sSoTUMZ2nlwHDssX0FSOlqRYVofAY/25lpV34EQIUZ8p9F+T5hKD36dgk817SCH8yRE04/BDQFBriPGK7ZsFKHEcnE7ttnJ+j8W5no2v/HwXSt+crULIDjb0mEyv6gkAJPj+DZGerXigD7xVrWgDaP7p//zqzEk9iSInJUSP4jduYUcm0coER0Lxv3XkkQmsweaIuhe6A2vwVok3n8Jk5jMu0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 156,\n    \"candidatesTokenCount\":
+        15,\n    \"totalTokenCount\": 568,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 156\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 15\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 397\n  },\n  \"modelVersion\":
+        \"gemini-3.1-pro-preview\",\n  \"createTime\": \"2026-10-08T17:00:36.252869Z\",\n
+        \ \"responseId\": \"NMzHasW3D4eFr8kP-daSkAU\"\n}\n"
+    headers:
+      content-length:
+      - '2770'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:00:44 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many hours would pass on Earth during
+      10 Martian days? Show the number."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '766'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        notes do not cover how many hours would pass on Earth during 10 Martian days.\",\n
+        \           \"thoughtSignature\": \"AY89a1+VNSIQz2AXeTr6rlHjJ4r3OsbvdCSJuOU3QfedtW0+pxmJNIVJCeoKLtYOEod63O9cW2b+UNakFD47igNOnyR/0ZjvlSyA6JrciPZ8sOWijubBRjLldRc=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 159,\n    \"candidatesTokenCount\":
+        19,\n    \"totalTokenCount\": 178,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 159\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 19\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T17:00:44.114189Z\",\n  \"responseId\": \"PMzHao38BvWRr8kPvJ6DqAY\"\n}\n"
+    headers:
+      content-length:
+      - '931'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:00:44 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many hours would pass on Earth during
+      10 Martian days? Show the number."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '766'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Based
+        on your notes, a day on Mars lasts about 24 hours and 39 minutes, but the
+        notes do not provide the calculation for 10 Martian days in Earth hours.\",\n
+        \           \"thoughtSignature\": \"AY89a19XY7IKX2OGyIz/CEZrgSBfO8CADvgAzfyteX4XOUAl6XoRWsDIjnFkjryx49rzy06/VKBmz3uPvO5RCx/eXoyf8SOOF/pB7Ic9YzEWK68mvwK8pupbQw8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 159,\n    \"candidatesTokenCount\":
+        39,\n    \"totalTokenCount\": 198,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 159\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 39\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T17:00:44.804968Z\",\n  \"responseId\": \"PMzHauiQMZj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '1002'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:00:45 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many hours would pass on Earth during
+      10 Martian days? Show the number."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '766'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        notes do not cover how many Earth hours would pass during 10 Martian days.\",\n
+        \           \"thoughtSignature\": \"AY89a18Jzd0PGPBrLWuoiIYLKapztYzMhmHyf5uh0xR0sZAuMS0QeZUnd6p1OkfG67P0dtagd7mvmz25/4hXDbRQhaKMTIttEak7p419fOidBn1HkBPhC97+FTg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 159,\n    \"candidatesTokenCount\":
+        18,\n    \"totalTokenCount\": 177,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 159\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 18\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-08T17:00:45.319912Z\",\n  \"responseId\": \"PczHaqjDE_6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '928'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:00:45 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many hours would pass on Earth during
+      10 Martian days? Show the number."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '766'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.8-flash:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"During
+        10 Martian days, approximately 246.5 hours (or 246 hours and 30 minutes) would
+        pass on Earth.\",\n            \"thoughtSignature\": \"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\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 159,\n    \"candidatesTokenCount\":
+        33,\n    \"totalTokenCount\": 862,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 159\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 33\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 670\n  },\n  \"modelVersion\":
+        \"gemini-3.8-flash\",\n  \"createTime\": \"2026-10-08T17:00:45.964684Z\",\n
+        \ \"responseId\": \"PczHaszwOvqDidsP6vmrsAc\"\n}\n"
+    headers:
+      content-length:
+      - '3780'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:00:51 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many hours would pass on Earth during
+      10 Martian days? Show the number."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '766'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.8-flash:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"During
+        10 Martian days, about 246.5 hours (or 246 hours and 30 minutes) would pass
+        on Earth.\",\n            \"thoughtSignature\": \"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\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 159,\n    \"candidatesTokenCount\":
+        33,\n    \"totalTokenCount\": 772,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 159\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 33\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 580\n  },\n  \"modelVersion\":
+        \"gemini-3.8-flash\",\n  \"createTime\": \"2026-10-08T17:00:51.614464Z\",\n
+        \ \"responseId\": \"Q8zHasDAJZzc7bEP7r6DiAU\"\n}\n"
+    headers:
+      content-length:
+      - '3400'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:00:56 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many hours would pass on Earth during
+      10 Martian days? Show the number."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '766'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.8-flash:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"During
+        10 Martian days, approximately 246.5 hours (or 246 hours and 30 minutes) would
+        pass on Earth.\",\n            \"thoughtSignature\": \"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\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 159,\n    \"candidatesTokenCount\":
+        33,\n    \"totalTokenCount\": 882,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 159\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 33\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 690\n  },\n  \"modelVersion\":
+        \"gemini-3.8-flash\",\n  \"createTime\": \"2026-10-08T17:00:56.894732Z\",\n
+        \ \"responseId\": \"SMzHaozONvWRr8kPvJ6DqAY\"\n}\n"
+    headers:
+      content-length:
+      - '3764'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:01:02 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many hours would pass on Earth during
+      10 Martian days? Show the number."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '766'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-pro-preview:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"During
+        10 Martian days, about 246.5 hours would pass on Earth.\",\n            \"thoughtSignature\":
+        \"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\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 159,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 865,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 159\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 20\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 686\n  },\n  \"modelVersion\":
+        \"gemini-3.1-pro-preview\",\n  \"createTime\": \"2026-10-08T17:01:02.169434Z\",\n
+        \ \"responseId\": \"TszHatqrCoeFr8kP-daSkAU\"\n}\n"
+    headers:
+      content-length:
+      - '3696'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:01:10 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many hours would pass on Earth during
+      10 Martian days? Show the number."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '766'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-pro-preview:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Based
+        on the notes, 246.5 hours would pass on Earth during 10 Martian days.\",\n
+        \           \"thoughtSignature\": \"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\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 159,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 1158,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 159\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 23\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 976\n  },\n  \"modelVersion\":
+        \"gemini-3.1-pro-preview\",\n  \"createTime\": \"2026-10-08T17:01:10.511365Z\",\n
+        \ \"responseId\": \"VszHaoWbH-WBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '4798'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:01:33 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many hours would pass on Earth during
+      10 Martian days? Show the number."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '766'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-pro-preview:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"During
+        10 Martian days, 246.5 hours would pass on Earth.\",\n            \"thoughtSignature\":
+        \"AY89a1/e2sd9AtGufEEbJhwsVUYex4rG/xtzdIByF4wqHeMve0ZE2DndyOZv1qfNqMwF1aW74jxGJS9GvZG2/YTldwp8N1LrcXkKR2FrHVqwWB7RGs1VsIAWMSKZIhu3OS5wEfmfV57rziOjXubzC08svQ8SS34bLAcfLOefsM6vxD6FHmATBsjQq+Ep+bGCZAPKLGnKkAQxfYiFMlag35E9Nx5jevhjRoadatxZhWj4rUbqPNfM5JNC+zZ/XQzM15KEY4S/cHUKEjegPYtc6/i3HmIOSxK3FfRzI7O9fTxHbwvr3JN3dcuCQng1VYk3rZHiB/lxlLkpwo+VuRZM+CgEjF1EnNNQyVMr08lSl5rs4zv37kX2gbaFC+NN5kaUiLDPzy2tdhaItLy93Hy8nJkXIADQ2hfjDW8erQyXTVftJbV4jVhuF7h4aVGLVhKZ3Rd7HQasgD96F3m/mH4WHxPdbIXddYRPcNCLe96ngAFIrsoXN0wxjKWw1wlOH0pXtbw5bswN3S5sbZYxWNf+VRi4WJd+evlVDDmNz6lglGgIyXmRcVKV/jZYhC4fIMFRIcwmiU5k4iCnCqpGNRv2be9MiwlO8EWhKBOhy+TxIhU3rxdEh9pHtlfksjNkxWvQ8dqbR9uj+AEu5sXHSjXJprXbYOOkMuHjitKFqb1fPtZLRJ2uARmNyusVQw5eqbjLcKW7aFdrpe6GYethbo3lHvYv2naFDaAQnxlcbJJ60Z8LAgns2Fl/CxOQ1S7ZyTXmprEZcx5fYIWCMaB0VgDTgbeFyX18i+8N4MIYbp1Q4v+U3GPix6oZcm5cBA3BqBcoMNSlTY3/4LLAy5MzzVZ0EHRSdlfJiGEw8Y/DMQ7pVPzELp4VKsRZ+Dox6mdKKhhwO/d/TKCYl/5KX7CyICb0bcxayXWLfVTbxkbhGeSesMEBtzU+eJgsT3AyfpM4z6xod3Zp1NDy3CUxxuUgprNAPnI1M0V+C0ppech1JPrG8fkk1eeDBKgdbL/pYM5Nn4+pVbVxYtK2YCwBgrgRz4CCRfq1mZQ7nK48dYbhNZ5H/dw0Ny85VnYrcLdiA/N6JMuYR+Zc56rxbMItePgcLkyDi/Ijt1DFhXNb+OexLi7BqxJB42QhRozyZrAAvO6+2ir6W93hRI+l4AN5q+Wi5Tl2uCvBFHoY8N813VBmIPkXyoV+r1ooJJUvRSxu3qyqVzRJ689b4moVWf9hOQxWJA14Yby/30WEGNIov6xHU3NhXzBR2Cc7WzrKKQYDPaXjnM49K2GE3HI3+NaVJUDCqYzrUbkGQrkSU8BvG56ZyD6YiriNm8BNngIrkoyH65ZsDIgOGBaQUAJn9FShgLg7ubGCGuXDiWFzGXgbZzcr6kYvPmthQjfprgv4XPFvc6NnODUMXUsdmY8zRZfq2uLgXQQ0J25zT6wCukvxAbXHTtQHqCV9583xyFcYXk4QvXgtAG0tTAZOgudQo1B94ppY1LPK0MOTpESMMXqUVHBTwTbQsf6W2lv1tcHlEe6nCZdsALncS0cTg7I+NGySB4SvLpq3+Z/RkMDamCk7mWsJHJM048xCgaPUkxvEqTkEe4q5l2BW/T5cVeoblWymCgCKmiAb1C7xYyi6huy+Qy85VOYyEhe/XNTJuk5dhxFlDdpEHJ00cihH2xB6+/IHCCiubj2Rb7h304P9YP0Ph/DwgpXVuXNfvWdoxPTM0UbAhteVEYrWMfi14Vur9a3C8yDxQziXNGI9n4HVVJNdOjs50zEtJSTet0LraSJONK+n9rKKxhmGp1IVL5cyazpp6b9VY55slmyzdaHCThJ6FhVCEUUjp1AoNtwjoWr4Q9z4Z2PTokf1ma4aMpKzCUo+FYHJV74mMQ6bOfAQY+i2Hez851nkXZmfhCEgSxkuvslJizzjA5IHC9dk1btM5kTcD+EKbZ4AtC3Gooj6gw7tdrqfjJS+KCwYmV927UljgnYcQOeXR2SHmK5wvg7f4yqAY13oyEEkSzjA1dLcJrWMRlArRjicYUqPKhOsvjj0LKWOz3w9gQl8DTtMZT0pbedrXGMH34g0XDKSjlpL1H17HmAwX+DpBmifUNxEq7N9s9cCsZBJG7/B0/h+PswZEW0Woaj2rliHCa78lBhuI0kYkjZsmiNE3Gwv7H9gaoWcG2k6Aot+rCtkGj/k5MjdX0eEQydhoWOfdRrnnuUraiz3BPzfAi0mezHfny+jGfsJ9LlrcH8qQaFcC/fF9j+9/AhxmUq4p3HgZDcyFdOtADfV+PIMesdJpbBbSYB5aANvOpKY8Q1pDTGEeyUsqyTzkkVIL1oHXC9VVPFNnQ4lJ09WE8AFZ2flTl9z2A0fQRDGK+LlAAyKJqrdV0Knu+F1sih77M1AwWGrCJbYIhc8TaDMMXfNiqiy/bh3wEp6/XPElFdHPkTkoTuX/QQw6rxUExu6uB95wwafXPPfFnJAGfoZDjCaCDUPwRQOXrD8sQLKcENHLlc/etVFtwBIv3NVmvPR6L0jLGxZfl2x8mhh2GlbXgUusbhIh9pJQlLq1t0oLtjNezZNIy1Xvp6bePxgMqAH11JkqBTgGkRtFx2/AL7lBIV4jjmC42qzs24kAwTP51X9s1mXx9d4luWJQdMTBeO6oU/ZBJ5AiQbi2McAYRTedDrrKmaicV3gWsj8HfFkiukRRwlUFEr0m1v+SORYr2voSb/EXzpz6+uIpTDIT77RvhbEbYNWK+EvNL8bpo+vEgDWwt+96saNdXpz0h98tkU9WBXD1c4BH3VEWzVYpku+KXzw9Mn0pdnTEk0mK+4B2rhiWzH9UqBL6l/YbOQd6OSLLx634H2ZhEZxXKEhLeYBPCFdwFAdkZOz0cL5+Q6q4Dg/2H1TamYlr780M80JVBDGuPurQLiOG6EE0pF1uL2eNZ6ul3STRcAOQSgDNCgVlhGIHPwGy4zb4dU1C9GPL0AwtoBRYpMeu0NTgvJBSvDZ6zUKLmQFNJyh4getHdtAztMHrmX4Mk3pfOfqF7WN1gG0YbTUQeegTXF6eOQpUO/NzsOx+bGwelI8IiEyrSQU+KzhPtHLQkpkQ8lHi+B7OQhEHlo3LuRwQF4BucJCFt3Z63D0DLrP/mqZfMTXlnE+3NuhAuGrK2Q/rT4fTfQ8vjekbP8xcltu21oUm99mRV5Fb8d7fFWCAtgFJnDdnrpWQsj3wm7Veboq7H5vInu0jzQUfBRFGXCD\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 159,\n    \"candidatesTokenCount\":
+        19,\n    \"totalTokenCount\": 989,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 159\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 19\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 811\n  },\n  \"modelVersion\":
+        \"gemini-3.1-pro-preview\",\n  \"createTime\": \"2026-10-08T17:01:33.552426Z\",\n
+        \ \"responseId\": \"bczHaurbIZj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '4034'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:01:43 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "When did Perseverance land?"}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "You are Scout, a research
+      assistant. Answer only from the user''s notes below and this chat. If the notes
+      do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."}], "role": "user"}, "generationConfig": {"maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '718'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.8-flash:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        rover Perseverance landed on Mars in February 2021.\",\n            \"thoughtSignature\":
+        \"AY89a18G4SZLFeIcFMoRBU3zzjZ0GmlOQqHbqp5WqBxaGiAyj43V0x+IP2UZT35t2bVqbN2XkHCvna/zrz/AJnKrdQY9bQw2ijRRZiTosxZlTTxXTDEv9KZ62RoUFIzXR3HlTE4USHZG6n+Ns+fW1GsJqsM1LuyRxg4XR1IEtcZMt4S4Vrk6B87p/+VMtYFUP4vuqaqWVtorQKKUMV7fHogoIdZocywzJm+jZsDuYPmpQ0mHBvpYgRI3TWl+VfcJ5u0R1L2mLAYQ0NydAZ1kjcD4RUo7vBfuWQo5VKvVwwwQW4s58ggItBciQU5hCGvvFdr6/OSivbVjvtNGDs/lU3eaip+po77o3I0tasLWEHBAM9ortU9nKWJ74Cb4XZn59QXLX9BZphojVyMsyEWSZdf4tO8RwyRm1jv9FoOo2zsIHb517Lw0Dh98gvs6RbTDFz9+Wl2pztZDg9oYZWElq4BXGKnECT7nRFxaJ/Ho4GcJAWdBynl6faVQ9GHkC6zP38/Ppnx8cwSe05vDNi7ztAAxCxKFgyvw5zSkz9pheezEdQ32/MLz+eQMajczRSAg/iTpwWMNA/dEIONo1+LMzmiJCuBgP9iq2CaQbfhdp3IoQw+BdTx7mIBhT+vz25/UIL5+hHvQm8P0gI+cp7bNOW1+LrqdhLpHsvgPi4Lu3EO4ENS22raHu2Gyl9RnNMWTrTTcL32OlZqPt8ftbHGcK5g62tuGTGzNQ9I09SViclSo2DDXZywBB9QoHyKPeUjltyEJUUhU+WucW1VpqIPArDrfooCiCYvLk+voUkTdPwtF3GbcVyZ7UyVPVnBB1CiqaT6B4CMgUC3IwO4RV1XKLD4IbDvpJjJpLd4RGsidJS6joHQA5FEB1lkceMqPWNrcKMNnl68wEccw4EJ5sasbK9P1qFQfgodpGNJpMokCOUrg6EufwN4z4XJYJqkMaFev2yIoAZkC/5izkXBDXpZL1Fq58qcLNzVB3xF1ZF9RZ/QesJXmDZNCiNWpUhl9shcqifjSQKSbxfpRmbaR8aKGpd7pOEQi+pGIxt5jYCMgqRYoK3jujUBjMAe4qUxWNMSpK1Smtd1YtxDuf5943+I9wGnxQgPyHWkCnIQ8CH2vUCMTPzYLR0HCo7EMy9cphH8LAwa/b4M6VQVU+1K+U+jPRvVO3GyNI4agnE3k7p53U71sigZpZheYAdOc85f11dTkIwAI7JeMg1BHp88krmwrDRysUbXwBoB/1QLuVyOSVWndXOC2/O6sxsG8CEhSzQnc1DRi2iVF2DnqDoUA90ijDY2xu5hQ0h5kMbTao9dK3hA2acwigKpYf8pdyL23ni27L2qlBwY+i/cqFo0xkYRW0gSoGb1FzABJWyNUR85YjitSK73NiAEoR3XClLnbCmPfzGt2rZEqzQcU9A1/SgJqozQUX4PoKKAEHDkt6HTi6m4swh9uBJ1JSBnMRP6WuBzm4qkIqGehB29oSS9j8vpNsTk5fE1nEuiht5Ib1LxZwz33vBIb1w0AA/ImUFFwpGnhR7O9FC8w4FOxeaqAjcLcI4dyoeRGTy2GTeSS9ivabaVF0bnt10PBaGGVBixYAPbp\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 146,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 486,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 146\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 14\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 326\n  },\n  \"modelVersion\":
+        \"gemini-3.8-flash\",\n  \"createTime\": \"2026-10-08T17:01:43.743226Z\",\n
+        \ \"responseId\": \"d8zHarquLeWBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '2407'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:01:51 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many hours would pass on Earth during
+      10 Martian days? Show the number."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '764'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.8-flash:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Based
+        on the\",\n            \"thoughtSignature\": \"AY89a1+a0BNUk91s5O80RTDG/sSEnMKF2cxtk0pb0y1VfX2s0Qndzm/4Dwuxba/aFwbaMm6VaeeOCgLXOlHFo55OdvSU+//ydnwoeUm0dHGIeEsiuKi6P1ivmLbWLS/T4EV/koaCR8pYBjqopNKguL+hm/Xdp4jgDt+nNXvyWfZPhkAVRpBjvnn3aHtVvHxXY5/mUIJ2JvTG8y1wW64Z7Yhd15X7ym1kDY0nYJH2JXkRytto8ZqWYSUZnDLgyEOavGc9kGImWuayBaSftxwQ3z1AR29OG5zZ/DwwCJ6sXGg3Pk4M8gLWUBlQ+3ZmD8DrpIdfbwx4RFzdOWVMiBAP6qGtuTQ6Qi/pZAB9I03yaIK64FRin4PCCoiYvLCcbUDBPg4svMFy\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"MAX_TOKENS\"\n
+        \   }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 159,\n    \"candidatesTokenCount\":
+        3,\n    \"totalTokenCount\": 215,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 159\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 3\n      }\n    ],\n    \"thoughtsTokenCount\":
+        53\n  },\n  \"modelVersion\": \"gemini-3.8-flash\",\n  \"createTime\": \"2026-10-08T17:01:51.191112Z\",\n
+        \ \"responseId\": \"f8zHaojVC_qDidsP6vmrsAc\"\n}\n"
+    headers:
+      content-length:
+      - '1159'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Thu, 08 Oct 2026 17:01:52 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

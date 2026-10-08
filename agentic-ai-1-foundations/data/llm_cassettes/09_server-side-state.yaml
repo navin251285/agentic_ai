@@ -1,0 +1,761 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m Asha. I''m researching Mars
+      rovers."}], "role": "user"}], "systemInstruction": {"parts": [{"text": "You
+      are Scout, a research assistant. Answer only from the user''s notes below and
+      this chat. If the notes do not cover it, say so in one sentence. Keep answers
+      to one sentence.\n\nNote 1: Mars has two small moons, Phobos and Deimos.\nNote
+      2: Venus spins backwards compared with most planets.\nNote 3: A day on Mars
+      lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest planet
+      in the solar system.\nNote 5: The rover Perseverance landed on Mars in February
+      2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role": "user"},
+      "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '731'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0+chat gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0+chat gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        notes do not mention when the rover Curiosity landed.\",\n            \"thoughtSignature\":
+        \"AY89a1+xmTi9+YWzH1QhGahMo0NBpwXgJIhhOyyN2ZLXJ1svdvwrN7XHZaqBIaiBMtyC1AU+wWzz1xST/ogEj7PxGYWUpFQQeph+Ct+fJk//AZx6PyNPTDW9XAQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 156,\n    \"candidatesTokenCount\":
+        11,\n    \"totalTokenCount\": 167,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 156\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 11\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-06T18:34:55.720485Z\",\n  \"responseId\": \"Tz_FauX8K6aw-O4PupSHiAc\"\n}\n"
+    headers:
+      content-length:
+      - '907'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 06 Oct 2026 18:34:56 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m Asha. I''m researching Mars
+      rovers."}], "role": "user"}, {"parts": [{"text": "The notes do not mention when
+      the rover Curiosity landed.", "thoughtSignature": "AY89a1-xmTi9-YWzH1QhGahMo0NBpwXgJIhhOyyN2ZLXJ1svdvwrN7XHZaqBIaiBMtyC1AU-wWzz1xST_ogEj7PxGYWUpFQQeph-Ct-fJk__AZx6PyNPTDW9XAQ="}],
+      "role": "model"}, {"parts": [{"text": "Which note is about a rover?"}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "You are Scout, a research
+      assistant. Answer only from the user''s notes below and this chat. If the notes
+      do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."}], "role": "user"}, "generationConfig": {"maxOutputTokens":
+      60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1051'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0+chat gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0+chat gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Note
+        5 is about a rover.\",\n            \"thoughtSignature\": \"AY89a19BtPHaZ//ahESx+U0D7d4hhnsIMvQF/MIf8bwtNDHS6RNgW8wguhsNskc7zvx5kj4oXfdyzK0v9I+sRTsy85F6m9LU6z/d0DLIy0A8HAtbVxglMZaaFrY=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 174,\n    \"candidatesTokenCount\":
+        8,\n    \"totalTokenCount\": 182,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 174\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 8\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-06T18:34:56.525312Z\",\n
+        \ \"responseId\": \"UD_FaoCIINSor8kPo52q-Ao\"\n}\n"
+    headers:
+      content-length:
+      - '872'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 06 Oct 2026 18:34:57 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m Asha. I''m researching Mars
+      rovers."}], "role": "user"}, {"parts": [{"text": "The notes do not mention when
+      the rover Curiosity landed.", "thoughtSignature": "AY89a1-xmTi9-YWzH1QhGahMo0NBpwXgJIhhOyyN2ZLXJ1svdvwrN7XHZaqBIaiBMtyC1AU-wWzz1xST_ogEj7PxGYWUpFQQeph-Ct-fJk__AZx6PyNPTDW9XAQ="}],
+      "role": "model"}, {"parts": [{"text": "Which note is about a rover?"}], "role":
+      "user"}, {"parts": [{"text": "Note 5 is about a rover.", "thoughtSignature":
+      "AY89a19BtPHaZ__ahESx-U0D7d4hhnsIMvQF_MIf8bwtNDHS6RNgW8wguhsNskc7zvx5kj4oXfdyzK0v9I-sRTsy85F6m9LU6z_d0DLIy0A8HAtbVxglMZaaFrY="}],
+      "role": "model"}, {"parts": [{"text": "What is my name, and what am I researching?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout, a
+      research assistant. Answer only from the user''s notes below and this chat.
+      If the notes do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."}], "role": "user"}, "generationConfig": {"maxOutputTokens":
+      60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1353'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0+chat gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0+chat gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Your
+        name is Asha, and you are researching Mars rovers.\",\n            \"thoughtSignature\":
+        \"AY89a1+rZ4refTwx/W2DPZ7+BfdJ1ezGHZGyt8GU9n0bZTRMu5FdnryGZ4TaXw+SnDmN/BjO5aRPvroz0gxn0O67+38WU5CbSMqa+K5I4kxmlpIiuy+/uNNpBDg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 193,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 206,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 193\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 13\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-06T18:34:57.059725Z\",\n  \"responseId\": \"UT_Fas3SA8qrr8kPno-QuA8\"\n}\n"
+    headers:
+      content-length:
+      - '905'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 06 Oct 2026 18:34:57 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m Asha. I''m researching Mars
+      rovers."}], "role": "user"}], "systemInstruction": {"parts": [{"text": "You
+      are Scout, a research assistant. Answer only from the user''s notes below and
+      this chat. If the notes do not cover it, say so in one sentence. Keep answers
+      to one sentence.\n\nNote 1: Mars has two small moons, Phobos and Deimos.\nNote
+      2: Venus spins backwards compared with most planets.\nNote 3: A day on Mars
+      lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest planet
+      in the solar system.\nNote 5: The rover Perseverance landed on Mars in February
+      2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role": "user"},
+      "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '731'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Hello
+        Asha, the rover Perseverance landed on Mars in February 2021.\",\n            \"thoughtSignature\":
+        \"AY89a1+wYpkmKO1ylaYyooO1npKR0uowUARBSS1wCjbtX8KeSsW9rUdvgynYyLFXw9/bOcWgCScBNGKAe5I18twzx9D8MnauLPQkcHdxcHFMPC5nbARHnWK1Zro=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 156,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 173,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 156\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 17\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-06T18:34:57.713588Z\",\n  \"responseId\": \"UT_FavTGK9yLr8kP_PHrGA\"\n}\n"
+    headers:
+      content-length:
+      - '916'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 06 Oct 2026 18:34:58 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m Asha. I''m researching Mars
+      rovers."}], "role": "user"}, {"parts": [{"text": "Hello Asha, the rover Perseverance
+      landed on Mars in February 2021."}], "role": "model"}, {"parts": [{"text": "Which
+      note is about a rover?"}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '913'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Note
+        5 is about a rover.\",\n            \"thoughtSignature\": \"AY89a1+2XzfbW6eoMFQ73mCwpmIR34oFvpsBMtaVVR+PT70PwjBpBIxvdsyR9qDScjA/j2JKtXZZ5Ll7OLJHdRW9kKd+h5pQIL8US1NKZSxxCewtMmMBR4ABeIQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 180,\n    \"candidatesTokenCount\":
+        8,\n    \"totalTokenCount\": 188,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 180\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 8\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-06T18:34:58.293930Z\",\n
+        \ \"responseId\": \"Uj_Faqr4EYWCr8kPs7OD-As\"\n}\n"
+    headers:
+      content-length:
+      - '872'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 06 Oct 2026 18:34:58 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m Asha. I''m researching Mars
+      rovers."}], "role": "user"}, {"parts": [{"text": "Hello Asha, the rover Perseverance
+      landed on Mars in February 2021."}], "role": "model"}, {"parts": [{"text": "Which
+      note is about a rover?"}], "role": "user"}, {"parts": [{"text": "Note 5 is about
+      a rover."}], "role": "model"}, {"parts": [{"text": "What is my name, and what
+      am I researching?"}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are Scout, a research assistant. Answer only from the user''s notes below
+      and this chat. If the notes do not cover it, say so in one sentence. Keep answers
+      to one sentence.\n\nNote 1: Mars has two small moons, Phobos and Deimos.\nNote
+      2: Venus spins backwards compared with most planets.\nNote 3: A day on Mars
+      lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest planet
+      in the solar system.\nNote 5: The rover Perseverance landed on Mars in February
+      2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role": "user"},
+      "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1067'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Your
+        name is Asha, and you are researching Mars rovers.\",\n            \"thoughtSignature\":
+        \"AY89a19J7SQ90ASTLZJn2TJ4J4aaPPuEy9izeC99bERKNMcJFhT2y5ttgNx1lHw+0Gry6iHnIGgfN5ccOq/mEDvhVKm6zRWgfAL0bPdvxTr3wVnJo0jC6952JDE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 199,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 212,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 199\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 13\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-06T18:34:58.887257Z\",\n  \"responseId\": \"Uj_FatmTNsqrr8kPno-QuA8\"\n}\n"
+    headers:
+      content-length:
+      - '905'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 06 Oct 2026 18:34:59 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m Asha. Remember that I study
+      rovers."}], "role": "user"}], "systemInstruction": {"parts": [{"text": "You
+      are Scout, a research assistant. Answer only from the user''s notes below and
+      this chat. If the notes do not cover it, say so in one sentence. Keep answers
+      to one sentence.\n\nNote 1: Mars has two small moons, Phobos and Deimos.\nNote
+      2: Venus spins backwards compared with most planets.\nNote 3: A day on Mars
+      lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest planet
+      in the solar system.\nNote 5: The rover Perseverance landed on Mars in February
+      2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role": "user"},
+      "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '732'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Hello
+        Asha, I will remember that you study rovers.\",\n            \"thoughtSignature\":
+        \"AY89a1/DMTnRR7H7sql53qmugPLS1HEoDtjug9NLEyuEZSoJQQo+J3daG3wPA3E8HJC5dEo0vQPXzjCL82lg/CW+KCQjq44MUnkzfvrau5O++Ulq62YIcGD08aM=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 155,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 167,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 155\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 12\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-06T18:34:59.481233Z\",\n  \"responseId\": \"Uz_FatGvHaaw-O4PupSHiAc\"\n}\n"
+    headers:
+      content-length:
+      - '900'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 06 Oct 2026 18:35:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m Asha. I''m researching Mars
+      rovers."}], "role": "user"}, {"parts": [{"text": "Hello Asha, the rover Perseverance
+      landed on Mars in February 2021."}], "role": "model"}, {"parts": [{"text": "Which
+      note is about a rover?"}], "role": "user"}, {"parts": [{"text": "Note 5 is about
+      a rover."}], "role": "model"}, {"parts": [{"text": "What is my name, and what
+      am I researching?"}], "role": "user"}, {"parts": [{"text": "Your name is Asha,
+      and you are researching Mars rovers."}], "role": "model"}, {"parts": [{"text":
+      "What is the capital of France?"}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout, a research assistant. Answer only from the user''s
+      notes below and this chat. If the notes do not cover it, say so in one sentence.
+      Keep answers to one sentence.\n\nNote 1: Mars has two small moons, Phobos and
+      Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote 3:
+      A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest
+      planet in the solar system.\nNote 5: The rover Perseverance landed on Mars in
+      February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role":
+      "user"}, "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1239'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        provided notes do not cover the capital of France.\",\n            \"thoughtSignature\":
+        \"AY89a1/gFSUTbD6Bdt7Q+L4YB98fYlZPDORYqCafwEmVZzLsMsAo03vgliT8hEaKmc5pSLOzwavVIrP5jIXgFgo4V0Pbwpm4i3kC4TIUyOmNbCkhEaeD0aWhzSg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 219,\n    \"candidatesTokenCount\":
+        11,\n    \"totalTokenCount\": 230,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 219\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 11\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-06T18:35:00.085127Z\",\n  \"responseId\": \"VD_FaoeZBaqNr8kPxZyIMA\"\n}\n"
+    headers:
+      content-length:
+      - '903'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 06 Oct 2026 18:35:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m Asha. I''m researching Mars
+      rovers."}], "role": "user"}, {"parts": [{"text": "Hello Asha, the rover Perseverance
+      landed on Mars in February 2021."}], "role": "model"}, {"parts": [{"text": "Which
+      note is about a rover?"}], "role": "user"}, {"parts": [{"text": "Note 5 is about
+      a rover."}], "role": "model"}, {"parts": [{"text": "What is my name, and what
+      am I researching?"}], "role": "user"}, {"parts": [{"text": "Your name is Asha,
+      and you are researching Mars rovers."}], "role": "model"}, {"parts": [{"text":
+      "What is the capital of France?"}], "role": "user"}], "generationConfig": {"maxOutputTokens":
+      60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '652'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        capital of France is Paris.\",\n            \"thoughtSignature\": \"AY89a19nBBC2qqF7Lj64UMp1HZK3p/hFrXXTO3vEllWB3sjFrpEelFv9R00c7ojPVxYC6AxLsW/wV1skJ7n7lf9YAY9SuZxWmbpEuG0s0bubvRXhHkpTnTLZEhE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 78,\n    \"candidatesTokenCount\":
+        7,\n    \"totalTokenCount\": 85,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 78\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 7\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-06T18:35:00.735967Z\",\n
+        \ \"responseId\": \"VD_Fat_1LKvf-O4PmOLPmAg\"\n}\n"
+    headers:
+      content-length:
+      - '876'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 06 Oct 2026 18:35:01 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model":"gemini-3.5-flash-lite","input":"Hi, I''m Asha."}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '57'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - speakeasy-sdk/python 2.4.1-preview.5 internal v1beta google-genai
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/interactions
+  response:
+    body:
+      string: "<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport
+        content=\"initial-scale=1, minimum-scale=1, width=device-width\">\n  <title>Error
+        404 (Not Found)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px
+        arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7%
+        auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png)
+        100% 5px no-repeat;padding-right:205px}p{margin:11px 0 22px;overflow:hidden}ins{color:#777;text-decoration:none}a
+        img{border:0}@media screen and (max-width:772px){body{background:none;margin-top:0;max-width:none;padding-right:0}}#logo{background:url(//www.google.com/images/branding/googlelogo/1x/googlelogo_color_150x54dp.png)
+        no-repeat;margin-left:-5px}@media only screen and (min-resolution:192dpi){#logo{background:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png)
+        no-repeat 0% 0%/100% 100%;-moz-border-image:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png)
+        0}}@media only screen and (-webkit-min-device-pixel-ratio:2){#logo{background:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png)
+        no-repeat;-webkit-background-size:100% 100%}}#logo{display:inline-block;height:54px;width:150px}\n
+        \ </style>\n  <a href=//www.google.com/><span id=logo aria-label=Google></span></a>\n
+        \ <p><b>404.</b> <ins>That\u2019s an error.</ins>\n  <p>The requested URL
+        <code>/v1beta1/interactions</code> was not found on this server.  <ins>That\u2019s
+        all we know.</ins>\n"
+    headers:
+      content-length:
+      - '1581'
+      content-type:
+      - text/html; charset=UTF-8
+      date:
+      - Tue, 06 Oct 2026 18:35:02 GMT
+      server:
+      - ESF
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 404
+      message: Not Found
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m Asha. I''m researching Mars
+      rovers."}], "role": "user"}, {"parts": [{"text": "Hello Asha, the rover Perseverance
+      landed on Mars in February 2021."}], "role": "model"}, {"parts": [{"text": "Which
+      note is about a rover?"}], "role": "user"}, {"parts": [{"text": "Note 5 is about
+      a rover."}], "role": "model"}, {"parts": [{"text": "What is my name, and what
+      am I researching?"}], "role": "user"}, {"parts": [{"text": "Your name is Asha,
+      and you are researching Mars rovers."}], "role": "model"}, {"parts": [{"text":
+      "Remember: my favourite moon is Phobos."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout, a research assistant. Answer only from the
+      user''s notes below and this chat. If the notes do not cover it, say so in one
+      sentence. Keep answers to one sentence.\n\nNote 1: Mars has two small moons,
+      Phobos and Deimos.\nNote 2: Venus spins backwards compared with most planets.\nNote
+      3: A day on Mars lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the
+      largest planet in the solar system.\nNote 5: The rover Perseverance landed on
+      Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of ice."}],
+      "role": "user"}, "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1247'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"My
+        notes do not cover your favourite moon.\",\n            \"thoughtSignature\":
+        \"AY89a19nhb1u05en9ntX5skwafXmujkJ8ZvsnVc3rh7kcm/ZHmQREBcVBfI4/LIWiNh8PybH/LbBIJDVisiHpOlQ9v1Ke5d7wtV68AyiyJQ/yP72GM9csmWtMn4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 221,\n    \"candidatesTokenCount\":
+        9,\n    \"totalTokenCount\": 230,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 221\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 9\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-06T18:35:02.873359Z\",\n
+        \ \"responseId\": \"Vj_Fao-nNYWCr8kPs7OD-As\"\n}\n"
+    headers:
+      content-length:
+      - '890'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 06 Oct 2026 18:35:03 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1
