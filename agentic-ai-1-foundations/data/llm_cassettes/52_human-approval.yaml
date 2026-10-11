@@ -1,0 +1,496 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise my notes about Mars and save
+      the summary to mars.txt."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout. Answer questions about the user''s notes. Search the
+      notes first. Answer in two sentences."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes (case-insensitive). Returns up to
+      5 matching notes as {id, text}.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string"}}}},
+      {"description": "List the file names in Scout''s folder.", "name": "list_files",
+      "parameters_json_schema": {"type": "object", "required": [], "properties": {}}},
+      {"description": "Save text to a file in Scout''s folder. Refuses an existing
+      file unless overwrite is true.", "name": "write_file", "parameters_json_schema":
+      {"type": "object", "required": ["filename", "text"], "properties": {"filename":
+      {"type": "string"}, "text": {"type": "string"}, "overwrite": {"type": "boolean"}}}}]}],
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1124'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_354643\"\n            },\n            \"thoughtSignature\": \"AY89a1+WnwWJpCHYvzx6RzwRAKa6zC6BBPKu6WDlYqWT1XepgDkYYehHta6UgnBH09F605MZQ33J3bcn/zimOQ1F2ucgRCzDlX9JR8zFnUz1AlVFh5klWMGh85Y=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 146,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 162,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 146\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T15:27:48.158435Z\",\n  \"responseId\": \"9AfJauPVCfzs7bEP4rOGmQo\"\n}\n"
+    headers:
+      content-length:
+      - '1016'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 15:27:48 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise my notes about Mars and save
+      the summary to mars.txt."}], "role": "user"}, {"parts": [{"functionCall": {"id":
+      "call_354643", "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature":
+      "AY89a1-WnwWJpCHYvzx6RzwRAKa6zC6BBPKu6WDlYqWT1XepgDkYYehHta6UgnBH09F605MZQ33J3bcn_zimOQ1F2ucgRCzDlX9JR8zFnUz1AlVFh5klWMGh85Y="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_354643", "name":
+      "search_notes", "response": {"output": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout. Answer questions about the user''s notes. Search the
+      notes first. Answer in two sentences."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes (case-insensitive). Returns up to
+      5 matching notes as {id, text}.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string"}}}},
+      {"description": "List the file names in Scout''s folder.", "name": "list_files",
+      "parameters_json_schema": {"type": "object", "required": [], "properties": {}}},
+      {"description": "Save text to a file in Scout''s folder. Refuses an existing
+      file unless overwrite is true.", "name": "write_file", "parameters_json_schema":
+      {"type": "object", "required": ["filename", "text"], "properties": {"filename":
+      {"type": "string"}, "text": {"type": "string"}, "overwrite": {"type": "boolean"}}}}]}],
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1736'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"write_file\",\n              \"args\": {\n                \"filename\":
+        \"mars.txt\",\n                \"overwrite\": true,\n                \"text\":
+        \"Mars features two small moons, Phobos and Deimos, and a day that lasts approximately
+        24 hours and 39 minutes. Additionally, the rover Perseverance successfully
+        landed on the planet in February 2021.\"\n              },\n              \"id\":
+        \"call_2281680\"\n            },\n            \"thoughtSignature\": \"AY89a187oHLeE788urwFZa4gdIwhegn1EQDkMLSce2hqYFKkMkL46y9ry28SA7tviJyRksz9zbFSbuwtQuD4AkVJ07udETmEBoAqUqKGEjlOwcV8wfzAqUewaE4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 214,\n    \"candidatesTokenCount\":
+        73,\n    \"totalTokenCount\": 287,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 214\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 73\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T15:27:52.149087Z\",\n  \"responseId\": \"-AfJat-MCd_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '1283'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 15:27:52 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise my notes about Mars and save
+      the summary to mars.txt."}], "role": "user"}, {"parts": [{"functionCall": {"id":
+      "call_354643", "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature":
+      "AY89a1-WnwWJpCHYvzx6RzwRAKa6zC6BBPKu6WDlYqWT1XepgDkYYehHta6UgnBH09F605MZQ33J3bcn_zimOQ1F2ucgRCzDlX9JR8zFnUz1AlVFh5klWMGh85Y="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_354643", "name":
+      "search_notes", "response": {"output": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_2281680", "args": {"filename": "mars.txt", "overwrite": true, "text":
+      "Mars features two small moons, Phobos and Deimos, and a day that lasts approximately
+      24 hours and 39 minutes. Additionally, the rover Perseverance successfully landed
+      on the planet in February 2021."}, "name": "write_file"}, "thoughtSignature":
+      "AY89a187oHLeE788urwFZa4gdIwhegn1EQDkMLSce2hqYFKkMkL46y9ry28SA7tviJyRksz9zbFSbuwtQuD4AkVJ07udETmEBoAqUqKGEjlOwcV8wfzAqUewaE4="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_2281680", "name":
+      "write_file", "response": {"error": "rejected by the user (do not save anything
+      today). The call did not run. Do not retry it; tell the user."}}}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "You are Scout. Answer questions
+      about the user''s notes. Search the notes first. Answer in two sentences."}],
+      "role": "user"}, "tools": [{"functionDeclarations": [{"description": "Search
+      the user''s notes (case-insensitive). Returns up to 5 matching notes as {id,
+      text}.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "required": ["query"], "properties": {"query": {"type": "string"}}}}, {"description":
+      "List the file names in Scout''s folder.", "name": "list_files", "parameters_json_schema":
+      {"type": "object", "required": [], "properties": {}}}, {"description": "Save
+      text to a file in Scout''s folder. Refuses an existing file unless overwrite
+      is true.", "name": "write_file", "parameters_json_schema": {"type": "object",
+      "required": ["filename", "text"], "properties": {"filename": {"type": "string"},
+      "text": {"type": "string"}, "overwrite": {"type": "boolean"}}}}]}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2469'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        has two small moons, Phobos and Deimos, and a day that lasts approximately
+        24 hours and 39 minutes, alongside the landing of the Perseverance rover in
+        February 2021. However, I was unable to save the summary to mars.txt because
+        saving files was rejected by the user.\",\n            \"thoughtSignature\":
+        \"AY89a1+j0tEHS7q/oiu5DYWaEZD+1U1FguwXVOZzaZ/e9QN5yNkk6k/u6tJZzXeKeU6uGJGjg47g5hIYIE2Stv1eAq/wQ19xxzjwv6BStRpk6A4XFNFAc5aKHdk=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 308,\n    \"candidatesTokenCount\":
+        65,\n    \"totalTokenCount\": 373,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 308\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 65\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T15:27:56.153215Z\",\n  \"responseId\": \"_AfJav-sCf6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '1121'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 15:27:56 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise my notes about Mars and save
+      the summary to mars.txt."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout. Answer questions about the user''s notes. Search the
+      notes first. Answer in two sentences."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes (case-insensitive). Returns up to
+      5 matching notes as {id, text}.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string"}}}},
+      {"description": "List the file names in Scout''s folder.", "name": "list_files",
+      "parameters_json_schema": {"type": "object", "required": [], "properties": {}}},
+      {"description": "Save text to a file in Scout''s folder. Refuses an existing
+      file unless overwrite is true.", "name": "write_file", "parameters_json_schema":
+      {"type": "object", "required": ["filename", "text"], "properties": {"filename":
+      {"type": "string"}, "text": {"type": "string"}, "overwrite": {"type": "boolean"}}}}]}],
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1124'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_442287\"\n            },\n            \"thoughtSignature\": \"AY89a19qwbQG1/0yp2+ZyThi6sogI+Qh7Lh8aDrw867hdjklUafXJIlOvfU+0v92aqOl4M1Xni+3/hovJta1SF8yvs8ikG8+s45wIMR7pUDk8t7dK5zb9rBkZ/k=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 146,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 162,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 146\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T15:28:00.148349Z\",\n  \"responseId\": \"AAjJav2GCfGLr8kPkOWf8Ag\"\n}\n"
+    headers:
+      content-length:
+      - '1016'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 15:28:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise my notes about Mars and save
+      the summary to mars.txt."}], "role": "user"}, {"parts": [{"functionCall": {"id":
+      "call_442287", "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature":
+      "AY89a19qwbQG1_0yp2-ZyThi6sogI-Qh7Lh8aDrw867hdjklUafXJIlOvfU-0v92aqOl4M1Xni-3_hovJta1SF8yvs8ikG8-s45wIMR7pUDk8t7dK5zb9rBkZ_k="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_442287", "name":
+      "search_notes", "response": {"output": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout. Answer questions about the user''s notes. Search the
+      notes first. Answer in two sentences."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes (case-insensitive). Returns up to
+      5 matching notes as {id, text}.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string"}}}},
+      {"description": "List the file names in Scout''s folder.", "name": "list_files",
+      "parameters_json_schema": {"type": "object", "required": [], "properties": {}}},
+      {"description": "Save text to a file in Scout''s folder. Refuses an existing
+      file unless overwrite is true.", "name": "write_file", "parameters_json_schema":
+      {"type": "object", "required": ["filename", "text"], "properties": {"filename":
+      {"type": "string"}, "text": {"type": "string"}, "overwrite": {"type": "boolean"}}}}]}],
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1736'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"write_file\",\n              \"args\": {\n                \"text\":
+        \"Mars has two small moons named Phobos and Deimos, and a day lasts about
+        24 hours and 39 minutes. Additionally, the rover Perseverance successfully
+        landed on the planet in February 2021.\",\n                \"filename\": \"mars.txt\",\n
+        \               \"overwrite\": true\n              },\n              \"id\":
+        \"call_1345432\"\n            },\n            \"thoughtSignature\": \"AY89a19yQCgwIAPVWP6xywv+kAdF0OSUfaqOsHaU3kLbmOAomK8A62Ow6WSAKlZFOVg43oKxu6C1ux8S6GUaenaSZm538t1aEsQ9sB4JeoKPurSgx7DRiddtJrk=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 214,\n    \"candidatesTokenCount\":
+        72,\n    \"totalTokenCount\": 286,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 214\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 72\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T15:28:04.152809Z\",\n  \"responseId\": \"BAjJaumpCfOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1270'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 15:28:04 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Summarise my notes about Mars and save
+      the summary to mars.txt."}], "role": "user"}, {"parts": [{"functionCall": {"id":
+      "call_442287", "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature":
+      "AY89a19qwbQG1_0yp2-ZyThi6sogI-Qh7Lh8aDrw867hdjklUafXJIlOvfU-0v92aqOl4M1Xni-3_hovJta1SF8yvs8ikG8-s45wIMR7pUDk8t7dK5zb9rBkZ_k="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_442287", "name":
+      "search_notes", "response": {"output": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_1345432", "args": {"text": "Mars has two small moons named Phobos
+      and Deimos, and a day lasts about 24 hours and 39 minutes. Additionally, the
+      rover Perseverance successfully landed on the planet in February 2021.", "filename":
+      "mars.txt", "overwrite": true}, "name": "write_file"}, "thoughtSignature": "AY89a19yQCgwIAPVWP6xywv-kAdF0OSUfaqOsHaU3kLbmOAomK8A62Ow6WSAKlZFOVg43oKxu6C1ux8S6GUaenaSZm538t1aEsQ9sB4JeoKPurSgx7DRiddtJrk="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_1345432", "name":
+      "write_file", "response": {"output": {"edited_by_user": {"text": "Mars has two
+      small moons named Phobos and Deimos, and a day lasts about 24 hours and 39 minutes.
+      Additionally, the rover Perseverance successfully landed on the planet in February
+      2021.", "filename": "mars_summary.txt", "overwrite": true}, "output": "saved
+      185 characters to mars_summary.txt"}}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Search the notes first. Answer in two sentences."}], "role": "user"}, "tools":
+      [{"functionDeclarations": [{"description": "Search the user''s notes (case-insensitive).
+      Returns up to 5 matching notes as {id, text}.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string"}}}},
+      {"description": "List the file names in Scout''s folder.", "name": "list_files",
+      "parameters_json_schema": {"type": "object", "required": [], "properties": {}}},
+      {"description": "Save text to a file in Scout''s folder. Refuses an existing
+      file unless overwrite is true.", "name": "write_file", "parameters_json_schema":
+      {"type": "object", "required": ["filename", "text"], "properties": {"filename":
+      {"type": "string"}, "text": {"type": "string"}, "overwrite": {"type": "boolean"}}}}]}],
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2673'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Your
+        notes about Mars indicate that it has two small moons, Phobos and Deimos,
+        and a day that lasts about 24 hours and 39 minutes. Additionally, the Perseverance
+        rover landed on the planet in February 2021.\",\n            \"thoughtSignature\":
+        \"AY89a19jOoTL1jBcOQVdwjIuLpkNGufIxxPVSDG1z1fWprZCKqJDYZafxfVsDwX0FlgztXJuprkhxZsNDiMQHjSrTI2uFQQwQSzjsZKyugByr3yvq9NWgTc8Xng=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 353,\n    \"candidatesTokenCount\":
+        51,\n    \"totalTokenCount\": 404,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 353\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 51\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T15:28:08.122284Z\",\n  \"responseId\": \"CAjJaqy7B_zs7bEP4rOGmQo\"\n}\n"
+    headers:
+      content-length:
+      - '1056'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 15:28:08 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

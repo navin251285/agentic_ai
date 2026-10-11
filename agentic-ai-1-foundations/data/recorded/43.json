@@ -1,0 +1,37 @@
+{
+ "image": {
+  "reply": "Based on the chart, **Jupiter** has the shortest day, which is about **10 hours** long.",
+  "usage": [
+   1113,
+   23
+  ],
+  "by_modality": {
+   "TEXT": 21,
+   "IMAGE": 1092
+  }
+ },
+ "counted": {
+  "unspecified": 1120,
+  "low": 280,
+  "high": 1120
+ },
+ "image_low": {
+  "reply": "Based on the chart, Jupiter has the shortest day, which is about 10 hours long.",
+  "usage": [
+   294,
+   20
+  ]
+ },
+ "pdf_counted": 1120,
+ "pdf": {
+  "reply": "Yes, the text on page 1 states that a day on Jupiter lasts about 10 hours, which matches the bar height of approximately 10 hours shown for Jupiter on the chart on page 2.",
+  "usage": [
+   1078,
+   43
+  ],
+  "by_modality": {
+   "IMAGE": 1054,
+   "TEXT": 24
+  }
+ }
+}

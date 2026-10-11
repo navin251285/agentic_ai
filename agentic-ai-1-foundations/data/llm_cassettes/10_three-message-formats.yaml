@@ -1,0 +1,301 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m Asha. I''m researching Mars
+      rovers."}], "role": "user"}], "systemInstruction": {"parts": [{"text": "You
+      are Scout, a research assistant. Answer only from the user''s notes below and
+      this chat. If the notes do not cover it, say so in one sentence. Keep answers
+      to one sentence.\n\nNote 1: Mars has two small moons, Phobos and Deimos.\nNote
+      2: Venus spins backwards compared with most planets.\nNote 3: A day on Mars
+      lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest planet
+      in the solar system.\nNote 5: The rover Perseverance landed on Mars in February
+      2021.\nNote 6: Saturn''s rings are mostly made of ice."}], "role": "user"},
+      "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '731'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Hello
+        Asha, my notes show that the rover Perseverance landed on Mars in February
+        2021.\",\n            \"thoughtSignature\": \"AY89a1/TXK0dZxRuYvbYy/4O3h32INl/aT75goczDEKoqN7dULQ/8+znojGo2js6v5IYwPXOZ5yh5fbWyC8EM/zMgJCliWRMhCNo8cBOJQq3q80aIxKDLCHHplE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 156,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 177,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 156\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T06:27:40.103101Z\",\n  \"responseId\": \"XInIar2lBuWBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '936'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 06:27:40 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"max_tokens":60,"messages":[{"role":"user","content":[{"type":"text","text":"Hi,
+      I''m Asha. I''m researching Mars rovers."}]},{"role":"assistant","content":[{"type":"text","text":"Hello
+      Asha, my notes show that the rover Perseverance landed on Mars in February 2021."}]},{"role":"user","content":[{"type":"text","text":"Which
+      of my notes is about a rover?"}]}],"model":"claude-sonnet-5-5","system":"You
+      are Scout, a research assistant. Answer only from the user''s notes below and
+      this chat. If the notes do not cover it, say so in one sentence. Keep answers
+      to one sentence.\n\nNote 1: Mars has two small moons, Phobos and Deimos.\nNote
+      2: Venus spins backwards compared with most planets.\nNote 3: A day on Mars
+      lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest planet
+      in the solar system.\nNote 5: The rover Perseverance landed on Mars in February
+      2021.\nNote 6: Saturn''s rings are mostly made of ice."}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '923'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - Anthropic/Python 1.11.0
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.11.0
+      x-stainless-read-timeout:
+      - '600'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.13
+      x-stainless-timeout:
+      - '600'
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: '{"error":{"type":"invalid_request_error","message":"not sent"}}'
+    headers:
+      content-length:
+      - '63'
+      content-type:
+      - application/json
+    status:
+      code: 400
+      message: Bad Request
+- request:
+    body: '{"model":"gpt-6-luna","input":[{"role":"developer","content":"You are Scout,
+      a research assistant. Answer only from the user''s notes below and this chat.
+      If the notes do not cover it, say so in one sentence. Keep answers to one sentence.\n\nNote
+      1: Mars has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards
+      compared with most planets.\nNote 3: A day on Mars lasts about 24 hours and
+      39 minutes.\nNote 4: Jupiter is the largest planet in the solar system.\nNote
+      5: The rover Perseverance landed on Mars in February 2021.\nNote 6: Saturn''s
+      rings are mostly made of ice."},{"role":"user","content":[{"type":"input_text","text":"Hi,
+      I''m Asha. I''m researching Mars rovers."}]},{"role":"assistant","content":"Hello
+      Asha, my notes show that the rover Perseverance landed on Mars in February 2021."},{"role":"user","content":[{"type":"input_text","text":"Which
+      of my notes is about a rover?"}]}],"max_output_tokens":60}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '929'
+      content-type:
+      - application/json
+      host:
+      - api.openai.com
+      user-agent:
+      - OpenAI/Python 3.24.0
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 3.24.0
+      x-stainless-read-timeout:
+      - '600'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.13
+    method: POST
+    uri: https://api.openai.com/v1/responses
+  response:
+    body:
+      string: '{"error":{"type":"invalid_request_error","message":"not sent"}}'
+    headers:
+      content-length:
+      - '63'
+      content-type:
+      - application/json
+    status:
+      code: 400
+      message: Bad Request
+- request:
+    body: '{"model":"gemini-3.5-flash-lite","generation_config":{"max_output_tokens":60},"input":[{"content":[{"text":"Hi,
+      I''m Asha. I''m researching Mars rovers.","type":"text"}],"type":"user_input"},{"content":[{"text":"Hello
+      Asha, my notes show that the rover Perseverance landed on Mars in February 2021.","type":"text"}],"type":"model_output"},{"content":[{"text":"Which
+      of my notes is about a rover?","type":"text"}],"type":"user_input"}],"system_instruction":"You
+      are Scout, a research assistant. Answer only from the user''s notes below and
+      this chat. If the notes do not cover it, say so in one sentence. Keep answers
+      to one sentence.\n\nNote 1: Mars has two small moons, Phobos and Deimos.\nNote
+      2: Venus spins backwards compared with most planets.\nNote 3: A day on Mars
+      lasts about 24 hours and 39 minutes.\nNote 4: Jupiter is the largest planet
+      in the solar system.\nNote 5: The rover Perseverance landed on Mars in February
+      2021.\nNote 6: Saturn''s rings are mostly made of ice."}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '980'
+      content-type:
+      - application/json
+      host:
+      - generativelanguage.googleapis.com
+      user-agent:
+      - speakeasy-sdk/python 2.4.1-preview.5 internal v1beta google-genai
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://generativelanguage.googleapis.com/v1beta/interactions
+  response:
+    body:
+      string: '{"error":{"type":"invalid_request_error","message":"not sent"}}'
+    headers:
+      content-length:
+      - '63'
+      content-type:
+      - application/json
+    status:
+      code: 400
+      message: Bad Request
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m Asha. I''m researching Mars
+      rovers."}], "role": "user"}, {"parts": [{"text": "Hello Asha, my notes show
+      that the rover Perseverance landed on Mars in February 2021."}], "role": "model"},
+      {"parts": [{"text": "Which of my notes is about a rover?"}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are Scout, a research assistant.
+      Answer only from the user''s notes below and this chat. If the notes do not
+      cover it, say so in one sentence. Keep answers to one sentence.\n\nNote 1: Mars
+      has two small moons, Phobos and Deimos.\nNote 2: Venus spins backwards compared
+      with most planets.\nNote 3: A day on Mars lasts about 24 hours and 39 minutes.\nNote
+      4: Jupiter is the largest planet in the solar system.\nNote 5: The rover Perseverance
+      landed on Mars in February 2021.\nNote 6: Saturn''s rings are mostly made of
+      ice."}], "role": "user"}, "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '939'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Note
+        5 is about a rover.\",\n            \"thoughtSignature\": \"AY89a1/ke/D9sHM8Eo452SIEoPNkXqfOwdy70Ox+O3dhQTireXdjIKj3Q9VTHVEL0F8wIX/anQx61ZEc5xXd05aqcFlHvYO9pkAmGr4O0l+lx4mXcZLI1YkwN+0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 186,\n    \"candidatesTokenCount\":
+        8,\n    \"totalTokenCount\": 194,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 186\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 8\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T06:27:48.077368Z\",\n
+        \ \"responseId\": \"ZInIarjcBOWBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '872'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 06:27:48 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,755 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<instructions>\nSummarise the
+      notes above in at most 40 words, as plain prose. After each fact, cite its note
+      id in square brackets, like [3]. Scout links each [id] to the note, so use only
+      ids from the notes above.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '597'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        has two moons, Phobos and Deimos [1]. A Martian day lasts about 24 hours and
+        39 minutes [3]. Additionally, the rover Perseverance successfully landed on
+        the planet in February 2021 [5].\",\n            \"thoughtSignature\": \"AY89a1/JOYp3YKUm/eZYrAwHVkh8f+h+3RMLW/fK7qL+cHe8vTiu1ll4GpCtuk1BM8QWqWLFITrjTJNXaQx98EU9gLEV3ixJrCfcnDSJIBGhzco38dIgUhvQLGo=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 137,\n    \"candidatesTokenCount\":
+        50,\n    \"totalTokenCount\": 187,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 137\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 50\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:54:41.460785Z\",\n  \"responseId\": \"kXPIavGPHP6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '1040'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:54:42 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<instructions>\nSummarise the
+      notes above in at most 40 words, as plain prose. After each fact, cite its note
+      id in square brackets, like [3]. Scout links each [id] to the note, so use only
+      ids from the notes above.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '597'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        features two small moons, Phobos and Deimos [1]. A Martian day lasts approximately
+        24 hours and 39 minutes [3]. Additionally, the Perseverance rover successfully
+        landed on the planet in February 2021 [5].\",\n            \"thoughtSignature\":
+        \"AY89a18V26s7vI1KAUTU7/ApReOoqe5OdDdzD1a6ZFvFyOy5+Npz9uhMHy+mRiKIcYxiHU20PTtZa5RYOUMqgFXF46DlwjQWYNfu5O3PZjxdjfRuzD544lkAfXM=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 137,\n    \"candidatesTokenCount\":
+        51,\n    \"totalTokenCount\": 188,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 137\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 51\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:54:45.434917Z\",\n  \"responseId\": \"lXPIauXFGrvh-O4Plt7X0Q0\"\n}\n"
+    headers:
+      content-length:
+      - '1059'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:54:46 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<draft>Mars features two small
+      moons, Phobos and Deimos [1]. A Martian day lasts approximately 24 hours and
+      39 minutes [3]. Additionally, the Perseverance rover successfully landed on
+      the planet in February 2021 [5].</draft>\n\n<instructions>\nCheck the draft
+      against the notes. List any fact in the draft that the notes do not state.\n</instructions>"}],
+      "role": "user"}], "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      200, "responseMimeType": "application/json", "responseSchema": {"properties":
+      {"supported": {"description": "true only if every fact in the draft is stated
+      in the notes", "title": "Supported", "type": "BOOLEAN"}, "unsupported": {"description":
+      "facts in the draft that the notes do not state; empty if none", "items": {"type":
+      "STRING"}, "title": "Unsupported", "type": "ARRAY"}}, "property_ordering": ["supported",
+      "unsupported"], "required": ["supported", "unsupported"], "title": "Verdict",
+      "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1224'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"supported\\\": true,\\n  \\\"unsupported\\\": []\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1/WJP8aXc7yTnt9Skerdj36joc4KfDRJq/QjSbskdkxWOkiHx+Y4R4u6lSFuH+r29hGxhK4WkRWJwPpad81VpfmCIgIq99nsiSlbsjg0juVZNDeDVu7XG4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 288,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 305,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 288\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 17\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:54:49.445708Z\",\n  \"responseId\": \"mXPIaoyaG66BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '901'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:54:50 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<request>Summarise my notes about Mars</request>\n\n<instructions>\nYou
+      route requests for Scout, a research assistant over the user''s notes. Pick
+      the route and its argument.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"route": {"enum": ["summarise", "calculate",
+      "search", "other"], "title": "Route", "type": "STRING"}, "argument": {"description":
+      "summarise/search: one topic word, e.g. ''Mars''. calculate: an arithmetic expression
+      with numbers and + - * / only. other: ''''", "title": "Argument", "type": "STRING"}},
+      "property_ordering": ["route", "argument"], "required": ["route", "argument"],
+      "title": "Route", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '802'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"route\\\": \\\"summarise\\\",\\n  \\\"argument\\\": \\\"Mars\\\"\\n}\",\n
+        \           \"thoughtSignature\": \"AY89a1+I9NZiIQiJxq/jqVXXv1mP0oQ19/RHUttPc3zwixCJuN51UkJMTKL+y7Gz6cFsysH/1w1WIMu7zFHH4WQLju/Jix+y0dZ0IHT8rZvET0tU+9fY2LbVeb0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 169,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 189,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 169\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 20\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:54:53.427273Z\",\n  \"responseId\": \"nXPIaomKGpj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '909'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:54:54 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<request>How many minutes is 24 hours
+      and 39 minutes?</request>\n\n<instructions>\nYou route requests for Scout, a
+      research assistant over the user''s notes. Pick the route and its argument.\n</instructions>"}],
+      "role": "user"}], "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      200, "responseMimeType": "application/json", "responseSchema": {"properties":
+      {"route": {"enum": ["summarise", "calculate", "search", "other"], "title": "Route",
+      "type": "STRING"}, "argument": {"description": "summarise/search: one topic
+      word, e.g. ''Mars''. calculate: an arithmetic expression with numbers and +
+      - * / only. other: ''''", "title": "Argument", "type": "STRING"}}, "property_ordering":
+      ["route", "argument"], "required": ["route", "argument"], "title": "Route",
+      "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '817'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"route\\\": \\\"calculate\\\",\\n  \\\"argument\\\": \\\"24 * 60 + 39\\\"\\n}\",\n
+        \           \"thoughtSignature\": \"AY89a19x6NWPGmusy/XcSPOlMGWDgsv+BerXvdeGiptQ5JiS6aAz5KO53fGk/rzwPKc8cCOcvcQWlsM6T3sZ7RTQkeWFgfVhX+3QAeBscqdrGYSwcdEy8FBuQ20=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 176,\n    \"candidatesTokenCount\":
+        28,\n    \"totalTokenCount\": 204,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 176\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 28\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:54:57.433226Z\",\n  \"responseId\": \"oXPIasq4GvOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '917'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:54:58 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<request>Which note mentions Saturn?</request>\n\n<instructions>\nYou
+      route requests for Scout, a research assistant over the user''s notes. Pick
+      the route and its argument.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"route": {"enum": ["summarise", "calculate",
+      "search", "other"], "title": "Route", "type": "STRING"}, "argument": {"description":
+      "summarise/search: one topic word, e.g. ''Mars''. calculate: an arithmetic expression
+      with numbers and + - * / only. other: ''''", "title": "Argument", "type": "STRING"}},
+      "property_ordering": ["route", "argument"], "required": ["route", "argument"],
+      "title": "Route", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '800'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"route\\\": \\\"search\\\",\\n  \\\"argument\\\": \\\"Saturn\\\"\\n}\",\n
+        \           \"thoughtSignature\": \"AY89a1+MqbRT+HWcXD9BH27ZQhUz/33Sh1iunBHfTkskOqagWlm2RClCqPgIbdMIXq3jbuugAeQMf0E/8ACQ97OXCKATw5KiUUEMaAYyiVhKRlbcUJJyG+yRrgs=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 167,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 187,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 167\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 20\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:55:01.407488Z\",\n  \"responseId\": \"pXPIasDvGK6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '908'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:55:02 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<request>Give me a short overview of
+      what I wrote on Jupiter</request>\n\n<instructions>\nYou route requests for
+      Scout, a research assistant over the user''s notes. Pick the route and its argument.\n</instructions>"}],
+      "role": "user"}], "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      200, "responseMimeType": "application/json", "responseSchema": {"properties":
+      {"route": {"enum": ["summarise", "calculate", "search", "other"], "title": "Route",
+      "type": "STRING"}, "argument": {"description": "summarise/search: one topic
+      word, e.g. ''Mars''. calculate: an arithmetic expression with numbers and +
+      - * / only. other: ''''", "title": "Argument", "type": "STRING"}}, "property_ordering":
+      ["route", "argument"], "required": ["route", "argument"], "title": "Route",
+      "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '824'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"route\\\": \\\"summarise\\\",\\n  \\\"argument\\\": \\\"Jupiter\\\"\\n}\",\n
+        \           \"thoughtSignature\": \"AY89a19y1yhuRjC2DWNrEeuXwEaj6Fban7G3Jd+5EtAi+YHWP0xIIyCQHXCsaMAORyk3Pv9/8gksoEntdWX+yAVIoj8gYGsk5On5f3w1FRMTxGU3RBT8l9lWpJg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 174,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 194,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 174\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 20\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:55:05.404314Z\",\n  \"responseId\": \"qXPIatrWGJj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '912'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:55:06 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<request>What is 1.5 million km in metres?</request>\n\n<instructions>\nYou
+      route requests for Scout, a research assistant over the user''s notes. Pick
+      the route and its argument.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"route": {"enum": ["summarise", "calculate",
+      "search", "other"], "title": "Route", "type": "STRING"}, "argument": {"description":
+      "summarise/search: one topic word, e.g. ''Mars''. calculate: an arithmetic expression
+      with numbers and + - * / only. other: ''''", "title": "Argument", "type": "STRING"}},
+      "property_ordering": ["route", "argument"], "required": ["route", "argument"],
+      "title": "Route", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '806'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\\"route\\\":
+        \\\"calculate\\\", \\\"argument\\\": \\\"1500000 * 1000\\\"}\",\n            \"thoughtSignature\":
+        \"AY89a1+4C1vi+Y6lwuJsumOM81MNnuUnH7i3tjpTlZvx1E3ryOmO5WuxUx8r6Ye69TnS9K8HeqwSkeaEAkKN1LvCx2fbzsJSZ7h5vYYcfV1yUqOiMof05UbUTRA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 173,\n    \"candidatesTokenCount\":
+        24,\n    \"totalTokenCount\": 197,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 173\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 24\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:55:09.422119Z\",\n  \"responseId\": \"rXPIaufhGfOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '910'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:55:09 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<request>Book me a flight to Mars</request>\n\n<instructions>\nYou
+      route requests for Scout, a research assistant over the user''s notes. Pick
+      the route and its argument.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"route": {"enum": ["summarise", "calculate",
+      "search", "other"], "title": "Route", "type": "STRING"}, "argument": {"description":
+      "summarise/search: one topic word, e.g. ''Mars''. calculate: an arithmetic expression
+      with numbers and + - * / only. other: ''''", "title": "Argument", "type": "STRING"}},
+      "property_ordering": ["route", "argument"], "required": ["route", "argument"],
+      "title": "Route", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '797'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"route\\\": \\\"other\\\",\\n  \\\"argument\\\": \\\"\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1/hdtifxiy6dVSgTlRdTjex5m45xIlmWPKyQs7aITEVtgL8hGOW54BDvThurBODXabqUo9YkyJBs2YB0TZ0ZsCeLo8qLoB69l2N3QGjvge0oWNhQYddJaE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 169,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 186,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 169\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 17\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:55:13.420572Z\",\n  \"responseId\": \"sXPIatzVGeWBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '901'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:55:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"4\">Jupiter is the
+      largest planet in the solar system.</note>\n</notes>\n\n<instructions>\nSummarise
+      the notes above in at most 40 words, as plain prose. After each fact, cite its
+      note id in square brackets, like [3]. Scout links each [id] to the note, so
+      use only ids from the notes above.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '450'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Jupiter
+        is the largest planet in the solar system [4].\",\n            \"thoughtSignature\":
+        \"AY89a1/j0iDYMTgml42c4lCtzJuWq29SpGv/0htFZrHWCKOZ3zD7xVXQXXYAcDhlZW3uP1dcARP63MLK2F/mySMSp7plUgJmcfTB4lC39UHsRiwxQLhl9Fkvi6E=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 87,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 99,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 87\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 12\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T04:55:17.425074Z\",\n
+        \ \"responseId\": \"tXPIavL4GYeFr8kP-daSkAU\"\n}\n"
+    headers:
+      content-length:
+      - '901'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:55:18 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"4\">Jupiter is the
+      largest planet in the solar system.</note>\n</notes>\n\n<draft>Jupiter is the
+      largest planet in the solar system [4].</draft>\n\n<instructions>\nCheck the
+      draft against the notes. List any fact in the draft that the notes do not state.\n</instructions>"}],
+      "role": "user"}], "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      200, "responseMimeType": "application/json", "responseSchema": {"properties":
+      {"supported": {"description": "true only if every fact in the draft is stated
+      in the notes", "title": "Supported", "type": "BOOLEAN"}, "unsupported": {"description":
+      "facts in the draft that the notes do not state; empty if none", "items": {"type":
+      "STRING"}, "title": "Unsupported", "type": "ARRAY"}}, "property_ordering": ["supported",
+      "unsupported"], "required": ["supported", "unsupported"], "title": "Verdict",
+      "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '922'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"supported\\\": true,\\n  \\\"unsupported\\\": []\\n}\",\n            \"thoughtSignature\":
+        \"AY89a18tOqTpzQYIT4lq0RMOTYGyGf5EPFTjPJuh2OvunS072ILy6FsSBoFrdBTVJleaTFoYsZFZYQJS6rekI7mcsBCjZ8q/krRjDuq2Ou1HnLH+U4frK4c7sus=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 199,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 216,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 199\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 17\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:55:21.408299Z\",\n  \"responseId\": \"uXPIauv1GP6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '901'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:55:22 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

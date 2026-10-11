@@ -1,0 +1,3263 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Mars has two small moons, Phobos and
+      Deimos. Phobos orbits so close that it circles the planet three times a day.
+      It is slowly spiralling inwards and may break into a ring in tens of millions
+      of years."}], "role": "user"}], "systemInstruction": {"parts": [{"text": "Summarise
+      the research note in one line of at most 12 words. Reply with the line only."}],
+      "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '473'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars's
+        inner moon Phobos is spiralling inward and may form rings.\",\n            \"thoughtSignature\":
+        \"AY89a19Yjju1noRjX4GuBMaoA3RLVJ75pf+6lwbd7NsRcKBDULrqWTGVRugCG65HT06z8FmnCaBnxwN6jsZd2dKO13zwH8RLKHpqZtboI1gg3WoUVVmMWrUJf+E=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 68,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 84,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 68\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:45:06.750569Z\",\n
+        \ \"responseId\": \"0uHIaunnLd_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '912'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:45:07 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Mars has two small moons, Phobos and
+      Deimos. Phobos orbits so close that it circles the planet three times a day.
+      It is slowly spiralling inwards and may break into a ring in tens of millions
+      of years."}], "role": "user"}], "systemInstruction": {"parts": [{"text": "Summarise
+      the research note in one line of at most 12 words. Reply with the line only."}],
+      "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '473'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars'
+        inner moon Phobos is spiralling inward and may form a ring.\",\n            \"thoughtSignature\":
+        \"AY89a18+9VnChmmBy6nNFpSHygBBsHmutZOICdjrGd0M3891CzlEfIuwyyxPhdcxSxe4cCTgwZvnuHcvSqVEpHgszoB4a1rM43UMgxf34l0d77Z23vWXB+nK+ak=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 68,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 84,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 68\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:45:11.626623Z\",\n
+        \ \"responseId\": \"1-HIar-fJq6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '912'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:45:12 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Venus spins backwards compared with
+      most planets. Its day is longer than its year: one rotation takes 243 Earth
+      days, while one orbit of the Sun takes 225."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '427'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Venus
+        spins backwards and has days longer than its years.\",\n            \"thoughtSignature\":
+        \"AY89a1+tyiKb3eBnWoLQIBoINFaikE5LSDqESzeYlu1Qti4yFDwC2VaBT0gTO85xPzgKT7cY9Bc4b+kqnP9YBP6oE6uVtzSPBsxj9nEty78FplVbPn0vNkZR8O0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 60,\n    \"candidatesTokenCount\":
+        11,\n    \"totalTokenCount\": 71,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 60\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 11\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:45:16.336161Z\",\n
+        \ \"responseId\": \"3OHIaqHCFPzs7bEP4rOGmQo\"\n}\n"
+    headers:
+      content-length:
+      - '904'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:45:16 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "A day on Mars lasts about 24 hours and
+      39 minutes. Mission teams call it a sol. Rover operators on Earth shift their
+      working hours every day to stay in step with the rover."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "Summarise the research note in one
+      line of at most 12 words. Reply with the line only."}], "role": "user"}, "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '444'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        rovers operate on 24-hour, 39-minute sols, forcing Earth teams to shift daily
+        schedules.\",\n            \"thoughtSignature\": \"AY89a1/MPhXrvT6h51s0PF3CrGqUn8BUqA78GN6ZC/SVtQn7CDygWBfxk2CRsba1u9qL+aFLTPZJdGMIRot/qundbtoeuvBcaEd4lXrm9NU3C9QQScH2BG2ZdBI=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 63,\n    \"candidatesTokenCount\":
+        26,\n    \"totalTokenCount\": 89,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 63\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 26\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:45:20.975736Z\",\n
+        \ \"responseId\": \"4OHIavjGO_6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '940'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:45:21 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Jupiter is the largest planet in the
+      solar system. More than 1,300 Earths would fit inside it. Its Great Red Spot
+      is a storm wider than Earth that has been watched since at least the 1830s."}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "Summarise the research
+      note in one line of at most 12 words. Reply with the line only."}], "role":
+      "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '461'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Jupiter
+        is the solar system's largest planet, featuring massive storms.\",\n            \"thoughtSignature\":
+        \"AY89a1/RQM7CKhBWYcI/fkJCUAmxa1OQ89kZXrylrKWkNHHE+07HcvQlB+Wk7AOrO/ouBCf/fy+XUOrxzJgzfkZdt9gqrsKIuZaBh3rJx8wQWFSrgUVqRjQjSXI=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 72,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 86,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 72\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 14\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:45:25.551451Z\",\n
+        \ \"responseId\": \"5eHIapvUIfGLr8kPkOWf8Ag\"\n}\n"
+    headers:
+      content-length:
+      - '918'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:45:26 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The rover Perseverance landed on Mars
+      in February 2021, in Jezero Crater. The crater once held a lake. The rover collects
+      rock cores in sealed tubes for a future mission to bring back."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "Summarise the research note in one
+      line of at most 12 words. Reply with the line only."}], "role": "user"}, "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '456'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Perseverance
+        collects Martian rock cores in Jezero Crater for future return.\",\n            \"thoughtSignature\":
+        \"AY89a1/ahaVpHTzflq8HOc0iht4CQTYSV80a6FTJCYEmdO/z7MOG7oaKT6WZIW6Xf8BAB2N/aDjs2RYPjS62anwV0FAzatjesqPQ1jrrZUNW3YiGUj4qRQHKcYQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 64,\n    \"candidatesTokenCount\":
+        15,\n    \"totalTokenCount\": 79,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 64\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 15\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:45:30.149259Z\",\n
+        \ \"responseId\": \"6uHIaouOCd_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '923'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:45:30 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Saturn''s rings are mostly made of ice,
+      with some rock and dust. They are hundreds of thousands of kilometres wide but
+      often only about ten metres thick."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '424'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Saturn's
+        rings are massive in width, extremely thin, and mostly icy.\",\n            \"thoughtSignature\":
+        \"AY89a183VFjJp93Whq2ONks95RneEAqEKs+kMKMdpA/mi81Y13zc15bx2RgQM6UbAHeT01jIPbxDW0j6ckT1mES/IBU8Otbiw2PU9HeaCNcKAdmC+xc+2LNrlBc=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 55,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 72,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 55\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 17\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:45:34.875456Z\",\n
+        \ \"responseId\": \"7uHIasC3NfOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '915'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:45:35 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Mercury is the closest planet to the
+      Sun but not the hottest. With almost no atmosphere, its night side drops to
+      about minus 180 degrees Celsius."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '417'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Despite
+        being closest to the Sun, Mercury is not the hottest planet.\",\n            \"thoughtSignature\":
+        \"AY89a1/p1BZb+DgI4cxRQfowUhTF1UbxeorwZsjWXS88itFXCEvzALsYblxconDQ1We5lYk2NMpWy1R5vtdGMmJ6wo9motFbTu03MZTN5eHh8H6G4sieNz55TRo=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 54,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 68,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 54\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 14\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:45:39.421713Z\",\n
+        \ \"responseId\": \"8-HIatHeGfzs7bEP4rOGmQo\"\n}\n"
+    headers:
+      content-length:
+      - '915'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:45:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Venus is the hottest planet, at about
+      465 degrees Celsius at the surface. A thick carbon dioxide atmosphere traps
+      heat, and the pressure is about 90 times that on Earth."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "Summarise the research note in one
+      line of at most 12 words. Reply with the line only."}], "role": "user"}, "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '441'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Venus
+        is the hottest planet due to a thick carbon dioxide atmosphere.\",\n            \"thoughtSignature\":
+        \"AY89a1/1fD+cZRMIz9h52O5f+GSYKTciSHdJG2K3bstPjs/0S4q6jFDCnX0pZ4pM5+SXkCWH54NX15CZiHwlaJnm9X6pS6E861OFhzwf8wsfLDjpnSEsr0Y5se8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 61,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 74,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 61\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 13\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:45:43.926834Z\",\n
+        \ \"responseId\": \"9-HIavLIOK6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '916'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:45:44 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Earth''s Moon is slowly moving away,
+      about 3.8 centimetres a year. Laser reflectors left by Apollo crews let scientists
+      measure the distance precisely."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "Summarise the research note in one line of at most 12 words. Reply
+      with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '422'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        Moon is slowly moving away from Earth at 3.8 cm annually.\",\n            \"thoughtSignature\":
+        \"AY89a1/Wr+kJvLxRTf5VYmPcfDvGn6sVAVXR8GIMk/0uW66JBYjegUh06zXr1JLBUft+hcDdQBUska6lws2X3eUMI06Ro2mYDxL0DH/JuHvZlSAITU8qMvirHgM=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 53,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 69,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 53\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:45:48.550912Z\",\n
+        \ \"responseId\": \"_OHIaoDQId_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '908'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:45:49 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Uranus rotates on its side, tilted about
+      98 degrees. Each pole gets around 42 years of sunlight followed by 42 years
+      of darkness."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "Summarise the research note in one line of at most 12 words. Reply with the
+      line only."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '401'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Uranus
+        rotates on its side with extreme 42-year seasons of light and dark.\",\n            \"thoughtSignature\":
+        \"AY89a18KJPOve8J9CJPaTKFwx0BZZ6ytmo7WGWU9II9/IZXGtHZNrRY7cWF++xPrHIXNp5MVDjPciwTIlQQ5lw5CMbKyvffmL2mbw8EAPYuWZyrljVgW518liPE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 56,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 76,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 56\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 20\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:45:53.223279Z\",\n
+        \ \"responseId\": \"AeLIaq_QDf6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '921'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:45:53 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Neptune has the fastest winds measured
+      in the solar system, above 2,000 kilometres per hour. It was found in 1846 by
+      mathematics before anyone saw it."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '422'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Neptune
+        features solar system record winds and was discovered via mathematics.\",\n
+        \           \"thoughtSignature\": \"AY89a1/2h7e7jw7AFmFvmwZBU34F8h06FKCXx7N6f08mBi3xSRjU81/13mOjyV1V9WA6dl/hOqEDUoVAGyEUKgVfwzsKDcPddqsNCCQkI13k8sk2c5gQLFJMrZ4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 62,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 76,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 62\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 14\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:45:57.720740Z\",\n
+        \ \"responseId\": \"BeLIauT-K_mFidsP3pSoqQI\"\n}\n"
+    headers:
+      content-length:
+      - '925'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:45:58 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Pluto was reclassified as a dwarf planet
+      in 2006. The New Horizons probe flew past it in 2015 and found a heart-shaped
+      plain of nitrogen ice."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "Summarise the research note in one line of at most 12 words. Reply
+      with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '413'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Pluto,
+        reclassified in 2006, revealed nitrogen ice when visited in 2015.\",\n            \"thoughtSignature\":
+        \"AY89a19+Pq7v6whyXpNF1n6Pc8NbLFH1irkVo6C3wkKQjkRhjlcFQHDC4FTRF3I1b339X8ILuVjcM6FyPjScWHHUJR0/P6R/TNFuKXpziwuSeG48RG0KTTFzrkc=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 62,\n    \"candidatesTokenCount\":
+        24,\n    \"totalTokenCount\": 86,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 62\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 24\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:46:02.284627Z\",\n
+        \ \"responseId\": \"CuLIatOvEfGLr8kPkOWf8Ag\"\n}\n"
+    headers:
+      content-length:
+      - '919'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:46:02 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Europa, a moon of Jupiter, likely hides
+      a salty ocean under its ice shell. The Europa Clipper spacecraft launched in
+      October 2024 to study whether it could support life."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '441'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Europa
+        Clipper launched in October 2024 to assess Jupiter's icy moon for life.\",\n
+        \           \"thoughtSignature\": \"AY89a18oYQPSqMw3ICFViAX9fxUr4JzHIijfPs/vd2dGfe/ylig70PExsCZ86ZuJwmfaViTMVFrdtf6LweHmUgUDKno/rsaXYyLNxzfbEzfjlt8MKfoyjUt7nxg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 59,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 79,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 59\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 20\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:46:06.985497Z\",\n
+        \ \"responseId\": \"DuLIapmTPPzs7bEP4rOGmQo\"\n}\n"
+    headers:
+      content-length:
+      - '925'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:46:07 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Titan, Saturn''s largest moon, has lakes
+      of liquid methane and ethane. It is the only moon with a thick atmosphere. The
+      Dragonfly drone mission is planned to fly there."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '439'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Saturn's
+        largest moon, Titan, features methane lakes and upcoming exploration.\",\n
+        \           \"thoughtSignature\": \"AY89a19YD8WWnCVD4wRBAZI9Yis5AWYUa6Q4ijjRhX47DJKrxtShLcqfIUzO7KXolVbvXRTKE+GD4k5h0YStEYP5cpYLInpflADtAu4WHlBwxHQFa8NTQRtiYtg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 58,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 74,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 58\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:46:11.494485Z\",\n
+        \ \"responseId\": \"E-LIapWXHvOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '925'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:46:12 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Enceladus sprays jets of water vapour
+      from cracks near its south pole. The Cassini probe flew through the plumes and
+      detected salts and organic molecules."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '426'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Cassini
+        detected water vapour, salts, and organics in Enceladus's south pole plumes.\",\n
+        \           \"thoughtSignature\": \"AY89a19OP3SFqgH+9T9MybAe2wFQrYugYm2oYaMHYOwo4MKqlQ58U7KzCd03xjrqQpO+iae44l4F/wfvzojHP9k9OiKQRfuUXAVf1X21Ou8jJdG48OI6gKJGQnI=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 51,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 71,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 51\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 20\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:46:16.082404Z\",\n
+        \ \"responseId\": \"GOLIauSDBa6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '931'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:46:16 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Io is the most volcanically active body
+      known. Tides from Jupiter flex its interior, heating it enough to power hundreds
+      of active volcanoes."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "Summarise the research note in one line of at most 12 words. Reply with the
+      line only."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '413'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Jupiter's
+        gravitational tides power hundreds of active volcanoes on Io.\",\n            \"thoughtSignature\":
+        \"AY89a18UFxQZJ1eIziD6KtBHJN/iBdgzmMHZd0Kn2//zIn0HAklvrPWYlpVTb64zJ+o250xYkNqXTGjaPdkTZZ2Kj/lP3K9n3X+wYXNJw7gEpsh3T3fhIEAsxg8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 50,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 63,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 50\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 13\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:46:20.629238Z\",\n
+        \ \"responseId\": \"HOLIavazJt_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '918'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:46:21 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Ganymede is the largest moon in the
+      solar system, bigger than Mercury. It is the only moon known to have its own
+      magnetic field."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "Summarise the research note in one line of at most 12 words. Reply with the
+      line only."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '400'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Ganymede
+        is the solar system's largest moon with a magnetic field.\",\n            \"thoughtSignature\":
+        \"AY89a1/fll6bP+eMYUQTycg5FrToaHZZIdoPVkKKpeVlbsn9h/ZbB8Sq9yB2x89BNp1ywfHwsPFZykTn/pAhtrNR8AbKKsCqkd4wgBOCp6vOzJTyxWLJrcwwKC8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 51,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 67,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 51\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:46:25.244076Z\",\n
+        \ \"responseId\": \"IeLIauzyDv6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '913'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:46:25 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The asteroid belt lies between Mars
+      and Jupiter. Despite films, it is mostly empty space: the average distance between
+      large asteroids is about a million kilometres."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '437'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Despite
+        cinematic portrayals, the asteroid belt is actually mostly empty space.\",\n
+        \           \"thoughtSignature\": \"AY89a18LwKTsthgtXdnAZ/wM1j21L/wgkGrA6MNYzDoqYw+zNVLKFOnJXyD0rReDvqAlS/ZE2NOT63A2Ze2WRQzreAqvpUy7j0CJ7oD5rOzFUpC/YFEyKrYRhdI=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 52,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 66,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 52\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 14\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:46:29.799811Z\",\n
+        \ \"responseId\": \"JeLIasPoMPmFidsP3pSoqQI\"\n}\n"
+    headers:
+      content-length:
+      - '926'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:46:30 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Ceres is the largest object in the asteroid
+      belt and counts as a dwarf planet. The Dawn spacecraft found bright salt deposits
+      in Occator Crater."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "Summarise the research note in one line of at most 12 words. Reply with the
+      line only."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '416'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Ceres,
+        a dwarf planet, features bright salt deposits in Occator Crater.\",\n            \"thoughtSignature\":
+        \"AY89a19pTaz7vOF0sMzgfLSS+f9xZvG3vE/fwyU1bJ0MLNcFxN77s+Qc0s7jAR4U4FykY2/QLW0zBNB70TMsY0BYbV15w5kRJbxW/MD9uE0zh9yJ9+ZviJQhEJU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 51,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 67,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 51\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:46:34.462768Z\",\n
+        \ \"responseId\": \"KuLIarCfHPzs7bEP4rOGmQo\"\n}\n"
+    headers:
+      content-length:
+      - '918'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:46:35 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The Sun holds about 99.8 percent of
+      the solar system''s mass. Light from its surface takes about eight minutes and
+      twenty seconds to reach Earth."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "Summarise the research note in one line of at most 12 words. Reply
+      with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '416'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        Sun contains 99.8% of the solar system's mass.\",\n            \"thoughtSignature\":
+        \"AY89a1/ja49v/MkCg/l2BEj/famc/3jg3UrMepXuEEc46WS+QoxTR3jh6/8oHog1h8cFjNM+6vkmKcyPm/0lY/lL3j+NNYjhygdlmMjn1UL6DpVo0xSg32SIU2A=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 55,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 72,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 55\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 17\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:46:39.117036Z\",\n
+        \ \"responseId\": \"L-LIaqySB_GLr8kPkOWf8Ag\"\n}\n"
+    headers:
+      content-length:
+      - '897'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:46:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Solar flares can disrupt radio communications
+      and GPS on Earth. Strong events also produce auroras far from the poles, as
+      in May 2024."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "Summarise the research note in one line of at most 12 words. Reply with the
+      line only."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '406'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Solar
+        flares disrupt Earth's communications and can trigger distant auroras.\",\n
+        \           \"thoughtSignature\": \"AY89a1+pakk7XRI4SpjTGu82kYLwE9a5fZMaqPUjiyjzy4cdT0HMo+jhCdD3t/kkhgGhLUj7IWMHdPIiZPiPypGtB2Pm31+mnqTVCHR7Q2+1BDyYYEyHDPUQydM=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 53,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 67,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 53\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 14\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:46:43.669908Z\",\n
+        \ \"responseId\": \"M-LIatTxKN_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '923'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:46:44 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Comets are icy bodies that grow tails
+      when they near the Sun. The tail always points away from the Sun, pushed by
+      sunlight and the solar wind."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "Summarise the research note in one line of at most 12 words. Reply
+      with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '414'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Comets
+        develop tails pointing away from the Sun due to solar forces.\",\n            \"thoughtSignature\":
+        \"AY89a19C+amR3KTd6T5I7RkVGb1UDoY+UTHmxekvESA2sbgv1FlsaunClBhInZIj++INdF6rp1BQefZjQsT+P+7P0PCA0OcQiZU4/xiMVME/hUHCX4vRAmTyNP0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 53,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 67,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 53\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 14\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:46:48.340681Z\",\n
+        \ \"responseId\": \"OOLIasnlFK6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '915'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:46:51 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Halley''s Comet returns about every
+      76 years. It last passed in 1986 and is expected back in 2061."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "Summarise the research note in one
+      line of at most 12 words. Reply with the line only."}], "role": "user"}, "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '369'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Halley's
+        Comet returns every 76 years, with the next in 2061.\",\n            \"thoughtSignature\":
+        \"AY89a1/mwPBmQhzHKbLz9+v8ns8Fb6HdDcnjNnmkOmglAPT29Q0gVqN7g3HOO99oEJXv1bRfppgsnrfZZV/o0zLL0aGh7OGK70vvClXd31wddxQWPN19u3pMl04=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 55,\n    \"candidatesTokenCount\":
+        22,\n    \"totalTokenCount\": 77,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 55\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 22\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:46:55.885066Z\",\n
+        \ \"responseId\": \"P-LIasqCNvOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '908'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:46:56 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The Voyager 1 probe launched in 1977
+      and is the most distant human-made object. It crossed into interstellar space
+      in 2012 and still sends weak signals."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '424'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Launched
+        in 1977, Voyager 1 is the most distant human-made object.\",\n            \"thoughtSignature\":
+        \"AY89a18/IsvEVd15gS0J1VakbxjwkaHsuNgxoqmuVzCVhatDbRf+nV8an1AF16mAx/DmtQhvMvcbOatD2qS2tKdIPIlExeExx7BK2JpF1qYCGuI8uw1B0gE9a4Q=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 61,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 81,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 61\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 20\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:00.429170Z\",\n
+        \ \"responseId\": \"ROLIavKYGv6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '913'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The James Webb Space Telescope launched
+      in December 2021. It observes in infrared from a point about 1.5 million kilometres
+      from Earth called L2."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "Summarise the research note in one line of at most 12 words. Reply with the
+      line only."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '417'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Launched
+        in 2021, the James Webb Space Telescope observes infrared from L2.\",\n            \"thoughtSignature\":
+        \"AY89a1+qzOAHHOMZAfk7vOmIjmmqujM8iQTQgM53I+c3vTzYPf9Zau9wU4ySxj+SUnJk9wP34MNEDjFZR1+RWjmv5USkmKlaAIwnLIDIm7DO6NVJBrU8slQFqi0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 56,\n    \"candidatesTokenCount\":
+        19,\n    \"totalTokenCount\": 75,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 56\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 19\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:04.948497Z\",\n
+        \ \"responseId\": \"SOLIapHyOfzs7bEP4rOGmQo\"\n}\n"
+    headers:
+      content-length:
+      - '922'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:05 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The Hubble Space Telescope has orbited
+      Earth since 1990. Astronauts serviced it five times, the last in 2009."}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "Summarise the research note
+      in one line of at most 12 words. Reply with the line only."}], "role": "user"},
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '381'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Hubble
+        has orbited Earth since 1990 and was last serviced in 2009.\",\n            \"thoughtSignature\":
+        \"AY89a1/TpB693dWvex1BbMvZTYoRXNDsk1ZYQwKjazPRW69xeAgLijxeU36fPuTa8Bdsq9tlhFWELgEEec8IeL4lZH+avkdv/QvPMxu71DXvWpZFJRcg7i0rJik=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 53,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 76,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 53\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 23\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:09.544079Z\",\n
+        \ \"responseId\": \"TeLIas-aIfmFidsP3pSoqQI\"\n}\n"
+    headers:
+      content-length:
+      - '913'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:10 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The International Space Station orbits
+      about 400 kilometres up and circles Earth roughly every 90 minutes. People have
+      lived on board continuously since November 2000."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '439'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Continuously
+        inhabited since 2000, the ISS orbits Earth every ninety minutes.\",\n            \"thoughtSignature\":
+        \"AY89a19of+Xb9lTK5+cOauzbHcaSnrCPSURGrCRtPC/l3OhR5P4oOEcjcsElNgK6O6Ko0cCtvycrF+VzDa3Wh1yseZfaZlIPrLxOYOJea92FbbOGRMcdFq/oGXQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 58,\n    \"candidatesTokenCount\":
+        18,\n    \"totalTokenCount\": 76,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 58\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 18\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:14.030843Z\",\n
+        \ \"responseId\": \"UuLIavvwAa6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '924'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "A light-year is a distance, not a time:
+      about 9.46 trillion kilometres. Proxima Centauri, the nearest star after the
+      Sun, is about 4.2 light-years away."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '424'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"A light-year
+        measures vast astronomical distance, not time.\",\n            \"thoughtSignature\":
+        \"AY89a1/vfmyh0EcswG7HTkP3lQ+bGdjkSjlM/W4MW0+G/BDXlgoSyC8vRs9qHfMQcnomHr+GN2oZLUj/GoxUCkClDYDApmsfdmtilE8jRsI4gRT60DLT7OdNIOk=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 66,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 78,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 66\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 12\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:18.563693Z\",\n
+        \ \"responseId\": \"VuLIau2zIt_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '906'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:19 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Exoplanets are planets around other
+      stars. More than 5,000 have been confirmed, many found by watching a star dim
+      slightly as a planet passes in front."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '423'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Over
+        5,000 exoplanets have been confirmed, often detected via stellar dimming.\",\n
+        \           \"thoughtSignature\": \"AY89a19o+/imIN3+/IGsiJqLDOJ3htYAl3epxfGAvyg6G/0IO/5eky4+eS+T/rTTr6ck9gSf2Qdz7FqYQewAuYieBoe7dXmMx5ScDhFwtGTjaDKMYPoIbvUZIJ8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 58,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 79,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 58\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 21\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:23.230831Z\",\n
+        \ \"responseId\": \"W-LIaq-LDvGLr8kPkOWf8Ag\"\n}\n"
+    headers:
+      content-length:
+      - '925'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:23 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The TRAPPIST-1 system has seven Earth-sized
+      planets around a small, cool star. Several orbit in the zone where liquid water
+      could exist."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "Summarise the research note in one line of at most 12 words. Reply with the
+      line only."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '408'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"TRAPPIST-1
+        hosts seven Earth-sized planets, with several in the habitable zone.\",\n
+        \           \"thoughtSignature\": \"AY89a1/hGIpe1dNPR+jXfgt3KaQTjIDRrbNyH8ovqao1CrovDiaU8Nu14KtONjVB6urGBhpb6xWmgdJcdpyvfG2/l6XTinLoMeu0MxFp02u0KjYkxb/A6zQmyuA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 54,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 74,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 54\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 20\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:27.812922Z\",\n
+        \ \"responseId\": \"X-LIavrOMf6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '926'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:28 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Black holes form when massive stars
+      collapse. In 2019 the Event Horizon Telescope released the first image of one,
+      in the galaxy M87."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "Summarise the research note in one line of at most 12 words. Reply with the
+      line only."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '405'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Massive
+        stellar collapses form black holes, imaged in M87 in 2019.\",\n            \"thoughtSignature\":
+        \"AY89a1/eSvKtdQS2vssWDUn1vmtI/0OVY9VZgncxvgUdicZdCeXlkPwVpUrqML8t8Yd8FqqeYxB5ju0qFZRsOuy67V0bQPTtvl/2dr5QtVGzbTfXKqExAY4uOxg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 54,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 74,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 54\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 20\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:32.385334Z\",\n
+        \ \"responseId\": \"ZOLIarbCF_zs7bEP4rOGmQo\"\n}\n"
+    headers:
+      content-length:
+      - '913'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:32 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The Milky Way is a barred spiral galaxy
+      about 100,000 light-years across. The Sun takes about 230 million years to orbit
+      its centre."}], "role": "user"}], "systemInstruction": {"parts": [{"text": "Summarise
+      the research note in one line of at most 12 words. Reply with the line only."}],
+      "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '404'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        Milky Way is a barred spiral galaxy requiring vast cosmic time.\",\n            \"thoughtSignature\":
+        \"AY89a1+Z+bXuwy+OkJuukXCVQdYNG+74bOzA8zhI4u3UG5RRsB1wu4cOV3MjJ/Pvqq/KlOG3dyt9VCgEHfrph8lxwk4N/T1r7h3mbK2DGuivubmCiyLa2Ch9/Uw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 59,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 72,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 59\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 13\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:36.993936Z\",\n
+        \ \"responseId\": \"aOLIapDVPPOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '914'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:37 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The Andromeda galaxy is the nearest
+      large galaxy to ours, about 2.5 million light-years away. It is expected to
+      merge with the Milky Way in a few billion years."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '432'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Andromeda,
+        our nearest galactic neighbor, will eventually merge with the Milky Way.\",\n
+        \           \"thoughtSignature\": \"AY89a1/gIY+EyGZ0XGwLVCe3ral4FpJKyA/rWQib2PlaKfGwzTJ2G0Da7q3iGFcEhOaQDsU0hKYk1671NBjonYVmtLhEOMxTWViIVUb+lMfxikGGWzmmz/oSLIQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 59,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 75,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 59\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:41.694238Z\",\n
+        \ \"responseId\": \"beLIat6vKvmFidsP3pSoqQI\"\n}\n"
+    headers:
+      content-length:
+      - '930'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:42 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Mars once had liquid water on its surface.
+      Dry river valleys, deltas and minerals that form in water are visible from orbit."}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "Summarise the research
+      note in one line of at most 12 words. Reply with the line only."}], "role":
+      "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '396'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Orbital
+        evidence shows that Mars once had liquid water.\",\n            \"thoughtSignature\":
+        \"AY89a1+2jxd+14LudCcS6PZK3TCW5ATlF8zC3Sl7Xmy3Gwe9n1ZOg0VokJaqFLOQq92GXKPiG7C8todUzTMjjCebLjQrdsgTldF7Rg1zWfNDDPy3aQS1FZv3gZ4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 48,\n    \"candidatesTokenCount\":
+        11,\n    \"totalTokenCount\": 59,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 48\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 11\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:46.195282Z\",\n
+        \ \"responseId\": \"cuLIatL1C66BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '902'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:46 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Olympus Mons on Mars is the tallest
+      volcano in the solar system, about 22 kilometres high. Its base is roughly the
+      size of Poland."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "Summarise the research note in one line of at most 12 words. Reply with the
+      line only."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '402'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Olympus
+        Mons is the solar system's tallest volcano, located on Mars.\",\n            \"thoughtSignature\":
+        \"AY89a19BQRaq0oUyVb1pqPcXL66jeoVUmNuGfI3xZWMLjCsfLMAzix5d1ZVjtoluacIkCDQQ90tAvjYa/n287k3BlZtAeeh+PclMO/OzcfLYgdkMRGHT04nD4Sw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 52,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 68,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 52\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:50.788825Z\",\n
+        \ \"responseId\": \"duLIatmSMN_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '915'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:51 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Valles Marineris is a canyon system
+      on Mars about 4,000 kilometres long. It would stretch across most of the United
+      States."}], "role": "user"}], "systemInstruction": {"parts": [{"text": "Summarise
+      the research note in one line of at most 12 words. Reply with the line only."}],
+      "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '395'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Valles
+        Marineris is a massive 4,000-kilometer-long canyon system on Mars.\",\n            \"thoughtSignature\":
+        \"AY89a18KnHHhD3ybPcRJW62DKcx3JRXdGbSsl2C7EXPsan8ZDEzrjvSd+At2jlzMsjIkPI3OxllKKRL2+9gTZhPCl9i8Wb7QJ6idg9IFnMRbuhUmxg8+sLw1VYU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 52,\n    \"candidatesTokenCount\":
+        22,\n    \"totalTokenCount\": 74,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 52\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 22\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:55.293898Z\",\n
+        \ \"responseId\": \"e-LIaor4Ef6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '920'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:47:55 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The Curiosity rover landed on Mars in
+      August 2012 using a sky crane. It is still exploring Gale Crater and climbing
+      Mount Sharp."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "Summarise the research note in one line of at most 12 words. Reply with the
+      line only."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '400'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Curiosity
+        rover landed on Mars in 2012 and still explores today.\",\n            \"thoughtSignature\":
+        \"AY89a1+S/pOvHq72TqiBedMzC0n28LpXVGHTFhbiug6e9sCGNCBDsBSwdl4wbZ6wkUmYsqkjYLILKbxuThOLFe3HpUCrjNXhT/Ib4U08KMnIODkd9GgLCOMv5AM=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 51,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 68,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 51\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 17\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:47:59.851131Z\",\n
+        \ \"responseId\": \"f-LIarv5M_zs7bEP4rOGmQo\"\n}\n"
+    headers:
+      content-length:
+      - '911'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The Ingenuity helicopter made the first
+      powered flight on another planet in April 2021. It flew 72 times before a damaged
+      rotor ended its mission in January 2024."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '434'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"NASA's
+        Ingenuity helicopter completed 72 pioneering flights on Mars before retiring.\",\n
+        \           \"thoughtSignature\": \"AY89a1+QdrS8VDHXbwUvi8+IKa4lX+MaGjfQVRvjR848n0mFmeQiToqUB9J12iVdjJlxaL/1T1E5sxYTOuOeuFn2WyC2hTj9JaDZ2GPHPJ30YwICL9tQpvNCNHY=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 63,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 80,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 63\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 17\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:48:04.441980Z\",\n
+        \ \"responseId\": \"hOLIavz8GvGLr8kPkOWf8Ag\"\n}\n"
+    headers:
+      content-length:
+      - '931'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:05 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Martian dust storms can cover the whole
+      planet for weeks. A storm in 2018 blocked sunlight and ended the solar-powered
+      Opportunity rover''s mission."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "Summarise the research note in one line of at most 12 words. Reply
+      with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '419'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Global
+        Martian dust storms block sunlight, ending solar-powered rover missions.\",\n
+        \           \"thoughtSignature\": \"AY89a1/v5nnuEKRgxEwi9my448OudU+PXDUiDDly1Fr7s9DRJHB2uNVPIu2kRZT8GLzPQIKvwqKYFNeSo6g7HI+0hvl38nl4ItRK5l5l+KU6fGJZnhCH2WrUMF0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 56,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 70,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 56\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 14\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:48:09.085685Z\",\n
+        \ \"responseId\": \"ieLIarWdBa6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '926'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:09 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "A Martian year lasts 687 Earth days.
+      Seasons there are almost twice as long as on Earth because of the longer orbit."}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "Summarise the research
+      note in one line of at most 12 words. Reply with the line only."}], "role":
+      "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '388'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Martian
+        years last 687 Earth days, making seasons twice as long.\",\n            \"thoughtSignature\":
+        \"AY89a19eU++DHbdoOBIiPQQ5xPiwC53hVn4HgKF4KSadAptSH227bHp9uHBtK8syB8q1GUAkQlj29zeiQl4BMhnRlgpi/L1HqEAzbz5Nb1UGhx4QMXSjHUswcVQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 49,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 66,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 49\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 17\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:48:13.537229Z\",\n
+        \ \"responseId\": \"jeLIao3lIPmFidsP3pSoqQI\"\n}\n"
+    headers:
+      content-length:
+      - '911'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Gravity on Mars is about 38 percent
+      of Earth''s. A person weighing 70 kilograms on Earth would feel like 27 kilograms
+      there."}], "role": "user"}], "systemInstruction": {"parts": [{"text": "Summarise
+      the research note in one line of at most 12 words. Reply with the line only."}],
+      "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '395'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        gravity is about 38 percent of Earth's.\",\n            \"thoughtSignature\":
+        \"AY89a19CnEnet12az46w4MWfEO9uLZPL1dgHsNDpwkbjhQKTm81hH58g07umwWqVEblsaROlKIRZf4SS+Pm9WJRQoiZ/eRZ3NX408HQzwX0oE1c7NsxEBbTdqRY=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 54,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 67,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 54\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 13\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:48:18.110365Z\",\n
+        \ \"responseId\": \"kuLIap3eBt_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '891'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:18 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Radio signals between Earth and Mars
+      take between about 3 and 22 minutes one way. Rovers cannot be driven live and
+      must follow planned commands."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "Summarise the research note in one line of at most 12 words. Reply
+      with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '416'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        rover communication delays require pre-planned commands instead of live driving.\",\n
+        \           \"thoughtSignature\": \"AY89a1/B+cIiHkBQpngEL3H8UfLDVpQJ2orokLvAWrwKpkytQTS2pOlu8nmf4XO2Oc3JCJOTib7qCb8878k9977UPKqoyfe27SI4v/ipYrhTwF7OXn1G5MKNCv8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 52,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 66,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 52\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 14\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:48:22.612239Z\",\n
+        \ \"responseId\": \"luLIao-vJfOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '932'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:23 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Jupiter has the strongest magnetic field
+      of any planet. Its radiation belts are dangerous to spacecraft electronics,
+      so probes like Juno carry shielding."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '425'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Jupiter's
+        powerful magnetic field and dangerous radiation require spacecraft shielding.\",\n
+        \           \"thoughtSignature\": \"AY89a1+h7uZhJ1qe56e9GsHvqdbWszeUvxqRK3uXBqdvdyWWLPl/bNFE0uKqw7n+PVLNjr3vODalfDV0c/IY3aE60gWGZHL1QWRkzYzGL5Hg40Q821yGbsGXeF4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 48,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 61,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 48\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 13\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:48:27.266431Z\",\n
+        \ \"responseId\": \"m-LIar-hEP6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '934'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:27 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The Juno spacecraft has orbited Jupiter
+      since 2016. It found that the Great Red Spot reaches hundreds of kilometres
+      down into the atmosphere."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "Summarise the research note in one line of at most 12 words. Reply
+      with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '413'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Juno
+        discovered Jupiter's Great Red Spot extends hundreds of kilometres deep.\",\n
+        \           \"thoughtSignature\": \"AY89a18x99pXqOy0VqLknPk5GDSMkL7YCAo92JY/gENsJEog8QQ0qopY4ND9I2w5VCmy4pzO3jLiwfGLg2ONxvMzQnq2YoInifRjLcjxKY9nTiEkn4aCQ6LOaNE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 52,\n    \"candidatesTokenCount\":
+        15,\n    \"totalTokenCount\": 67,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 52\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 15\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:48:31.740873Z\",\n
+        \ \"responseId\": \"n-LIaomcLd_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '924'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:32 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Saturn is less dense than water. In
+      theory it would float in a bathtub big enough to hold it."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "Summarise the research note in one
+      line of at most 12 words. Reply with the line only."}], "role": "user"}, "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '365'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Saturn's
+        low density means it could theoretically float in water.\",\n            \"thoughtSignature\":
+        \"AY89a18YB2Gl3l5iJVlXc8HozzIrZmUdoLfuFi3GMsV1PC1Xsm+JpBb4uGzP9Vzq6XJCKO164SPKAVAL9ukUJw3py9+Ll1B83Kb1sz7ER2WzBz021s3Wc2Mh3/Q=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 44,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 58,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 44\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 14\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:48:36.226067Z\",\n
+        \ \"responseId\": \"pOLIapPmDa6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '912'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:36 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The Cassini mission orbited Saturn from
+      2004 to 2017. It ended by diving into the planet so it could not contaminate
+      moons that might host life."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "Summarise the research note in one line of at most 12 words. Reply
+      with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '416'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Cassini
+        orbited Saturn until 2004\u20132017, ending by diving to protect moons.\",\n
+        \           \"thoughtSignature\": \"AY89a18dYqAQ4fJTpdm2Say4+ubVIxVuhZlYbttWYQsmYeRapD+47XHkLqJBjG5L2e+B0csPOy2xzyqVWgaJQH7q3wD5kzCMyloXD4RXeyrhRnMydzMy7rEU9oE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 59,\n    \"candidatesTokenCount\":
+        24,\n    \"totalTokenCount\": 83,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 59\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 24\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:48:40.615574Z\",\n
+        \ \"responseId\": \"qOLIapbJJfzs7bEP4rOGmQo\"\n}\n"
+    headers:
+      content-length:
+      - '923'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:43 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Meteor showers happen when Earth passes
+      through dust left by comets. The Perseids peak each August and come from Comet
+      Swift-Tuttle."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "Summarise the research note in one line of at most 12 words. Reply with the
+      line only."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '404'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Earth
+        passing comet dust creates meteor showers, like August's Perseids.\",\n            \"thoughtSignature\":
+        \"AY89a18yiSe3uApS4xoMtpyblmpQEmLeEOgzkN8+GnFWEApzw+3fJ/uDhKfiM1vQ9K0sfAzslkRFVbiNJleIck5FYRQSERPpJ7xYZHbDZb2ywOkh5dNPacA+nkU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 50,\n    \"candidatesTokenCount\":
+        15,\n    \"totalTokenCount\": 65,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 50\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 15\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:48:47.299990Z\",\n
+        \ \"responseId\": \"r-LIatanEvmFidsP3pSoqQI\"\n}\n"
+    headers:
+      content-length:
+      - '919'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:47 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "The Kuiper Belt is a region of icy bodies
+      beyond Neptune. Pluto and the object Arrokoth, visited by New Horizons in 2019,
+      live there."}], "role": "user"}], "systemInstruction": {"parts": [{"text": "Summarise
+      the research note in one line of at most 12 words. Reply with the line only."}],
+      "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '405'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        Kuiper Belt is an icy region beyond Neptune containing Pluto.\",\n            \"thoughtSignature\":
+        \"AY89a1/7zv78To3NAlus03i8jfcsmIC+9mKgjW2jWVmehYmKkR1EmDtDNp/AiaINndxWYMD8H6soSpQ746P2TQZCEsepKTOK3DC3bl4aIeAuij3bh/eLf/KG8u0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 57,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 70,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 57\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 13\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:48:51.852226Z\",\n
+        \ \"responseId\": \"s-LIaoKCNPGLr8kPkOWf8Ag\"\n}\n"
+    headers:
+      content-length:
+      - '912'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:52 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Space is not completely silent to instruments:
+      plasma waves can be recorded and turned into sound. In air-free space, though,
+      sound cannot travel between objects."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "Summarise the research note in one line of at most 12 words.
+      Reply with the line only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '434'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Instruments
+        can record and convert space plasma waves into audible sound.\",\n            \"thoughtSignature\":
+        \"AY89a19V930oz1rXzZV9e1dyMXupbCKIzpTsnHT00Ezx/HT+Vrow/2eqzNuamKonM4eeXxk/gnDEaFV0n5PHLQvdwmz+yy5pbWg/Z5hr6xD7MpFEBxSUdqjalnc=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 54,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 66,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 54\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 12\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:48:56.346992Z\",\n
+        \ \"responseId\": \"uOLIavCWFd_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '920'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:48:56 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Rocket launches must account for Earth''s
+      rotation. Launching eastward near the equator gives a free boost of about 1,670
+      kilometres per hour."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "Summarise the research note in one line of at most 12 words. Reply with the
+      line only."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      40}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '413'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Launching
+        rockets eastward near the equator provides a free speed boost.\",\n            \"thoughtSignature\":
+        \"AY89a1+2/eBwjlKZmsVQLyYEI1+pmRoKXFNajJpps5ZRjxHHrzvYgP0Jgqo9SolcepqRgxEb1LbMsAqtszOekMRmwTok9bozYmVD0DmbuT8lMLQoDsdbcMY46Ps=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 54,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 66,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 54\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 12\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T12:49:00.916574Z\",\n
+        \ \"responseId\": \"vOLIat74N_Ov-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '919'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 12:49:01 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

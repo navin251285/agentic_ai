@@ -273,6 +273,154 @@ resp2 = client.models.generate_content(model=MODEL, contents=contents, config=CF
 print(resp2.text)
 
 # %% [markdown]
+# ## Lesson 23
+# Two calls in one assistant turn, two results after it. Setup from lesson 23 first: `check_tool_pairs`
+# and the three converters (shortened, same output). No model calls.
+
+# %%
+def check_tool_pairs(messages):
+    for i, m in enumerate(messages):
+        prev = messages[i - 1] if i else {}
+        if m["role"] == "tool" and not (prev.get("tool_calls") or prev.get("role") == "tool"):
+            raise ValueError(f"message {i}: tool result {m['call_id']!r} does not follow a tool-call turn")
+        if m.get("tool_calls"):
+            asked = [c["id"] for c in m["tool_calls"]]
+            answered = []
+            for r in messages[i + 1:]:
+                if r["role"] != "tool":
+                    break
+                answered.append(r["call_id"])
+            if sorted(answered) != sorted(asked):
+                raise ValueError(f"message {i}: calls {asked} need results right after, got {answered}")
+
+def to_anthropic_tools(messages):
+    check_tool_pairs(messages)
+    out = []
+    for m in messages:
+        if m["role"] == "user":
+            out.append({"role": "user", "content": [{"type": "text", "text": m["text"]}]})
+        elif m["role"] == "assistant":
+            out.append({"role": "assistant", "content": [{"type": "tool_use", "id": c["id"], "name": c["name"],
+                                                          "input": c["args"]} for c in m["tool_calls"]]})
+        else:
+            block = {"type": "tool_result", "tool_use_id": m["call_id"], "content": m["content"]}
+            if out[-1]["role"] == "user":
+                out[-1]["content"].append(block)
+            else:
+                out.append({"role": "user", "content": [block]})
+    return {"messages": out}
+
+# %% [markdown]
+# The OpenAI and Gemini Interactions converters, input lists only.
+
+# %%
+def to_responses_tools(messages):
+    check_tool_pairs(messages)
+    items = []
+    for m in messages:
+        if m["role"] == "user":
+            items.append({"role": "user", "content": [{"type": "input_text", "text": m["text"]}]})
+        elif m["role"] == "assistant":
+            items += [{"type": "function_call", "call_id": c["id"], "name": c["name"],
+                       "arguments": json.dumps(c["args"])} for c in m["tool_calls"]]
+        else:
+            items.append({"type": "function_call_output", "call_id": m["call_id"], "output": m["content"]})
+    return {"input": items}
+
+def to_interactions_tools(messages):
+    check_tool_pairs(messages)
+    steps = []
+    for m in messages:
+        if m["role"] == "user":
+            steps.append({"type": "user_input", "content": [{"type": "text", "text": m["text"]}]})
+        elif m["role"] == "assistant":
+            steps += [{"type": "function_call", "id": c["id"], "name": c["name"], "arguments": c["args"]}
+                      for c in m["tool_calls"]]
+        else:
+            steps.append({"type": "function_result", "call_id": m["call_id"], "name": m["name"],
+                          "result": [{"type": "text", "text": m["content"]}]})
+    return {"input": steps}
+
+# %% [markdown]
+# The answer: one assistant turn with both calls, then one `tool` message per call id. Expected output:
+# Anthropic 2 `tool_result` blocks in the last user message, OpenAI 2 `function_call_output` items, and
+# Gemini `user_input`, 2 `function_call` and 2 `function_result` steps.
+
+# %%
+calls = [{"id": "call_a", "name": "search_notes", "args": {"query": "Mars"}},
+         {"id": "call_b", "name": "search_notes", "args": {"query": "Venus"}}]
+two = [{"role": "user", "text": "Compare my notes on Mars and Venus."},
+       {"role": "assistant", "tool_calls": calls}]
+two += [{"role": "tool", "call_id": c["id"], "name": c["name"],
+         "content": json.dumps(search_notes(**c["args"]))} for c in calls]
+last_user = to_anthropic_tools(two)["messages"][-1]["content"]
+print("Anthropic tool_result blocks in last user message:", sum(b["type"] == "tool_result" for b in last_user))
+print("OpenAI function_call_output items:",
+      sum(i.get("type") == "function_call_output" for i in to_responses_tools(two)["input"]))
+print("Gemini step types:", [s["type"] for s in to_interactions_tools(two)["input"]])
+
+# %% [markdown]
+# Drop the `call_b` result: the check refuses the history before any vendor sees it.
+
+# %%
+try:
+    check_tool_pairs(two[:-1])
+except ValueError as err:
+    print("rejected:", err)
+
+# %% [markdown]
+# ## Lesson 24
+# Setup from lesson 24: `strict_problems` and `FakeScout`, unchanged (no model calls in this answer).
+
+# %%
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
+
+def strict_problems(schema: dict, path="$") -> list[str]:
+    problems = []
+    if schema.get("type") == "object":
+        if schema.get("additionalProperties") is not False:
+            problems.append(f"{path}: additionalProperties is not false")
+        missing = set(schema.get("properties", {})) - set(schema.get("required", []))
+        problems += [f"{path}.{name}: not in required" for name in sorted(missing)]
+        for name, sub in schema.get("properties", {}).items():
+            problems += strict_problems(sub, f"{path}.{name}")
+    return problems
+
+class FakeScout:
+    def __init__(self, drafts, strict=None):
+        self.drafts, self.strict, self.calls = drafts, strict, 0
+    def pick_args(self):
+        if self.strict is None:
+            return self.drafts[0]
+        for draft in self.drafts:
+            try:
+                self.strict.model_validate(draft); return draft
+            except ValueError:
+                continue
+        raise RuntimeError("no draft fits the schema")
+    def __call__(self, messages, tools, tool_choice="auto"):
+        self.calls += 1
+        name = tool_choice["name"] if isinstance(tool_choice, dict) else tools[0]["name"]
+        return {"role": "assistant", "tool_calls": [{"id": f"call_{self.calls}", "name": name, "args": self.pick_args()}]}
+
+# %% [markdown]
+# The answer. `int | None` with no default makes `limit` required but nullable: the model must send it,
+# and may send `null`. Strict mode then rejects the draft with `"2"` as a string.
+
+# %%
+class SearchArgsV2(BaseModel):
+    model_config = ConfigDict(extra="forbid", strict=True)
+    query: str = Field(description="one word to look for, e.g. 'Mars'")
+    limit: int | None = Field(description="most notes to return, or null for all")
+
+schema = SearchArgsV2.model_json_schema()
+print("problems:", strict_problems(schema), "| limit:", schema["properties"]["limit"]["anyOf"])
+fake = FakeScout(drafts=[{"query": "Mars", "limit": "2"}, {"query": "Mars", "limit": 2}], strict=SearchArgsV2)
+reply = fake([{"role": "user", "text": "Which notes mention Mars?"}],
+             tools=[{"name": "search_notes"}], tool_choice="required")
+print("chosen args:", reply["tool_calls"][0]["args"])
+
+# %% [markdown]
 # ## Lesson 25
 # `return_exceptions=True` makes `gather` hand back the exception object in that call's slot instead of
 # raising it, so every call still gets a result with its id. No model calls here: the two tool calls are

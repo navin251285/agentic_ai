@@ -1,0 +1,54 @@
+{
+ "routed": [
+  {
+   "model": "gemini-3.5-flash-lite",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "spent_usd": 0.000207,
+   "tokens": 454,
+   "answer": "The rover Perseverance landed on Mars in February 2021."
+  },
+  {
+   "model": "gemini-3.5-flash-lite",
+   "stop": "end_of_turn",
+   "steps": 3,
+   "spent_usd": 0.000354,
+   "tokens": 805,
+   "answer": "A day on Mars is 1,479 minutes long."
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "spent_usd": 0.00152,
+   "tokens": 851,
+   "answer": "Your notes state that Mars has two small moons (Phobos and Deimos), a day lasting about 24 hours and 39 minutes, and a rover named Perseverance that landed in February 2021, while they note only that Venus spins backwards compared with most planets."
+  }
+ ],
+ "all_big": [
+  {
+   "model": "gemini-3.8-flash",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "spent_usd": 0.000707,
+   "tokens": 542,
+   "answer": "According to your notes, the rover Perseverance landed on Mars in February 2021."
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "stop": "end_of_turn",
+   "steps": 3,
+   "spent_usd": 0.000824,
+   "tokens": 823,
+   "answer": "According to your notes, a day on Mars lasts about 24 hours and 39 minutes, which is 1,479 minutes long."
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "spent_usd": 0.001556,
+   "tokens": 862,
+   "answer": "Your notes state that Mars has two small moons (Phobos and Deimos), a day lasting about 24 hours and 39 minutes, and hosted the Perseverance rover landing in February 2021, while Venus spins backwards compared with most planets."
+  }
+ ]
+}

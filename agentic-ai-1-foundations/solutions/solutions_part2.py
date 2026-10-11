@@ -182,6 +182,63 @@ except LookupError as err:
 # before relying on it.)
 
 # %% [markdown]
+# ## Lesson 10
+# Setup from lesson 10: a neutral Scout history and the two converters `to_anthropic` and `to_interactions`
+# (the lesson's versions, without the `check_messages` call). The assistant text is lesson 10's recorded
+# Gemini reply. No model calls here.
+
+# %%
+chat10 = [
+    {"role": "system", "text": "You are Scout, a research assistant. Answer only from the user's notes."},
+    {"role": "user", "text": "Hi, I'm Asha. I'm researching Mars rovers."},
+    {"role": "assistant", "text": "Hello Asha, my notes show that the rover Perseverance landed on Mars in February 2021."},
+    {"role": "user", "text": "Which of my notes is about a rover?"},
+]
+
+def to_anthropic(messages, max_tokens=60):
+    system = messages[0]["text"] if messages[0]["role"] == "system" else None
+    rest = messages[1:] if system is not None else messages
+    payload = {"model": "claude-sonnet-5-5", "max_tokens": max_tokens,
+               "messages": [{"role": m["role"], "content": [{"type": "text", "text": m["text"]}]} for m in rest]}
+    if system is not None:
+        payload["system"] = system
+    return payload
+
+def to_interactions(messages, max_output_tokens=60):
+    system = messages[0]["text"] if messages[0]["role"] == "system" else None
+    rest = messages[1:] if system is not None else messages
+    steps = [{"type": "user_input" if m["role"] == "user" else "model_output",
+              "content": [{"type": "text", "text": m["text"]}]} for m in rest]
+    payload = {"model": "gemini-3.5-flash-lite", "input": steps,
+               "generation_config": {"max_output_tokens": max_output_tokens}}
+    if system is not None:
+        payload["system_instruction"] = system
+    return payload
+
+# %% [markdown]
+# Going back is the same mapping in reverse. A message may hold several text blocks (or a plain string,
+# Anthropic's shortcut), so join the text of every `text` block.
+
+# %%
+def _text(content) -> str:
+    if isinstance(content, str):
+        return content
+    return "".join(block["text"] for block in content if block["type"] == "text")
+
+def from_anthropic(payload: dict) -> list[dict]:
+    out = [{"role": "system", "text": payload["system"]}] if "system" in payload else []
+    return out + [{"role": m["role"], "text": _text(m["content"])} for m in payload["messages"]]
+
+def from_interactions(payload: dict) -> list[dict]:
+    out = [{"role": "system", "text": payload["system_instruction"]}] if "system_instruction" in payload else []
+    roles = {"user_input": "user", "model_output": "assistant"}
+    return out + [{"role": roles[s["type"]], "text": _text(s["content"])} for s in payload["input"]]
+
+print("anthropic round trip:", from_anthropic(to_anthropic(chat10)) == chat10)
+print("interactions round trip:", from_interactions(to_interactions(chat10)) == chat10)
+print("string shortcut:", from_anthropic({"messages": [{"role": "user", "content": "Hi"}]}))
+
+# %% [markdown]
 # ## Lesson 11
 # Setup from lesson 11: the recorded timings of the streamed Mars answer (`../data/recorded/11.json`,
 # recorded output from a live run). The answer finds the first chunk after which the joined text holds
@@ -368,6 +425,117 @@ try:
     call_with_budget(make_flaky(), 1.5)
 except GiveUp as e:
     print("budget 1.5: gave up:", e)
+
+# %% [markdown]
+# ## Lesson 15
+# Setup from lesson 15: the taxonomy and `scout_call`, copied with a `_15` suffix. No server is needed:
+# the two fakes raise the same exceptions the stub produced.
+
+# %%
+import json as json_15, random as random_15, time as time_15
+import anthropic, httpx2
+
+class GiveUp15(Exception):
+    pass
+
+def retry_decision_15(status, body):
+    details = (body.get("error") or {}).get("details") or {}
+    if isinstance(details, dict) and details.get("error_code") == "enforced_spend_limit_reached":
+        return False, "spend cap reached: wait for next month"
+    if status in (408, 429) or status >= 500:
+        return True, f"{status}: temporary"
+    return False, f"{status}: fix the request"
+
+def classify_15(exc=None, out=None):
+    if isinstance(exc, anthropic.APIStatusError) and exc.status_code == 200:
+        return "broken stream", f"error event mid-stream: {exc.body['error']['type']}"
+    if isinstance(exc, anthropic.APIStatusError):
+        retry, why = retry_decision_15(exc.status_code, exc.body or {})
+        return ("transient" if retry else "fatal"), why
+    if isinstance(exc, (anthropic.APIConnectionError, httpx2.TransportError)):
+        return "broken stream", f"connection lost: {type(exc).__name__}"
+    if not out["finished"]:
+        return "broken stream", "stream ended without message_stop"
+    if out["stop_reason"] == "max_tokens" and out["tool_json"]:
+        return "truncated", "tool JSON cut off by max_tokens"
+    return "ok", out["stop_reason"]
+
+# %% [markdown]
+# `scout_call_15` is the lesson's loop, unchanged.
+
+# %%
+def scout_call_15(stream_fn, max_attempts=4, max_tokens=60, rng=random_15.Random(15)):
+    for attempt in range(max_attempts):
+        out, exc = None, None
+        try:
+            out = stream_fn(max_tokens)
+        except (anthropic.APIError, httpx2.HTTPError) as e:
+            exc = e
+        kind, why = classify_15(exc, out)
+        if kind == "ok":
+            if out["tool_json"]:
+                out["tool_args"] = json_15.loads(out["tool_json"])
+            return out | {"attempts": attempt + 1}
+        if kind == "fatal" or attempt == max_attempts - 1:
+            raise GiveUp15(f"{kind}: {why}")
+        if kind == "truncated":
+            max_tokens *= 4
+        else:
+            time_15.sleep(rng.uniform(0, min(2.0, 0.2 * 2 ** attempt)))
+
+def flapping(max_tokens):
+    raise httpx2.RemoteProtocolError("peer closed connection without sending complete message body")
+
+def capped(max_tokens):
+    body = {"error": {"type": "rate_limit_error", "details": {"error_code": "enforced_spend_limit_reached"}}}
+    raise anthropic.RateLimitError("spend cap", body=body,
+                                   response=httpx2.Response(429, request=httpx2.Request("POST", "http://stub")))
+
+# %% [markdown]
+# **Answer.** `scout_call` puts the group first in the `GiveUp` message, so `scout_answer` can tell a
+# fatal stop (re-raise: a human must act) from "kept failing" (degrade politely).
+
+# %%
+def scout_answer(stream_fn):
+    try:
+        return scout_call_15(stream_fn)
+    except GiveUp15 as e:
+        if str(e).startswith("fatal"):
+            raise
+        return {"text": "Scout is busy right now. Please try again in a minute.", "degraded": True,
+                "reason": str(e)}
+
+print("flapping:", scout_answer(flapping))
+try:
+    scout_answer(capped)
+except GiveUp15 as e:
+    print("capped  : raised GiveUp:", e)
+
+# %% [markdown]
+# ## Lesson 16
+# No model calls: the recorded tool-choice results from the lesson (`../data/recorded/16.json`) stand in
+# for `tool_results`.
+
+# %%
+import json, pathlib
+tool_results16 = json.loads(pathlib.Path("../data/recorded/16.json").read_text())["tool_results"]
+
+def tool_report(results: list[dict]) -> dict:
+    report = {"correct": 0, "wrong_tool": 0, "needless_call": 0}
+    for t in results:
+        if t["chosen"] == t["expected"]:
+            report["correct"] += 1
+        elif t["expected"] is None:
+            report["needless_call"] += 1        # no tool needed, but one was called
+        else:
+            report["wrong_tool"] += 1           # a tool was needed; another (or none) was chosen
+    return report
+
+print(tool_report(tool_results16))
+
+# %% [markdown]
+# A sixth case such as `("Thanks, that's all for today.", None)` would most likely land in
+# `needless_call`: granite called `search_notes` for both earlier questions that needed no tool.
 
 # %% [markdown]
 # ## Lesson 17

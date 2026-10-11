@@ -1,0 +1,417 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many moons does Mars have?"}], "role":
+      "user"}], "tools": [{"functionDeclarations": [{"description": "Search the user''s
+      notes. Returns every note whose text contains the query word (case-insensitive),
+      as a list of {id, text}. Use it before answering any question about what the
+      notes say.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "properties": {"query": {"type": "string", "description": "one word to look
+      for, e.g. ''Mars''"}}, "required": ["query"]}}]}], "toolConfig": {"functionCallingConfig":
+      {"mode": "AUTO"}}, "generationConfig": {"maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '628'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        has two moons, named Phobos and Deimos.\",\n            \"thoughtSignature\":
+        \"AY89a1+2K+AIQtVWQaE5I+LiWcs5GRErbMAUfZpRJBKG+gyODGnvgUBAmXfIzJ6cXxvnPTm5zqMlOWvcJKiUVjXWvAgohO/ik/Aok88v0+MHUoikq5UyADwmthg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 80,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 92,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 80\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 12\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T09:46:54.438353Z\",\n
+        \ \"responseId\": \"DrjIatHgGvOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '891'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 09:46:54 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many moons does Mars have?"}], "role":
+      "user"}], "tools": [{"functionDeclarations": [{"description": "Search the user''s
+      notes. Returns every note whose text contains the query word (case-insensitive),
+      as a list of {id, text}. Use it before answering any question about what the
+      notes say.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "properties": {"query": {"type": "string", "description": "one word to look
+      for, e.g. ''Mars''"}}, "required": ["query"]}}]}], "toolConfig": {"functionCallingConfig":
+      {"allowed_function_names": ["search_notes"], "mode": "ANY"}}, "generationConfig":
+      {"maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '671'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_345258\"\n            },\n            \"thoughtSignature\": \"AY89a18wgeg4/qEagb2KmahUHe3TV04f43yhgdPOU7tTYM6GwbYLac+bVbobmokWJM+6MG+Sqd7zjy3SKhhBL4rot3xHLmSwtUCsKYjnTZyVpwd6YesIFo65JZU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 80,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 96,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 80\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T09:46:58.418162Z\",\n
+        \ \"responseId\": \"ErjIavLCGa6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '1013'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 09:46:58 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many moons does Mars have?"}], "role":
+      "user"}], "tools": [{"functionDeclarations": [{"description": "Search the user''s
+      notes. Returns every note whose text contains the query word (case-insensitive),
+      as a list of {id, text}. Use it before answering any question about what the
+      notes say.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "properties": {"query": {"type": "string", "description": "one word to look
+      for, e.g. ''Mars''"}}, "required": ["query"]}}]}], "toolConfig": {"functionCallingConfig":
+      {"mode": "NONE"}}, "generationConfig": {"maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '628'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars
+        has **2** moons. Their names are **Phobos** and **Deimos**.\",\n            \"thoughtSignature\":
+        \"AY89a18ieHnj9WqZBSGlDsFPn0jmjSx1abRQm/K40S1dYZ8yEAwFSXlGioO6yJ0qZSl2cENI2Zsen5HtVQJTUlRc8RY7ODREsC875wCvh5ByIYJ5AXiDkQuKqTE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 7,\n    \"candidatesTokenCount\":
+        19,\n    \"totalTokenCount\": 26,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 7\n      }\n
+        \   ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 19\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T09:47:02.405594Z\",\n
+        \ \"responseId\": \"FrjIatrgGP6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '909'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 09:47:02 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many moons does Mars have?"}], "role":
+      "user"}, {"parts": [{"functionCall": {"id": "call_345258", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a18wgeg4_qEagb2KmahUHe3TV04f43yhgdPOU7tTYM6GwbYLac-bVbobmokWJM-6MG-Sqd7zjy3SKhhBL4rot3xHLmSwtUCsKYjnTZyVpwd6YesIFo65JZU="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_345258", "name":
+      "search_notes", "response": {"result": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns every note whose text contains
+      the query word (case-insensitive), as a list of {id, text}. Use it before answering
+      any question about what the notes say.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string", "description":
+      "one word to look for, e.g. ''Mars''"}}, "required": ["query"]}}]}], "toolConfig":
+      {"functionCallingConfig": {"allowed_function_names": ["search_notes"], "mode":
+      "ANY"}}, "generationConfig": {"maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1283'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"moons\"\n              },\n              \"id\":
+        \"call_127660\"\n            },\n            \"thoughtSignature\": \"AY89a18RQkLVR3lNOaATUE0q56KHPSjWQleLTewjgnAY6AUhIQW5vCMNvDM7fyI5rE7OHT67RrONZYIqwQl5GVVq+OREn+f2MlLO6e6nSGY578emGHEYGqN3S60=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 148,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 165,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 148\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 17\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T09:47:06.422280Z\",\n  \"responseId\": \"GrjIaojjGd_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '1017'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 09:47:06 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many moons does Mars have?"}], "role":
+      "user"}, {"parts": [{"functionCall": {"id": "call_345258", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a18wgeg4_qEagb2KmahUHe3TV04f43yhgdPOU7tTYM6GwbYLac-bVbobmokWJM-6MG-Sqd7zjy3SKhhBL4rot3xHLmSwtUCsKYjnTZyVpwd6YesIFo65JZU="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_345258", "name":
+      "search_notes", "response": {"result": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns every note whose text contains
+      the query word (case-insensitive), as a list of {id, text}. Use it before answering
+      any question about what the notes say.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string", "description":
+      "one word to look for, e.g. ''Mars''"}}, "required": ["query"]}}]}], "toolConfig":
+      {"functionCallingConfig": {"mode": "AUTO"}}, "generationConfig": {"maxOutputTokens":
+      300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1240'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Based
+        on your notes, Mars has two small moons: Phobos and Deimos.\",\n            \"thoughtSignature\":
+        \"AY89a1+FMG+U6xV1jk4sK2E9H/Ipv9bXu2sxG8C/3nKwVbPTCoXKqLyt5HhtD7A4t/NqO2ZrJXngc/kYEe+2vpBEJM1dtv8hQoBhCH2vcy9UkFsvagGVekTcuJg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 148,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 165,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 148\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 17\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T09:47:10.418432Z\",\n  \"responseId\": \"HrjIaoDFGfmFidsP3pSoqQI\"\n}\n"
+    headers:
+      content-length:
+      - '915'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 09:47:10 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which of my notes mention Mars?"}],
+      "role": "user"}], "tools": [{"functionDeclarations": [{"description": "Search
+      the user''s notes. Returns every note whose text contains the query word (case-insensitive),
+      as a list of {id, text}. Use it before answering any question about what the
+      notes say.", "name": "search_notes", "parameters_json_schema": {"additionalProperties":
+      false, "properties": {"query": {"description": "one word to look for, e.g. ''Mars''",
+      "title": "Query", "type": "string"}}, "required": ["query"], "title": "SearchArgs",
+      "type": "object"}}]}], "toolConfig": {"functionCallingConfig": {"mode": "VALIDATED"}},
+      "generationConfig": {"maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '706'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_292915\"\n            },\n            \"thoughtSignature\": \"AY89a19wgzMTAXW9coxkRv6IIRr3CpbkJW7aHTNfm+beXbi1+BHETsVFFAZVafQUk+cKQ6ZzwWlUa0pbAt9Dem9HGQpV/6DCnwtLK/MbZ4jZa8yQJHN+n9YNr/Q=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 85,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 101,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 85\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T09:47:14.383739Z\",\n  \"responseId\": \"IrjIavu1F66BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '1014'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 09:47:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

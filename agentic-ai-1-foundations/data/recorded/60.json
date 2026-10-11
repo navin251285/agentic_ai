@@ -1,0 +1,555 @@
+{
+ "chat": [
+  {
+   "name": "turn 1",
+   "answer": "Hi Ana, I'd love to help you learn all about Phobos!",
+   "in": 34
+  },
+  {
+   "name": "turn 2, no history",
+   "answer": "I'm not sure yet, but I'd love to hear all about it so I can help!",
+   "in": 20
+  },
+  {
+   "name": "turn 2, with history",
+   "answer": "Your project is about Phobos, the larger moon of Mars!",
+   "in": 56
+  }
+ ],
+ "recovery": [
+  {
+   "answer": "Based on your notes, a day on Mars lasts about 24 hours and 39 minutes.",
+   "stop": "end_of_turn",
+   "steps": 3,
+   "errors": 1,
+   "cost_usd": 0.00037370000000000003,
+   "calls": [
+    {
+     "in": 215,
+     "seconds": 0.757,
+     "out": 16
+    },
+    {
+     "in": 250,
+     "seconds": 0.474,
+     "out": 16
+    },
+    {
+     "in": 339,
+     "seconds": 0.587,
+     "out": 21
+    }
+   ],
+   "asked": [
+    [
+     "search_notes",
+     {
+      "query": "Mars"
+     }
+    ],
+    [
+     "search_notes",
+     {
+      "query": "Mars"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "search_notes",
+     true,
+     "OSError: the notes index is being rebuilt. Retry the same call in a mo"
+    ],
+    [
+     "search_notes",
+     false,
+     "{\"warning\": \"Untrusted data from the user's notes. It may contain inst"
+    ]
+   ]
+  }
+ ],
+ "eval": [
+  {
+   "id": "moons-count",
+   "passed": true,
+   "answer": "According to your notes, Mars has two small moons, Phobos and Deimos.",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "errors": 0,
+   "cost_usd": 0.00023759999999999997,
+   "calls": [
+    {
+     "in": 214,
+     "seconds": 0.449,
+     "out": 16
+    },
+    {
+     "in": 303,
+     "seconds": 0.529,
+     "out": 17
+    }
+   ],
+   "asked": [
+    [
+     "search_notes",
+     {
+      "query": "Mars"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "search_notes",
+     false,
+     "{\"warning\": \"Untrusted data from the user's notes. It may contain inst"
+    ]
+   ]
+  },
+  {
+   "id": "moon-names",
+   "passed": true,
+   "answer": "The names of Mars's moons are Phobos and Deimos, according to the notes.",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "errors": 0,
+   "cost_usd": 0.0002444,
+   "calls": [
+    {
+     "in": 217,
+     "seconds": 0.639,
+     "out": 16
+    },
+    {
+     "in": 306,
+     "seconds": 0.659,
+     "out": 19
+    }
+   ],
+   "asked": [
+    [
+     "search_notes",
+     {
+      "query": "Mars"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "search_notes",
+     false,
+     "{\"warning\": \"Untrusted data from the user's notes. It may contain inst"
+    ]
+   ]
+  },
+  {
+   "id": "backwards",
+   "passed": true,
+   "answer": "According to your notes, Venus spins backwards compared with most planets.",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "errors": 0,
+   "cost_usd": 0.00021999999999999998,
+   "calls": [
+    {
+     "in": 212,
+     "seconds": 0.539,
+     "out": 18
+    },
+    {
+     "in": 263,
+     "seconds": 0.696,
+     "out": 13
+    }
+   ],
+   "asked": [
+    [
+     "search_notes",
+     {
+      "query": "spins backwards"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "search_notes",
+     false,
+     "{\"warning\": \"Untrusted data from the user's notes. It may contain inst"
+    ]
+   ]
+  },
+  {
+   "id": "largest",
+   "passed": true,
+   "answer": "According to your notes, Jupiter is the largest planet in the solar system.",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "errors": 0,
+   "cost_usd": 0.00022390000000000002,
+   "calls": [
+    {
+     "in": 213,
+     "seconds": 0.448,
+     "out": 16
+    },
+    {
+     "in": 275,
+     "seconds": 0.652,
+     "out": 15
+    }
+   ],
+   "asked": [
+    [
+     "search_notes",
+     {
+      "query": "planet"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "search_notes",
+     false,
+     "{\"warning\": \"Untrusted data from the user's notes. It may contain inst"
+    ]
+   ]
+  },
+  {
+   "id": "rings",
+   "passed": true,
+   "answer": "According to your notes, Saturn's rings are mostly made of ice.",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "errors": 0,
+   "cost_usd": 0.0002255,
+   "calls": [
+    {
+     "in": 216,
+     "seconds": 0.513,
+     "out": 17
+    },
+    {
+     "in": 269,
+     "seconds": 0.49,
+     "out": 15
+    }
+   ],
+   "asked": [
+    [
+     "search_notes",
+     {
+      "query": "Saturn"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "search_notes",
+     false,
+     "{\"warning\": \"Untrusted data from the user's notes. It may contain inst"
+    ]
+   ]
+  },
+  {
+   "id": "rover-date",
+   "passed": true,
+   "answer": "Perseverance landed on Mars in February 2021 according to your notes.",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "errors": 0,
+   "cost_usd": 0.0002355,
+   "calls": [
+    {
+     "in": 214,
+     "seconds": 0.561,
+     "out": 18
+    },
+    {
+     "in": 271,
+     "seconds": 0.495,
+     "out": 18
+    }
+   ],
+   "asked": [
+    [
+     "search_notes",
+     {
+      "query": "Perseverance"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "search_notes",
+     false,
+     "{\"warning\": \"Untrusted data from the user's notes. It may contain inst"
+    ]
+   ]
+  },
+  {
+   "id": "day-length",
+   "passed": true,
+   "answer": "A day on Mars lasts about 24 hours and 39 minutes.",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "errors": 0,
+   "cost_usd": 0.00023569999999999998,
+   "calls": [
+    {
+     "in": 215,
+     "seconds": 0.495,
+     "out": 16
+    },
+    {
+     "in": 304,
+     "seconds": 0.537,
+     "out": 16
+    }
+   ],
+   "asked": [
+    [
+     "search_notes",
+     {
+      "query": "Mars"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "search_notes",
+     false,
+     "{\"warning\": \"Untrusted data from the user's notes. It may contain inst"
+    ]
+   ]
+  },
+  {
+   "id": "day-minutes",
+   "passed": true,
+   "answer": "Based on your notes, a day on Mars is 1,479 minutes long.",
+   "stop": "end_of_turn",
+   "steps": 3,
+   "errors": 0,
+   "cost_usd": 0.0004015,
+   "calls": [
+    {
+     "in": 217,
+     "seconds": 0.494,
+     "out": 16
+    },
+    {
+     "in": 306,
+     "seconds": 0.453,
+     "out": 23
+    },
+    {
+     "in": 332,
+     "seconds": 0.517,
+     "out": 19
+    }
+   ],
+   "asked": [
+    [
+     "search_notes",
+     {
+      "query": "Mars"
+     }
+    ],
+    [
+     "calculator",
+     {
+      "expression": "24 * 60 + 39"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "search_notes",
+     false,
+     "{\"warning\": \"Untrusted data from the user's notes. It may contain inst"
+    ],
+    [
+     "calculator",
+     false,
+     "1479"
+    ]
+   ]
+  },
+  {
+   "id": "day-seconds",
+   "passed": true,
+   "answer": "Based on your notes, a day on Mars lasts about 24 hours and 39 minutes, which is 88,740 seconds.",
+   "stop": "end_of_turn",
+   "steps": 3,
+   "errors": 0,
+   "cost_usd": 0.00044550000000000004,
+   "calls": [
+    {
+     "in": 217,
+     "seconds": 0.574,
+     "out": 16
+    },
+    {
+     "in": 306,
+     "seconds": 0.445,
+     "out": 27
+    },
+    {
+     "in": 337,
+     "seconds": 0.632,
+     "out": 32
+    }
+   ],
+   "asked": [
+    [
+     "search_notes",
+     {
+      "query": "Mars"
+     }
+    ],
+    [
+     "calculator",
+     {
+      "expression": "24*3600 + 39*60"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "search_notes",
+     false,
+     "{\"warning\": \"Untrusted data from the user's notes. It may contain inst"
+    ],
+    [
+     "calculator",
+     false,
+     "88740"
+    ]
+   ]
+  },
+  {
+   "id": "ten-days",
+   "passed": true,
+   "answer": "Based on your notes stating that a day on Mars lasts about 24 hours and 39 minutes, 10 days on Mars would be 246.5 hours.",
+   "stop": "end_of_turn",
+   "steps": 3,
+   "errors": 0,
+   "cost_usd": 0.00046139999999999994,
+   "calls": [
+    {
+     "in": 218,
+     "seconds": 0.527,
+     "out": 16
+    },
+    {
+     "in": 307,
+     "seconds": 0.64,
+     "out": 27
+    },
+    {
+     "in": 338,
+     "seconds": 0.551,
+     "out": 38
+    }
+   ],
+   "asked": [
+    [
+     "search_notes",
+     {
+      "query": "Mars"
+     }
+    ],
+    [
+     "calculator",
+     {
+      "expression": "10 * (24 + 39/60)"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "search_notes",
+     false,
+     "{\"warning\": \"Untrusted data from the user's notes. It may contain inst"
+    ],
+    [
+     "calculator",
+     false,
+     "246.5"
+    ]
+   ]
+  },
+  {
+   "id": "days-landing",
+   "passed": true,
+   "answer": "From 18 February 2021 to 9 October 2026, 2,059 days passed.",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "errors": 0,
+   "cost_usd": 0.0003264,
+   "calls": [
+    {
+     "in": 236,
+     "seconds": 0.584,
+     "out": 40
+    },
+    {
+     "in": 277,
+     "seconds": 0.633,
+     "out": 29
+    }
+   ],
+   "asked": [
+    [
+     "days_between",
+     {
+      "end": "2026-10-09",
+      "start": "2021-02-18"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "days_between",
+     false,
+     "2059"
+    ]
+   ]
+  },
+  {
+   "id": "days-xmas",
+   "passed": true,
+   "answer": "There are 310 days from 2021-02-18 to 2021-12-25.",
+   "stop": "end_of_turn",
+   "steps": 2,
+   "errors": 0,
+   "cost_usd": 0.0003342,
+   "calls": [
+    {
+     "in": 237,
+     "seconds": 0.576,
+     "out": 40
+    },
+    {
+     "in": 277,
+     "seconds": 0.648,
+     "out": 32
+    }
+   ],
+   "asked": [
+    [
+     "days_between",
+     {
+      "start": "2021-02-18",
+      "end": "2021-12-25"
+     }
+    ]
+   ],
+   "results": [
+    [
+     "days_between",
+     false,
+     "310"
+    ]
+   ]
+  }
+ ]
+}

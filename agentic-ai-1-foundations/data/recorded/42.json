@@ -1,0 +1,302 @@
+{
+ "1": {
+  "summary": "Mars' inner moon Phobos is spiralling inward and may form a ring.",
+  "in": 68,
+  "out": 16,
+  "secs": 0.724
+ },
+ "2": {
+  "summary": "Venus spins backwards and has days longer than its years.",
+  "in": 60,
+  "out": 11,
+  "secs": 0.632
+ },
+ "3": {
+  "summary": "Mars rovers operate on 24-hour, 39-minute sols, forcing Earth teams to shift daily schedules.",
+  "in": 63,
+  "out": 26,
+  "secs": 0.577
+ },
+ "4": {
+  "summary": "Jupiter is the solar system's largest planet, featuring massive storms.",
+  "in": 72,
+  "out": 14,
+  "secs": 0.609
+ },
+ "5": {
+  "summary": "Perseverance collects Martian rock cores in Jezero Crater for future return.",
+  "in": 64,
+  "out": 15,
+  "secs": 0.714
+ },
+ "6": {
+  "summary": "Saturn's rings are massive in width, extremely thin, and mostly icy.",
+  "in": 55,
+  "out": 17,
+  "secs": 0.585
+ },
+ "7": {
+  "summary": "Despite being closest to the Sun, Mercury is not the hottest planet.",
+  "in": 54,
+  "out": 14,
+  "secs": 0.5
+ },
+ "8": {
+  "summary": "Venus is the hottest planet due to a thick carbon dioxide atmosphere.",
+  "in": 61,
+  "out": 13,
+  "secs": 0.629
+ },
+ "9": {
+  "summary": "The Moon is slowly moving away from Earth at 3.8 cm annually.",
+  "in": 53,
+  "out": 16,
+  "secs": 0.674
+ },
+ "10": {
+  "summary": "Uranus rotates on its side with extreme 42-year seasons of light and dark.",
+  "in": 56,
+  "out": 20,
+  "secs": 0.455
+ },
+ "11": {
+  "summary": "Neptune features solar system record winds and was discovered via mathematics.",
+  "in": 62,
+  "out": 14,
+  "secs": 0.601
+ },
+ "12": {
+  "summary": "Pluto, reclassified in 2006, revealed nitrogen ice when visited in 2015.",
+  "in": 62,
+  "out": 24,
+  "secs": 0.707
+ },
+ "13": {
+  "summary": "Europa Clipper launched in October 2024 to assess Jupiter's icy moon for life.",
+  "in": 59,
+  "out": 20,
+  "secs": 0.507
+ },
+ "14": {
+  "summary": "Saturn's largest moon, Titan, features methane lakes and upcoming exploration.",
+  "in": 58,
+  "out": 16,
+  "secs": 0.579
+ },
+ "15": {
+  "summary": "Cassini detected water vapour, salts, and organics in Enceladus's south pole plumes.",
+  "in": 51,
+  "out": 20,
+  "secs": 0.54
+ },
+ "16": {
+  "summary": "Jupiter's gravitational tides power hundreds of active volcanoes on Io.",
+  "in": 50,
+  "out": 13,
+  "secs": 0.609
+ },
+ "17": {
+  "summary": "Ganymede is the solar system's largest moon with a magnetic field.",
+  "in": 51,
+  "out": 16,
+  "secs": 0.549
+ },
+ "18": {
+  "summary": "Despite cinematic portrayals, the asteroid belt is actually mostly empty space.",
+  "in": 52,
+  "out": 14,
+  "secs": 0.692
+ },
+ "19": {
+  "summary": "Ceres, a dwarf planet, features bright salt deposits in Occator Crater.",
+  "in": 51,
+  "out": 16,
+  "secs": 0.624
+ },
+ "20": {
+  "summary": "The Sun contains 99.8% of the solar system's mass.",
+  "in": 55,
+  "out": 17,
+  "secs": 0.577
+ },
+ "21": {
+  "summary": "Solar flares disrupt Earth's communications and can trigger distant auroras.",
+  "in": 53,
+  "out": 14,
+  "secs": 0.661
+ },
+ "22": {
+  "summary": "Comets develop tails pointing away from the Sun due to solar forces.",
+  "in": 53,
+  "out": 14,
+  "secs": 3.54
+ },
+ "23": {
+  "summary": "Halley's Comet returns every 76 years, with the next in 2061.",
+  "in": 55,
+  "out": 22,
+  "secs": 0.565
+ },
+ "24": {
+  "summary": "Launched in 1977, Voyager 1 is the most distant human-made object.",
+  "in": 61,
+  "out": 20,
+  "secs": 0.5
+ },
+ "25": {
+  "summary": "Launched in 2021, the James Webb Space Telescope observes infrared from L2.",
+  "in": 56,
+  "out": 19,
+  "secs": 0.604
+ },
+ "26": {
+  "summary": "Hubble has orbited Earth since 1990 and was last serviced in 2009.",
+  "in": 53,
+  "out": 23,
+  "secs": 0.494
+ },
+ "27": {
+  "summary": "Continuously inhabited since 2000, the ISS orbits Earth every ninety minutes.",
+  "in": 58,
+  "out": 18,
+  "secs": 0.533
+ },
+ "28": {
+  "summary": "A light-year measures vast astronomical distance, not time.",
+  "in": 66,
+  "out": 12,
+  "secs": 0.659
+ },
+ "29": {
+  "summary": "Over 5,000 exoplanets have been confirmed, often detected via stellar dimming.",
+  "in": 58,
+  "out": 21,
+  "secs": 0.583
+ },
+ "30": {
+  "summary": "TRAPPIST-1 hosts seven Earth-sized planets, with several in the habitable zone.",
+  "in": 54,
+  "out": 20,
+  "secs": 0.578
+ },
+ "31": {
+  "summary": "Massive stellar collapses form black holes, imaged in M87 in 2019.",
+  "in": 54,
+  "out": 20,
+  "secs": 0.582
+ },
+ "32": {
+  "summary": "The Milky Way is a barred spiral galaxy requiring vast cosmic time.",
+  "in": 59,
+  "out": 13,
+  "secs": 0.72
+ },
+ "33": {
+  "summary": "Andromeda, our nearest galactic neighbor, will eventually merge with the Milky Way.",
+  "in": 59,
+  "out": 16,
+  "secs": 0.502
+ },
+ "34": {
+  "summary": "Orbital evidence shows that Mars once had liquid water.",
+  "in": 48,
+  "out": 11,
+  "secs": 0.598
+ },
+ "35": {
+  "summary": "Olympus Mons is the solar system's tallest volcano, located on Mars.",
+  "in": 52,
+  "out": 16,
+  "secs": 0.508
+ },
+ "36": {
+  "summary": "Valles Marineris is a massive 4,000-kilometer-long canyon system on Mars.",
+  "in": 52,
+  "out": 22,
+  "secs": 0.546
+ },
+ "37": {
+  "summary": "Curiosity rover landed on Mars in 2012 and still explores today.",
+  "in": 51,
+  "out": 17,
+  "secs": 0.576
+ },
+ "38": {
+  "summary": "NASA's Ingenuity helicopter completed 72 pioneering flights on Mars before retiring.",
+  "in": 63,
+  "out": 17,
+  "secs": 0.653
+ },
+ "39": {
+  "summary": "Global Martian dust storms block sunlight, ending solar-powered rover missions.",
+  "in": 56,
+  "out": 14,
+  "secs": 0.451
+ },
+ "40": {
+  "summary": "Martian years last 687 Earth days, making seasons twice as long.",
+  "in": 49,
+  "out": 17,
+  "secs": 0.581
+ },
+ "41": {
+  "summary": "Mars gravity is about 38 percent of Earth's.",
+  "in": 54,
+  "out": 13,
+  "secs": 0.483
+ },
+ "42": {
+  "summary": "Mars rover communication delays require pre-planned commands instead of live driving.",
+  "in": 52,
+  "out": 14,
+  "secs": 0.672
+ },
+ "43": {
+  "summary": "Jupiter's powerful magnetic field and dangerous radiation require spacecraft shielding.",
+  "in": 48,
+  "out": 13,
+  "secs": 0.479
+ },
+ "44": {
+  "summary": "Juno discovered Jupiter's Great Red Spot extends hundreds of kilometres deep.",
+  "in": 52,
+  "out": 15,
+  "secs": 0.467
+ },
+ "45": {
+  "summary": "Saturn's low density means it could theoretically float in water.",
+  "in": 44,
+  "out": 14,
+  "secs": 0.389
+ },
+ "46": {
+  "summary": "Cassini orbited Saturn until 2004\u20132017, ending by diving to protect moons.",
+  "in": 59,
+  "out": 24,
+  "secs": 2.697
+ },
+ "47": {
+  "summary": "Earth passing comet dust creates meteor showers, like August's Perseids.",
+  "in": 50,
+  "out": 15,
+  "secs": 0.543
+ },
+ "48": {
+  "summary": "The Kuiper Belt is an icy region beyond Neptune containing Pluto.",
+  "in": 57,
+  "out": 13,
+  "secs": 0.513
+ },
+ "49": {
+  "summary": "Instruments can record and convert space plasma waves into audible sound.",
+  "in": 54,
+  "out": 12,
+  "secs": 0.563
+ },
+ "50": {
+  "summary": "Launching rockets eastward near the equator provides a free speed boost.",
+  "in": 54,
+  "out": 12,
+  "secs": 0.541
+ }
+}

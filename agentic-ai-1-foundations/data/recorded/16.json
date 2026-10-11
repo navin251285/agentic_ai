@@ -1,0 +1,99 @@
+{
+ "rows": [
+  {
+   "task": "lookup",
+   "model": "granite4.1:3b",
+   "answer": "5",
+   "seconds": 0.35,
+   "ok": true
+  },
+  {
+   "task": "lookup",
+   "model": "gemini-3.5-flash-lite",
+   "answer": "Note 5.",
+   "seconds": 0.61,
+   "ok": true
+  },
+  {
+   "task": "math",
+   "model": "granite4.1:3b",
+   "answer": "24.39 Earth hours.",
+   "seconds": 3.07,
+   "ok": false
+  },
+  {
+   "task": "math",
+   "model": "gemini-3.5-flash-lite",
+   "answer": "The notes do not cover how many Earth hours 10 Martian days take.",
+   "seconds": 1.07,
+   "ok": false
+  }
+ ],
+ "tool_results": [
+  {
+   "question": "What do my notes say about Saturn?",
+   "expected": "search_notes",
+   "chosen": "search_notes",
+   "calls": [
+    [
+     "search_notes",
+     {
+      "query": "Saturn"
+     }
+    ]
+   ]
+  },
+  {
+   "question": "What is 17.5 times 12?",
+   "expected": "calculator",
+   "chosen": "calculator",
+   "calls": [
+    [
+     "calculator",
+     {
+      "expression": "17.5 * 12"
+     }
+    ]
+   ]
+  },
+  {
+   "question": "Find my notes about the rover.",
+   "expected": "search_notes",
+   "chosen": "search_notes",
+   "calls": [
+    [
+     "search_notes",
+     {
+      "query": "rover"
+     }
+    ]
+   ]
+  },
+  {
+   "question": "Hi Scout, how are you?",
+   "expected": null,
+   "chosen": "search_notes",
+   "calls": [
+    [
+     "search_notes",
+     {
+      "query": "hello"
+     }
+    ]
+   ]
+  },
+  {
+   "question": "What is the capital of France?",
+   "expected": null,
+   "chosen": "search_notes",
+   "calls": [
+    [
+     "search_notes",
+     {
+      "query": "France"
+     }
+    ]
+   ]
+  }
+ ]
+}

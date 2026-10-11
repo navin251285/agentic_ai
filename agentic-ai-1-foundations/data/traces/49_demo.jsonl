@@ -1,0 +1,2 @@
+{"gen_ai.operation.name": "invoke_agent", "scout.run_id": "run-demo", "scout.seq": 1, "gen_ai.agent.name": "Scout", "scout.question": "I'm [EMAIL], [PHONE]. Mars day in minutes?"}
+{"gen_ai.operation.name": "execute_tool", "scout.run_id": "run-demo", "scout.seq": 2, "scout.step": 1, "gen_ai.tool.name": "calculator", "gen_ai.tool.call.id": "call_9", "scout.tool.args": {"expression": "24h*60"}, "scout.tool.result_chars": 99, "scout.duration_ms": 0.4, "error.type": "ValueError"}

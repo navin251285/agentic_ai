@@ -1,0 +1,630 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Save a 40-word explanation of a day
+      on Mars (24 hours 39 minutes) to mars_intro.txt."}], "role": "user"}], "tools":
+      [{"functionDeclarations": [{"description": "Search the user''s notes. Returns
+      matching notes.", "name": "search_notes", "parameters_json_schema": {"type":
+      "object", "properties": {"query": {"type": "string"}}, "required": ["query"]}},
+      {"description": "Evaluate arithmetic like ''24*60+39''.", "name": "calculator",
+      "parameters_json_schema": {"type": "object", "properties": {"expression": {"type":
+      "string"}}, "required": ["expression"]}}, {"description": "Save text to a file
+      in Scout''s folder.", "name": "write_file", "parameters_json_schema": {"type":
+      "object", "properties": {"filename": {"type": "string"}, "text": {"type": "string"},
+      "overwrite": {"type": "boolean"}}, "required": ["filename", "text"]}}]}], "toolConfig":
+      {"functionCallingConfig": {"stream_function_call_arguments": true}}, "generationConfig":
+      {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '990'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"functionCall\": {\"name\": \"write_file\",\"id\": \"Pl47FRLP\",\"willContinue\":
+        true},\"thoughtSignature\": \"AY89a1/gUq9TGUIODeZGmtvWG+ZSnNQudYCdAYvoHKeqsPQWQO5NFKyj/VXvSxUGp72HbYsz4einn9IQoUZF7pNqhXp9XHkY/laNiTP4ylo5nUNiLttlf/CL2e4=\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:12:52.404524Z\",\"responseId\": \"JL7IaqzYGPGLr8kPkOWf8Ag\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {\"partialArgs\": [{\"jsonPath\": \"$.filename\",\"stringValue\": \"mars_intro.txt\",\"willContinue\":
+        true}],\"willContinue\": true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:12:52.404524Z\",\"responseId\":
+        \"JL7IaqzYGPGLr8kPkOWf8Ag\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.filename\",\"stringValue\": \"\"}],\"willContinue\": true}}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:12:52.404524Z\",\"responseId\": \"JL7IaqzYGPGLr8kPkOWf8Ag\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {\"partialArgs\": [{\"jsonPath\": \"$.overwrite\",\"boolValue\": true}],\"willContinue\":
+        true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:12:52.404524Z\",\"responseId\":
+        \"JL7IaqzYGPGLr8kPkOWf8Ag\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.text\",\"stringValue\": \"A day on Mars, known as a sol, is remarkably
+        similar in length to a\",\"willContinue\": true}],\"willContinue\": true}}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:12:52.404524Z\",\"responseId\": \"JL7IaqzYGPGLr8kPkOWf8Ag\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {\"partialArgs\": [{\"jsonPath\": \"$.text\",\"stringValue\": \" day on Earth.
+        It lasts approximately 24 hours and 39 minutes, giving Martian missions and
+        rovers a\",\"willContinue\": true}],\"willContinue\": true}}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:12:52.404524Z\",\"responseId\": \"JL7IaqzYGPGLr8kPkOWf8Ag\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {\"partialArgs\": [{\"jsonPath\": \"$.text\",\"stringValue\": \" familiar
+        daily cycle to adapt to while exploring the red planet.\",\"willContinue\":
+        true}],\"willContinue\": true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:12:52.404524Z\",\"responseId\":
+        \"JL7IaqzYGPGLr8kPkOWf8Ag\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.text\",\"stringValue\": \"\"}],\"willContinue\": true}}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:12:52.404524Z\",\"responseId\": \"JL7IaqzYGPGLr8kPkOWf8Ag\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:12:52.404524Z\",\"responseId\":
+        \"JL7IaqzYGPGLr8kPkOWf8Ag\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\"}]},\"finishReason\": \"STOP\"}],\"usageMetadata\":
+        {\"promptTokenCount\": 121,\"candidatesTokenCount\": 82,\"totalTokenCount\":
+        203,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\": [{\"modality\":
+        \"TEXT\",\"tokenCount\": 121}],\"candidatesTokensDetails\": [{\"modality\":
+        \"TEXT\",\"tokenCount\": 82}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:12:52.404524Z\",\"responseId\": \"JL7IaqzYGPGLr8kPkOWf8Ag\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Fri, 09 Oct 2026 10:12:53 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How long is a day on Mars in minutes?
+      Then write an explanation of about 80 words for a 12-year-old and save it to
+      mars_day.txt."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are Scout. Answer questions about the user''s notes. Search the notes first.
+      Use the calculator for arithmetic. Answer in one sentence."}], "role": "user"},
+      "tools": [{"functionDeclarations": [{"description": "Search the user''s notes.
+      Returns matching notes.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string"}}, "required":
+      ["query"]}}, {"description": "Evaluate arithmetic like ''24*60+39''.", "name":
+      "calculator", "parameters_json_schema": {"type": "object", "properties": {"expression":
+      {"type": "string"}}, "required": ["expression"]}}, {"description": "Save text
+      to a file in Scout''s folder.", "name": "write_file", "parameters_json_schema":
+      {"type": "object", "properties": {"filename": {"type": "string"}, "text": {"type":
+      "string"}, "overwrite": {"type": "boolean"}}, "required": ["filename", "text"]}}]}],
+      "toolConfig": {"functionCallingConfig": {"stream_function_call_arguments": true}},
+      "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1235'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"functionCall\": {\"name\": \"search_notes\",\"id\": \"2F4RwBbd\",\"willContinue\":
+        true},\"thoughtSignature\": \"AY89a19MDFFHWJd4s2QRye5GtbxgamS7l5Zb3TYMwFf5V3ctJWzu3Os2M3v2yBhRkaBZSPiQ4SVcjh7YSfk02FEVdJ2u4nL9bY1w+i/Hl6+vKBBWLIGXzkB+If0=\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:12:56.394907Z\",\"responseId\": \"KL7IapuNGPmFidsP3pSoqQI\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {\"partialArgs\": [{\"jsonPath\": \"$.query\",\"stringValue\": \"Mars\",\"willContinue\":
+        true}],\"willContinue\": true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:12:56.394907Z\",\"responseId\":
+        \"KL7IapuNGPmFidsP3pSoqQI\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.query\",\"stringValue\": \"\"}],\"willContinue\": true}}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:12:56.394907Z\",\"responseId\": \"KL7IapuNGPmFidsP3pSoqQI\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:12:56.394907Z\",\"responseId\":
+        \"KL7IapuNGPmFidsP3pSoqQI\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\"}]},\"finishReason\": \"STOP\"}],\"usageMetadata\":
+        {\"promptTokenCount\": 160,\"candidatesTokenCount\": 16,\"totalTokenCount\":
+        176,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\": [{\"modality\":
+        \"TEXT\",\"tokenCount\": 160}],\"candidatesTokensDetails\": [{\"modality\":
+        \"TEXT\",\"tokenCount\": 16}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:12:56.394907Z\",\"responseId\": \"KL7IapuNGPmFidsP3pSoqQI\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Fri, 09 Oct 2026 10:12:56 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How long is a day on Mars in minutes?
+      Then write an explanation of about 80 words for a 12-year-old and save it to
+      mars_day.txt."}], "role": "user"}, {"parts": [{"functionCall": {"id": "2F4RwBbd",
+      "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a19MDFFHWJd4s2QRye5GtbxgamS7l5Zb3TYMwFf5V3ctJWzu3Os2M3v2yBhRkaBZSPiQ4SVcjh7YSfk02FEVdJ2u4nL9bY1w-i_Hl6-vKBBWLIGXzkB-If0="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "2F4RwBbd", "name":
+      "search_notes", "response": {"output": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout. Answer questions about the user''s notes. Search the
+      notes first. Use the calculator for arithmetic. Answer in one sentence."}],
+      "role": "user"}, "tools": [{"functionDeclarations": [{"description": "Search
+      the user''s notes. Returns matching notes.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string"}}, "required":
+      ["query"]}}, {"description": "Evaluate arithmetic like ''24*60+39''.", "name":
+      "calculator", "parameters_json_schema": {"type": "object", "properties": {"expression":
+      {"type": "string"}}, "required": ["expression"]}}, {"description": "Save text
+      to a file in Scout''s folder.", "name": "write_file", "parameters_json_schema":
+      {"type": "object", "properties": {"filename": {"type": "string"}, "text": {"type":
+      "string"}, "overwrite": {"type": "boolean"}}, "required": ["filename", "text"]}}]}],
+      "toolConfig": {"functionCallingConfig": {"stream_function_call_arguments": true}},
+      "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1841'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"functionCall\": {\"name\": \"calculator\",\"id\": \"qKM3y9s9\",\"willContinue\":
+        true},\"thoughtSignature\": \"AY89a18oEPacqwPjVqIRgDDuKUxf9tCAjxjLfimnMQnQ7F4UySn6XDsq0VFYZajk9NpeZYqbSRBljz405aSbc5RbustRwSti5GQf4n407vUits3iFS3m4ZU92zA=\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:00.360276Z\",\"responseId\": \"LL7IatT-Fd_g-O4PncHuqAc\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {\"partialArgs\": [{\"jsonPath\": \"$.expression\",\"stringValue\": \"24*60+39\",\"willContinue\":
+        true}],\"willContinue\": true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:00.360276Z\",\"responseId\":
+        \"LL7IatT-Fd_g-O4PncHuqAc\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.expression\",\"stringValue\": \"\"}],\"willContinue\": true}}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:00.360276Z\",\"responseId\": \"LL7IatT-Fd_g-O4PncHuqAc\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:00.360276Z\",\"responseId\":
+        \"LL7IatT-Fd_g-O4PncHuqAc\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\"}]},\"finishReason\": \"STOP\"}],\"usageMetadata\":
+        {\"promptTokenCount\": 228,\"candidatesTokenCount\": 21,\"totalTokenCount\":
+        249,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\": [{\"modality\":
+        \"TEXT\",\"tokenCount\": 228}],\"candidatesTokensDetails\": [{\"modality\":
+        \"TEXT\",\"tokenCount\": 21}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:00.360276Z\",\"responseId\": \"LL7IatT-Fd_g-O4PncHuqAc\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Fri, 09 Oct 2026 10:13:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How long is a day on Mars in minutes?
+      Then write an explanation of about 80 words for a 12-year-old and save it to
+      mars_day.txt."}], "role": "user"}, {"parts": [{"functionCall": {"id": "2F4RwBbd",
+      "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a19MDFFHWJd4s2QRye5GtbxgamS7l5Zb3TYMwFf5V3ctJWzu3Os2M3v2yBhRkaBZSPiQ4SVcjh7YSfk02FEVdJ2u4nL9bY1w-i_Hl6-vKBBWLIGXzkB-If0="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "2F4RwBbd", "name":
+      "search_notes", "response": {"output": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "qKM3y9s9", "args": {"expression": "24*60+39"}, "name": "calculator"},
+      "thoughtSignature": "AY89a18oEPacqwPjVqIRgDDuKUxf9tCAjxjLfimnMQnQ7F4UySn6XDsq0VFYZajk9NpeZYqbSRBljz405aSbc5RbustRwSti5GQf4n407vUits3iFS3m4ZU92zA="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "qKM3y9s9", "name":
+      "calculator", "response": {"output": 1479}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Search the notes first. Use the calculator for arithmetic. Answer in one sentence."}],
+      "role": "user"}, "tools": [{"functionDeclarations": [{"description": "Search
+      the user''s notes. Returns matching notes.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string"}}, "required":
+      ["query"]}}, {"description": "Evaluate arithmetic like ''24*60+39''.", "name":
+      "calculator", "parameters_json_schema": {"type": "object", "properties": {"expression":
+      {"type": "string"}}, "required": ["expression"]}}, {"description": "Save text
+      to a file in Scout''s folder.", "name": "write_file", "parameters_json_schema":
+      {"type": "object", "properties": {"filename": {"type": "string"}, "text": {"type":
+      "string"}, "overwrite": {"type": "boolean"}}, "required": ["filename", "text"]}}]}],
+      "toolConfig": {"functionCallingConfig": {"stream_function_call_arguments": true}},
+      "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2238'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"functionCall\": {\"name\": \"write_file\",\"id\": \"RvFH8uez\",\"willContinue\":
+        true},\"thoughtSignature\": \"AY89a1/yxLKvfPX6VTSn27Nin5DmEOMaeRENgTVG/Yi/ZoO2+gZg2y7VNkt4FF2Ml0aMtOFLnPauw2ro/LO0Cay1ZCwGF+f91wnKH52ILd33HhZmyteZihwNmqQ=\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:04.370048Z\",\"responseId\": \"ML7IaoDLFv6pr8kPuqTL6QI\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {\"partialArgs\": [{\"jsonPath\": \"$.filename\",\"stringValue\": \"mars_day.txt\",\"willContinue\":
+        true}],\"willContinue\": true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:04.370048Z\",\"responseId\":
+        \"ML7IaoDLFv6pr8kPuqTL6QI\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.filename\",\"stringValue\": \"\"}],\"willContinue\": true}}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:04.370048Z\",\"responseId\": \"ML7IaoDLFv6pr8kPuqTL6QI\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {\"partialArgs\": [{\"jsonPath\": \"$.overwrite\",\"boolValue\": true}],\"willContinue\":
+        true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:04.370048Z\",\"responseId\":
+        \"ML7IaoDLFv6pr8kPuqTL6QI\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.text\",\"stringValue\": \"A Martian day, also known as a sol, is slightly
+        longer than an Earth day, lasting 2\",\"willContinue\": true}],\"willContinue\":
+        true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:04.370048Z\",\"responseId\":
+        \"ML7IaoDLFv6pr8kPuqTL6QI\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.text\",\"stringValue\": \"4 hours and 39 minutes\",\"willContinue\": true}],\"willContinue\":
+        true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:04.370048Z\",\"responseId\":
+        \"ML7IaoDLFv6pr8kPuqTL6QI\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\"}]},\"finishReason\": \"MAX_TOKENS\"}],\"usageMetadata\":
+        {\"promptTokenCount\": 252,\"candidatesTokenCount\": 55,\"totalTokenCount\":
+        307,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\": [{\"modality\":
+        \"TEXT\",\"tokenCount\": 252}],\"candidatesTokensDetails\": [{\"modality\":
+        \"TEXT\",\"tokenCount\": 55}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:04.370048Z\",\"responseId\": \"ML7IaoDLFv6pr8kPuqTL6QI\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Fri, 09 Oct 2026 10:13:04 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How long is a day on Mars in minutes?
+      Then write an explanation of about 80 words for a 12-year-old and save it to
+      mars_day.txt."}], "role": "user"}, {"parts": [{"functionCall": {"id": "2F4RwBbd",
+      "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a19MDFFHWJd4s2QRye5GtbxgamS7l5Zb3TYMwFf5V3ctJWzu3Os2M3v2yBhRkaBZSPiQ4SVcjh7YSfk02FEVdJ2u4nL9bY1w-i_Hl6-vKBBWLIGXzkB-If0="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "2F4RwBbd", "name":
+      "search_notes", "response": {"output": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "qKM3y9s9", "args": {"expression": "24*60+39"}, "name": "calculator"},
+      "thoughtSignature": "AY89a18oEPacqwPjVqIRgDDuKUxf9tCAjxjLfimnMQnQ7F4UySn6XDsq0VFYZajk9NpeZYqbSRBljz405aSbc5RbustRwSti5GQf4n407vUits3iFS3m4ZU92zA="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "qKM3y9s9", "name":
+      "calculator", "response": {"output": 1479}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Search the notes first. Use the calculator for arithmetic. Answer in one sentence."}],
+      "role": "user"}, "tools": [{"functionDeclarations": [{"description": "Search
+      the user''s notes. Returns matching notes.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "properties": {"query": {"type": "string"}}, "required":
+      ["query"]}}, {"description": "Evaluate arithmetic like ''24*60+39''.", "name":
+      "calculator", "parameters_json_schema": {"type": "object", "properties": {"expression":
+      {"type": "string"}}, "required": ["expression"]}}, {"description": "Save text
+      to a file in Scout''s folder.", "name": "write_file", "parameters_json_schema":
+      {"type": "object", "properties": {"filename": {"type": "string"}, "text": {"type":
+      "string"}, "overwrite": {"type": "boolean"}}, "required": ["filename", "text"]}}]}],
+      "toolConfig": {"functionCallingConfig": {"stream_function_call_arguments": true}},
+      "generationConfig": {"maxOutputTokens": 240}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2239'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"functionCall\": {\"name\": \"write_file\",\"id\": \"xwbFunDq\",\"willContinue\":
+        true},\"thoughtSignature\": \"AY89a18PzUbMAnD9/h/kOTmIls88LMaIL4bYhJIFAeePANNDc4B1qcqlAQWyxA/0XC2lHzwD1Q2JoIJtOMrUzvdUxLURXwtKGiBjw2ZBGKJH9Tje41hnpGbX9UM=\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:08.383386Z\",\"responseId\": \"NL7IapqzF-WBr8kP09Or0Qs\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {\"partialArgs\": [{\"jsonPath\": \"$.filename\",\"stringValue\": \"mars_day.txt\",\"willContinue\":
+        true}],\"willContinue\": true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:08.383386Z\",\"responseId\":
+        \"NL7IapqzF-WBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.filename\",\"stringValue\": \"\"}],\"willContinue\": true}}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:08.383386Z\",\"responseId\": \"NL7IapqzF-WBr8kP09Or0Qs\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {\"partialArgs\": [{\"jsonPath\": \"$.overwrite\",\"boolValue\": true}],\"willContinue\":
+        true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:08.383386Z\",\"responseId\":
+        \"NL7IapqzF-WBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.text\",\"stringValue\": \"A day on Mars, often called a sol, is just a
+        little bit longer than a\",\"willContinue\": true}],\"willContinue\": true}}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:08.383386Z\",\"responseId\": \"NL7IapqzF-WBr8kP09Or0Qs\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {\"partialArgs\": [{\"jsonPath\": \"$.text\",\"stringValue\": \" day on Earth!
+        While Earth takes 24 hours to spin around once, Mars takes 24 hours and 39\",\"willContinue\":
+        true}],\"willContinue\": true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:08.383386Z\",\"responseId\":
+        \"NL7IapqzF-WBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.text\",\"stringValue\": \" minutes, which adds up to 1,479 minutes in
+        total. That means a Martian day is only about\",\"willContinue\": true}],\"willContinue\":
+        true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:08.383386Z\",\"responseId\":
+        \"NL7IapqzF-WBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.text\",\"stringValue\": \" 39 minutes longer than our days, giving you
+        just a tiny bit more time to play video games or hang out with friends\",\"willContinue\":
+        true}],\"willContinue\": true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:08.383386Z\",\"responseId\":
+        \"NL7IapqzF-WBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.text\",\"stringValue\": \" if you ever lived on the Red Planet!\",\"willContinue\":
+        true}],\"willContinue\": true}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:08.383386Z\",\"responseId\":
+        \"NL7IapqzF-WBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"functionCall\": {\"partialArgs\": [{\"jsonPath\":
+        \"$.text\",\"stringValue\": \"\"}],\"willContinue\": true}}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:08.383386Z\",\"responseId\": \"NL7IapqzF-WBr8kP09Or0Qs\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"functionCall\":
+        {}}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:08.383386Z\",\"responseId\":
+        \"NL7IapqzF-WBr8kP09Or0Qs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\"}]},\"finishReason\": \"STOP\"}],\"usageMetadata\":
+        {\"promptTokenCount\": 252,\"candidatesTokenCount\": 132,\"totalTokenCount\":
+        384,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\": [{\"modality\":
+        \"TEXT\",\"tokenCount\": 252}],\"candidatesTokensDetails\": [{\"modality\":
+        \"TEXT\",\"tokenCount\": 132}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:08.383386Z\",\"responseId\": \"NL7IapqzF-WBr8kP09Or0Qs\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Fri, 09 Oct 2026 10:13:08 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How long is a day on Mars in minutes?
+      Then write an explanation of about 80 words for a 12-year-old and save it to
+      mars_day.txt."}], "role": "user"}, {"parts": [{"functionCall": {"id": "2F4RwBbd",
+      "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a19MDFFHWJd4s2QRye5GtbxgamS7l5Zb3TYMwFf5V3ctJWzu3Os2M3v2yBhRkaBZSPiQ4SVcjh7YSfk02FEVdJ2u4nL9bY1w-i_Hl6-vKBBWLIGXzkB-If0="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "2F4RwBbd", "name":
+      "search_notes", "response": {"output": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "qKM3y9s9", "args": {"expression": "24*60+39"}, "name": "calculator"},
+      "thoughtSignature": "AY89a18oEPacqwPjVqIRgDDuKUxf9tCAjxjLfimnMQnQ7F4UySn6XDsq0VFYZajk9NpeZYqbSRBljz405aSbc5RbustRwSti5GQf4n407vUits3iFS3m4ZU92zA="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "qKM3y9s9", "name":
+      "calculator", "response": {"output": 1479}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "xwbFunDq", "args": {"filename": "mars_day.txt", "overwrite": true, "text":
+      "A day on Mars, often called a sol, is just a little bit longer than a day on
+      Earth! While Earth takes 24 hours to spin around once, Mars takes 24 hours and
+      39 minutes, which adds up to 1,479 minutes in total. That means a Martian day
+      is only about 39 minutes longer than our days, giving you just a tiny bit more
+      time to play video games or hang out with friends if you ever lived on the Red
+      Planet!"}, "name": "write_file"}, "thoughtSignature": "AY89a18PzUbMAnD9_h_kOTmIls88LMaIL4bYhJIFAeePANNDc4B1qcqlAQWyxA_0XC2lHzwD1Q2JoIJtOMrUzvdUxLURXwtKGiBjw2ZBGKJH9Tje41hnpGbX9UM="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "xwbFunDq", "name":
+      "write_file", "response": {"output": "saved 399 characters to mars_day.txt"}}}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout. Answer
+      questions about the user''s notes. Search the notes first. Use the calculator
+      for arithmetic. Answer in one sentence."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns matching notes.", "name":
+      "search_notes", "parameters_json_schema": {"type": "object", "properties": {"query":
+      {"type": "string"}}, "required": ["query"]}}, {"description": "Evaluate arithmetic
+      like ''24*60+39''.", "name": "calculator", "parameters_json_schema": {"type":
+      "object", "properties": {"expression": {"type": "string"}}, "required": ["expression"]}},
+      {"description": "Save text to a file in Scout''s folder.", "name": "write_file",
+      "parameters_json_schema": {"type": "object", "properties": {"filename": {"type":
+      "string"}, "text": {"type": "string"}, "overwrite": {"type": "boolean"}}, "required":
+      ["filename", "text"]}}]}], "toolConfig": {"functionCallingConfig": {"stream_function_call_arguments":
+      true}}, "generationConfig": {"maxOutputTokens": 60}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '3101'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"A day\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.5-flash-lite\",\"createTime\": \"2026-10-09T10:13:12.362769Z\",\"responseId\":
+        \"OL7IapGSFt_g-O4PncHuqAc\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" on Mars is 1,479 minutes long,
+        and I have saved an explanation of it\"}]}}],\"usageMetadata\": {\"trafficType\":
+        \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:12.362769Z\",\"responseId\": \"OL7IapGSFt_g-O4PncHuqAc\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \" for a 12-year-old to mars_day.txt.\"}]}}],\"usageMetadata\": {\"trafficType\":
+        \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:12.362769Z\",\"responseId\": \"OL7IapGSFt_g-O4PncHuqAc\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\",\"thoughtSignature\": \"AY89a1+Eb6bFpJxilI1oEDaXyysc2Dt4KUaMntssUJw69TmnMoRXJZpnVoIL+/DvVE87zG2G/tTH2Y02nmjP432vdav6JR00NhQXViXat5qs226v267gl+3/8eg=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 391,\"candidatesTokenCount\":
+        38,\"totalTokenCount\": 429,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 391}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 38}]},\"modelVersion\": \"gemini-3.5-flash-lite\",\"createTime\":
+        \"2026-10-09T10:13:12.362769Z\",\"responseId\": \"OL7IapGSFt_g-O4PncHuqAc\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Fri, 09 Oct 2026 10:13:12 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

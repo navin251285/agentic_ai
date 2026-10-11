@@ -1,0 +1,2207 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout. Answer
+      questions about the user''s notes. Use search_notes to find notes and read_note
+      to read one. The notes are long: read one at a time, and stop reading once you
+      have what you need. Do every calculation with the calculator tool. Answer in
+      one sentence."}], "role": "user"}, "tools": [{"functionDeclarations": [{"description":
+      "Search the user''s notebooks. Returns {id, title, tokens} for every notebook
+      whose title or text contains the query word. Does not return the text.", "name":
+      "search_notes", "parameters_json_schema": {"type": "object", "required": ["query"],
+      "properties": {"query": {"type": "string", "description": "one word, e.g. ''Mars''"}}}},
+      {"description": "Return the full text of one notebook by id. Notebooks are long.",
+      "name": "read_note", "parameters_json_schema": {"type": "object", "required":
+      ["note_id"], "properties": {"note_id": {"type": "integer", "description": "an
+      id from search_notes, e.g. 2"}}}}, {"description": "Evaluate arithmetic with
+      numbers, + - * / and brackets, e.g. ''24*60+39''.", "name": "calculator", "parameters_json_schema":
+      {"type": "object", "required": ["expression"], "properties": {"expression":
+      {"type": "string", "description": "e.g. ''(3+4)*2''"}}}}]}], "generationConfig":
+      {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1406'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_47988\"\n            },\n            \"thoughtSignature\": \"AY89a19Bj1smZF8ks+aaJ3xqxUzwtWEdbCxIzcVGaNiwCvEn7CozJ+CQbcItiVKY+GCFsA0UXYgZANKnzBaDTV+N/CYNlt+HN2jKfg1HNoeR5skwrvPNGB2Roko=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 236,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 252,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 236\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:47:27.395425Z\",\n  \"responseId\": \"33HIaqGRGJj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '1015'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:47:27 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_47988", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a19Bj1smZF8ks-aaJ3xqxUzwtWEdbCxIzcVGaNiwCvEn7CozJ-CQbcItiVKY-GCFsA0UXYgZANKnzBaDTV-N_CYNlt-HN2jKfg1HNoeR5skwrvPNGB2Roko="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_47988", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are Scout. Answer questions about
+      the user''s notes. Use search_notes to find notes and read_note to read one.
+      The notes are long: read one at a time, and stop reading once you have what
+      you need. Do every calculation with the calculator tool. Answer in one sentence."}],
+      "role": "user"}, "tools": [{"functionDeclarations": [{"description": "Search
+      the user''s notebooks. Returns {id, title, tokens} for every notebook whose
+      title or text contains the query word. Does not return the text.", "name": "search_notes",
+      "parameters_json_schema": {"type": "object", "required": ["query"], "properties":
+      {"query": {"type": "string", "description": "one word, e.g. ''Mars''"}}}}, {"description":
+      "Return the full text of one notebook by id. Notebooks are long.", "name": "read_note",
+      "parameters_json_schema": {"type": "object", "required": ["note_id"], "properties":
+      {"note_id": {"type": "integer", "description": "an id from search_notes, e.g.
+      2"}}}}, {"description": "Evaluate arithmetic with numbers, + - * / and brackets,
+      e.g. ''24*60+39''.", "name": "calculator", "parameters_json_schema": {"type":
+      "object", "required": ["expression"], "properties": {"expression": {"type":
+      "string", "description": "e.g. ''(3+4)*2''"}}}}]}], "generationConfig": {"maxOutputTokens":
+      400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1981'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"read_note\",\n              \"args\": {\n                \"note_id\":
+        1\n              },\n              \"id\": \"call_3053817\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a19LSw79qaVASrtCtjsnZbCfBSY+RYeDh0se14MtA53ykGDY4wH7o/FftIs6ep49FEn/aCIFmyCVi5mdt0o5Pm4S811ogXjv9fENteurwjqvBhx55PFSpe4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 292,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 308,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 292\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:47:31.382956Z\",\n  \"responseId\": \"43HIauyvF7vh-O4Plt7X0Q0\"\n}\n"
+    headers:
+      content-length:
+      - '1011'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:47:31 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_47988", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a19Bj1smZF8ks-aaJ3xqxUzwtWEdbCxIzcVGaNiwCvEn7CozJ-CQbcItiVKY-GCFsA0UXYgZANKnzBaDTV-N_CYNlt-HN2jKfg1HNoeR5skwrvPNGB2Roko="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_47988", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"},
+      {"parts": [{"functionCall": {"id": "call_3053817", "args": {"note_id": 1}, "name":
+      "read_note"}, "thoughtSignature": "AY89a19LSw79qaVASrtCtjsnZbCfBSY-RYeDh0se14MtA53ykGDY4wH7o_FftIs6ep49FEn_aCIFmyCVi5mdt0o5Pm4S811ogXjv9fENteurwjqvBhx55PFSpe4="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3053817", "name":
+      "read_note", "response": {"result": "Sol 1: drove 1 m, wind 8 m/s, dust opacity
+      0.35, battery 65%, photos 9.\nSol 2: drove 87 m, wind 1 m/s, dust opacity 0.38,
+      battery 47%, photos 34.\nSol 3: drove 29 m, wind 12 m/s, dust opacity 1.18,
+      battery 49%, photos 47.\nSol 4: drove 4 m, wind 11 m/s, dust opacity 0.28, battery
+      54%, photos 34.\nSol 5: drove 93 m, wind 8 m/s, dust opacity 0.88, battery 53%,
+      photos 37.\nSol 6: drove 11 m, wind 2 m/s, dust opacity 0.23, battery 100%,
+      photos 56.\nSol 7: drove 51 m, wind 6 m/s, dust opacity 0.46, battery 61%, photos
+      25.\nSol 8: drove 46 m, wind 10 m/s, dust opacity 1.44, battery 53%, photos
+      46.\nSol 9: drove 27 m, wind 7 m/s, dust opacity 0.96, battery 75%, photos 3.\nSol
+      10: drove 6 m, wind 14 m/s, dust opacity 0.43, battery 48%, photos 13.\nSol
+      11: drove 18 m, wind 14 m/s, dust opacity 1.23, battery 64%, photos 1.\nSol
+      12: drove 11 m, wind 12 m/s, dust opacity 0.89, battery 68%, photos 41.\nSol
+      13: drove 103 m, wind 4 m/s, dust opacity 0.47, battery 67%, photos 46.\nSol
+      14: drove 47 m, wind 4 m/s, dust opacity 0.63, battery 92%, photos 14.\nSol
+      15: drove 61 m, wind 1 m/s, dust opacity 0.54, battery 58%, photos 21.\nSol
+      16: drove 73 m, wind 7 m/s, dust opacity 0.83, battery 81%, photos 53.\nSol
+      17: drove 40 m, wind 4 m/s, dust opacity 1.47, battery 46%, photos 50.\nSol
+      18: drove 98 m, wind 5 m/s, dust opacity 1.37, battery 75%, photos 39.\nSol
+      19: drove 119 m, wind 9 m/s, dust opacity 1.29, battery 58%, photos 5.\nSol
+      20: drove 22 m, wind 4 m/s, dust opacity 0.24, battery 90%, photos 38.\nSol
+      21: drove 47 m, wind 12 m/s, dust opacity 1.44, battery 82%, photos 25.\nSol
+      22: drove 36 m, wind 15 m/s, dust opacity 0.60, battery 93%, photos 56.\nSol
+      23: drove 25 m, wind 2 m/s, dust opacity 0.79, battery 91%, photos 21.\nSol
+      24: drove 56 m, wind 7 m/s, dust opacity 1.23, battery 75%, photos 45.\nSol
+      25: drove 15 m, wind 5 m/s, dust opacity 0.33, battery 80%, photos 7.\nSol 26:
+      drove 24 m, wind 4 m/s, dust opacity 0.64, battery 85%, photos 54.\nSol 27:
+      drove 19 m, wind 8 m/s, dust opacity 0.28, battery 79%, photos 50.\nSol 28:
+      drove 65 m, wind 5 m/s, dust opacity 1.32, battery 79%, photos 31.\nSol 29:
+      drove 81 m, wind 10 m/s, dust opacity 0.25, battery 47%, photos 31.\nSol 30:
+      drove 17 m, wind 13 m/s, dust opacity 1.14, battery 84%, photos 31.\nSol 31:
+      drove 106 m, wind 13 m/s, dust opacity 0.23, battery 71%, photos 48.\nSol 32:
+      drove 100 m, wind 8 m/s, dust opacity 0.65, battery 40%, photos 6.\nSol 33:
+      drove 48 m, wind 10 m/s, dust opacity 0.57, battery 51%, photos 2.\nSol 34:
+      drove 16 m, wind 2 m/s, dust opacity 0.94, battery 79%, photos 3.\nSol 35: drove
+      118 m, wind 10 m/s, dust opacity 1.35, battery 90%, photos 12.\nSol 36: drove
+      105 m, wind 14 m/s, dust opacity 0.59, battery 51%, photos 35.\nSol 37: drove
+      58 m, wind 9 m/s, dust opacity 1.10, battery 73%, photos 45.\nSol 38: drove
+      110 m, wind 9 m/s, dust opacity 0.72, battery 73%, photos 12.\nSol 39: drove
+      91 m, wind 10 m/s, dust opacity 0.80, battery 85%, photos 52.\nSol 40: drove
+      59 m, wind 6 m/s, dust opacity 0.37, battery 47%, photos 33.\nSol 41: drove
+      100 m, wind 6 m/s, dust opacity 1.17, battery 100%, photos 18.\nSol 42: drove
+      88 m, wind 7 m/s, dust opacity 0.95, battery 50%, photos 2.\nSol 43: drove 109
+      m, wind 11 m/s, dust opacity 0.35, battery 67%, photos 13.\nSol 44: drove 18
+      m, wind 4 m/s, dust opacity 0.69, battery 59%, photos 13.\nSol 45: drove 54
+      m, wind 15 m/s, dust opacity 1.12, battery 74%, photos 37.\nSol 46: drove 31
+      m, wind 15 m/s, dust opacity 1.21, battery 87%, photos 60.\nSol 47: drove 105
+      m, wind 1 m/s, dust opacity 0.24, battery 79%, photos 52.\nSol 48: drove 114
+      m, wind 5 m/s, dust opacity 0.54, battery 52%, photos 27.\nSol 49: drove 104
+      m, wind 12 m/s, dust opacity 0.67, battery 65%, photos 2.\nSol 50: drove 104
+      m, wind 8 m/s, dust opacity 0.70, battery 52%, photos 15.\nSol 51: drove 27
+      m, wind 6 m/s, dust opacity 0.65, battery 84%, photos 23.\nSol 52: drove 14
+      m, wind 13 m/s, dust opacity 0.48, battery 55%, photos 56.\nSol 53: drove 79
+      m, wind 12 m/s, dust opacity 0.82, battery 71%, photos 28.\nSol 54: drove 119
+      m, wind 11 m/s, dust opacity 0.56, battery 51%, photos 26.\nSol 55: drove 4
+      m, wind 2 m/s, dust opacity 0.83, battery 59%, photos 51.\nSol 56: drove 60
+      m, wind 14 m/s, dust opacity 0.21, battery 40%, photos 17.\nSol 57: drove 48
+      m, wind 5 m/s, dust opacity 1.18, battery 59%, photos 56.\nSol 58: drove 116
+      m, wind 4 m/s, dust opacity 0.95, battery 65%, photos 57.\nSol 59: drove 99
+      m, wind 4 m/s, dust opacity 0.51, battery 49%, photos 54.\nSol 60: drove 80
+      m, wind 9 m/s, dust opacity 1.20, battery 94%, photos 6.\nSol 61: drove 85 m,
+      wind 10 m/s, dust opacity 1.12, battery 41%, photos 23.\nSol 62: drove 116 m,
+      wind 9 m/s, dust opacity 0.84, battery 59%, photos 43.\nSol 63: drove 60 m,
+      wind 9 m/s, dust opacity 1.42, battery 56%, photos 19.\nSol 64: drove 101 m,
+      wind 7 m/s, dust opacity 0.72, battery 53%, photos 35.\nSol 65: drove 113 m,
+      wind 4 m/s, dust opacity 1.20, battery 43%, photos 52.\nSol 66: drove 73 m,
+      wind 4 m/s, dust opacity 1.45, battery 55%, photos 3.\nSol 67: drove 108 m,
+      wind 7 m/s, dust opacity 1.09, battery 60%, photos 17.\nSol 68: drove 13 m,
+      wind 13 m/s, dust opacity 0.91, battery 60%, photos 15.\nSol 69: drove 93 m,
+      wind 8 m/s, dust opacity 1.19, battery 67%, photos 9.\nSol 70: drove 98 m, wind
+      1 m/s, dust opacity 0.60, battery 91%, photos 2.\nSol 71: drove 119 m, wind
+      7 m/s, dust opacity 0.49, battery 95%, photos 28.\nSol 72: drove 69 m, wind
+      3 m/s, dust opacity 0.30, battery 71%, photos 51.\nSol 73: drove 60 m, wind
+      8 m/s, dust opacity 0.55, battery 88%, photos 30.\nSol 74: drove 85 m, wind
+      11 m/s, dust opacity 0.20, battery 83%, photos 52.\nSol 75: drove 93 m, wind
+      11 m/s, dust opacity 0.64, battery 50%, photos 5.\nSol 76: drove 59 m, wind
+      14 m/s, dust opacity 0.67, battery 99%, photos 36.\nSol 77: drove 50 m, wind
+      15 m/s, dust opacity 1.33, battery 79%, photos 24.\nSol 78: drove 25 m, wind
+      7 m/s, dust opacity 0.48, battery 43%, photos 43.\nSol 79: drove 111 m, wind
+      14 m/s, dust opacity 0.78, battery 96%, photos 46.\nSol 80: drove 52 m, wind
+      8 m/s, dust opacity 1.18, battery 48%, photos 52.\nSol 81: drove 94 m, wind
+      13 m/s, dust opacity 1.38, battery 87%, photos 33.\nSol 82: drove 116 m, wind
+      6 m/s, dust opacity 0.76, battery 75%, photos 16.\nSol 83: drove 100 m, wind
+      2 m/s, dust opacity 0.79, battery 48%, photos 55.\nSol 84: drove 74 m, wind
+      5 m/s, dust opacity 1.33, battery 95%, photos 12.\nSol 85: drove 16 m, wind
+      11 m/s, dust opacity 0.70, battery 54%, photos 17.\nSol 86: drove 43 m, wind
+      6 m/s, dust opacity 1.45, battery 66%, photos 49.\nSol 87: drove 40 m, wind
+      14 m/s, dust opacity 0.55, battery 68%, photos 52.\nSol 88: drove 85 m, wind
+      7 m/s, dust opacity 0.65, battery 51%, photos 41.\nSol 89: drove 28 m, wind
+      15 m/s, dust opacity 0.54, battery 97%, photos 10.\nSol 90: drove 14 m, wind
+      13 m/s, dust opacity 1.31, battery 85%, photos 50.\nSol 91: drove 39 m, wind
+      5 m/s, dust opacity 1.06, battery 68%, photos 27.\nSol 92: drove 25 m, wind
+      2 m/s, dust opacity 0.86, battery 61%, photos 51.\nSol 93: drove 115 m, wind
+      9 m/s, dust opacity 1.33, battery 70%, photos 22.\nSol 94: drove 18 m, wind
+      12 m/s, dust opacity 0.77, battery 49%, photos 3.\nSol 95: drove 32 m, wind
+      10 m/s, dust opacity 0.62, battery 94%, photos 54.\nSol 96: drove 39 m, wind
+      9 m/s, dust opacity 0.28, battery 60%, photos 7.\nSol 97: drove 88 m, wind 12
+      m/s, dust opacity 1.30, battery 92%, photos 54.\nSol 98: drove 89 m, wind 15
+      m/s, dust opacity 0.50, battery 72%, photos 37.\nSol 99: drove 74 m, wind 13
+      m/s, dust opacity 0.43, battery 48%, photos 34.\nSol 100: drove 38 m, wind 13
+      m/s, dust opacity 0.71, battery 68%, photos 34."}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Use search_notes to find notes and read_note to read one. The notes are long:
+      read one at a time, and stop reading once you have what you need. Do every calculation
+      with the calculator tool. Answer in one sentence."}], "role": "user"}, "tools":
+      [{"functionDeclarations": [{"description": "Search the user''s notebooks. Returns
+      {id, title, tokens} for every notebook whose title or text contains the query
+      word. Does not return the text.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string",
+      "description": "one word, e.g. ''Mars''"}}}}, {"description": "Return the full
+      text of one notebook by id. Notebooks are long.", "name": "read_note", "parameters_json_schema":
+      {"type": "object", "required": ["note_id"], "properties": {"note_id": {"type":
+      "integer", "description": "an id from search_notes, e.g. 2"}}}}, {"description":
+      "Evaluate arithmetic with numbers, + - * / and brackets, e.g. ''24*60+39''.",
+      "name": "calculator", "parameters_json_schema": {"type": "object", "required":
+      ["expression"], "properties": {"expression": {"type": "string", "description":
+      "e.g. ''(3+4)*2''"}}}}]}], "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '10006'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"sol\"\n              },\n              \"id\":
+        \"call_9575\"\n            },\n            \"thoughtSignature\": \"AY89a1/s1WSmv1Rpn3FiP99oVH2Khg+WXhgp4oOv2XGBIXEBcpFsMtPS9X11DKCCT5Jimyb79ewnEj5WmbzHGA6tKTYwu71Fl/R9LrHNRMwfIkUx1BYiCHZ036w=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 4048,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 4064,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 4048\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:47:35.370499Z\",\n  \"responseId\": \"53HIasPOFvOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1016'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:47:35 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_47988", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a19Bj1smZF8ks-aaJ3xqxUzwtWEdbCxIzcVGaNiwCvEn7CozJ-CQbcItiVKY-GCFsA0UXYgZANKnzBaDTV-N_CYNlt-HN2jKfg1HNoeR5skwrvPNGB2Roko="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_47988", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"},
+      {"parts": [{"functionCall": {"id": "call_3053817", "args": {"note_id": 1}, "name":
+      "read_note"}, "thoughtSignature": "AY89a19LSw79qaVASrtCtjsnZbCfBSY-RYeDh0se14MtA53ykGDY4wH7o_FftIs6ep49FEn_aCIFmyCVi5mdt0o5Pm4S811ogXjv9fENteurwjqvBhx55PFSpe4="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3053817", "name":
+      "read_note", "response": {"result": "Sol 1: drove 1 m, wind 8 m/s, dust opacity
+      0.35, battery 65%, photos 9.\nSol 2: drove 87 m, wind 1 m/s, dust opacity 0.38,
+      battery 47%, photos 34.\nSol 3: drove 29 m, wind 12 m/s, dust opacity 1.18,
+      battery 49%, photos 47.\nSol 4: drove 4 m, wind 11 m/s, dust opacity 0.28, battery
+      54%, photos 34.\nSol 5: drove 93 m, wind 8 m/s, dust opacity 0.88, battery 53%,
+      photos 37.\nSol 6: drove 11 m, wind 2 m/s, dust opacity 0.23, battery 100%,
+      photos 56.\nSol 7: drove 51 m, wind 6 m/s, dust opacity 0.46, battery 61%, photos
+      25.\nSol 8: drove 46 m, wind 10 m/s, dust opacity 1.44, battery 53%, photos
+      46.\nSol 9: drove 27 m, wind 7 m/s, dust opacity 0.96, battery 75%, photos 3.\nSol
+      10: drove 6 m, wind 14 m/s, dust opacity 0.43, battery 48%, photos 13.\nSol
+      11: drove 18 m, wind 14 m/s, dust opacity 1.23, battery 64%, photos 1.\nSol
+      12: drove 11 m, wind 12 m/s, dust opacity 0.89, battery 68%, photos 41.\nSol
+      13: drove 103 m, wind 4 m/s, dust opacity 0.47, battery 67%, photos 46.\nSol
+      14: drove 47 m, wind 4 m/s, dust opacity 0.63, battery 92%, photos 14.\nSol
+      15: drove 61 m, wind 1 m/s, dust opacity 0.54, battery 58%, photos 21.\nSol
+      16: drove 73 m, wind 7 m/s, dust opacity 0.83, battery 81%, photos 53.\nSol
+      17: drove 40 m, wind 4 m/s, dust opacity 1.47, battery 46%, photos 50.\nSol
+      18: drove 98 m, wind 5 m/s, dust opacity 1.37, battery 75%, photos 39.\nSol
+      19: drove 119 m, wind 9 m/s, dust opacity 1.29, battery 58%, photos 5.\nSol
+      20: drove 22 m, wind 4 m/s, dust opacity 0.24, battery 90%, photos 38.\nSol
+      21: drove 47 m, wind 12 m/s, dust opacity 1.44, battery 82%, photos 25.\nSol
+      22: drove 36 m, wind 15 m/s, dust opacity 0.60, battery 93%, photos 56.\nSol
+      23: drove 25 m, wind 2 m/s, dust opacity 0.79, battery 91%, photos 21.\nSol
+      24: drove 56 m, wind 7 m/s, dust opacity 1.23, battery 75%, photos 45.\nSol
+      25: drove 15 m, wind 5 m/s, dust opacity 0.33, battery 80%, photos 7.\nSol 26:
+      drove 24 m, wind 4 m/s, dust opacity 0.64, battery 85%, photos 54.\nSol 27:
+      drove 19 m, wind 8 m/s, dust opacity 0.28, battery 79%, photos 50.\nSol 28:
+      drove 65 m, wind 5 m/s, dust opacity 1.32, battery 79%, photos 31.\nSol 29:
+      drove 81 m, wind 10 m/s, dust opacity 0.25, battery 47%, photos 31.\nSol 30:
+      drove 17 m, wind 13 m/s, dust opacity 1.14, battery 84%, photos 31.\nSol 31:
+      drove 106 m, wind 13 m/s, dust opacity 0.23, battery 71%, photos 48.\nSol 32:
+      drove 100 m, wind 8 m/s, dust opacity 0.65, battery 40%, photos 6.\nSol 33:
+      drove 48 m, wind 10 m/s, dust opacity 0.57, battery 51%, photos 2.\nSol 34:
+      drove 16 m, wind 2 m/s, dust opacity 0.94, battery 79%, photos 3.\nSol 35: drove
+      118 m, wind 10 m/s, dust opacity 1.35, battery 90%, photos 12.\nSol 36: drove
+      105 m, wind 14 m/s, dust opacity 0.59, battery 51%, photos 35.\nSol 37: drove
+      58 m, wind 9 m/s, dust opacity 1.10, battery 73%, photos 45.\nSol 38: drove
+      110 m, wind 9 m/s, dust opacity 0.72, battery 73%, photos 12.\nSol 39: drove
+      91 m, wind 10 m/s, dust opacity 0.80, battery 85%, photos 52.\nSol 40: drove
+      59 m, wind 6 m/s, dust opacity 0.37, battery 47%, photos 33.\nSol 41: drove
+      100 m, wind 6 m/s, dust opacity 1.17, battery 100%, photos 18.\nSol 42: drove
+      88 m, wind 7 m/s, dust opacity 0.95, battery 50%, photos 2.\nSol 43: drove 109
+      m, wind 11 m/s, dust opacity 0.35, battery 67%, photos 13.\nSol 44: drove 18
+      m, wind 4 m/s, dust opacity 0.69, battery 59%, photos 13.\nSol 45: drove 54
+      m, wind 15 m/s, dust opacity 1.12, battery 74%, photos 37.\nSol 46: drove 31
+      m, wind 15 m/s, dust opacity 1.21, battery 87%, photos 60.\nSol 47: drove 105
+      m, wind 1 m/s, dust opacity 0.24, battery 79%, photos 52.\nSol 48: drove 114
+      m, wind 5 m/s, dust opacity 0.54, battery 52%, photos 27.\nSol 49: drove 104
+      m, wind 12 m/s, dust opacity 0.67, battery 65%, photos 2.\nSol 50: drove 104
+      m, wind 8 m/s, dust opacity 0.70, battery 52%, photos 15.\nSol 51: drove 27
+      m, wind 6 m/s, dust opacity 0.65, battery 84%, photos 23.\nSol 52: drove 14
+      m, wind 13 m/s, dust opacity 0.48, battery 55%, photos 56.\nSol 53: drove 79
+      m, wind 12 m/s, dust opacity 0.82, battery 71%, photos 28.\nSol 54: drove 119
+      m, wind 11 m/s, dust opacity 0.56, battery 51%, photos 26.\nSol 55: drove 4
+      m, wind 2 m/s, dust opacity 0.83, battery 59%, photos 51.\nSol 56: drove 60
+      m, wind 14 m/s, dust opacity 0.21, battery 40%, photos 17.\nSol 57: drove 48
+      m, wind 5 m/s, dust opacity 1.18, battery 59%, photos 56.\nSol 58: drove 116
+      m, wind 4 m/s, dust opacity 0.95, battery 65%, photos 57.\nSol 59: drove 99
+      m, wind 4 m/s, dust opacity 0.51, battery 49%, photos 54.\nSol 60: drove 80
+      m, wind 9 m/s, dust opacity 1.20, battery 94%, photos 6.\nSol 61: drove 85 m,
+      wind 10 m/s, dust opacity 1.12, battery 41%, photos 23.\nSol 62: drove 116 m,
+      wind 9 m/s, dust opacity 0.84, battery 59%, photos 43.\nSol 63: drove 60 m,
+      wind 9 m/s, dust opacity 1.42, battery 56%, photos 19.\nSol 64: drove 101 m,
+      wind 7 m/s, dust opacity 0.72, battery 53%, photos 35.\nSol 65: drove 113 m,
+      wind 4 m/s, dust opacity 1.20, battery 43%, photos 52.\nSol 66: drove 73 m,
+      wind 4 m/s, dust opacity 1.45, battery 55%, photos 3.\nSol 67: drove 108 m,
+      wind 7 m/s, dust opacity 1.09, battery 60%, photos 17.\nSol 68: drove 13 m,
+      wind 13 m/s, dust opacity 0.91, battery 60%, photos 15.\nSol 69: drove 93 m,
+      wind 8 m/s, dust opacity 1.19, battery 67%, photos 9.\nSol 70: drove 98 m, wind
+      1 m/s, dust opacity 0.60, battery 91%, photos 2.\nSol 71: drove 119 m, wind
+      7 m/s, dust opacity 0.49, battery 95%, photos 28.\nSol 72: drove 69 m, wind
+      3 m/s, dust opacity 0.30, battery 71%, photos 51.\nSol 73: drove 60 m, wind
+      8 m/s, dust opacity 0.55, battery 88%, photos 30.\nSol 74: drove 85 m, wind
+      11 m/s, dust opacity 0.20, battery 83%, photos 52.\nSol 75: drove 93 m, wind
+      11 m/s, dust opacity 0.64, battery 50%, photos 5.\nSol 76: drove 59 m, wind
+      14 m/s, dust opacity 0.67, battery 99%, photos 36.\nSol 77: drove 50 m, wind
+      15 m/s, dust opacity 1.33, battery 79%, photos 24.\nSol 78: drove 25 m, wind
+      7 m/s, dust opacity 0.48, battery 43%, photos 43.\nSol 79: drove 111 m, wind
+      14 m/s, dust opacity 0.78, battery 96%, photos 46.\nSol 80: drove 52 m, wind
+      8 m/s, dust opacity 1.18, battery 48%, photos 52.\nSol 81: drove 94 m, wind
+      13 m/s, dust opacity 1.38, battery 87%, photos 33.\nSol 82: drove 116 m, wind
+      6 m/s, dust opacity 0.76, battery 75%, photos 16.\nSol 83: drove 100 m, wind
+      2 m/s, dust opacity 0.79, battery 48%, photos 55.\nSol 84: drove 74 m, wind
+      5 m/s, dust opacity 1.33, battery 95%, photos 12.\nSol 85: drove 16 m, wind
+      11 m/s, dust opacity 0.70, battery 54%, photos 17.\nSol 86: drove 43 m, wind
+      6 m/s, dust opacity 1.45, battery 66%, photos 49.\nSol 87: drove 40 m, wind
+      14 m/s, dust opacity 0.55, battery 68%, photos 52.\nSol 88: drove 85 m, wind
+      7 m/s, dust opacity 0.65, battery 51%, photos 41.\nSol 89: drove 28 m, wind
+      15 m/s, dust opacity 0.54, battery 97%, photos 10.\nSol 90: drove 14 m, wind
+      13 m/s, dust opacity 1.31, battery 85%, photos 50.\nSol 91: drove 39 m, wind
+      5 m/s, dust opacity 1.06, battery 68%, photos 27.\nSol 92: drove 25 m, wind
+      2 m/s, dust opacity 0.86, battery 61%, photos 51.\nSol 93: drove 115 m, wind
+      9 m/s, dust opacity 1.33, battery 70%, photos 22.\nSol 94: drove 18 m, wind
+      12 m/s, dust opacity 0.77, battery 49%, photos 3.\nSol 95: drove 32 m, wind
+      10 m/s, dust opacity 0.62, battery 94%, photos 54.\nSol 96: drove 39 m, wind
+      9 m/s, dust opacity 0.28, battery 60%, photos 7.\nSol 97: drove 88 m, wind 12
+      m/s, dust opacity 1.30, battery 92%, photos 54.\nSol 98: drove 89 m, wind 15
+      m/s, dust opacity 0.50, battery 72%, photos 37.\nSol 99: drove 74 m, wind 13
+      m/s, dust opacity 0.43, battery 48%, photos 34.\nSol 100: drove 38 m, wind 13
+      m/s, dust opacity 0.71, battery 68%, photos 34."}}}], "role": "user"}, {"parts":
+      [{"functionCall": {"id": "call_9575", "args": {"query": "sol"}, "name": "search_notes"},
+      "thoughtSignature": "AY89a1_s1WSmv1Rpn3FiP99oVH2Khg-WXhgp4oOv2XGBIXEBcpFsMtPS9X11DKCCT5Jimyb79ewnEj5WmbzHGA6tKTYwu71Fl_R9LrHNRMwfIkUx1BYiCHZ036w="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_9575", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are Scout. Answer questions about
+      the user''s notes. Use search_notes to find notes and read_note to read one.
+      The notes are long: read one at a time, and stop reading once you have what
+      you need. Do every calculation with the calculator tool. Answer in one sentence."}],
+      "role": "user"}, "tools": [{"functionDeclarations": [{"description": "Search
+      the user''s notebooks. Returns {id, title, tokens} for every notebook whose
+      title or text contains the query word. Does not return the text.", "name": "search_notes",
+      "parameters_json_schema": {"type": "object", "required": ["query"], "properties":
+      {"query": {"type": "string", "description": "one word, e.g. ''Mars''"}}}}, {"description":
+      "Return the full text of one notebook by id. Notebooks are long.", "name": "read_note",
+      "parameters_json_schema": {"type": "object", "required": ["note_id"], "properties":
+      {"note_id": {"type": "integer", "description": "an id from search_notes, e.g.
+      2"}}}}, {"description": "Evaluate arithmetic with numbers, + - * / and brackets,
+      e.g. ''24*60+39''.", "name": "calculator", "parameters_json_schema": {"type":
+      "object", "required": ["expression"], "properties": {"expression": {"type":
+      "string", "description": "e.g. ''(3+4)*2''"}}}}]}], "generationConfig": {"maxOutputTokens":
+      400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '10578'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"hours\"\n              },\n              \"id\":
+        \"call_150019\"\n            },\n            \"thoughtSignature\": \"AY89a18GFjnqjT1AgV6YFLpsWcfsO4P7DpTsyO1I4MCE26wqfAhS3fDlqsw7m260gj0PI5KrUBwXVMuvmifssc7YYW3AVHwM18Js4ryzZ+srd2tUyOTOYlC49KA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 4104,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 4120,\n    \"cachedContentTokenCount\": 3878,\n
+        \   \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n
+        \       \"modality\": \"TEXT\",\n        \"tokenCount\": 4104\n      }\n    ],\n
+        \   \"cacheTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 3878\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:47:39.375106Z\",\n  \"responseId\": \"63HIasLyFoeFr8kP-daSkAU\"\n}\n"
+    headers:
+      content-length:
+      - '1163'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:47:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_47988", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a19Bj1smZF8ks-aaJ3xqxUzwtWEdbCxIzcVGaNiwCvEn7CozJ-CQbcItiVKY-GCFsA0UXYgZANKnzBaDTV-N_CYNlt-HN2jKfg1HNoeR5skwrvPNGB2Roko="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_47988", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"},
+      {"parts": [{"functionCall": {"id": "call_3053817", "args": {"note_id": 1}, "name":
+      "read_note"}, "thoughtSignature": "AY89a19LSw79qaVASrtCtjsnZbCfBSY-RYeDh0se14MtA53ykGDY4wH7o_FftIs6ep49FEn_aCIFmyCVi5mdt0o5Pm4S811ogXjv9fENteurwjqvBhx55PFSpe4="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3053817", "name":
+      "read_note", "response": {"result": "Sol 1: drove 1 m, wind 8 m/s, dust opacity
+      0.35, battery 65%, photos 9.\nSol 2: drove 87 m, wind 1 m/s, dust opacity 0.38,
+      battery 47%, photos 34.\nSol 3: drove 29 m, wind 12 m/s, dust opacity 1.18,
+      battery 49%, photos 47.\nSol 4: drove 4 m, wind 11 m/s, dust opacity 0.28, battery
+      54%, photos 34.\nSol 5: drove 93 m, wind 8 m/s, dust opacity 0.88, battery 53%,
+      photos 37.\nSol 6: drove 11 m, wind 2 m/s, dust opacity 0.23, battery 100%,
+      photos 56.\nSol 7: drove 51 m, wind 6 m/s, dust opacity 0.46, battery 61%, photos
+      25.\nSol 8: drove 46 m, wind 10 m/s, dust opacity 1.44, battery 53%, photos
+      46.\nSol 9: drove 27 m, wind 7 m/s, dust opacity 0.96, battery 75%, photos 3.\nSol
+      10: drove 6 m, wind 14 m/s, dust opacity 0.43, battery 48%, photos 13.\nSol
+      11: drove 18 m, wind 14 m/s, dust opacity 1.23, battery 64%, photos 1.\nSol
+      12: drove 11 m, wind 12 m/s, dust opacity 0.89, battery 68%, photos 41.\nSol
+      13: drove 103 m, wind 4 m/s, dust opacity 0.47, battery 67%, photos 46.\nSol
+      14: drove 47 m, wind 4 m/s, dust opacity 0.63, battery 92%, photos 14.\nSol
+      15: drove 61 m, wind 1 m/s, dust opacity 0.54, battery 58%, photos 21.\nSol
+      16: drove 73 m, wind 7 m/s, dust opacity 0.83, battery 81%, photos 53.\nSol
+      17: drove 40 m, wind 4 m/s, dust opacity 1.47, battery 46%, photos 50.\nSol
+      18: drove 98 m, wind 5 m/s, dust opacity 1.37, battery 75%, photos 39.\nSol
+      19: drove 119 m, wind 9 m/s, dust opacity 1.29, battery 58%, photos 5.\nSol
+      20: drove 22 m, wind 4 m/s, dust opacity 0.24, battery 90%, photos 38.\nSol
+      21: drove 47 m, wind 12 m/s, dust opacity 1.44, battery 82%, photos 25.\nSol
+      22: drove 36 m, wind 15 m/s, dust opacity 0.60, battery 93%, photos 56.\nSol
+      23: drove 25 m, wind 2 m/s, dust opacity 0.79, battery 91%, photos 21.\nSol
+      24: drove 56 m, wind 7 m/s, dust opacity 1.23, battery 75%, photos 45.\nSol
+      25: drove 15 m, wind 5 m/s, dust opacity 0.33, battery 80%, photos 7.\nSol 26:
+      drove 24 m, wind 4 m/s, dust opacity 0.64, battery 85%, photos 54.\nSol 27:
+      drove 19 m, wind 8 m/s, dust opacity 0.28, battery 79%, photos 50.\nSol 28:
+      drove 65 m, wind 5 m/s, dust opacity 1.32, battery 79%, photos 31.\nSol 29:
+      drove 81 m, wind 10 m/s, dust opacity 0.25, battery 47%, photos 31.\nSol 30:
+      drove 17 m, wind 13 m/s, dust opacity 1.14, battery 84%, photos 31.\nSol 31:
+      drove 106 m, wind 13 m/s, dust opacity 0.23, battery 71%, photos 48.\nSol 32:
+      drove 100 m, wind 8 m/s, dust opacity 0.65, battery 40%, photos 6.\nSol 33:
+      drove 48 m, wind 10 m/s, dust opacity 0.57, battery 51%, photos 2.\nSol 34:
+      drove 16 m, wind 2 m/s, dust opacity 0.94, battery 79%, photos 3.\nSol 35: drove
+      118 m, wind 10 m/s, dust opacity 1.35, battery 90%, photos 12.\nSol 36: drove
+      105 m, wind 14 m/s, dust opacity 0.59, battery 51%, photos 35.\nSol 37: drove
+      58 m, wind 9 m/s, dust opacity 1.10, battery 73%, photos 45.\nSol 38: drove
+      110 m, wind 9 m/s, dust opacity 0.72, battery 73%, photos 12.\nSol 39: drove
+      91 m, wind 10 m/s, dust opacity 0.80, battery 85%, photos 52.\nSol 40: drove
+      59 m, wind 6 m/s, dust opacity 0.37, battery 47%, photos 33.\nSol 41: drove
+      100 m, wind 6 m/s, dust opacity 1.17, battery 100%, photos 18.\nSol 42: drove
+      88 m, wind 7 m/s, dust opacity 0.95, battery 50%, photos 2.\nSol 43: drove 109
+      m, wind 11 m/s, dust opacity 0.35, battery 67%, photos 13.\nSol 44: drove 18
+      m, wind 4 m/s, dust opacity 0.69, battery 59%, photos 13.\nSol 45: drove 54
+      m, wind 15 m/s, dust opacity 1.12, battery 74%, photos 37.\nSol 46: drove 31
+      m, wind 15 m/s, dust opacity 1.21, battery 87%, photos 60.\nSol 47: drove 105
+      m, wind 1 m/s, dust opacity 0.24, battery 79%, photos 52.\nSol 48: drove 114
+      m, wind 5 m/s, dust opacity 0.54, battery 52%, photos 27.\nSol 49: drove 104
+      m, wind 12 m/s, dust opacity 0.67, battery 65%, photos 2.\nSol 50: drove 104
+      m, wind 8 m/s, dust opacity 0.70, battery 52%, photos 15.\nSol 51: drove 27
+      m, wind 6 m/s, dust opacity 0.65, battery 84%, photos 23.\nSol 52: drove 14
+      m, wind 13 m/s, dust opacity 0.48, battery 55%, photos 56.\nSol 53: drove 79
+      m, wind 12 m/s, dust opacity 0.82, battery 71%, photos 28.\nSol 54: drove 119
+      m, wind 11 m/s, dust opacity 0.56, battery 51%, photos 26.\nSol 55: drove 4
+      m, wind 2 m/s, dust opacity 0.83, battery 59%, photos 51.\nSol 56: drove 60
+      m, wind 14 m/s, dust opacity 0.21, battery 40%, photos 17.\nSol 57: drove 48
+      m, wind 5 m/s, dust opacity 1.18, battery 59%, photos 56.\nSol 58: drove 116
+      m, wind 4 m/s, dust opacity 0.95, battery 65%, photos 57.\nSol 59: drove 99
+      m, wind 4 m/s, dust opacity 0.51, battery 49%, photos 54.\nSol 60: drove 80
+      m, wind 9 m/s, dust opacity 1.20, battery 94%, photos 6.\nSol 61: drove 85 m,
+      wind 10 m/s, dust opacity 1.12, battery 41%, photos 23.\nSol 62: drove 116 m,
+      wind 9 m/s, dust opacity 0.84, battery 59%, photos 43.\nSol 63: drove 60 m,
+      wind 9 m/s, dust opacity 1.42, battery 56%, photos 19.\nSol 64: drove 101 m,
+      wind 7 m/s, dust opacity 0.72, battery 53%, photos 35.\nSol 65: drove 113 m,
+      wind 4 m/s, dust opacity 1.20, battery 43%, photos 52.\nSol 66: drove 73 m,
+      wind 4 m/s, dust opacity 1.45, battery 55%, photos 3.\nSol 67: drove 108 m,
+      wind 7 m/s, dust opacity 1.09, battery 60%, photos 17.\nSol 68: drove 13 m,
+      wind 13 m/s, dust opacity 0.91, battery 60%, photos 15.\nSol 69: drove 93 m,
+      wind 8 m/s, dust opacity 1.19, battery 67%, photos 9.\nSol 70: drove 98 m, wind
+      1 m/s, dust opacity 0.60, battery 91%, photos 2.\nSol 71: drove 119 m, wind
+      7 m/s, dust opacity 0.49, battery 95%, photos 28.\nSol 72: drove 69 m, wind
+      3 m/s, dust opacity 0.30, battery 71%, photos 51.\nSol 73: drove 60 m, wind
+      8 m/s, dust opacity 0.55, battery 88%, photos 30.\nSol 74: drove 85 m, wind
+      11 m/s, dust opacity 0.20, battery 83%, photos 52.\nSol 75: drove 93 m, wind
+      11 m/s, dust opacity 0.64, battery 50%, photos 5.\nSol 76: drove 59 m, wind
+      14 m/s, dust opacity 0.67, battery 99%, photos 36.\nSol 77: drove 50 m, wind
+      15 m/s, dust opacity 1.33, battery 79%, photos 24.\nSol 78: drove 25 m, wind
+      7 m/s, dust opacity 0.48, battery 43%, photos 43.\nSol 79: drove 111 m, wind
+      14 m/s, dust opacity 0.78, battery 96%, photos 46.\nSol 80: drove 52 m, wind
+      8 m/s, dust opacity 1.18, battery 48%, photos 52.\nSol 81: drove 94 m, wind
+      13 m/s, dust opacity 1.38, battery 87%, photos 33.\nSol 82: drove 116 m, wind
+      6 m/s, dust opacity 0.76, battery 75%, photos 16.\nSol 83: drove 100 m, wind
+      2 m/s, dust opacity 0.79, battery 48%, photos 55.\nSol 84: drove 74 m, wind
+      5 m/s, dust opacity 1.33, battery 95%, photos 12.\nSol 85: drove 16 m, wind
+      11 m/s, dust opacity 0.70, battery 54%, photos 17.\nSol 86: drove 43 m, wind
+      6 m/s, dust opacity 1.45, battery 66%, photos 49.\nSol 87: drove 40 m, wind
+      14 m/s, dust opacity 0.55, battery 68%, photos 52.\nSol 88: drove 85 m, wind
+      7 m/s, dust opacity 0.65, battery 51%, photos 41.\nSol 89: drove 28 m, wind
+      15 m/s, dust opacity 0.54, battery 97%, photos 10.\nSol 90: drove 14 m, wind
+      13 m/s, dust opacity 1.31, battery 85%, photos 50.\nSol 91: drove 39 m, wind
+      5 m/s, dust opacity 1.06, battery 68%, photos 27.\nSol 92: drove 25 m, wind
+      2 m/s, dust opacity 0.86, battery 61%, photos 51.\nSol 93: drove 115 m, wind
+      9 m/s, dust opacity 1.33, battery 70%, photos 22.\nSol 94: drove 18 m, wind
+      12 m/s, dust opacity 0.77, battery 49%, photos 3.\nSol 95: drove 32 m, wind
+      10 m/s, dust opacity 0.62, battery 94%, photos 54.\nSol 96: drove 39 m, wind
+      9 m/s, dust opacity 0.28, battery 60%, photos 7.\nSol 97: drove 88 m, wind 12
+      m/s, dust opacity 1.30, battery 92%, photos 54.\nSol 98: drove 89 m, wind 15
+      m/s, dust opacity 0.50, battery 72%, photos 37.\nSol 99: drove 74 m, wind 13
+      m/s, dust opacity 0.43, battery 48%, photos 34.\nSol 100: drove 38 m, wind 13
+      m/s, dust opacity 0.71, battery 68%, photos 34."}}}], "role": "user"}, {"parts":
+      [{"functionCall": {"id": "call_9575", "args": {"query": "sol"}, "name": "search_notes"},
+      "thoughtSignature": "AY89a1_s1WSmv1Rpn3FiP99oVH2Khg-WXhgp4oOv2XGBIXEBcpFsMtPS9X11DKCCT5Jimyb79ewnEj5WmbzHGA6tKTYwu71Fl_R9LrHNRMwfIkUx1BYiCHZ036w="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_9575", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"},
+      {"parts": [{"functionCall": {"id": "call_150019", "args": {"query": "hours"},
+      "name": "search_notes"}, "thoughtSignature": "AY89a18GFjnqjT1AgV6YFLpsWcfsO4P7DpTsyO1I4MCE26wqfAhS3fDlqsw7m260gj0PI5KrUBwXVMuvmifssc7YYW3AVHwM18Js4ryzZ-srd2tUyOTOYlC49KA="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_150019", "name":
+      "search_notes", "response": {"result": [{"id": 3, "title": "Mars field notebook
+      3", "tokens": 1672}]}}}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are Scout. Answer questions about the user''s notes. Use search_notes to
+      find notes and read_note to read one. The notes are long: read one at a time,
+      and stop reading once you have what you need. Do every calculation with the
+      calculator tool. Answer in one sentence."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notebooks. Returns {id, title, tokens}
+      for every notebook whose title or text contains the query word. Does not return
+      the text.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "required": ["query"], "properties": {"query": {"type": "string", "description":
+      "one word, e.g. ''Mars''"}}}}, {"description": "Return the full text of one
+      notebook by id. Notebooks are long.", "name": "read_note", "parameters_json_schema":
+      {"type": "object", "required": ["note_id"], "properties": {"note_id": {"type":
+      "integer", "description": "an id from search_notes, e.g. 2"}}}}, {"description":
+      "Evaluate arithmetic with numbers, + - * / and brackets, e.g. ''24*60+39''.",
+      "name": "calculator", "parameters_json_schema": {"type": "object", "required":
+      ["expression"], "properties": {"expression": {"type": "string", "description":
+      "e.g. ''(3+4)*2''"}}}}]}], "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '11034'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"read_note\",\n              \"args\": {\n                \"note_id\":
+        3\n              },\n              \"id\": \"call_2757538\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1/R4RFPhmPGgHSGKna4qqtCGCl9LwVmk5ATKr5iAe1rgx6kdrSAe/X2nwVshrQX1AGNGfzmkzhVuk+Uu621ahfr/zdCuG3KE9z00hmzN8bDiLDBIb4KSIA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 4134,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 4150,\n    \"cachedContentTokenCount\": 3855,\n
+        \   \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n
+        \       \"modality\": \"TEXT\",\n        \"tokenCount\": 4134\n      }\n    ],\n
+        \   \"cacheTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 3855\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:47:43.373269Z\",\n  \"responseId\": \"73HIapXkFuWBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '1157'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:47:44 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_47988", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a19Bj1smZF8ks-aaJ3xqxUzwtWEdbCxIzcVGaNiwCvEn7CozJ-CQbcItiVKY-GCFsA0UXYgZANKnzBaDTV-N_CYNlt-HN2jKfg1HNoeR5skwrvPNGB2Roko="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_47988", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"},
+      {"parts": [{"functionCall": {"id": "call_3053817", "args": {"note_id": 1}, "name":
+      "read_note"}, "thoughtSignature": "AY89a19LSw79qaVASrtCtjsnZbCfBSY-RYeDh0se14MtA53ykGDY4wH7o_FftIs6ep49FEn_aCIFmyCVi5mdt0o5Pm4S811ogXjv9fENteurwjqvBhx55PFSpe4="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3053817", "name":
+      "read_note", "response": {"result": "Sol 1: drove 1 m, wind 8 m/s, dust opacity
+      0.35, battery 65%, photos 9.\nSol 2: drove 87 m, wind 1 m/s, dust opacity 0.38,
+      battery 47%, photos 34.\nSol 3: drove 29 m, wind 12 m/s, dust opacity 1.18,
+      battery 49%, photos 47.\nSol 4: drove 4 m, wind 11 m/s, dust opacity 0.28, battery
+      54%, photos 34.\nSol 5: drove 93 m, wind 8 m/s, dust opacity 0.88, battery 53%,
+      photos 37.\nSol 6: drove 11 m, wind 2 m/s, dust opacity 0.23, battery 100%,
+      photos 56.\nSol 7: drove 51 m, wind 6 m/s, dust opacity 0.46, battery 61%, photos
+      25.\nSol 8: drove 46 m, wind 10 m/s, dust opacity 1.44, battery 53%, photos
+      46.\nSol 9: drove 27 m, wind 7 m/s, dust opacity 0.96, battery 75%, photos 3.\nSol
+      10: drove 6 m, wind 14 m/s, dust opacity 0.43, battery 48%, photos 13.\nSol
+      11: drove 18 m, wind 14 m/s, dust opacity 1.23, battery 64%, photos 1.\nSol
+      12: drove 11 m, wind 12 m/s, dust opacity 0.89, battery 68%, photos 41.\nSol
+      13: drove 103 m, wind 4 m/s, dust opacity 0.47, battery 67%, photos 46.\nSol
+      14: drove 47 m, wind 4 m/s, dust opacity 0.63, battery 92%, photos 14.\nSol
+      15: drove 61 m, wind 1 m/s, dust opacity 0.54, battery 58%, photos 21.\nSol
+      16: drove 73 m, wind 7 m/s, dust opacity 0.83, battery 81%, photos 53.\nSol
+      17: drove 40 m, wind 4 m/s, dust opacity 1.47, battery 46%, photos 50.\nSol
+      18: drove 98 m, wind 5 m/s, dust opacity 1.37, battery 75%, photos 39.\nSol
+      19: drove 119 m, wind 9 m/s, dust opacity 1.29, battery 58%, photos 5.\nSol
+      20: drove 22 m, wind 4 m/s, dust opacity 0.24, battery 90%, photos 38.\nSol
+      21: drove 47 m, wind 12 m/s, dust opacity 1.44, battery 82%, photos 25.\nSol
+      22: drove 36 m, wind 15 m/s, dust opacity 0.60, battery 93%, photos 56.\nSol
+      23: drove 25 m, wind 2 m/s, dust opacity 0.79, battery 91%, photos 21.\nSol
+      24: drove 56 m, wind 7 m/s, dust opacity 1.23, battery 75%, photos 45.\nSol
+      25: drove 15 m, wind 5 m/s, dust opacity 0.33, battery 80%, photos 7.\nSol 26:
+      drove 24 m, wind 4 m/s, dust opacity 0.64, battery 85%, photos 54.\nSol 27:
+      drove 19 m, wind 8 m/s, dust opacity 0.28, battery 79%, photos 50.\nSol 28:
+      drove 65 m, wind 5 m/s, dust opacity 1.32, battery 79%, photos 31.\nSol 29:
+      drove 81 m, wind 10 m/s, dust opacity 0.25, battery 47%, photos 31.\nSol 30:
+      drove 17 m, wind 13 m/s, dust opacity 1.14, battery 84%, photos 31.\nSol 31:
+      drove 106 m, wind 13 m/s, dust opacity 0.23, battery 71%, photos 48.\nSol 32:
+      drove 100 m, wind 8 m/s, dust opacity 0.65, battery 40%, photos 6.\nSol 33:
+      drove 48 m, wind 10 m/s, dust opacity 0.57, battery 51%, photos 2.\nSol 34:
+      drove 16 m, wind 2 m/s, dust opacity 0.94, battery 79%, photos 3.\nSol 35: drove
+      118 m, wind 10 m/s, dust opacity 1.35, battery 90%, photos 12.\nSol 36: drove
+      105 m, wind 14 m/s, dust opacity 0.59, battery 51%, photos 35.\nSol 37: drove
+      58 m, wind 9 m/s, dust opacity 1.10, battery 73%, photos 45.\nSol 38: drove
+      110 m, wind 9 m/s, dust opacity 0.72, battery 73%, photos 12.\nSol 39: drove
+      91 m, wind 10 m/s, dust opacity 0.80, battery 85%, photos 52.\nSol 40: drove
+      59 m, wind 6 m/s, dust opacity 0.37, battery 47%, photos 33.\nSol 41: drove
+      100 m, wind 6 m/s, dust opacity 1.17, battery 100%, photos 18.\nSol 42: drove
+      88 m, wind 7 m/s, dust opacity 0.95, battery 50%, photos 2.\nSol 43: drove 109
+      m, wind 11 m/s, dust opacity 0.35, battery 67%, photos 13.\nSol 44: drove 18
+      m, wind 4 m/s, dust opacity 0.69, battery 59%, photos 13.\nSol 45: drove 54
+      m, wind 15 m/s, dust opacity 1.12, battery 74%, photos 37.\nSol 46: drove 31
+      m, wind 15 m/s, dust opacity 1.21, battery 87%, photos 60.\nSol 47: drove 105
+      m, wind 1 m/s, dust opacity 0.24, battery 79%, photos 52.\nSol 48: drove 114
+      m, wind 5 m/s, dust opacity 0.54, battery 52%, photos 27.\nSol 49: drove 104
+      m, wind 12 m/s, dust opacity 0.67, battery 65%, photos 2.\nSol 50: drove 104
+      m, wind 8 m/s, dust opacity 0.70, battery 52%, photos 15.\nSol 51: drove 27
+      m, wind 6 m/s, dust opacity 0.65, battery 84%, photos 23.\nSol 52: drove 14
+      m, wind 13 m/s, dust opacity 0.48, battery 55%, photos 56.\nSol 53: drove 79
+      m, wind 12 m/s, dust opacity 0.82, battery 71%, photos 28.\nSol 54: drove 119
+      m, wind 11 m/s, dust opacity 0.56, battery 51%, photos 26.\nSol 55: drove 4
+      m, wind 2 m/s, dust opacity 0.83, battery 59%, photos 51.\nSol 56: drove 60
+      m, wind 14 m/s, dust opacity 0.21, battery 40%, photos 17.\nSol 57: drove 48
+      m, wind 5 m/s, dust opacity 1.18, battery 59%, photos 56.\nSol 58: drove 116
+      m, wind 4 m/s, dust opacity 0.95, battery 65%, photos 57.\nSol 59: drove 99
+      m, wind 4 m/s, dust opacity 0.51, battery 49%, photos 54.\nSol 60: drove 80
+      m, wind 9 m/s, dust opacity 1.20, battery 94%, photos 6.\nSol 61: drove 85 m,
+      wind 10 m/s, dust opacity 1.12, battery 41%, photos 23.\nSol 62: drove 116 m,
+      wind 9 m/s, dust opacity 0.84, battery 59%, photos 43.\nSol 63: drove 60 m,
+      wind 9 m/s, dust opacity 1.42, battery 56%, photos 19.\nSol 64: drove 101 m,
+      wind 7 m/s, dust opacity 0.72, battery 53%, photos 35.\nSol 65: drove 113 m,
+      wind 4 m/s, dust opacity 1.20, battery 43%, photos 52.\nSol 66: drove 73 m,
+      wind 4 m/s, dust opacity 1.45, battery 55%, photos 3.\nSol 67: drove 108 m,
+      wind 7 m/s, dust opacity 1.09, battery 60%, photos 17.\nSol 68: drove 13 m,
+      wind 13 m/s, dust opacity 0.91, battery 60%, photos 15.\nSol 69: drove 93 m,
+      wind 8 m/s, dust opacity 1.19, battery 67%, photos 9.\nSol 70: drove 98 m, wind
+      1 m/s, dust opacity 0.60, battery 91%, photos 2.\nSol 71: drove 119 m, wind
+      7 m/s, dust opacity 0.49, battery 95%, photos 28.\nSol 72: drove 69 m, wind
+      3 m/s, dust opacity 0.30, battery 71%, photos 51.\nSol 73: drove 60 m, wind
+      8 m/s, dust opacity 0.55, battery 88%, photos 30.\nSol 74: drove 85 m, wind
+      11 m/s, dust opacity 0.20, battery 83%, photos 52.\nSol 75: drove 93 m, wind
+      11 m/s, dust opacity 0.64, battery 50%, photos 5.\nSol 76: drove 59 m, wind
+      14 m/s, dust opacity 0.67, battery 99%, photos 36.\nSol 77: drove 50 m, wind
+      15 m/s, dust opacity 1.33, battery 79%, photos 24.\nSol 78: drove 25 m, wind
+      7 m/s, dust opacity 0.48, battery 43%, photos 43.\nSol 79: drove 111 m, wind
+      14 m/s, dust opacity 0.78, battery 96%, photos 46.\nSol 80: drove 52 m, wind
+      8 m/s, dust opacity 1.18, battery 48%, photos 52.\nSol 81: drove 94 m, wind
+      13 m/s, dust opacity 1.38, battery 87%, photos 33.\nSol 82: drove 116 m, wind
+      6 m/s, dust opacity 0.76, battery 75%, photos 16.\nSol 83: drove 100 m, wind
+      2 m/s, dust opacity 0.79, battery 48%, photos 55.\nSol 84: drove 74 m, wind
+      5 m/s, dust opacity 1.33, battery 95%, photos 12.\nSol 85: drove 16 m, wind
+      11 m/s, dust opacity 0.70, battery 54%, photos 17.\nSol 86: drove 43 m, wind
+      6 m/s, dust opacity 1.45, battery 66%, photos 49.\nSol 87: drove 40 m, wind
+      14 m/s, dust opacity 0.55, battery 68%, photos 52.\nSol 88: drove 85 m, wind
+      7 m/s, dust opacity 0.65, battery 51%, photos 41.\nSol 89: drove 28 m, wind
+      15 m/s, dust opacity 0.54, battery 97%, photos 10.\nSol 90: drove 14 m, wind
+      13 m/s, dust opacity 1.31, battery 85%, photos 50.\nSol 91: drove 39 m, wind
+      5 m/s, dust opacity 1.06, battery 68%, photos 27.\nSol 92: drove 25 m, wind
+      2 m/s, dust opacity 0.86, battery 61%, photos 51.\nSol 93: drove 115 m, wind
+      9 m/s, dust opacity 1.33, battery 70%, photos 22.\nSol 94: drove 18 m, wind
+      12 m/s, dust opacity 0.77, battery 49%, photos 3.\nSol 95: drove 32 m, wind
+      10 m/s, dust opacity 0.62, battery 94%, photos 54.\nSol 96: drove 39 m, wind
+      9 m/s, dust opacity 0.28, battery 60%, photos 7.\nSol 97: drove 88 m, wind 12
+      m/s, dust opacity 1.30, battery 92%, photos 54.\nSol 98: drove 89 m, wind 15
+      m/s, dust opacity 0.50, battery 72%, photos 37.\nSol 99: drove 74 m, wind 13
+      m/s, dust opacity 0.43, battery 48%, photos 34.\nSol 100: drove 38 m, wind 13
+      m/s, dust opacity 0.71, battery 68%, photos 34."}}}], "role": "user"}, {"parts":
+      [{"functionCall": {"id": "call_9575", "args": {"query": "sol"}, "name": "search_notes"},
+      "thoughtSignature": "AY89a1_s1WSmv1Rpn3FiP99oVH2Khg-WXhgp4oOv2XGBIXEBcpFsMtPS9X11DKCCT5Jimyb79ewnEj5WmbzHGA6tKTYwu71Fl_R9LrHNRMwfIkUx1BYiCHZ036w="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_9575", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"},
+      {"parts": [{"functionCall": {"id": "call_150019", "args": {"query": "hours"},
+      "name": "search_notes"}, "thoughtSignature": "AY89a18GFjnqjT1AgV6YFLpsWcfsO4P7DpTsyO1I4MCE26wqfAhS3fDlqsw7m260gj0PI5KrUBwXVMuvmifssc7YYW3AVHwM18Js4ryzZ-srd2tUyOTOYlC49KA="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_150019", "name":
+      "search_notes", "response": {"result": [{"id": 3, "title": "Mars field notebook
+      3", "tokens": 1672}]}}}], "role": "user"}, {"parts": [{"functionCall": {"id":
+      "call_2757538", "args": {"note_id": 3}, "name": "read_note"}, "thoughtSignature":
+      "AY89a1_R4RFPhmPGgHSGKna4qqtCGCl9LwVmk5ATKr5iAe1rgx6kdrSAe_X2nwVshrQX1AGNGfzmkzhVuk-Uu621ahfr_zdCuG3KE9z00hmzN8bDiLDBIb4KSIA="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_2757538", "name":
+      "read_note", "response": {"result": "Sol 201: drove 71 m, wind 9 m/s, dust opacity
+      1.30, battery 49%, photos 41.\nSol 202: drove 78 m, wind 6 m/s, dust opacity
+      1.01, battery 87%, photos 18.\nSol 203: drove 82 m, wind 1 m/s, dust opacity
+      1.04, battery 67%, photos 41.\nSol 204: drove 109 m, wind 13 m/s, dust opacity
+      0.42, battery 77%, photos 46.\nSol 205: drove 21 m, wind 9 m/s, dust opacity
+      1.33, battery 72%, photos 35.\nSol 206: drove 86 m, wind 10 m/s, dust opacity
+      0.57, battery 69%, photos 4.\nSol 207: drove 59 m, wind 14 m/s, dust opacity
+      0.25, battery 69%, photos 32.\nSol 208: drove 43 m, wind 15 m/s, dust opacity
+      0.60, battery 93%, photos 46.\nSol 209: drove 32 m, wind 9 m/s, dust opacity
+      0.73, battery 99%, photos 8.\nSol 210: drove 41 m, wind 1 m/s, dust opacity
+      1.26, battery 83%, photos 49.\nSol 211: drove 117 m, wind 8 m/s, dust opacity
+      0.21, battery 63%, photos 31.\nSol 212: drove 3 m, wind 15 m/s, dust opacity
+      1.22, battery 59%, photos 18.\nSol 213: drove 61 m, wind 3 m/s, dust opacity
+      0.68, battery 54%, photos 60.\nSol 214: drove 84 m, wind 4 m/s, dust opacity
+      0.23, battery 70%, photos 53.\nSol 215: drove 118 m, wind 13 m/s, dust opacity
+      1.18, battery 81%, photos 17.\nSol 216: drove 106 m, wind 12 m/s, dust opacity
+      1.44, battery 57%, photos 24.\nSol 217: drove 18 m, wind 15 m/s, dust opacity
+      0.59, battery 60%, photos 8.\nSol 218: drove 45 m, wind 9 m/s, dust opacity
+      1.23, battery 94%, photos 12.\nSol 219: drove 31 m, wind 6 m/s, dust opacity
+      1.13, battery 88%, photos 53.\nSol 220: drove 76 m, wind 10 m/s, dust opacity
+      0.57, battery 98%, photos 45.\nSol 221: drove 32 m, wind 9 m/s, dust opacity
+      1.32, battery 96%, photos 16.\nSol 222: drove 68 m, wind 1 m/s, dust opacity
+      0.56, battery 54%, photos 4.\nSol 223: drove 76 m, wind 3 m/s, dust opacity
+      0.47, battery 90%, photos 36.\nSol 224: drove 62 m, wind 13 m/s, dust opacity
+      1.45, battery 68%, photos 47.\nSol 225: drove 7 m, wind 2 m/s, dust opacity
+      1.32, battery 53%, photos 0.\nSol 226: drove 45 m, wind 15 m/s, dust opacity
+      0.77, battery 98%, photos 3.\nSol 227: drove 85 m, wind 7 m/s, dust opacity
+      1.36, battery 64%, photos 11.\nSol 228: drove 60 m, wind 8 m/s, dust opacity
+      1.01, battery 89%, photos 18.\nSol 229: drove 75 m, wind 8 m/s, dust opacity
+      0.67, battery 89%, photos 9.\nSol 230: drove 106 m, wind 12 m/s, dust opacity
+      1.19, battery 78%, photos 59.\nSol 231: drove 17 m, wind 3 m/s, dust opacity
+      1.08, battery 55%, photos 39.\nSol 232: drove 58 m, wind 1 m/s, dust opacity
+      0.71, battery 75%, photos 24.\nSol 233: drove 111 m, wind 5 m/s, dust opacity
+      0.89, battery 76%, photos 58.\nSol 234: drove 11 m, wind 6 m/s, dust opacity
+      1.12, battery 97%, photos 3.\nSol 235: drove 62 m, wind 8 m/s, dust opacity
+      1.05, battery 44%, photos 60.\nSol 236: drove 44 m, wind 12 m/s, dust opacity
+      1.32, battery 79%, photos 19.\nSol 237: drove 94 m, wind 14 m/s, dust opacity
+      0.79, battery 48%, photos 15.\nSol 238: drove 115 m, wind 6 m/s, dust opacity
+      0.73, battery 83%, photos 53.\nSol 239: drove 90 m, wind 10 m/s, dust opacity
+      0.96, battery 43%, photos 51.\nSol 240: drove 85 m, wind 13 m/s, dust opacity
+      0.71, battery 43%, photos 57.\nSol 241: drove 69 m, wind 9 m/s, dust opacity
+      1.03, battery 62%, photos 59.\nSol 242: drove 64 m, wind 4 m/s, dust opacity
+      0.44, battery 54%, photos 26.\nSol 243: drove 23 m, wind 8 m/s, dust opacity
+      0.52, battery 54%, photos 56.\nSol 244: drove 100 m, wind 13 m/s, dust opacity
+      0.50, battery 46%, photos 26.\nSol 245: drove 106 m, wind 9 m/s, dust opacity
+      1.17, battery 51%, photos 48.\nSol 246: drove 12 m, wind 10 m/s, dust opacity
+      0.70, battery 70%, photos 8.\nSol 247: drove 61 m, wind 3 m/s, dust opacity
+      1.10, battery 77%, photos 33.\nSol 248: drove 93 m, wind 5 m/s, dust opacity
+      0.23, battery 57%, photos 22.\nSol 249: drove 26 m, wind 1 m/s, dust opacity
+      0.71, battery 86%, photos 34.\nSol 250: drove 81 m, wind 15 m/s, dust opacity
+      0.24, battery 68%, photos 55.\nSol 251: drove 90 m, wind 10 m/s, dust opacity
+      1.17, battery 90%, photos 60.\nSol 252: drove 48 m, wind 6 m/s, dust opacity
+      0.84, battery 80%, photos 37.\nSol 253: drove 92 m, wind 3 m/s, dust opacity
+      0.32, battery 74%, photos 8.\nSol 254: drove 40 m, wind 9 m/s, dust opacity
+      1.26, battery 98%, photos 11.\nSol 255: drove 110 m, wind 1 m/s, dust opacity
+      0.70, battery 44%, photos 46.\nReminder for the talk: a day on Mars (a sol)
+      lasts 24 hours and 39 minutes."}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Use search_notes to find notes and read_note to read one. The notes are long:
+      read one at a time, and stop reading once you have what you need. Do every calculation
+      with the calculator tool. Answer in one sentence."}], "role": "user"}, "tools":
+      [{"functionDeclarations": [{"description": "Search the user''s notebooks. Returns
+      {id, title, tokens} for every notebook whose title or text contains the query
+      word. Does not return the text.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string",
+      "description": "one word, e.g. ''Mars''"}}}}, {"description": "Return the full
+      text of one notebook by id. Notebooks are long.", "name": "read_note", "parameters_json_schema":
+      {"type": "object", "required": ["note_id"], "properties": {"note_id": {"type":
+      "integer", "description": "an id from search_notes, e.g. 2"}}}}, {"description":
+      "Evaluate arithmetic with numbers, + - * / and brackets, e.g. ''24*60+39''.",
+      "name": "calculator", "parameters_json_schema": {"type": "object", "required":
+      ["expression"], "properties": {"expression": {"type": "string", "description":
+      "e.g. ''(3+4)*2''"}}}}]}], "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '15751'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"calculator\",\n              \"args\": {\n                \"expression\":
+        \"24*60+39\"\n              },\n              \"id\": \"call_3471046\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1/pp9+zKvxCWNsNrjyvctAMD4yNb8WfnvQQ03ryK5p67OeW7z8cZjTb9B9z2ZUKZMOsNomRg+uwBCfN1bhjJCRXVdfYZ7mqU+fIsJp6UQerCAGRvoBfqt0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 6285,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 6306,\n    \"cachedContentTokenCount\": 3922,\n
+        \   \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n
+        \       \"modality\": \"TEXT\",\n        \"tokenCount\": 6285\n      }\n    ],\n
+        \   \"cacheTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 3922\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:47:47.333409Z\",\n  \"responseId\": \"83HIauGsFPOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1170'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:47:47 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_47988", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a19Bj1smZF8ks-aaJ3xqxUzwtWEdbCxIzcVGaNiwCvEn7CozJ-CQbcItiVKY-GCFsA0UXYgZANKnzBaDTV-N_CYNlt-HN2jKfg1HNoeR5skwrvPNGB2Roko="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_47988", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"},
+      {"parts": [{"functionCall": {"id": "call_3053817", "args": {"note_id": 1}, "name":
+      "read_note"}, "thoughtSignature": "AY89a19LSw79qaVASrtCtjsnZbCfBSY-RYeDh0se14MtA53ykGDY4wH7o_FftIs6ep49FEn_aCIFmyCVi5mdt0o5Pm4S811ogXjv9fENteurwjqvBhx55PFSpe4="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3053817", "name":
+      "read_note", "response": {"result": "Sol 1: drove 1 m, wind 8 m/s, dust opacity
+      0.35, battery 65%, photos 9.\nSol 2: drove 87 m, wind 1 m/s, dust opacity 0.38,
+      battery 47%, photos 34.\nSol 3: drove 29 m, wind 12 m/s, dust opacity 1.18,
+      battery 49%, photos 47.\nSol 4: drove 4 m, wind 11 m/s, dust opacity 0.28, battery
+      54%, photos 34.\nSol 5: drove 93 m, wind 8 m/s, dust opacity 0.88, battery 53%,
+      photos 37.\nSol 6: drove 11 m, wind 2 m/s, dust opacity 0.23, battery 100%,
+      photos 56.\nSol 7: drove 51 m, wind 6 m/s, dust opacity 0.46, battery 61%, photos
+      25.\nSol 8: drove 46 m, wind 10 m/s, dust opacity 1.44, battery 53%, photos
+      46.\nSol 9: drove 27 m, wind 7 m/s, dust opacity 0.96, battery 75%, photos 3.\nSol
+      10: drove 6 m, wind 14 m/s, dust opacity 0.43, battery 48%, photos 13.\nSol
+      11: drove 18 m, wind 14 m/s, dust opacity 1.23, battery 64%, photos 1.\nSol
+      12: drove 11 m, wind 12 m/s, dust opacity 0.89, battery 68%, photos 41.\nSol
+      13: drove 103 m, wind 4 m/s, dust opacity 0.47, battery 67%, photos 46.\nSol
+      14: drove 47 m, wind 4 m/s, dust opacity 0.63, battery 92%, photos 14.\nSol
+      15: drove 61 m, wind 1 m/s, dust opacity 0.54, battery 58%, photos 21.\nSol
+      16: drove 73 m, wind 7 m/s, dust opacity 0.83, battery 81%, photos 53.\nSol
+      17: drove 40 m, wind 4 m/s, dust opacity 1.47, battery 46%, photos 50.\nSol
+      18: drove 98 m, wind 5 m/s, dust opacity 1.37, battery 75%, photos 39.\nSol
+      19: drove 119 m, wind 9 m/s, dust opacity 1.29, battery 58%, photos 5.\nSol
+      20: drove 22 m, wind 4 m/s, dust opacity 0.24, battery 90%, photos 38.\nSol
+      21: drove 47 m, wind 12 m/s, dust opacity 1.44, battery 82%, photos 25.\nSol
+      22: drove 36 m, wind 15 m/s, dust opacity 0.60, battery 93%, photos 56.\nSol
+      23: drove 25 m, wind 2 m/s, dust opacity 0.79, battery 91%, photos 21.\nSol
+      24: drove 56 m, wind 7 m/s, dust opacity 1.23, battery 75%, photos 45.\nSol
+      25: drove 15 m, wind 5 m/s, dust opacity 0.33, battery 80%, photos 7.\nSol 26:
+      drove 24 m, wind 4 m/s, dust opacity 0.64, battery 85%, photos 54.\nSol 27:
+      drove 19 m, wind 8 m/s, dust opacity 0.28, battery 79%, photos 50.\nSol 28:
+      drove 65 m, wind 5 m/s, dust opacity 1.32, battery 79%, photos 31.\nSol 29:
+      drove 81 m, wind 10 m/s, dust opacity 0.25, battery 47%, photos 31.\nSol 30:
+      drove 17 m, wind 13 m/s, dust opacity 1.14, battery 84%, photos 31.\nSol 31:
+      drove 106 m, wind 13 m/s, dust opacity 0.23, battery 71%, photos 48.\nSol 32:
+      drove 100 m, wind 8 m/s, dust opacity 0.65, battery 40%, photos 6.\nSol 33:
+      drove 48 m, wind 10 m/s, dust opacity 0.57, battery 51%, photos 2.\nSol 34:
+      drove 16 m, wind 2 m/s, dust opacity 0.94, battery 79%, photos 3.\nSol 35: drove
+      118 m, wind 10 m/s, dust opacity 1.35, battery 90%, photos 12.\nSol 36: drove
+      105 m, wind 14 m/s, dust opacity 0.59, battery 51%, photos 35.\nSol 37: drove
+      58 m, wind 9 m/s, dust opacity 1.10, battery 73%, photos 45.\nSol 38: drove
+      110 m, wind 9 m/s, dust opacity 0.72, battery 73%, photos 12.\nSol 39: drove
+      91 m, wind 10 m/s, dust opacity 0.80, battery 85%, photos 52.\nSol 40: drove
+      59 m, wind 6 m/s, dust opacity 0.37, battery 47%, photos 33.\nSol 41: drove
+      100 m, wind 6 m/s, dust opacity 1.17, battery 100%, photos 18.\nSol 42: drove
+      88 m, wind 7 m/s, dust opacity 0.95, battery 50%, photos 2.\nSol 43: drove 109
+      m, wind 11 m/s, dust opacity 0.35, battery 67%, photos 13.\nSol 44: drove 18
+      m, wind 4 m/s, dust opacity 0.69, battery 59%, photos 13.\nSol 45: drove 54
+      m, wind 15 m/s, dust opacity 1.12, battery 74%, photos 37.\nSol 46: drove 31
+      m, wind 15 m/s, dust opacity 1.21, battery 87%, photos 60.\nSol 47: drove 105
+      m, wind 1 m/s, dust opacity 0.24, battery 79%, photos 52.\nSol 48: drove 114
+      m, wind 5 m/s, dust opacity 0.54, battery 52%, photos 27.\nSol 49: drove 104
+      m, wind 12 m/s, dust opacity 0.67, battery 65%, photos 2.\nSol 50: drove 104
+      m, wind 8 m/s, dust opacity 0.70, battery 52%, photos 15.\nSol 51: drove 27
+      m, wind 6 m/s, dust opacity 0.65, battery 84%, photos 23.\nSol 52: drove 14
+      m, wind 13 m/s, dust opacity 0.48, battery 55%, photos 56.\nSol 53: drove 79
+      m, wind 12 m/s, dust opacity 0.82, battery 71%, photos 28.\nSol 54: drove 119
+      m, wind 11 m/s, dust opacity 0.56, battery 51%, photos 26.\nSol 55: drove 4
+      m, wind 2 m/s, dust opacity 0.83, battery 59%, photos 51.\nSol 56: drove 60
+      m, wind 14 m/s, dust opacity 0.21, battery 40%, photos 17.\nSol 57: drove 48
+      m, wind 5 m/s, dust opacity 1.18, battery 59%, photos 56.\nSol 58: drove 116
+      m, wind 4 m/s, dust opacity 0.95, battery 65%, photos 57.\nSol 59: drove 99
+      m, wind 4 m/s, dust opacity 0.51, battery 49%, photos 54.\nSol 60: drove 80
+      m, wind 9 m/s, dust opacity 1.20, battery 94%, photos 6.\nSol 61: drove 85 m,
+      wind 10 m/s, dust opacity 1.12, battery 41%, photos 23.\nSol 62: drove 116 m,
+      wind 9 m/s, dust opacity 0.84, battery 59%, photos 43.\nSol 63: drove 60 m,
+      wind 9 m/s, dust opacity 1.42, battery 56%, photos 19.\nSol 64: drove 101 m,
+      wind 7 m/s, dust opacity 0.72, battery 53%, photos 35.\nSol 65: drove 113 m,
+      wind 4 m/s, dust opacity 1.20, battery 43%, photos 52.\nSol 66: drove 73 m,
+      wind 4 m/s, dust opacity 1.45, battery 55%, photos 3.\nSol 67: drove 108 m,
+      wind 7 m/s, dust opacity 1.09, battery 60%, photos 17.\nSol 68: drove 13 m,
+      wind 13 m/s, dust opacity 0.91, battery 60%, photos 15.\nSol 69: drove 93 m,
+      wind 8 m/s, dust opacity 1.19, battery 67%, photos 9.\nSol 70: drove 98 m, wind
+      1 m/s, dust opacity 0.60, battery 91%, photos 2.\nSol 71: drove 119 m, wind
+      7 m/s, dust opacity 0.49, battery 95%, photos 28.\nSol 72: drove 69 m, wind
+      3 m/s, dust opacity 0.30, battery 71%, photos 51.\nSol 73: drove 60 m, wind
+      8 m/s, dust opacity 0.55, battery 88%, photos 30.\nSol 74: drove 85 m, wind
+      11 m/s, dust opacity 0.20, battery 83%, photos 52.\nSol 75: drove 93 m, wind
+      11 m/s, dust opacity 0.64, battery 50%, photos 5.\nSol 76: drove 59 m, wind
+      14 m/s, dust opacity 0.67, battery 99%, photos 36.\nSol 77: drove 50 m, wind
+      15 m/s, dust opacity 1.33, battery 79%, photos 24.\nSol 78: drove 25 m, wind
+      7 m/s, dust opacity 0.48, battery 43%, photos 43.\nSol 79: drove 111 m, wind
+      14 m/s, dust opacity 0.78, battery 96%, photos 46.\nSol 80: drove 52 m, wind
+      8 m/s, dust opacity 1.18, battery 48%, photos 52.\nSol 81: drove 94 m, wind
+      13 m/s, dust opacity 1.38, battery 87%, photos 33.\nSol 82: drove 116 m, wind
+      6 m/s, dust opacity 0.76, battery 75%, photos 16.\nSol 83: drove 100 m, wind
+      2 m/s, dust opacity 0.79, battery 48%, photos 55.\nSol 84: drove 74 m, wind
+      5 m/s, dust opacity 1.33, battery 95%, photos 12.\nSol 85: drove 16 m, wind
+      11 m/s, dust opacity 0.70, battery 54%, photos 17.\nSol 86: drove 43 m, wind
+      6 m/s, dust opacity 1.45, battery 66%, photos 49.\nSol 87: drove 40 m, wind
+      14 m/s, dust opacity 0.55, battery 68%, photos 52.\nSol 88: drove 85 m, wind
+      7 m/s, dust opacity 0.65, battery 51%, photos 41.\nSol 89: drove 28 m, wind
+      15 m/s, dust opacity 0.54, battery 97%, photos 10.\nSol 90: drove 14 m, wind
+      13 m/s, dust opacity 1.31, battery 85%, photos 50.\nSol 91: drove 39 m, wind
+      5 m/s, dust opacity 1.06, battery 68%, photos 27.\nSol 92: drove 25 m, wind
+      2 m/s, dust opacity 0.86, battery 61%, photos 51.\nSol 93: drove 115 m, wind
+      9 m/s, dust opacity 1.33, battery 70%, photos 22.\nSol 94: drove 18 m, wind
+      12 m/s, dust opacity 0.77, battery 49%, photos 3.\nSol 95: drove 32 m, wind
+      10 m/s, dust opacity 0.62, battery 94%, photos 54.\nSol 96: drove 39 m, wind
+      9 m/s, dust opacity 0.28, battery 60%, photos 7.\nSol 97: drove 88 m, wind 12
+      m/s, dust opacity 1.30, battery 92%, photos 54.\nSol 98: drove 89 m, wind 15
+      m/s, dust opacity 0.50, battery 72%, photos 37.\nSol 99: drove 74 m, wind 13
+      m/s, dust opacity 0.43, battery 48%, photos 34.\nSol 100: drove 38 m, wind 13
+      m/s, dust opacity 0.71, battery 68%, photos 34."}}}], "role": "user"}, {"parts":
+      [{"functionCall": {"id": "call_9575", "args": {"query": "sol"}, "name": "search_notes"},
+      "thoughtSignature": "AY89a1_s1WSmv1Rpn3FiP99oVH2Khg-WXhgp4oOv2XGBIXEBcpFsMtPS9X11DKCCT5Jimyb79ewnEj5WmbzHGA6tKTYwu71Fl_R9LrHNRMwfIkUx1BYiCHZ036w="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_9575", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"},
+      {"parts": [{"functionCall": {"id": "call_150019", "args": {"query": "hours"},
+      "name": "search_notes"}, "thoughtSignature": "AY89a18GFjnqjT1AgV6YFLpsWcfsO4P7DpTsyO1I4MCE26wqfAhS3fDlqsw7m260gj0PI5KrUBwXVMuvmifssc7YYW3AVHwM18Js4ryzZ-srd2tUyOTOYlC49KA="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_150019", "name":
+      "search_notes", "response": {"result": [{"id": 3, "title": "Mars field notebook
+      3", "tokens": 1672}]}}}], "role": "user"}, {"parts": [{"functionCall": {"id":
+      "call_2757538", "args": {"note_id": 3}, "name": "read_note"}, "thoughtSignature":
+      "AY89a1_R4RFPhmPGgHSGKna4qqtCGCl9LwVmk5ATKr5iAe1rgx6kdrSAe_X2nwVshrQX1AGNGfzmkzhVuk-Uu621ahfr_zdCuG3KE9z00hmzN8bDiLDBIb4KSIA="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_2757538", "name":
+      "read_note", "response": {"result": "Sol 201: drove 71 m, wind 9 m/s, dust opacity
+      1.30, battery 49%, photos 41.\nSol 202: drove 78 m, wind 6 m/s, dust opacity
+      1.01, battery 87%, photos 18.\nSol 203: drove 82 m, wind 1 m/s, dust opacity
+      1.04, battery 67%, photos 41.\nSol 204: drove 109 m, wind 13 m/s, dust opacity
+      0.42, battery 77%, photos 46.\nSol 205: drove 21 m, wind 9 m/s, dust opacity
+      1.33, battery 72%, photos 35.\nSol 206: drove 86 m, wind 10 m/s, dust opacity
+      0.57, battery 69%, photos 4.\nSol 207: drove 59 m, wind 14 m/s, dust opacity
+      0.25, battery 69%, photos 32.\nSol 208: drove 43 m, wind 15 m/s, dust opacity
+      0.60, battery 93%, photos 46.\nSol 209: drove 32 m, wind 9 m/s, dust opacity
+      0.73, battery 99%, photos 8.\nSol 210: drove 41 m, wind 1 m/s, dust opacity
+      1.26, battery 83%, photos 49.\nSol 211: drove 117 m, wind 8 m/s, dust opacity
+      0.21, battery 63%, photos 31.\nSol 212: drove 3 m, wind 15 m/s, dust opacity
+      1.22, battery 59%, photos 18.\nSol 213: drove 61 m, wind 3 m/s, dust opacity
+      0.68, battery 54%, photos 60.\nSol 214: drove 84 m, wind 4 m/s, dust opacity
+      0.23, battery 70%, photos 53.\nSol 215: drove 118 m, wind 13 m/s, dust opacity
+      1.18, battery 81%, photos 17.\nSol 216: drove 106 m, wind 12 m/s, dust opacity
+      1.44, battery 57%, photos 24.\nSol 217: drove 18 m, wind 15 m/s, dust opacity
+      0.59, battery 60%, photos 8.\nSol 218: drove 45 m, wind 9 m/s, dust opacity
+      1.23, battery 94%, photos 12.\nSol 219: drove 31 m, wind 6 m/s, dust opacity
+      1.13, battery 88%, photos 53.\nSol 220: drove 76 m, wind 10 m/s, dust opacity
+      0.57, battery 98%, photos 45.\nSol 221: drove 32 m, wind 9 m/s, dust opacity
+      1.32, battery 96%, photos 16.\nSol 222: drove 68 m, wind 1 m/s, dust opacity
+      0.56, battery 54%, photos 4.\nSol 223: drove 76 m, wind 3 m/s, dust opacity
+      0.47, battery 90%, photos 36.\nSol 224: drove 62 m, wind 13 m/s, dust opacity
+      1.45, battery 68%, photos 47.\nSol 225: drove 7 m, wind 2 m/s, dust opacity
+      1.32, battery 53%, photos 0.\nSol 226: drove 45 m, wind 15 m/s, dust opacity
+      0.77, battery 98%, photos 3.\nSol 227: drove 85 m, wind 7 m/s, dust opacity
+      1.36, battery 64%, photos 11.\nSol 228: drove 60 m, wind 8 m/s, dust opacity
+      1.01, battery 89%, photos 18.\nSol 229: drove 75 m, wind 8 m/s, dust opacity
+      0.67, battery 89%, photos 9.\nSol 230: drove 106 m, wind 12 m/s, dust opacity
+      1.19, battery 78%, photos 59.\nSol 231: drove 17 m, wind 3 m/s, dust opacity
+      1.08, battery 55%, photos 39.\nSol 232: drove 58 m, wind 1 m/s, dust opacity
+      0.71, battery 75%, photos 24.\nSol 233: drove 111 m, wind 5 m/s, dust opacity
+      0.89, battery 76%, photos 58.\nSol 234: drove 11 m, wind 6 m/s, dust opacity
+      1.12, battery 97%, photos 3.\nSol 235: drove 62 m, wind 8 m/s, dust opacity
+      1.05, battery 44%, photos 60.\nSol 236: drove 44 m, wind 12 m/s, dust opacity
+      1.32, battery 79%, photos 19.\nSol 237: drove 94 m, wind 14 m/s, dust opacity
+      0.79, battery 48%, photos 15.\nSol 238: drove 115 m, wind 6 m/s, dust opacity
+      0.73, battery 83%, photos 53.\nSol 239: drove 90 m, wind 10 m/s, dust opacity
+      0.96, battery 43%, photos 51.\nSol 240: drove 85 m, wind 13 m/s, dust opacity
+      0.71, battery 43%, photos 57.\nSol 241: drove 69 m, wind 9 m/s, dust opacity
+      1.03, battery 62%, photos 59.\nSol 242: drove 64 m, wind 4 m/s, dust opacity
+      0.44, battery 54%, photos 26.\nSol 243: drove 23 m, wind 8 m/s, dust opacity
+      0.52, battery 54%, photos 56.\nSol 244: drove 100 m, wind 13 m/s, dust opacity
+      0.50, battery 46%, photos 26.\nSol 245: drove 106 m, wind 9 m/s, dust opacity
+      1.17, battery 51%, photos 48.\nSol 246: drove 12 m, wind 10 m/s, dust opacity
+      0.70, battery 70%, photos 8.\nSol 247: drove 61 m, wind 3 m/s, dust opacity
+      1.10, battery 77%, photos 33.\nSol 248: drove 93 m, wind 5 m/s, dust opacity
+      0.23, battery 57%, photos 22.\nSol 249: drove 26 m, wind 1 m/s, dust opacity
+      0.71, battery 86%, photos 34.\nSol 250: drove 81 m, wind 15 m/s, dust opacity
+      0.24, battery 68%, photos 55.\nSol 251: drove 90 m, wind 10 m/s, dust opacity
+      1.17, battery 90%, photos 60.\nSol 252: drove 48 m, wind 6 m/s, dust opacity
+      0.84, battery 80%, photos 37.\nSol 253: drove 92 m, wind 3 m/s, dust opacity
+      0.32, battery 74%, photos 8.\nSol 254: drove 40 m, wind 9 m/s, dust opacity
+      1.26, battery 98%, photos 11.\nSol 255: drove 110 m, wind 1 m/s, dust opacity
+      0.70, battery 44%, photos 46.\nReminder for the talk: a day on Mars (a sol)
+      lasts 24 hours and 39 minutes."}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_3471046", "args": {"expression": "24*60+39"}, "name": "calculator"},
+      "thoughtSignature": "AY89a1_pp9-zKvxCWNsNrjyvctAMD4yNb8WfnvQQ03ryK5p67OeW7z8cZjTb9B9z2ZUKZMOsNomRg-uwBCfN1bhjJCRXVdfYZ7mqU-fIsJp6UQerCAGRvoBfqt0="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3471046", "name":
+      "calculator", "response": {"result": 1479}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Use search_notes to find notes and read_note to read one. The notes are long:
+      read one at a time, and stop reading once you have what you need. Do every calculation
+      with the calculator tool. Answer in one sentence."}], "role": "user"}, "tools":
+      [{"functionDeclarations": [{"description": "Search the user''s notebooks. Returns
+      {id, title, tokens} for every notebook whose title or text contains the query
+      word. Does not return the text.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string",
+      "description": "one word, e.g. ''Mars''"}}}}, {"description": "Return the full
+      text of one notebook by id. Notebooks are long.", "name": "read_note", "parameters_json_schema":
+      {"type": "object", "required": ["note_id"], "properties": {"note_id": {"type":
+      "integer", "description": "an id from search_notes, e.g. 2"}}}}, {"description":
+      "Evaluate arithmetic with numbers, + - * / and brackets, e.g. ''24*60+39''.",
+      "name": "calculator", "parameters_json_schema": {"type": "object", "required":
+      ["expression"], "properties": {"expression": {"type": "string", "description":
+      "e.g. ''(3+4)*2''"}}}}]}], "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '16156'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"A day
+        on Mars is 1479 minutes long.\",\n            \"thoughtSignature\": \"AY89a18XyLGf3NkhQT14O0PgzMe8wMEUQQG1yLyA2kWt6+0BZYRFOkLayapJr61+Tgvag5cpC9ZF5ewfPbF5y2XkOfCQPK6gF6a+V/7mF+NXM0rUkJDanknhj/A=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 6309,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 6322,\n    \"cachedContentTokenCount\": 5866,\n
+        \   \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n
+        \       \"modality\": \"TEXT\",\n        \"tokenCount\": 6309\n      }\n    ],\n
+        \   \"cacheTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 5866\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 13\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:47:51.350530Z\",\n  \"responseId\": \"93HIasKyFZj-7bEPvdqD6A8\"\n}\n"
+    headers:
+      content-length:
+      - '1031'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:47:52 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are Scout. Answer
+      questions about the user''s notes. Use search_notes to find notes and read_note
+      to read one. The notes are long: read one at a time, and stop reading once you
+      have what you need. Do every calculation with the calculator tool. Answer in
+      one sentence."}], "role": "user"}, "tools": [{"functionDeclarations": [{"description":
+      "Search the user''s notebooks. Returns {id, title, tokens} for every notebook
+      whose title or text contains the query word. Does not return the text.", "name":
+      "search_notes", "parameters_json_schema": {"type": "object", "required": ["query"],
+      "properties": {"query": {"type": "string", "description": "one word, e.g. ''Mars''"}}}},
+      {"description": "Return the full text of one notebook by id. Notebooks are long.",
+      "name": "read_note", "parameters_json_schema": {"type": "object", "required":
+      ["note_id"], "properties": {"note_id": {"type": "integer", "description": "an
+      id from search_notes, e.g. 2"}}}}, {"description": "Evaluate arithmetic with
+      numbers, + - * / and brackets, e.g. ''24*60+39''.", "name": "calculator", "parameters_json_schema":
+      {"type": "object", "required": ["expression"], "properties": {"expression":
+      {"type": "string", "description": "e.g. ''(3+4)*2''"}}}}]}], "generationConfig":
+      {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1406'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_663802\"\n            },\n            \"thoughtSignature\": \"AY89a18MIoxju5WxGP6TDGGdumhmhn/O2rDE0TJkR5JIDguZOmSlh6HcgXT+ptoqvzIYx56tFMW4uLl0anAX2PqLJUypRAoaXCZUldBqEQaxEvuAFt0Gm+14OhQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 236,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 252,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 236\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:47:55.347080Z\",\n  \"responseId\": \"-3HIasiXFeWBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '1016'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:47:55 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_663802", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a18MIoxju5WxGP6TDGGdumhmhn_O2rDE0TJkR5JIDguZOmSlh6HcgXT-ptoqvzIYx56tFMW4uLl0anAX2PqLJUypRAoaXCZUldBqEQaxEvuAFt0Gm-14OhQ="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_663802", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are Scout. Answer questions about
+      the user''s notes. Use search_notes to find notes and read_note to read one.
+      The notes are long: read one at a time, and stop reading once you have what
+      you need. Do every calculation with the calculator tool. Answer in one sentence."}],
+      "role": "user"}, "tools": [{"functionDeclarations": [{"description": "Search
+      the user''s notebooks. Returns {id, title, tokens} for every notebook whose
+      title or text contains the query word. Does not return the text.", "name": "search_notes",
+      "parameters_json_schema": {"type": "object", "required": ["query"], "properties":
+      {"query": {"type": "string", "description": "one word, e.g. ''Mars''"}}}}, {"description":
+      "Return the full text of one notebook by id. Notebooks are long.", "name": "read_note",
+      "parameters_json_schema": {"type": "object", "required": ["note_id"], "properties":
+      {"note_id": {"type": "integer", "description": "an id from search_notes, e.g.
+      2"}}}}, {"description": "Evaluate arithmetic with numbers, + - * / and brackets,
+      e.g. ''24*60+39''.", "name": "calculator", "parameters_json_schema": {"type":
+      "object", "required": ["expression"], "properties": {"expression": {"type":
+      "string", "description": "e.g. ''(3+4)*2''"}}}}]}], "generationConfig": {"maxOutputTokens":
+      400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1983'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"read_note\",\n              \"args\": {\n                \"note_id\":
+        1\n              },\n              \"id\": \"call_3456433\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1+DCKOEe5GzJ9r+/tM7fFAUfqSvHoH4c7aCQXwcoB+T/9EebhezePFMKHnTO4RZs8qNZOl4pdT/8oZ3F2XPYj9KVtFBMKkOCiYtZ2VH4eEdOy+og4aIbRo=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 292,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 308,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 292\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:47:59.373893Z\",\n  \"responseId\": \"_3HIaoXpFq6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '1011'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:47:59 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_663802", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a18MIoxju5WxGP6TDGGdumhmhn_O2rDE0TJkR5JIDguZOmSlh6HcgXT-ptoqvzIYx56tFMW4uLl0anAX2PqLJUypRAoaXCZUldBqEQaxEvuAFt0Gm-14OhQ="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_663802", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"},
+      {"parts": [{"functionCall": {"id": "call_3456433", "args": {"note_id": 1}, "name":
+      "read_note"}, "thoughtSignature": "AY89a1-DCKOEe5GzJ9r-_tM7fFAUfqSvHoH4c7aCQXwcoB-T_9EebhezePFMKHnTO4RZs8qNZOl4pdT_8oZ3F2XPYj9KVtFBMKkOCiYtZ2VH4eEdOy-og4aIbRo="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3456433", "name":
+      "read_note", "response": {"result": "Sol 1: drove 1 m, wind 8 m/s, dust opacity
+      0.35, battery 65%, photos 9.\nSol 2: drove 87 m, wind 1 m/s, dust opacity 0.38,
+      battery 47%, photos 34.\nSol 3: drove 29 m, wind 12 m/s, dust opacity 1.18,
+      battery 49%, photos 47.\nSol 4: drove 4 m, wind 11 m/s, dust opacity 0.28, battery
+      54%, photos 34.\nSol 5: drove 93 m, wind 8 m/s, dust opacity 0.88, battery 53%,
+      photos 37.\nSol 6: drove 11 m, wind 2 m/s, dust opacity 0.23, battery 100%,
+      photos 56.\nSol 7: drove 51 m, wind 6 m/s, dust opacity 0.46, battery 61%, photos
+      25.\nSol 8: drove 46 m, wind 10 m/s, dust opacity 1.44, battery 53%, photos
+      46.\nSol 9: drove 27 m, wind 7 m/s, dust opacity 0.96, battery 75%, photos 3.\nSol
+      10: drove 6 m, wind 14 m/s, dust opacity 0.43, battery 48%, photos 13.\nSol
+      11: drove 18 m, wind 14 m/s, dust opacity 1.23, battery 64%, photos 1.\nSol
+      12: drove 11 m, wind 12 m/s, dust opacity 0.89, battery 68%, photos 41.\nSol
+      13: drove 103 m, wind 4 m/s, dust opacity 0.47, battery 67%, photos 46.\nSol
+      14: drove 47 m, wind 4 m/s, dust opacity 0.63, battery 92%, photos 14.\nSol
+      15: drove 61 m, wind 1 m/s, dust opacity 0.54, battery 58%, photos 21.\nSol
+      16: drove 73 m, wind 7 m/s, dust opacity 0.83, battery 81%, photos 53.\nSol
+      17: drove 40 m, wind 4 m/s, dust opacity 1.47, battery 46%, photos 50.\nSol
+      18: drove 98 m, wind 5 m/s, dust opacity 1.37, battery 75%, photos 39.\nSol
+      19: drove 119 m, wind 9 m/s, dust opacity 1.29, battery 58%, photos 5.\nSol
+      20: drove 22 m, wind 4 m/s, dust opacity 0.24, battery 90%, photos 38.\nSol
+      21: drove 47 m, wind 12 m/s, dust opacity 1.44, battery 82%, photos 25.\nSol
+      22: drove 36 m, wind 15 m/s, dust opacity 0.60, battery 93%, photos 56.\nSol
+      23: drove 25 m, wind 2 m/s, dust opacity 0.79, battery 91%, photos 21.\nSol
+      24: drove 56 m, wind 7 m/s, dust opacity 1.23, battery 75%, photos 45.\nSol
+      25: drove 15 m, wind 5 m/s, dust opacity 0.33, battery 80%, photos 7.\nSol 26:
+      drove 24 m, wind 4 m/s, dust opacity 0.64, battery 85%, photos 54.\nSol 27:
+      drove 19 m, wind 8 m/s, dust opacity 0.28, battery 79%, photos 50.\nSol 28:
+      drove 65 m, wind 5 m/s, dust opacity 1.32, battery 79%, photos 31.\nSol 29:
+      drove 81 m, wind 10 m/s, dust opacity 0.25, battery 47%, photos 31.\nSol 30:
+      drove 17 m, wind 13 m/s, dust opacity 1.14, battery 84%, photos 31.\nSol 31:
+      drove 106 m, wind 13 m/s, dust opacity 0.23, battery 71%, photos 48.\nSol 32:
+      drove 100 m, wind 8 m/s, dust opacity 0.65, battery 40%, photos 6.\nSol 33:
+      drove 48 m, wind 10 m/s, dust opacity 0.57, battery 51%, photos 2.\nSol 34:
+      drove 16 m, wind 2 m/s, dust opacity 0.94, battery 79%, photos 3.\nSol 35: drove
+      118 m, wind 10 m/s, dust opacity 1.35, battery 90%, photos 12.\nSol 36: drove
+      105 m, wind 14 m/s, dust opacity 0.59, battery 51%, photos 35.\nSol 37: drove
+      58 m, wind 9 m/s, dust opacity 1.10, battery 73%, photos 45.\nSol 38: drove
+      110 m, wind 9 m/s, dust opacity 0.72, battery 73%, photos 12.\nSol 39: drove
+      91 m, wind 10 m/s, dust opacity 0.80, battery 85%, photos 52.\nSol 40: drove
+      59 m, wind 6 m/s, dust opacity 0.37, battery 47%, photos 33.\nSol 41: drove
+      100 m, wind 6 m/s, dust opacity 1.17, battery 100%, photos 18.\nSol 42: drove
+      88 m, wind 7 m/s, dust opacity 0.95, battery 50%, photos 2.\nSol 43: drove 109
+      m, wind 11 m/s, dust opacity 0.35, battery 67%, photos 13.\nSol 44: drove 18
+      m, wind 4 m/s, dust opacity 0.69, battery 59%, photos 13.\nSol 45: drove 54
+      m, wind 15 m/s, dust opacity 1.12, battery 74%, photos 37.\nSol 46: drove 31
+      m, wind 15 m/s, dust opacity 1.21, battery 87%, photos 60.\nSol 47: drove 105
+      m, wind 1 m/s, dust opacity 0.24, battery 79%, photos 52.\nSol 48: drove 114
+      m, wind 5 m/s, dust opacity 0.54, battery 52%, photos 27.\nSol 49: drove 104
+      m, wind 12 m/s, dust opacity 0.67, battery 65%, photos 2.\nSol 50: drove 104
+      m, wind 8 m/s, dust opacity 0.70, battery 52%, photos 15.\nSol 51: drove 27
+      m, wind 6 m/s, dust opacity 0.65, battery 84%, photos 23.\nSol 52: drove 14
+      m, wind 13 m/s, dust opacity 0.48, battery 55%, photos 56.\nSol 53: drove 79
+      m, wind 12 m/s, dust opacity 0.82, battery 71%, photos 28.\nSol 54: drove 119
+      m, wind 11 m/s, dust opacity 0.56, battery 51%, photos 26.\nSol 55: drove 4
+      m, wind 2 m/s, dust opacity 0.83, battery 59%, photos 51.\nSol 56: drove 60
+      m, wind 14 m/s, dust opacity 0.21, battery 40%, photos 17.\nSol 57: drove 48
+      m, wind 5 m/s, dust opacity 1.18, battery 59%, photos 56.\nSol 58: drove 116
+      m, wind 4 m/s, dust opacity 0.95, battery 65%, photos 57.\nSol 59: drove 99
+      m, wind 4 m/s, dust opacity 0.51, battery 49%, photos 54.\nSol 60: drove 80
+      m, wind 9 m/s, dust opacity 1.20, battery 94%, photos 6.\nSol 61: drove 85 m,
+      wind 10 m/s, dust opacity 1.12, battery 41%, photos 23.\nSol 62: drove 116 m,
+      wind 9 m/s, dust opacity 0.84, battery 59%, photos 43.\nSol 63: drove 60 m,
+      wind 9 m/s, dust opacity 1.42, battery 56%, photos 19.\nSol 64: drove 101 m,
+      wind 7 m/s, dust opacity 0.72, battery 53%, photos 35.\nSol 65: drove 113 m,
+      wind 4 m/s, dust opacity 1.20, battery 43%, photos 52.\nSol 66: drove 73 m,
+      wind 4 m/s, dust opacity 1.45, battery 55%, photos 3.\nSol 67: drove 108 m,
+      wind 7 m/s, dust opacity 1.09, battery 60%, photos 17.\nSol 68: drove 13 m,
+      wind 13 m/s, dust opacity 0.91, battery 60%, photos 15.\nSol 69: drove 93 m,
+      wind 8 m/s, dust opacity 1.19, battery 67%, photos 9.\nSol 70: drove 98 m, wind
+      1 m/s, dust opacity 0.60, battery 91%, photos 2.\nSol 71: drove 119 m, wind
+      7 m/s, dust opacity 0.49, battery 95%, photos 28.\nSol 72: drove 69 m, wind
+      3 m/s, dust opacity 0.30, battery 71%, photos 51.\nSol 73: drove 60 m, wind
+      8 m/s, dust opacity 0.55, battery 88%, photos 30.\nSol 74: drove 85 m, wind
+      11 m/s, dust opacity 0.20, battery 83%, photos 52.\nSol 75: drove 93 m, wind
+      11 m/s, dust opacity 0.64, battery 50%, photos 5.\nSol 76: drove 59 m, wind
+      14 m/s, dust opacity 0.67, battery 99%, photos 36.\nSol 77: drove 50 m, wind
+      15 m/s, dust opacity 1.33, battery 79%, photos 24.\nSol 78: drove 25 m, wind
+      7 m/s, dust opacity 0.48, battery 43%, photos 43.\nSol 79: drove 111 m, wind
+      14 m/s, dust opacity 0.78, battery 96%, photos 46.\nSol 80: drove 52 m, wind
+      8 m/s, dust opacity 1.18, battery 48%, photos 52.\nSol 81: drove 94 m, wind
+      13 m/s, dust opacity 1.38, battery 87%, photos 33.\nSol 82: drove 116 m, wind
+      6 m/s, dust opacity 0.76, battery 75%, photos 16.\nSol 83: drove 100 m, wind
+      2 m/s, dust opacity 0.79, battery 48%, photos 55.\nSol 84: drove 74 m, wind
+      5 m/s, dust opacity 1.33, battery 95%, photos 12.\nSol 85: drove 16 m, wind
+      11 m/s, dust opacity 0.70, battery 54%, photos 17.\nSol 86: drove 43 m, wind
+      6 m/s, dust opacity 1.45, battery 66%, photos 49.\nSol 87: drove 40 m, wind
+      14 m/s, dust opacity 0.55, battery 68%, photos 52.\nSol 88: drove 85 m, wind
+      7 m/s, dust opacity 0.65, battery 51%, photos 41.\nSol 89: drove 28 m, wind
+      15 m/s, dust opacity 0.54, battery 97%, photos 10.\nSol 90: drove 14 m, wind
+      13 m/s, dust opacity 1.31, battery 85%, photos 50.\nSol 91: drove 39 m, wind
+      5 m/s, dust opacity 1.06, battery 68%, photos 27.\nSol 92: drove 25 m, wind
+      2 m/s, dust opacity 0.86, battery 61%, photos 51.\nSol 93: drove 115 m, wind
+      9 m/s, dust opacity 1.33, battery 70%, photos 22.\nSol 94: drove 18 m, wind
+      12 m/s, dust opacity 0.77, battery 49%, photos 3.\nSol 95: drove 32 m, wind
+      10 m/s, dust opacity 0.62, battery 94%, photos 54.\nSol 96: drove 39 m, wind
+      9 m/s, dust opacity 0.28, battery 60%, photos 7.\nSol 97: drove 88 m, wind 12
+      m/s, dust opacity 1.30, battery 92%, photos 54.\nSol 98: drove 89 m, wind 15
+      m/s, dust opacity 0.50, battery 72%, photos 37.\nSol 99: drove 74 m, wind 13
+      m/s, dust opacity 0.43, battery 48%, photos 34.\nSol 100: drove 38 m, wind 13
+      m/s, dust opacity 0.71, battery 68%, photos 34."}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Use search_notes to find notes and read_note to read one. The notes are long:
+      read one at a time, and stop reading once you have what you need. Do every calculation
+      with the calculator tool. Answer in one sentence."}], "role": "user"}, "tools":
+      [{"functionDeclarations": [{"description": "Search the user''s notebooks. Returns
+      {id, title, tokens} for every notebook whose title or text contains the query
+      word. Does not return the text.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string",
+      "description": "one word, e.g. ''Mars''"}}}}, {"description": "Return the full
+      text of one notebook by id. Notebooks are long.", "name": "read_note", "parameters_json_schema":
+      {"type": "object", "required": ["note_id"], "properties": {"note_id": {"type":
+      "integer", "description": "an id from search_notes, e.g. 2"}}}}, {"description":
+      "Evaluate arithmetic with numbers, + - * / and brackets, e.g. ''24*60+39''.",
+      "name": "calculator", "parameters_json_schema": {"type": "object", "required":
+      ["expression"], "properties": {"expression": {"type": "string", "description":
+      "e.g. ''(3+4)*2''"}}}}]}], "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '10008'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"sol\"\n              },\n              \"id\":
+        \"call_115694\"\n            },\n            \"thoughtSignature\": \"AY89a1+Sp0a+VnJx6m/nro/xbjymSY7t3Vgx9oqVr/GgxSE8Dqp1CWI65ztCaSZhScRheMvOWkIiJansq1jTJSjVY29lJm7IitygvQzTgUG2CEVrXlYi61QE5j0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 4048,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 4064,\n    \"cachedContentTokenCount\": 3916,\n
+        \   \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n
+        \       \"modality\": \"TEXT\",\n        \"tokenCount\": 4048\n      }\n    ],\n
+        \   \"cacheTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 3916\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:48:03.363030Z\",\n  \"responseId\": \"A3LIapaUFv6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '1161'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:48:03 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_663802", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a18MIoxju5WxGP6TDGGdumhmhn_O2rDE0TJkR5JIDguZOmSlh6HcgXT-ptoqvzIYx56tFMW4uLl0anAX2PqLJUypRAoaXCZUldBqEQaxEvuAFt0Gm-14OhQ="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_663802", "name":
+      "search_notes", "response": {"result": {"cleared": "search_notes({\"query\":
+      \"Mars\"}) returned 70 tokens, cleared to save space. Call it again if you need
+      them."}}}}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_3456433",
+      "args": {"note_id": 1}, "name": "read_note"}, "thoughtSignature": "AY89a1-DCKOEe5GzJ9r-_tM7fFAUfqSvHoH4c7aCQXwcoB-T_9EebhezePFMKHnTO4RZs8qNZOl4pdT_8oZ3F2XPYj9KVtFBMKkOCiYtZ2VH4eEdOy-og4aIbRo="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3456433", "name":
+      "read_note", "response": {"result": "Sol 1: drove 1 m, wind 8 m/s, dust opacity
+      0.35, battery 65%, photos 9.\nSol 2: drove 87 m, wind 1 m/s, dust opacity 0.38,
+      battery 47%, photos 34.\nSol 3: drove 29 m, wind 12 m/s, dust opacity 1.18,
+      battery 49%, photos 47.\nSol 4: drove 4 m, wind 11 m/s, dust opacity 0.28, battery
+      54%, photos 34.\nSol 5: drove 93 m, wind 8 m/s, dust opacity 0.88, battery 53%,
+      photos 37.\nSol 6: drove 11 m, wind 2 m/s, dust opacity 0.23, battery 100%,
+      photos 56.\nSol 7: drove 51 m, wind 6 m/s, dust opacity 0.46, battery 61%, photos
+      25.\nSol 8: drove 46 m, wind 10 m/s, dust opacity 1.44, battery 53%, photos
+      46.\nSol 9: drove 27 m, wind 7 m/s, dust opacity 0.96, battery 75%, photos 3.\nSol
+      10: drove 6 m, wind 14 m/s, dust opacity 0.43, battery 48%, photos 13.\nSol
+      11: drove 18 m, wind 14 m/s, dust opacity 1.23, battery 64%, photos 1.\nSol
+      12: drove 11 m, wind 12 m/s, dust opacity 0.89, battery 68%, photos 41.\nSol
+      13: drove 103 m, wind 4 m/s, dust opacity 0.47, battery 67%, photos 46.\nSol
+      14: drove 47 m, wind 4 m/s, dust opacity 0.63, battery 92%, photos 14.\nSol
+      15: drove 61 m, wind 1 m/s, dust opacity 0.54, battery 58%, photos 21.\nSol
+      16: drove 73 m, wind 7 m/s, dust opacity 0.83, battery 81%, photos 53.\nSol
+      17: drove 40 m, wind 4 m/s, dust opacity 1.47, battery 46%, photos 50.\nSol
+      18: drove 98 m, wind 5 m/s, dust opacity 1.37, battery 75%, photos 39.\nSol
+      19: drove 119 m, wind 9 m/s, dust opacity 1.29, battery 58%, photos 5.\nSol
+      20: drove 22 m, wind 4 m/s, dust opacity 0.24, battery 90%, photos 38.\nSol
+      21: drove 47 m, wind 12 m/s, dust opacity 1.44, battery 82%, photos 25.\nSol
+      22: drove 36 m, wind 15 m/s, dust opacity 0.60, battery 93%, photos 56.\nSol
+      23: drove 25 m, wind 2 m/s, dust opacity 0.79, battery 91%, photos 21.\nSol
+      24: drove 56 m, wind 7 m/s, dust opacity 1.23, battery 75%, photos 45.\nSol
+      25: drove 15 m, wind 5 m/s, dust opacity 0.33, battery 80%, photos 7.\nSol 26:
+      drove 24 m, wind 4 m/s, dust opacity 0.64, battery 85%, photos 54.\nSol 27:
+      drove 19 m, wind 8 m/s, dust opacity 0.28, battery 79%, photos 50.\nSol 28:
+      drove 65 m, wind 5 m/s, dust opacity 1.32, battery 79%, photos 31.\nSol 29:
+      drove 81 m, wind 10 m/s, dust opacity 0.25, battery 47%, photos 31.\nSol 30:
+      drove 17 m, wind 13 m/s, dust opacity 1.14, battery 84%, photos 31.\nSol 31:
+      drove 106 m, wind 13 m/s, dust opacity 0.23, battery 71%, photos 48.\nSol 32:
+      drove 100 m, wind 8 m/s, dust opacity 0.65, battery 40%, photos 6.\nSol 33:
+      drove 48 m, wind 10 m/s, dust opacity 0.57, battery 51%, photos 2.\nSol 34:
+      drove 16 m, wind 2 m/s, dust opacity 0.94, battery 79%, photos 3.\nSol 35: drove
+      118 m, wind 10 m/s, dust opacity 1.35, battery 90%, photos 12.\nSol 36: drove
+      105 m, wind 14 m/s, dust opacity 0.59, battery 51%, photos 35.\nSol 37: drove
+      58 m, wind 9 m/s, dust opacity 1.10, battery 73%, photos 45.\nSol 38: drove
+      110 m, wind 9 m/s, dust opacity 0.72, battery 73%, photos 12.\nSol 39: drove
+      91 m, wind 10 m/s, dust opacity 0.80, battery 85%, photos 52.\nSol 40: drove
+      59 m, wind 6 m/s, dust opacity 0.37, battery 47%, photos 33.\nSol 41: drove
+      100 m, wind 6 m/s, dust opacity 1.17, battery 100%, photos 18.\nSol 42: drove
+      88 m, wind 7 m/s, dust opacity 0.95, battery 50%, photos 2.\nSol 43: drove 109
+      m, wind 11 m/s, dust opacity 0.35, battery 67%, photos 13.\nSol 44: drove 18
+      m, wind 4 m/s, dust opacity 0.69, battery 59%, photos 13.\nSol 45: drove 54
+      m, wind 15 m/s, dust opacity 1.12, battery 74%, photos 37.\nSol 46: drove 31
+      m, wind 15 m/s, dust opacity 1.21, battery 87%, photos 60.\nSol 47: drove 105
+      m, wind 1 m/s, dust opacity 0.24, battery 79%, photos 52.\nSol 48: drove 114
+      m, wind 5 m/s, dust opacity 0.54, battery 52%, photos 27.\nSol 49: drove 104
+      m, wind 12 m/s, dust opacity 0.67, battery 65%, photos 2.\nSol 50: drove 104
+      m, wind 8 m/s, dust opacity 0.70, battery 52%, photos 15.\nSol 51: drove 27
+      m, wind 6 m/s, dust opacity 0.65, battery 84%, photos 23.\nSol 52: drove 14
+      m, wind 13 m/s, dust opacity 0.48, battery 55%, photos 56.\nSol 53: drove 79
+      m, wind 12 m/s, dust opacity 0.82, battery 71%, photos 28.\nSol 54: drove 119
+      m, wind 11 m/s, dust opacity 0.56, battery 51%, photos 26.\nSol 55: drove 4
+      m, wind 2 m/s, dust opacity 0.83, battery 59%, photos 51.\nSol 56: drove 60
+      m, wind 14 m/s, dust opacity 0.21, battery 40%, photos 17.\nSol 57: drove 48
+      m, wind 5 m/s, dust opacity 1.18, battery 59%, photos 56.\nSol 58: drove 116
+      m, wind 4 m/s, dust opacity 0.95, battery 65%, photos 57.\nSol 59: drove 99
+      m, wind 4 m/s, dust opacity 0.51, battery 49%, photos 54.\nSol 60: drove 80
+      m, wind 9 m/s, dust opacity 1.20, battery 94%, photos 6.\nSol 61: drove 85 m,
+      wind 10 m/s, dust opacity 1.12, battery 41%, photos 23.\nSol 62: drove 116 m,
+      wind 9 m/s, dust opacity 0.84, battery 59%, photos 43.\nSol 63: drove 60 m,
+      wind 9 m/s, dust opacity 1.42, battery 56%, photos 19.\nSol 64: drove 101 m,
+      wind 7 m/s, dust opacity 0.72, battery 53%, photos 35.\nSol 65: drove 113 m,
+      wind 4 m/s, dust opacity 1.20, battery 43%, photos 52.\nSol 66: drove 73 m,
+      wind 4 m/s, dust opacity 1.45, battery 55%, photos 3.\nSol 67: drove 108 m,
+      wind 7 m/s, dust opacity 1.09, battery 60%, photos 17.\nSol 68: drove 13 m,
+      wind 13 m/s, dust opacity 0.91, battery 60%, photos 15.\nSol 69: drove 93 m,
+      wind 8 m/s, dust opacity 1.19, battery 67%, photos 9.\nSol 70: drove 98 m, wind
+      1 m/s, dust opacity 0.60, battery 91%, photos 2.\nSol 71: drove 119 m, wind
+      7 m/s, dust opacity 0.49, battery 95%, photos 28.\nSol 72: drove 69 m, wind
+      3 m/s, dust opacity 0.30, battery 71%, photos 51.\nSol 73: drove 60 m, wind
+      8 m/s, dust opacity 0.55, battery 88%, photos 30.\nSol 74: drove 85 m, wind
+      11 m/s, dust opacity 0.20, battery 83%, photos 52.\nSol 75: drove 93 m, wind
+      11 m/s, dust opacity 0.64, battery 50%, photos 5.\nSol 76: drove 59 m, wind
+      14 m/s, dust opacity 0.67, battery 99%, photos 36.\nSol 77: drove 50 m, wind
+      15 m/s, dust opacity 1.33, battery 79%, photos 24.\nSol 78: drove 25 m, wind
+      7 m/s, dust opacity 0.48, battery 43%, photos 43.\nSol 79: drove 111 m, wind
+      14 m/s, dust opacity 0.78, battery 96%, photos 46.\nSol 80: drove 52 m, wind
+      8 m/s, dust opacity 1.18, battery 48%, photos 52.\nSol 81: drove 94 m, wind
+      13 m/s, dust opacity 1.38, battery 87%, photos 33.\nSol 82: drove 116 m, wind
+      6 m/s, dust opacity 0.76, battery 75%, photos 16.\nSol 83: drove 100 m, wind
+      2 m/s, dust opacity 0.79, battery 48%, photos 55.\nSol 84: drove 74 m, wind
+      5 m/s, dust opacity 1.33, battery 95%, photos 12.\nSol 85: drove 16 m, wind
+      11 m/s, dust opacity 0.70, battery 54%, photos 17.\nSol 86: drove 43 m, wind
+      6 m/s, dust opacity 1.45, battery 66%, photos 49.\nSol 87: drove 40 m, wind
+      14 m/s, dust opacity 0.55, battery 68%, photos 52.\nSol 88: drove 85 m, wind
+      7 m/s, dust opacity 0.65, battery 51%, photos 41.\nSol 89: drove 28 m, wind
+      15 m/s, dust opacity 0.54, battery 97%, photos 10.\nSol 90: drove 14 m, wind
+      13 m/s, dust opacity 1.31, battery 85%, photos 50.\nSol 91: drove 39 m, wind
+      5 m/s, dust opacity 1.06, battery 68%, photos 27.\nSol 92: drove 25 m, wind
+      2 m/s, dust opacity 0.86, battery 61%, photos 51.\nSol 93: drove 115 m, wind
+      9 m/s, dust opacity 1.33, battery 70%, photos 22.\nSol 94: drove 18 m, wind
+      12 m/s, dust opacity 0.77, battery 49%, photos 3.\nSol 95: drove 32 m, wind
+      10 m/s, dust opacity 0.62, battery 94%, photos 54.\nSol 96: drove 39 m, wind
+      9 m/s, dust opacity 0.28, battery 60%, photos 7.\nSol 97: drove 88 m, wind 12
+      m/s, dust opacity 1.30, battery 92%, photos 54.\nSol 98: drove 89 m, wind 15
+      m/s, dust opacity 0.50, battery 72%, photos 37.\nSol 99: drove 74 m, wind 13
+      m/s, dust opacity 0.43, battery 48%, photos 34.\nSol 100: drove 38 m, wind 13
+      m/s, dust opacity 0.71, battery 68%, photos 34."}}}], "role": "user"}, {"parts":
+      [{"functionCall": {"id": "call_115694", "args": {"query": "sol"}, "name": "search_notes"},
+      "thoughtSignature": "AY89a1-Sp0a-VnJx6m_nro_xbjymSY7t3Vgx9oqVr_GgxSE8Dqp1CWI65ztCaSZhScRheMvOWkIiJansq1jTJSjVY29lJm7IitygvQzTgUG2CEVrXlYi61QE5j0="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_115694", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are Scout. Answer questions about
+      the user''s notes. Use search_notes to find notes and read_note to read one.
+      The notes are long: read one at a time, and stop reading once you have what
+      you need. Do every calculation with the calculator tool. Answer in one sentence."}],
+      "role": "user"}, "tools": [{"functionDeclarations": [{"description": "Search
+      the user''s notebooks. Returns {id, title, tokens} for every notebook whose
+      title or text contains the query word. Does not return the text.", "name": "search_notes",
+      "parameters_json_schema": {"type": "object", "required": ["query"], "properties":
+      {"query": {"type": "string", "description": "one word, e.g. ''Mars''"}}}}, {"description":
+      "Return the full text of one notebook by id. Notebooks are long.", "name": "read_note",
+      "parameters_json_schema": {"type": "object", "required": ["note_id"], "properties":
+      {"note_id": {"type": "integer", "description": "an id from search_notes, e.g.
+      2"}}}}, {"description": "Evaluate arithmetic with numbers, + - * / and brackets,
+      e.g. ''24*60+39''.", "name": "calculator", "parameters_json_schema": {"type":
+      "object", "required": ["expression"], "properties": {"expression": {"type":
+      "string", "description": "e.g. ''(3+4)*2''"}}}}]}], "generationConfig": {"maxOutputTokens":
+      400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '10526'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"hours\"\n              },\n              \"id\":
+        \"call_104222\"\n            },\n            \"thoughtSignature\": \"AY89a19CZqST/kZzzlCdVsNR+qoUQs1wEVsWEPZh9uWhSyn6e2GWhGDOTonk0eM8Vumu05S+iI5507ONa1m1bI40/Gn/MylcyAlSZCJvqd+4QE+wOvD3tPn/uH8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 4095,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 4111,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 4095\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:48:07.354105Z\",\n  \"responseId\": \"B3LIarnOFbvh-O4Plt7X0Q0\"\n}\n"
+    headers:
+      content-length:
+      - '1020'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:48:07 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_663802", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a18MIoxju5WxGP6TDGGdumhmhn_O2rDE0TJkR5JIDguZOmSlh6HcgXT-ptoqvzIYx56tFMW4uLl0anAX2PqLJUypRAoaXCZUldBqEQaxEvuAFt0Gm-14OhQ="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_663802", "name":
+      "search_notes", "response": {"result": {"cleared": "search_notes({\"query\":
+      \"Mars\"}) returned 70 tokens, cleared to save space. Call it again if you need
+      them."}}}}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_3456433",
+      "args": {"note_id": 1}, "name": "read_note"}, "thoughtSignature": "AY89a1-DCKOEe5GzJ9r-_tM7fFAUfqSvHoH4c7aCQXwcoB-T_9EebhezePFMKHnTO4RZs8qNZOl4pdT_8oZ3F2XPYj9KVtFBMKkOCiYtZ2VH4eEdOy-og4aIbRo="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3456433", "name":
+      "read_note", "response": {"result": {"cleared": "read_note({\"note_id\": 1})
+      returned 3100 tokens, cleared to save space. Call it again if you need them."}}}}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_115694", "args": {"query":
+      "sol"}, "name": "search_notes"}, "thoughtSignature": "AY89a1-Sp0a-VnJx6m_nro_xbjymSY7t3Vgx9oqVr_GgxSE8Dqp1CWI65ztCaSZhScRheMvOWkIiJansq1jTJSjVY29lJm7IitygvQzTgUG2CEVrXlYi61QE5j0="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_115694", "name":
+      "search_notes", "response": {"result": [{"id": 1, "title": "Mars field notebook
+      1", "tokens": 3000}, {"id": 2, "title": "Mars field notebook 2", "tokens": 3000},
+      {"id": 3, "title": "Mars field notebook 3", "tokens": 1672}]}}}], "role": "user"},
+      {"parts": [{"functionCall": {"id": "call_104222", "args": {"query": "hours"},
+      "name": "search_notes"}, "thoughtSignature": "AY89a19CZqST_kZzzlCdVsNR-qoUQs1wEVsWEPZh9uWhSyn6e2GWhGDOTonk0eM8Vumu05S-iI5507ONa1m1bI40_Gn_MylcyAlSZCJvqd-4QE-wOvD3tPn_uH8="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_104222", "name":
+      "search_notes", "response": {"result": [{"id": 3, "title": "Mars field notebook
+      3", "tokens": 1672}]}}}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are Scout. Answer questions about the user''s notes. Use search_notes to
+      find notes and read_note to read one. The notes are long: read one at a time,
+      and stop reading once you have what you need. Do every calculation with the
+      calculator tool. Answer in one sentence."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notebooks. Returns {id, title, tokens}
+      for every notebook whose title or text contains the query word. Does not return
+      the text.", "name": "search_notes", "parameters_json_schema": {"type": "object",
+      "required": ["query"], "properties": {"query": {"type": "string", "description":
+      "one word, e.g. ''Mars''"}}}}, {"description": "Return the full text of one
+      notebook by id. Notebooks are long.", "name": "read_note", "parameters_json_schema":
+      {"type": "object", "required": ["note_id"], "properties": {"note_id": {"type":
+      "integer", "description": "an id from search_notes, e.g. 2"}}}}, {"description":
+      "Evaluate arithmetic with numbers, + - * / and brackets, e.g. ''24*60+39''.",
+      "name": "calculator", "parameters_json_schema": {"type": "object", "required":
+      ["expression"], "properties": {"expression": {"type": "string", "description":
+      "e.g. ''(3+4)*2''"}}}}]}], "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '3463'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"read_note\",\n              \"args\": {\n                \"note_id\":
+        3\n              },\n              \"id\": \"call_3181905\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1+klVhmN4YTjCyqCbGRv4AjGSqOzmxU/TBk3MhSf2uimLMg8fqeoSpCpo358pQiEFZ2vrfEaXUl974WELQKQNO6bcqIzt1T+UCh+RdAC0x3b44asbz7wuI=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 422,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 438,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 422\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:48:11.334326Z\",\n  \"responseId\": \"C3LIavazFPOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1011'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:48:11 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_663802", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a18MIoxju5WxGP6TDGGdumhmhn_O2rDE0TJkR5JIDguZOmSlh6HcgXT-ptoqvzIYx56tFMW4uLl0anAX2PqLJUypRAoaXCZUldBqEQaxEvuAFt0Gm-14OhQ="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_663802", "name":
+      "search_notes", "response": {"result": {"cleared": "search_notes({\"query\":
+      \"Mars\"}) returned 70 tokens, cleared to save space. Call it again if you need
+      them."}}}}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_3456433",
+      "args": {"note_id": 1}, "name": "read_note"}, "thoughtSignature": "AY89a1-DCKOEe5GzJ9r-_tM7fFAUfqSvHoH4c7aCQXwcoB-T_9EebhezePFMKHnTO4RZs8qNZOl4pdT_8oZ3F2XPYj9KVtFBMKkOCiYtZ2VH4eEdOy-og4aIbRo="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3456433", "name":
+      "read_note", "response": {"result": {"cleared": "read_note({\"note_id\": 1})
+      returned 3100 tokens, cleared to save space. Call it again if you need them."}}}}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_115694", "args": {"query":
+      "sol"}, "name": "search_notes"}, "thoughtSignature": "AY89a1-Sp0a-VnJx6m_nro_xbjymSY7t3Vgx9oqVr_GgxSE8Dqp1CWI65ztCaSZhScRheMvOWkIiJansq1jTJSjVY29lJm7IitygvQzTgUG2CEVrXlYi61QE5j0="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_115694", "name":
+      "search_notes", "response": {"result": {"cleared": "search_notes({\"query\":
+      \"sol\"}) returned 70 tokens, cleared to save space. Call it again if you need
+      them."}}}}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_104222",
+      "args": {"query": "hours"}, "name": "search_notes"}, "thoughtSignature": "AY89a19CZqST_kZzzlCdVsNR-qoUQs1wEVsWEPZh9uWhSyn6e2GWhGDOTonk0eM8Vumu05S-iI5507ONa1m1bI40_Gn_MylcyAlSZCJvqd-4QE-wOvD3tPn_uH8="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_104222", "name":
+      "search_notes", "response": {"result": [{"id": 3, "title": "Mars field notebook
+      3", "tokens": 1672}]}}}], "role": "user"}, {"parts": [{"functionCall": {"id":
+      "call_3181905", "args": {"note_id": 3}, "name": "read_note"}, "thoughtSignature":
+      "AY89a1-klVhmN4YTjCyqCbGRv4AjGSqOzmxU_TBk3MhSf2uimLMg8fqeoSpCpo358pQiEFZ2vrfEaXUl974WELQKQNO6bcqIzt1T-UCh-RdAC0x3b44asbz7wuI="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3181905", "name":
+      "read_note", "response": {"result": "Sol 201: drove 71 m, wind 9 m/s, dust opacity
+      1.30, battery 49%, photos 41.\nSol 202: drove 78 m, wind 6 m/s, dust opacity
+      1.01, battery 87%, photos 18.\nSol 203: drove 82 m, wind 1 m/s, dust opacity
+      1.04, battery 67%, photos 41.\nSol 204: drove 109 m, wind 13 m/s, dust opacity
+      0.42, battery 77%, photos 46.\nSol 205: drove 21 m, wind 9 m/s, dust opacity
+      1.33, battery 72%, photos 35.\nSol 206: drove 86 m, wind 10 m/s, dust opacity
+      0.57, battery 69%, photos 4.\nSol 207: drove 59 m, wind 14 m/s, dust opacity
+      0.25, battery 69%, photos 32.\nSol 208: drove 43 m, wind 15 m/s, dust opacity
+      0.60, battery 93%, photos 46.\nSol 209: drove 32 m, wind 9 m/s, dust opacity
+      0.73, battery 99%, photos 8.\nSol 210: drove 41 m, wind 1 m/s, dust opacity
+      1.26, battery 83%, photos 49.\nSol 211: drove 117 m, wind 8 m/s, dust opacity
+      0.21, battery 63%, photos 31.\nSol 212: drove 3 m, wind 15 m/s, dust opacity
+      1.22, battery 59%, photos 18.\nSol 213: drove 61 m, wind 3 m/s, dust opacity
+      0.68, battery 54%, photos 60.\nSol 214: drove 84 m, wind 4 m/s, dust opacity
+      0.23, battery 70%, photos 53.\nSol 215: drove 118 m, wind 13 m/s, dust opacity
+      1.18, battery 81%, photos 17.\nSol 216: drove 106 m, wind 12 m/s, dust opacity
+      1.44, battery 57%, photos 24.\nSol 217: drove 18 m, wind 15 m/s, dust opacity
+      0.59, battery 60%, photos 8.\nSol 218: drove 45 m, wind 9 m/s, dust opacity
+      1.23, battery 94%, photos 12.\nSol 219: drove 31 m, wind 6 m/s, dust opacity
+      1.13, battery 88%, photos 53.\nSol 220: drove 76 m, wind 10 m/s, dust opacity
+      0.57, battery 98%, photos 45.\nSol 221: drove 32 m, wind 9 m/s, dust opacity
+      1.32, battery 96%, photos 16.\nSol 222: drove 68 m, wind 1 m/s, dust opacity
+      0.56, battery 54%, photos 4.\nSol 223: drove 76 m, wind 3 m/s, dust opacity
+      0.47, battery 90%, photos 36.\nSol 224: drove 62 m, wind 13 m/s, dust opacity
+      1.45, battery 68%, photos 47.\nSol 225: drove 7 m, wind 2 m/s, dust opacity
+      1.32, battery 53%, photos 0.\nSol 226: drove 45 m, wind 15 m/s, dust opacity
+      0.77, battery 98%, photos 3.\nSol 227: drove 85 m, wind 7 m/s, dust opacity
+      1.36, battery 64%, photos 11.\nSol 228: drove 60 m, wind 8 m/s, dust opacity
+      1.01, battery 89%, photos 18.\nSol 229: drove 75 m, wind 8 m/s, dust opacity
+      0.67, battery 89%, photos 9.\nSol 230: drove 106 m, wind 12 m/s, dust opacity
+      1.19, battery 78%, photos 59.\nSol 231: drove 17 m, wind 3 m/s, dust opacity
+      1.08, battery 55%, photos 39.\nSol 232: drove 58 m, wind 1 m/s, dust opacity
+      0.71, battery 75%, photos 24.\nSol 233: drove 111 m, wind 5 m/s, dust opacity
+      0.89, battery 76%, photos 58.\nSol 234: drove 11 m, wind 6 m/s, dust opacity
+      1.12, battery 97%, photos 3.\nSol 235: drove 62 m, wind 8 m/s, dust opacity
+      1.05, battery 44%, photos 60.\nSol 236: drove 44 m, wind 12 m/s, dust opacity
+      1.32, battery 79%, photos 19.\nSol 237: drove 94 m, wind 14 m/s, dust opacity
+      0.79, battery 48%, photos 15.\nSol 238: drove 115 m, wind 6 m/s, dust opacity
+      0.73, battery 83%, photos 53.\nSol 239: drove 90 m, wind 10 m/s, dust opacity
+      0.96, battery 43%, photos 51.\nSol 240: drove 85 m, wind 13 m/s, dust opacity
+      0.71, battery 43%, photos 57.\nSol 241: drove 69 m, wind 9 m/s, dust opacity
+      1.03, battery 62%, photos 59.\nSol 242: drove 64 m, wind 4 m/s, dust opacity
+      0.44, battery 54%, photos 26.\nSol 243: drove 23 m, wind 8 m/s, dust opacity
+      0.52, battery 54%, photos 56.\nSol 244: drove 100 m, wind 13 m/s, dust opacity
+      0.50, battery 46%, photos 26.\nSol 245: drove 106 m, wind 9 m/s, dust opacity
+      1.17, battery 51%, photos 48.\nSol 246: drove 12 m, wind 10 m/s, dust opacity
+      0.70, battery 70%, photos 8.\nSol 247: drove 61 m, wind 3 m/s, dust opacity
+      1.10, battery 77%, photos 33.\nSol 248: drove 93 m, wind 5 m/s, dust opacity
+      0.23, battery 57%, photos 22.\nSol 249: drove 26 m, wind 1 m/s, dust opacity
+      0.71, battery 86%, photos 34.\nSol 250: drove 81 m, wind 15 m/s, dust opacity
+      0.24, battery 68%, photos 55.\nSol 251: drove 90 m, wind 10 m/s, dust opacity
+      1.17, battery 90%, photos 60.\nSol 252: drove 48 m, wind 6 m/s, dust opacity
+      0.84, battery 80%, photos 37.\nSol 253: drove 92 m, wind 3 m/s, dust opacity
+      0.32, battery 74%, photos 8.\nSol 254: drove 40 m, wind 9 m/s, dust opacity
+      1.26, battery 98%, photos 11.\nSol 255: drove 110 m, wind 1 m/s, dust opacity
+      0.70, battery 44%, photos 46.\nReminder for the talk: a day on Mars (a sol)
+      lasts 24 hours and 39 minutes."}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Use search_notes to find notes and read_note to read one. The notes are long:
+      read one at a time, and stop reading once you have what you need. Do every calculation
+      with the calculator tool. Answer in one sentence."}], "role": "user"}, "tools":
+      [{"functionDeclarations": [{"description": "Search the user''s notebooks. Returns
+      {id, title, tokens} for every notebook whose title or text contains the query
+      word. Does not return the text.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string",
+      "description": "one word, e.g. ''Mars''"}}}}, {"description": "Return the full
+      text of one notebook by id. Notebooks are long.", "name": "read_note", "parameters_json_schema":
+      {"type": "object", "required": ["note_id"], "properties": {"note_id": {"type":
+      "integer", "description": "an id from search_notes, e.g. 2"}}}}, {"description":
+      "Evaluate arithmetic with numbers, + - * / and brackets, e.g. ''24*60+39''.",
+      "name": "calculator", "parameters_json_schema": {"type": "object", "required":
+      ["expression"], "properties": {"expression": {"type": "string", "description":
+      "e.g. ''(3+4)*2''"}}}}]}], "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '8121'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"calculator\",\n              \"args\": {\n                \"expression\":
+        \"24 * 60 + 39\"\n              },\n              \"id\": \"call_11930\"\n
+        \           },\n            \"thoughtSignature\": \"AY89a1+jAzY7VI2YMIDZb9gviXB7dO8ypZNQpsEtkvJrN88gtq44nigCKxGKouUn2QyjyjcMIPMIo+RfhbdHIOEZTRbfwMARCn2laeN64APCyyEdmAJZAC7XYqY=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 2564,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 2587,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 2564\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 23\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:48:15.331527Z\",\n  \"responseId\": \"D3LIaoeeFK6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '1029'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:48:15 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many minutes long is a day on Mars?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_663802", "args": {"query":
+      "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a18MIoxju5WxGP6TDGGdumhmhn_O2rDE0TJkR5JIDguZOmSlh6HcgXT-ptoqvzIYx56tFMW4uLl0anAX2PqLJUypRAoaXCZUldBqEQaxEvuAFt0Gm-14OhQ="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_663802", "name":
+      "search_notes", "response": {"result": {"cleared": "search_notes({\"query\":
+      \"Mars\"}) returned 70 tokens, cleared to save space. Call it again if you need
+      them."}}}}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_3456433",
+      "args": {"note_id": 1}, "name": "read_note"}, "thoughtSignature": "AY89a1-DCKOEe5GzJ9r-_tM7fFAUfqSvHoH4c7aCQXwcoB-T_9EebhezePFMKHnTO4RZs8qNZOl4pdT_8oZ3F2XPYj9KVtFBMKkOCiYtZ2VH4eEdOy-og4aIbRo="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3456433", "name":
+      "read_note", "response": {"result": {"cleared": "read_note({\"note_id\": 1})
+      returned 3100 tokens, cleared to save space. Call it again if you need them."}}}}],
+      "role": "user"}, {"parts": [{"functionCall": {"id": "call_115694", "args": {"query":
+      "sol"}, "name": "search_notes"}, "thoughtSignature": "AY89a1-Sp0a-VnJx6m_nro_xbjymSY7t3Vgx9oqVr_GgxSE8Dqp1CWI65ztCaSZhScRheMvOWkIiJansq1jTJSjVY29lJm7IitygvQzTgUG2CEVrXlYi61QE5j0="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_115694", "name":
+      "search_notes", "response": {"result": {"cleared": "search_notes({\"query\":
+      \"sol\"}) returned 70 tokens, cleared to save space. Call it again if you need
+      them."}}}}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_104222",
+      "args": {"query": "hours"}, "name": "search_notes"}, "thoughtSignature": "AY89a19CZqST_kZzzlCdVsNR-qoUQs1wEVsWEPZh9uWhSyn6e2GWhGDOTonk0eM8Vumu05S-iI5507ONa1m1bI40_Gn_MylcyAlSZCJvqd-4QE-wOvD3tPn_uH8="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_104222", "name":
+      "search_notes", "response": {"result": {"cleared": "search_notes({\"query\":
+      \"hours\"}) returned 24 tokens, cleared to save space. Call it again if you
+      need them."}}}}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_3181905",
+      "args": {"note_id": 3}, "name": "read_note"}, "thoughtSignature": "AY89a1-klVhmN4YTjCyqCbGRv4AjGSqOzmxU_TBk3MhSf2uimLMg8fqeoSpCpo358pQiEFZ2vrfEaXUl974WELQKQNO6bcqIzt1T-UCh-RdAC0x3b44asbz7wuI="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_3181905", "name":
+      "read_note", "response": {"result": "Sol 201: drove 71 m, wind 9 m/s, dust opacity
+      1.30, battery 49%, photos 41.\nSol 202: drove 78 m, wind 6 m/s, dust opacity
+      1.01, battery 87%, photos 18.\nSol 203: drove 82 m, wind 1 m/s, dust opacity
+      1.04, battery 67%, photos 41.\nSol 204: drove 109 m, wind 13 m/s, dust opacity
+      0.42, battery 77%, photos 46.\nSol 205: drove 21 m, wind 9 m/s, dust opacity
+      1.33, battery 72%, photos 35.\nSol 206: drove 86 m, wind 10 m/s, dust opacity
+      0.57, battery 69%, photos 4.\nSol 207: drove 59 m, wind 14 m/s, dust opacity
+      0.25, battery 69%, photos 32.\nSol 208: drove 43 m, wind 15 m/s, dust opacity
+      0.60, battery 93%, photos 46.\nSol 209: drove 32 m, wind 9 m/s, dust opacity
+      0.73, battery 99%, photos 8.\nSol 210: drove 41 m, wind 1 m/s, dust opacity
+      1.26, battery 83%, photos 49.\nSol 211: drove 117 m, wind 8 m/s, dust opacity
+      0.21, battery 63%, photos 31.\nSol 212: drove 3 m, wind 15 m/s, dust opacity
+      1.22, battery 59%, photos 18.\nSol 213: drove 61 m, wind 3 m/s, dust opacity
+      0.68, battery 54%, photos 60.\nSol 214: drove 84 m, wind 4 m/s, dust opacity
+      0.23, battery 70%, photos 53.\nSol 215: drove 118 m, wind 13 m/s, dust opacity
+      1.18, battery 81%, photos 17.\nSol 216: drove 106 m, wind 12 m/s, dust opacity
+      1.44, battery 57%, photos 24.\nSol 217: drove 18 m, wind 15 m/s, dust opacity
+      0.59, battery 60%, photos 8.\nSol 218: drove 45 m, wind 9 m/s, dust opacity
+      1.23, battery 94%, photos 12.\nSol 219: drove 31 m, wind 6 m/s, dust opacity
+      1.13, battery 88%, photos 53.\nSol 220: drove 76 m, wind 10 m/s, dust opacity
+      0.57, battery 98%, photos 45.\nSol 221: drove 32 m, wind 9 m/s, dust opacity
+      1.32, battery 96%, photos 16.\nSol 222: drove 68 m, wind 1 m/s, dust opacity
+      0.56, battery 54%, photos 4.\nSol 223: drove 76 m, wind 3 m/s, dust opacity
+      0.47, battery 90%, photos 36.\nSol 224: drove 62 m, wind 13 m/s, dust opacity
+      1.45, battery 68%, photos 47.\nSol 225: drove 7 m, wind 2 m/s, dust opacity
+      1.32, battery 53%, photos 0.\nSol 226: drove 45 m, wind 15 m/s, dust opacity
+      0.77, battery 98%, photos 3.\nSol 227: drove 85 m, wind 7 m/s, dust opacity
+      1.36, battery 64%, photos 11.\nSol 228: drove 60 m, wind 8 m/s, dust opacity
+      1.01, battery 89%, photos 18.\nSol 229: drove 75 m, wind 8 m/s, dust opacity
+      0.67, battery 89%, photos 9.\nSol 230: drove 106 m, wind 12 m/s, dust opacity
+      1.19, battery 78%, photos 59.\nSol 231: drove 17 m, wind 3 m/s, dust opacity
+      1.08, battery 55%, photos 39.\nSol 232: drove 58 m, wind 1 m/s, dust opacity
+      0.71, battery 75%, photos 24.\nSol 233: drove 111 m, wind 5 m/s, dust opacity
+      0.89, battery 76%, photos 58.\nSol 234: drove 11 m, wind 6 m/s, dust opacity
+      1.12, battery 97%, photos 3.\nSol 235: drove 62 m, wind 8 m/s, dust opacity
+      1.05, battery 44%, photos 60.\nSol 236: drove 44 m, wind 12 m/s, dust opacity
+      1.32, battery 79%, photos 19.\nSol 237: drove 94 m, wind 14 m/s, dust opacity
+      0.79, battery 48%, photos 15.\nSol 238: drove 115 m, wind 6 m/s, dust opacity
+      0.73, battery 83%, photos 53.\nSol 239: drove 90 m, wind 10 m/s, dust opacity
+      0.96, battery 43%, photos 51.\nSol 240: drove 85 m, wind 13 m/s, dust opacity
+      0.71, battery 43%, photos 57.\nSol 241: drove 69 m, wind 9 m/s, dust opacity
+      1.03, battery 62%, photos 59.\nSol 242: drove 64 m, wind 4 m/s, dust opacity
+      0.44, battery 54%, photos 26.\nSol 243: drove 23 m, wind 8 m/s, dust opacity
+      0.52, battery 54%, photos 56.\nSol 244: drove 100 m, wind 13 m/s, dust opacity
+      0.50, battery 46%, photos 26.\nSol 245: drove 106 m, wind 9 m/s, dust opacity
+      1.17, battery 51%, photos 48.\nSol 246: drove 12 m, wind 10 m/s, dust opacity
+      0.70, battery 70%, photos 8.\nSol 247: drove 61 m, wind 3 m/s, dust opacity
+      1.10, battery 77%, photos 33.\nSol 248: drove 93 m, wind 5 m/s, dust opacity
+      0.23, battery 57%, photos 22.\nSol 249: drove 26 m, wind 1 m/s, dust opacity
+      0.71, battery 86%, photos 34.\nSol 250: drove 81 m, wind 15 m/s, dust opacity
+      0.24, battery 68%, photos 55.\nSol 251: drove 90 m, wind 10 m/s, dust opacity
+      1.17, battery 90%, photos 60.\nSol 252: drove 48 m, wind 6 m/s, dust opacity
+      0.84, battery 80%, photos 37.\nSol 253: drove 92 m, wind 3 m/s, dust opacity
+      0.32, battery 74%, photos 8.\nSol 254: drove 40 m, wind 9 m/s, dust opacity
+      1.26, battery 98%, photos 11.\nSol 255: drove 110 m, wind 1 m/s, dust opacity
+      0.70, battery 44%, photos 46.\nReminder for the talk: a day on Mars (a sol)
+      lasts 24 hours and 39 minutes."}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_11930", "args": {"expression": "24 * 60 + 39"}, "name": "calculator"},
+      "thoughtSignature": "AY89a1-jAzY7VI2YMIDZb9gviXB7dO8ypZNQpsEtkvJrN88gtq44nigCKxGKouUn2QyjyjcMIPMIo-RfhbdHIOEZTRbfwMARCn2laeN64APCyyEdmAJZAC7XYqY="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_11930", "name":
+      "calculator", "response": {"result": 1479}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. Answer questions about the user''s notes.
+      Use search_notes to find notes and read_note to read one. The notes are long:
+      read one at a time, and stop reading once you have what you need. Do every calculation
+      with the calculator tool. Answer in one sentence."}], "role": "user"}, "tools":
+      [{"functionDeclarations": [{"description": "Search the user''s notebooks. Returns
+      {id, title, tokens} for every notebook whose title or text contains the query
+      word. Does not return the text.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string",
+      "description": "one word, e.g. ''Mars''"}}}}, {"description": "Return the full
+      text of one notebook by id. Notebooks are long.", "name": "read_note", "parameters_json_schema":
+      {"type": "object", "required": ["note_id"], "properties": {"note_id": {"type":
+      "integer", "description": "an id from search_notes, e.g. 2"}}}}, {"description":
+      "Evaluate arithmetic with numbers, + - * / and brackets, e.g. ''24*60+39''.",
+      "name": "calculator", "parameters_json_schema": {"type": "object", "required":
+      ["expression"], "properties": {"expression": {"type": "string", "description":
+      "e.g. ''(3+4)*2''"}}}}]}], "generationConfig": {"maxOutputTokens": 400}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '8591'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"A Martian
+        day, or sol, is 1,479 minutes long.\",\n            \"thoughtSignature\":
+        \"AY89a18HUmlNm41UpuevTtw7Jwc0MeUADff2M7OGJMxQHY2H/p7BLLElLIO2fL8G0EJvqerkT61gGMRfF/W228nyPGp3rfUGw5nq5KJX6r0bKXnvej5SMvmJPSk=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 2607,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 2624,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 2607\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 17\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T04:48:19.331662Z\",\n  \"responseId\": \"E3LIao6fFIeFr8kP-daSkAU\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 04:48:19 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

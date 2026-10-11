@@ -1,4 +1,4 @@
-"""Scout chat v1: python scout_chat.py [--no-history]   (needs GOOGLE_CLOUD_API_KEY)"""
+"""Scout chat: python scout_chat.py [--no-history]   (needs GOOGLE_CLOUD_API_KEY)"""
 import os, random, sys, time
 from dotenv import load_dotenv
 from google import genai

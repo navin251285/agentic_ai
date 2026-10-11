@@ -1,0 +1,56 @@
+{
+ "fixed": [
+  {
+   "prompt": 9779,
+   "cached": 8160,
+   "out": 13
+  },
+  {
+   "prompt": 9827,
+   "cached": 8152,
+   "out": 15
+  },
+  {
+   "prompt": 9876,
+   "cached": 8144,
+   "out": 32
+  },
+  {
+   "prompt": 9939,
+   "cached": 8136,
+   "out": 19
+  },
+  {
+   "prompt": 9992,
+   "cached": 8128,
+   "out": 15
+  }
+ ],
+ "buggy": [
+  {
+   "prompt": 9781,
+   "cached": 0,
+   "out": 13
+  },
+  {
+   "prompt": 9806,
+   "cached": 0,
+   "out": 15
+  },
+  {
+   "prompt": 9832,
+   "cached": 0,
+   "out": 32
+  },
+  {
+   "prompt": 9872,
+   "cached": 0,
+   "out": 19
+  },
+  {
+   "prompt": 9902,
+   "cached": 0,
+   "out": 15
+  }
+ ]
+}

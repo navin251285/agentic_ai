@@ -1,0 +1,202 @@
+[
+ {
+  "id": 1,
+  "text": "Mars has two small moons, Phobos and Deimos. Phobos orbits so close that it circles the planet three times a day. It is slowly spiralling inwards and may break into a ring in tens of millions of years."
+ },
+ {
+  "id": 2,
+  "text": "Venus spins backwards compared with most planets. Its day is longer than its year: one rotation takes 243 Earth days, while one orbit of the Sun takes 225."
+ },
+ {
+  "id": 3,
+  "text": "A day on Mars lasts about 24 hours and 39 minutes. Mission teams call it a sol. Rover operators on Earth shift their working hours every day to stay in step with the rover."
+ },
+ {
+  "id": 4,
+  "text": "Jupiter is the largest planet in the solar system. More than 1,300 Earths would fit inside it. Its Great Red Spot is a storm wider than Earth that has been watched since at least the 1830s."
+ },
+ {
+  "id": 5,
+  "text": "The rover Perseverance landed on Mars in February 2021, in Jezero Crater. The crater once held a lake. The rover collects rock cores in sealed tubes for a future mission to bring back."
+ },
+ {
+  "id": 6,
+  "text": "Saturn's rings are mostly made of ice, with some rock and dust. They are hundreds of thousands of kilometres wide but often only about ten metres thick."
+ },
+ {
+  "id": 7,
+  "text": "Mercury is the closest planet to the Sun but not the hottest. With almost no atmosphere, its night side drops to about minus 180 degrees Celsius."
+ },
+ {
+  "id": 8,
+  "text": "Venus is the hottest planet, at about 465 degrees Celsius at the surface. A thick carbon dioxide atmosphere traps heat, and the pressure is about 90 times that on Earth."
+ },
+ {
+  "id": 9,
+  "text": "Earth's Moon is slowly moving away, about 3.8 centimetres a year. Laser reflectors left by Apollo crews let scientists measure the distance precisely."
+ },
+ {
+  "id": 10,
+  "text": "Uranus rotates on its side, tilted about 98 degrees. Each pole gets around 42 years of sunlight followed by 42 years of darkness."
+ },
+ {
+  "id": 11,
+  "text": "Neptune has the fastest winds measured in the solar system, above 2,000 kilometres per hour. It was found in 1846 by mathematics before anyone saw it."
+ },
+ {
+  "id": 12,
+  "text": "Pluto was reclassified as a dwarf planet in 2006. The New Horizons probe flew past it in 2015 and found a heart-shaped plain of nitrogen ice."
+ },
+ {
+  "id": 13,
+  "text": "Europa, a moon of Jupiter, likely hides a salty ocean under its ice shell. The Europa Clipper spacecraft launched in October 2024 to study whether it could support life."
+ },
+ {
+  "id": 14,
+  "text": "Titan, Saturn's largest moon, has lakes of liquid methane and ethane. It is the only moon with a thick atmosphere. The Dragonfly drone mission is planned to fly there."
+ },
+ {
+  "id": 15,
+  "text": "Enceladus sprays jets of water vapour from cracks near its south pole. The Cassini probe flew through the plumes and detected salts and organic molecules."
+ },
+ {
+  "id": 16,
+  "text": "Io is the most volcanically active body known. Tides from Jupiter flex its interior, heating it enough to power hundreds of active volcanoes."
+ },
+ {
+  "id": 17,
+  "text": "Ganymede is the largest moon in the solar system, bigger than Mercury. It is the only moon known to have its own magnetic field."
+ },
+ {
+  "id": 18,
+  "text": "The asteroid belt lies between Mars and Jupiter. Despite films, it is mostly empty space: the average distance between large asteroids is about a million kilometres."
+ },
+ {
+  "id": 19,
+  "text": "Ceres is the largest object in the asteroid belt and counts as a dwarf planet. The Dawn spacecraft found bright salt deposits in Occator Crater."
+ },
+ {
+  "id": 20,
+  "text": "The Sun holds about 99.8 percent of the solar system's mass. Light from its surface takes about eight minutes and twenty seconds to reach Earth."
+ },
+ {
+  "id": 21,
+  "text": "Solar flares can disrupt radio communications and GPS on Earth. Strong events also produce auroras far from the poles, as in May 2024."
+ },
+ {
+  "id": 22,
+  "text": "Comets are icy bodies that grow tails when they near the Sun. The tail always points away from the Sun, pushed by sunlight and the solar wind."
+ },
+ {
+  "id": 23,
+  "text": "Halley's Comet returns about every 76 years. It last passed in 1986 and is expected back in 2061."
+ },
+ {
+  "id": 24,
+  "text": "The Voyager 1 probe launched in 1977 and is the most distant human-made object. It crossed into interstellar space in 2012 and still sends weak signals."
+ },
+ {
+  "id": 25,
+  "text": "The James Webb Space Telescope launched in December 2021. It observes in infrared from a point about 1.5 million kilometres from Earth called L2."
+ },
+ {
+  "id": 26,
+  "text": "The Hubble Space Telescope has orbited Earth since 1990. Astronauts serviced it five times, the last in 2009."
+ },
+ {
+  "id": 27,
+  "text": "The International Space Station orbits about 400 kilometres up and circles Earth roughly every 90 minutes. People have lived on board continuously since November 2000."
+ },
+ {
+  "id": 28,
+  "text": "A light-year is a distance, not a time: about 9.46 trillion kilometres. Proxima Centauri, the nearest star after the Sun, is about 4.2 light-years away."
+ },
+ {
+  "id": 29,
+  "text": "Exoplanets are planets around other stars. More than 5,000 have been confirmed, many found by watching a star dim slightly as a planet passes in front."
+ },
+ {
+  "id": 30,
+  "text": "The TRAPPIST-1 system has seven Earth-sized planets around a small, cool star. Several orbit in the zone where liquid water could exist."
+ },
+ {
+  "id": 31,
+  "text": "Black holes form when massive stars collapse. In 2019 the Event Horizon Telescope released the first image of one, in the galaxy M87."
+ },
+ {
+  "id": 32,
+  "text": "The Milky Way is a barred spiral galaxy about 100,000 light-years across. The Sun takes about 230 million years to orbit its centre."
+ },
+ {
+  "id": 33,
+  "text": "The Andromeda galaxy is the nearest large galaxy to ours, about 2.5 million light-years away. It is expected to merge with the Milky Way in a few billion years."
+ },
+ {
+  "id": 34,
+  "text": "Mars once had liquid water on its surface. Dry river valleys, deltas and minerals that form in water are visible from orbit."
+ },
+ {
+  "id": 35,
+  "text": "Olympus Mons on Mars is the tallest volcano in the solar system, about 22 kilometres high. Its base is roughly the size of Poland."
+ },
+ {
+  "id": 36,
+  "text": "Valles Marineris is a canyon system on Mars about 4,000 kilometres long. It would stretch across most of the United States."
+ },
+ {
+  "id": 37,
+  "text": "The Curiosity rover landed on Mars in August 2012 using a sky crane. It is still exploring Gale Crater and climbing Mount Sharp."
+ },
+ {
+  "id": 38,
+  "text": "The Ingenuity helicopter made the first powered flight on another planet in April 2021. It flew 72 times before a damaged rotor ended its mission in January 2024."
+ },
+ {
+  "id": 39,
+  "text": "Martian dust storms can cover the whole planet for weeks. A storm in 2018 blocked sunlight and ended the solar-powered Opportunity rover's mission."
+ },
+ {
+  "id": 40,
+  "text": "A Martian year lasts 687 Earth days. Seasons there are almost twice as long as on Earth because of the longer orbit."
+ },
+ {
+  "id": 41,
+  "text": "Gravity on Mars is about 38 percent of Earth's. A person weighing 70 kilograms on Earth would feel like 27 kilograms there."
+ },
+ {
+  "id": 42,
+  "text": "Radio signals between Earth and Mars take between about 3 and 22 minutes one way. Rovers cannot be driven live and must follow planned commands."
+ },
+ {
+  "id": 43,
+  "text": "Jupiter has the strongest magnetic field of any planet. Its radiation belts are dangerous to spacecraft electronics, so probes like Juno carry shielding."
+ },
+ {
+  "id": 44,
+  "text": "The Juno spacecraft has orbited Jupiter since 2016. It found that the Great Red Spot reaches hundreds of kilometres down into the atmosphere."
+ },
+ {
+  "id": 45,
+  "text": "Saturn is less dense than water. In theory it would float in a bathtub big enough to hold it."
+ },
+ {
+  "id": 46,
+  "text": "The Cassini mission orbited Saturn from 2004 to 2017. It ended by diving into the planet so it could not contaminate moons that might host life."
+ },
+ {
+  "id": 47,
+  "text": "Meteor showers happen when Earth passes through dust left by comets. The Perseids peak each August and come from Comet Swift-Tuttle."
+ },
+ {
+  "id": 48,
+  "text": "The Kuiper Belt is a region of icy bodies beyond Neptune. Pluto and the object Arrokoth, visited by New Horizons in 2019, live there."
+ },
+ {
+  "id": 49,
+  "text": "Space is not completely silent to instruments: plasma waves can be recorded and turned into sound. In air-free space, though, sound cannot travel between objects."
+ },
+ {
+  "id": 50,
+  "text": "Rocket launches must account for Earth's rotation. Launching eastward near the equator gives a free boost of about 1,670 kilometres per hour."
+ }
+]

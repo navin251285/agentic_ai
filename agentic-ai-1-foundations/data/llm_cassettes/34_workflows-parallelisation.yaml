@@ -1,0 +1,2209 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<instructions>\nSummarise the
+      notes above in at most 40 words, as plain prose. After each fact, cite its note
+      id in square brackets, like [3]. Scout links each [id] to the note, so use only
+      ids from the notes above.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '597'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Mars,
+        which has two moons (Phobos and Deimos) [1], experiences a day lasting about
+        24 hours and 39 minutes [3]. Additionally, the Perseverance rover successfully
+        landed on the planet in February 2021 [5].\",\n            \"thoughtSignature\":
+        \"AY89a1+eKrGgU5CdziWCpas4OroDe9RGyjIq1C/1AY5U5gvhlfakPbXxxtAc9QExzx7nRSjD/Yf3HboNXmn882K9HAcshm9gbtnuzyrQ7y5OIvr9nI08AcYULcw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 137,\n    \"candidatesTokenCount\":
+        53,\n    \"totalTokenCount\": 190,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 137\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 53\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:02:29.646090Z\",\n  \"responseId\": \"tbvIasq3J_Ov-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1054'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:02:30 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"2\">Venus spins
+      backwards compared with most planets.</note>\n</notes>\n\n<instructions>\nSummarise
+      the notes above in at most 40 words, as plain prose. After each fact, cite its
+      note id in square brackets, like [3]. Scout links each [id] to the note, so
+      use only ids from the notes above.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '449'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Unlike
+        most planets, Venus spins in the opposite, backward direction [2].\",\n            \"thoughtSignature\":
+        \"AY89a19aM1X5nLnkvuIS5zEFdU2zkX5oGe2ZtcG63z2Y/9PL9y0CSfJ5iqr+VdRyuyKM9BDbhRUQGPQlcgbEgErSAVMnXHB3zo1AZl3FpI9EwpjaNrteRT3D8RA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 85,\n    \"candidatesTokenCount\":
+        15,\n    \"totalTokenCount\": 100,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 85\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 15\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:02:33.626572Z\",\n  \"responseId\": \"ubvIaoyfJvGLr8kPkOWf8Ag\"\n}\n"
+    headers:
+      content-length:
+      - '921'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:02:34 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"4\">Jupiter is the
+      largest planet in the solar system.</note>\n</notes>\n\n<instructions>\nSummarise
+      the notes above in at most 40 words, as plain prose. After each fact, cite its
+      note id in square brackets, like [3]. Scout links each [id] to the note, so
+      use only ids from the notes above.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '450'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Jupiter
+        is the largest planet in the solar system [4].\",\n            \"thoughtSignature\":
+        \"AY89a1+eJEL+7nkIFgaw/xm1fxGn2yWtoWgJTrbBECv228nofrI3fwHbgaxO9a77qjQnnRtTKVGKNJhvUhpvvmmy6+tbBGHF5vib/MXhvTp5iJbyeulLOYVrOTc=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 87,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 99,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 87\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 12\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T10:02:37.605879Z\",\n
+        \ \"responseId\": \"vbvIarf9JPmFidsP3pSoqQI\"\n}\n"
+    headers:
+      content-length:
+      - '901'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:02:38 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"6\">Saturn''s rings
+      are mostly made of ice.</note>\n</notes>\n\n<instructions>\nSummarise the notes
+      above in at most 40 words, as plain prose. After each fact, cite its note id
+      in square brackets, like [3]. Scout links each [id] to the note, so use only
+      ids from the notes above.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '438'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Saturn's
+        rings are primarily composed of ice [6].\",\n            \"thoughtSignature\":
+        \"AY89a1/jfHhirMjRoFQVLq7BHKfS/botHJ08Dyq/kpyk72G4DmRSCpnLaUJxeW7aB5eLrLbb/GgXWJE4tS95VZYS34TkX7O814SpiMl1OoPYwUGAgA1x7vbNYa8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 88,\n    \"candidatesTokenCount\":
+        13,\n    \"totalTokenCount\": 101,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 88\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 13\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:02:41.809236Z\",\n  \"responseId\": \"wbvIapSyMa6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '897'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:02:42 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>Mars has three moons,
+      Phobos and Deimos [1], and a day there lasts about 24 hours and 39 minutes [3].</summary>\n\n<instructions>\nCheck
+      every number, count, date and duration in the summary against the notes. Ignore
+      anything this check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1076'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": false,\\n  \\\"problem\\\": \\\"The summary states that
+        Mars has three moons, but the notes state that Mars has two moons.\\\"\\n}\",\n
+        \           \"thoughtSignature\": \"AY89a18K3t9xNyJo8Jz2ue4lzOclQevVzDfHFKjr6Mt9RC/Knd7GssY8C0LlXwBwWMwlOXNTxJm+gzGlfkT7Y3MAMvv/QeVi7wlUnPRjWnPLCpS5phFNme/4wL0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 247,\n    \"candidatesTokenCount\":
+        35,\n    \"totalTokenCount\": 282,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 247\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 35\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:02:45.618755Z\",\n  \"responseId\": \"xbvIaoPiJf6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '989'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:02:46 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>Mars has three moons,
+      Phobos and Deimos [1], and a day there lasts about 24 hours and 39 minutes [3].</summary>\n\n<instructions>\nCheck
+      every name (planet, moon, rover) in the summary against the notes. Ignore anything
+      this check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1070'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": false,\\n  \\\"problem\\\": \\\"The summary states Mars
+        has three moons, but note 1 states Mars has two moons.\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1+5E3u9G5/tmkxCe0hCLPXctE6Azt9A7LggbrnR38H816MBfDiUxIGLkMaSIpDAn39/jEUAKdZM3HOYfl2FCIpMhntSEQA+mqRiwiH06wSA0SVgYDrLJIw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 248,\n    \"candidatesTokenCount\":
+        34,\n    \"totalTokenCount\": 282,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 248\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 34\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:02:49.592921Z\",\n  \"responseId\": \"ybvIapmYJK6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '977'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:02:50 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>Mars has three moons,
+      Phobos and Deimos [1], and a day there lasts about 24 hours and 39 minutes [3].</summary>\n\n<instructions>\nCheck
+      that every claim in the summary is stated in the notes. Ignore anything this
+      check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1059'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": false,\\n  \\\"problem\\\": \\\"The summary states that
+        Mars has three moons, but the notes say it has two small moons, Phobos and
+        Deimos.\\\"\\n}\",\n            \"thoughtSignature\": \"AY89a19QZ/HF1NkQ4g5lZKRDozAyABV1RHdnyDmfyWGZzXzbEPHW7cpB+/dadS9fF4iaweC18E+VMWwU4xK48CjGZ3m3qJPFzaFmsIZ0zx1vH1IcwWl486TFw2A=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 244,\n    \"candidatesTokenCount\":
+        41,\n    \"totalTokenCount\": 285,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 244\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 41\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:02:53.589721Z\",\n  \"responseId\": \"zbvIapn_I_GLr8kPkOWf8Ag\"\n}\n"
+    headers:
+      content-length:
+      - '1005'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:02:54 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>Mars, which has two moons
+      (Phobos and Deimos) [1], experiences a day lasting about 24 hours and 39 minutes
+      [3]. Additionally, the Perseverance rover successfully landed on the planet
+      in February 2021 [5].</summary>\n\n<instructions>\nCheck every number, count,
+      date and duration in the summary against the notes. Ignore anything this check
+      is not about.\n</instructions>"}], "role": "user"}], "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 200, "responseMimeType": "application/json", "responseSchema":
+      {"properties": {"accurate": {"description": "true only if the summary passes
+      this check against the notes", "title": "Accurate", "type": "BOOLEAN"}, "problem":
+      {"description": "the first problem found, or '''' if none", "title": "Problem",
+      "type": "STRING"}}, "property_ordering": ["accurate", "problem"], "required":
+      ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1179'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": true,\\n  \\\"problem\\\": \\\"\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1+X7rYDr7lFXdRfHmpELX0aBFMdcUjBRxgRM4fjvfb8V9mnVsK9TOS848YGMcEGZYx8AL/rN71Aeru17yZMlc3IITIRuIJWL5ZoyPArDiB2Rus14zO8lZo=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 269,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 285,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 269\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:02:57.584565Z\",\n  \"responseId\": \"0bvIavXWI_6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:02:58 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>Mars, which has two moons
+      (Phobos and Deimos) [1], experiences a day lasting about 24 hours and 39 minutes
+      [3]. Additionally, the Perseverance rover successfully landed on the planet
+      in February 2021 [5].</summary>\n\n<instructions>\nCheck every name (planet,
+      moon, rover) in the summary against the notes. Ignore anything this check is
+      not about.\n</instructions>"}], "role": "user"}], "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 200, "responseMimeType": "application/json", "responseSchema":
+      {"properties": {"accurate": {"description": "true only if the summary passes
+      this check against the notes", "title": "Accurate", "type": "BOOLEAN"}, "problem":
+      {"description": "the first problem found, or '''' if none", "title": "Problem",
+      "type": "STRING"}}, "property_ordering": ["accurate", "problem"], "required":
+      ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1173'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": true,\\n  \\\"problem\\\": \\\"\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1/H01Jg/97BtlZBMYQHXnSWLzGyEnOhqXgdggX0Ce6AyGyhHXHx+R+gSXFXEBAUaIo4cYoDu0n4EMHndXE2IWqsY0++6a2qs6K6rOVhHZJId1DLDPKSMaI=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 270,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 286,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 270\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:01.607752Z\",\n  \"responseId\": \"1bvIaoiMJeWBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:02 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>Mars, which has two moons
+      (Phobos and Deimos) [1], experiences a day lasting about 24 hours and 39 minutes
+      [3]. Additionally, the Perseverance rover successfully landed on the planet
+      in February 2021 [5].</summary>\n\n<instructions>\nCheck that every claim in
+      the summary is stated in the notes. Ignore anything this check is not about.\n</instructions>"}],
+      "role": "user"}], "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      200, "responseMimeType": "application/json", "responseSchema": {"properties":
+      {"accurate": {"description": "true only if the summary passes this check against
+      the notes", "title": "Accurate", "type": "BOOLEAN"}, "problem": {"description":
+      "the first problem found, or '''' if none", "title": "Problem", "type": "STRING"}},
+      "property_ordering": ["accurate", "problem"], "required": ["accurate", "problem"],
+      "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1162'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": true,\\n  \\\"problem\\\": \\\"\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a18WQFP6YLIDOTxx5wKD+nYzkZ6smJQzRlOgYHbldDT0z3/ZrlVTtglZhKLv6zTs0WYYJDwOrheZSL1Qs4CBrtROdab/rRfliCbqI6WCLM7yL5f1LsRrppA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 266,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 282,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 266\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:05.612645Z\",\n  \"responseId\": \"2bvIaqWyJd_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:06 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>Mars has two small moons,
+      Phobos and Deimos [1], and a day there lasts about 24 hours and 39 minutes [3].</summary>\n\n<instructions>\nCheck
+      every number, count, date and duration in the summary against the notes. Ignore
+      anything this check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1080'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\\"accurate\\\":
+        true, \\\"problem\\\": \\\"\\\"}\",\n            \"thoughtSignature\": \"AY89a1+1q0ne4hpShuxr7EbjdcBc5hLlhVD2e7WUB5L6INQ/iQJps6MyqoIe9qa1etMvaIwuuuxEMZPPXhuaMW7GdNu5aY3jrb2BjmxcR4zZpauyJyGF52nI/jo=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 248,\n    \"candidatesTokenCount\":
+        9,\n    \"totalTokenCount\": 257,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 248\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 9\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.5-flash-lite\",\n  \"createTime\": \"2026-10-09T10:03:09.592361Z\",\n
+        \ \"responseId\": \"3bvIaumTJPmFidsP3pSoqQI\"\n}\n"
+    headers:
+      content-length:
+      - '887'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:10 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>Mars has two small moons,
+      Phobos and Deimos [1], and a day there lasts about 24 hours and 39 minutes [3].</summary>\n\n<instructions>\nCheck
+      every name (planet, moon, rover) in the summary against the notes. Ignore anything
+      this check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1074'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": true,\\n  \\\"problem\\\": \\\"\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a19F6Sa0rTUfn6Vj0agbm/ODxDO2MPFRAILA83To5GH7QuUVjT23/J8IXfd752hgugmv7alYeopzZ60sr3bxogfbrjl1H4pQPg3rx1/zXHVnEdIR5eIxFAY=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 249,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 265,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 249\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:13.598454Z\",\n  \"responseId\": \"4bvIarbDJPOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>Mars has two small moons,
+      Phobos and Deimos [1], and a day there lasts about 24 hours and 39 minutes [3].</summary>\n\n<instructions>\nCheck
+      that every claim in the summary is stated in the notes. Ignore anything this
+      check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1063'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": true,\\n  \\\"problem\\\": \\\"\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1/VEwKuO4DDKtkG4OQjAj28Kp4skXcHXaz3RC3I+DuYsCX3mSZHFnTj1/dVlG5TldSeTzVuRWJeC8UvOjBel4eo5HtFZ3+tqZWM8IvAnJy3Zq4dN9mFqDM=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 245,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 261,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 245\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:17.589510Z\",\n  \"responseId\": \"5bvIasb9I66BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:18 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>The rover Perseverance
+      landed on Mars in February 2021 [5]. Mars has two moons [1].</summary>\n\n<instructions>\nCheck
+      every number, count, date and duration in the summary against the notes. Ignore
+      anything this check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1058'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": true,\\n  \\\"problem\\\": \\\"\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1+RmjODHi6DovSVp9/FT77R4i7zdFPAMhrv2oko+vj/ZxLXJ2Lm2kfeonjKC9SjE5Mj2H6ZmMjPqvCZ0wpOR45mSihJanpIhriWlj4YqZSRxv8bhZSoB20=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 239,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 255,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 239\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:21.606840Z\",\n  \"responseId\": \"6bvIaviEJd_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:22 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>The rover Perseverance
+      landed on Mars in February 2021 [5]. Mars has two moons [1].</summary>\n\n<instructions>\nCheck
+      every name (planet, moon, rover) in the summary against the notes. Ignore anything
+      this check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1052'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": true,\\n  \\\"problem\\\": \\\"\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1+024C8upsho6h6JuguspnfLI032oeVrzJqajwscMXiFQ1Jnz2cnWfzPmpz16oDaKgNF77nJxUyKNDED8bB2AcoNP2iBiky+S+G9K5t80TBdbk3P2DNWXY=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 240,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 256,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 240\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:25.595230Z\",\n  \"responseId\": \"7bvIap6qJPGLr8kPkOWf8Ag\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:26 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>The rover Perseverance
+      landed on Mars in February 2021 [5]. Mars has two moons [1].</summary>\n\n<instructions>\nCheck
+      that every claim in the summary is stated in the notes. Ignore anything this
+      check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1041'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": true,\\n  \\\"problem\\\": \\\"\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a19TQhxo2Txv1T2IsRgyOzrbZ0KpGDBhQero62XH5Ehr73O/8LEtkxAVxUk36Uyf1/Ju/NjoMfMpiskteQWegLDezMNfRpR4T9hlQefsV493eqoszMteTeA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 236,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 252,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 236\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:29.608436Z\",\n  \"responseId\": \"8bvIarSRJeWBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '898'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:30 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>Mars has three moons
+      [1] and a day there lasts about 24 hours and 39 minutes [3].</summary>\n\n<instructions>\nCheck
+      every number, count, date and duration in the summary against the notes. Ignore
+      anything this check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1056'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\\"accurate\\\":
+        false, \\\"problem\\\": \\\"The summary states that Mars has three moons,
+        but note 1 states that Mars has two small moons.\\\"}\",\n            \"thoughtSignature\":
+        \"AY89a1/KgsFrZRL5XLKs8f0SHWV60Bnc68U0JPaQ1h2E9UW4LlrPzaN39ty2WSNUpYDLQH/M/dqX/i2emneH+/EcTDDi6Y4o+PhCJoeo/PsmhrntEMAYUR0wEXA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 241,\n    \"candidatesTokenCount\":
+        31,\n    \"totalTokenCount\": 272,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 241\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 31\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:33.593788Z\",\n  \"responseId\": \"9bvIavyeJP6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '984'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:34 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>Mars has three moons
+      [1] and a day there lasts about 24 hours and 39 minutes [3].</summary>\n\n<instructions>\nCheck
+      every name (planet, moon, rover) in the summary against the notes. Ignore anything
+      this check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1050'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": false,\\n  \\\"problem\\\": \\\"The summary states Mars
+        has three moons, but the notes state it has two moons.\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1+ojPqfHYJKTwZ3h09BcQciOTDVfa4LEjXOvBmUZZwTyNIWzdz2QWRt/RKQp07FuQuzIprbpSuf/XClk8CquN2dbwcxN3iz4mpnUoxs9Gfw5wauVFqkgk0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 242,\n    \"candidatesTokenCount\":
+        33,\n    \"totalTokenCount\": 275,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 242\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 33\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:37.606965Z\",\n  \"responseId\": \"-bvIavWFJfmFidsP3pSoqQI\"\n}\n"
+    headers:
+      content-length:
+      - '977'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:38 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>Mars has three moons
+      [1] and a day there lasts about 24 hours and 39 minutes [3].</summary>\n\n<instructions>\nCheck
+      that every claim in the summary is stated in the notes. Ignore anything this
+      check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1039'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": false,\\n  \\\"problem\\\": \\\"The summary claims Mars
+        has three moons, but the notes state it has two moons.\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a19FDJwqGHzSGgCnggNqTuP0E8t8Jz/9w3Fwc0a94/OsMNlcWAVY/abriy7KS6stgtHUatAw7OkiFJxQTCush90uP7yMC85tsuvPz7FIohulPYpUnxZ+fxg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 238,\n    \"candidatesTokenCount\":
+        33,\n    \"totalTokenCount\": 271,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 238\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 33\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:41.612350Z\",\n  \"responseId\": \"_bvIav6vJfOv-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '977'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:42 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>The rover Curiosity landed
+      on Mars in February 2021 [5].</summary>\n\n<instructions>\nCheck every number,
+      count, date and duration in the summary against the notes. Ignore anything this
+      check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1031'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\\"accurate\\\":
+        false, \\\"problem\\\": \\\"The summary states that the rover Curiosity landed
+        on Mars, but the note states that the rover Perseverance landed on Mars.\\\"}\",\n
+        \           \"thoughtSignature\": \"AY89a1/o5ggHKE6emVk+SoJkKLe/IqxJ6Gw0ZpSUVAuJENreHbUWCjm6VaHGrlZ7tnBYkTZmLrgItM/dWZmKDbBrumuea2QDapKNW8s4ENU9lPqoZsxZ/8TinwE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 232,\n    \"candidatesTokenCount\":
+        33,\n    \"totalTokenCount\": 265,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 232\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 33\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:45.588971Z\",\n  \"responseId\": \"AbzIaqv5I9_g-O4PncHuqAc\"\n}\n"
+    headers:
+      content-length:
+      - '1013'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:46 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>The rover Curiosity landed
+      on Mars in February 2021 [5].</summary>\n\n<instructions>\nCheck every name
+      (planet, moon, rover) in the summary against the notes. Ignore anything this
+      check is not about.\n</instructions>"}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "maxOutputTokens": 200, "responseMimeType": "application/json",
+      "responseSchema": {"properties": {"accurate": {"description": "true only if
+      the summary passes this check against the notes", "title": "Accurate", "type":
+      "BOOLEAN"}, "problem": {"description": "the first problem found, or '''' if
+      none", "title": "Problem", "type": "STRING"}}, "property_ordering": ["accurate",
+      "problem"], "required": ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1025'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": false,\\n  \\\"problem\\\": \\\"The summary mentions the
+        rover Curiosity, but note 5 states that the rover Perseverance landed on Mars.\\\"\\n}\",\n
+        \           \"thoughtSignature\": \"AY89a19hz1pbJTWHnvE6nwflCGSZWeJhWFVZUA6iO0igYJZqn9FTQ9MOFqBEMT+DlBtUVQiVx5bKfUoyTpZt2g4HKMJXSONmObr6vhlgOH2do1R7LD4vw//x6bI=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 233,\n    \"candidatesTokenCount\":
+        36,\n    \"totalTokenCount\": 269,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 233\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 36\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:49.601718Z\",\n  \"responseId\": \"BbzIavbcJK6BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '1002'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:50 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "<notes>\n<note id=\"1\">Mars has two
+      small moons, Phobos and Deimos.</note>\n<note id=\"3\">A day on Mars lasts about
+      24 hours and 39 minutes.</note>\n<note id=\"5\">The rover Perseverance landed
+      on Mars in February 2021.</note>\n</notes>\n\n<summary>The rover Curiosity landed
+      on Mars in February 2021 [5].</summary>\n\n<instructions>\nCheck that every
+      claim in the summary is stated in the notes. Ignore anything this check is not
+      about.\n</instructions>"}], "role": "user"}], "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 200, "responseMimeType": "application/json", "responseSchema":
+      {"properties": {"accurate": {"description": "true only if the summary passes
+      this check against the notes", "title": "Accurate", "type": "BOOLEAN"}, "problem":
+      {"description": "the first problem found, or '''' if none", "title": "Problem",
+      "type": "STRING"}}, "property_ordering": ["accurate", "problem"], "required":
+      ["accurate", "problem"], "title": "Vote", "type": "OBJECT"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1014'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"accurate\\\": false,\\n  \\\"problem\\\": \\\"The summary states that
+        the rover Curiosity landed on Mars, but the notes state that the rover Perseverance
+        landed on Mars.\\\"\\n}\",\n            \"thoughtSignature\": \"AY89a1/A/220e1fhLZiM7X5iG6FtDB86TkiPoy9ZFZyB+qiyU3pn/T4miyNmVgcIgYWkh75RDxlKY3We8/JAAz9+ObN9zFp3qr1cV4Dt13kDgOlYiAJ3mYw1ZRs=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 229,\n    \"candidatesTokenCount\":
+        39,\n    \"totalTokenCount\": 268,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 229\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 39\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:53.585311Z\",\n  \"responseId\": \"CbzIat_cI-WBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '1022'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:54 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check this summary: Mars has two small
+      moons, Phobos and Deimos [1], and a day there lasts about 24 hours and 39 minutes
+      [3]."}], "role": "user"}], "systemInstruction": {"parts": [{"text": "You are
+      Scout. The user gives you a summary of their notes. Search the notes to check
+      it. Reply with ACCURATE or INACCURATE as the first word, then one short reason."}],
+      "role": "user"}, "tools": [{"functionDeclarations": [{"description": "Search
+      the user''s notes. Returns every note whose text contains the query word (case-insensitive),
+      as a list of {id, text}.", "name": "search_notes", "parameters_json_schema":
+      {"type": "object", "required": ["query"], "properties": {"query": {"type": "string",
+      "description": "one word, e.g. ''Mars''"}}}}]}], "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '838'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_1697466\"\n            },\n            \"thoughtSignature\": \"AY89a1+AOtd1yI95N1TqBVLsjliWhFM9FsnSwkOArkMbgmA+7zy4XfFXBlwxvdiLYo0a3J9vyG6fTkeRFpmQFWXTAGzMC5SqxikjP8uSRzILp6FMk4524jYH//0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 135,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 151,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 135\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:03:57.592935Z\",\n  \"responseId\": \"DbzIaqeYJOWBr8kP09Or0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '1017'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:03:58 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check this summary: Mars has two small
+      moons, Phobos and Deimos [1], and a day there lasts about 24 hours and 39 minutes
+      [3]."}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_1697466",
+      "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature": "AY89a1-AOtd1yI95N1TqBVLsjliWhFM9FsnSwkOArkMbgmA-7zy4XfFXBlwxvdiLYo0a3J9vyG6fTkeRFpmQFWXTAGzMC5SqxikjP8uSRzILp6FMk4524jYH__0="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_1697466", "name":
+      "search_notes", "response": {"result": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout. The user gives you a summary of their notes. Search
+      the notes to check it. Reply with ACCURATE or INACCURATE as the first word,
+      then one short reason."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns every note whose text contains
+      the query word (case-insensitive), as a list of {id, text}.", "name": "search_notes",
+      "parameters_json_schema": {"type": "object", "required": ["query"], "properties":
+      {"query": {"type": "string", "description": "one word, e.g. ''Mars''"}}}}]}],
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1452'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"ACCURATE
+        Both facts are directly supported by notes 1 and 3.\",\n            \"thoughtSignature\":
+        \"AY89a19r1t7W+j6ZVchbkQg6CMYY2Z8cYQ0qPTi6L2fy9vUx8I1vP6oLMjZJ8UMpc7yzkjYxAoxGZmPJVOQxxKxMSJS5Qd5Q74wM85v3cPdNpW00SqaHjboikes=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 203,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 219,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 203\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:04:01.586306Z\",\n  \"responseId\": \"EbzIasLkI_Ov-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '910'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:04:02 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check this summary: The rover Perseverance
+      landed on Mars in February 2021 [5]. Mars has two moons [1]."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are Scout. The user gives you
+      a summary of their notes. Search the notes to check it. Reply with ACCURATE
+      or INACCURATE as the first word, then one short reason."}], "role": "user"},
+      "tools": [{"functionDeclarations": [{"description": "Search the user''s notes.
+      Returns every note whose text contains the query word (case-insensitive), as
+      a list of {id, text}.", "name": "search_notes", "parameters_json_schema": {"type":
+      "object", "required": ["query"], "properties": {"query": {"type": "string",
+      "description": "one word, e.g. ''Mars''"}}}}]}], "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '816'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_6099\"\n            },\n            \"thoughtSignature\": \"AY89a1+roPfKheMLqpxtkx8gf3N2ta4jQ7nDIKl58bw35I8lAiqRjKqOwzy8PZIimdCTVDBJdRqTIGBwi3A2L4DAAfbpbZtmGtGbNE/eZw15b+IDYWRgE7frR4c=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 126,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 142,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 126\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:04:05.589781Z\",\n  \"responseId\": \"FbzIatX_I66BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '1014'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:04:05 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check this summary: The rover Perseverance
+      landed on Mars in February 2021 [5]. Mars has two moons [1]."}], "role": "user"},
+      {"parts": [{"functionCall": {"id": "call_6099", "args": {"query": "Mars"}, "name":
+      "search_notes"}, "thoughtSignature": "AY89a1-roPfKheMLqpxtkx8gf3N2ta4jQ7nDIKl58bw35I8lAiqRjKqOwzy8PZIimdCTVDBJdRqTIGBwi3A2L4DAAfbpbZtmGtGbNE_eZw15b-IDYWRgE7frR4c="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_6099", "name":
+      "search_notes", "response": {"result": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout. The user gives you a summary of their notes. Search
+      the notes to check it. Reply with ACCURATE or INACCURATE as the first word,
+      then one short reason."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns every note whose text contains
+      the query word (case-insensitive), as a list of {id, text}.", "name": "search_notes",
+      "parameters_json_schema": {"type": "object", "required": ["query"], "properties":
+      {"query": {"type": "string", "description": "one word, e.g. ''Mars''"}}}}]}],
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1424'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"ACCURATE
+        Both statements are directly supported by the notes (notes 5 and 1).\",\n
+        \           \"thoughtSignature\": \"AY89a19xBQUGzVJ65akX9OPJp5dT8miSovWzLtm+Lf8ZwkJEoxnXYnLBAFRyFDWoFyCtB09IquuYjanhirz4O5KvAnUZTULVPjld5LIxKkTiQBgitqYtBMGpPhU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 194,\n    \"candidatesTokenCount\":
+        19,\n    \"totalTokenCount\": 213,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 194\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 19\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:04:09.595181Z\",\n  \"responseId\": \"GbzIau2pJP6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '927'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:04:10 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check this summary: Mars has three moons
+      [1] and a day there lasts about 24 hours and 39 minutes [3]."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are Scout. The user gives you
+      a summary of their notes. Search the notes to check it. Reply with ACCURATE
+      or INACCURATE as the first word, then one short reason."}], "role": "user"},
+      "tools": [{"functionDeclarations": [{"description": "Search the user''s notes.
+      Returns every note whose text contains the query word (case-insensitive), as
+      a list of {id, text}.", "name": "search_notes", "parameters_json_schema": {"type":
+      "object", "required": ["query"], "properties": {"query": {"type": "string",
+      "description": "one word, e.g. ''Mars''"}}}}]}], "generationConfig": {"temperature":
+      0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '814'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_502191\"\n            },\n            \"thoughtSignature\": \"AY89a1/sLOzR/vU20Wzvy/8eMYHcew7wcDHf+pYPa3mgJg3Ofj7DuLn5dTDAhb0XWf3gmEj8RPp94aP1VKAVIPUX84JozwHVmH3/PVgqK2zLYV5h2qpoCXAsNYU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 128,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 144,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 128\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:04:13.589407Z\",\n  \"responseId\": \"HbzIat_8I_GLr8kPkOWf8Ag\"\n}\n"
+    headers:
+      content-length:
+      - '1016'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:04:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check this summary: Mars has three moons
+      [1] and a day there lasts about 24 hours and 39 minutes [3]."}], "role": "user"},
+      {"parts": [{"functionCall": {"id": "call_502191", "args": {"query": "Mars"},
+      "name": "search_notes"}, "thoughtSignature": "AY89a1_sLOzR_vU20Wzvy_8eMYHcew7wcDHf-pYPa3mgJg3Ofj7DuLn5dTDAhb0XWf3gmEj8RPp94aP1VKAVIPUX84JozwHVmH3_PVgqK2zLYV5h2qpoCXAsNYU="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_502191", "name":
+      "search_notes", "response": {"result": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout. The user gives you a summary of their notes. Search
+      the notes to check it. Reply with ACCURATE or INACCURATE as the first word,
+      then one short reason."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns every note whose text contains
+      the query word (case-insensitive), as a list of {id, text}.", "name": "search_notes",
+      "parameters_json_schema": {"type": "object", "required": ["query"], "properties":
+      {"query": {"type": "string", "description": "one word, e.g. ''Mars''"}}}}]}],
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1426'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"INACCURATE
+        Mars has two moons, not three.\",\n            \"thoughtSignature\": \"AY89a1+bwiFiN+/chqzGgzr+AMrLYZzJqWn3FAkoBeMj+nSiezZ9BlBnzyfTaHykkpoX6CVkqYo6JqTpSE4JSoqeeAueBFdztqHjtHW0D1GTGqcYdMJX1DjEE7s=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 196,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 208,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 196\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 12\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:04:17.581773Z\",\n  \"responseId\": \"IbzIao3BI_6pr8kPuqTL6QI\"\n}\n"
+    headers:
+      content-length:
+      - '891'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:04:18 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check this summary: The rover Curiosity
+      landed on Mars in February 2021 [5]."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. The user gives you a summary of their notes.
+      Search the notes to check it. Reply with ACCURATE or INACCURATE as the first
+      word, then one short reason."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns every note whose text contains
+      the query word (case-insensitive), as a list of {id, text}.", "name": "search_notes",
+      "parameters_json_schema": {"type": "object", "required": ["query"], "properties":
+      {"query": {"type": "string", "description": "one word, e.g. ''Mars''"}}}}]}],
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '789'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Curiosity\"\n              },\n              \"id\":
+        \"call_139489\"\n            },\n            \"thoughtSignature\": \"AY89a1/8XAUx6HG51FeaVFr+rTsKbfACEaTojQ7IGb+0pAC23sU3CapaopCrr9hFg/PBIVubpx/xsEq888aVcgzEpdcdddYTbaUCiNkIQjhsaImhVS1LKgIjc3M=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 119,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 136,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 119\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 17\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:04:21.587675Z\",\n  \"responseId\": \"JbzIapvvI66BidsPg42q4Qc\"\n}\n"
+    headers:
+      content-length:
+      - '1021'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:04:22 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check this summary: The rover Curiosity
+      landed on Mars in February 2021 [5]."}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_139489", "args": {"query": "Curiosity"}, "name": "search_notes"},
+      "thoughtSignature": "AY89a1_8XAUx6HG51FeaVFr-rTsKbfACEaTojQ7IGb-0pAC23sU3CapaopCrr9hFg_PBIVubpx_xsEq888aVcgzEpdcdddYTbaUCiNkIQjhsaImhVS1LKgIjc3M="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_139489", "name":
+      "search_notes", "response": {"result": []}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are Scout. The user gives you a summary of their notes.
+      Search the notes to check it. Reply with ACCURATE or INACCURATE as the first
+      word, then one short reason."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns every note whose text contains
+      the query word (case-insensitive), as a list of {id, text}.", "name": "search_notes",
+      "parameters_json_schema": {"type": "object", "required": ["query"], "properties":
+      {"query": {"type": "string", "description": "one word, e.g. ''Mars''"}}}}]}],
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1190'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_notes\",\n              \"args\": {\n
+        \               \"query\": \"Mars\"\n              },\n              \"id\":
+        \"call_4800286\"\n            },\n            \"thoughtSignature\": \"AY89a1/SA3hoUJtv02utHFk+CElBng6siuaSUsEHAwoIptnOq7VqkFcjez4cDVgofeExz655/DqJPKIAtMlx2gRFqDe6sqa8THomGY4/TptWHgy4V7p8GObibuw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 137,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 153,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 137\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:04:25.588859Z\",\n  \"responseId\": \"KbzIarv4I_Ov-O4PyvCz4QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1017'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:04:26 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check this summary: The rover Curiosity
+      landed on Mars in February 2021 [5]."}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_139489", "args": {"query": "Curiosity"}, "name": "search_notes"},
+      "thoughtSignature": "AY89a1_8XAUx6HG51FeaVFr-rTsKbfACEaTojQ7IGb-0pAC23sU3CapaopCrr9hFg_PBIVubpx_xsEq888aVcgzEpdcdddYTbaUCiNkIQjhsaImhVS1LKgIjc3M="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_139489", "name":
+      "search_notes", "response": {"result": []}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_4800286", "args": {"query": "Mars"}, "name": "search_notes"}, "thoughtSignature":
+      "AY89a1_SA3hoUJtv02utHFk-CElBng6siuaSUsEHAwoIptnOq7VqkFcjez4cDVgofeExz655_DqJPKIAtMlx2gRFqDe6sqa8THomGY4_TptWHgy4V7p8GObibuw="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"id": "call_4800286", "name":
+      "search_notes", "response": {"result": [{"id": 1, "text": "Mars has two small
+      moons, Phobos and Deimos."}, {"id": 3, "text": "A day on Mars lasts about 24
+      hours and 39 minutes."}, {"id": 5, "text": "The rover Perseverance landed on
+      Mars in February 2021."}]}}}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are Scout. The user gives you a summary of their notes. Search
+      the notes to check it. Reply with ACCURATE or INACCURATE as the first word,
+      then one short reason."}], "role": "user"}, "tools": [{"functionDeclarations":
+      [{"description": "Search the user''s notes. Returns every note whose text contains
+      the query word (case-insensitive), as a list of {id, text}.", "name": "search_notes",
+      "parameters_json_schema": {"type": "object", "required": ["query"], "properties":
+      {"query": {"type": "string", "description": "one word, e.g. ''Mars''"}}}}]}],
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 300}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1804'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.28.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"INACCURATE
+        The rover Perseverance, not Curiosity, landed on Mars in February 2021.\",\n
+        \           \"thoughtSignature\": \"AY89a1/y/oGodIEjZngXdc0KCBZk1FG2cr0uq7nHsDT6UYxsQhmKNtbRL68ga93t6kP5TsrLgWo6RUB4uKfUCK+BWTSHXKd3aMkO2RZRLL77k+iwXRgRdOmuLUw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 205,\n    \"candidatesTokenCount\":
+        22,\n    \"totalTokenCount\": 227,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 205\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 22\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-09T10:04:29.605879Z\",\n  \"responseId\": \"LbzIarf9JPmFidsP3pSoqQI\"\n}\n"
+    headers:
+      content-length:
+      - '932'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Fri, 09 Oct 2026 10:04:30 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1
