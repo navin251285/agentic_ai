@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Login page broken",
+    "body": "Opening /login shows 'Internal Server Error' instead of a login form.\nSteps: open http://127.0.0.1:8000/login.\nExpected: a page with a 'Log in' heading. Actual: HTTP 500.",
+    "label": "bug",
+    "status": "open",
+    "created_at": "2026-09-01T09:00:00+00:00"
+  },
+  {
+    "id": 2,
+    "title": "Search ignores capital letters",
+    "body": "Searching for 'login' finds nothing, although issue #1 is called 'Login page broken'.\nSteps: open /issues?q=login.\nExpected: search does not care about upper or lower case, so #1 is listed. Actual: no results.",
+    "label": "bug",
+    "status": "open",
+    "created_at": "2026-09-02T09:00:00+00:00"
+  },
+  {
+    "id": 3,
+    "title": "Typo on the About page: 'Trakcer' should be 'Tracker'",
+    "body": "The About page says 'Pocket Trakcer'.\nExpected: 'Pocket Tracker' everywhere.",
+    "label": "docs",
+    "status": "open",
+    "created_at": "2026-09-03T09:00:00+00:00"
+  },
+  {
+    "id": 4,
+    "title": "Blank titles are accepted",
+    "body": "Creating an issue whose title is only spaces works and leaves a row with an empty title.\nSteps: New issue, type three spaces as the title, press 'Create issue'.\nExpected: HTTP 400 with the message 'Title is required', and no issue is created. Actual: the issue is created.",
+    "label": "bug",
+    "status": "open",
+    "created_at": "2026-09-04T09:00:00+00:00"
+  },
+  {
+    "id": 5,
+    "title": "Open-issue count includes closed issues",
+    "body": "The issue list heading says '10 open issues' although issue #10 is closed.\nSteps: open /issues and compare the heading with the Status column.\nExpected: the heading counts only open issues (9 on a fresh database).",
+    "label": "bug",
+    "status": "open",
+    "created_at": "2026-09-05T09:00:00+00:00"
+  },
+  {
+    "id": 6,
+    "title": "HTML in comments is rendered instead of shown as text",
+    "body": "A comment containing <b>hello</b> shows 'hello' in bold. Anyone can inject markup or scripts into the page this way.\nSteps: add the comment <b>hello</b> to any issue.\nExpected: the comment shows the literal text <b>hello</b>.",
+    "label": "bug",
+    "status": "open",
+    "created_at": "2026-09-06T09:00:00+00:00"
+  },
+  {
+    "id": 7,
+    "title": "Closing an issue resets its label",
+    "body": "When I close an issue its label disappears.\nSteps: open issue #2 (label 'bug') and press 'Close issue'.\nExpected: the issue is closed and still labelled 'bug'. Actual: the label is empty.",
+    "label": "bug",
+    "status": "open",
+    "created_at": "2026-09-07T09:00:00+00:00"
+  },
+  {
+    "id": 8,
+    "title": "Saved filters",
+    "body": "Let me save a search (text, status and label) under a name and open it again from the issue list.",
+    "label": "feature",
+    "status": "open",
+    "created_at": "2026-09-08T09:00:00+00:00"
+  },
+  {
+    "id": 9,
+    "title": "Due dates on issues",
+    "body": "Each issue should have an optional due date, shown on the list, with overdue issues easy to spot.",
+    "label": "feature",
+    "status": "open",
+    "created_at": "2026-09-09T09:00:00+00:00"
+  },
+  {
+    "id": 10,
+    "title": "Explain the labels on the About page",
+    "body": "New users do not know what 'bug', 'docs' and 'feature' mean.",
+    "label": "docs",
+    "status": "closed",
+    "created_at": "2026-09-10T09:00:00+00:00"
+  }
+]

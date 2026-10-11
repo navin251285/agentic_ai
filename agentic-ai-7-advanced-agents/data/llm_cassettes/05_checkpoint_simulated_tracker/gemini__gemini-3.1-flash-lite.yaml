@@ -1,0 +1,337 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Sun, 11 Oct 2026 16:53:54 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/project/project-id
+  response:
+    body:
+      string: your-project-id
+    headers:
+      Content-Length:
+      - '13'
+      Content-Type:
+      - application/text
+      Date:
+      - Sun, 11 Oct 2026 16:53:54 GMT
+      ETag:
+      - da212b6af946bea
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+  response:
+    body:
+      string: '{"aliases":["default"],"email":"redacted@example.iam.gserviceaccount.com","scopes":["https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]}'
+    headers:
+      Content-Length:
+      - '194'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 11 Oct 2026 16:53:54 GMT
+      ETag:
+      - 9d115f94fb876a8
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/at cred-type/mds
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+  response:
+    body:
+      string: '{"access_token":"REDACTED","expires_in":475,"token_type":"Bearer"}'
+    headers:
+      Content-Length:
+      - '1082'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 11 Oct 2026 16:53:54 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "You are a triage agent for Pocket Tracker.
+      Triage issues #1, #2 and #3.\nTriage policy: label ''docs'' if the issue is
+      about text on a page, otherwise ''bug''. Priority ''high'' if users cannot log
+      in, otherwise ''low''. Add a one-line comment. Triage never closes issues and
+      never edits pages.\nIn your first response, call triage_issue once for each
+      of the three issues (all tool calls at once). After you see the tool results,
+      reply with a one-line summary.\nCurrent issues:\n#1 [open] label=- priority=-
+      comments=0 | Login page broken\n#2 [open] label=- priority=- comments=0 | Search
+      ignores capital letters\n#3 [open] label=- priority=- comments=0 | Typo on the
+      About page: ''Trakcer'' should be ''Tracker''"}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Set an issue''s label
+      (''bug'' or ''docs'') and priority (''high'' or ''low''), and add a comment.",
+      "name": "triage_issue", "parameters": {"properties": {"issue_id": {"type": "INTEGER"},
+      "label": {"type": "STRING"}, "priority": {"type": "STRING"}, "comment": {"type":
+      "STRING"}}, "required": ["issue_id", "label", "priority", "comment"], "type":
+      "OBJECT"}}, {"description": "Close an issue with a short comment explaining
+      the fix.", "name": "close_issue", "parameters": {"properties": {"issue_id":
+      {"type": "INTEGER"}, "comment": {"type": "STRING"}}, "required": ["issue_id",
+      "comment"], "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0,
+      "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1499'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/your-project-id/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"triage_issue\",\n              \"args\": {\n
+        \               \"priority\": \"high\",\n                \"label\": \"bug\",\n
+        \               \"comment\": \"The login page is currently inaccessible for
+        users.\",\n                \"issue_id\": 1\n              },\n              \"id\":
+        \"call_220184\"\n            },\n            \"thoughtSignature\": \"AY89a1+h6VYAavfQrJzmNqCb+9eSs4dpHY3qP486Uk8PmAk2V4EH01eqs0ZRavkwVcivhFvrnwM7JmMbYSvcwRWEHNxhVRqgRerHABwlwllzOmovSXVPwwCk\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"triage_issue\",\n              \"args\": {\n                \"priority\":
+        \"low\",\n                \"comment\": \"Search functionality is case-insensitive,
+        which is a bug.\",\n                \"issue_id\": 2,\n                \"label\":
+        \"bug\"\n              },\n              \"id\": \"call_220185\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"triage_issue\",\n              \"args\": {\n                \"priority\":
+        \"low\",\n                \"comment\": \"Correcting a spelling error on the
+        About page.\",\n                \"issue_id\": 3,\n                \"label\":
+        \"docs\"\n              },\n              \"id\": \"call_220186\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 281,\n    \"candidatesTokenCount\":
+        133,\n    \"totalTokenCount\": 414,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 281\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 133\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-11T16:53:54.494187Z\",\n  \"responseId\": \"Ir_LauuUHuTx-O4Pj7r36AQ\"\n}\n"
+    headers:
+      content-length:
+      - '1886'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 16:53:55 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "You are a triage agent for Pocket Tracker.
+      Triage issues #1, #2 and #3.\nTriage policy: label ''docs'' if the issue is
+      about text on a page, otherwise ''bug''. Priority ''high'' if users cannot log
+      in, otherwise ''low''. Add a one-line comment. Triage never closes issues and
+      never edits pages.\nIn your first response, call triage_issue once for each
+      of the three issues (all tool calls at once). After you see the tool results,
+      reply with a one-line summary.\nCurrent issues:\n#1 [open] label=- priority=-
+      comments=0 | Login page broken\n#2 [open] label=- priority=- comments=0 | Search
+      ignores capital letters\n#3 [open] label=- priority=- comments=0 | Typo on the
+      About page: ''Trakcer'' should be ''Tracker''"}], "role": "user"}, {"parts":
+      [{"functionCall": {"args": {"priority": "high", "label": "bug", "comment": "The
+      login page is currently inaccessible for users.", "issue_id": 1}, "name": "triage_issue"},
+      "thoughtSignature": "AY89a1-h6VYAavfQrJzmNqCb-9eSs4dpHY3qP486Uk8PmAk2V4EH01eqs0ZRavkwVcivhFvrnwM7JmMbYSvcwRWEHNxhVRqgRerHABwlwllzOmovSXVPwwCk"},
+      {"functionCall": {"args": {"priority": "low", "comment": "Search functionality
+      is case-insensitive, which is a bug.", "issue_id": 2, "label": "bug"}, "name":
+      "triage_issue"}}, {"functionCall": {"args": {"priority": "low", "comment": "Correcting
+      a spelling error on the About page.", "issue_id": 3, "label": "docs"}, "name":
+      "triage_issue"}}], "role": "model"}, {"parts": [{"functionResponse": {"name":
+      "triage_issue", "response": {"output": "OK: #1 label=bug priority=high"}}},
+      {"functionResponse": {"name": "triage_issue", "response": {"output": "OK: #2
+      label=bug priority=low"}}}, {"functionResponse": {"name": "triage_issue", "response":
+      {"output": "OK: #3 label=docs priority=low"}}}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Set an issue''s label
+      (''bug'' or ''docs'') and priority (''high'' or ''low''), and add a comment.",
+      "name": "triage_issue", "parameters": {"properties": {"issue_id": {"type": "INTEGER"},
+      "label": {"type": "STRING"}, "priority": {"type": "STRING"}, "comment": {"type":
+      "STRING"}}, "required": ["issue_id", "label", "priority", "comment"], "type":
+      "OBJECT"}}, {"description": "Close an issue with a short comment explaining
+      the fix.", "name": "close_issue", "parameters": {"properties": {"issue_id":
+      {"type": "INTEGER"}, "comment": {"type": "STRING"}}, "required": ["issue_id",
+      "comment"], "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0,
+      "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2532'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/your-project-id/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"All
+        three issues have been successfully triaged according to the established policy.\",\n
+        \           \"thoughtSignature\": \"AY89a18FBwt0HLQbG/cd9GDSI6CCWbp0jVkaREi3fL4/SJColvlioYAxYTDcjRJw1pA2VO+XJ30b/Se9lkG6QRsS8Jgn6emlnhUZJQymd/HvXhZDDmacZzl0\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 420,\n    \"candidatesTokenCount\":
+        14,\n    \"totalTokenCount\": 434,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 420\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 14\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-11T16:53:58.483412Z\",\n  \"responseId\": \"Jr_LatTAHar87bEPpevKkQE\"\n}\n"
+    headers:
+      content-length:
+      - '930'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 16:53:59 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

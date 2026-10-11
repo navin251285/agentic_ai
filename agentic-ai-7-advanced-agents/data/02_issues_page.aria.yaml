@@ -1,0 +1,47 @@
+- banner:
+  - strong: Pocket Tracker
+  - navigation "Main":
+    - link "Issues":
+      - /url: /issues
+    - text: ·
+    - link "Board":
+      - /url: /board
+    - text: ·
+    - link "About":
+      - /url: /about
+- main:
+  - heading "Issues" [level=1]
+  - text: Search issues
+  - searchbox "Search issues"
+  - button "New issue"
+  - button:
+    - img
+  - table:
+    - rowgroup:
+      - row "# Title Status Comments":
+        - columnheader "#"
+        - columnheader "Title"
+        - columnheader "Status"
+        - columnheader "Comments"
+    - rowgroup:
+      - row "1 Login page broken open 0":
+        - cell "1"
+        - cell "Login page broken":
+          - link "Login page broken":
+            - /url: /issues/1
+        - cell "open"
+        - cell "0"
+      - row "2 Search ignores capital letters open 0":
+        - cell "2"
+        - cell "Search ignores capital letters":
+          - link "Search ignores capital letters":
+            - /url: /issues/2
+        - cell "open"
+        - cell "0"
+      - 'row "3 Typo on the About page: ''Trakcer'' should be ''Tracker'' closed 1"':
+        - cell "3"
+        - 'cell "Typo on the About page: ''Trakcer'' should be ''Tracker''"':
+          - 'link "Typo on the About page: ''Trakcer'' should be ''Tracker''"':
+            - /url: /issues/3
+        - cell "closed"
+        - cell "1"

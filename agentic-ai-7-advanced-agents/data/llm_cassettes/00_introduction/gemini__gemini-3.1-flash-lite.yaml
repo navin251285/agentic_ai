@@ -1,0 +1,389 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Sun, 11 Oct 2026 16:29:05 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/project/project-id
+  response:
+    body:
+      string: your-project-id
+    headers:
+      Content-Length:
+      - '13'
+      Content-Type:
+      - application/text
+      Date:
+      - Sun, 11 Oct 2026 16:29:05 GMT
+      ETag:
+      - da212b6af946bea
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+  response:
+    body:
+      string: '{"aliases":["default"],"email":"redacted@example.iam.gserviceaccount.com","scopes":["https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]}'
+    headers:
+      Content-Length:
+      - '194'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 11 Oct 2026 16:29:05 GMT
+      ETag:
+      - 9d115f94fb876a8
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/at cred-type/mds
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+  response:
+    body:
+      string: '{"access_token":"REDACTED","expires_in":1964,"token_type":"Bearer"}'
+    headers:
+      Content-Length:
+      - '1083'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 11 Oct 2026 16:29:05 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "You control a web browser. Task: close
+      issue #3.\nCurrent page:\n- heading \"Pocket Tracker\" [level=1]\n- textbox
+      \"Search issues\" [ref=e2]\n- list:\n  - listitem: ''#1 Login page broken''
+      button \"Close issue #1\" [ref=e5]\n  - listitem: ''#2 Search ignores capital
+      letters'' button \"Close issue #2\" [ref=e7]\n  - listitem: ''#3 Typo on the
+      About page'' button \"Close issue #3\" [ref=e9]"}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Click the page element
+      with this ref, e.g. ''e5''.", "name": "click", "parameters": {"properties":
+      {"ref": {"type": "STRING"}}, "required": ["ref"], "type": "OBJECT"}}, {"description":
+      "Type text into the textbox with this ref.", "name": "type_text", "parameters":
+      {"properties": {"ref": {"type": "STRING"}, "text": {"type": "STRING"}}, "required":
+      ["ref", "text"], "type": "OBJECT"}}]}], "toolConfig": {"functionCallingConfig":
+      {"allowed_function_names": ["click", "type_text"], "mode": "ANY"}}, "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1077'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/your-project-id/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"click\",\n              \"args\": {\n                \"ref\":
+        \"e9\"\n              },\n              \"id\": \"call_314377\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1+A+WVH+CS5lHr3XIdVFnik8pz3S65ISxPh2mI4yeHWzvzQYK+OU+43O9ssxNa0is3ZLpvVAYlwMkfx+4ftwkUKYM8a0ivxZQegrxoxSWJk3M6s1TL/\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 186,\n    \"candidatesTokenCount\":
+        15,\n    \"totalTokenCount\": 201,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 186\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 15\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-11T16:29:05.439689Z\",\n  \"responseId\": \"UbnLaonrGqOar8kPusjO-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1001'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 16:29:06 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "You are a coding agent. Fix issue #2:
+      search should ignore capital letters.\nFile tracker/search.py:\ndef search(issues,
+      query):\n    return [i for i in issues if query in i[\"title\"]]\n\nTest output:\nFAILED
+      test_search_is_case_insensitive - AssertionError: search(''search'') returned
+      [], expected [2]"}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Replace old_string (must appear exactly once) with new_string
+      in the file at path.", "name": "edit_file", "parameters": {"properties": {"path":
+      {"type": "STRING"}, "old_string": {"type": "STRING"}, "new_string": {"type":
+      "STRING"}}, "required": ["path", "old_string", "new_string"], "type": "OBJECT"}}]}],
+      "toolConfig": {"functionCallingConfig": {"allowed_function_names": ["edit_file"],
+      "mode": "ANY"}}, "generationConfig": {"temperature": 0.0, "candidateCount":
+      1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '902'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/your-project-id/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"edit_file\",\n              \"args\": {\n                \"new_string\":
+        \"def search(issues, query):\\n    query = query.lower()\\n    return [i for
+        i in issues if query in i[\\\"title\\\"].lower()]\",\n                \"old_string\":
+        \"def search(issues, query):\\n    return [i for i in issues if query in i[\\\"title\\\"]]\",\n
+        \               \"path\": \"tracker/search.py\"\n              },\n              \"id\":
+        \"call_159096\"\n            },\n            \"thoughtSignature\": \"AY89a18cZY+z5X3885+Y4kKfpctvdE/2l0Xa4XHWBSCUz3kOnxdHwi928bnR2veso7U9D+hOWATDk26Udz1G7Aqv2OfjmrhDJdDBQEGTHxwdV0TjkoTKhIHg\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 130,\n    \"candidatesTokenCount\":
+        90,\n    \"totalTokenCount\": 220,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 130\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 90\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-11T16:29:09.431890Z\",\n  \"responseId\": \"VbnLapKuGqr87bEPpevKkQE\"\n}\n"
+    headers:
+      content-length:
+      - '1290'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 16:29:10 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "You are a long-running agent about to
+      run out of context. Write the progress note.\nLog:\nstep 1: read issues.json,
+      5 open issues\nstep 2: closed #3 in the browser, verified the list shows it
+      closed\nstep 3: fixed #2 (search case), tests pass, committed\nstep 4: started
+      #1 (login page): error comes from templates/login.html line 12\nstep 5: tried
+      changing the form action, 2 tests now fail in test_auth.py\nstep 6: context
+      window 90% full, must hand over"}], "role": "user"}], "safetySettings": [],
+      "tools": [{"functionDeclarations": [{"description": "Save a progress note for
+      the next session.", "name": "write_progress_note", "parameters": {"properties":
+      {"done": {"items": {"type": "STRING"}, "type": "ARRAY"}, "in_progress": {"type":
+      "STRING"}, "next_steps": {"items": {"type": "STRING"}, "type": "ARRAY"}, "warnings":
+      {"items": {"type": "STRING"}, "type": "ARRAY"}}, "required": ["done", "in_progress",
+      "next_steps", "warnings"], "type": "OBJECT"}}]}], "toolConfig": {"functionCallingConfig":
+      {"allowed_function_names": ["write_progress_note"], "mode": "ANY"}}, "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1166'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/your-project-id/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"write_progress_note\",\n              \"args\":
+        {\n                \"warnings\": [\n                  \"Context window is
+        at 90% capacity; immediate handover required to prevent data loss.\"\n                ],\n
+        \               \"in_progress\": \"Debugging issue #1 (login page). Identified
+        error source at templates/login.html line 12. Attempted a fix by modifying
+        the form action, but this caused 2 regressions in test_auth.py.\",\n                \"next_steps\":
+        [\n                  \"Revert or investigate the form action change in templates/login.html
+        to resolve the 2 failing tests in test_auth.py.\",\n                  \"Continue
+        debugging the root cause of the login page error.\",\n                  \"Address
+        remaining open issues (#4 and #5).\"\n                ],\n                \"done\":
+        [\n                  \"Read issues.json (5 open issues identified)\",\n                  \"Closed
+        issue #3 (verified in UI)\",\n                  \"Fixed issue #2 (search case)
+        and verified with passing tests; changes committed\"\n                ]\n
+        \             },\n              \"id\": \"call_1079657\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18pDB505r4s6D0qLa0TifRxjbHTqibjv1NJ79j6HoGUp6HCK4oKkKxdsTN9voo038WyW/CFkTW9F4dXtyc7JtcVU980lSfjUK5s55SEjdL7hM5VFoVo\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 189,\n    \"candidatesTokenCount\":
+        195,\n    \"totalTokenCount\": 384,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 189\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 195\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-11T16:29:13.437677Z\",\n  \"responseId\": \"WbnLaq3bGuTx-O4Pj7r36AQ\"\n}\n"
+    headers:
+      content-length:
+      - '1956'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 16:29:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

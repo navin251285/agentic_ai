@@ -1,0 +1,644 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Sun, 11 Oct 2026 18:51:21 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/project/project-id
+  response:
+    body:
+      string: your-project-id
+    headers:
+      Content-Length:
+      - '13'
+      Content-Type:
+      - application/text
+      Date:
+      - Sun, 11 Oct 2026 18:51:21 GMT
+      ETag:
+      - da212b6af946bea
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+  response:
+    body:
+      string: '{"aliases":["default"],"email":"redacted@example.iam.gserviceaccount.com","scopes":["https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]}'
+    headers:
+      Content-Length:
+      - '194'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 11 Oct 2026 18:51:21 GMT
+      ETag:
+      - 9d115f94fb876a8
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/at cred-type/mds
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+  response:
+    body:
+      string: '{"access_token":"REDACTED","expires_in":446,"token_type":"Bearer"}'
+    headers:
+      Content-Length:
+      - '1082'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 11 Oct 2026 18:51:21 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Reproduce this bug report.\n#7 Closing
+      an issue resets its label\nWhen I close an issue its label disappears.\nSteps:
+      open issue #2 (label ''bug'') and press ''Close issue''.\nExpected: the issue
+      is closed and still labelled ''bug''. Actual: the label is empty.\n\nStep 0.
+      URL: /issues\nPage (aria snapshot, act by ref):\n- generic [active] [ref=e1]:\n  -
+      banner [ref=e2]:\n    - strong [ref=e3]: Pocket Tracker\n    - navigation \"Main\"
+      [ref=e4]:\n      - link \"Issues\" [ref=e5] [cursor=pointer]:\n        - /url:
+      /issues\n      - text: \u00b7\n      - link \"New issue\" [ref=e6] [cursor=pointer]:\n        -
+      /url: /issues/new\n      - text: \u00b7\n      - link \"About\" [ref=e7] [cursor=pointer]:\n        -
+      /url: /about\n  - main [ref=e8]:\n    - heading \"Issues\" [level=1] [ref=e9]\n    -
+      paragraph [ref=e10]: 10 open issues\n    - search \"Filter issues\" [ref=e11]:\n      -
+      text: Search\n      - searchbox \"Search\" [ref=e12]\n      - text: Status\n      -
+      combobox \"Status\" [ref=e13]:\n        - option \"any\" [selected]\n        -
+      option \"open\"\n        - option \"closed\"\n      - text: Label\n      - combobox
+      \"Label\" [ref=e14]:\n        - option \"any\" [selected]\n        - option
+      \"bug\"\n        - option \"docs\"\n        - option \"feature\"\n      - button
+      \"Filter\" [ref=e15]\n    - table [ref=e16]:\n      - caption [ref=e17]: 10
+      issues shown\n      - rowgroup [ref=e18]:\n        - row [ref=e19]:\n          -
+      columnheader \"#\" [ref=e20]\n          - columnheader \"Title\" [ref=e21]\n          -
+      columnheader \"Label\" [ref=e22]\n          - columnheader \"Status\" [ref=e23]\n          -
+      columnheader \"Comments\" [ref=e24]\n      - rowgroup [ref=e25]:\n        -
+      row [ref=e26]:\n          - cell \"1\" [ref=e27]\n          - cell [ref=e28]:\n            -
+      link \"Login page broken\" [ref=e29] [cursor=pointer]:\n              - /url:
+      /issues/1\n          - cell \"bug\" [ref=e30]\n          - cell \"open\" [ref=e31]\n          -
+      cell \"0\" [ref=e32]\n        - row [ref=e33]:\n          - cell \"2\" [ref=e34]\n          -
+      cell [ref=e35]:\n            - link \"Search ignores capital letters\" [ref=e36]
+      [cursor=pointer]:\n              - /url: /issues/2\n          - cell \"bug\"
+      [ref=e37]\n          - cell \"open\" [ref=e38]\n          - cell \"0\" [ref=e39]\n        -
+      row [ref=e40]:\n          - cell \"3\" [ref=e41]\n          - cell [ref=e42]:\n            -
+      ''link \"Typo on the About page: ''''Trakcer'''' should be ''''Tracker''''\"
+      [ref=e43] [cursor=pointer]'':\n              - /url: /issues/3\n          -
+      cell \"docs\" [ref=e44]\n          - cell \"open\" [ref=e45]\n          - cell
+      \"0\" [ref=e46]\n        - row [ref=e47]:\n          - cell \"4\" [ref=e48]\n          -
+      cell [ref=e49]:\n            - link \"Blank titles are accepted\" [ref=e50]
+      [cursor=pointer]:\n              - /url: /issues/4\n          - cell \"bug\"
+      [ref=e51]\n          - cell \"open\" [ref=e52]\n          - cell \"0\" [ref=e53]\n        -
+      row [ref=e54]:\n          - cell \"5\" [ref=e55]\n          - cell [ref=e56]:\n            -
+      link \"Open-issue count includes closed issues\" [ref=e57] [cursor=pointer]:\n              -
+      /url: /issues/5\n          - cell \"bug\" [ref=e58]\n          - cell \"open\"
+      [ref=e59]\n          - cell \"0\" [ref=e60]\n        - row [ref=e61]:\n          -
+      cell \"6\" [ref=e62]\n          - cell [ref=e63]:\n            - link \"HTML
+      in comments is rendered instead of shown as text\" [ref=e64] [cursor=pointer]:\n              -
+      /url: /issues/6\n          - cell \"bug\" [ref=e65]\n          - cell \"open\"
+      [ref=e66]\n          - cell \"0\" [ref=e67]\n        - row [ref=e68]:\n          -
+      cell \"7\" [ref=e69]\n          - cell [ref=e70]:\n            - link \"Closing
+      an issue resets its label\" [ref=e71] [cursor=pointer]:\n              - /url:
+      /issues/7\n          - cell \"bug\" [ref=e72]\n          - cell \"open\" [ref=e73]\n          -
+      cell \"0\" [ref=e74]\n        - row [ref=e75]:\n          - cell \"8\" [ref=e76]\n          -
+      cell [ref=e77]:\n            - link \"Saved filters\" [ref=e78] [cursor=pointer]:\n              -
+      /url: /issues/8\n          - cell \"feature\" [ref=e79]\n          - cell \"open\"
+      [ref=e80]\n          - cell \"0\" [ref=e81]\n        - row [ref=e82]:\n          -
+      cell \"9\" [ref=e83]\n          - cell [ref=e84]:\n            - link \"Due
+      dates on issues\" [ref=e85] [cursor=pointer]:\n              - /url: /issues/9\n          -
+      cell \"feature\" [ref=e86]\n          - cell \"open\" [ref=e87]\n          -
+      cell \"0\" [ref=e88]\n        - row [ref=e89]:\n          - cell \"10\" [ref=e90]\n          -
+      cell [ref=e91]:\n            - link \"Explain the labels on the About page\"
+      [ref=e92] [cursor=pointer]:\n              - /url: /issues/10\n          - cell
+      \"docs\" [ref=e93]\n          - cell \"closed\" [ref=e94]\n          - cell
+      \"0\" [ref=e95]"}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are a QA agent. You reproduce bug reports in the Pocket Tracker web app
+      through its aria snapshot. Follow the report''s steps one at a time and do nothing
+      else: no fixes, no other issues. Use only refs from the latest snapshot; after
+      a click you get a new snapshot. When you have seen the result of the last step,
+      call report once, citing the step number whose page shows it."}]}, "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Click the button or
+      link with this ref.", "name": "click", "parameters": {"properties": {"ref":
+      {"type": "STRING"}}, "required": ["ref"], "type": "OBJECT"}}, {"description":
+      "Replace the text in the textbox with this ref.", "name": "fill", "parameters":
+      {"properties": {"ref": {"type": "STRING"}, "text": {"type": "STRING"}}, "required":
+      ["ref", "text"], "type": "OBJECT"}}, {"description": "Choose the option with
+      this visible label in the combobox with this ref.", "name": "select_option",
+      "parameters": {"properties": {"ref": {"type": "STRING"}, "option": {"type":
+      "STRING"}}, "required": ["ref", "option"], "type": "OBJECT"}}, {"description":
+      "File your verdict and end the run. evidence_step: the step number whose page
+      shows the actual result.", "name": "report", "parameters": {"properties": {"reproduced":
+      {"type": "BOOLEAN"}, "expected": {"type": "STRING"}, "actual": {"type": "STRING"},
+      "evidence_step": {"type": "INTEGER"}}, "required": ["reproduced", "expected",
+      "actual", "evidence_step"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '6494'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/your-project-id/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"click\",\n              \"args\": {\n                \"ref\":
+        \"e36\"\n              },\n              \"id\": \"call_161681\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a19CdfreKd6b7nnNSLN4LS2GzX4paT0Tq/uQAH/1vAQzwISEbjKX2etnwREX9jlD/PNFRIsEwbyV6rc5rHLkjaDfLds2A5+JgPy91ekG4jbNyP1g/3DG\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 1906,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 1922,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 1906\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-11T18:51:21.905274Z\",\n  \"responseId\": \"qdrLarqgN6r87bEPpevKkQE\"\n}\n"
+    headers:
+      content-length:
+      - '1005'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 18:51:22 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Reproduce this bug report.\n#7 Closing
+      an issue resets its label\nWhen I close an issue its label disappears.\nSteps:
+      open issue #2 (label ''bug'') and press ''Close issue''.\nExpected: the issue
+      is closed and still labelled ''bug''. Actual: the label is empty.\n\nStep 0.
+      URL: /issues\nPage (aria snapshot, act by ref):\n- generic [active] [ref=e1]:\n  -
+      banner [ref=e2]:\n    - strong [ref=e3]: Pocket Tracker\n    - navigation \"Main\"
+      [ref=e4]:\n      - link \"Issues\" [ref=e5] [cursor=pointer]:\n        - /url:
+      /issues\n      - text: \u00b7\n      - link \"New issue\" [ref=e6] [cursor=pointer]:\n        -
+      /url: /issues/new\n      - text: \u00b7\n      - link \"About\" [ref=e7] [cursor=pointer]:\n        -
+      /url: /about\n  - main [ref=e8]:\n    - heading \"Issues\" [level=1] [ref=e9]\n    -
+      paragraph [ref=e10]: 10 open issues\n    - search \"Filter issues\" [ref=e11]:\n      -
+      text: Search\n      - searchbox \"Search\" [ref=e12]\n      - text: Status\n      -
+      combobox \"Status\" [ref=e13]:\n        - option \"any\" [selected]\n        -
+      option \"open\"\n        - option \"closed\"\n      - text: Label\n      - combobox
+      \"Label\" [ref=e14]:\n        - option \"any\" [selected]\n        - option
+      \"bug\"\n        - option \"docs\"\n        - option \"feature\"\n      - button
+      \"Filter\" [ref=e15]\n    - table [ref=e16]:\n      - caption [ref=e17]: 10
+      issues shown\n      - rowgroup [ref=e18]:\n        - row [ref=e19]:\n          -
+      columnheader \"#\" [ref=e20]\n          - columnheader \"Title\" [ref=e21]\n          -
+      columnheader \"Label\" [ref=e22]\n          - columnheader \"Status\" [ref=e23]\n          -
+      columnheader \"Comments\" [ref=e24]\n      - rowgroup [ref=e25]:\n        -
+      row [ref=e26]:\n          - cell \"1\" [ref=e27]\n          - cell [ref=e28]:\n            -
+      link \"Login page broken\" [ref=e29] [cursor=pointer]:\n              - /url:
+      /issues/1\n          - cell \"bug\" [ref=e30]\n          - cell \"open\" [ref=e31]\n          -
+      cell \"0\" [ref=e32]\n        - row [ref=e33]:\n          - cell \"2\" [ref=e34]\n          -
+      cell [ref=e35]:\n            - link \"Search ignores capital letters\" [ref=e36]
+      [cursor=pointer]:\n              - /url: /issues/2\n          - cell \"bug\"
+      [ref=e37]\n          - cell \"open\" [ref=e38]\n          - cell \"0\" [ref=e39]\n        -
+      row [ref=e40]:\n          - cell \"3\" [ref=e41]\n          - cell [ref=e42]:\n            -
+      ''link \"Typo on the About page: ''''Trakcer'''' should be ''''Tracker''''\"
+      [ref=e43] [cursor=pointer]'':\n              - /url: /issues/3\n          -
+      cell \"docs\" [ref=e44]\n          - cell \"open\" [ref=e45]\n          - cell
+      \"0\" [ref=e46]\n        - row [ref=e47]:\n          - cell \"4\" [ref=e48]\n          -
+      cell [ref=e49]:\n            - link \"Blank titles are accepted\" [ref=e50]
+      [cursor=pointer]:\n              - /url: /issues/4\n          - cell \"bug\"
+      [ref=e51]\n          - cell \"open\" [ref=e52]\n          - cell \"0\" [ref=e53]\n        -
+      row [ref=e54]:\n          - cell \"5\" [ref=e55]\n          - cell [ref=e56]:\n            -
+      link \"Open-issue count includes closed issues\" [ref=e57] [cursor=pointer]:\n              -
+      /url: /issues/5\n          - cell \"bug\" [ref=e58]\n          - cell \"open\"
+      [ref=e59]\n          - cell \"0\" [ref=e60]\n        - row [ref=e61]:\n          -
+      cell \"6\" [ref=e62]\n          - cell [ref=e63]:\n            - link \"HTML
+      in comments is rendered instead of shown as text\" [ref=e64] [cursor=pointer]:\n              -
+      /url: /issues/6\n          - cell \"bug\" [ref=e65]\n          - cell \"open\"
+      [ref=e66]\n          - cell \"0\" [ref=e67]\n        - row [ref=e68]:\n          -
+      cell \"7\" [ref=e69]\n          - cell [ref=e70]:\n            - link \"Closing
+      an issue resets its label\" [ref=e71] [cursor=pointer]:\n              - /url:
+      /issues/7\n          - cell \"bug\" [ref=e72]\n          - cell \"open\" [ref=e73]\n          -
+      cell \"0\" [ref=e74]\n        - row [ref=e75]:\n          - cell \"8\" [ref=e76]\n          -
+      cell [ref=e77]:\n            - link \"Saved filters\" [ref=e78] [cursor=pointer]:\n              -
+      /url: /issues/8\n          - cell \"feature\" [ref=e79]\n          - cell \"open\"
+      [ref=e80]\n          - cell \"0\" [ref=e81]\n        - row [ref=e82]:\n          -
+      cell \"9\" [ref=e83]\n          - cell [ref=e84]:\n            - link \"Due
+      dates on issues\" [ref=e85] [cursor=pointer]:\n              - /url: /issues/9\n          -
+      cell \"feature\" [ref=e86]\n          - cell \"open\" [ref=e87]\n          -
+      cell \"0\" [ref=e88]\n        - row [ref=e89]:\n          - cell \"10\" [ref=e90]\n          -
+      cell [ref=e91]:\n            - link \"Explain the labels on the About page\"
+      [ref=e92] [cursor=pointer]:\n              - /url: /issues/10\n          - cell
+      \"docs\" [ref=e93]\n          - cell \"closed\" [ref=e94]\n          - cell
+      \"0\" [ref=e95]"}], "role": "user"}, {"parts": [{"functionCall": {"args": {"ref":
+      "e36"}, "name": "click"}, "thoughtSignature": "AY89a19CdfreKd6b7nnNSLN4LS2GzX4paT0Tq_uQAH_1vAQzwISEbjKX2etnwREX9jlD_PNFRIsEwbyV6rc5rHLkjaDfLds2A5-JgPy91ekG4jbNyP1g_3DG"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "click", "response":
+      {"output": "ok: click link ''Search ignores capital letters''"}}}], "role":
+      "user"}, {"parts": [{"text": "New observation after your actions:\nStep 1. URL:
+      /issues/2\nPage (aria snapshot, act by ref):\n- generic [active] [ref=f1e1]:\n  -
+      banner [ref=f1e2]:\n    - strong [ref=f1e3]: Pocket Tracker\n    - navigation
+      \"Main\" [ref=f1e4]:\n      - link \"Issues\" [ref=f1e5] [cursor=pointer]:\n        -
+      /url: /issues\n      - text: \u00b7\n      - link \"New issue\" [ref=f1e6] [cursor=pointer]:\n        -
+      /url: /issues/new\n      - text: \u00b7\n      - link \"About\" [ref=f1e7] [cursor=pointer]:\n        -
+      /url: /about\n  - main [ref=f1e8]:\n    - heading \"#2 Search ignores capital
+      letters\" [level=1] [ref=f1e9]\n    - generic [ref=f1e10]:\n      - term [ref=f1e11]:
+      Status\n      - definition [ref=f1e12]: open\n      - term [ref=f1e13]: Label\n      -
+      definition [ref=f1e14]: bug\n      - term [ref=f1e15]: Created\n      - definition
+      [ref=f1e16]: 2026-09-02T09:00:00+00:00\n    - paragraph [ref=f1e17]: \"Searching
+      for ''login'' finds nothing, although issue #1 is called ''Login page broken''.
+      Steps: open /issues?q=login. Expected: search does not care about upper or lower
+      case, so #1 is listed. Actual: no results.\"\n    - form \"Close issue\" [ref=f1e18]:\n      -
+      button \"Close issue\" [ref=f1e19]\n    - form \"Change label\" [ref=f1e20]:\n      -
+      text: Label\n      - combobox \"Label\" [ref=f1e21]:\n        - option \"none\"\n        -
+      option \"bug\" [selected]\n        - option \"docs\"\n        - option \"feature\"\n      -
+      button \"Save label\" [ref=f1e22]\n    - heading \"Comments\" [level=2] [ref=f1e23]\n    -
+      paragraph [ref=f1e24]: No comments yet.\n    - form \"Add comment\" [ref=f1e25]:\n      -
+      text: Comment\n      - textbox \"Comment\" [ref=f1e26]\n      - button \"Add
+      comment\" [ref=f1e27]"}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are a QA agent. You reproduce bug reports in the Pocket Tracker web app
+      through its aria snapshot. Follow the report''s steps one at a time and do nothing
+      else: no fixes, no other issues. Use only refs from the latest snapshot; after
+      a click you get a new snapshot. When you have seen the result of the last step,
+      call report once, citing the step number whose page shows it."}]}, "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Click the button or
+      link with this ref.", "name": "click", "parameters": {"properties": {"ref":
+      {"type": "STRING"}}, "required": ["ref"], "type": "OBJECT"}}, {"description":
+      "Replace the text in the textbox with this ref.", "name": "fill", "parameters":
+      {"properties": {"ref": {"type": "STRING"}, "text": {"type": "STRING"}}, "required":
+      ["ref", "text"], "type": "OBJECT"}}, {"description": "Choose the option with
+      this visible label in the combobox with this ref.", "name": "select_option",
+      "parameters": {"properties": {"ref": {"type": "STRING"}, "option": {"type":
+      "STRING"}}, "required": ["ref", "option"], "type": "OBJECT"}}, {"description":
+      "File your verdict and end the run. evidence_step: the step number whose page
+      shows the actual result.", "name": "report", "parameters": {"properties": {"reproduced":
+      {"type": "BOOLEAN"}, "expected": {"type": "STRING"}, "actual": {"type": "STRING"},
+      "evidence_step": {"type": "INTEGER"}}, "required": ["reproduced", "expected",
+      "actual", "evidence_step"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '8636'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/your-project-id/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"click\",\n              \"args\": {\n                \"ref\":
+        \"f1e19\"\n              },\n              \"id\": \"call_997088\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a193bnExTI0Cu4JDjVO0t/v2FANirUxrgjPQM3E59NBI/WuI8lqEPIWBfGv8xF8M9kAXY0AeSDWDBTyB2p1if7IRDXirNfd4JemPzcY0vziqwmsNwK0+\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 2552,\n    \"candidatesTokenCount\":
+        18,\n    \"totalTokenCount\": 2570,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 2552\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 18\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-11T18:51:25.881459Z\",\n  \"responseId\": \"rdrLarPmNdzl-O4P7PGPqQI\"\n}\n"
+    headers:
+      content-length:
+      - '1007'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 18:51:26 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Reproduce this bug report.\n#7 Closing
+      an issue resets its label\nWhen I close an issue its label disappears.\nSteps:
+      open issue #2 (label ''bug'') and press ''Close issue''.\nExpected: the issue
+      is closed and still labelled ''bug''. Actual: the label is empty.\n\nStep 0.
+      URL: /issues\nPage (aria snapshot, act by ref):\n- generic [active] [ref=e1]:\n  -
+      banner [ref=e2]:\n    - strong [ref=e3]: Pocket Tracker\n    - navigation \"Main\"
+      [ref=e4]:\n      - link \"Issues\" [ref=e5] [cursor=pointer]:\n        - /url:
+      /issues\n      - text: \u00b7\n      - link \"New issue\" [ref=e6] [cursor=pointer]:\n        -
+      /url: /issues/new\n      - text: \u00b7\n      - link \"About\" [ref=e7] [cursor=pointer]:\n        -
+      /url: /about\n  - main [ref=e8]:\n    - heading \"Issues\" [level=1] [ref=e9]\n    -
+      paragraph [ref=e10]: 10 open issues\n    - search \"Filter issues\" [ref=e11]:\n      -
+      text: Search\n      - searchbox \"Search\" [ref=e12]\n      - text: Status\n      -
+      combobox \"Status\" [ref=e13]:\n        - option \"any\" [selected]\n        -
+      option \"open\"\n        - option \"closed\"\n      - text: Label\n      - combobox
+      \"Label\" [ref=e14]:\n        - option \"any\" [selected]\n        - option
+      \"bug\"\n        - option \"docs\"\n        - option \"feature\"\n      - button
+      \"Filter\" [ref=e15]\n    - table [ref=e16]:\n      - caption [ref=e17]: 10
+      issues shown\n      - rowgroup [ref=e18]:\n        - row [ref=e19]:\n          -
+      columnheader \"#\" [ref=e20]\n          - columnheader \"Title\" [ref=e21]\n          -
+      columnheader \"Label\" [ref=e22]\n          - columnheader \"Status\" [ref=e23]\n          -
+      columnheader \"Comments\" [ref=e24]\n      - rowgroup [ref=e25]:\n        -
+      row [ref=e26]:\n          - cell \"1\" [ref=e27]\n          - cell [ref=e28]:\n            -
+      link \"Login page broken\" [ref=e29] [cursor=pointer]:\n              - /url:
+      /issues/1\n          - cell \"bug\" [ref=e30]\n          - cell \"open\" [ref=e31]\n          -
+      cell \"0\" [ref=e32]\n        - row [ref=e33]:\n          - cell \"2\" [ref=e34]\n          -
+      cell [ref=e35]:\n            - link \"Search ignores capital letters\" [ref=e36]
+      [cursor=pointer]:\n              - /url: /issues/2\n          - cell \"bug\"
+      [ref=e37]\n          - cell \"open\" [ref=e38]\n          - cell \"0\" [ref=e39]\n        -
+      row [ref=e40]:\n          - cell \"3\" [ref=e41]\n          - cell [ref=e42]:\n            -
+      ''link \"Typo on the About page: ''''Trakcer'''' should be ''''Tracker''''\"
+      [ref=e43] [cursor=pointer]'':\n              - /url: /issues/3\n          -
+      cell \"docs\" [ref=e44]\n          - cell \"open\" [ref=e45]\n          - cell
+      \"0\" [ref=e46]\n        - row [ref=e47]:\n          - cell \"4\" [ref=e48]\n          -
+      cell [ref=e49]:\n            - link \"Blank titles are accepted\" [ref=e50]
+      [cursor=pointer]:\n              - /url: /issues/4\n          - cell \"bug\"
+      [ref=e51]\n          - cell \"open\" [ref=e52]\n          - cell \"0\" [ref=e53]\n        -
+      row [ref=e54]:\n          - cell \"5\" [ref=e55]\n          - cell [ref=e56]:\n            -
+      link \"Open-issue count includes closed issues\" [ref=e57] [cursor=pointer]:\n              -
+      /url: /issues/5\n          - cell \"bug\" [ref=e58]\n          - cell \"open\"
+      [ref=e59]\n          - cell \"0\" [ref=e60]\n        - row [ref=e61]:\n          -
+      cell \"6\" [ref=e62]\n          - cell [ref=e63]:\n            - link \"HTML
+      in comments is rendered instead of shown as text\" [ref=e64] [cursor=pointer]:\n              -
+      /url: /issues/6\n          - cell \"bug\" [ref=e65]\n          - cell \"open\"
+      [ref=e66]\n          - cell \"0\" [ref=e67]\n        - row [ref=e68]:\n          -
+      cell \"7\" [ref=e69]\n          - cell [ref=e70]:\n            - link \"Closing
+      an issue resets its label\" [ref=e71] [cursor=pointer]:\n              - /url:
+      /issues/7\n          - cell \"bug\" [ref=e72]\n          - cell \"open\" [ref=e73]\n          -
+      cell \"0\" [ref=e74]\n        - row [ref=e75]:\n          - cell \"8\" [ref=e76]\n          -
+      cell [ref=e77]:\n            - link \"Saved filters\" [ref=e78] [cursor=pointer]:\n              -
+      /url: /issues/8\n          - cell \"feature\" [ref=e79]\n          - cell \"open\"
+      [ref=e80]\n          - cell \"0\" [ref=e81]\n        - row [ref=e82]:\n          -
+      cell \"9\" [ref=e83]\n          - cell [ref=e84]:\n            - link \"Due
+      dates on issues\" [ref=e85] [cursor=pointer]:\n              - /url: /issues/9\n          -
+      cell \"feature\" [ref=e86]\n          - cell \"open\" [ref=e87]\n          -
+      cell \"0\" [ref=e88]\n        - row [ref=e89]:\n          - cell \"10\" [ref=e90]\n          -
+      cell [ref=e91]:\n            - link \"Explain the labels on the About page\"
+      [ref=e92] [cursor=pointer]:\n              - /url: /issues/10\n          - cell
+      \"docs\" [ref=e93]\n          - cell \"closed\" [ref=e94]\n          - cell
+      \"0\" [ref=e95]"}], "role": "user"}, {"parts": [{"functionCall": {"args": {"ref":
+      "e36"}, "name": "click"}, "thoughtSignature": "AY89a19CdfreKd6b7nnNSLN4LS2GzX4paT0Tq_uQAH_1vAQzwISEbjKX2etnwREX9jlD_PNFRIsEwbyV6rc5rHLkjaDfLds2A5-JgPy91ekG4jbNyP1g_3DG"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "click", "response":
+      {"output": "ok: click link ''Search ignores capital letters''"}}}], "role":
+      "user"}, {"parts": [{"text": "New observation after your actions:\nStep 1. URL:
+      /issues/2\nPage (aria snapshot, act by ref):\n- generic [active] [ref=f1e1]:\n  -
+      banner [ref=f1e2]:\n    - strong [ref=f1e3]: Pocket Tracker\n    - navigation
+      \"Main\" [ref=f1e4]:\n      - link \"Issues\" [ref=f1e5] [cursor=pointer]:\n        -
+      /url: /issues\n      - text: \u00b7\n      - link \"New issue\" [ref=f1e6] [cursor=pointer]:\n        -
+      /url: /issues/new\n      - text: \u00b7\n      - link \"About\" [ref=f1e7] [cursor=pointer]:\n        -
+      /url: /about\n  - main [ref=f1e8]:\n    - heading \"#2 Search ignores capital
+      letters\" [level=1] [ref=f1e9]\n    - generic [ref=f1e10]:\n      - term [ref=f1e11]:
+      Status\n      - definition [ref=f1e12]: open\n      - term [ref=f1e13]: Label\n      -
+      definition [ref=f1e14]: bug\n      - term [ref=f1e15]: Created\n      - definition
+      [ref=f1e16]: 2026-09-02T09:00:00+00:00\n    - paragraph [ref=f1e17]: \"Searching
+      for ''login'' finds nothing, although issue #1 is called ''Login page broken''.
+      Steps: open /issues?q=login. Expected: search does not care about upper or lower
+      case, so #1 is listed. Actual: no results.\"\n    - form \"Close issue\" [ref=f1e18]:\n      -
+      button \"Close issue\" [ref=f1e19]\n    - form \"Change label\" [ref=f1e20]:\n      -
+      text: Label\n      - combobox \"Label\" [ref=f1e21]:\n        - option \"none\"\n        -
+      option \"bug\" [selected]\n        - option \"docs\"\n        - option \"feature\"\n      -
+      button \"Save label\" [ref=f1e22]\n    - heading \"Comments\" [level=2] [ref=f1e23]\n    -
+      paragraph [ref=f1e24]: No comments yet.\n    - form \"Add comment\" [ref=f1e25]:\n      -
+      text: Comment\n      - textbox \"Comment\" [ref=f1e26]\n      - button \"Add
+      comment\" [ref=f1e27]"}], "role": "user"}, {"parts": [{"functionCall": {"args":
+      {"ref": "f1e19"}, "name": "click"}, "thoughtSignature": "AY89a193bnExTI0Cu4JDjVO0t_v2FANirUxrgjPQM3E59NBI_WuI8lqEPIWBfGv8xF8M9kAXY0AeSDWDBTyB2p1if7IRDXirNfd4JemPzcY0vziqwmsNwK0-"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "click", "response":
+      {"output": "ok: click button ''Close issue''"}}}], "role": "user"}, {"parts":
+      [{"text": "New observation after your actions:\nStep 2. URL: /issues/2\nPage
+      (aria snapshot, act by ref):\n- generic [active] [ref=f2e1]:\n  - banner [ref=f2e2]:\n    -
+      strong [ref=f2e3]: Pocket Tracker\n    - navigation \"Main\" [ref=f2e4]:\n      -
+      link \"Issues\" [ref=f2e5] [cursor=pointer]:\n        - /url: /issues\n      -
+      text: \u00b7\n      - link \"New issue\" [ref=f2e6] [cursor=pointer]:\n        -
+      /url: /issues/new\n      - text: \u00b7\n      - link \"About\" [ref=f2e7] [cursor=pointer]:\n        -
+      /url: /about\n  - main [ref=f2e8]:\n    - heading \"#2 Search ignores capital
+      letters\" [level=1] [ref=f2e9]\n    - generic [ref=f2e10]:\n      - term [ref=f2e11]:
+      Status\n      - definition [ref=f2e12]: closed\n      - term [ref=f2e13]: Label\n      -
+      definition [ref=f2e14]: none\n      - term [ref=f2e15]: Created\n      - definition
+      [ref=f2e16]: 2026-09-02T09:00:00+00:00\n    - paragraph [ref=f2e17]: \"Searching
+      for ''login'' finds nothing, although issue #1 is called ''Login page broken''.
+      Steps: open /issues?q=login. Expected: search does not care about upper or lower
+      case, so #1 is listed. Actual: no results.\"\n    - form \"Reopen issue\" [ref=f2e18]:\n      -
+      button \"Reopen issue\" [ref=f2e19]\n    - form \"Change label\" [ref=f2e20]:\n      -
+      text: Label\n      - combobox \"Label\" [ref=f2e21]:\n        - option \"none\"
+      [selected]\n        - option \"bug\"\n        - option \"docs\"\n        - option
+      \"feature\"\n      - button \"Save label\" [ref=f2e22]\n    - heading \"Comments\"
+      [level=2] [ref=f2e23]\n    - paragraph [ref=f2e24]: No comments yet.\n    -
+      form \"Add comment\" [ref=f2e25]:\n      - text: Comment\n      - textbox \"Comment\"
+      [ref=f2e26]\n      - button \"Add comment\" [ref=f2e27]"}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are a QA agent. You reproduce
+      bug reports in the Pocket Tracker web app through its aria snapshot. Follow
+      the report''s steps one at a time and do nothing else: no fixes, no other issues.
+      Use only refs from the latest snapshot; after a click you get a new snapshot.
+      When you have seen the result of the last step, call report once, citing the
+      step number whose page shows it."}]}, "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Click the button or link with this ref.", "name": "click",
+      "parameters": {"properties": {"ref": {"type": "STRING"}}, "required": ["ref"],
+      "type": "OBJECT"}}, {"description": "Replace the text in the textbox with this
+      ref.", "name": "fill", "parameters": {"properties": {"ref": {"type": "STRING"},
+      "text": {"type": "STRING"}}, "required": ["ref", "text"], "type": "OBJECT"}},
+      {"description": "Choose the option with this visible label in the combobox with
+      this ref.", "name": "select_option", "parameters": {"properties": {"ref": {"type":
+      "STRING"}, "option": {"type": "STRING"}}, "required": ["ref", "option"], "type":
+      "OBJECT"}}, {"description": "File your verdict and end the run. evidence_step:
+      the step number whose page shows the actual result.", "name": "report", "parameters":
+      {"properties": {"reproduced": {"type": "BOOLEAN"}, "expected": {"type": "STRING"},
+      "actual": {"type": "STRING"}, "evidence_step": {"type": "INTEGER"}}, "required":
+      ["reproduced", "expected", "actual", "evidence_step"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '10768'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/your-project-id/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"report\",\n              \"args\": {\n                \"reproduced\":
+        true,\n                \"expected\": \"The label should remain 'bug' after
+        closing the issue.\",\n                \"evidence_step\": 2,\n                \"actual\":
+        \"The label is 'none' after closing the issue.\"\n              },\n              \"id\":
+        \"call_385901\"\n            },\n            \"thoughtSignature\": \"AY89a18ZzTyQwn0f/aMirjS3S4d5aknj+HXjNUnvtx/3tv0oORdLBou1nEhwgKLi3WP5Lk55eEUAiZMiLe/iSZHi3uG8MrUqHBoi0FA3FGVJ2qp2AcBdil9I\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 3200,\n    \"candidatesTokenCount\":
+        52,\n    \"totalTokenCount\": 3252,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 3200\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 52\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-11T18:51:29.888242Z\",\n  \"responseId\": \"sdrLarKbNqOar8kPusjO-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1208'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 18:51:30 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

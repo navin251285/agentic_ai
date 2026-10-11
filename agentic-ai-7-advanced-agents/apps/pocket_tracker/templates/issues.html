@@ -1,0 +1,36 @@
+{% extends "base.html" %}{% set nav = "issues" %}
+{% block title %}Issues{% endblock %}
+{% block content %}
+<h1>Issues</h1>
+<p id="open-count">{{ open_count }} open issues</p>
+<form role="search" aria-label="Filter issues" method="get" action="/issues">
+  <label for="q">Search</label>
+  <input id="q" name="q" type="search" value="{{ q }}">
+  <label for="status">Status</label>
+  <select id="status" name="status">
+    <option value="" {% if not status %}selected{% endif %}>any</option>
+    {% for s in ["open", "closed"] %}<option value="{{ s }}" {% if s == status %}selected{% endif %}>{{ s }}</option>{% endfor %}
+  </select>
+  <label for="label">Label</label>
+  <select id="label" name="label">
+    <option value="" {% if not label %}selected{% endif %}>any</option>
+    {% for l in labels %}<option value="{{ l }}" {% if l == label %}selected{% endif %}>{{ l }}</option>{% endfor %}
+  </select>
+  <button type="submit">Filter</button>
+</form>
+<table>
+  <caption>{{ issues|length }} issues shown</caption>
+  <thead><tr><th scope="col">#</th><th scope="col">Title</th><th scope="col">Label</th><th scope="col">Status</th><th scope="col">Comments</th></tr></thead>
+  <tbody>
+  {% for issue in issues %}
+    <tr data-issue-id="{{ issue.id }}">
+      <td>{{ issue.id }}</td>
+      <td><a href="/issues/{{ issue.id }}">{{ issue.title }}</a></td>
+      <td>{{ issue.label or "none" }}</td>
+      <td>{{ issue.status }}</td>
+      <td>{{ issue.comment_count }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

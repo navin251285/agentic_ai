@@ -1,0 +1,5 @@
+# Lessons 23 and 26 only: mini-swe-agent and openhands-sdk pull in litellm (openai<3) and
+# fastmcp 3 (mcp<2), which conflict with the main venv. Install into topics/agentic-ai-7-advanced-agents/.venv-agents
+mini-swe-agent>=2.4.6
+openhands-sdk>=1.54.0
+ipykernel

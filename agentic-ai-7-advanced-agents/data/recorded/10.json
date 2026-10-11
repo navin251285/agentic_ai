@@ -1,0 +1,20 @@
+{
+ "1024x768": {
+  "png_size": [
+   1024,
+   768
+  ],
+  "png_bytes": 76104,
+  "jpeg60_bytes": 55733,
+  "rows_visible": 10
+ },
+ "1920x1080": {
+  "png_size": [
+   1920,
+   1080
+  ],
+  "png_bytes": 83059,
+  "jpeg60_bytes": 67449,
+  "rows_visible": 10
+ }
+}

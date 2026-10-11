@@ -1,0 +1,383 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Sun, 11 Oct 2026 16:37:44 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/project/project-id
+  response:
+    body:
+      string: your-project-id
+    headers:
+      Content-Length:
+      - '13'
+      Content-Type:
+      - application/text
+      Date:
+      - Sun, 11 Oct 2026 16:37:44 GMT
+      ETag:
+      - da212b6af946bea
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+  response:
+    body:
+      string: '{"aliases":["default"],"email":"redacted@example.iam.gserviceaccount.com","scopes":["https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]}'
+    headers:
+      Content-Length:
+      - '194'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 11 Oct 2026 16:37:44 GMT
+      ETag:
+      - 9d115f94fb876a8
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/at cred-type/mds
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+  response:
+    body:
+      string: '{"access_token":"REDACTED","expires_in":1445,"token_type":"Bearer"}'
+    headers:
+      Content-Length:
+      - '1083'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 11 Oct 2026 16:37:44 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Resolve issue #3 in Pocket Tracker.\nCurrent
+      state:\nISSUES\n  #1 [open] Login page broken\n  #2 [open] Search ignores capital
+      letters\n  #3 [open] Typo on the About page: ''Trakcer'' should be ''Tracker''\nPAGES\n  about:
+      ''Pocket Trakcer helps small teams track issues.''"}], "role": "user"}], "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '409'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/your-project-id/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"To
+        resolve issue #3, I have updated the text on the About page.\\n\\n**Updated
+        state:**\\n\\nISSUES\\n  #1 [open] Login page broken\\n  #2 [open] Search
+        ignores capital letters\\n  #3 [resolved] Typo on the About page: 'Trakcer'
+        should be 'Tracker'\\n\\nPAGES\\n  about: 'Pocket Tracker helps small teams
+        track issues.'\",\n            \"thoughtSignature\": \"AY89a1+v0iGXza8/X/7lhqGeyPlEOJbevVxp5gCrh/iVTR/9LCepzl+1qDB2T04lsbhP6+QOOX7xejO+ngq8MFUUxnby6J/crSwl+ARM69Wvz1J3Pm5aWAHR\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 78,\n    \"candidatesTokenCount\":
+        85,\n    \"totalTokenCount\": 163,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 78\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 85\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-11T16:37:44.504729Z\",\n  \"responseId\": \"WLvLapnnHuTx-O4Pj7r36AQ\"\n}\n"
+    headers:
+      content-length:
+      - '1153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 16:37:45 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "You are an agent that acts on Pocket
+      Tracker. Resolve issue #3 in Pocket Tracker. In your first response, call edit_page
+      and close_issue together (both tool calls at once). After you see the tool results,
+      reply ''done''.\nCurrent state:\nISSUES\n  #1 [open] Login page broken\n  #2
+      [open] Search ignores capital letters\n  #3 [open] Typo on the About page: ''Trakcer''
+      should be ''Tracker''\nPAGES\n  about: ''Pocket Trakcer helps small teams track
+      issues.''"}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Replace old_text (must appear exactly once) with new_text
+      on a tracker page.", "name": "edit_page", "parameters": {"properties": {"page":
+      {"type": "STRING"}, "old_text": {"type": "STRING"}, "new_text": {"type": "STRING"}},
+      "required": ["page", "old_text", "new_text"], "type": "OBJECT"}}, {"description":
+      "Close an issue with a short comment explaining the fix.", "name": "close_issue",
+      "parameters": {"properties": {"issue_id": {"type": "INTEGER"}, "comment": {"type":
+      "STRING"}}, "required": ["issue_id", "comment"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1187'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/your-project-id/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"edit_page\",\n              \"args\": {\n                \"new_text\":
+        \"Pocket Tracker helps small teams track issues.\",\n                \"old_text\":
+        \"Pocket Trakcer helps small teams track issues.\",\n                \"page\":
+        \"about\"\n              },\n              \"id\": \"call_286768\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18Ii/j7mjXvUfUaPDTlTcr9oQzeuFWlipHqW3tQ+wEIqEbg+hVI0UIZu4qNxdq3SN/CsFEoichTZcF3DfxP2caBa4fYy44UdsdM3AYtTIlNtnw1xoYy\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"close_issue\",\n              \"args\": {\n                \"comment\":
+        \"Fixed the typo 'Trakcer' to 'Tracker' on the About page.\",\n                \"issue_id\":
+        3\n              },\n              \"id\": \"call_286769\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 208,\n    \"candidatesTokenCount\":
+        86,\n    \"totalTokenCount\": 294,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 208\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 86\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-11T16:37:48.507796Z\",\n  \"responseId\": \"XLvLapT_Htzl-O4P7PGPqQI\"\n}\n"
+    headers:
+      content-length:
+      - '1463'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 16:37:49 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "You are an agent that acts on Pocket
+      Tracker. Resolve issue #3 in Pocket Tracker. In your first response, call edit_page
+      and close_issue together (both tool calls at once). After you see the tool results,
+      reply ''done''.\nCurrent state:\nISSUES\n  #1 [open] Login page broken\n  #2
+      [open] Search ignores capital letters\n  #3 [open] Typo on the About page: ''Trakcer''
+      should be ''Tracker''\nPAGES\n  about: ''Pocket Trakcer helps small teams track
+      issues.''"}], "role": "user"}, {"parts": [{"functionCall": {"args": {"new_text":
+      "Pocket Tracker helps small teams track issues.", "old_text": "Pocket Trakcer
+      helps small teams track issues.", "page": "about"}, "name": "edit_page"}, "thoughtSignature":
+      "AY89a18Ii_j7mjXvUfUaPDTlTcr9oQzeuFWlipHqW3tQ-wEIqEbg-hVI0UIZu4qNxdq3SN_CsFEoichTZcF3DfxP2caBa4fYy44UdsdM3AYtTIlNtnw1xoYy"},
+      {"functionCall": {"args": {"comment": "Fixed the typo ''Trakcer'' to ''Tracker''
+      on the About page.", "issue_id": 3}, "name": "close_issue"}}], "role": "model"},
+      {"parts": [{"functionResponse": {"name": "edit_page", "response": {"output":
+      "OK: page ''about'' is now ''Pocket Tracker helps small teams track issues.''"}}},
+      {"functionResponse": {"name": "close_issue", "response": {"output": "OK: issue
+      #3 closed"}}}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Replace old_text (must appear exactly once) with new_text
+      on a tracker page.", "name": "edit_page", "parameters": {"properties": {"page":
+      {"type": "STRING"}, "old_text": {"type": "STRING"}, "new_text": {"type": "STRING"}},
+      "required": ["page", "old_text", "new_text"], "type": "OBJECT"}}, {"description":
+      "Close an issue with a short comment explaining the fix.", "name": "close_issue",
+      "parameters": {"properties": {"issue_id": {"type": "INTEGER"}, "comment": {"type":
+      "STRING"}}, "required": ["issue_id", "comment"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1960'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/your-project-id/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"done\",\n
+        \           \"thoughtSignature\": \"AY89a19W7BsFOpZJPqdMl/kWWwuqQd0HgJaYKe61ZxLXmmE3hPeObsdb3g8XGEaxmCahUKJqoVnDGz+IQZAg12KOjGiUfWSwZ0jjv5Il917xLRCtyj31RqBe\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 309,\n    \"candidatesTokenCount\":
+        1,\n    \"totalTokenCount\": 310,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 309\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 1\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-11T16:37:52.505525Z\",\n
+        \ \"responseId\": \"YLvLarXtHqr87bEPpevKkQE\"\n}\n"
+    headers:
+      content-length:
+      - '848'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 16:37:52 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

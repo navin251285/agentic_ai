@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% set nav = "new" %}
+{% block title %}New issue{% endblock %}
+{% block content %}
+<h1>New issue</h1>
+<form method="post" action="/issues" aria-label="New issue">
+  <p><label for="title">Title</label> <input id="title" name="title" required></p>
+  <p><label for="body">Description</label> <textarea id="body" name="body" rows="4"></textarea></p>
+  <p><label for="label">Label</label>
+    <select id="label" name="label">
+      <option value="">none</option>
+      {% for l in labels %}<option value="{{ l }}">{{ l }}</option>{% endfor %}
+    </select></p>
+  <button type="submit">Create issue</button>
+</form>
+{% endblock %}

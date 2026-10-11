@@ -1,0 +1,50 @@
+{
+ "source": "excerpt of a real Claude Code session (version 2.1.296) recorded 2026-10-11 while this lesson was written; tool calls on a scratch copy of Pocket Tracker fixing issue #7; absolute paths shortened to the repo root, the 'description' field kept",
+ "harness": "Claude Code",
+ "version": "2.1.296",
+ "steps": [
+  {
+   "timestamp": "2026-10-11T18:54:00.287Z",
+   "type": "tool_use",
+   "name": "Bash",
+   "input": {
+    "command": "cd . && grep -rn \"label\" app.py db.py | grep -v \"^.*#\" | head -20",
+    "description": "Search the repo for where labels are written"
+   },
+   "result": "db.py:15:    label TEXT NOT NULL DEFAULT '',\ndb.py:51:                    \"INSERT INTO issues (id, title, body, label, status, created_at) \"\ndb.py:52:                    \"VALUES (:id, :title, :body, :label, :status, :created_at)\", issue)\ndb.py:55:def list_issues(path, q=\"\", status=\"\", label=\"\"):\ndb.py:65:    if label:\ndb.py:66:        sql += \" AND issues.label = ?\"\ndb.py:67:        params.append(label)\ndb.py:91:def create_issue(path, title, body=\"\", label=\"\"):\ndb.py:94:            \"INSERT INTO issues (title, body, label, status, created_at) VALUES (?, ?, ?, 'open', ?)\",\ndb.py:95:            (title, body, label, now()))\ndb.py:99:def update_issue(path, issue_id, status=None, label=\"\"):\ndb.py:100:    \"\"\"Change an issue's status and/or label.\"\"\"\ndb.py:103:            \"UPDATE issues SET status = COALESCE(?, status), label = ? WHERE id = ?\",\ndb.py:104:            (status, label, issue_id))\napp.py:52:def issue_list(request: Request, q: str = \"\", status: str = \"\", label: str = \"\"):\napp.py:54:    context = {\"issues\": db.list_issues(path, q, status, label), \"open_count\": db.count_open(path),\napp.py:55:               \"q\": q, \"status\": status, \"label\": label, \"labels\": db.LABELS}\napp.py:61:    return templates.TemplateResponse(request, \"new_issue.html\", {\"labels\": db.LABELS})\napp.py:65:def create_issue(request: Request, title: str = Form(...), body: str = Form(\"\"), label: str = Form(\"\")):\napp.py:66:    issue_id = db.create_issue(request.app.state.db, title, body, label)"
+  },
+  {
+   "timestamp": "2026-10-11T18:54:01.079Z",
+   "type": "tool_use",
+   "name": "Read",
+   "input": {
+    "file_path": "db.py",
+    "offset": 80,
+    "limit": 30
+   },
+   "result": "80\tdef get_issue(path, issue_id):\n81\t    with connect(path) as conn:\n82\t        row = conn.execute(\"SELECT * FROM issues WHERE id = ?\", (issue_id,)).fetchone()\n83\t        if row is None:\n84\t            return None\n85\t        issue = dict(row)\n86\t        issue[\"comments\"] = [dict(c) for c in conn.execute(\n87\t            \"SELECT * FROM comments WHERE issue_id = ? ORDER BY id\", (issue_id,))]\n88\t    return issue\n89\t\n90\t\n91\tdef create_issue(path, title, body=\"\", label=\"\"):\n92\t    with connect(path) as conn:\n93\t        cur = conn.execute(\n94\t            \"INSERT INTO issues (title, body, label, status, created_at) VALUES (?, ?, ?, 'open', ?)\",\n95\t            (title, body, label, now()))\n96\t        return cur.lastrowid\n97\t\n98\t\n99\tdef update_issue(path, issue_id, status=None, label=\"\"):\n100\t    \"\"\"Change an issue's status and/or label.\"\"\"\n101\t    with connect(path) as conn:\n102\t        conn.execute(\n103\t            \"UPDATE issues SET status = COALESCE(?, status), label = ? WHERE id = ?\",\n104\t            (status, label, issue_id))\n105\t\n106\t\n107\tdef add_comment(path, issue_id, body):\n108\t    with connect(path) as conn:\n109\t        conn.execute(\"INSERT INTO comments (issue_id, body, created_at) VALUES (?, ?, ?)\","
+  },
+  {
+   "timestamp": "2026-10-11T18:54:04.510Z",
+   "type": "tool_use",
+   "name": "Edit",
+   "input": {
+    "replace_all": false,
+    "file_path": "db.py",
+    "old_string": "def update_issue(path, issue_id, status=None, label=\"\"):\n    \"\"\"Change an issue's status and/or label.\"\"\"\n    with connect(path) as conn:\n        conn.execute(\n            \"UPDATE issues SET status = COALESCE(?, status), label = ? WHERE id = ?\",",
+    "new_string": "def update_issue(path, issue_id, status=None, label=None):\n    \"\"\"Change an issue's status and/or label.\"\"\"\n    with connect(path) as conn:\n        conn.execute(\n            \"UPDATE issues SET status = COALESCE(?, status), label = COALESCE(?, label) WHERE id = ?\","
+   },
+   "result": "The file db.py has been updated successfully."
+  },
+  {
+   "timestamp": "2026-10-11T18:54:06.680Z",
+   "type": "tool_use",
+   "name": "Bash",
+   "input": {
+    "command": "cd . && python -c \"\nimport os, tempfile; os.environ['POCKET_TRACKER_DB'] = tempfile.mktemp(suffix='.db')\nfrom fastapi.testclient import TestClient; from app import app\nwith TestClient(app) as c:\n    c.post('/issues/2/close'); i = c.get('/api/issues/2').json()\n    print('issue 2 after close:', i['status'], repr(i['label']))\n\" && python -m pytest -q --color=no 2>&1 | tail -3",
+    "description": "Reproduce issue 7 after the fix and run the test suite"
+   },
+   "result": "issue 2 after close: closed 'bug'\n..........                                                               [100%]\n10 passed in 0.34s"
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{% endblock %} · Pocket Tracker</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; color: #1f2933; background: #f5f7fa; }
+  header { display: flex; gap: 24px; align-items: center; padding: 12px 24px; background: #243b53; color: #fff; }
+  header a { color: #d9e2ec; } header a[aria-current="page"] { color: #fff; font-weight: 600; }
+  main { padding: 16px 24px; max-width: 960px; }
+  table { border-collapse: collapse; width: 100%; background: #fff; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e4e7eb; }
+  caption { text-align: left; padding: 4px 0; color: #52606d; }
+  form { margin: 8px 0; } .comment { background: #fff; padding: 8px; margin: 6px 0; }
+</style>
+</head>
+<body>
+<header>
+  <strong>Pocket Tracker</strong>
+  <nav aria-label="Main">
+    <a href="/issues" {% if nav == "issues" %}aria-current="page"{% endif %}>Issues</a> ·
+    <a href="/issues/new" {% if nav == "new" %}aria-current="page"{% endif %}>New issue</a> ·
+    <a href="/about" {% if nav == "about" %}aria-current="page"{% endif %}>About</a>
+  </nav>
+</header>
+<main>
+{% block content %}{% endblock %}
+</main>
+</body>
+</html>

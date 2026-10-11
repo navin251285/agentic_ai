@@ -1,0 +1,134 @@
+{
+ "boxes": [
+  {
+   "href": "/issues",
+   "text": "Issues",
+   "box": [
+    180.8,
+    12,
+    56.8,
+    19
+   ]
+  },
+  {
+   "href": "/issues/new",
+   "text": "New issue",
+   "box": [
+    252.8,
+    12,
+    81.1,
+    19
+   ]
+  },
+  {
+   "href": "/about",
+   "text": "About",
+   "box": [
+    349.2,
+    12,
+    47.3,
+    19
+   ]
+  },
+  {
+   "href": "/issues/1",
+   "text": "Login page broken",
+   "box": [
+    83.5,
+    274.9,
+    148.2,
+    19
+   ]
+  },
+  {
+   "href": "/issues/2",
+   "text": "Search ignores capital letters",
+   "box": [
+    83.5,
+    310.9,
+    234.5,
+    19
+   ]
+  },
+  {
+   "href": "/issues/3",
+   "text": "Typo on the About page: 'Trakcer' should be 'Tracker'",
+   "box": [
+    83.5,
+    346.9,
+    422.8,
+    19
+   ]
+  },
+  {
+   "href": "/issues/4",
+   "text": "Blank titles are accepted",
+   "box": [
+    83.5,
+    382.9,
+    199.1,
+    19
+   ]
+  },
+  {
+   "href": "/issues/5",
+   "text": "Open-issue count includes closed issues",
+   "box": [
+    83.5,
+    418.9,
+    322.2,
+    19
+   ]
+  },
+  {
+   "href": "/issues/6",
+   "text": "HTML in comments is rendered instead of shown as text",
+   "box": [
+    83.5,
+    454.9,
+    450.1,
+    19
+   ]
+  },
+  {
+   "href": "/issues/7",
+   "text": "Closing an issue resets its label",
+   "box": [
+    83.5,
+    490.9,
+    251.6,
+    19
+   ]
+  },
+  {
+   "href": "/issues/8",
+   "text": "Saved filters",
+   "box": [
+    83.5,
+    526.9,
+    100.1,
+    19
+   ]
+  },
+  {
+   "href": "/issues/9",
+   "text": "Due dates on issues",
+   "box": [
+    83.5,
+    562.9,
+    161.3,
+    19
+   ]
+  },
+  {
+   "href": "/issues/10",
+   "text": "Explain the labels on the About page",
+   "box": [
+    83.5,
+    598.9,
+    295.8,
+    19
+   ]
+  }
+ ]
+}

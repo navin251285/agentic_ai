@@ -1,0 +1,107 @@
+{
+ "first_visit": {
+  "browser": "chromium 153.0.8010.12",
+  "status": 200,
+  "path": "/issues",
+  "title": "Issues \u00b7 Pocket Tracker",
+  "open_count": "10 open issues",
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36"
+ },
+ "rows": {
+  "caption": "10 issues shown",
+  "rows": [
+   [
+    "1",
+    "Login page broken",
+    "bug",
+    "open",
+    "0"
+   ],
+   [
+    "2",
+    "Search ignores capital letters",
+    "bug",
+    "open",
+    "0"
+   ],
+   [
+    "3",
+    "Typo on the About page: 'Trakcer' should be 'Tracker'",
+    "docs",
+    "open",
+    "0"
+   ],
+   [
+    "4",
+    "Blank titles are accepted",
+    "bug",
+    "open",
+    "0"
+   ],
+   [
+    "5",
+    "Open-issue count includes closed issues",
+    "bug",
+    "open",
+    "0"
+   ],
+   [
+    "6",
+    "HTML in comments is rendered instead of shown as text",
+    "bug",
+    "open",
+    "0"
+   ],
+   [
+    "7",
+    "Closing an issue resets its label",
+    "bug",
+    "open",
+    "0"
+   ],
+   [
+    "8",
+    "Saved filters",
+    "feature",
+    "open",
+    "0"
+   ],
+   [
+    "9",
+    "Due dates on issues",
+    "feature",
+    "open",
+    "0"
+   ],
+   [
+    "10",
+    "Explain the labels on the About page",
+    "docs",
+    "closed",
+    "0"
+   ]
+  ]
+ },
+ "navigation": [
+  [
+   "goto /issues/1",
+   "/issues/1",
+   "#1 Login page broken"
+  ],
+  [
+   "go_back",
+   "/issues",
+   "Issues"
+  ],
+  [
+   "goto ?status=closed",
+   "/issues",
+   "1 issues shown"
+  ]
+ ],
+ "contexts": {
+  "contexts_in_browser": 2,
+  "A reads": "7",
+  "B reads": null
+ }
+}
