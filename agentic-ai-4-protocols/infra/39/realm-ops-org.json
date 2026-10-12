@@ -1,0 +1,287 @@
+{
+  "realm": "ops-org",
+  "enabled": true,
+  "accessTokenLifespan": 300,
+  "revokeRefreshToken": true,
+  "refreshTokenMaxReuse": 0,
+  "roles": {
+    "realm": [
+      {
+        "name": "lead"
+      },
+      {
+        "name": "member"
+      }
+    ]
+  },
+  "groups": [
+    {
+      "name": "web"
+    },
+    {
+      "name": "api"
+    }
+  ],
+  "clientScopes": [
+    {
+      "name": "basic",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "false",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "sub",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-sub-mapper",
+          "config": {
+            "access.token.claim": "true",
+            "id.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "name": "issues:read",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "false"
+      }
+    },
+    {
+      "name": "issues:write",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "false"
+      }
+    },
+    {
+      "name": "triage:run",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "false"
+      }
+    },
+    {
+      "name": "org-claims",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "false",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "teams",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-group-membership-mapper",
+          "config": {
+            "claim.name": "teams",
+            "full.path": "false",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "userinfo.token.claim": "false"
+          }
+        },
+        {
+          "name": "roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "config": {
+            "claim.name": "roles",
+            "multivalued": "true",
+            "jsonType.label": "String",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        },
+        {
+          "name": "username",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-property-mapper",
+          "config": {
+            "user.attribute": "username",
+            "claim.name": "preferred_username",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "jsonType.label": "String"
+          }
+        }
+      ]
+    },
+    {
+      "name": "trackr-audience",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "false",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "trackr-mcp audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.client.audience": "trackr-mcp",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    },
+    {
+      "name": "triage-audience",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "false",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "triage-agent audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.client.audience": "triage-agent",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ops-audience",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "false",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "ops-agent audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.client.audience": "ops-agent",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "ops-cli",
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "defaultClientScopes": [
+        "basic",
+        "org-claims"
+      ],
+      "optionalClientScopes": [
+        "issues:read",
+        "issues:write",
+        "triage:run",
+        "trackr-audience",
+        "triage-audience",
+        "ops-audience"
+      ]
+    },
+    {
+      "clientId": "trackr-mcp",
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "attributes": {
+        "resource_url": "http://127.0.0.1:8391/mcp"
+      }
+    },
+    {
+      "clientId": "ops-agent",
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "attributes": {
+        "standard.token.exchange.enabled": "true"
+      },
+      "defaultClientScopes": [
+        "org-claims"
+      ],
+      "optionalClientScopes": [
+        "triage-audience",
+        "issues:read",
+        "triage:run"
+      ]
+    },
+    {
+      "clientId": "triage-agent",
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "attributes": {
+        "standard.token.exchange.enabled": "true"
+      },
+      "defaultClientScopes": [
+        "org-claims"
+      ],
+      "optionalClientScopes": [
+        "trackr-audience",
+        "issues:read"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "alice",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Alice",
+      "lastName": "Web",
+      "email": "alice@example.com",
+      "realmRoles": [
+        "lead"
+      ],
+      "groups": [
+        "/web"
+      ],
+      "requiredActions": []
+    },
+    {
+      "username": "bob",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Bob",
+      "lastName": "API",
+      "email": "bob@example.com",
+      "realmRoles": [
+        "lead"
+      ],
+      "groups": [
+        "/api"
+      ],
+      "requiredActions": []
+    },
+    {
+      "username": "carol",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Carol",
+      "lastName": "Web",
+      "email": "carol@example.com",
+      "realmRoles": [
+        "member"
+      ],
+      "groups": [
+        "/web"
+      ],
+      "requiredActions": []
+    }
+  ]
+}

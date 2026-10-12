@@ -1,0 +1,217 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 05:16:02 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/project/project-id
+  response:
+    body:
+      string: PROJECT
+    headers:
+      Content-Length:
+      - '13'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 05:16:02 GMT
+      ETag:
+      - da212b6af946bea
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+  response:
+    body:
+      string: '{"aliases":["default"],"email":"redacted@example.iam.gserviceaccount.com","scopes":["https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]}'
+    headers:
+      Content-Length:
+      - '194'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Oct 2026 05:16:02 GMT
+      ETag:
+      - 9d115f94fb876a8
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/at cred-type/mds
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+  response:
+    body:
+      string: '{"access_token":"REDACTED","expires_in":3180,"token_type":"Bearer"}'
+    headers:
+      Content-Length:
+      - '1083'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Oct 2026 05:16:02 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify this issue as exactly one word:
+      bug, feature or question.\nIssue: App crashes when photo is rotated"}], "role":
+      "user"}], "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '250'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"bug\",\n
+        \           \"thoughtSignature\": \"AY89a1/Kfh+ug5kH670kLBJ0pNY7hcue88hAncKM7vZJUVarUL1xEUQq61Xfx8OKO8/hLwPSmwqYH+iJOtri6u1MfFmPjnnw7c4doqcsTIiz+vWgSwJbScGr\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 24,\n    \"candidatesTokenCount\":
+        1,\n    \"totalTokenCount\": 25,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 24\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 1\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T05:16:02.155103Z\",\n
+        \ \"responseId\": \"Em3Mat-7Car87bEPhL_6qAU\"\n}\n"
+    headers:
+      content-length:
+      - '844'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 05:16:02 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

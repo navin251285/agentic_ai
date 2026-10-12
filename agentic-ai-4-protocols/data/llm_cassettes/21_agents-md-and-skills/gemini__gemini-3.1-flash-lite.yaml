@@ -1,0 +1,288 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 12:06:07 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Issue 7, ''Push notifications arrive
+      late'', has been 20 minutes late for 4 users. What do I do now?"}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "# Mobile service rules\n-
+      Reproduce mobile bugs on the Android 14 test device first.\n- Ship hotfixes
+      behind a feature flag.\n- Put the issue id in every commit message.\n"}]}, "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '459'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"To
+        address **Issue 7: Push notifications arrive late**, please follow the established
+        mobile service protocol:\\n\\n### 1. Reproduce on Android 14\\nBefore attempting
+        a fix, you must verify the latency on the **Android 14 test device**. \\n*
+        \  Check if the delay is related to Android 14\u2019s \\\"Doze\\\" mode or
+        background execution restrictions.\\n*   Verify if the issue persists across
+        different network conditions (Wi-Fi vs. Cellular) on the test device.\\n\\n###
+        2. Develop and Ship a Hotfix\\nOnce the root cause is identified and the fix
+        is implemented:\\n*   **Feature Flag:** Wrap the fix in a feature flag (e.g.,
+        `enable_optimized_push_delivery`). Do not push the fix directly to production
+        without the flag.\\n*   **Commit Message:** Ensure every commit related to
+        this fix includes the issue ID. \\n    *   *Example:* `git commit -m \\\"ISSUE-7:
+        Implement priority queue for push notifications\\\"`\\n\\n### 3. Deployment
+        Strategy\\n*   **Rollout:** Enable the feature flag for a small subset of
+        users (canary release) to ensure the fix resolves the latency without causing
+        regressions in battery consumption or memory usage.\\n*   **Monitoring:**
+        Monitor the notification delivery logs for the 4 affected users (and others)
+        to confirm the 20-minute delay is eliminated.\\n\\n**Immediate Action Item:**
+        Please confirm once you have successfully reproduced the delay on the Android
+        14 test device so we can proceed with the hotfix deployment.\",\n            \"thoughtSignature\":
+        \"AY89a18vqEEJr/8vaaAx2/Jq5FlXaVCfBOz7EikK4lZdNvyP4EH1ThviZxd8mncWMl/ekjVl8ky3h9Bk1s4uK6RjvB8n2xwiEgDllswLBdcbk9oBzBw34G8A\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 70,\n    \"candidatesTokenCount\":
+        326,\n    \"totalTokenCount\": 396,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 70\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 326\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T12:06:07.839859Z\",\n  \"responseId\": \"L83MarOhM4KLr8kP_rzwkQ8\"\n}\n"
+    headers:
+      content-length:
+      - '2275'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 12:06:09 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Issue 7, ''Push notifications arrive
+      late'', has been 20 minutes late for 4 users. What do I do now?"}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "# Mobile service rules\n-
+      Reproduce mobile bugs on the Android 14 test device first.\n- Ship hotfixes
+      behind a feature flag.\n- Put the issue id in every commit message.\n\n\nSkills
+      you can load (name: description):\n- triage-runbook: Triage a Trackr issue with
+      the team runbook. Use when someone asks what to do about an issue, how urgent
+      it is, or whether to page the on-call.\nCall load_skill with the exact name
+      before you follow a skill."}]}, "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Load the full instructions of a skill from the catalogue.
+      Pass the exact skill name.", "name": "load_skill", "parameters": {"properties":
+      {"name": {"type": "STRING"}}, "required": ["name"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '996'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"load_skill\",\n              \"args\": {\n                \"name\":
+        \"triage-runbook\"\n              },\n              \"id\": \"call_2344957\"\n
+        \           },\n            \"thoughtSignature\": \"AY89a1/jTU+Da0Be81Ij3rBVW/pUI2rDKETd7BWbAhFq6I9fe181bMzvL3rMXF3HCrfODF7LNaFZT7yGoDQQDtXS3C/dnUk4KhZP8nEq8GagJmAbvwjvkRMH\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 172,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 192,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 172\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 20\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T12:06:11.816887Z\",\n  \"responseId\": \"M83MavftMbKbr8kP-bic-Qw\"\n}\n"
+    headers:
+      content-length:
+      - '1020'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 12:06:12 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Issue 7, ''Push notifications arrive
+      late'', has been 20 minutes late for 4 users. What do I do now?"}], "role":
+      "user"}, {"parts": [{"functionCall": {"args": {"name": "triage-runbook"}, "name":
+      "load_skill"}, "thoughtSignature": "AY89a1_jTU-Da0Be81Ij3rBVW_pUI2rDKETd7BWbAhFq6I9fe181bMzvL3rMXF3HCrfODF7LNaFZT7yGoDQQDtXS3C_dnUk4KhZP8nEq8GagJmAbvwjvkRMH"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "load_skill", "response":
+      {"output": "---\nname: triage-runbook\ndescription: Triage a Trackr issue with
+      the team runbook. Use when someone asks what to do about an issue, how urgent
+      it is, or whether to page the on-call.\nmetadata:\n  owner: ops-desk\n  version:
+      \"1.0\"\n---\n\n# Triage runbook\n\n1. Read the issue title and severity in
+      Trackr.\n2. Find the symptom in the table and take its first steps.\n3. Page
+      the on-call only when the table says so. Say which rule you used.\n4. Never
+      close the issue in this step.\n\n| Symptom | First steps | Page when |\n|---|---|---|\n|
+      Push notifications arrive late | Check the push queue depth. Ask the device
+      owner to re-register the push token. | More than 15 minutes late for 3 or more
+      users: page the mobile on-call. |\n| TLS certificate expires within 14 days
+      | Renew with the infra CA. Check the chain on the edge. | Expires within 3 days:
+      page the infra on-call. |\n"}}}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "# Mobile service rules\n- Reproduce mobile bugs on the Android 14
+      test device first.\n- Ship hotfixes behind a feature flag.\n- Put the issue
+      id in every commit message.\n\n\nSkills you can load (name: description):\n-
+      triage-runbook: Triage a Trackr issue with the team runbook. Use when someone
+      asks what to do about an issue, how urgent it is, or whether to page the on-call.\nCall
+      load_skill with the exact name before you follow a skill."}]}, "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Load the full instructions
+      of a skill from the catalogue. Pass the exact skill name.", "name": "load_skill",
+      "parameters": {"properties": {"name": {"type": "STRING"}}, "required": ["name"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2234'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Based
+        on the triage runbook, you should **page the mobile on-call** immediately.\\n\\nThe
+        issue \\\"Push notifications arrive late\\\" meets the criteria for paging
+        because it has been 20 minutes late for 4 users (the threshold is more than
+        15 minutes late for 3 or more users).\\n\\n**Next steps:**\\n1. Page the mobile
+        on-call.\\n2. Check the push queue depth.\\n3. Ask the affected users to re-register
+        their push tokens.\\n4. Remember to include the issue ID (7) in any related
+        commit messages if you implement a fix.\",\n            \"thoughtSignature\":
+        \"AY89a19Qg5ml7GYFKG2Hdmw3FjfvLN2V+r+1Pf5Rs+EhvyM0giXX+QK2liJEnGFR7N08/Qnem6s4ywRu/rf55MJYczM3uSpacgLU51Qh6kF6bjnT9fzqbLIV\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 432,\n    \"candidatesTokenCount\":
+        126,\n    \"totalTokenCount\": 558,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 432\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 126\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T12:06:15.812252Z\",\n  \"responseId\": \"N83MatzJMar87bEPhL_6qAU\"\n}\n"
+    headers:
+      content-length:
+      - '1357'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 12:06:16 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

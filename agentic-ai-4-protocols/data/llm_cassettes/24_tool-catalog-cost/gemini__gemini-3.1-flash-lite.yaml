@@ -1,0 +1,1023 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 12:08:19 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Answer each numbered request with one
+      tool call.\n1. Close issue 7, it is a duplicate of issue 3.\n2. How many open
+      issues does the mobile team have?\n3. Reopen issue 12, the fix did not ship."}],
+      "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations": [{"description":
+      "Count the open issues of one team.", "name": "count_open", "parameters": {"properties":
+      {"team": {"type": "STRING"}}, "required": ["team"], "title": "count_openArguments",
+      "type": "OBJECT"}}, {"description": "Search open issues by text.", "name": "search",
+      "parameters": {"properties": {"text": {"type": "STRING"}}, "required": ["text"],
+      "title": "searchArguments", "type": "OBJECT"}}, {"description": "Close one issue
+      by id.", "name": "close_issue", "parameters": {"properties": {"issue_id": {"type":
+      "INTEGER"}}, "required": ["issue_id"], "title": "close_issueArguments", "type":
+      "OBJECT"}}, {"description": "Reopen a closed issue by id.", "name": "reopen_issue",
+      "parameters": {"properties": {"issue_id": {"type": "INTEGER"}}, "required":
+      ["issue_id"], "title": "reopen_issueArguments", "type": "OBJECT"}}, {"description":
+      "Create an issue for a team.", "name": "create_issue", "parameters": {"properties":
+      {"title": {"description": "title is {''title'': ''Title'', ''type'': ''string''}",
+      "type": "STRING"}, "team": {"type": "STRING"}}, "required": ["title", "team"],
+      "title": "create_issueArguments", "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1508'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"close_issue\",\n              \"args\": {\n                \"issue_id\":
+        7\n              },\n              \"id\": \"call_1918934\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1+q6CYsu+xT6r6ZTBybjP1u+a3jZ/3jV0YItDKdSKekE6lfYdtD/k5xGUrlb7ztCv6aPROmClxcYKn923o7b8A8tEe/Jh9dRsTWezvIZRbqfaP3iOJD\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"count_open\",\n              \"args\": {\n                \"team\": \"mobile\"\n
+        \             },\n              \"id\": \"call_1918935\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"reopen_issue\",\n              \"args\": {\n                \"issue_id\":
+        12\n              },\n              \"id\": \"call_1918936\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 225,\n    \"candidatesTokenCount\":
+        50,\n    \"totalTokenCount\": 275,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 225\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 50\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T12:08:19.459902Z\",\n  \"responseId\": \"s83Mav6IHKr87bEPhL_6qAU\"\n}\n"
+    headers:
+      content-length:
+      - '1438'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 12:08:20 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Answer each numbered request with one
+      tool call.\n1. Close issue 7, it is a duplicate of issue 3.\n2. How many open
+      issues does the mobile team have?\n3. Reopen issue 12, the fix did not ship."}],
+      "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations": [{"description":
+      "Count the open issues of one team.", "name": "count_open", "parameters": {"properties":
+      {"team": {"type": "STRING"}}, "required": ["team"], "title": "count_openArguments",
+      "type": "OBJECT"}}, {"description": "Search open issues by text.", "name": "search",
+      "parameters": {"properties": {"text": {"type": "STRING"}}, "required": ["text"],
+      "title": "searchArguments", "type": "OBJECT"}}, {"description": "Close one issue
+      by id.", "name": "close_issue", "parameters": {"properties": {"issue_id": {"type":
+      "INTEGER"}}, "required": ["issue_id"], "title": "close_issueArguments", "type":
+      "OBJECT"}}, {"description": "Reopen a closed issue by id.", "name": "reopen_issue",
+      "parameters": {"properties": {"issue_id": {"type": "INTEGER"}}, "required":
+      ["issue_id"], "title": "reopen_issueArguments", "type": "OBJECT"}}, {"description":
+      "Create an issue for a team.", "name": "create_issue", "parameters": {"properties":
+      {"title": {"description": "title is {''title'': ''Title'', ''type'': ''string''}",
+      "type": "STRING"}, "team": {"type": "STRING"}}, "required": ["title", "team"],
+      "title": "create_issueArguments", "type": "OBJECT"}}, {"description": "Archive
+      a closed issue so it leaves the default board.", "name": "archive_issue", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Count the closed issues
+      of one team.", "name": "count_closed_issues", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "List the comments on one issue.", "name": "list_issue_comments",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Assign an issue
+      to a person.", "name": "assign_issue", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "Add a label to an issue.", "name": "label_issue",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Export a team''s
+      issues as CSV.", "name": "export_issues", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "Search closed issues by text.", "name": "search_closed_issues",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Change the severity
+      of one issue.", "name": "update_issue_severity", "parameters": {"properties":
+      {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments",
+      "type": "OBJECT"}}, {"description": "List the sprints on the ops desk.", "name":
+      "list_sprint", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "Get one sprint by id.", "name": "get_sprint", "parameters": {"properties":
+      {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments",
+      "type": "OBJECT"}}, {"description": "Update one sprint by id.", "name": "update_sprint",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Archive one sprint
+      by id.", "name": "archive_sprint", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "Sync one sprint with its source system.", "name":
+      "sync_sprint", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "List the boards on the ops desk.", "name": "list_board", "parameters": {"properties":
+      {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments",
+      "type": "OBJECT"}}, {"description": "Get one board by id.", "name": "get_board",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '4648'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"close_issue\",\n              \"args\": {\n                \"issue_id\":
+        7\n              },\n              \"id\": \"call_330997\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1+kFdq+97kc6zRqI0Rrg8WBPLXX5JcR+duJv4D7rKgDtClMvzSqgQt2VRmAtO6wPFO8TTglpvZKgS5fyxFYK0H5bszjcugY0IZndI+2nY28VTOh8BJi\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"count_open\",\n              \"args\": {\n                \"team\": \"mobile\"\n
+        \             },\n              \"id\": \"call_330998\"\n            }\n          },\n
+        \         {\n            \"functionCall\": {\n              \"name\": \"reopen_issue\",\n
+        \             \"args\": {\n                \"issue_id\": 12\n              },\n
+        \             \"id\": \"call_330999\"\n            }\n          }\n        ]\n
+        \     },\n      \"finishReason\": \"STOP\"\n    }\n  ],\n  \"usageMetadata\":
+        {\n    \"promptTokenCount\": 708,\n    \"candidatesTokenCount\": 50,\n    \"totalTokenCount\":
+        758,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n
+        \     {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 708\n      }\n
+        \   ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 50\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T12:08:23.448589Z\",\n
+        \ \"responseId\": \"t83Mas2wG7Kbr8kP-bic-Qw\"\n}\n"
+    headers:
+      content-length:
+      - '1435'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 12:08:24 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Answer each numbered request with one
+      tool call.\n1. Close issue 7, it is a duplicate of issue 3.\n2. How many open
+      issues does the mobile team have?\n3. Reopen issue 12, the fix did not ship."}],
+      "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations": [{"description":
+      "Count the open issues of one team.", "name": "count_open", "parameters": {"properties":
+      {"team": {"type": "STRING"}}, "required": ["team"], "title": "count_openArguments",
+      "type": "OBJECT"}}, {"description": "Search open issues by text.", "name": "search",
+      "parameters": {"properties": {"text": {"type": "STRING"}}, "required": ["text"],
+      "title": "searchArguments", "type": "OBJECT"}}, {"description": "Close one issue
+      by id.", "name": "close_issue", "parameters": {"properties": {"issue_id": {"type":
+      "INTEGER"}}, "required": ["issue_id"], "title": "close_issueArguments", "type":
+      "OBJECT"}}, {"description": "Reopen a closed issue by id.", "name": "reopen_issue",
+      "parameters": {"properties": {"issue_id": {"type": "INTEGER"}}, "required":
+      ["issue_id"], "title": "reopen_issueArguments", "type": "OBJECT"}}, {"description":
+      "Create an issue for a team.", "name": "create_issue", "parameters": {"properties":
+      {"title": {"description": "title is {''title'': ''Title'', ''type'': ''string''}",
+      "type": "STRING"}, "team": {"type": "STRING"}}, "required": ["title", "team"],
+      "title": "create_issueArguments", "type": "OBJECT"}}, {"description": "Archive
+      a closed issue so it leaves the default board.", "name": "archive_issue", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Count the closed issues
+      of one team.", "name": "count_closed_issues", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "List the comments on one issue.", "name": "list_issue_comments",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Assign an issue
+      to a person.", "name": "assign_issue", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "Add a label to an issue.", "name": "label_issue",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Export a team''s
+      issues as CSV.", "name": "export_issues", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "Search closed issues by text.", "name": "search_closed_issues",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Change the severity
+      of one issue.", "name": "update_issue_severity", "parameters": {"properties":
+      {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments",
+      "type": "OBJECT"}}, {"description": "List the sprints on the ops desk.", "name":
+      "list_sprint", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "Get one sprint by id.", "name": "get_sprint", "parameters": {"properties":
+      {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments",
+      "type": "OBJECT"}}, {"description": "Update one sprint by id.", "name": "update_sprint",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Archive one sprint
+      by id.", "name": "archive_sprint", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "Sync one sprint with its source system.", "name":
+      "sync_sprint", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "List the boards on the ops desk.", "name": "list_board", "parameters": {"properties":
+      {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments",
+      "type": "OBJECT"}}, {"description": "Get one board by id.", "name": "get_board",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Update one board
+      by id.", "name": "update_board", "parameters": {"properties": {"item_id": {"type":
+      "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}},
+      {"description": "Archive one board by id.", "name": "archive_board", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Sync one board with its
+      source system.", "name": "sync_board", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "List the webhooks on the ops desk.", "name": "list_webhook",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Get one webhook
+      by id.", "name": "get_webhook", "parameters": {"properties": {"item_id": {"type":
+      "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}},
+      {"description": "Update one webhook by id.", "name": "update_webhook", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Archive one webhook by
+      id.", "name": "archive_webhook", "parameters": {"properties": {"item_id": {"type":
+      "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}},
+      {"description": "Sync one webhook with its source system.", "name": "sync_webhook",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "List the releases
+      on the ops desk.", "name": "list_release", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "Get one release by id.", "name": "get_release",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Update one release
+      by id.", "name": "update_release", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "Archive one release by id.", "name": "archive_release",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Sync one release
+      with its source system.", "name": "sync_release", "parameters": {"properties":
+      {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments",
+      "type": "OBJECT"}}, {"description": "List the incidents on the ops desk.", "name":
+      "list_incident", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "Get one incident by id.", "name": "get_incident", "parameters": {"properties":
+      {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments",
+      "type": "OBJECT"}}, {"description": "Update one incident by id.", "name": "update_incident",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Archive one incident
+      by id.", "name": "archive_incident", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "Sync one incident with its source system.", "name":
+      "sync_incident", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "List the oncall shifts on the ops desk.", "name": "list_oncall_shift", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Get one oncall shift by
+      id.", "name": "get_oncall_shift", "parameters": {"properties": {"item_id": {"type":
+      "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}},
+      {"description": "Update one oncall shift by id.", "name": "update_oncall_shift",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Archive one oncall
+      shift by id.", "name": "archive_oncall_shift", "parameters": {"properties":
+      {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments",
+      "type": "OBJECT"}}, {"description": "Sync one oncall shift with its source system.",
+      "name": "sync_oncall_shift", "parameters": {"properties": {"item_id": {"type":
+      "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}},
+      {"description": "List the milestones on the ops desk.", "name": "list_milestone",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Get one milestone
+      by id.", "name": "get_milestone", "parameters": {"properties": {"item_id": {"type":
+      "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}},
+      {"description": "Update one milestone by id.", "name": "update_milestone", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Archive one milestone by
+      id.", "name": "archive_milestone", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "Sync one milestone with its source system.", "name":
+      "sync_milestone", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "List the epics on the ops desk.", "name": "list_epic", "parameters": {"properties":
+      {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments",
+      "type": "OBJECT"}}, {"description": "Get one epic by id.", "name": "get_epic",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Update one epic
+      by id.", "name": "update_epic", "parameters": {"properties": {"item_id": {"type":
+      "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}},
+      {"description": "Archive one epic by id.", "name": "archive_epic", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Sync one epic with its
+      source system.", "name": "sync_epic", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "List the components on the ops desk.", "name":
+      "list_component", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "Get one component by id.", "name": "get_component", "parameters": {"properties":
+      {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments",
+      "type": "OBJECT"}}, {"description": "Update one component by id.", "name": "update_component",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Archive one component
+      by id.", "name": "archive_component", "parameters": {"properties": {"item_id":
+      {"type": "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type":
+      "OBJECT"}}, {"description": "Sync one component with its source system.", "name":
+      "sync_component", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "List the dashboards on the ops desk.", "name": "list_dashboard", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Get one dashboard by id.",
+      "name": "get_dashboard", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '13002'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"close_issue\",\n              \"args\": {\n                \"issue_id\":
+        7\n              },\n              \"id\": \"call_74227\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a19/9eSlG1Tni/+NBZP6aH3KAeau+M77783OdDmyDiJFPbjDyz5xlwrrS3uEmNaSyIyuZOt9GMDy794Trs7suk5FkPUuOyDWrKn8JW4y9JiyMr5s43bJ\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"count_open\",\n              \"args\": {\n                \"team\": \"mobile\"\n
+        \             },\n              \"id\": \"call_74228\"\n            }\n          },\n
+        \         {\n            \"functionCall\": {\n              \"name\": \"reopen_issue\",\n
+        \             \"args\": {\n                \"issue_id\": 12\n              },\n
+        \             \"id\": \"call_74229\"\n            }\n          }\n        ]\n
+        \     },\n      \"finishReason\": \"STOP\"\n    }\n  ],\n  \"usageMetadata\":
+        {\n    \"promptTokenCount\": 1972,\n    \"candidatesTokenCount\": 50,\n    \"totalTokenCount\":
+        2022,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n
+        \     {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 1972\n      }\n
+        \   ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 50\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T12:08:27.450693Z\",\n
+        \ \"responseId\": \"u83MaoXBG9Tk-O4P2u7MqQs\"\n}\n"
+    headers:
+      content-length:
+      - '1435'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 12:08:28 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Answer each numbered request with one
+      tool call.\n1. Close issue 7, it is a duplicate of issue 3.\n2. How many open
+      issues does the mobile team have?\n3. Reopen issue 12, the fix did not ship."}],
+      "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations": [{"description":
+      "Count the open issues of one team. Use this tool whenever the user''s request
+      touches this area of the ops desk. Pass ids exactly as the user wrote them,
+      and never guess a missing argument. The result is plain text; long results are
+      paged at 50 items, so ask before fetching more. Errors are returned as tool
+      errors: read the message, fix the arguments and try once more. Calls are rate
+      limited to 60 per minute per user, and every call is written to the audit log.",
+      "name": "count_open", "parameters": {"properties": {"team": {"type": "STRING"}},
+      "required": ["team"], "title": "count_openArguments", "type": "OBJECT"}}, {"description":
+      "Search open issues by text. Use this tool whenever the user''s request touches
+      this area of the ops desk. Pass ids exactly as the user wrote them, and never
+      guess a missing argument. The result is plain text; long results are paged at
+      50 items, so ask before fetching more. Errors are returned as tool errors: read
+      the message, fix the arguments and try once more. Calls are rate limited to
+      60 per minute per user, and every call is written to the audit log.", "name":
+      "search", "parameters": {"properties": {"text": {"type": "STRING"}}, "required":
+      ["text"], "title": "searchArguments", "type": "OBJECT"}}, {"description": "Close
+      one issue by id. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "close_issue",
+      "parameters": {"properties": {"issue_id": {"type": "INTEGER"}}, "required":
+      ["issue_id"], "title": "close_issueArguments", "type": "OBJECT"}}, {"description":
+      "Reopen a closed issue by id. Use this tool whenever the user''s request touches
+      this area of the ops desk. Pass ids exactly as the user wrote them, and never
+      guess a missing argument. The result is plain text; long results are paged at
+      50 items, so ask before fetching more. Errors are returned as tool errors: read
+      the message, fix the arguments and try once more. Calls are rate limited to
+      60 per minute per user, and every call is written to the audit log.", "name":
+      "reopen_issue", "parameters": {"properties": {"issue_id": {"type": "INTEGER"}},
+      "required": ["issue_id"], "title": "reopen_issueArguments", "type": "OBJECT"}},
+      {"description": "Create an issue for a team. Use this tool whenever the user''s
+      request touches this area of the ops desk. Pass ids exactly as the user wrote
+      them, and never guess a missing argument. The result is plain text; long results
+      are paged at 50 items, so ask before fetching more. Errors are returned as tool
+      errors: read the message, fix the arguments and try once more. Calls are rate
+      limited to 60 per minute per user, and every call is written to the audit log.",
+      "name": "create_issue", "parameters": {"properties": {"title": {"description":
+      "title is {''title'': ''Title'', ''type'': ''string''}", "type": "STRING"},
+      "team": {"type": "STRING"}}, "required": ["title", "team"], "title": "create_issueArguments",
+      "type": "OBJECT"}}, {"description": "Archive a closed issue so it leaves the
+      default board. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "archive_issue",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Count the closed
+      issues of one team. Use this tool whenever the user''s request touches this
+      area of the ops desk. Pass ids exactly as the user wrote them, and never guess
+      a missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "count_closed_issues",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "List the comments
+      on one issue. Use this tool whenever the user''s request touches this area of
+      the ops desk. Pass ids exactly as the user wrote them, and never guess a missing
+      argument. The result is plain text; long results are paged at 50 items, so ask
+      before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "list_issue_comments",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Assign an issue
+      to a person. Use this tool whenever the user''s request touches this area of
+      the ops desk. Pass ids exactly as the user wrote them, and never guess a missing
+      argument. The result is plain text; long results are paged at 50 items, so ask
+      before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "assign_issue",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Add a label to
+      an issue. Use this tool whenever the user''s request touches this area of the
+      ops desk. Pass ids exactly as the user wrote them, and never guess a missing
+      argument. The result is plain text; long results are paged at 50 items, so ask
+      before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "label_issue",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Export a team''s
+      issues as CSV. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "export_issues",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Search closed
+      issues by text. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "search_closed_issues",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Change the severity
+      of one issue. Use this tool whenever the user''s request touches this area of
+      the ops desk. Pass ids exactly as the user wrote them, and never guess a missing
+      argument. The result is plain text; long results are paged at 50 items, so ask
+      before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "update_issue_severity",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "List the sprints
+      on the ops desk. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "list_sprint",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Get one sprint
+      by id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "get_sprint", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Update one sprint by id.
+      Use this tool whenever the user''s request touches this area of the ops desk.
+      Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "update_sprint", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Archive one sprint by id.
+      Use this tool whenever the user''s request touches this area of the ops desk.
+      Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "archive_sprint", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Sync one sprint with its
+      source system. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "sync_sprint",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "List the boards
+      on the ops desk. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "list_board",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Get one board
+      by id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "get_board", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Update one board by id.
+      Use this tool whenever the user''s request touches this area of the ops desk.
+      Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "update_board", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Archive one board by id.
+      Use this tool whenever the user''s request touches this area of the ops desk.
+      Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "archive_board", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Sync one board with its
+      source system. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "sync_board",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "List the webhooks
+      on the ops desk. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "list_webhook",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Get one webhook
+      by id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "get_webhook", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Update one webhook by id.
+      Use this tool whenever the user''s request touches this area of the ops desk.
+      Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "update_webhook", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Archive one webhook by
+      id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "archive_webhook", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Sync one webhook with its
+      source system. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "sync_webhook",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "List the releases
+      on the ops desk. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "list_release",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Get one release
+      by id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "get_release", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Update one release by id.
+      Use this tool whenever the user''s request touches this area of the ops desk.
+      Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "update_release", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Archive one release by
+      id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "archive_release", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Sync one release with its
+      source system. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "sync_release",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "List the incidents
+      on the ops desk. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "list_incident",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Get one incident
+      by id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "get_incident", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Update one incident by
+      id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "update_incident", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Archive one incident by
+      id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "archive_incident", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Sync one incident with
+      its source system. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "sync_incident",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "List the oncall
+      shifts on the ops desk. Use this tool whenever the user''s request touches this
+      area of the ops desk. Pass ids exactly as the user wrote them, and never guess
+      a missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "list_oncall_shift",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Get one oncall
+      shift by id. Use this tool whenever the user''s request touches this area of
+      the ops desk. Pass ids exactly as the user wrote them, and never guess a missing
+      argument. The result is plain text; long results are paged at 50 items, so ask
+      before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "get_oncall_shift",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Update one oncall
+      shift by id. Use this tool whenever the user''s request touches this area of
+      the ops desk. Pass ids exactly as the user wrote them, and never guess a missing
+      argument. The result is plain text; long results are paged at 50 items, so ask
+      before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "update_oncall_shift",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Archive one oncall
+      shift by id. Use this tool whenever the user''s request touches this area of
+      the ops desk. Pass ids exactly as the user wrote them, and never guess a missing
+      argument. The result is plain text; long results are paged at 50 items, so ask
+      before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "archive_oncall_shift",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Sync one oncall
+      shift with its source system. Use this tool whenever the user''s request touches
+      this area of the ops desk. Pass ids exactly as the user wrote them, and never
+      guess a missing argument. The result is plain text; long results are paged at
+      50 items, so ask before fetching more. Errors are returned as tool errors: read
+      the message, fix the arguments and try once more. Calls are rate limited to
+      60 per minute per user, and every call is written to the audit log.", "name":
+      "sync_oncall_shift", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "List the milestones on the ops desk. Use this tool whenever the user''s request
+      touches this area of the ops desk. Pass ids exactly as the user wrote them,
+      and never guess a missing argument. The result is plain text; long results are
+      paged at 50 items, so ask before fetching more. Errors are returned as tool
+      errors: read the message, fix the arguments and try once more. Calls are rate
+      limited to 60 per minute per user, and every call is written to the audit log.",
+      "name": "list_milestone", "parameters": {"properties": {"item_id": {"type":
+      "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}},
+      {"description": "Get one milestone by id. Use this tool whenever the user''s
+      request touches this area of the ops desk. Pass ids exactly as the user wrote
+      them, and never guess a missing argument. The result is plain text; long results
+      are paged at 50 items, so ask before fetching more. Errors are returned as tool
+      errors: read the message, fix the arguments and try once more. Calls are rate
+      limited to 60 per minute per user, and every call is written to the audit log.",
+      "name": "get_milestone", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "Update one milestone by id. Use this tool whenever the user''s request touches
+      this area of the ops desk. Pass ids exactly as the user wrote them, and never
+      guess a missing argument. The result is plain text; long results are paged at
+      50 items, so ask before fetching more. Errors are returned as tool errors: read
+      the message, fix the arguments and try once more. Calls are rate limited to
+      60 per minute per user, and every call is written to the audit log.", "name":
+      "update_milestone", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "Archive one milestone by id. Use this tool whenever the user''s request touches
+      this area of the ops desk. Pass ids exactly as the user wrote them, and never
+      guess a missing argument. The result is plain text; long results are paged at
+      50 items, so ask before fetching more. Errors are returned as tool errors: read
+      the message, fix the arguments and try once more. Calls are rate limited to
+      60 per minute per user, and every call is written to the audit log.", "name":
+      "archive_milestone", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "Sync one milestone with its source system. Use this tool whenever the user''s
+      request touches this area of the ops desk. Pass ids exactly as the user wrote
+      them, and never guess a missing argument. The result is plain text; long results
+      are paged at 50 items, so ask before fetching more. Errors are returned as tool
+      errors: read the message, fix the arguments and try once more. Calls are rate
+      limited to 60 per minute per user, and every call is written to the audit log.",
+      "name": "sync_milestone", "parameters": {"properties": {"item_id": {"type":
+      "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}},
+      {"description": "List the epics on the ops desk. Use this tool whenever the
+      user''s request touches this area of the ops desk. Pass ids exactly as the user
+      wrote them, and never guess a missing argument. The result is plain text; long
+      results are paged at 50 items, so ask before fetching more. Errors are returned
+      as tool errors: read the message, fix the arguments and try once more. Calls
+      are rate limited to 60 per minute per user, and every call is written to the
+      audit log.", "name": "list_epic", "parameters": {"properties": {"item_id": {"type":
+      "INTEGER"}}, "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}},
+      {"description": "Get one epic by id. Use this tool whenever the user''s request
+      touches this area of the ops desk. Pass ids exactly as the user wrote them,
+      and never guess a missing argument. The result is plain text; long results are
+      paged at 50 items, so ask before fetching more. Errors are returned as tool
+      errors: read the message, fix the arguments and try once more. Calls are rate
+      limited to 60 per minute per user, and every call is written to the audit log.",
+      "name": "get_epic", "parameters": {"properties": {"item_id": {"type": "INTEGER"}},
+      "required": ["item_id"], "title": "runArguments", "type": "OBJECT"}}, {"description":
+      "Update one epic by id. Use this tool whenever the user''s request touches this
+      area of the ops desk. Pass ids exactly as the user wrote them, and never guess
+      a missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "update_epic",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Archive one epic
+      by id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "archive_epic", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Sync one epic with its
+      source system. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "sync_epic",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "List the components
+      on the ops desk. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "list_component",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Get one component
+      by id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "get_component", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Update one component by
+      id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "update_component", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Archive one component by
+      id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "archive_component", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}, {"description": "Sync one component with
+      its source system. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "sync_component",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "List the dashboards
+      on the ops desk. Use this tool whenever the user''s request touches this area
+      of the ops desk. Pass ids exactly as the user wrote them, and never guess a
+      missing argument. The result is plain text; long results are paged at 50 items,
+      so ask before fetching more. Errors are returned as tool errors: read the message,
+      fix the arguments and try once more. Calls are rate limited to 60 per minute
+      per user, and every call is written to the audit log.", "name": "list_dashboard",
+      "parameters": {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"],
+      "title": "runArguments", "type": "OBJECT"}}, {"description": "Get one dashboard
+      by id. Use this tool whenever the user''s request touches this area of the ops
+      desk. Pass ids exactly as the user wrote them, and never guess a missing argument.
+      The result is plain text; long results are paged at 50 items, so ask before
+      fetching more. Errors are returned as tool errors: read the message, fix the
+      arguments and try once more. Calls are rate limited to 60 per minute per user,
+      and every call is written to the audit log.", "name": "get_dashboard", "parameters":
+      {"properties": {"item_id": {"type": "INTEGER"}}, "required": ["item_id"], "title":
+      "runArguments", "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0,
+      "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '38802'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"close_issue\",\n              \"args\": {\n                \"issue_id\":
+        7\n              },\n              \"id\": \"call_697280\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a195wwmC70MejLqmabpn2oplWhpMO/aS74+PdO7c9MBOgHm/UXRphKRokVmtFhKowK2dyQOOh7TAoGxPutlwHUhHLEsQSuwjO1wrC2f5A0IfklIU91C0\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"count_open\",\n              \"args\": {\n                \"team\": \"mobile\"\n
+        \             },\n              \"id\": \"call_697281\"\n            }\n          },\n
+        \         {\n            \"functionCall\": {\n              \"name\": \"reopen_issue\",\n
+        \             \"args\": {\n                \"issue_id\": 12\n              },\n
+        \             \"id\": \"call_697282\"\n            }\n          }\n        ]\n
+        \     },\n      \"finishReason\": \"STOP\"\n    }\n  ],\n  \"usageMetadata\":
+        {\n    \"promptTokenCount\": 7852,\n    \"candidatesTokenCount\": 50,\n    \"totalTokenCount\":
+        7902,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n
+        \     {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 7852\n      }\n
+        \   ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 50\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T12:08:31.443411Z\",\n
+        \ \"responseId\": \"v83MapOIG4KLr8kP_rzwkQ8\"\n}\n"
+    headers:
+      content-length:
+      - '1438'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 12:08:32 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

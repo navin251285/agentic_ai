@@ -1,0 +1,111 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 11:53:03 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Reindex the web team''s issues. Start
+      it now."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Rebuild the search index for one team''s issues in 20 batches.
+      Takes about 20 seconds.", "name": "reindex_issues", "parameters": {"properties":
+      {"team": {"enum": ["web", "api", "mobile", "infra"], "type": "STRING"}}, "required":
+      ["team"], "type": "OBJECT"}}, {"description": "How many batches the latest reindex
+      of this team has finished.", "name": "reindex_status", "parameters": {"properties":
+      {"team": {"enum": ["web", "api", "mobile", "infra"], "type": "STRING"}}, "required":
+      ["team"], "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '752'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"reindex_issues\",\n              \"args\": {\n
+        \               \"team\": \"web\"\n              },\n              \"id\":
+        \"call_768547\"\n            },\n            \"thoughtSignature\": \"AY89a18jSULDbUU843q3os9jQI36ls12YMH9fORYaxtEKe8MISCf8VQ4k39mHGybDajo7iFUtGfz8Zg0J3/qT0b3R5J6cS1dndLLS4LwE1wx02Dxj+VNaYgB\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 96,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 113,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 96\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 17\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T11:53:03.583221Z\",\n  \"responseId\": \"H8rMarXMI4KLr8kP_rzwkQ8\"\n}\n"
+    headers:
+      content-length:
+      - '1010'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 11:53:03 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

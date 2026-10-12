@@ -1,0 +1,1695 @@
+interactions:
+- request:
+    body: '{"jsonrpc":"2.0","id":0,"method":"server/discover"}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '51'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 0, "result": {"capabilities": {"tools": {},
+        "extensions": {"io.modelcontextprotocol/tasks": {}}}, "serverInfo": {"name":
+        "trackr-export", "version": "1.0.0"}}}'
+    headers:
+      content-length:
+      - '184'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:15 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":1,"method":"server/discover","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '175'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 1, "result": {"capabilities": {"tools": {},
+        "extensions": {"io.modelcontextprotocol/tasks": {}}}, "serverInfo": {"name":
+        "trackr-export", "version": "1.0.0"}}}'
+    headers:
+      content-length:
+      - '184'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:15 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"export_issues","arguments":{"format":"csv","team":"web"},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '235'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 2, "result": {"resultType": "complete", "content":
+        [{"type": "text", "text": "id,title,team,status,severity\r\nTRK-4,typo on
+        help page,web,open,med\r\nTRK-8,API rate limit too low,web,open,high\r\nTRK-12,typo
+        on help page,web,closed,low\r\nTRK-16,API rate limit too low,web,open,med\r\nTRK-20,typo
+        on help page,web,open,high\r\n"}], "isError": false}}'
+    headers:
+      content-length:
+      - '376'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:18 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"export_issues","arguments":{"format":"csv","team":"web"},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{"extensions":{"io.modelcontextprotocol/tasks":{}}}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '284'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 3, "result": {"resultType": "task", "taskId":
+        "task-1", "status": "working", "createdAt": "2026-10-12T13:25:18+00:00", "lastUpdatedAt":
+        "2026-10-12T13:25:18+00:00", "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '230'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:18 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":4,"method":"tasks/get","params":{"taskId":"task-1","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '187'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 4, "result": {"resultType": "complete", "taskId":
+        "task-1", "status": "working", "statusMessage": "queued", "createdAt": "2026-10-12T13:25:18+00:00",
+        "lastUpdatedAt": "2026-10-12T13:25:18+00:00", "ttlMs": 600000, "pollIntervalMs":
+        300}}'
+    headers:
+      content-length:
+      - '261'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:18 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":5,"method":"tasks/get","params":{"taskId":"task-1","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '187'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 5, "result": {"resultType": "complete", "taskId":
+        "task-1", "status": "working", "statusMessage": "queued", "createdAt": "2026-10-12T13:25:18+00:00",
+        "lastUpdatedAt": "2026-10-12T13:25:18+00:00", "ttlMs": 600000, "pollIntervalMs":
+        300}}'
+    headers:
+      content-length:
+      - '261'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:18 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":6,"method":"tasks/get","params":{"taskId":"task-1","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '187'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 6, "result": {"resultType": "complete", "taskId":
+        "task-1", "status": "working", "statusMessage": "exporting batch 1 of 6",
+        "createdAt": "2026-10-12T13:25:18+00:00", "lastUpdatedAt": "2026-10-12T13:25:18+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '277'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:19 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":7,"method":"tasks/get","params":{"taskId":"task-1","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '187'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 7, "result": {"resultType": "complete", "taskId":
+        "task-1", "status": "working", "statusMessage": "exporting batch 1 of 6",
+        "createdAt": "2026-10-12T13:25:18+00:00", "lastUpdatedAt": "2026-10-12T13:25:18+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '277'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:19 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":8,"method":"tasks/get","params":{"taskId":"task-1","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '187'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 8, "result": {"resultType": "complete", "taskId":
+        "task-1", "status": "working", "statusMessage": "exporting batch 2 of 6",
+        "createdAt": "2026-10-12T13:25:18+00:00", "lastUpdatedAt": "2026-10-12T13:25:19+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '277'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:19 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":9,"method":"tasks/get","params":{"taskId":"task-1","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '187'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 9, "result": {"resultType": "complete", "taskId":
+        "task-1", "status": "working", "statusMessage": "exporting batch 3 of 6",
+        "createdAt": "2026-10-12T13:25:18+00:00", "lastUpdatedAt": "2026-10-12T13:25:19+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '277'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:20 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":10,"method":"tasks/get","params":{"taskId":"task-1","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 10, "result": {"resultType": "complete", "taskId":
+        "task-1", "status": "working", "statusMessage": "exporting batch 3 of 6",
+        "createdAt": "2026-10-12T13:25:18+00:00", "lastUpdatedAt": "2026-10-12T13:25:19+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:20 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":11,"method":"tasks/get","params":{"taskId":"task-1","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 11, "result": {"resultType": "complete", "taskId":
+        "task-1", "status": "working", "statusMessage": "exporting batch 4 of 6",
+        "createdAt": "2026-10-12T13:25:18+00:00", "lastUpdatedAt": "2026-10-12T13:25:20+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:20 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":12,"method":"tasks/get","params":{"taskId":"task-1","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 12, "result": {"resultType": "complete", "taskId":
+        "task-1", "status": "working", "statusMessage": "exporting batch 5 of 6",
+        "createdAt": "2026-10-12T13:25:18+00:00", "lastUpdatedAt": "2026-10-12T13:25:20+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:21 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":13,"method":"tasks/get","params":{"taskId":"task-1","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 13, "result": {"resultType": "complete", "taskId":
+        "task-1", "status": "working", "statusMessage": "exporting batch 5 of 6",
+        "createdAt": "2026-10-12T13:25:18+00:00", "lastUpdatedAt": "2026-10-12T13:25:20+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:21 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":14,"method":"tasks/get","params":{"taskId":"task-1","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 14, "result": {"resultType": "complete", "taskId":
+        "task-1", "status": "completed", "statusMessage": "export ready", "createdAt":
+        "2026-10-12T13:25:18+00:00", "lastUpdatedAt": "2026-10-12T13:25:21+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300, "result": {"content": [{"type": "text",
+        "text": "id,title,team,status,severity\r\nTRK-4,typo on help page,web,open,med\r\nTRK-8,API
+        rate limit too low,web,open,high\r\nTRK-12,typo on help page,web,closed,low\r\nTRK-16,API
+        rate limit too low,web,open,med\r\nTRK-20,typo on help page,web,open,high\r\n"}],
+        "isError": false}}}'
+    headers:
+      content-length:
+      - '593'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:21 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":15,"method":"tools/call","params":{"name":"export_issues","arguments":{"format":"csv"},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{"extensions":{"io.modelcontextprotocol/tasks":{}}}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '272'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 15, "result": {"resultType": "task", "taskId":
+        "task-2", "status": "working", "createdAt": "2026-10-12T13:25:21+00:00", "lastUpdatedAt":
+        "2026-10-12T13:25:21+00:00", "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '231'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:21 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":16,"method":"tasks/get","params":{"taskId":"task-2","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 16, "result": {"resultType": "complete", "taskId":
+        "task-2", "status": "working", "statusMessage": "queued", "createdAt": "2026-10-12T13:25:21+00:00",
+        "lastUpdatedAt": "2026-10-12T13:25:21+00:00", "ttlMs": 600000, "pollIntervalMs":
+        300}}'
+    headers:
+      content-length:
+      - '262'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:21 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":17,"method":"tasks/get","params":{"taskId":"task-2","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 17, "result": {"resultType": "complete", "taskId":
+        "task-2", "status": "working", "statusMessage": "queued", "createdAt": "2026-10-12T13:25:21+00:00",
+        "lastUpdatedAt": "2026-10-12T13:25:21+00:00", "ttlMs": 600000, "pollIntervalMs":
+        300}}'
+    headers:
+      content-length:
+      - '262'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:21 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":18,"method":"tasks/get","params":{"taskId":"task-2","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 18, "result": {"resultType": "complete", "taskId":
+        "task-2", "status": "working", "statusMessage": "queued", "createdAt": "2026-10-12T13:25:21+00:00",
+        "lastUpdatedAt": "2026-10-12T13:25:21+00:00", "ttlMs": 600000, "pollIntervalMs":
+        300}}'
+    headers:
+      content-length:
+      - '262'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:22 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":19,"method":"tasks/get","params":{"taskId":"task-2","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 19, "result": {"resultType": "complete", "taskId":
+        "task-2", "status": "working", "statusMessage": "exporting batch 1 of 6",
+        "createdAt": "2026-10-12T13:25:21+00:00", "lastUpdatedAt": "2026-10-12T13:25:22+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:22 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":20,"method":"tasks/get","params":{"taskId":"task-2","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 20, "result": {"resultType": "complete", "taskId":
+        "task-2", "status": "working", "statusMessage": "exporting batch 1 of 6",
+        "createdAt": "2026-10-12T13:25:21+00:00", "lastUpdatedAt": "2026-10-12T13:25:22+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:22 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":21,"method":"tasks/get","params":{"taskId":"task-2","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 21, "result": {"resultType": "complete", "taskId":
+        "task-2", "status": "working", "statusMessage": "exporting batch 2 of 6",
+        "createdAt": "2026-10-12T13:25:21+00:00", "lastUpdatedAt": "2026-10-12T13:25:22+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:22 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":22,"method":"tasks/cancel","params":{"taskId":"task-2","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '191'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 22, "result": {"resultType": "complete"}}'
+    headers:
+      content-length:
+      - '66'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:22 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":23,"method":"tasks/get","params":{"taskId":"task-2","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 23, "result": {"resultType": "complete", "taskId":
+        "task-2", "status": "working", "statusMessage": "exporting batch 2 of 6",
+        "createdAt": "2026-10-12T13:25:21+00:00", "lastUpdatedAt": "2026-10-12T13:25:22+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:22 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":24,"method":"tasks/get","params":{"taskId":"task-2","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 24, "result": {"resultType": "complete", "taskId":
+        "task-2", "status": "working", "statusMessage": "exporting batch 2 of 6",
+        "createdAt": "2026-10-12T13:25:21+00:00", "lastUpdatedAt": "2026-10-12T13:25:22+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:22 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":25,"method":"tasks/get","params":{"taskId":"task-2","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 25, "result": {"resultType": "complete", "taskId":
+        "task-2", "status": "working", "statusMessage": "exporting batch 2 of 6",
+        "createdAt": "2026-10-12T13:25:21+00:00", "lastUpdatedAt": "2026-10-12T13:25:22+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:23 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":26,"method":"tasks/get","params":{"taskId":"task-2","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 26, "result": {"resultType": "complete", "taskId":
+        "task-2", "status": "cancelled", "statusMessage": "stopped after batch 2 of
+        6", "createdAt": "2026-10-12T13:25:21+00:00", "lastUpdatedAt": "2026-10-12T13:25:22+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '284'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:23 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":27,"method":"tools/list","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '171'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 27, "result": {"tools": [{"name": "export_issues",
+        "title": "Export issues as CSV", "description": "Export Trackr issues as CSV,
+        optionally for one team. Takes about 3 seconds.", "inputSchema": {"type":
+        "object", "required": ["format"], "properties": {"format": {"type": "string",
+        "enum": ["csv"]}, "team": {"type": "string", "enum": ["web", "api", "mobile",
+        "infra"]}}}}]}}'
+    headers:
+      content-length:
+      - '399'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:23 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Export the web team''s issues as CSV.
+      Start the export now."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Export Trackr issues as CSV, optionally for one team. Takes
+      about 3 seconds.", "name": "export_issues", "parameters": {"properties": {"format":
+      {"enum": ["csv"], "type": "STRING"}, "team": {"enum": ["web", "api", "mobile",
+      "infra"], "type": "STRING"}}, "required": ["format"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '578'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"export_issues\",\n              \"args\": {\n
+        \               \"format\": \"csv\",\n                \"team\": \"web\"\n
+        \             },\n              \"id\": \"call_657535\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1+2gXwhD4i8EsLvnfkgtCKEoDeB/95zhbGBp8Go5V9mKIgFGzgTXRfgP62eaxWcELswDT4L6F96xcOF+sVDiPQUoixoTDtL/KM8fCAht/I7TDHu4b0O\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 60,\n    \"candidatesTokenCount\":
+        22,\n    \"totalTokenCount\": 82,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 60\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 22\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T13:25:24.667502Z\",\n
+        \ \"responseId\": \"xN_Mau7eKKr87bEPhL_6qAU\"\n}\n"
+    headers:
+      content-length:
+      - '1041'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 13:25:25 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":28,"method":"tools/call","params":{"name":"export_issues","arguments":{"format":"csv","team":"web"},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{"extensions":{"io.modelcontextprotocol/tasks":{}}}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '285'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 28, "result": {"resultType": "task", "taskId":
+        "task-3", "status": "working", "createdAt": "2026-10-12T13:25:25+00:00", "lastUpdatedAt":
+        "2026-10-12T13:25:25+00:00", "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '231'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:25 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":29,"method":"tasks/get","params":{"taskId":"task-3","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 29, "result": {"resultType": "complete", "taskId":
+        "task-3", "status": "working", "statusMessage": "queued", "createdAt": "2026-10-12T13:25:25+00:00",
+        "lastUpdatedAt": "2026-10-12T13:25:25+00:00", "ttlMs": 600000, "pollIntervalMs":
+        300}}'
+    headers:
+      content-length:
+      - '262'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:25 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":30,"method":"tasks/get","params":{"taskId":"task-3","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 30, "result": {"resultType": "complete", "taskId":
+        "task-3", "status": "working", "statusMessage": "queued", "createdAt": "2026-10-12T13:25:25+00:00",
+        "lastUpdatedAt": "2026-10-12T13:25:25+00:00", "ttlMs": 600000, "pollIntervalMs":
+        300}}'
+    headers:
+      content-length:
+      - '262'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:25 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":31,"method":"tasks/get","params":{"taskId":"task-3","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 31, "result": {"resultType": "complete", "taskId":
+        "task-3", "status": "working", "statusMessage": "exporting batch 1 of 6",
+        "createdAt": "2026-10-12T13:25:25+00:00", "lastUpdatedAt": "2026-10-12T13:25:25+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:26 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":32,"method":"tasks/get","params":{"taskId":"task-3","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 32, "result": {"resultType": "complete", "taskId":
+        "task-3", "status": "working", "statusMessage": "exporting batch 1 of 6",
+        "createdAt": "2026-10-12T13:25:25+00:00", "lastUpdatedAt": "2026-10-12T13:25:25+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:26 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":33,"method":"tasks/get","params":{"taskId":"task-3","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 33, "result": {"resultType": "complete", "taskId":
+        "task-3", "status": "working", "statusMessage": "exporting batch 2 of 6",
+        "createdAt": "2026-10-12T13:25:25+00:00", "lastUpdatedAt": "2026-10-12T13:25:26+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:26 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":34,"method":"tasks/get","params":{"taskId":"task-3","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 34, "result": {"resultType": "complete", "taskId":
+        "task-3", "status": "working", "statusMessage": "exporting batch 3 of 6",
+        "createdAt": "2026-10-12T13:25:25+00:00", "lastUpdatedAt": "2026-10-12T13:25:26+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:27 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":35,"method":"tasks/get","params":{"taskId":"task-3","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 35, "result": {"resultType": "complete", "taskId":
+        "task-3", "status": "working", "statusMessage": "exporting batch 3 of 6",
+        "createdAt": "2026-10-12T13:25:25+00:00", "lastUpdatedAt": "2026-10-12T13:25:26+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:27 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":36,"method":"tasks/get","params":{"taskId":"task-3","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 36, "result": {"resultType": "complete", "taskId":
+        "task-3", "status": "working", "statusMessage": "exporting batch 4 of 6",
+        "createdAt": "2026-10-12T13:25:25+00:00", "lastUpdatedAt": "2026-10-12T13:25:27+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:27 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":37,"method":"tasks/get","params":{"taskId":"task-3","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 37, "result": {"resultType": "complete", "taskId":
+        "task-3", "status": "working", "statusMessage": "exporting batch 5 of 6",
+        "createdAt": "2026-10-12T13:25:25+00:00", "lastUpdatedAt": "2026-10-12T13:25:27+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:28 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":38,"method":"tasks/get","params":{"taskId":"task-3","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 38, "result": {"resultType": "complete", "taskId":
+        "task-3", "status": "working", "statusMessage": "exporting batch 5 of 6",
+        "createdAt": "2026-10-12T13:25:25+00:00", "lastUpdatedAt": "2026-10-12T13:25:27+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300}}'
+    headers:
+      content-length:
+      - '278'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:28 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":39,"method":"tasks/get","params":{"taskId":"task-3","_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '188'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9130
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9130/mcp
+  response:
+    body:
+      string: '{"jsonrpc": "2.0", "id": 39, "result": {"resultType": "complete", "taskId":
+        "task-3", "status": "completed", "statusMessage": "export ready", "createdAt":
+        "2026-10-12T13:25:25+00:00", "lastUpdatedAt": "2026-10-12T13:25:28+00:00",
+        "ttlMs": 600000, "pollIntervalMs": 300, "result": {"content": [{"type": "text",
+        "text": "id,title,team,status,severity\r\nTRK-4,typo on help page,web,open,med\r\nTRK-8,API
+        rate limit too low,web,open,high\r\nTRK-12,typo on help page,web,closed,low\r\nTRK-16,API
+        rate limit too low,web,open,med\r\nTRK-20,typo on help page,web,open,high\r\n"}],
+        "isError": false}}}'
+    headers:
+      content-length:
+      - '593'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:25:28 GMT
+      server:
+      - BaseHTTP/0.6 Python/3.12.13
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "This CSV is a Trackr export. In one
+      sentence, say how many issues it lists and which severities appear.\n\nid,title,team,status,severity\r\nTRK-4,typo
+      on help page,web,open,med\r\nTRK-8,API rate limit too low,web,open,high\r\nTRK-12,typo
+      on help page,web,closed,low\r\nTRK-16,API rate limit too low,web,open,med\r\nTRK-20,typo
+      on help page,web,open,high\r\n"}], "role": "user"}], "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '524'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"This
+        export lists five issues with severities of low, medium, and high.\",\n            \"thoughtSignature\":
+        \"AY89a18iaop95f9oBJGh4teb408KLqgfIXxtxPhksTyiRKDI+/Br96nF2CDrFFwhfZkuPoURYhLRWJ79vMLvA6uwOoc9G5IWt5DE1Noptq6k7RwELy01y23T\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 123,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 139,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 123\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T13:25:28.672955Z\",\n  \"responseId\": \"yN_MaruJKYKLr8kP_rzwkQ8\"\n}\n"
+    headers:
+      content-length:
+      - '917'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 13:25:29 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,288 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Sun, 11 Oct 2026 20:10:36 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/project/project-id
+  response:
+    body:
+      string: PROJECT
+    headers:
+      Content-Length:
+      - '13'
+      Content-Type:
+      - application/text
+      Date:
+      - Sun, 11 Oct 2026 20:10:36 GMT
+      ETag:
+      - da212b6af946bea
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+  response:
+    body:
+      string: '{"aliases":["default"],"email":"redacted@example.iam.gserviceaccount.com","scopes":["https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]}'
+    headers:
+      Content-Length:
+      - '194'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 11 Oct 2026 20:10:36 GMT
+      ETag:
+      - 9d115f94fb876a8
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/at cred-type/mds
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+  response:
+    body:
+      string: '{"access_token":"REDACTED","expires_in":1634,"token_type":"Bearer"}'
+    headers:
+      Content-Length:
+      - '1083'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 11 Oct 2026 20:10:36 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many open issues does the mobile
+      team have?"}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Count open Trackr issues for a team: web, api, mobile or infra.",
+      "name": "count_open", "parameters": {"properties": {"team": {"type": "STRING"}},
+      "required": ["team"], "type": "OBJECT"}}]}], "toolConfig": {"functionCallingConfig":
+      {"allowed_function_names": ["count_open"], "mode": "ANY"}}, "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '534'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"count_open\",\n              \"args\": {\n                \"team\":
+        \"mobile\"\n              },\n              \"id\": \"call_804379\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18iPd8Jwv85+fm+MHJ3d2QhPwy0GeOLPdqJMvjB2iyJ19nx1kEmhxCiqYpMM7tJTIztDCaZKqPg8KOgv869R0WjdSM8jiS6kXsrPjFBzMGd7Bd1dYxF\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 44,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 60,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 44\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-11T20:10:36.843462Z\",\n
+        \ \"responseId\": \"PO3Lasa9M6Oar8kPusjO-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1008'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 20:10:37 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many open issues does the infra
+      team have?"}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Number of open issues in Trackr for one team (web, api, mobile,
+      infra).", "name": "open_issue_count", "parameters": {"properties": {"team_name":
+      {"type": "STRING"}}, "required": ["team_name"], "type": "OBJECT"}}]}], "toolConfig":
+      {"functionCallingConfig": {"allowed_function_names": ["open_issue_count"], "mode":
+      "ANY"}}, "generationConfig": {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '563'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"open_issue_count\",\n              \"args\":
+        {\n                \"team_name\": \"infra\"\n              },\n              \"id\":
+        \"call_294976\"\n            },\n            \"thoughtSignature\": \"AY89a1/E3Cl9fZ9SJr276nalM2Cx+WppVsUdemuFUNpVYgWV9tyH38RLbJa+q62R0rzIelM3EL/+DxI7RooN8bZF2bJ7Pi6ujr0/fIUmL+xFRuGAgdogTRTu\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 52,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 72,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 52\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 20\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-11T20:10:40.843714Z\",\n
+        \ \"responseId\": \"QO3LasK_M9zl-O4P7PGPqQI\"\n}\n"
+    headers:
+      content-length:
+      - '1018'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 11 Oct 2026 20:10:41 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

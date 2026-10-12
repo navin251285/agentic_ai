@@ -1,0 +1,1983 @@
+{
+  "topic": "Agentic AI 4: Protocols — MCP, A2A, AG-UI",
+  "slug": "agentic-ai-4-protocols",
+  "parent": "agentic-ai",
+  "audience": "Developers who have done tracks 1–3 of the Agentic AI roadmap (or can write a tool-calling agent loop, use agent patterns, memory and RAG, and build with LangGraph plus one vendor SDK). Comfortable with Python async, JSON and HTTP; basic Docker helps for Parts 6–8.",
+  "outcome": "Connect agents to tools and data with MCP (2026-07-28 stateless revision, mcp 2.x), to other agents with A2A v1.0, and to users' screens with AG-UI 1.0: build servers and clients for each from the raw wire format up, drive them with a real model, handle elicitation, long-running Tasks, streaming, push notifications and human approval; decide when a capability is an MCP tool and when it is an A2A agent; secure them with OAuth 2.1 (protected resource metadata, audiences, scopes, CIMD, no token passthrough) against tool poisoning, prompt injection through tool results and confused-deputy attacks; and run them across an organisation with one authorization server, agent identities, enterprise-managed authorization (ID-JAG), signed Agent Cards, tenants, a gateway, a private registry and an audit trail.",
+  "running_example": {
+    "name": "Trackr, the team ops desk",
+    "why": "Everyone understands issues, teams and severities. Every protocol feature has a natural use: a destructive close_issue (annotations, confirmation), a long export (Tasks), 'close 40 issues?' (elicitation), classifying and fixing (A2A agents), approving a change (AG-UI interrupt), malicious issue text (prompt injection through tool results), and many teams (tenants, gateway, registry). It matches the source's capstone (ops copilot with triage and fix agents).",
+    "evolution": "L1: 20 in-memory issues behind a one-tool stdio MCP server called by hand -> L2: tools, runbook resources and a triage prompt over stdio and Streamable HTTP; triage-agent over A2A; a live AG-UI chat -> L3: elicitation, a long export as a Task, OAuth scopes and two different clients (Build 1); orchestrator delegating to triage-agent and fix-agent with human approval (Build 2) -> L4: 4 workers, tool-catalog token budget, binding choices, the MCP-or-A2A exit test -> L5: tests, one trace across AG-UI/A2A/MCP, poisoned servers and injected issues blocked, deployed behind nginx -> L6: one Keycloak for the org, agent identities, ID-JAG, signed cards, many teams as tenants, a gateway with per-tool policy, a private registry, an audit log -> capstone ops copilot."
+  },
+  "stack": [
+    {
+      "tool": "LangChain init_chat_model (Gemini, Claude, OpenAI, Ollama) + llm_replay via llm_setup.get_llm",
+      "role": "the real model wherever an agent acts; learner picks any provider, key status shown; one recording per model",
+      "lessons": "most (all but 01, 07b, 21a, 23, 27, 31, 31a, 40a, 43, 43a)"
+    },
+    {
+      "tool": "mcp 2.x (MCPServer, Client, TokenVerifier/AuthSettings, OAuthClientProvider, Resolve/Elicit)",
+      "role": "official MCP Python SDK for servers, clients and auth",
+      "lessons": "01-07b, 11-17, 23-25a, 27-44"
+    },
+    {
+      "tool": "langchain.mcp.MCPAdapter (langchain[mcp] 1.4, beta)",
+      "role": "MCP tools into a LangChain model with bind_tools (replaces the archived langchain-mcp-adapters)",
+      "lessons": "01a onward"
+    },
+    {
+      "tool": "a2a-sdk 1.x (Starlette/uvicorn, protobuf types)",
+      "role": "A2A servers, clients, signed cards",
+      "lessons": "08-09a, 11, 18, 21a-23a, 25-26, 28, 32-32a, 37-39, 44"
+    },
+    {
+      "tool": "ag-ui-protocol 1.0 + FastAPI; ag-ui-langgraph",
+      "role": "AG-UI event endpoint, interrupts and resume",
+      "lessons": "10-11, 19-20, 22-23a, 25, 28, 31b, 44"
+    },
+    {
+      "tool": "OpenAI Agents SDK / Anthropic MCP helpers; hosted MCP connectors",
+      "role": "a second, vendor MCP client; hosted connectors read-along",
+      "lessons": "14, 17"
+    },
+    {
+      "tool": "Authlib (in-process dev authorization server), PyJWT",
+      "role": "local OAuth flows and token minting with no account",
+      "lessons": "15-17, 31-31a, 34-36, 38a"
+    },
+    {
+      "tool": "Keycloak 26.8 (Docker)",
+      "role": "the organisation's authorization server, EMA (experimental)",
+      "lessons": "34, 36, 39, 44"
+    },
+    {
+      "tool": "MCP Inspector 2.x (npx, Node >= 22.19), a2a-cli",
+      "role": "debugging and CI checks",
+      "lessons": "27, 32a"
+    },
+    {
+      "tool": "agentgateway (binary/Docker; optional kind + Gateway API)",
+      "role": "MCP/A2A gateway",
+      "lessons": "40, 40a, 42a, 44"
+    },
+    {
+      "tool": "OpenTelemetry SDK, pytest + anyio",
+      "role": "tracing and tests",
+      "lessons": "27-28, 33"
+    },
+    {
+      "tool": "nginx + Docker Compose",
+      "role": "production-style deployment",
+      "lessons": "32-33"
+    }
+  ],
+  "python": "3.12",
+  "llm": {
+    "used": true,
+    "mode": "heavy",
+    "lessons": "most",
+    "why": "LLM-centric and LLM-based track (user decision, firm): a real model drives every example where an agent or model acts, core and L1 lessons included, recorded with llm_replay so every lesson runs without a key. No scripted dummy models; the only fake is the in-memory MCP Client in lesson 27, where testing with it is the skill. Protocol mechanics are first shown by hand (raw JSON-RPC over stdio and HTTP, a hand-written Agent Card, raw AG-UI events) because that is the protocol, not a fake model. Use real, standard libraries, not course-made helpers: models from LangChain init_chat_model with bind_tools / AIMessage.tool_calls / ToolMessage; MCP tools reach the model through langchain.mcp.MCPAdapter (langchain-mcp-adapters is archived and capped at mcp<2); official mcp 2.x (MCPServer, Client), a2a-sdk 1.x and ag-ui-protocol for the protocols. The only course helper is llm_setup.get_llm(<lesson>), which lists every provider and model with key status and recordings, starts llm_replay with one recording per model, and returns the LangChain model; learners switch model in .env or with get_llm(..., provider=, model=). Lessons that teach one vendor's own MCP client (14, 17) call that SDK directly. Servers that call a model (A2A executors, AG-UI endpoints) run in a thread inside the notebook process so their calls are recorded; local HTTP to your own servers is never recorded (ignore_localhost), so a cassette can't stand in for a broken server; the Vertex project id is normalised in cassettes. Prose never depends on one model's exact output; random ids are not asserted on. Recordings: Gemini while building (GOOGLE_CLOUD_API_KEY), plus Claude/OpenAI when those keys are present; never invented. Low cost: every example makes at most 2 model calls (MCP = tool-choice call + answer call; A2A = 1 call in the remote agent + 1 in the orchestrator); a lesson's real-call budget is its llm_calls value (default 4), enforced by llm_replay; checkpoints and the capstone go up to 20 with the cheapest model. Replay makes no calls."
+  },
+  "source": "SOURCE_SYLLABUS.md",
+  "source_coverage": {
+    "Level 4 › Goal: three interfaces of an enterprise agent (MCP tools/data, A2A agents, AG-UI screen)": [
+      "00",
+      "11"
+    ],
+    "Level 4 › MCP and A2A are complementary, not rivals": [
+      "00",
+      "18",
+      "26"
+    ],
+    "Level 4 › MCP › Current spec 2026-07-28, stateless protocol core": [
+      "07",
+      "07b",
+      "23"
+    ],
+    "Level 4 › MCP › MCP is a Linux Foundation project (corrected: an LF Projects series hosted by the Agentic AI Foundation since 2025-12-09; individual maintainers)": [
+      "00",
+      "43"
+    ],
+    "Level 4 › MCP › Architecture: host, client, server; JSON-RPC 2.0; capability and version negotiation (corrected: no handshake — per-request _meta and server/discover)": [
+      "01",
+      "01a",
+      "05",
+      "05a",
+      "07",
+      "07a"
+    ],
+    "Level 4 › MCP › Server primitives: tools, resources, prompts": [
+      "03",
+      "04"
+    ],
+    "Level 4 › MCP › Client primitives: sampling, elicitation, roots (corrected: elicitation via Multi Round-Trip Requests; roots/sampling/logging deprecated, taught as 'old servers')": [
+      "12"
+    ],
+    "Level 4 › MCP › Transports: stdio for local, Streamable HTTP for remote (corrected: POST-only, no sessions or resumability; HTTP+SSE deprecated)": [
+      "01",
+      "05b",
+      "06"
+    ],
+    "Level 4 › MCP › Authorization: OAuth 2.1, protected resource metadata, scoped tokens, no token passthrough (added: CIMD replaces deprecated DCR, iss validation, step-up, ID-JAG)": [
+      "15",
+      "16",
+      "31",
+      "34",
+      "35",
+      "36",
+      "38a"
+    ],
+    "Level 4 › MCP › Extensions framework: Tasks (long-running work) and MCP Apps (interactive UI)": [
+      "13",
+      "13a",
+      "20"
+    ],
+    "Level 4 › MCP › The MCP Registry (corrected: preview, public servers only — private needs your own registry)": [
+      "41"
+    ],
+    "Level 4 › MCP › The MCP Inspector for debugging": [
+      "27"
+    ],
+    "Level 4 › MCP › Security: tool poisoning, prompt injection through tool results, confused deputy, over-broad scopes": [
+      "15",
+      "16",
+      "29",
+      "29a",
+      "30",
+      "31",
+      "31a"
+    ],
+    "Level 4 › A2A › v1.0 (March 2026), first stable release": [
+      "08"
+    ],
+    "Level 4 › A2A › Governed by the Linux Foundation, 150+ organisations (corrected: AAIF Growth Stage project since 2026-08-27; '150+' is the LF figure of 2026-04-09)": [
+      "00",
+      "43"
+    ],
+    "Level 4 › A2A › Agent Card at /.well-known/agent-card.json; signed cards for identity": [
+      "08",
+      "37"
+    ],
+    "Level 4 › A2A › Tasks with a lifecycle (corrected: 8 TASK_STATE_* states incl. CANCELED, REJECTED, AUTH_REQUIRED)": [
+      "09"
+    ],
+    "Level 4 › A2A › Messages, parts and artifacts (corrected: single Part oneof text|raw|url|data)": [
+      "08",
+      "09"
+    ],
+    "Level 4 › A2A › Streaming over SSE, push notifications": [
+      "09",
+      "09a"
+    ],
+    "Level 4 › A2A › JSON-RPC, gRPC and REST bindings": [
+      "25"
+    ],
+    "Level 4 › A2A › Agents stay opaque": [
+      "08",
+      "18"
+    ],
+    "Level 4 › A2A › AP2 for agent-initiated payments (corrected: v0.2, donated to the FIDO Alliance 2026-04-28)": [
+      "21a"
+    ],
+    "Level 4 › AG-UI › Event stream between agent backend and front end (text deltas, tool calls, state updates)": [
+      "10",
+      "10a"
+    ],
+    "Level 4 › AG-UI › Human approvals (interrupt outcome + resume, AG-UI 1.0)": [
+      "19"
+    ],
+    "Level 4 › AGENTS.md and Agent Skills": [
+      "21"
+    ],
+    "Level 4 › AGNTCY: discovery, identity, observability (note: AAIF membership disputed)": [
+      "21a"
+    ],
+    "Level 4 › Build: MCP server for a real system with OAuth, connected to two different clients": [
+      "14",
+      "15",
+      "16",
+      "17"
+    ],
+    "Level 4 › Build: wrap two agents as A2A servers, one delegates to the other": [
+      "18",
+      "22"
+    ],
+    "Level 4 › Exit test: whiteboard — MCP tool versus A2A agent": [
+      "26"
+    ],
+    "Related capstone (track 9): enterprise ops copilot — MCP servers, A2A triage and fix agents, human approval": [
+      "44"
+    ],
+    "Specs named: MCP spec 2026-07-28 + release notes, MCP roadmap (Aug 2026), A2A spec, A2A one-year update, LF A2A announcement": [
+      "00",
+      "07",
+      "43",
+      "43a"
+    ]
+  },
+  "source_corrections": [
+    "MCP governance: 'a Linux Foundation project' -> an LF Projects series hosted by the Agentic AI Foundation (AAIF, 2025-12-09); lead maintainers named in lesson 00.",
+    "MCP negotiation: no initialize handshake or Mcp-Session-Id in 2026-07-28; version and capabilities in per-request _meta, server/discover (07); legacy era shown as 'you will see this in old servers'.",
+    "Client primitives: roots, sampling and logging are deprecated (SEP-2577) and appear only as old-server notes; elicitation is taught via Multi Round-Trip Requests (12).",
+    "Streamable HTTP is POST-only with no sessions or SSE resumption; HTTP+SSE is deprecated (06).",
+    "Authorization additions: Client ID Metadata Documents replace deprecated Dynamic Client Registration, RFC 9207 iss validation, insufficient_scope step-up, Enterprise-Managed Authorization / ID-JAG (15, 16, 34-36).",
+    "Tasks is the io.modelcontextprotocol/tasks extension (tasks/get, tasks/update, tasks/cancel; tasks/list and tasks/result removed) (13a).",
+    "MCP Registry is in preview and public-only; private servers need your own registry (41).",
+    "A2A governance: AAIF Growth Stage project since 2026-08-27; '150+ organisations' quoted with its LF date (2026-04-09).",
+    "A2A task states: v1.0 has 8 TASK_STATE_* states (SUBMITTED, WORKING, INPUT_REQUIRED, AUTH_REQUIRED, COMPLETED, FAILED, CANCELED, REJECTED), not the 5 listed (09).",
+    "A2A v1.0 shapes: single Part oneof, supportedInterfaces[] on the card, SendMessage-style method names, a2a-sdk 1.x protobuf types (08, 09, 25).",
+    "AP2 is v0.2 and now at the FIDO Alliance, not Google-run (21a).",
+    "AG-UI is 1.0 (2026-09-17), CopilotKit-led and not an AAIF project; approvals are interrupt outcome + resume (19).",
+    "AGNTCY's AAIF membership is disputed between sources; taught as an LF project (21a).",
+    "langchain-mcp-adapters is archived and capped at mcp<2; langchain.mcp.MCPAdapter is used instead (05).",
+    "Order: the source's MCP -> A2A -> AG-UI order is kept inside every level (L2 Part 2, L3 Parts 3-4, L4-L6), because kit levels must rise through the course."
+  ],
+  "level_balance_note": "67 lessons after the independent critique (roadmap estimated ~36; three protocols, the owned security item and the critique's additions — host wiring, legacy interop, subscriptions, retries, endpoint and webhook security, multi-hop delegation, releases, gateway failure modes, frontier — push it past 45). L1 4 (6%), L2 15 (22%), L3 13 (19%), L4 8 (12%), L5 12 (18%), L6 15 (22%). L1 is small because the agent loop is taught in track 1; L5 is above the 13% guide because security (item 10) starts at the single service; L6 is under 27% because 13 of 14 checklist items belong to other tracks. Priority keeps the Essentials path at about a third of the course.",
+  "tracks": null,
+  "enterprise_coverage": {
+    "1 distributed architecture internals": "N/A — covered in track agentic-ai-5-multi-agent; stateless MCP vs sessionful servers previewed in lessons 07 and 23",
+    "2 cluster operations hands-on": "N/A — covered in track agentic-ai-6-production; multi-worker stateless MCP in lesson 23",
+    "3 failure and recovery": "N/A — covered in track agentic-ai-6-production; protocol retry/idempotency in 23a and gateway failure modes in 40a",
+    "4 extreme scale": "N/A — covered in track agentic-ai-6-production; tool-catalog cost at scale in lessons 24, 24b and the capacity model in 43",
+    "5 kubernetes and infrastructure": "N/A — covered in track agentic-ai-6-production; optional agentgateway-on-kind section in lesson 40",
+    "6 performance engineering at scale": "N/A — covered in track agentic-ai-6-production; single-machine measurements in lessons 23, 25, 40a",
+    "7 high availability and disaster recovery": "N/A — covered in track agentic-ai-6-production; durable multi-replica A2A task store in lesson 32",
+    "8 zero-downtime change": "N/A — covered in track agentic-ai-6-production; protocol-revision dual-stack rollout and the tool-description release pipeline (description change = behaviour change; eval-gated, canaried) in lesson 32a",
+    "9 multi-tenancy and isolation": "N/A — covered in track agentic-ai-6-production; protocol-level tenant isolation and per-tenant quotas in lesson 38",
+    "10 security and compliance at org scale": [
+      "15",
+      "16",
+      "29",
+      "29a",
+      "30",
+      "31",
+      "31a",
+      "31b",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "38a",
+      "39",
+      "40",
+      "40a",
+      "41",
+      "42",
+      "42a"
+    ],
+    "10 security — encryption at rest (client TokenStorage 34, A2A task stores 38, audit log 42)": [
+      "34",
+      "38",
+      "42"
+    ],
+    "11 cost engineering": "N/A — covered in track agentic-ai-6-production; tool-catalog token levers in lessons 24, 24a, 24b",
+    "12 platform and organisation patterns": "N/A — covered in track agentic-ai-6-production; the protocol side (gateway, private registry, platform design) in lessons 40, 41, 43",
+    "13 frontier": "N/A — covered in track agentic-ai-9-frontier; protocol roadmap and how to track it in lesson 43a",
+    "14 case studies": "N/A — covered in track agentic-ai-6-production; protocol case studies (Uber, Block, Cloudflare, AWS) in lesson 43"
+  },
+  "out_of_scope": [
+    {
+      "item": "The agent loop, tool calling basics, structured output, LangGraph and vendor SDK basics",
+      "why": "Tracks agentic-ai-1-foundations to agentic-ai-3 (prerequisites); used here, not re-taught."
+    },
+    {
+      "item": "Multi-agent orchestration patterns, durable execution and runtime architecture",
+      "why": "Track agentic-ai-5-multi-agent (enterprise item 1); this track teaches only the A2A wire between agents."
+    },
+    {
+      "item": "Scaling, Kubernetes operations, HA/DR, load testing, FinOps and tenancy budgets for agent runtimes and gateways",
+      "why": "Track agentic-ai-6-production (items 2-9, 11, 12, 14); protocol-specific practice is kept here in lessons 23-25, 32, 40-43."
+    },
+    {
+      "item": "Prompt-injection defence design patterns research (CaMeL, dual-LLM, plan-then-execute, AgentDojo)",
+      "why": "Track agentic-ai-7-advanced-agents; lesson 30 teaches the protocol-level attack and capability splitting and points there."
+    },
+    {
+      "item": "Frontier of agentic AI beyond protocol roadmaps",
+      "why": "Track agentic-ai-9-frontier (item 13)."
+    },
+    {
+      "item": "Front-end frameworks for AG-UI (CopilotKit React, Next.js, React Native) and writing your own MCP Apps host",
+      "why": "JavaScript front-end work, a separate front-end topic not in this roadmap; AG-UI is taught from Python endpoints and clients, MCP Apps rendered by the reference host."
+    },
+    {
+      "item": "TypeScript, Go, Java, C# and Rust SDKs",
+      "why": "The course is Python; other SDKs are named in lesson 27 (SDK tiers) only."
+    },
+    {
+      "item": "Self-hosting the official MCP Registry codebase and publishing to the public registry",
+      "why": "The official registry is in preview and 'not designed for self-hosting'; publishing needs a public namespace. Lesson 41 builds a private registry and reads the public one."
+    },
+    {
+      "item": "Commercial gateways and IdPs (Kong, Zuplo, Obot, Prefect Horizon, Okta, Entra, Auth0) hands-on",
+      "why": "Paid or platform-bound; the open-source equivalents (agentgateway, Keycloak) are taught and the commercial ones named in lessons 40 and 43."
+    },
+    {
+      "item": "Older or competing agent protocols (IBM ACP, ANP)",
+      "why": "Current status unverified in research; named once in lesson 00 for orientation."
+    }
+  ],
+  "parts": [
+    {
+      "id": 1,
+      "level": "L1",
+      "title": "Why agents need protocols",
+      "checkpoint": "02",
+      "lessons": [
+        {
+          "id": "00",
+          "slug": "introduction",
+          "title": "Why agents need protocols: the big picture in plain words",
+          "goal": "In very plain language, explain why agents need shared protocols: what an agent has to talk to (tools and data, other agents, people on a screen); where protocols sit in the agentic AI spectrum, from a single chatbot to tool-using agents to teams of agents across companies; what goes wrong without them (custom glue for every pair, M×N integrations, broken or unsafe connections, agents that can't find or trust each other, users who can't see or stop what an agent does); and how MCP, A2A and AG-UI each fix one of these communication lines, who governs them, and what you will build. Set up your model and see which keys you have.",
+          "concepts": [
+            "what 'communication' means for an agent (agent↔tools/data, agent↔agent, agent↔user)",
+            "where protocols fit in the agentic AI spectrum (chatbot → tool-using agent → multi-agent → cross-organisation)",
+            "life without protocols: custom glue, the M×N integration problem, fragility and security gaps",
+            "a protocol as a shared language (analogies: USB-C, HTTP, phone lines)",
+            "MCP / A2A / AG-UI: one job each",
+            "opaque agent",
+            "AAIF and protocol governance",
+            "choosing a model"
+          ],
+          "builds_on": [],
+          "example": "Example 1 (1 call each, 2 apps): the same 'count open issues' function hand-wired as a tool into two different agent apps — the duplicated glue is the M×N problem. Example 2 (no call): a plain-language 'without vs with protocols' walkthrough of Trackr — a picture of every line an agent must communicate on, what breaks on each line without a protocol, and which protocol fixes it. A diagram of Trackr's growth; the model-chooser cell with key status.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 35,
+          "status": "done",
+          "llm_calls": 3
+        },
+        {
+          "id": "01",
+          "slug": "json-rpc-and-mcp-by-hand",
+          "title": "JSON-RPC 2.0 and MCP by hand",
+          "goal": "Send raw JSON-RPC 2.0 messages over stdio to a tiny MCP server and read the replies: server/discover, tools/list and tools/call with their _meta, plus a result, an error and a notification.",
+          "concepts": [
+            "JSON-RPC 2.0 request / result / error / notification",
+            "host, client, server roles",
+            "stdio transport",
+            "server/discover",
+            "per-request _meta"
+          ],
+          "builds_on": [
+            "00"
+          ],
+          "example": "A 10-line MCPServer with count_open(team) started as a subprocess; the notebook writes newline-delimited JSON to its stdin and prints each reply, then sends an unknown method to see the error. No model: this is the protocol itself.",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 30,
+          "status": "done"
+        },
+        {
+          "id": "01a",
+          "slug": "hello-mcp-with-a-model",
+          "title": "Hello MCP: a real model uses your server",
+          "goal": "Hand the server's tools to a real model with the standard API — langchain.mcp.MCPAdapter, bind_tools, ToolMessage — and trace which JSON-RPC messages from lesson 01 happen underneath.",
+          "concepts": [
+            "MCPAdapter",
+            "MCP tool -> LangChain tool",
+            "tool call -> tools/call",
+            "ToolMessage"
+          ],
+          "builds_on": [
+            "01"
+          ],
+          "example": "'How many open issues does web have?' — 1 tool-choice call + 1 answer call; a message log shows the tools/list and tools/call it caused.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "status": "done"
+        },
+        {
+          "id": "02",
+          "slug": "checkpoint-first-server",
+          "title": "Checkpoint: your first MCP server, driven by a real model",
+          "goal": "Build a two-tool Trackr MCP server, check it by raw JSON-RPC, and let a real model answer questions through MCPAdapter.",
+          "concepts": [
+            "checkpoint"
+          ],
+          "builds_on": [
+            "01a"
+          ],
+          "example": "count_open and search_issues over 20 in-memory issues; two questions, each its own example of ≤2 calls.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 60,
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "level": "L2",
+      "title": "Core primitives: MCP, then A2A, then AG-UI",
+      "checkpoint": "11",
+      "lessons": [
+        {
+          "id": "03",
+          "slug": "mcp-tools",
+          "title": "MCP tools in depth",
+          "goal": "Define MCP tools correctly: names, titles, descriptions, inputSchema from type hints (JSON Schema 2020-12), outputSchema with structuredContent, annotations, and tool-execution errors (isError) vs protocol errors.",
+          "concepts": [
+            "tool definition",
+            "inputSchema / outputSchema",
+            "structuredContent",
+            "isError vs protocol error",
+            "annotations are untrusted hints (and may be deprecated per the MCP roadmap)"
+          ],
+          "builds_on": [
+            "02"
+          ],
+          "example": "create_issue and close_issue with typed arguments; the model calls close_issue on a missing id and recovers from the isError result (2 calls).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 35,
+          "status": "done"
+        },
+        {
+          "id": "04",
+          "slug": "mcp-resources-and-prompts",
+          "title": "Resources and prompts: context the app and the user control",
+          "goal": "Expose read-only data as resources (static URIs and RFC 6570 templates such as runbook://{team}) and reusable prompts with argument completion and pagination, and explain who controls each primitive.",
+          "concepts": [
+            "resource",
+            "URI template",
+            "prompt",
+            "completion",
+            "pagination cursor",
+            "model- vs app- vs user-controlled"
+          ],
+          "builds_on": [
+            "03"
+          ],
+          "example": "The host attaches the web team's runbook resource and the triage_issue prompt; the model drafts a triage note (1 call).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 30,
+          "status": "done",
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "05",
+          "slug": "mcp-client-and-models",
+          "title": "The Python MCP client and several servers",
+          "goal": "Use mcp 2.x Client (stdio and in-process server object) to list and call tools, then connect a model to two servers at once with MCPAdapter's {\"mcpServers\": …} config and namespaced tool names.",
+          "concepts": [
+            "mcp.Client",
+            "one client per server",
+            "MCPAdapter multi-server config",
+            "tool-name namespacing"
+          ],
+          "builds_on": [
+            "03"
+          ],
+          "example": "Trackr + a runbooks server; 'what does the runbook say about issue 7?' (2 calls).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "status": "done"
+        },
+        {
+          "id": "05a",
+          "slug": "wiring-servers-into-hosts",
+          "title": "Wiring servers into real hosts: Claude Desktop, Claude Code, VS Code, Cursor",
+          "goal": "Register a local and a remote Trackr server in the config files real hosts read (claude_desktop_config.json, Claude Code .mcp.json, VS Code mcp.json, Cursor mcp.json) and reuse the same mcpServers block in your own client.",
+          "concepts": [
+            "host configuration files",
+            "command/args/env for stdio servers",
+            "url entries for remote servers",
+            "project vs user scope"
+          ],
+          "builds_on": [
+            "05"
+          ],
+          "example": "Generate and validate the four config files from one Python dict; the course's own MCPAdapter host loads the same block and the model answers through it (2 calls). Desktop apps are optional, shown with screenshots.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "status": "done"
+        },
+        {
+          "id": "05b",
+          "slug": "stdio-done-right",
+          "title": "stdio done right: stdout, environment and process lifetime",
+          "goal": "Avoid the classic stdio failures: a print() on stdout corrupting the JSON-RPC stream, secrets missing because the subprocess gets a minimal environment (pass env=), and orphan server processes after the host exits.",
+          "concepts": [
+            "stdout is the protocol channel",
+            "log to stderr",
+            "minimal subprocess env",
+            "process lifetime and orphans"
+          ],
+          "builds_on": [
+            "05a"
+          ],
+          "example": "A broken Trackr that prints a debug line makes the client fail with a parse error; fixed by logging to stderr; a missing TRACKR_DB_PATH is passed via env=; ps shows no orphans after the context manager exits. Model check after the fix (2 calls).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "status": "done"
+        },
+        {
+          "id": "06",
+          "slug": "streamable-http",
+          "title": "Remote servers: the Streamable HTTP transport",
+          "goal": "Run an MCP server on 127.0.0.1 over Streamable HTTP and talk to it by hand with httpx (single POST endpoint, Accept header, Mcp-Method / Mcp-Name / Mcp-Param headers, HeaderMismatch), then with Client and the model; apply Origin validation and localhost binding.",
+          "concepts": [
+            "Streamable HTTP",
+            "POST-only endpoint",
+            "routing headers",
+            "Origin validation",
+            "TransportSecuritySettings"
+          ],
+          "builds_on": [
+            "05"
+          ],
+          "example": "Trackr served by uvicorn in a thread; a raw tools/call POST; a forged Origin gets 403; then the model uses the server by URL (2 calls).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 35,
+          "status": "done"
+        },
+        {
+          "id": "07",
+          "slug": "stateless-core",
+          "title": "The stateless core of MCP 2026-07-28",
+          "goal": "Observe what 'stateless' means: version and capabilities ride on every request in _meta, server/discover replaces the handshake, any worker can answer any request, and state lives in explicit handles.",
+          "concepts": [
+            "stateless protocol",
+            "per-request version negotiation",
+            "UnsupportedProtocolVersionError",
+            "explicit state handles"
+          ],
+          "builds_on": [
+            "06"
+          ],
+          "example": "Two Trackr workers answer alternate requests of one model conversation (2 calls); a request with an unknown protocol version is refused.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "status": "done"
+        },
+        {
+          "id": "07a",
+          "slug": "legacy-era-interop",
+          "title": "Talking to legacy servers (2025-11-25 and older)",
+          "goal": "Connect to servers that still use the initialize handshake and Mcp-Session-Id: let Client probe the era, pin mode=\"legacy\" when needed, handle UnsupportedProtocolVersionError, and serve legacy clients from your own server (stateless_http, sticky sessions).",
+          "concepts": [
+            "protocol eras",
+            "era probing",
+            "mode=\"legacy\"",
+            "legacy session handshake",
+            "serving legacy clients"
+          ],
+          "builds_on": [
+            "07"
+          ],
+          "example": "An old-era Trackr (mcp 1.x installed in a small side venv by the lesson; fallback: the v2 server's legacy-era route) and the modern Trackr; the modern Client probes both, the model uses both (2 calls). Exact SDK names checked against the Python SDK 'Legacy clients' page at build time.",
+          "tags": [
+            "needs-llm",
+            "needs-download"
+          ],
+          "priority": "professional",
+          "est_minutes": 35,
+          "status": "done",
+          "kit": "2026.10.12e",
+          "note": "reviewer ACCEPT; check_lesson shows the known checker mismatch"
+        },
+        {
+          "id": "07b",
+          "slug": "subscriptions",
+          "title": "Change notifications: subscriptions/listen",
+          "goal": "Open a subscriptions/listen stream, opt in to toolsListChanged, resourcesListChanged and resource subscriptions, read the ack and subscriptionId, and re-listen after the stream drops (no resumption).",
+          "concepts": [
+            "subscriptions/listen",
+            "listChanged notifications",
+            "resource subscriptions",
+            "subscriptionId",
+            "re-listen, no resume"
+          ],
+          "builds_on": [
+            "07"
+          ],
+          "example": "Adding a tool to Trackr and editing runbook://web push notifications to a listening client, which refreshes its tool list. No model needed: the client reacts.",
+          "tags": [],
+          "priority": "professional",
+          "est_minutes": 30,
+          "status": "done",
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "08",
+          "slug": "first-a2a-agent",
+          "title": "Your first A2A agent: Agent Card, executor and client",
+          "goal": "Write an Agent Card by hand, serve it at /.well-known/agent-card.json, implement an AgentExecutor backed by a real model, and call it with the a2a-sdk 1.x client; explain messages, parts, artifacts and opacity.",
+          "concepts": [
+            "Agent Card",
+            "/.well-known/agent-card.json",
+            "skills and supportedInterfaces",
+            "AgentExecutor",
+            "Message / Part / Artifact",
+            "opaque agent"
+          ],
+          "builds_on": [
+            "05"
+          ],
+          "example": "triage-agent classifies an issue as bug/feature/question (1 call in the agent); the client resolves the card and reads the artifact.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 35,
+          "status": "done"
+        },
+        {
+          "id": "09",
+          "slug": "a2a-task-lifecycle",
+          "title": "A2A tasks: lifecycle, multi-turn and streaming",
+          "goal": "Drive a task through the v1.0 TASK_STATE_* states (SUBMITTED, WORKING, INPUT_REQUIRED, AUTH_REQUIRED, COMPLETED, FAILED, CANCELED, REJECTED), continue it with contextId/taskId, follow it by polling (GetTask, ListTasks) and streaming (SendStreamingMessage, SubscribeToTask), cancel it, and read errors (google.rpc.Status + ErrorInfo) and the A2A-Extensions header.",
+          "concepts": [
+            "TaskState (8 states)",
+            "terminal vs interrupted",
+            "contextId / taskId",
+            "StreamResponse",
+            "CancelTask",
+            "google.rpc.Status errors",
+            "A2A-Extensions"
+          ],
+          "builds_on": [
+            "08"
+          ],
+          "example": "triage-agent asks for the missing severity (INPUT_REQUIRED, 1 call), the client answers in the same context (1 call); the stream prints statusUpdate and artifactUpdate.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 40,
+          "status": "done",
+          "kit": "2026.10.12e",
+          "note": "reviewer ACCEPT; check_lesson shows the known checker mismatch"
+        },
+        {
+          "id": "09a",
+          "slug": "a2a-push-notifications",
+          "title": "A2A push notifications and webhook security",
+          "goal": "Register push-notification configs for long tasks, receive StreamResponse payloads on a local webhook, authenticate and verify them, block SSRF with the SDK's push_url_validator, and handle delivery retries and duplicates.",
+          "concepts": [
+            "push notification config",
+            "webhook authentication",
+            "push_url_validator (SSRF)",
+            "delivery retries",
+            "dedupe on receipt"
+          ],
+          "builds_on": [
+            "09"
+          ],
+          "example": "fix-agent's slow job notifies a local webhook; a forged unsigned notification is rejected; a push URL pointing at 169.254.169.254 is refused (1 call in the agent).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "deep",
+          "est_minutes": 35,
+          "status": "planned"
+        },
+        {
+          "id": "10",
+          "slug": "ag-ui-events",
+          "title": "AG-UI: streaming an agent to the user's screen",
+          "goal": "Build an AG-UI endpoint that turns a real streaming model run into AG-UI events (RUN_STARTED, TEXT_MESSAGE_*, TOOL_CALL_*, RUN_FINISHED / RUN_ERROR) over HTTP+SSE, and consume it from Python.",
+          "concepts": [
+            "RunAgentInput",
+            "lifecycle, text and tool-call events",
+            "EventEncoder",
+            "HTTP+SSE binding",
+            "RUN_ERROR, no resumption"
+          ],
+          "builds_on": [
+            "05"
+          ],
+          "example": "A FastAPI /agent endpoint for Trackr's chat streams a count_open tool call and the answer (2 calls); an httpx client prints a live terminal UI.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 35,
+          "status": "done"
+        },
+        {
+          "id": "10a",
+          "slug": "ag-ui-state-and-frontend-tools",
+          "title": "AG-UI state, frontend tools, snapshots and reasoning",
+          "goal": "Use the rest of the AG-UI event set: shared state (STATE_SNAPSHOT, STATE_DELTA as JSON Patch), MESSAGES_SNAPSHOT, frontend tools defined by the client in RunAgentInput.tools, and reasoning and activity events.",
+          "concepts": [
+            "shared state + JSON Patch",
+            "MESSAGES_SNAPSHOT",
+            "frontend tools",
+            "REASONING_* and ACTIVITY_* events",
+            "capabilities"
+          ],
+          "builds_on": [
+            "10"
+          ],
+          "example": "The client offers a highlight_issue frontend tool; the model calls it (1 call) and the UI applies it; a filter in shared state changes via STATE_DELTA; a second run starts from MESSAGES_SNAPSHOT (1 call).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "deep",
+          "est_minutes": 35,
+          "status": "planned"
+        },
+        {
+          "id": "11",
+          "slug": "checkpoint-trackr-v1",
+          "title": "Checkpoint: Trackr v1 — an MCP server, an A2A agent and a live UI",
+          "goal": "Ship Trackr v1: the MCP server over stdio and Streamable HTTP, triage-agent over A2A, and an AG-UI chat endpoint whose model uses the MCP tools, all verified from Python.",
+          "concepts": [
+            "checkpoint"
+          ],
+          "builds_on": [
+            "07",
+            "08",
+            "10"
+          ],
+          "example": "Example 1: AG-UI chat answers 'how many sev-1 issues are open?' through MCP (2 calls). Example 2: the client calls triage-agent directly with one SendMessage (1 call). Example 3: same chat question over HTTP instead of stdio (2 calls).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 90,
+          "status": "done",
+          "llm_calls": 6
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "level": "L3",
+      "title": "MCP in real apps (Build, part 1)",
+      "checkpoint": "17",
+      "lessons": [
+        {
+          "id": "12",
+          "slug": "elicitation-mrtr",
+          "title": "Asking the user mid-call: elicitation with Multi Round-Trip Requests",
+          "goal": "Make a tool pause for user input with MRTR: InputRequiredResult (resultType input_required, inputRequests, requestState), the client's retry with inputResponses and the echoed, integrity-protected requestState; form vs URL elicitation. Roots, sampling and logging appear only as deprecated features you will see in old servers.",
+          "concepts": [
+            "Multi Round-Trip Request",
+            "InputRequiredResult",
+            "requestState integrity",
+            "form vs URL elicitation",
+            "Resolve / Elicit",
+            "deprecated roots / sampling / logging"
+          ],
+          "builds_on": [
+            "07"
+          ],
+          "example": "The model calls bulk_close(team='web') (1 call); the server asks 'close 40 issues?'; the notebook answers and the retry completes or aborts; final answer (1 call).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 35,
+          "status": "done",
+          "kit": "2026.10.12e",
+          "note": "reviewer ACCEPT after id-leak fix; check_lesson shows the known checker mismatch"
+        },
+        {
+          "id": "13",
+          "slug": "extensions-progress-cancellation",
+          "title": "Extensions, progress and cancellation",
+          "goal": "Negotiate an opt-in extension (vendor-prefixed id in capabilities, off by default, graceful degradation), report progress from a slow tool, and cancel it by closing the response stream.",
+          "concepts": [
+            "extensions framework",
+            "progress notifications",
+            "cancellation = close the stream",
+            "handlers must stop work"
+          ],
+          "builds_on": [
+            "07"
+          ],
+          "example": "A 20-second reindex tool reports progress; the client closes the stream and the server log shows the handler stopped. The model starts the reindex (1 call).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 30,
+          "status": "done",
+          "kit": "2026.10.12e",
+          "note": "reviewer ACCEPT; check_lesson shows the known checker mismatch"
+        },
+        {
+          "id": "13a",
+          "slug": "mcp-tasks",
+          "title": "Long-running work: the MCP Tasks extension",
+          "goal": "Run long work as a task with io.modelcontextprotocol/tasks (CreateTaskResult, tasks/get, tasks/update, tasks/cancel, ttlMs, pollIntervalMs, notifications/tasks over subscriptions/listen) and compare MCP Tasks with A2A tasks.",
+          "concepts": [
+            "io.modelcontextprotocol/tasks",
+            "task polling",
+            "task notifications",
+            "MCP Tasks vs A2A tasks"
+          ],
+          "builds_on": [
+            "13",
+            "07b",
+            "09"
+          ],
+          "example": "export_issues(format='csv') returns a task handle; the client polls and downloads the result; a comparison table vs triage-agent's A2A task. Model starts the export (1 call) and summarises it (1 call). Server support checked at build time; fallback is hand-written JSON-RPC.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 35,
+          "status": "done",
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "14",
+          "slug": "other-clients",
+          "title": "One server, many clients: vendor SDKs and hosted MCP",
+          "goal": "Connect Trackr to a second client — the OpenAI Agents SDK (MCPServerStreamableHttp) or Anthropic async_mcp_tool — and know the hosted options (Anthropic MCP connector, OpenAI Responses type 'mcp' with approvals, Gemini Interactions mcp_server) and their limits (public HTTPS, no stdio).",
+          "concepts": [
+            "MCP clients in vendor SDKs",
+            "hosted MCP",
+            "require_approval / allowed_tools",
+            "public reachability and tunnels",
+            "Gemini session-as-tool pitfall"
+          ],
+          "builds_on": [
+            "06"
+          ],
+          "example": "LangChain host and vendor-SDK host ask the same question (2 calls each); hosted-connector requests shown read-along with recorded responses.",
+          "tags": [
+            "needs-llm",
+            "needs-cloud"
+          ],
+          "priority": "core",
+          "est_minutes": 35,
+          "status": "done"
+        },
+        {
+          "id": "15",
+          "slug": "oauth-resource-server",
+          "title": "Protecting an MCP server: OAuth 2.1 resource server",
+          "goal": "Turn Trackr into an OAuth 2.1 resource server: TokenVerifier and AuthSettings, Protected Resource Metadata (RFC 9728), the 401 WWW-Authenticate challenge, audience validation (validate_token_resource on), and scopes issues:read / issues:write checked per tool.",
+          "concepts": [
+            "resource server",
+            "Protected Resource Metadata",
+            "WWW-Authenticate challenge",
+            "audience validation",
+            "per-tool scopes"
+          ],
+          "builds_on": [
+            "06"
+          ],
+          "example": "No token -> 401 with the metadata URL; a token for another audience -> rejected; the model works through the protected server with a dev JWT minted by PyJWT (2 calls).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 35,
+          "status": "done"
+        },
+        {
+          "id": "16",
+          "slug": "oauth-client-flow",
+          "title": "Getting a token: the MCP OAuth client flow and step-up",
+          "goal": "Run the client side against a local in-process authorization server (Authlib): PRM -> AS metadata discovery, Client ID Metadata Documents (replacing deprecated DCR), authorization code + PKCE S256 + resource indicator, iss validation, token storage with OAuthClientProvider, and scope step-up after 403 insufficient_scope.",
+          "concepts": [
+            "AS discovery",
+            "Client ID Metadata Document",
+            "DCR (deprecated)",
+            "PKCE S256",
+            "resource indicator (RFC 8707)",
+            "iss validation (RFC 9207)",
+            "insufficient_scope step-up"
+          ],
+          "builds_on": [
+            "15"
+          ],
+          "example": "The notebook scripts the browser redirect with httpx and prints each step; the model searches with a read token (2 calls), then close_issue triggers 403 insufficient_scope and a step-up to read+write (2 calls).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 40,
+          "status": "done"
+        },
+        {
+          "id": "17",
+          "slug": "checkpoint-build-oauth-server",
+          "title": "Checkpoint (Build, part 1): an MCP server with OAuth and two clients",
+          "goal": "Deliver the source's Build, part 1: an MCP server over Streamable HTTP for Trackr — or a real system you use (a SQLite database, or GitHub with your own token) — protected by OAuth with read/write scopes and connected to two different clients.",
+          "concepts": [
+            "checkpoint"
+          ],
+          "builds_on": [
+            "14",
+            "16"
+          ],
+          "example": "LangChain agent and vendor-SDK agent each log in, search and close (2 calls per example, 3 examples); the read-only client is refused close_issue. Stretch (Professional path): MRTR confirmation and a Task-based export.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 120,
+          "status": "done",
+          "llm_calls": 8
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "level": "L3",
+      "title": "Agents, users and the rest of the stack (Build, part 2)",
+      "checkpoint": "22",
+      "lessons": [
+        {
+          "id": "18",
+          "slug": "a2a-delegation",
+          "title": "Delegating over A2A: when to call a tool and when to hand off",
+          "goal": "Build an orchestrator that uses MCP tools for what it controls and delegates to a remote A2A agent for what it does not, and explain the tool-vs-agent decision.",
+          "concepts": [
+            "MCP vs A2A decision",
+            "delegation tool",
+            "remote agent as a black box",
+            "artifacts back into the conversation"
+          ],
+          "builds_on": [
+            "05",
+            "08"
+          ],
+          "example": "The orchestrator reads issues through MCP and hands 'classify these three' to triage-agent: 1 orchestrator call + 1 remote call; the artifact is returned without a third call.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 35,
+          "status": "done"
+        },
+        {
+          "id": "19",
+          "slug": "ag-ui-human-approval",
+          "title": "Human approval over AG-UI: interrupts and resume",
+          "goal": "Stop a run for a human decision with an interrupt outcome on RUN_FINISHED and resume on the same thread with resolved or cancelled, including from LangGraph via ag-ui-langgraph (emit_interrupt_outcome).",
+          "concepts": [
+            "interrupt outcome",
+            "resume on threadId",
+            "confirmation interrupts",
+            "safe replay of resume"
+          ],
+          "builds_on": [
+            "10",
+            "18"
+          ],
+          "example": "Before close_issue runs the UI receives an interrupt (1 call); approving resumes and closes (1 call); cancelling leaves it open.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 35,
+          "status": "done",
+          "kit": "2026.10.12e",
+          "note": "reviewer ACCEPT; check_lesson shows the known checker mismatch"
+        },
+        {
+          "id": "20",
+          "slug": "rich-agent-uis",
+          "title": "Rich UIs: MCP Apps and generative UI",
+          "goal": "Serve an interactive ui:// resource from a tool with the MCP Apps extension (text/html;profile=mcp-app, sandboxed iframe, CSP) and see where A2UI and AG-UI generative-UI specs fit.",
+          "concepts": [
+            "MCP Apps (io.modelcontextprotocol/ui)",
+            "ui:// resource",
+            "sandboxed iframe + postMessage",
+            "A2UI / generative UI"
+          ],
+          "builds_on": [
+            "10a",
+            "13"
+          ],
+          "example": "show_board returns an HTML issue board (1 call); the reference basic-host renders it (npx); without Node the HTML and host messages are printed.",
+          "tags": [
+            "needs-llm",
+            "needs-download"
+          ],
+          "priority": "deep",
+          "est_minutes": 35,
+          "status": "planned"
+        },
+        {
+          "id": "21",
+          "slug": "agents-md-and-skills",
+          "title": "AGENTS.md and Agent Skills",
+          "goal": "Write an AGENTS.md and an Agent Skill (SKILL.md frontmatter, progressive disclosure) for Trackr, validate it with skills-ref, and serve skills with the Skills over MCP extension.",
+          "concepts": [
+            "AGENTS.md (nearest file wins)",
+            "Agent Skills (SKILL.md)",
+            "progressive disclosure",
+            "Skills over MCP"
+          ],
+          "builds_on": [
+            "05"
+          ],
+          "example": "A 'triage-runbook' skill is loaded only when the model needs it: example without the skill (1 call) vs with it (2 calls).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 30,
+          "status": "done",
+          "kit": "2026.10.12e",
+          "note": "reviewer ACCEPT after id-leak fix; check_lesson shows the known checker mismatch"
+        },
+        {
+          "id": "21a",
+          "slug": "ap2-and-agntcy",
+          "title": "Neighbouring standards: AP2 and AGNTCY",
+          "goal": "Place AP2 (agent payments: checkout and payment mandates, open vs closed, human-present vs not-present; v0.2, now at the FIDO Alliance) and AGNTCY (Agent Directory/OASF, identity, SLIM) relative to A2A and MCP.",
+          "concepts": [
+            "AP2 mandates",
+            "FIDO agentic authentication",
+            "AGNTCY Directory / OASF",
+            "SLIM"
+          ],
+          "builds_on": [
+            "21",
+            "09"
+          ],
+          "example": "Read-along: verify the signature on a sample AP2 checkout mandate with PyJWT and read an OASF record for triage-agent. No model needed.",
+          "tags": [],
+          "priority": "deep",
+          "est_minutes": 30,
+          "status": "planned"
+        },
+        {
+          "id": "22",
+          "slug": "checkpoint-build-a2a-delegation",
+          "title": "Checkpoint (Build, part 2): two A2A agents and a delegating orchestrator",
+          "goal": "Deliver the source's Build, part 2: triage-agent and fix-agent as A2A servers, an orchestrator that delegates from one to the other, and human approval over AG-UI before any change.",
+          "concepts": [
+            "checkpoint"
+          ],
+          "builds_on": [
+            "09",
+            "17",
+            "18",
+            "19"
+          ],
+          "example": "'Fix the newest sev-1' as separate recorded examples: triage (orchestrator 1 + triage-agent 1), fix proposal (orchestrator 1 + fix-agent 1), approval + close (1 + 1).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 120,
+          "status": "done",
+          "llm_calls": 8,
+          "kit": "2026.10.12e"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "level": "L4",
+      "title": "Trade-offs and internals on one machine",
+      "checkpoint": "26",
+      "lessons": [
+        {
+          "id": "23",
+          "slug": "stateless-scaling",
+          "title": "Scaling stateless MCP on one machine",
+          "goal": "Measure Trackr over 1 vs 4 uvicorn workers; show that MRTR needs shared RequestStateSecurity keys (and a rotation with an overlap window and replay limit) and that subscriptions across workers need a shared SubscriptionBus; read the transport limits (timeouts, 4 MiB bodies, 1 MiB SSE events).",
+          "concepts": [
+            "any worker serves any request",
+            "RequestStateSecurity keys and rotation",
+            "replay window",
+            "SubscriptionBus",
+            "timeouts and size limits"
+          ],
+          "builds_on": [
+            "07b",
+            "12"
+          ],
+          "example": "An httpx load loop prints req/s and p95 for 1 and 4 workers; an elicitation retry fails on another worker with mismatched keys, works with shared keys, and survives a key rotation. No model in the load loop.",
+          "tags": [
+            "slow"
+          ],
+          "priority": "deep",
+          "est_minutes": 40,
+          "status": "planned"
+        },
+        {
+          "id": "23a",
+          "slug": "retries-and-idempotency",
+          "title": "Retries, idempotency and deadlines across protocols",
+          "goal": "Make retries safe when nothing resumes: re-issued tools/call with an idempotency key, AG-UI retry = new run, A2A messageId dedupe, and one deadline propagated AG-UI -> A2A -> MCP.",
+          "concepts": [
+            "non-resumable streams",
+            "idempotency keys",
+            "messageId dedupe",
+            "retry = new run",
+            "deadline propagation"
+          ],
+          "builds_on": [
+            "09",
+            "10",
+            "18"
+          ],
+          "example": "A dropped connection after create_issue makes a naive retry create a duplicate; the idempotency key prevents it; a 10 s deadline cancels the A2A and MCP work downstream. One recorded orchestrator example (1 + 1 calls).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 35,
+          "status": "done",
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "24",
+          "slug": "tool-catalog-cost",
+          "title": "Tool catalogs: token cost, selection accuracy and name collisions",
+          "goal": "Measure prompt tokens and tool-selection accuracy at 5, 20 and 60 tools, and see tool-name collisions when servers are federated; fix with short descriptions and namespacing.",
+          "concepts": [
+            "tool-catalog tokens",
+            "selection accuracy vs catalog size",
+            "name collisions under federation",
+            "description length"
+          ],
+          "builds_on": [
+            "05"
+          ],
+          "example": "3 catalog sizes × 3 prompts = 9 single-call examples (tool choice only); usage metadata prints tokens; two servers both exposing 'search' collide until namespaced.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 40,
+          "status": "done",
+          "llm_calls": 12,
+          "kit": "2026.10.12e",
+          "note": "reviewer ACCEPT; check_lesson shows the known checker mismatch"
+        },
+        {
+          "id": "24a",
+          "slug": "caching-hints",
+          "title": "Caching: ttlMs, cacheScope and prompt-cache-friendly order",
+          "goal": "Honour ttlMs and cacheScope on list/read results, invalidate on listChanged, and keep tool order deterministic so the model provider's prompt cache hits.",
+          "concepts": [
+            "ttlMs / cacheScope",
+            "listChanged invalidation",
+            "deterministic tool order",
+            "prompt-cache hit rate"
+          ],
+          "builds_on": [
+            "24",
+            "07b"
+          ],
+          "example": "A caching client cuts tools/list calls from 20 to 1; the same 2 prompts with stable vs shuffled tool order show cached-token counts (2 calls each).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "deep",
+          "est_minutes": 30,
+          "status": "planned"
+        },
+        {
+          "id": "24b",
+          "slug": "progressive-discovery",
+          "title": "Progressive discovery, Code Mode and response projection",
+          "goal": "Replace a huge catalog with a 4-tool discovery facade (discover_server, discover_tools, get_tool_schema, invoke_tool), let the model write code against tools (Code Mode), and trim results with response projection; measure the token savings.",
+          "concepts": [
+            "progressive discovery",
+            "Code Mode",
+            "response projection"
+          ],
+          "builds_on": [
+            "24"
+          ],
+          "example": "The 60-tool question from lesson 24 answered through the facade (2 calls) with a printed token comparison.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "deep",
+          "est_minutes": 35,
+          "status": "planned"
+        },
+        {
+          "id": "25",
+          "slug": "wire-bindings",
+          "title": "Wire bindings compared: A2A JSON-RPC, REST, gRPC; AG-UI SSE vs Protobuf",
+          "goal": "Choose a binding from the Agent Card's supportedInterfaces and measure latency and payload size of A2A's JSON-RPC, HTTP+JSON and gRPC bindings and AG-UI's HTTP+SSE vs HTTP+Protobuf.",
+          "concepts": [
+            "A2A protocol bindings",
+            "supportedInterfaces selection",
+            "AG-UI protobuf binding",
+            "payload and latency"
+          ],
+          "builds_on": [
+            "09",
+            "10"
+          ],
+          "example": "triage-agent served on JSON-RPC and REST (gRPC if the extra installs), replaying one recorded model answer; model time excluded from the numbers.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "deep",
+          "est_minutes": 35,
+          "status": "planned"
+        },
+        {
+          "id": "25a",
+          "slug": "server-frameworks",
+          "title": "MCP server frameworks: MCPServer, FastMCP 4, generated from OpenAPI",
+          "goal": "Build the same Trackr tools with the official MCPServer, FastMCP 4 and FastMCP's from_openapi, and compare dependencies, features and the tools/list each produces.",
+          "concepts": [
+            "official SDK vs FastMCP",
+            "OpenAPI-to-MCP generation",
+            "generated description quality"
+          ],
+          "builds_on": [
+            "03",
+            "06"
+          ],
+          "example": "Three servers, one diff of their tools/list; the model answers the same question against each (2 calls each, 3 examples).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "deep",
+          "est_minutes": 35,
+          "status": "planned",
+          "llm_calls": 6
+        },
+        {
+          "id": "26",
+          "slug": "checkpoint-exit-test",
+          "title": "Checkpoint (Exit test): MCP tool or A2A agent?",
+          "goal": "Pass the source's Exit test: for six Trackr capabilities decide on a whiteboard whether each is an MCP tool (or MCP Task) or an A2A agent, justify with the criteria and your measurements, then implement the two most borderline ones both ways and compare.",
+          "concepts": [
+            "checkpoint"
+          ],
+          "builds_on": [
+            "13a",
+            "18",
+            "22",
+            "24"
+          ],
+          "example": "Capabilities: count issues, export a report, triage, propose a fix, ask a vendor's security agent, render a board. Four recorded examples (two capabilities × two designs), each ≤2 calls.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 90,
+          "status": "done",
+          "llm_calls": 8,
+          "kit": "2026.10.12e",
+          "note": "accepted by the user with the noted review gaps"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "level": "L5",
+      "title": "Shipping protocol services safely",
+      "checkpoint": "33",
+      "lessons": [
+        {
+          "id": "27",
+          "slug": "testing-and-inspector",
+          "title": "Testing and debugging: in-memory tests and MCP Inspector",
+          "goal": "Test Trackr with the in-process Client and pytest, snapshot tools/list, debug with MCP Inspector 2.x (web, --cli, --tui), know the conformance suite and SDK tiers, and check A2A cards with a2a-cli.",
+          "concepts": [
+            "in-memory Client tests",
+            "tools/list snapshot",
+            "MCP Inspector",
+            "conformance and SDK tiers",
+            "a2a-cli"
+          ],
+          "builds_on": [
+            "05",
+            "06"
+          ],
+          "example": "A pytest file with 6 tests — the in-memory client is the fake, and testing with it is the skill (no model); Inspector CLI output in a CI-style cell (recorded output if Node is missing).",
+          "tags": [
+            "needs-download"
+          ],
+          "priority": "core",
+          "est_minutes": 35,
+          "status": "done"
+        },
+        {
+          "id": "27a",
+          "slug": "tool-selection-evals",
+          "title": "Tool-selection evals with recorded model calls",
+          "goal": "Evaluate whether the model picks the right tool and arguments for a fixed prompt set, recording model calls but keeping your own local servers live (ignore_localhost), and keep tool descriptions under version control.",
+          "concepts": [
+            "tool-selection eval",
+            "recorded model calls vs live servers",
+            "ignore_localhost",
+            "description changes as behaviour changes"
+          ],
+          "builds_on": [
+            "27",
+            "24"
+          ],
+          "example": "8 prompts, 1 call each, scored; a reworded description drops the score and the eval catches it.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 35,
+          "status": "done",
+          "llm_calls": 10,
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "28",
+          "slug": "observability",
+          "title": "Observability: one trace across AG-UI, A2A and MCP",
+          "goal": "Propagate one OpenTelemetry trace from an AG-UI run through the orchestrator, A2A and MCP (_meta traceparent), log to stderr, meter per tool from Mcp-Method / Mcp-Name headers, and measure tracing overhead.",
+          "concepts": [
+            "trace context in _meta",
+            "a2a-sdk telemetry",
+            "stderr logging",
+            "header-based metrics",
+            "tracing overhead"
+          ],
+          "builds_on": [
+            "22",
+            "27"
+          ],
+          "example": "One 'triage and close' run printed as a span tree (orchestrator 1 + triage 1 calls); 200 local tools/call requests with and without tracing give the measured overhead.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 35,
+          "status": "done",
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "29",
+          "slug": "tool-poisoning",
+          "title": "Malicious servers: tool poisoning, rug pulls and shadowing",
+          "goal": "Show a real model steered by hidden instructions in a tool description, a description changed after approval, and one server's text shadowing another's tool; defend with full-description review, pinned hashes of tools/list, namespacing, treating annotations as untrusted (and possibly deprecated), and confirmation for destructive tools.",
+          "concepts": [
+            "tool poisoning",
+            "rug pull",
+            "tool shadowing",
+            "pinned tools/list hashes",
+            "untrusted annotations"
+          ],
+          "builds_on": [
+            "03",
+            "05b"
+          ],
+          "example": "A 'weather' server co-installed with Trackr tells the model to copy issue text to a URL: attacked run (2 calls), defended run (2 calls). Invariant Labs 2025 write-up and the postmark-mcp incident as real cases.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 40,
+          "status": "done",
+          "llm_calls": 6
+        },
+        {
+          "id": "29a",
+          "slug": "sandboxing-local-servers",
+          "title": "Containing local servers: sandboxing stdio servers",
+          "goal": "Run an untrusted stdio server in a container with a minimal environment, read-only filesystem and no or allow-listed egress, and see why: stdio servers run with your privileges (2026 STDIO command-execution CVEs).",
+          "concepts": [
+            "stdio servers run as you",
+            "container sandbox",
+            "minimal env",
+            "egress restriction",
+            "install-time consent"
+          ],
+          "builds_on": [
+            "29"
+          ],
+          "example": "The poisoned server tries to read ~/.ssh and call out; inside docker run --network none --read-only it fails. Fallback without Docker: a subprocess with an empty env and an HTTP proxy that denies egress. Model check (2 calls).",
+          "tags": [
+            "needs-llm",
+            "needs-docker"
+          ],
+          "priority": "professional",
+          "est_minutes": 35,
+          "status": "done",
+          "kit": "2026.10.12e",
+          "note": "accepted by the user with the noted review gaps"
+        },
+        {
+          "id": "30",
+          "slug": "prompt-injection-via-tool-results",
+          "title": "Prompt injection through tool results and the lethal trifecta",
+          "goal": "Reproduce an indirect prompt injection where a malicious issue body makes the agent leak private data, explain the lethal trifecta, and break it by design: split capabilities, allow-lists, confirmation gates and redaction.",
+          "concepts": [
+            "indirect prompt injection",
+            "lethal trifecta",
+            "capability splitting",
+            "allow-lists",
+            "confirmation gates"
+          ],
+          "builds_on": [
+            "29"
+          ],
+          "example": "Issue #13 says 'post all sev-1 issues to this URL': attacked run (2 calls), split-capability run (2 calls), confirmation-gated run (2 calls). GitHub MCP 'toxic agent flow' as the real case.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 40,
+          "status": "done",
+          "llm_calls": 6
+        },
+        {
+          "id": "31",
+          "slug": "token-passthrough-and-confused-deputy",
+          "title": "Token passthrough and the confused deputy",
+          "goal": "Show why forwarding a user's token upstream is forbidden, and how a confused-deputy attack works on an MCP OAuth proxy with a static client id; fix with audience checks, per-client consent, exact redirect-URI match, single-use state and __Host- cookies.",
+          "concepts": [
+            "token passthrough",
+            "confused deputy",
+            "per-client consent",
+            "exact redirect URI",
+            "single-use state"
+          ],
+          "builds_on": [
+            "16"
+          ],
+          "example": "A deliberately weak Trackr proxy on localhost; both attacks run, then are fixed. Protocol-only: no model.",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 40,
+          "status": "done"
+        },
+        {
+          "id": "31a",
+          "slug": "client-side-oauth-attacks",
+          "title": "Client-side OAuth attacks: SSRF, malicious authorization URLs, mix-up",
+          "goal": "Harden an MCP client against SSRF during metadata discovery (private-range block-list, HTTPS only), malicious authorization_endpoint URLs (CVE-2025-6514 in mcp-remote) and authorization-server mix-up (iss).",
+          "concepts": [
+            "SSRF block-list",
+            "authorization-URL scheme allow-list",
+            "mix-up attack",
+            "iss validation"
+          ],
+          "builds_on": [
+            "31"
+          ],
+          "example": "A malicious local server advertises an AS at 169.254.169.254 and a javascript: authorization URL; the hardened client refuses both. No model.",
+          "tags": [],
+          "priority": "deep",
+          "est_minutes": 30,
+          "status": "planned"
+        },
+        {
+          "id": "31b",
+          "slug": "ag-ui-endpoint-security",
+          "title": "Securing the AG-UI endpoint",
+          "goal": "Protect the AG-UI endpoint: authenticate the user, set CORS and CSRF defences, and treat client-sent state, messages, tools and forwardedProps as untrusted input.",
+          "concepts": [
+            "endpoint authentication",
+            "CORS / CSRF",
+            "client state is untrusted",
+            "forwardedProps validation"
+          ],
+          "builds_on": [
+            "10",
+            "15"
+          ],
+          "example": "A forged RunAgentInput with state {role: 'admin'} and a smuggled tool is rejected; a cross-origin request without the token is blocked. Legit run (2 calls).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 30,
+          "status": "done",
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "32",
+          "slug": "deploy-protocol-services",
+          "title": "Deploying protocol services",
+          "goal": "Package Trackr's MCP, A2A and AG-UI services: ASGI mount into FastAPI, health route, proxy headers behind TLS, allowed hosts/origins, X-Accel-Buffering for SSE, a container image; for A2A a durable task store with TTL/garbage collection and multi-replica streaming.",
+          "concepts": [
+            "ASGI mount and health checks",
+            "TLS proxy and forwarded headers",
+            "SSE behind proxies",
+            "durable A2A task store + TTL",
+            "multi-replica A2A streams"
+          ],
+          "builds_on": [
+            "09",
+            "10",
+            "28"
+          ],
+          "example": "docker compose runs Trackr behind nginx with 2 A2A replicas sharing a SQLite/Postgres task store; a stream started on one replica continues after the other is restarted; expired tasks are collected. Without Docker, uvicorn processes. Measured: added latency of the proxy. Model: one triage (1 call).",
+          "tags": [
+            "needs-llm",
+            "needs-docker"
+          ],
+          "priority": "professional",
+          "est_minutes": 40,
+          "status": "done",
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "32a",
+          "slug": "protocol-and-description-releases",
+          "title": "Releasing changes: protocol revisions and tool descriptions",
+          "goal": "Roll out a protocol revision without breaking clients (dual-stack legacy route, deprecation windows, A2A-Version and the a2a-sdk 0.3 compat mode, rotating requestState keys during a rolling deploy) and ship tool-description changes like code: eval-gated, canaried, reversible.",
+          "concepts": [
+            "dual-stack migration",
+            "feature lifecycle and deprecation policy",
+            "A2A-Version / 0.3 compat",
+            "key rotation in rolling deploys",
+            "description release pipeline"
+          ],
+          "builds_on": [
+            "07a",
+            "12",
+            "27a"
+          ],
+          "example": "A legacy and a modern client both work during migration; a description change is blocked by the eval gate, then shipped to 10% of clients (canary eval: 4 single-call examples).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 40,
+          "status": "done",
+          "llm_calls": 6,
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "33",
+          "slug": "checkpoint-production-trackr",
+          "title": "Checkpoint: production-ready Trackr",
+          "goal": "Harden Trackr for one team: tests and Inspector checks, pinned tool hashes, injection defences, correct OAuth (audiences, scopes, no passthrough), with a production checklist. Professional path adds tracing, sandboxing, AG-UI endpoint security and the container deployment.",
+          "concepts": [
+            "checkpoint"
+          ],
+          "builds_on": [
+            "27",
+            "29",
+            "30",
+            "31"
+          ],
+          "example": "A red-team script (poisoned server, injected issue, forwarded token) runs against the hardened stack: 3 attack examples + 1 normal example, each ≤2 calls.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 120,
+          "status": "done",
+          "llm_calls": 8
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "level": "L6",
+      "title": "Identity and authorization across an organisation",
+      "checkpoint": "39",
+      "lessons": [
+        {
+          "id": "34",
+          "slug": "org-authorization-server",
+          "title": "One authorization server for the organisation: Keycloak",
+          "goal": "Run Keycloak 26.8 in Docker as the organisation's authorization server for two MCP servers: realm, client scopes, audience per resource, CIMD and resource indicators, token lifetimes and refresh rotation, and encrypted token storage on the client.",
+          "concepts": [
+            "organisation authorization server",
+            "audience per resource server",
+            "scope catalogue",
+            "refresh-token rotation",
+            "encrypted TokenStorage",
+            "Keycloak support matrix"
+          ],
+          "builds_on": [
+            "16",
+            "33"
+          ],
+          "example": "The agent gets a token from Keycloak and answers through Trackr (2 calls); its Trackr token is rejected by the runbooks server. Without Docker, the in-process Authlib server.",
+          "tags": [
+            "needs-llm",
+            "needs-docker"
+          ],
+          "priority": "professional",
+          "est_minutes": 40,
+          "status": "done",
+          "kit": "2026.10.12e",
+          "note": "accepted by the user with the noted review gaps"
+        },
+        {
+          "id": "35",
+          "slug": "agent-identity",
+          "title": "Agent identity: client credentials and token exchange",
+          "goal": "Give an unattended agent its own identity with the client-credentials extension (ClientCredentialsOAuthProvider) and let a server call an upstream API on a user's behalf with RFC 8693 token exchange, auditing 'agent X on behalf of user Y'; know the roadmap (DPoP, workload identity federation, WIMSE).",
+          "concepts": [
+            "agent as a principal",
+            "client credentials",
+            "token exchange (RFC 8693)",
+            "on-behalf-of audit"
+          ],
+          "builds_on": [
+            "34"
+          ],
+          "example": "A nightly triage agent runs with its own client id and issues:read only (2 calls); Trackr exchanges the user's token for a scoped token to a local fake GitHub API.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 40,
+          "status": "done",
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "36",
+          "slug": "enterprise-managed-authorization",
+          "title": "Enterprise-managed authorization (ID-JAG)",
+          "goal": "Implement the Enterprise-Managed Authorization flow: sign in to the enterprise IdP, exchange the ID token for an Identity Assertion JWT Authorization Grant, redeem it at the MCP authorization server — no per-server consent, central revocation.",
+          "concepts": [
+            "Enterprise-Managed Authorization extension",
+            "ID-JAG",
+            "IdP policy and central revocation"
+          ],
+          "builds_on": [
+            "35"
+          ],
+          "example": "Keycloak as MCP AS (experimental EMA) with a PyJWT IdP stand-in; the agent works on both servers (2 calls); revoking the user at the IdP stops it.",
+          "tags": [
+            "needs-llm",
+            "needs-docker"
+          ],
+          "priority": "deep",
+          "est_minutes": 40,
+          "status": "planned"
+        },
+        {
+          "id": "37",
+          "slug": "securing-a2a",
+          "title": "Securing A2A: auth schemes, extended cards and signed Agent Cards",
+          "goal": "Protect triage-agent with securitySchemes and per-skill requirements, serve an authenticated extended card, sign the Agent Card (JWS over RFC 8785 JSON) and verify it with a restricted algorithm list so a spoofed card is rejected.",
+          "concepts": [
+            "A2A securitySchemes",
+            "extended Agent Card",
+            "signed Agent Card (JWS + JCS)",
+            "algorithm restriction and key ids"
+          ],
+          "builds_on": [
+            "34",
+            "09",
+            "18"
+          ],
+          "example": "An impostor serves a look-alike card; the orchestrator's verifier rejects it and delegates to the signed agent (orchestrator 1 + agent 1 calls).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 40,
+          "status": "done",
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "38",
+          "slug": "multi-tenant-servers",
+          "title": "Multi-tenant MCP servers and A2A agents",
+          "goal": "Serve many teams from one Trackr: tenant from a verified claim, queries and handles bound to tenant and user, the A2A tenant field, no existence leaks, per-tenant quotas against noisy neighbours, and per-tenant encryption of the A2A task store; learn from the Asana MCP cross-tenant leak.",
+          "concepts": [
+            "tenant from token claims",
+            "handles bound to user and tenant",
+            "A2A tenant field",
+            "per-tenant quotas",
+            "encryption at rest per tenant"
+          ],
+          "builds_on": [
+            "35",
+            "37"
+          ],
+          "example": "12 cross-tenant reads and writes are refused; a flood from one tenant is throttled while the other's latency stays flat (measured). Each team's agent asks one question (2 calls each).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 40,
+          "status": "done",
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "38a",
+          "slug": "multi-hop-delegation",
+          "title": "Multi-hop delegation: chained token exchange",
+          "goal": "Carry the user's authority across user -> orchestrator -> A2A agent -> MCP server with chained RFC 8693 token exchange and act (actor) claims, narrowing scope and audience at each hop and auditing every hop.",
+          "concepts": [
+            "delegation chain",
+            "act claim",
+            "scope narrowing per hop",
+            "per-hop audit"
+          ],
+          "builds_on": [
+            "35",
+            "18"
+          ],
+          "example": "The decoded token at each hop shows nested act claims; a hop that asks for wider scope is refused (orchestrator 1 + agent 1 calls).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 35,
+          "status": "done",
+          "kit": "2026.10.12e"
+        },
+        {
+          "id": "39",
+          "slug": "checkpoint-org-oauth",
+          "title": "Checkpoint: organisation-wide authorization for Trackr",
+          "goal": "Run Trackr for several teams under one Keycloak: user and agent identities, per-resource audiences, step-up, multi-hop delegation, signed A2A cards and tenant isolation, with an access-review table.",
+          "concepts": [
+            "checkpoint"
+          ],
+          "builds_on": [
+            "38",
+            "38a"
+          ],
+          "example": "Three users, two agents, two teams: a printed who-can-call-what matrix checked by tests; 4 agent examples, each ≤2 calls.",
+          "tags": [
+            "needs-llm",
+            "needs-docker"
+          ],
+          "priority": "professional",
+          "est_minutes": 120,
+          "status": "done",
+          "llm_calls": 8,
+          "kit": "2026.10.12e"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "level": "L6",
+      "title": "Gateways, registries and governance",
+      "checkpoint": "44",
+      "lessons": [
+        {
+          "id": "40",
+          "slug": "mcp-gateway",
+          "title": "An MCP and A2A gateway: central auth and per-tool policy",
+          "goal": "Put agentgateway in front of Trackr and the runbooks server: JWT validation, per-tool RBAC with CEL, rate limits, federation into one endpoint, response redaction, metrics keyed on Mcp-Method / Mcp-Name; optional kind + Gateway API section.",
+          "concepts": [
+            "MCP gateway",
+            "federation",
+            "per-tool authorization (CEL)",
+            "rate limiting",
+            "PII redaction"
+          ],
+          "builds_on": [
+            "38",
+            "28"
+          ],
+          "example": "A payments-team user is denied close_issue on web; an email is redacted (2 calls). agentgateway via Docker or its standalone binary; if neither runs, recorded outputs plus a clearly labelled 60-line teaching stand-in.",
+          "tags": [
+            "needs-llm",
+            "needs-docker",
+            "needs-download",
+            "needs-k8s"
+          ],
+          "priority": "professional",
+          "est_minutes": 40,
+          "status": "planned"
+        },
+        {
+          "id": "40a",
+          "slug": "gateway-failure-modes",
+          "title": "Gateway failure modes and overhead, measured",
+          "goal": "Measure the gateway's p50/p99 overhead and rate-limit behaviour, then break things: upstream server down, circuit breaking, slow upstream, large bodies and long SSE streams through the proxy.",
+          "concepts": [
+            "p99 overhead",
+            "circuit breaking",
+            "upstream failure",
+            "body and SSE limits through proxies"
+          ],
+          "builds_on": [
+            "40"
+          ],
+          "example": "A before/during/after table: 1,000 local tools/call requests direct vs via gateway; docker stop on one upstream; a 5 MiB body and a 2-minute SSE stream. No model in the load test.",
+          "tags": [
+            "needs-docker",
+            "slow"
+          ],
+          "priority": "professional",
+          "est_minutes": 40,
+          "status": "planned"
+        },
+        {
+          "id": "41",
+          "slug": "private-registry",
+          "title": "A private MCP registry and server admission",
+          "goal": "Run a private registry using the MCP Registry's server.json shape (reverse-DNS names, namespace ownership, versions), gate admission with a description scan and pinned hashes, start new tools disabled until an owner enables them, label read-only vs destructive (annotations are hints and may be deprecated), and publish Server Cards / an AI Catalog.",
+          "concepts": [
+            "server.json",
+            "namespace verification",
+            "private registry",
+            "admission scanning",
+            "default-disabled tools",
+            "Server Cards / AI Catalog"
+          ],
+          "builds_on": [
+            "29",
+            "40"
+          ],
+          "example": "A FastAPI registry with three servers; a poisoned submission is rejected; the agent discovers only approved servers (2 calls). The public registry query is needs-cloud with a recorded response.",
+          "tags": [
+            "needs-llm",
+            "needs-cloud"
+          ],
+          "priority": "deep",
+          "est_minutes": 40,
+          "status": "planned"
+        },
+        {
+          "id": "42",
+          "slug": "audit-and-compliance",
+          "title": "Audit trail and compliance for agent protocols",
+          "goal": "Design an audit log for protocol traffic (user, agent, on-behalf-of chain, tool, args hash, result size, trace id), encrypt and retain it, and meet residency and deletion obligations (e.g. the Anthropic MCP connector is not ZDR-eligible; OpenAI hosted MCP is ZDR/residency compatible but third-party servers follow their own policy).",
+          "concepts": [
+            "audit record schema",
+            "encryption at rest and retention",
+            "data residency and ZDR",
+            "deletion requests"
+          ],
+          "builds_on": [
+            "40",
+            "35"
+          ],
+          "example": "Every call of two agent runs (2 calls each) lands in an encrypted, append-only log; a deletion request removes one user's records and proves it.",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 35,
+          "status": "planned"
+        },
+        {
+          "id": "42a",
+          "slug": "incident-response",
+          "title": "Incident response: kill switch, drills and the threat landscape",
+          "goal": "Run an incident drill: detect a compromised server from the audit log, disable it at the gateway in one call, list affected runs by trace id; map defences to the OWASP Top 10 for Agentic Applications and the MCP CVE timeline (only ids verified in research; others marked to check).",
+          "concepts": [
+            "kill switch",
+            "incident drill",
+            "OWASP Agentic Top 10",
+            "CVE timeline"
+          ],
+          "builds_on": [
+            "42"
+          ],
+          "example": "A server turns malicious mid-day (rug pull); the drill table shows detect -> disable -> scope; one agent run before and after the kill switch (2 calls each).",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 35,
+          "status": "planned"
+        },
+        {
+          "id": "43",
+          "slug": "platform-case-studies",
+          "title": "Case studies: org-wide agent-protocol platforms",
+          "goal": "Use published write-ups (Uber MCP Gateway: 800+ servers, 5,000+ tools; Block goose; Cloudflare's stateless MCP; AWS MCP Gateway & Registry; A2A adoption from the LF release) to design a platform for 5,000 engineers, with a capacity model built from your own measurements.",
+          "concepts": [
+            "control plane vs data plane",
+            "curated server catalogue",
+            "capacity model",
+            "standards governance (AAIF, LF, FIDO)"
+          ],
+          "builds_on": [
+            "41",
+            "42a",
+            "24"
+          ],
+          "example": "Lab: plug lesson 24's tokens-per-tool and lesson 40a's gateway overhead into a capacity sheet for 200 teams, 800 servers; each decision cited to its source URL. No model.",
+          "tags": [],
+          "priority": "deep",
+          "est_minutes": 40,
+          "status": "planned"
+        },
+        {
+          "id": "43a",
+          "slug": "protocol-frontier",
+          "title": "The protocol frontier and how to track it",
+          "goal": "Follow where the protocols are going and how to track them: SEPs and working groups, conformance results, HTTP over stdio, DPoP and workload identity, progressive discovery, Server Cards, A2A in AAIF, AG-UI 1.x.",
+          "concepts": [
+            "SEP process",
+            "working groups",
+            "conformance results",
+            "roadmap items"
+          ],
+          "builds_on": [
+            "43"
+          ],
+          "example": "Read-along with dates: MCP roadmap 2026-08-22, A2A joining AAIF 2026-08-27, AG-UI 1.0 2026-09-17; a script lists open SEPs from the public repo (needs-cloud, recorded). No model.",
+          "tags": [
+            "needs-cloud"
+          ],
+          "priority": "deep",
+          "est_minutes": 30,
+          "status": "planned"
+        },
+        {
+          "id": "44",
+          "slug": "capstone",
+          "title": "Capstone: the enterprise ops copilot",
+          "goal": "Build the source's capstone preview: MCP servers for Trackr, a git repository and a SQLite database behind the gateway with org OAuth; an orchestrator delegating over signed A2A to triage-agent and fix-agent with chained token exchange; AG-UI approval before any change; traced, audited and multi-tenant.",
+          "concepts": [
+            "capstone"
+          ],
+          "builds_on": [
+            "32",
+            "39",
+            "40a",
+            "42a"
+          ],
+          "example": "Two teams each ask 'fix the newest sev-1': triage (1+1), fix (1+1), approval and close (1+1) per team — separate recorded examples, each ≤2 calls; the audit log and trace tell the story. Grown further in track 9.",
+          "tags": [
+            "needs-llm",
+            "needs-docker",
+            "slow"
+          ],
+          "priority": "professional",
+          "est_minutes": 240,
+          "status": "planned",
+          "llm_calls": 16
+        }
+      ]
+    }
+  ],
+  "approved": "2026-10-11",
+  "version": 1,
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-10-11",
+      "changes": "first approval"
+    }
+  ],
+  "port_base": 8000
+}

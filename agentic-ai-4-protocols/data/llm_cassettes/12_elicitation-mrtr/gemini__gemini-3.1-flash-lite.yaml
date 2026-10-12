@@ -1,0 +1,175 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 11:50:36 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Close all open web issues on the Trackr
+      desk. Use the tools, then tell me what happened."}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Close every open issue
+      of one team. The user is asked to confirm first.", "name": "bulk_close", "parameters":
+      {"properties": {"team": {"type": "STRING"}}, "required": ["team"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '483'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"bulk_close\",\n              \"args\": {\n                \"team\":
+        \"web\"\n              },\n              \"id\": \"call_480567\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a182x0mShAhiA1LWl0x2jZmYFzGmSm+h0apqYTnLAiblzbVh5FeNhoePCxyyxxICCgHK/2YhX/lkNH8BpC9ccSClzDq+iBp/W7qHWU4FMG0YGZY0jQyj\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 54,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 70,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 54\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T11:50:36.979676Z\",\n
+        \ \"responseId\": \"jMnMatzlO6r87bEPhL_6qAU\"\n}\n"
+    headers:
+      content-length:
+      - '1005'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 11:50:37 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Close all open web issues on the Trackr
+      desk. Use the tools, then tell me what happened."}], "role": "user"}, {"parts":
+      [{"functionCall": {"args": {"team": "web"}, "name": "bulk_close"}, "thoughtSignature":
+      "AY89a182x0mShAhiA1LWl0x2jZmYFzGmSm-h0apqYTnLAiblzbVh5FeNhoePCxyyxxICCgHK_2YhX_lkNH8BpC9ccSClzDq-iBp_W7qHWU4FMG0YGZY0jQyj"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "bulk_close", "response":
+      {"output": "closed 3 web issues"}}}], "role": "user"}], "safetySettings": [],
+      "tools": [{"functionDeclarations": [{"description": "Close every open issue
+      of one team. The user is asked to confirm first.", "name": "bulk_close", "parameters":
+      {"properties": {"team": {"type": "STRING"}}, "required": ["team"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '846'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"All
+        open web issues on the Trackr desk have been closed. A total of 3 issues were
+        processed.\",\n            \"thoughtSignature\": \"AY89a18zgPFgYM/rewcGm9qyfJ88ZdfePr8Bf6Yb4bibUKfZnwQzn5hyFE782WC5LVGPHodCtUioSchM7G+A+RyuhKv2JwiWwLdntU5OUlVUJYLOFBg9bMrt\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 76,\n    \"candidatesTokenCount\":
+        22,\n    \"totalTokenCount\": 98,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 76\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 22\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T11:50:40.972050Z\",\n
+        \ \"responseId\": \"kMnMapKqO9-Kr8kPuMm1wQ4\"\n}\n"
+    headers:
+      content-length:
+      - '935'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 11:50:41 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

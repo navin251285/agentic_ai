@@ -1,0 +1,132 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "What is the forecast for Lisbon? Answer
+      in one sentence."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Get the 3-day forecast for a city.", "name": "forecast", "parameters":
+      {"properties": {"city": {"type": "STRING"}}, "required": ["city"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '437'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"forecast\",\n              \"args\": {\n                \"city\":
+        \"Lisbon\"\n              },\n              \"id\": \"call_1208980\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18X/UKVIxKubI02T1WbocKnfs9yvAM4Px5ypO9+3xApy5RbO0wQyzMDOj2SeagWHu5E5jmLUyl91o81UW/8SScePjCyPufO+zpHYVSQgWQ1G3piZ+qZ\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 38,\n    \"candidatesTokenCount\":
+        15,\n    \"totalTokenCount\": 53,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 38\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 15\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T14:01:04.282814Z\",\n
+        \ \"responseId\": \"IOjMar6hEeCbr8kPl52j-Ak\"\n}\n"
+    headers:
+      content-length:
+      - '1007'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 14:01:04 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "What is the forecast for Lisbon? Answer
+      in one sentence."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Get the 3-day forecast for a city.", "name": "forecast", "parameters":
+      {"properties": {"city": {"type": "STRING"}}, "required": ["city"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '437'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"forecast\",\n              \"args\": {\n                \"city\":
+        \"Lisbon\"\n              },\n              \"id\": \"call_584174\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1+IuvIdUWuFIHRHP7Q/7VZWQTu1oAP6+yfp7ocyWZEc3Dd9ndBYT0GOXKup2LENMMaQDXzlT1j+QpoJ7KoT/xdi/yBV3u+HK2N4ATLsKsji4tHSsMeo\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 38,\n    \"candidatesTokenCount\":
+        15,\n    \"totalTokenCount\": 53,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 38\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 15\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T14:01:17.341573Z\",\n
+        \ \"responseId\": \"LejMasXsFMjf-O4PkOKtsAI\"\n}\n"
+    headers:
+      content-length:
+      - '1006'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 14:01:18 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

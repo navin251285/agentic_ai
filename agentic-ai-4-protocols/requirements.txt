@@ -1,0 +1,46 @@
+# Agentic AI 4: Protocols — MCP, A2A, AG-UI (Python 3.12)
+# core protocols
+mcp>=2.3.0
+fastmcp>=4.1.0
+a2a-sdk[sqlite]>=1.2.2
+ag-ui-protocol>=1.0.0
+# model access: LangChain init_chat_model + bind_tools; MCP tools via langchain.mcp.MCPAdapter
+# (do not add langchain-mcp-adapters: archived, pinned to mcp<2)
+langchain[mcp]>=1.4.4
+langchain-google-genai>=4.4.1
+langchain-anthropic>=1.7.5
+langchain-openai>=1.7.0
+langchain-ollama>=1.1.0
+langgraph>=1.2.14
+vcrpy>=8.3.0
+python-dotenv
+# vendor SDKs (lessons that teach one vendor's own MCP client)
+google-genai>=2.29.0
+anthropic>=1.13.0
+openai>=3.29.0
+openai-agents>=0.23.1
+# AG-UI + LangGraph
+ag-ui-langgraph>=0.0.47
+# servers, auth, tests
+uvicorn>=0.54.0
+starlette>=1.7.0
+fastapi>=0.143.0
+httpx>=0.28.1
+authlib>=1.8.0
+joserfc>=1.7.5
+pyjwt[crypto]>=2.15.1
+pytest>=9.1.1
+anyio
+docker>=7.2.0
+pyyaml
+pydantic>=2
+tiktoken
+opentelemetry-sdk>=1.45.1
+matplotlib
+# notebooks and syllabus PDF
+ipykernel
+nbformat
+nbclient
+reportlab
+skills-ref>=0.1.1
+httpx2>=2.13.1

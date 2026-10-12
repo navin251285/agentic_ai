@@ -1,0 +1,163 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "You route Trackr work. Skills:\nclassify_issue:
+      Classifies a Trackr issue as bug, feature or question.\nIssue: App crashes when
+      photo is rotated\nReply with the skill id only."}], "role": "user"}], "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '342'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"classify_issue\",\n
+        \           \"thoughtSignature\": \"AY89a189533jqNUkxfTuvJQQ3JzdFp/lSKQXQ5TPt0hNAkiOKUEwQimUY6qU4mWdytXAGWu1V7GzHfwpD55OumNxvJoVRtG9gUvEZnyVeTZEjY5UNWkv6ukK\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 43,\n    \"candidatesTokenCount\":
+        3,\n    \"totalTokenCount\": 46,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 43\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 3\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T16:45:53.734780Z\",\n
+        \ \"responseId\": \"wQ7NarzsLKr87bEPhL_6qAU\"\n}\n"
+    headers:
+      content-length:
+      - '855'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 16:45:54 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify this Trackr issue as exactly
+      one word: bug, feature or question.\nIssue: App crashes when photo is rotated"}],
+      "role": "user"}], "safetySettings": [], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '282'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"bug\",\n
+        \           \"thoughtSignature\": \"AY89a1++V8nHsaBFqN8w59kTs+8PhZK1B4i/HBocuNscpbLeRvrm3YP4MhVqWn/Iw+2Wjy6onjd4Yp/06MZtZTLC1nKoXHIMDoCy8gzAuPMAmYT64HlfOVWJ\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 26,\n    \"candidatesTokenCount\":
+        1,\n    \"totalTokenCount\": 27,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 26\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 1\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T16:45:54.503672Z\",\n
+        \ \"responseId\": \"wg7NavjeHtjh-O4Pto31gAc\"\n}\n"
+    headers:
+      content-length:
+      - '844'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 16:45:55 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"method":"SendMessage","params":{"message":{"messageId":"15d0243a-7ad6-4797-914c-e547c2fa1c9b","role":"ROLE_USER","parts":[{"text":"App
+      crashes when photo is rotated"}]},"configuration":{}},"id":"0f7c0e19-dcc3-4f79-9721-133394fb8655","jsonrpc":"2.0"}'
+    headers:
+      a2a-version:
+      - '1.0'
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '251'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9137
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9137/
+  response:
+    body:
+      string: '{"result":{"task":{"id":"8dab1b60-056f-4085-95cb-3f031123908e","contextId":"63e783fd-9f56-47f6-8500-df54072a3e41","status":{"state":"TASK_STATE_COMPLETED","timestamp":"2026-10-12T16:45:55.078729Z"},"artifacts":[{"artifactId":"3784c598-a312-4a3b-a55d-06784b19fb7f","name":"model","parts":[{"text":"bug"}]}],"history":[{"messageId":"15d0243a-7ad6-4797-914c-e547c2fa1c9b","contextId":"63e783fd-9f56-47f6-8500-df54072a3e41","taskId":"8dab1b60-056f-4085-95cb-3f031123908e","role":"ROLE_USER","parts":[{"text":"App
+        crashes when photo is rotated"}]}]}},"id":"0f7c0e19-dcc3-4f79-9721-133394fb8655","jsonrpc":"2.0"}'
+    headers:
+      content-length:
+      - '606'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 16:45:54 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+version: 1

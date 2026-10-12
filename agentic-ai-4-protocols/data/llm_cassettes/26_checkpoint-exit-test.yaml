@@ -1,0 +1,260 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify each issue as exactly one word:
+      bug, feature or question.\nReply with one line per issue, in the form ''<id>:
+      <label>'', and nothing else.\n4: App crashes when photo is rotated\n9: Typo
+      on the pricing page\n12: TLS certificate expires in 9 days\n15: Battery drain
+      in background sync"}], "role": "user"}], "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '456'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"4:
+        bug\\n9: bug\\n12: bug\\n15: bug\",\n            \"thoughtSignature\": \"AY89a1/0+oeKryMZYepN8+PCNX3HLiYhCAhy8j6GPP2vEBhuoo5IXIdm16JXOvzcfoX6uS2Ps6/WCDoSflHmvMtRrXLWgNev6MFVJlEAnuz5hsDRlZ4GGXXk\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 74,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 91,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 74\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 17\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T15:13:39.040460Z\",\n
+        \ \"responseId\": \"I_nMaoy8At-Kr8kPuMm1wQ4\"\n}\n"
+    headers:
+      content-length:
+      - '875'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 15:13:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify each issue as exactly one word:
+      bug, feature or question.\nReply with one line per issue, in the form ''<id>:
+      <label>'', and nothing else.\n4: App crashes when photo is rotated\n9: Typo
+      on the pricing page\n12: TLS certificate expires in 9 days\n15: Battery drain
+      in background sync"}], "role": "user"}], "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '456'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"4:
+        bug\\n9: bug\\n12: bug\\n15: bug\",\n            \"thoughtSignature\": \"AY89a1+zR3WCDVXUROTjvgrfBG80jE6qO6wJKOiLAIb8T8rTSO/gQhX89AEjVVmaR4QuEIZphV2o+VBXI/gTO+V3vfVQTi8kEu+Qr0vWSvngac3byno0yHRW\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 74,\n    \"candidatesTokenCount\":
+        17,\n    \"totalTokenCount\": 91,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 74\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 17\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T15:13:40.005382Z\",\n
+        \ \"responseId\": \"JPnMaoYq2OH47g-2jfWABw\"\n}\n"
+    headers:
+      content-length:
+      - '874'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 15:13:40 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "You are a careful engineer. Propose
+      a fix for the issue below in two sentences. Say what to change and how to check
+      it. Do not claim it is done.\n12: TLS certificate expires in 9 days"}], "role":
+      "user"}], "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '350'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Update
+        the server's TLS certificate by generating a new CSR, obtaining a signed certificate
+        from your CA, and deploying it to the web server configuration. Verify the
+        fix by running `openssl s_client -connect \\u003chostname\\u003e:443 -showcerts`
+        to confirm the new expiration date is correctly reflected in the certificate
+        chain.\",\n            \"thoughtSignature\": \"AY89a18bTzOUEsIzy3VPMOze+SKg/JA5gX0hPe+Pv3QguwvPNFR5MTpdcHPINfw618t1QoCthtkk87CUNF7cg9jrW1qrjBvpKwYAr8PCpngs/fOs/p05YrFQ\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 46,\n    \"candidatesTokenCount\":
+        67,\n    \"totalTokenCount\": 113,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 46\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 67\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T15:13:40.439205Z\",\n  \"responseId\": \"JPnMaqXnGoKLr8kP_rzwkQ8\"\n}\n"
+    headers:
+      content-length:
+      - '1173'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 15:13:41 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "You are a careful engineer. Propose
+      a fix for the issue below in two sentences. Say what to change and how to check
+      it. Do not claim it is done.\n12: TLS certificate expires in 9 days"}], "role":
+      "user"}], "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '350'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Update
+        the server's TLS certificate by generating a new CSR, obtaining a signed certificate
+        from your CA, and deploying it to the web server configuration. Verify the
+        fix by running `openssl s_client -connect \\u003chostname\\u003e:443 -showcerts`
+        to confirm the new expiration date is correctly reflected in the certificate
+        chain.\",\n            \"thoughtSignature\": \"AY89a18q2994mbe8JBYxKws9+f3JRif9CvTtvfVVDZeRv/XaE8SKIeYOLbH50NX22zQYGi4bL6LnlAbFedxxZsE7bF84uj5gPe+Vd8RA9o5uOoHUrgW9DeqB\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 46,\n    \"candidatesTokenCount\":
+        67,\n    \"totalTokenCount\": 113,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 46\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 67\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T15:13:41.450188Z\",\n  \"responseId\": \"JfnMaoy9G-Cbr8kPl52j-Ak\"\n}\n"
+    headers:
+      content-length:
+      - '1173'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 15:13:42 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,19 @@
+# Lesson 34: one Keycloak 26.8.0 as the organisation's authorization server (lab, one container).
+# Started from the notebook: docker compose -p tut-agentic-ai-4-protocols-34 -f ../infra/34/docker-compose.yml up -d
+# The admin user and password come from .env (tut_env.load() exports them). Pinned image, no :latest.
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.8.0
+    container_name: tut-agentic-ai-4-protocols-34-keycloak
+    command: start-dev --features=cimd,resource-indicators --import-realm --hostname=http://127.0.0.1:8340
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+    ports:
+      - "127.0.0.1:8340:8080"
+    volumes:
+      - ./realm-ops-desk.json:/opt/keycloak/data/import/realm.json:ro
+    # Lets the container fetch the client ID metadata document the notebook serves on the host (port 8343).
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    mem_limit: 1g

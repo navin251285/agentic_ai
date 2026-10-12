@@ -1,0 +1,230 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Step 1: call classify_issues for open
+      issues 4, 9, 12 and 15. Make no other tool call in that reply. Step 2: after
+      its answer comes back, reply with ONE tool call only: close_issue with issue_id
+      12. close_issue goes alone in its own reply, with no other tool call in it,
+      so a person can approve it. Do not reply with text instead of a tool call."}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are the Trackr
+      ops desk. Use classify_issues for triage and propose_fix for a fix. When the
+      person asks for both, ask for both in one reply. Once a fix has been proposed
+      for an issue, call close_issue for that issue, alone in its reply. A request
+      to close an issue is answered with the close_issue call, not with text. The
+      desk pauses before it runs, and a person decides."}]}, "safetySettings": [],
+      "tools": [{"functionDeclarations": [{"description": "Send open Trackr issues
+      to triage-agent (A2A). It labels each one bug, feature or question. Use it for
+      judgement.", "name": "classify_issues", "parameters": {"properties": {"issue_ids":
+      {"items": {"type": "INTEGER"}, "type": "ARRAY"}}, "required": ["issue_ids"],
+      "type": "OBJECT"}}, {"description": "Ask fix-agent (A2A) to propose a fix for
+      one open issue. It changes nothing in Trackr.", "name": "propose_fix", "parameters":
+      {"properties": {"issue_id": {"type": "INTEGER"}}, "required": ["issue_id"],
+      "type": "OBJECT"}}, {"description": "Close one open Trackr issue (an MCP write).
+      Only after a person has approved the change.", "name": "close_issue", "parameters":
+      {"properties": {"issue_id": {"type": "INTEGER"}}, "required": ["issue_id"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1755'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"functionCall\": {\"name\": \"classify_issues\",\"args\": {\"issue_ids\":
+        [4,9,12,15]},\"id\": \"call_1689289\"},\"thoughtSignature\": \"AY89a1+Re6tV20dff8QjJvlGj9xQjRbMK/TpjsE4Ux02+6bBQWw+NZkalPJITdJExOLELryJO/VL+eWyAmmJmvb3GsMFF9HQ7cU35RBYG5n2W1hKJcTnK5tY\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T15:35:05.687066Z\",\"responseId\": \"Kf7Matr3KbKbr8kP-bic-Qw\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\"}]},\"finishReason\": \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\":
+        329,\"candidatesTokenCount\": 24,\"totalTokenCount\": 353,\"trafficType\":
+        \"ON_DEMAND\",\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\":
+        329}],\"candidatesTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\":
+        24}]},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\": \"2026-10-12T15:35:05.687066Z\",\"responseId\":
+        \"Kf7Matr3KbKbr8kP-bic-Qw\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Mon, 12 Oct 2026 15:35:06 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify each issue as exactly one word:
+      bug, feature or question.\nReply with one line per issue, in the form ''<id>:
+      <label>'', and nothing else.\n4: App crashes when photo is rotated\n9: Typo
+      on the pricing page\n12: TLS certificate expires in 9 days\n15: Battery drain
+      in background sync"}], "role": "user"}], "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '456'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"4: bug\\n9: bug\\n12: bug\\n15: bug\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T15:35:06.306785Z\",\"responseId\": \"Kv7MauHcEtjh-O4Pto31gAc\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\",\"thoughtSignature\": \"AY89a19jbgQ3yIPdbcBs4mZXHb30qvkObft/J6qjsDVPtmVqj/iPvMeUoArGT/Lq0o0RLRHdiWpLCTZOab+X/gkOz8/mHwP19KUVtv1JoS5hmZac1EWFmn0V\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 74,\"candidatesTokenCount\":
+        17,\"totalTokenCount\": 91,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 74}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 17}]},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T15:35:06.306785Z\",\"responseId\": \"Kv7MauHcEtjh-O4Pto31gAc\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Mon, 12 Oct 2026 15:35:06 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Step 1: call classify_issues for open
+      issues 4, 9, 12 and 15. Make no other tool call in that reply. Step 2: after
+      its answer comes back, reply with ONE tool call only: close_issue with issue_id
+      12. close_issue goes alone in its own reply, with no other tool call in it,
+      so a person can approve it. Do not reply with text instead of a tool call."}],
+      "role": "user"}, {"parts": [{"functionCall": {"args": {"issue_ids": [4, 9, 12,
+      15]}, "name": "classify_issues"}, "thoughtSignature": "AY89a1-Re6tV20dff8QjJvlGj9xQjRbMK_TpjsE4Ux02-6bBQWw-NZkalPJITdJExOLELryJO_VL-eWyAmmJmvb3GsMFF9HQ7cU35RBYG5n2W1hKJcTnK5tY"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "classify_issues",
+      "response": {"output": "4: bug\n9: bug\n12: bug\n15: bug"}}}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are the Trackr ops desk. Use classify_issues
+      for triage and propose_fix for a fix. When the person asks for both, ask for
+      both in one reply. Once a fix has been proposed for an issue, call close_issue
+      for that issue, alone in its reply. A request to close an issue is answered
+      with the close_issue call, not with text. The desk pauses before it runs, and
+      a person decides."}]}, "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Send open Trackr issues to triage-agent (A2A). It labels each
+      one bug, feature or question. Use it for judgement.", "name": "classify_issues",
+      "parameters": {"properties": {"issue_ids": {"items": {"type": "INTEGER"}, "type":
+      "ARRAY"}}, "required": ["issue_ids"], "type": "OBJECT"}}, {"description": "Ask
+      fix-agent (A2A) to propose a fix for one open issue. It changes nothing in Trackr.",
+      "name": "propose_fix", "parameters": {"properties": {"issue_id": {"type": "INTEGER"}},
+      "required": ["issue_id"], "type": "OBJECT"}}, {"description": "Close one open
+      Trackr issue (an MCP write). Only after a person has approved the change.",
+      "name": "close_issue", "parameters": {"properties": {"issue_id": {"type": "INTEGER"}},
+      "required": ["issue_id"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2155'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"functionCall\": {\"name\": \"close_issue\",\"args\": {\"issue_id\": 12},\"id\":
+        \"call_617541\"},\"thoughtSignature\": \"AY89a1/hDFhvvN9Vdu6znTH0tYlrvFyvbpEZEQK9rj1Pya8FgofAW1HnnIRpITYI30N/IAcHf+lf18Y8hXNoL8C2JFEHnzUtVvk/XmkTU2Br+sJOypEvDEw0\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T15:35:07.247867Z\",\"responseId\": \"K_7MaruQD6r87bEPhL_6qAU\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\"}]},\"finishReason\": \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\":
+        370,\"candidatesTokenCount\": 17,\"totalTokenCount\": 387,\"trafficType\":
+        \"ON_DEMAND\",\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\":
+        370}],\"candidatesTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\":
+        17}]},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\": \"2026-10-12T15:35:07.247867Z\",\"responseId\":
+        \"K_7MaruQD6r87bEPhL_6qAU\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Mon, 12 Oct 2026 15:35:07 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

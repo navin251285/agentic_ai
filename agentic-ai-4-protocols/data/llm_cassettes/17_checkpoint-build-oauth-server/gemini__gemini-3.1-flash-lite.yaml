@@ -1,0 +1,489 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 06:48:13 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Close issue 1, and search open issues
+      for ''Typo''. Make both tool calls now."}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Find open issues whose
+      title contains the text.", "name": "search_issues", "parameters": {"properties":
+      {"text": {"type": "STRING"}}, "required": ["text"], "type": "OBJECT"}}, {"description":
+      "Close one issue by id. Needs issues:write.", "name": "close_issue", "parameters":
+      {"properties": {"issue_id": {"type": "INTEGER"}}, "required": ["issue_id"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '644'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"close_issue\",\n              \"args\": {\n                \"issue_id\":
+        1\n              },\n              \"id\": \"call_1224138\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18CLKL5ZcOPNODUfZr75WWVOyV3fNX1zjldksRNVZkm57YZWNT68d9YOpqOdvcgJ7KJUsmc901PIDnjVyfpnA/08HeRBYxjogBtN5BFxhPjsRhgsYIQ\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"search_issues\",\n              \"args\": {\n                \"text\": \"Typo\"\n
+        \             },\n              \"id\": \"call_1224139\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 78,\n    \"candidatesTokenCount\":
+        33,\n    \"totalTokenCount\": 111,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 78\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 33\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T06:48:13.919790Z\",\n  \"responseId\": \"rYLMau6ROKr87bEPhL_6qAU\"\n}\n"
+    headers:
+      content-length:
+      - '1223'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 06:48:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Close issue 1, and search open issues
+      for ''Typo''. Make both tool calls now."}], "role": "user"}, {"parts": [{"functionCall":
+      {"args": {"issue_id": 1}, "name": "close_issue"}, "thoughtSignature": "AY89a18CLKL5ZcOPNODUfZr75WWVOyV3fNX1zjldksRNVZkm57YZWNT68d9YOpqOdvcgJ7KJUsmc901PIDnjVyfpnA_08HeRBYxjogBtN5BFxhPjsRhgsYIQ"},
+      {"functionCall": {"args": {"text": "Typo"}, "name": "search_issues"}}], "role":
+      "model"}, {"parts": [{"functionResponse": {"name": "close_issue", "response":
+      {"id": 1, "title": "Login button does nothing on Safari", "team": "web", "status":
+      "closed", "severity": "high"}}}, {"functionResponse": {"name": "search_issues",
+      "response": {"id": 9, "title": "Typo on the pricing page", "team": "web", "status":
+      "open", "severity": "low"}}}], "role": "user"}], "safetySettings": [], "tools":
+      [{"functionDeclarations": [{"description": "Find open issues whose title contains
+      the text.", "name": "search_issues", "parameters": {"properties": {"text": {"type":
+      "STRING"}}, "required": ["text"], "type": "OBJECT"}}, {"description": "Close
+      one issue by id. Needs issues:write.", "name": "close_issue", "parameters":
+      {"properties": {"issue_id": {"type": "INTEGER"}}, "required": ["issue_id"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1320'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        issue with ID 1 (\\\"Login button does nothing on Safari\\\") has been closed,
+        and I found one open issue matching \\\"Typo\\\":\\n\\n*   **Issue 9:** \\\"Typo
+        on the pricing page\\\" (Severity: low, Team: web)\",\n            \"thoughtSignature\":
+        \"AY89a19p7VixnHRgWgffYE+5h6uYEaM9XAg4AgSkRQI+EQs37ViJXOnlhNHPZJyQWMuT7Qzs/lKqtAnXncWlUgjDrpQg8K4rbSNd2zRxAvBz2uEdgQqXnPAn\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 143,\n    \"candidatesTokenCount\":
+        54,\n    \"totalTokenCount\": 197,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 143\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 54\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T06:48:17.922154Z\",\n  \"responseId\": \"sYLMaqqkOO3I-O4P_ZjO2AY\"\n}\n"
+    headers:
+      content-length:
+      - '1046'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 06:48:18 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model":"gemini-3.1-flash-lite","messages":[{"content":"Answer with the
+      tools. Be brief.","role":"system"},{"role":"user","content":"Close issue 17,
+      and search open issues for ''Typo''. Make both tool calls now."}],"tools":[{"type":"function","function":{"name":"count_open","description":"Count
+      open issues","parameters":{"type":"object","properties":{"team":{"enum":["web","api","mobile","infra"],"title":"Team","type":"string"}},"required":["team"],"title":"count_openArguments"},"strict":false}},{"type":"function","function":{"name":"close_issue","description":"Close
+      an issue","parameters":{"type":"object","properties":{"issue_id":{"title":"Issue
+      Id","type":"integer"}},"required":["issue_id"],"title":"close_issueArguments"},"strict":false}},{"type":"function","function":{"name":"search_issues","description":"Find
+      open issues whose title contains the text, in any letter case. Needs issues:read.","parameters":{"type":"object","properties":{"text":{"title":"Text","type":"string"}},"required":["text"],"title":"search_issuesArguments"},"strict":false}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1063'
+      content-type:
+      - application/json
+      host:
+      - generativelanguage.googleapis.com
+      user-agent:
+      - Agents/Python 0.23.1
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 3.29.0
+      x-stainless-read-timeout:
+      - '600'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.13
+    method: POST
+    uri: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
+  response:
+    body:
+      string: '{"choices":[{"finish_reason":"tool_calls","index":0,"message":{"role":"assistant","tool_calls":[{"extra_content":{"google":{"thought_signature":"EnMKcQFpFH0TsS6VvPGKbs/R9KLcld6gIJ1fulbRegnMYu6wIsLXAFjFNpC7m0akI8wXtM8SdP+LuU6imh+1Apke7LbI4O0pmOLKRAgPwmWe8exPetqR7fNI690RsNXpBWIXmP0DW4Zzxq6fWJK5e8AX8+e3"}},"function":{"arguments":"{\"issue_id\":17}","name":"close_issue"},"id":"call_1317445","type":"function"},{"function":{"arguments":"{\"text\":\"Typo\"}","name":"search_issues"},"id":"call_1317446","type":"function"}]}}],"created":1791787702,"id":"tYLMaoe7PP7v_uMP-q7MqQE","model":"gemini-3.1-flash-lite","object":"chat.completion","usage":{"completion_tokens":34,"prompt_tokens":241,"total_tokens":275}}'
+    headers:
+      cache-control:
+      - private
+      content-length:
+      - '707'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 06:48:22 GMT
+      expires:
+      - Mon, 12 Oct 2026 06:48:22 GMT
+      p3p:
+      - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+      server:
+      - scaffolding on HTTPServer2
+      server-timing:
+      - gfet4t7; dur=641
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model":"gemini-3.1-flash-lite","messages":[{"content":"Answer with the
+      tools. Be brief.","role":"system"},{"role":"user","content":"Close issue 17,
+      and search open issues for ''Typo''. Make both tool calls now."},{"role":"assistant","content":null,"tool_calls":[{"id":"call_1317445","type":"function","function":{"name":"close_issue","arguments":"{\"issue_id\":17}"},"extra_content":{"google":{"thought_signature":"EnMKcQFpFH0TsS6VvPGKbs/R9KLcld6gIJ1fulbRegnMYu6wIsLXAFjFNpC7m0akI8wXtM8SdP+LuU6imh+1Apke7LbI4O0pmOLKRAgPwmWe8exPetqR7fNI690RsNXpBWIXmP0DW4Zzxq6fWJK5e8AX8+e3"}}},{"id":"call_1317446","type":"function","function":{"name":"search_issues","arguments":"{\"text\":\"Typo\"}"}}]},{"role":"tool","tool_call_id":"call_1317445","content":[{"type":"text","text":"{\n  \"id\":
+      17,\n  \"title\": \"Profile page slow to load\",\n  \"team\": \"web\",\n  \"status\":
+      \"closed\",\n  \"severity\": \"medium\"\n}"}]},{"role":"tool","tool_call_id":"call_1317446","content":[{"type":"text","text":"{\n  \"id\":
+      9,\n  \"title\": \"Typo on the pricing page\",\n  \"team\": \"web\",\n  \"status\":
+      \"open\",\n  \"severity\": \"low\"\n}"}]}],"tools":[{"type":"function","function":{"name":"count_open","description":"Count
+      open issues","parameters":{"type":"object","properties":{"team":{"enum":["web","api","mobile","infra"],"title":"Team","type":"string"}},"required":["team"],"title":"count_openArguments"},"strict":false}},{"type":"function","function":{"name":"close_issue","description":"Close
+      an issue","parameters":{"type":"object","properties":{"issue_id":{"title":"Issue
+      Id","type":"integer"}},"required":["issue_id"],"title":"close_issueArguments"},"strict":false}},{"type":"function","function":{"name":"search_issues","description":"Find
+      open issues whose title contains the text, in any letter case. Needs issues:read.","parameters":{"type":"object","properties":{"text":{"title":"Text","type":"string"}},"required":["text"],"title":"search_issuesArguments"},"strict":false}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1981'
+      content-type:
+      - application/json
+      host:
+      - generativelanguage.googleapis.com
+      user-agent:
+      - Agents/Python 0.23.1
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 3.29.0
+      x-stainless-read-timeout:
+      - '600'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.13
+    method: POST
+    uri: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
+  response:
+    body:
+      string: '{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"Issue
+        17 has been closed, and I found one open issue matching ''Typo'': ID 9, \"Typo
+        on the pricing page\".","extra_content":{"google":{"thought_signature":"EnMKcQFpFH0TssG1QEJ69gt6rFiyz6Bd6UWlEqdnacaprfd+Ty1BgSTVIlcDUe8ZZvDQN21oF24L+PkdmJd0u67N1R8BJS7K8eI1fi6S6lzPJM+TNw2wnFCz52swCxAqApLmc9EHqqgjpgBx/uVzTKTlvY/M"}},"role":"assistant"}}],"created":1791787706,"id":"uYLMas29POyb_uMPzeOSwQw","model":"gemini-3.1-flash-lite","object":"chat.completion","usage":{"completion_tokens":31,"prompt_tokens":396,"total_tokens":427}}'
+    headers:
+      cache-control:
+      - private
+      content-length:
+      - '588'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 06:48:26 GMT
+      expires:
+      - Mon, 12 Oct 2026 06:48:26 GMT
+      p3p:
+      - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+      server:
+      - scaffolding on HTTPServer2
+      server-timing:
+      - gfet4t7; dur=577
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Close issue 9 with a tool, then tell
+      me what happened."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Find open issues whose title contains the text.", "name":
+      "search_issues", "parameters": {"properties": {"text": {"type": "STRING"}},
+      "required": ["text"], "type": "OBJECT"}}, {"description": "Close one issue by
+      id. Needs issues:write.", "name": "close_issue", "parameters": {"properties":
+      {"issue_id": {"type": "INTEGER"}}, "required": ["issue_id"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '623'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"close_issue\",\n              \"args\": {\n                \"issue_id\":
+        9\n              },\n              \"id\": \"call_126557\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1+vVutanegTUM4F4ERhyfMG6IcZzzAGNse9QBQcE1rqiOMJgNGJSiOU/0vVxMCG7GXATvRWoY8YMMfMKNtgtf4s3Iw02UQTjfHRwj//aAbcKFZioh/o\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 72,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 88,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 72\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T06:48:29.924270Z\",\n
+        \ \"responseId\": \"vYLMau60OIOFidsPvIGv2QI\"\n}\n"
+    headers:
+      content-length:
+      - '1006'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 06:48:30 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Close issue 9 with a tool, then tell
+      me what happened."}], "role": "user"}, {"parts": [{"functionCall": {"args":
+      {"issue_id": 9}, "name": "close_issue"}, "thoughtSignature": "AY89a1-vVutanegTUM4F4ERhyfMG6IcZzzAGNse9QBQcE1rqiOMJgNGJSiOU_0vVxMCG7GXATvRWoY8YMMfMKNtgtf4s3Iw02UQTjfHRwj__aAbcKFZioh_o"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "close_issue", "response":
+      {"output": "REFUSED with 403: issues:write is needed"}}}], "role": "user"}],
+      "safetySettings": [], "tools": [{"functionDeclarations": [{"description": "Find
+      open issues whose title contains the text.", "name": "search_issues", "parameters":
+      {"properties": {"text": {"type": "STRING"}}, "required": ["text"], "type": "OBJECT"}},
+      {"description": "Close one issue by id. Needs issues:write.", "name": "close_issue",
+      "parameters": {"properties": {"issue_id": {"type": "INTEGER"}}, "required":
+      ["issue_id"], "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0,
+      "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1009'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"I attempted
+        to close issue 9, but the action was refused with a 403 error. It appears
+        that I do not have the necessary `issues:write` permission required to perform
+        this operation.\",\n            \"thoughtSignature\": \"AY89a18ai8Yd3fC0QNS09eyMfYTQeXB57Hn3fwYWz3faHf3nrQwLDItGGHpVaHshFBHy14i+VpBtr4/kTMAQ5umKrEcGrHWiqWzBU1y2sheVDA1+KPaqp4jS\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 104,\n    \"candidatesTokenCount\":
+        42,\n    \"totalTokenCount\": 146,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 104\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 42\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T06:48:33.920985Z\",\n  \"responseId\": \"wYLMapmbOIKLr8kP_rzwkQ8\"\n}\n"
+    headers:
+      content-length:
+      - '1026'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 06:48:34 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

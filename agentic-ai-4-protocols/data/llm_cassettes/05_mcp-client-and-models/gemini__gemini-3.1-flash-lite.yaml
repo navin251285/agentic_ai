@@ -1,0 +1,329 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 04:35:35 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/project/project-id
+  response:
+    body:
+      string: PROJECT
+    headers:
+      Content-Length:
+      - '13'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 04:35:35 GMT
+      ETag:
+      - da212b6af946bea
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+  response:
+    body:
+      string: '{"aliases":["default"],"email":"redacted@example.iam.gserviceaccount.com","scopes":["https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]}'
+    headers:
+      Content-Length:
+      - '194'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Oct 2026 04:35:35 GMT
+      ETag:
+      - 9d115f94fb876a8
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/at cred-type/mds
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+  response:
+    body:
+      string: '{"access_token":"REDACTED","expires_in":2291,"token_type":"Bearer"}'
+    headers:
+      Content-Length:
+      - '1083'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Oct 2026 04:35:35 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "What does the runbook say about issue
+      7?"}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Count open Trackr issues for one team.", "name": "trackr_count_open",
+      "parameters": {"properties": {"team": {"enum": ["web", "api", "mobile", "infra"],
+      "type": "STRING"}}, "required": ["team"], "type": "OBJECT"}}, {"description":
+      "Find open issues whose title contains the text, in any letter case.", "name":
+      "trackr_search_issues", "parameters": {"properties": {"text": {"type": "STRING"}},
+      "required": ["text"], "type": "OBJECT"}}, {"description": "Open a new issue
+      and return it with its new id.", "name": "trackr_create_issue", "parameters":
+      {"properties": {"title": {"description": "title is {''type'': ''string''}",
+      "type": "STRING"}, "team": {"enum": ["web", "api", "mobile", "infra"], "type":
+      "STRING"}, "severity": {"enum": ["low", "medium", "high", "critical"], "type":
+      "STRING"}}, "required": ["title", "team", "severity"], "type": "OBJECT"}}, {"description":
+      "Close one open issue by id. Fails if the id is unknown or the issue is already
+      closed.", "name": "trackr_close_issue", "parameters": {"properties": {"issue_id":
+      {"type": "INTEGER"}}, "required": ["issue_id"], "type": "OBJECT"}}, {"description":
+      "Return the runbook steps for a Trackr issue id. Fails if no runbook exists
+      for that id.", "name": "runbooks_get_runbook", "parameters": {"properties":
+      {"issue_id": {"type": "INTEGER"}}, "required": ["issue_id"], "type": "OBJECT"}},
+      {"description": "Find the issue ids whose runbook title contains the text, in
+      any letter case.", "name": "runbooks_search", "parameters": {"properties": {"text":
+      {"type": "STRING"}}, "required": ["text"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1809'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"runbooks_get_runbook\",\n              \"args\":
+        {\n                \"issue_id\": 7\n              },\n              \"id\":
+        \"call_298973\"\n            },\n            \"thoughtSignature\": \"AY89a1/tN2r/XXDN2DDdfNejSc9o9JR9qQCwLw3t/lnLLHgo3joL1qOq27dL6G573D1cQxS0M/VcFza0USI7c57nHG6Lg7dnTdGs4DTNnfRR+fWBMjOWnthB\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 266,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 286,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 266\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 20\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T04:35:35.486756Z\",\n  \"responseId\": \"l2PMauTaHeCbr8kPoveYwQs\"\n}\n"
+    headers:
+      content-length:
+      - '1018'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 04:35:36 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "What does the runbook say about issue
+      7?"}], "role": "user"}, {"parts": [{"functionCall": {"args": {"issue_id": 7},
+      "name": "runbooks_get_runbook"}, "thoughtSignature": "AY89a1_tN2r_XXDN2DDdfNejSc9o9JR9qQCwLw3t_lnLLHgo3joL1qOq27dL6G573D1cQxS0M_VcFza0USI7c57nHG6Lg7dnTdGs4DTNnfRR-fWBMjOWnthB"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "runbooks_get_runbook",
+      "response": {"output": [{"type": "text", "text": "Runbook for issue 7 (Push
+      notifications arrive late):\n1. Check the push queue depth in the provider console.\n2.
+      Ask the device owner to re-register the push token.\n3. If more than 15 minutes
+      late for 3 users, page the mobile on-call.", "id": "lc_091ab955-6e8c-4087-aaad-aefa33637d61"}]}}}],
+      "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations": [{"description":
+      "Count open Trackr issues for one team.", "name": "trackr_count_open", "parameters":
+      {"properties": {"team": {"enum": ["web", "api", "mobile", "infra"], "type":
+      "STRING"}}, "required": ["team"], "type": "OBJECT"}}, {"description": "Find
+      open issues whose title contains the text, in any letter case.", "name": "trackr_search_issues",
+      "parameters": {"properties": {"text": {"type": "STRING"}}, "required": ["text"],
+      "type": "OBJECT"}}, {"description": "Open a new issue and return it with its
+      new id.", "name": "trackr_create_issue", "parameters": {"properties": {"title":
+      {"description": "title is {''type'': ''string''}", "type": "STRING"}, "team":
+      {"enum": ["web", "api", "mobile", "infra"], "type": "STRING"}, "severity": {"enum":
+      ["low", "medium", "high", "critical"], "type": "STRING"}}, "required": ["title",
+      "team", "severity"], "type": "OBJECT"}}, {"description": "Close one open issue
+      by id. Fails if the id is unknown or the issue is already closed.", "name":
+      "trackr_close_issue", "parameters": {"properties": {"issue_id": {"type": "INTEGER"}},
+      "required": ["issue_id"], "type": "OBJECT"}}, {"description": "Return the runbook
+      steps for a Trackr issue id. Fails if no runbook exists for that id.", "name":
+      "runbooks_get_runbook", "parameters": {"properties": {"issue_id": {"type": "INTEGER"}},
+      "required": ["issue_id"], "type": "OBJECT"}}, {"description": "Find the issue
+      ids whose runbook title contains the text, in any letter case.", "name": "runbooks_search",
+      "parameters": {"properties": {"text": {"type": "STRING"}}, "required": ["text"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2486'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        runbook for issue 7 (\\\"Push notifications arrive late\\\") provides the
+        following steps:\\n\\n1. Check the push queue depth in the provider console.\\n2.
+        Ask the device owner to re-register the push token.\\n3. If notifications
+        are more than 15 minutes late for 3 users, page the mobile on-call.\",\n            \"thoughtSignature\":
+        \"AY89a18Ye1tosFdpZ4QA2wjChWzyNpNwrobHD4EIewgto1kPgehbQSV5dVywmZmpO++9mY+TQM5eh5UpZRrCAX25knTkX+rpEieVwO3oUJc0NODtTWeULDaL\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 393,\n    \"candidatesTokenCount\":
+        71,\n    \"totalTokenCount\": 464,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 393\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 71\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T04:35:39.459072Z\",\n  \"responseId\": \"m2PMasCCHKr87bEPhL_6qAU\"\n}\n"
+    headers:
+      content-length:
+      - '1139'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 04:35:40 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,15 @@
+{
+  "replicas_via_proxy": [
+    "a",
+    "a",
+    "a",
+    "b",
+    "a",
+    "b"
+  ],
+  "direct_ms": 2.949228000943549,
+  "proxy_ms": 4.134825998335145,
+  "task_via_proxy": "COMPLETED",
+  "first_event_s": 0.6,
+  "last_event_s": 6.6
+}

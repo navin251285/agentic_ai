@@ -1,0 +1,244 @@
+{
+  "v1": {
+    "version": "v1",
+    "marks": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "right": 8,
+    "rejected": 0,
+    "extra": [],
+    "calls": [
+      {
+        "name": "count_open",
+        "args": {
+          "team": "mobile"
+        }
+      },
+      {
+        "name": "search_issues",
+        "args": {
+          "text": "login"
+        }
+      },
+      {
+        "name": "create_issue",
+        "args": {
+          "team": "api",
+          "title": "checkout times out"
+        }
+      },
+      {
+        "name": "close_issue",
+        "args": {
+          "issue_id": 7
+        }
+      },
+      {
+        "name": "reopen_issue",
+        "args": {
+          "issue_id": 12
+        }
+      },
+      {
+        "name": "archive_issue",
+        "args": {
+          "issue_id": 9
+        }
+      },
+      {
+        "name": "count_open",
+        "args": {
+          "team": "web"
+        }
+      },
+      {
+        "name": "search_issues",
+        "args": {
+          "text": "push"
+        }
+      }
+    ]
+  },
+  "v2": {
+    "version": "v2",
+    "marks": [
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+      true,
+      true
+    ],
+    "right": 6,
+    "rejected": 0,
+    "extra": [
+      "archive_issue",
+      "close_issue"
+    ],
+    "calls": [
+      {
+        "name": "count_open",
+        "args": {
+          "team": "mobile"
+        }
+      },
+      {
+        "name": "search_issues",
+        "args": {
+          "text": "login"
+        }
+      },
+      {
+        "name": "create_issue",
+        "args": {
+          "team": "api",
+          "title": "checkout times out"
+        }
+      },
+      {
+        "name": "archive_issue",
+        "args": {
+          "issue_id": 7
+        }
+      },
+      {
+        "name": "reopen_issue",
+        "args": {
+          "issue_id": 12
+        }
+      },
+      {
+        "name": "close_issue",
+        "args": {
+          "issue_id": 9
+        }
+      },
+      {
+        "name": "count_open",
+        "args": {
+          "team": "web"
+        }
+      },
+      {
+        "name": "search_issues",
+        "args": {
+          "text": "push"
+        }
+      }
+    ]
+  },
+  "v3": {
+    "version": "v3",
+    "marks": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "right": 8,
+    "rejected": 0,
+    "extra": [],
+    "calls": [
+      {
+        "name": "count_open",
+        "args": {
+          "team": "mobile"
+        }
+      },
+      {
+        "name": "search_issues",
+        "args": {
+          "text": "login"
+        }
+      },
+      {
+        "name": "create_issue",
+        "args": {
+          "team": "api",
+          "title": "checkout times out"
+        }
+      },
+      {
+        "name": "close_issue",
+        "args": {
+          "issue_id": 7
+        }
+      },
+      {
+        "name": "reopen_issue",
+        "args": {
+          "issue_id": 12
+        }
+      },
+      {
+        "name": "archive_issue",
+        "args": {
+          "issue_id": 9
+        }
+      },
+      {
+        "name": "count_open",
+        "args": {
+          "team": "web"
+        }
+      },
+      {
+        "name": "search_issues",
+        "args": {
+          "text": "push"
+        }
+      }
+    ]
+  },
+  "canary": {
+    "version": "v3",
+    "marks": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "right": 4,
+    "rejected": 0,
+    "extra": [],
+    "calls": [
+      {
+        "name": "search_issues",
+        "args": {
+          "text": "login"
+        }
+      },
+      {
+        "name": "close_issue",
+        "args": {
+          "issue_id": 7
+        }
+      },
+      {
+        "name": "reopen_issue",
+        "args": {
+          "issue_id": 12
+        }
+      },
+      {
+        "name": "archive_issue",
+        "args": {
+          "issue_id": 9
+        }
+      }
+    ]
+  }
+}

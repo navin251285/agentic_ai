@@ -1,0 +1,460 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Answer each numbered request with one
+      tool call.\n1. How many open issues does the mobile team have?\n2. Which open
+      issues mention login?\n3. Open a new issue for the api team: checkout times
+      out.\n4. Close issue 7, it is a duplicate of issue 3.\n5. Reopen issue 12, the
+      fix did not ship.\n6. Issue 9 was closed last week. Take it off the default
+      board.\n7. How many open issues does the web team have?\n8. Which open issues
+      mention push?"}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Count the open issues of one team. Use for ''how many'' questions.
+      Read-only.", "name": "count_open", "parameters": {"properties": {"team": {"enum":
+      ["web", "api", "mobile", "infra"], "type": "STRING"}}, "required": ["team"],
+      "title": "count_openArguments", "type": "OBJECT"}}, {"description": "Find open
+      issues whose title contains the text. Use when the user asks which issues mention
+      something.", "name": "search_issues", "parameters": {"properties": {"text":
+      {"type": "STRING"}}, "required": ["text"], "title": "search_issuesArguments",
+      "type": "OBJECT"}}, {"description": "Open a new issue for a team. Use only when
+      the user asks to file or open a new issue.", "name": "create_issue", "parameters":
+      {"properties": {"title": {"description": "title is {''title'': ''Title'', ''type'':
+      ''string''}", "type": "STRING"}, "team": {"enum": ["web", "api", "mobile", "infra"],
+      "type": "STRING"}}, "required": ["title", "team"], "title": "create_issueArguments",
+      "type": "OBJECT"}}, {"description": "Close one open issue by id when its work
+      is finished. Not for archiving: archive_issue handles closed issues that should
+      leave the board.", "name": "close_issue", "parameters": {"properties": {"issue_id":
+      {"type": "INTEGER"}}, "required": ["issue_id"], "title": "close_issueArguments",
+      "type": "OBJECT"}}, {"description": "Reopen one closed issue by id when a fix
+      did not ship. Not for new issues.", "name": "reopen_issue", "parameters": {"properties":
+      {"issue_id": {"type": "INTEGER"}}, "required": ["issue_id"], "title": "reopen_issueArguments",
+      "type": "OBJECT"}}, {"description": "Archive one closed issue by id so it leaves
+      the default board. Use after an issue is closed, never to close it.", "name":
+      "archive_issue", "parameters": {"properties": {"issue_id": {"type": "INTEGER"}},
+      "required": ["issue_id"], "title": "archive_issueArguments", "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2515'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"count_open\",\n              \"args\": {\n                \"team\":
+        \"mobile\"\n              },\n              \"id\": \"call_2023136\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18uH5KU9lZrvu20owewpMbe5aHSi8LYVPKO3tKFN6AAbQBVGbYSXMau6bcHHk51ABi2RxtstMxQFgJX5SX9WUe0LYdzWbKs9t7Wbtj4TgWbRx4QunHm\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"search_issues\",\n              \"args\": {\n                \"text\": \"login\"\n
+        \             },\n              \"id\": \"call_2023137\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"create_issue\",\n              \"args\": {\n                \"team\": \"api\",\n
+        \               \"title\": \"checkout times out\"\n              },\n              \"id\":
+        \"call_2023138\"\n            }\n          },\n          {\n            \"functionCall\":
+        {\n              \"name\": \"close_issue\",\n              \"args\": {\n                \"issue_id\":
+        7\n              },\n              \"id\": \"call_2023139\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"reopen_issue\",\n              \"args\": {\n                \"issue_id\":
+        12\n              },\n              \"id\": \"call_2023140\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"archive_issue\",\n              \"args\": {\n                \"issue_id\":
+        9\n              },\n              \"id\": \"call_2023141\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"count_open\",\n              \"args\": {\n                \"team\": \"web\"\n
+        \             },\n              \"id\": \"call_2023142\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"search_issues\",\n              \"args\": {\n                \"text\": \"push\"\n
+        \             },\n              \"id\": \"call_2023143\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 428,\n    \"candidatesTokenCount\":
+        138,\n    \"totalTokenCount\": 566,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 428\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 138\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T13:49:44.214209Z\",\n  \"responseId\": \"eOXMasGJDar87bEPhL_6qAU\"\n}\n"
+    headers:
+      content-length:
+      - '2556'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 13:49:45 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Answer each numbered request with one
+      tool call.\n1. How many open issues does the mobile team have?\n2. Which open
+      issues mention login?\n3. Open a new issue for the api team: checkout times
+      out.\n4. Close issue 7, it is a duplicate of issue 3.\n5. Reopen issue 12, the
+      fix did not ship.\n6. Issue 9 was closed last week. Take it off the default
+      board.\n7. How many open issues does the web team have?\n8. Which open issues
+      mention push?"}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Count open issues for a team.", "name": "count_open", "parameters":
+      {"properties": {"team": {"enum": ["web", "api", "mobile", "infra"], "type":
+      "STRING"}}, "required": ["team"], "title": "count_openArguments", "type": "OBJECT"}},
+      {"description": "Search open issues by text.", "name": "search_issues", "parameters":
+      {"properties": {"text": {"type": "STRING"}}, "required": ["text"], "title":
+      "search_issuesArguments", "type": "OBJECT"}}, {"description": "Create an issue
+      for a team.", "name": "create_issue", "parameters": {"properties": {"title":
+      {"description": "title is {''title'': ''Title'', ''type'': ''string''}", "type":
+      "STRING"}, "team": {"enum": ["web", "api", "mobile", "infra"], "type": "STRING"}},
+      "required": ["title", "team"], "title": "create_issueArguments", "type": "OBJECT"}},
+      {"description": "Archive a closed issue so it leaves the default board.", "name":
+      "close_issue", "parameters": {"properties": {"issue_id": {"type": "INTEGER"}},
+      "required": ["issue_id"], "title": "close_issueArguments", "type": "OBJECT"}},
+      {"description": "Reopen an issue.", "name": "reopen_issue", "parameters": {"properties":
+      {"issue_id": {"type": "INTEGER"}}, "required": ["issue_id"], "title": "reopen_issueArguments",
+      "type": "OBJECT"}}, {"description": "Close an issue.", "name": "archive_issue",
+      "parameters": {"properties": {"issue_id": {"type": "INTEGER"}}, "required":
+      ["issue_id"], "title": "archive_issueArguments", "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2099'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"count_open\",\n              \"args\": {\n                \"team\":
+        \"mobile\"\n              },\n              \"id\": \"call_1320453\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1/Y1kFlCrSoEWvBkOcUJH6Qz3WmOXaCEweGpiCxqKsBeSHhGMfC6yQAv8TXPGat9MKKTl5sC7wcVWsQEZ1Y0/i4QIedT5mbHQ5k5FnNpN3rrhcTY3jB\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"search_issues\",\n              \"args\": {\n                \"text\": \"login\"\n
+        \             },\n              \"id\": \"call_1320454\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"create_issue\",\n              \"args\": {\n                \"team\": \"api\",\n
+        \               \"title\": \"checkout times out\"\n              },\n              \"id\":
+        \"call_1320455\"\n            }\n          },\n          {\n            \"functionCall\":
+        {\n              \"name\": \"archive_issue\",\n              \"args\": {\n
+        \               \"issue_id\": 7\n              },\n              \"id\": \"call_1320456\"\n
+        \           }\n          },\n          {\n            \"functionCall\": {\n
+        \             \"name\": \"reopen_issue\",\n              \"args\": {\n                \"issue_id\":
+        12\n              },\n              \"id\": \"call_1320457\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"close_issue\",\n              \"args\": {\n                \"issue_id\":
+        9\n              },\n              \"id\": \"call_1320458\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"count_open\",\n              \"args\": {\n                \"team\": \"web\"\n
+        \             },\n              \"id\": \"call_1320459\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"search_issues\",\n              \"args\": {\n                \"text\": \"push\"\n
+        \             },\n              \"id\": \"call_1320460\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 335,\n    \"candidatesTokenCount\":
+        138,\n    \"totalTokenCount\": 473,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 335\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 138\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T13:49:45.350899Z\",\n  \"responseId\": \"eeXMarO1FYKLr8kP_rzwkQ8\"\n}\n"
+    headers:
+      content-length:
+      - '2556'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 13:49:46 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Answer each numbered request with one
+      tool call.\n1. How many open issues does the mobile team have?\n2. Which open
+      issues mention login?\n3. Open a new issue for the api team: checkout times
+      out.\n4. Close issue 7, it is a duplicate of issue 3.\n5. Reopen issue 12, the
+      fix did not ship.\n6. Issue 9 was closed last week. Take it off the default
+      board.\n7. How many open issues does the web team have?\n8. Which open issues
+      mention push?"}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Count open issues for a team. Use for ''how many'' questions.",
+      "name": "count_open", "parameters": {"properties": {"team": {"enum": ["web",
+      "api", "mobile", "infra"], "type": "STRING"}}, "required": ["team"], "title":
+      "count_openArguments", "type": "OBJECT"}}, {"description": "Search open issues
+      by text. Use when the user asks which issues mention something.", "name": "search_issues",
+      "parameters": {"properties": {"text": {"type": "STRING"}}, "required": ["text"],
+      "title": "search_issuesArguments", "type": "OBJECT"}}, {"description": "Create
+      an issue for a team. Use only when the user asks to file or open a new issue.",
+      "name": "create_issue", "parameters": {"properties": {"title": {"description":
+      "title is {''title'': ''Title'', ''type'': ''string''}", "type": "STRING"},
+      "team": {"enum": ["web", "api", "mobile", "infra"], "type": "STRING"}}, "required":
+      ["title", "team"], "title": "create_issueArguments", "type": "OBJECT"}}, {"description":
+      "Close one open issue by id when its work is finished. Not for archiving: archive_issue
+      handles closed issues.", "name": "close_issue", "parameters": {"properties":
+      {"issue_id": {"type": "INTEGER"}}, "required": ["issue_id"], "title": "close_issueArguments",
+      "type": "OBJECT"}}, {"description": "Reopen one closed issue by id when a fix
+      did not ship. Not for new issues.", "name": "reopen_issue", "parameters": {"properties":
+      {"issue_id": {"type": "INTEGER"}}, "required": ["issue_id"], "title": "reopen_issueArguments",
+      "type": "OBJECT"}}, {"description": "Archive one closed issue by id so it leaves
+      the default board. Use after an issue is closed, never to close it.", "name":
+      "archive_issue", "parameters": {"properties": {"issue_id": {"type": "INTEGER"}},
+      "required": ["issue_id"], "title": "archive_issueArguments", "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2450'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"count_open\",\n              \"args\": {\n                \"team\":
+        \"mobile\"\n              },\n              \"id\": \"call_2389927\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1/Nc2aP6vLrpCS+X3+SAraj0UBjsLEARYwbrX6kMQmHLSTnusB14GanSI9ZAHuRoBv0j3gmq9zaNKK/Vw4c1SDXDMO5DNzgslplhDg7vFuSfbYKNS+X\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"search_issues\",\n              \"args\": {\n                \"text\": \"login\"\n
+        \             },\n              \"id\": \"call_2389928\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"create_issue\",\n              \"args\": {\n                \"team\": \"api\",\n
+        \               \"title\": \"checkout times out\"\n              },\n              \"id\":
+        \"call_2389929\"\n            }\n          },\n          {\n            \"functionCall\":
+        {\n              \"name\": \"close_issue\",\n              \"args\": {\n                \"issue_id\":
+        7\n              },\n              \"id\": \"call_2389930\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"reopen_issue\",\n              \"args\": {\n                \"issue_id\":
+        12\n              },\n              \"id\": \"call_2389931\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"archive_issue\",\n              \"args\": {\n                \"issue_id\":
+        9\n              },\n              \"id\": \"call_2389932\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"count_open\",\n              \"args\": {\n                \"team\": \"web\"\n
+        \             },\n              \"id\": \"call_2389933\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"search_issues\",\n              \"args\": {\n                \"text\": \"push\"\n
+        \             },\n              \"id\": \"call_2389934\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 414,\n    \"candidatesTokenCount\":
+        138,\n    \"totalTokenCount\": 552,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 414\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 138\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T13:49:46.446284Z\",\n  \"responseId\": \"euXMasyeG9-Kr8kPuMm1wQ4\"\n}\n"
+    headers:
+      content-length:
+      - '2556'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 13:49:47 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Answer each numbered request with one
+      tool call.\n1. Which open issues mention login?\n2. Close issue 7, it is a duplicate
+      of issue 3.\n3. Reopen issue 12, the fix did not ship.\n4. Issue 9 was closed
+      last week. Take it off the default board."}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Count open issues for
+      a team. Use for ''how many'' questions.", "name": "count_open", "parameters":
+      {"properties": {"team": {"enum": ["web", "api", "mobile", "infra"], "type":
+      "STRING"}}, "required": ["team"], "title": "count_openArguments", "type": "OBJECT"}},
+      {"description": "Search open issues by text. Use when the user asks which issues
+      mention something.", "name": "search_issues", "parameters": {"properties": {"text":
+      {"type": "STRING"}}, "required": ["text"], "title": "search_issuesArguments",
+      "type": "OBJECT"}}, {"description": "Create an issue for a team. Use only when
+      the user asks to file or open a new issue.", "name": "create_issue", "parameters":
+      {"properties": {"title": {"description": "title is {''title'': ''Title'', ''type'':
+      ''string''}", "type": "STRING"}, "team": {"enum": ["web", "api", "mobile", "infra"],
+      "type": "STRING"}}, "required": ["title", "team"], "title": "create_issueArguments",
+      "type": "OBJECT"}}, {"description": "Close one open issue by id when its work
+      is finished. Not for archiving: archive_issue handles closed issues.", "name":
+      "close_issue", "parameters": {"properties": {"issue_id": {"type": "INTEGER"}},
+      "required": ["issue_id"], "title": "close_issueArguments", "type": "OBJECT"}},
+      {"description": "Reopen one closed issue by id when a fix did not ship. Not
+      for new issues.", "name": "reopen_issue", "parameters": {"properties": {"issue_id":
+      {"type": "INTEGER"}}, "required": ["issue_id"], "title": "reopen_issueArguments",
+      "type": "OBJECT"}}, {"description": "Archive one closed issue by id so it leaves
+      the default board. Use after an issue is closed, never to close it.", "name":
+      "archive_issue", "parameters": {"properties": {"issue_id": {"type": "INTEGER"}},
+      "required": ["issue_id"], "title": "archive_issueArguments", "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2254'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_issues\",\n              \"args\": {\n
+        \               \"text\": \"login\"\n              },\n              \"id\":
+        \"call_761523\"\n            },\n            \"thoughtSignature\": \"AY89a198j1a4+qNBSb2/OBBJbH5Kbu9bEWeurYU0KId60dXbEBPnvA+qdKF1VHG1DESa4OVWHMAuwgVaYfq8vPXYgIUuTnEniMxLy7y8xeZYcvkFM36rC1UT\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"close_issue\",\n              \"args\": {\n                \"issue_id\":
+        7\n              },\n              \"id\": \"call_761524\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"reopen_issue\",\n              \"args\": {\n                \"issue_id\":
+        12\n              },\n              \"id\": \"call_761525\"\n            }\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"archive_issue\",\n              \"args\": {\n                \"issue_id\":
+        9\n              },\n              \"id\": \"call_761526\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 363,\n    \"candidatesTokenCount\":
+        66,\n    \"totalTokenCount\": 429,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 363\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 66\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T13:49:47.490937Z\",\n  \"responseId\": \"e-XMarn7Hcjf-O4PkOKtsAI\"\n}\n"
+    headers:
+      content-length:
+      - '1650'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 13:49:48 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":1,"method":"SendMessage","params":{"message":{"messageId":"a2","role":"ROLE_USER","parts":[{"text":"login
+      is slow"}]}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '141'
+      content-type:
+      - application/json
+      host:
+      - triage.test
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://triage.test/
+  response:
+    body:
+      string: '{"error":{"code":-32009,"message":"A2A version ''0.3'' is not supported
+        by this handler. Expected version ''1.0''.","data":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"VERSION_NOT_SUPPORTED","domain":"a2a-protocol.org","metadata":{}}]},"id":1,"jsonrpc":"2.0"}'
+    headers:
+      content-length:
+      - '273'
+      content-type:
+      - application/json
+    status:
+      code: 200
+      message: OK
+version: 1

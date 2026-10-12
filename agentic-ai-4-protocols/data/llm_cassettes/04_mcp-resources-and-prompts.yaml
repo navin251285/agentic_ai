@@ -1,0 +1,112 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 11:36:03 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Mobile runbook\n1. Check crash reports
+      for the newest build.\n2. Halt the staged rollout if crashes rise.\n3. Page
+      mobile on-call for critical.\n\nTriage Trackr issue 4: App crashes when photo
+      is rotated (severity critical).\nWrite a short triage note: likely cause, first
+      step, and who to page. Use the runbook you are given."}], "role": "user"}],
+      "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '468'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"**Triage
+        Note: Trackr Issue 4**\\n\\n*   **Likely Cause:** Potential memory leak or
+        unhandled orientation change event triggered during the image processing/rendering
+        pipeline.\\n*   **First Step:** Check crash reports for the newest build to
+        confirm if this is a regression or a spike in the current staged rollout.
+        If the crash rate exceeds thresholds, halt the rollout immediately.\\n*   **Action:**
+        Page mobile on-call (Severity: Critical).\",\n            \"thoughtSignature\":
+        \"AY89a1/kCbqBFPq2OJPMbB7/DVCRVsY/PI2v/18HEAmqjIM4PGGMdCym0hdk7yldw77MoVM6tA1+0FgWNobe/B2FPcBDMyBo12nPAkBihJZuXtKcYd9hviIp\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 81,\n    \"candidatesTokenCount\":
+        95,\n    \"totalTokenCount\": 176,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 81\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 95\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T11:36:03.582967Z\",\n  \"responseId\": \"I8bMarfKI-Cbr8kPl52j-Ak\"\n}\n"
+    headers:
+      content-length:
+      - '1284'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 11:36:04 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

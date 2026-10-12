@@ -1,0 +1,177 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 06:55:55 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify issues 4, 9 and 15 as bug,
+      feature or question."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are the Trackr orchestrator. Use one tool for each step. Do not classify
+      issues yourself."}]}, "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Count the open Trackr issues for one team: web, api, mobile
+      or infra. Use it for plain counts.", "name": "read_open_count", "parameters":
+      {"properties": {"team": {"type": "STRING"}}, "required": ["team"], "type": "OBJECT"}},
+      {"description": "Send these open Trackr issues to triage-agent, which classifies
+      each as bug, feature or question. Use it for judgement, not for counting.",
+      "name": "classify_issues", "parameters": {"properties": {"issue_ids": {"items":
+      {"type": "INTEGER"}, "type": "ARRAY"}}, "required": ["issue_ids"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '944'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"classify_issues\",\n              \"args\": {\n
+        \               \"issue_ids\": [\n                  4,\n                  9,\n
+        \                 15\n                ]\n              },\n              \"id\":
+        \"call_390642\"\n            },\n            \"thoughtSignature\": \"AY89a191V7b4mSs/0W1hLppLAFNHTfS6t29+56QXWGeMbt2gR9YjI3dVGa3c6AV0eE5zn9yQiJpCIqK4PKKNM1Omc+8hbbCsJ3X05VZDg+6ppQeX9FaddI5c\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 137,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 158,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 137\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T06:55:55.881034Z\",\n  \"responseId\": \"e4TMaorjNbKbr8kP-bic-Qw\"\n}\n"
+    headers:
+      content-length:
+      - '1095'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 06:55:56 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify each issue as exactly one word:
+      bug, feature or question.\nReply with one line per issue, in the form ''<id>:
+      <label>'', and nothing else.\n4: App crashes when photo is rotated\n9: Typo
+      on the pricing page\n15: Battery drain in background sync"}], "role": "user"}],
+      "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '392'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"4:
+        bug\\n9: bug\\n15: bug\",\n            \"thoughtSignature\": \"AY89a1/NBmM2kqeDyFgMl08dAHZMcRmlihngcsLk+c6J89vjkuIowKSQWLE+eTyPaxr1v0+Zum6JWUtXQYYyQ8FVOoWrqryMOUtNwUuibRZSS2W+icPmj6ix\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 63,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 75,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 63\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 12\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T06:55:59.837208Z\",\n
+        \ \"responseId\": \"f4TMatiMM4OFidsPvIGv2QI\"\n}\n"
+    headers:
+      content-length:
+      - '866'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 06:56:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,7 @@
+{
+ "realm": [
+  "client runbooks-mcp | resource_url http://127.0.0.1:8342/mcp",
+  "client trackr-mcp | resource_url http://127.0.0.1:8341/mcp",
+  "client policy cimd-policy | enabled True"
+ ]
+}

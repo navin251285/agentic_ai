@@ -1,0 +1,385 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify the open issues of the web
+      team as bug, feature or question."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are the Trackr ops orchestrator. Triage requests go
+      to triage-agent through ask_triage_agent. Do not classify issues yourself."}]},
+      "safetySettings": [], "tools": [{"functionDeclarations": [{"description": "Ask
+      triage-agent to classify the open issues of one team (web or api). Use it for
+      any triage request.", "name": "ask_triage_agent", "parameters": {"properties":
+      {"team": {"type": "STRING"}}, "required": ["team"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '703'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"ask_triage_agent\",\n              \"args\":
+        {\n                \"team\": \"web\"\n              },\n              \"id\":
+        \"call_346349\"\n            },\n            \"thoughtSignature\": \"AY89a18d11JR7+NEMgJ3LMCpa4g3BAK+RpuILpMMqj49Lsg9dIG7wiV7lcQXkTRBdsU/pbT2Vns6jUUOEUmVLDaeji60bU+8H8+2WL63OFkgDrGmrFwpJ2HA\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 91,\n    \"candidatesTokenCount\":
+        19,\n    \"totalTokenCount\": 110,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 91\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 19\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T17:04:58.683788Z\",\n  \"responseId\": \"OhPNaozeKeCbr8kPl52j-Ak\"\n}\n"
+    headers:
+      content-length:
+      - '1012'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 17:04:59 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - 127.0.0.1:9380
+      User-Agent:
+      - Python-urllib/3.12
+    method: GET
+    uri: http://127.0.0.1:9380/jwks
+  response:
+    body:
+      string: '{"keys":[{"n":"1KXbRPq9PhIq55DEZLczuKf60Z_jf8_LonwBqh08B49IooegvOk18kHiCivK9QMXcrkC9Xu8zQlAzB2jsvyLjaoj5aumZsDF6jtNUcWLn6wdXcACDDk8fQrc1wlKH7MD3YzIm8JkaoBz4veAE2zy8yhL1Mqteh56zOxEIIkOUGKHOP9-PkL1zKYntQR8Fqgc5HbMA0m08NzScmVnX38B4cLWz1CGJRXvoTNozM2ri2mnDgK2VvBfA9dYGDwIMGQ2fHOogIrowbhDpAM-KGXwKD0assrMQucgdhPWpYHM1my2rdvsZeXNetN1slLXp0OBuXZWd6d5KqX_mEW6LTb0lw","e":"AQAB","kid":"tut-38a","alg":"RS256","use":"sig","kty":"RSA"}]}'
+    headers:
+      Connection:
+      - close
+      content-length:
+      - '426'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:04:58 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: grant_type=client_credentials&resource=http%3A%2F%2F127.0.0.1%3A9382%2F
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '71'
+      content-type:
+      - application/x-www-form-urlencoded
+      host:
+      - 127.0.0.1:9380
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:9380/token
+  response:
+    body:
+      string: '{"access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6InR1dC0zOGEifQ.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjkzODAiLCJhdWQiOiJodHRwOi8vMTI3LjAuMC4xOjkzODIvIiwiaWF0IjoxNzkxODI0Njk5LCJleHAiOjE3OTE4MjQ5OTksInNjb3BlIjoiIiwic3ViIjoidHJpYWdlLWFnZW50IiwiYXpwIjoidHJpYWdlLWFnZW50In0.gAqvBFLl2eYfJFzB5GDt8Tm6o_WwCMFnREynakZ_t3cLrbF_8YP7fEaDPk4Y28og0oNeW3ga1SakfiGRD0ESojOv2JYbUiwu8StHGFrQwvIdLHYo2ElN52GNUU5QUd5AseCiVspDSRxlnBBZetj_pdqIl2cWIUcMst71ypNolmQiG4Luy8SsevTH7m187oN9JDXDEdpgGWTEG7yKJWOmdXRugfx7T63cp-POQ8IEjqd9EJsqx13R2lTDambeVaznqi_GycPEffljIrmurHn54XH7v5na1VI7s47ZIbIhFTeYc_yric8EVWPiSFNjbXoJujQMw8M2LgfuRjXfJgnceA","token_type":"Bearer","expires_in":300}'
+    headers:
+      content-length:
+      - '659'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:04:58 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange&subject_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6InR1dC0zOGEifQ.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjkzODAiLCJhdWQiOiJodHRwOi8vMTI3LjAuMC4xOjkzODIvIiwiaWF0IjoxNzkxODI0Njk3LCJleHAiOjE3OTE4MjQ5OTcsInNjb3BlIjoiaXNzdWVzOnJlYWQgdHJpYWdlOnJ1biIsInN1YiI6ImFsaWNlIiwiYXpwIjoib3BzLW9yY2hlc3RyYXRvciIsImFjdCI6eyJzdWIiOiJvcHMtb3JjaGVzdHJhdG9yIn19.zqC7Y-nwMVFh66377FgSAicPeT0r05ZDUalKOl8VAtUxvsuOxxLOMiKxlyCqIxhvlaX1HTz8g9MMeHyPCaLXkptIykN0Gmi7pdc6gHyBZOpyD10-rJNj9mZk8ZbrFgQXl0uRJfrnqmVR7_Fx6hzCkRKjY2Cuq7x-3xDgf6GlAHr_sdmxRycJtFHT7crvnXmaA5PfGNUVAKCG2ScnpAOBCj6Qen-D8etNLq5jqBKmXXaeUXCzut7xdQYUqYT_c08-4sF_yVZVG-bWL47SMoUshoM-U65QtLe33OIvCNngGN4rPhc-YqQ8Oh-sk2QxXpxgV4WTFZ-MGPVPdjhg7lAoSw&subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Aaccess_token&actor_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6InR1dC0zOGEifQ.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjkzODAiLCJhdWQiOiJodHRwOi8vMTI3LjAuMC4xOjkzODIvIiwiaWF0IjoxNzkxODI0Njk5LCJleHAiOjE3OTE4MjQ5OTksInNjb3BlIjoiIiwic3ViIjoidHJpYWdlLWFnZW50IiwiYXpwIjoidHJpYWdlLWFnZW50In0.gAqvBFLl2eYfJFzB5GDt8Tm6o_WwCMFnREynakZ_t3cLrbF_8YP7fEaDPk4Y28og0oNeW3ga1SakfiGRD0ESojOv2JYbUiwu8StHGFrQwvIdLHYo2ElN52GNUU5QUd5AseCiVspDSRxlnBBZetj_pdqIl2cWIUcMst71ypNolmQiG4Luy8SsevTH7m187oN9JDXDEdpgGWTEG7yKJWOmdXRugfx7T63cp-POQ8IEjqd9EJsqx13R2lTDambeVaznqi_GycPEffljIrmurHn54XH7v5na1VI7s47ZIbIhFTeYc_yric8EVWPiSFNjbXoJujQMw8M2LgfuRjXfJgnceA&actor_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Aaccess_token&resource=http%3A%2F%2F127.0.0.1%3A9381%2Fmcp&scope=issues%3Aread
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '1580'
+      content-type:
+      - application/x-www-form-urlencoded
+      host:
+      - 127.0.0.1:9380
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:9380/token
+  response:
+    body:
+      string: '{"access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6InR1dC0zOGEifQ.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjkzODAiLCJhdWQiOiJodHRwOi8vMTI3LjAuMC4xOjkzODEvbWNwIiwiaWF0IjoxNzkxODI0Njk5LCJleHAiOjE3OTE4MjQ5OTksInNjb3BlIjoiaXNzdWVzOnJlYWQiLCJzdWIiOiJhbGljZSIsImF6cCI6InRyaWFnZS1hZ2VudCIsImFjdCI6eyJzdWIiOiJ0cmlhZ2UtYWdlbnQiLCJhY3QiOnsic3ViIjoib3BzLW9yY2hlc3RyYXRvciJ9fX0.OP79RlSg0l4KV1vLBuWwG09rrBH2w5DO7lJhm5xioV0h3eLSq7XjR_z2EA6HRLz3ROyxL_ykBfYsJ7MmTPVhsLRBUTDCT_n3vwgEOTx3OBX46jYy_fzPxnk32iE_rJOKypWRy9iM_lSeYGwgzUEywUaBQFDq-MlAvp-KBjCkR2t7zamsqTkJSmvv3gEgyfsaEFMTIX7Mi1TFTMPT9l29W4s3n6n8hmQ6dowczTVNItJubnFCcntWu2hCvOUUUkLl_43It67jCp23NmLEtmEFNT-V4ip0m7Y4IXLim4lFxvDmrM0CcGV65fokc03y31ffkttgUPH00EVkQxGZ_N4HIw","issued_token_type":"urn:ietf:params:oauth:token-type:access_token","token_type":"Bearer","expires_in":120,"scope":"issues:read"}'
+    headers:
+      content-length:
+      - '841'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:04:58 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":1,"method":"server/discover","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '245'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9381
+      mcp-method:
+      - server/discover
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:9381/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":1,"result":{"cacheScope":"private","capabilities":{"prompts":{"listChanged":true},"resources":{"listChanged":true,"subscribe":true},"tools":{"listChanged":true}},"resultType":"complete","supportedVersions":["2026-07-28"],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Trackr","version":""}}}}'
+    headers:
+      content-length:
+      - '332'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:04:59 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"list_open_issues","arguments":{"team":"web"},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '293'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9381
+      mcp-method:
+      - tools/call
+      mcp-name:
+      - list_open_issues
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:9381/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":2,"result":{"content":[{"text":"4: Login page
+        flickers on Safari\n9: Export CSV drops the owner column","type":"text"}],"isError":false,"resultType":"complete","structuredContent":{"result":"4:
+        Login page flickers on Safari\n9: Export CSV drops the owner column"},"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Trackr","version":""}}}}'
+    headers:
+      content-length:
+      - '365'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:04:59 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":3,"method":"tools/list","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '240'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9381
+      mcp-method:
+      - tools/list
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:9381/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":3,"result":{"cacheScope":"private","resultType":"complete","tools":[{"annotations":{"readOnlyHint":true},"description":"","inputSchema":{"type":"object","properties":{"team":{"title":"Team","type":"string"}},"required":["team"],"title":"list_open_issuesArguments"},"name":"list_open_issues","outputSchema":{"properties":{"result":{"title":"Result","type":"string"}},"required":["result"],"title":"list_open_issuesOutput","type":"object"},"title":"List
+        open issues"}],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Trackr","version":""}}}}'
+    headers:
+      content-length:
+      - '578'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:04:59 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify each issue as exactly one word:
+      bug, feature or question.\nReply with one line per issue, in the form ''<id>:
+      <label>'', and nothing else.\n4: Login page flickers on Safari\n9: Export CSV
+      drops the owner column"}], "role": "user"}], "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '384'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"4:
+        bug\\n9: bug\",\n            \"thoughtSignature\": \"AY89a19trvzDLK4ORfpEQXE0EqQpPgOwTC30+bsXaylA6NTCLUSxTjYySw+XeCETWQALcmraSvp/cHPGok9Xma9EHIummxzP40sqN4DYyN6rq1wUgKypsdza\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 54,\n    \"candidatesTokenCount\":
+        7,\n    \"totalTokenCount\": 61,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 54\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 7\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T17:04:59.511301Z\",\n
+        \ \"responseId\": \"OxPNasWaH9-Kr8kPuMm1wQ4\"\n}\n"
+    headers:
+      content-length:
+      - '855'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 17:05:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"method":"SendMessage","params":{"message":{"messageId":"653d002d-795d-48a1-ae70-8e2547deb582","role":"ROLE_USER","parts":[{"text":"web"}]},"configuration":{}},"id":"52204bd9-8ac9-48c9-a3df-7aef2bef1bb2","jsonrpc":"2.0"}'
+    headers:
+      a2a-version:
+      - '1.0'
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '221'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9382
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9382/
+  response:
+    body:
+      string: '{"result":{"task":{"id":"89a6d7f1-f71a-4d33-b6e0-f6650249f24a","contextId":"46754439-64fd-4af5-b801-54eb987471b1","status":{"state":"TASK_STATE_COMPLETED","timestamp":"2026-10-12T17:05:00.241115Z"},"artifacts":[{"artifactId":"9a99a10a-6f61-4928-99cf-13a5924822d6","name":"model","parts":[{"text":"4:
+        bug\n9: bug\nreceipt: sub=alice aud=trackr scope=issues:read act=triage-agent
+        > ops-orchestrator"}]}],"history":[{"messageId":"653d002d-795d-48a1-ae70-8e2547deb582","contextId":"46754439-64fd-4af5-b801-54eb987471b1","taskId":"89a6d7f1-f71a-4d33-b6e0-f6650249f24a","role":"ROLE_USER","parts":[{"text":"web"}]}]}},"id":"52204bd9-8ac9-48c9-a3df-7aef2bef1bb2","jsonrpc":"2.0"}'
+    headers:
+      content-length:
+      - '672'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:04:57 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+version: 1

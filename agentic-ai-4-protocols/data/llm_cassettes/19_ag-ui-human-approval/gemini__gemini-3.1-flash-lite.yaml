@@ -1,0 +1,234 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 12:10:39 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Close issue 9, the pricing page typo
+      is fixed."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Close one open Trackr issue by id. Only close an issue when
+      the person asked for it.", "name": "close_issue", "parameters": {"properties":
+      {"issue_id": {"type": "INTEGER"}}, "required": ["issue_id"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '464'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"functionCall\": {\"name\": \"close_issue\",\"args\": {\"issue_id\": 9},\"id\":
+        \"call_724038\"},\"thoughtSignature\": \"AY89a19OBPeUZS+u3bYnwiJr4pwiznkAmhdBhTQqjppF+h6viK2MTphgpwjZYPF/kg13WPZtSTgaMkhqD/gTbqJZxaGJEQPwP2gpP4vkxG4qr5LysiJh/E7a\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T12:10:39.099680Z\",\"responseId\": \"P87MauCKBt-Kr8kPuMm1wQ4\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\"}]},\"finishReason\": \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\":
+        53,\"candidatesTokenCount\": 16,\"totalTokenCount\": 69,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 53}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 16}]},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T12:10:39.099680Z\",\"responseId\": \"P87MauCKBt-Kr8kPuMm1wQ4\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Mon, 12 Oct 2026 12:10:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Close issue 9, the pricing page typo
+      is fixed."}], "role": "user"}, {"parts": [{"functionCall": {"args": {"issue_id":
+      9}, "name": "close_issue"}, "thoughtSignature": "AY89a19OBPeUZS-u3bYnwiJr4pwiznkAmhdBhTQqjppF-h6viK2MTphgpwjZYPF_kg13WPZtSTgaMkhqD_gTbqJZxaGJEQPwP2gpP4vkxG4qr5LysiJh_E7a"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "close_issue", "response":
+      {"output": "issue 9 is now closed"}}}], "role": "user"}], "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '555'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"Issue \"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.1-flash-lite\",\"createTime\": \"2026-10-12T12:10:43.076532Z\",\"responseId\":
+        \"Q87MavTVBKr87bEPhL_6qAU\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"9 has been closed.\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T12:10:43.076532Z\",\"responseId\": \"Q87MavTVBKr87bEPhL_6qAU\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\",\"thoughtSignature\": \"AY89a1/Rm2QYMByRL/yjOE0veYr1IuAmijUXWmW9++CXWdFZKKDu824m9pV4yCSDOOtAvne6xoZb4Q1Ebmc/mWbC3ma88bo4IGPNepbMoDU8M12W/HfA73rx\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 37,\"candidatesTokenCount\":
+        7,\"totalTokenCount\": 44,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 37}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 7}]},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T12:10:43.076532Z\",\"responseId\": \"Q87MavTVBKr87bEPhL_6qAU\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Mon, 12 Oct 2026 12:10:43 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Close issue 17, the profile page is
+      fast now."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Close one open Trackr issue by id. Only close an issue when
+      the person asked for it.", "name": "close_issue", "parameters": {"properties":
+      {"issue_id": {"type": "INTEGER"}}, "required": ["issue_id"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '463'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"functionCall\": {\"name\": \"close_issue\",\"args\": {\"issue_id\": 17},\"id\":
+        \"call_276499\"},\"thoughtSignature\": \"AY89a19LZO+crXKF/mICGh8JA48lPODKa6YWPunAtwGcSgs3VA6wV/f6ZSlIEfXyS7WZXQtwZyTqnhEo4e+6g/9QKL7kr9WExk+qSzZYu0eISQol91MWEn88\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T12:10:47.082352Z\",\"responseId\": \"R87MarCDBYKLr8kP_rzwkQ8\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\"}]},\"finishReason\": \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\":
+        54,\"candidatesTokenCount\": 17,\"totalTokenCount\": 71,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 54}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 17}]},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T12:10:47.082352Z\",\"responseId\": \"R87MarCDBYKLr8kP_rzwkQ8\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Mon, 12 Oct 2026 12:10:47 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

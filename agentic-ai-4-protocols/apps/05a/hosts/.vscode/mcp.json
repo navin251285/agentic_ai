@@ -1,0 +1,24 @@
+{
+  "servers": {
+    "trackr": {
+      "type": "stdio",
+      "command": "./.venv/bin/python",
+      "args": [
+        "./apps/03/trackr_server.py"
+      ],
+      "env": {}
+    },
+    "runbooks": {
+      "type": "stdio",
+      "command": "./.venv/bin/python",
+      "args": [
+        "./apps/05/runbooks_server.py"
+      ],
+      "env": {}
+    },
+    "trackr-remote": {
+      "type": "http",
+      "url": "https://trackr.team.example/mcp"
+    }
+  }
+}

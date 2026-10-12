@@ -1,0 +1,503 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 05:52:31 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/project/project-id
+  response:
+    body:
+      string: PROJECT
+    headers:
+      Content-Length:
+      - '13'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 05:52:31 GMT
+      ETag:
+      - da212b6af946bea
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+  response:
+    body:
+      string: '{"aliases":["default"],"email":"redacted@example.iam.gserviceaccount.com","scopes":["https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]}'
+    headers:
+      Content-Length:
+      - '194'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Oct 2026 05:52:31 GMT
+      ETag:
+      - 9d115f94fb876a8
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/at cred-type/mds
+    method: GET
+    uri: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+  response:
+    body:
+      string: '{"access_token":"REDACTED","expires_in":991,"token_type":"Bearer"}'
+    headers:
+      Content-Length:
+      - '1082'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Oct 2026 05:52:31 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many open issues does the web team
+      have?"}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Count open Trackr issues for one team.", "name": "count_open",
+      "parameters": {"properties": {"team": {"enum": ["web", "api", "mobile", "infra"],
+      "type": "STRING"}}, "required": ["team"], "type": "OBJECT"}}, {"description":
+      "Find open issues whose title contains the text, in any letter case.", "name":
+      "search_issues", "parameters": {"properties": {"text": {"type": "STRING"}},
+      "required": ["text"], "type": "OBJECT"}}, {"description": "Open a new issue
+      and return it with its new id.", "name": "create_issue", "parameters": {"properties":
+      {"title": {"description": "title is {''type'': ''string''}", "type": "STRING"},
+      "team": {"enum": ["web", "api", "mobile", "infra"], "type": "STRING"}, "severity":
+      {"enum": ["low", "medium", "high", "critical"], "type": "STRING"}}, "required":
+      ["title", "team", "severity"], "type": "OBJECT"}}, {"description": "Close one
+      open issue by id. Fails if the id is unknown or the issue is already closed.",
+      "name": "close_issue", "parameters": {"properties": {"issue_id": {"type": "INTEGER"}},
+      "required": ["issue_id"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1311'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"count_open\",\n              \"args\": {\n                \"team\":
+        \"web\"\n              },\n              \"id\": \"call_1762427\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a19pPDHo783yIgN6rA2qsubngn0lpFicQfEB78YT9L8sc9VMtfYqIG8u3D6k67N08tzGkSIa+PTHKj0sXutGv22yHTXPaHO72vyObOtnMyvyn6c+GFnY\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 170,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 186,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 170\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T05:52:31.852107Z\",\n  \"responseId\": \"n3XMaouBNJvpidsPzequmAM\"\n}\n"
+    headers:
+      content-length:
+      - '1009'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 05:52:32 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many open issues does the web team
+      have?"}], "role": "user"}, {"parts": [{"functionCall": {"args": {"team": "web"},
+      "name": "count_open"}, "thoughtSignature": "AY89a19pPDHo783yIgN6rA2qsubngn0lpFicQfEB78YT9L8sc9VMtfYqIG8u3D6k67N08tzGkSIa-PTHKj0sXutGv22yHTXPaHO72vyObOtnMyvyn6c-GFnY"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "count_open", "response":
+      {"output": [{"type": "text", "text": "3", "id": "lc_75c0e11e-a8ac-4c2b-8b0c-54fe81b0c62b"}]}}}],
+      "role": "user"}], "safetySettings": [], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '608'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"The web\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.1-flash-lite\",\"createTime\": \"2026-10-12T05:52:35.839065Z\",\"responseId\":
+        \"o3XMapmbM-3I-O4P_ZjO2AY\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" team currently has 3 open issues.\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T05:52:35.839065Z\",\"responseId\": \"o3XMapmbM-3I-O4P_ZjO2AY\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\",\"thoughtSignature\": \"AY89a1+H6XiS5d+y72URkX13YFFAVlEyz4Q/midhdLYOS2KOUJQNITrBHWl4sri8SyKnFfLQFgCc8uAFG65PzvEtENpc7mJleJSool/X8aN2ZUnFavOGOTY7\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 68,\"candidatesTokenCount\":
+        10,\"totalTokenCount\": 78,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 68}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 10}]},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T05:52:35.839065Z\",\"responseId\": \"o3XMapmbM-3I-O4P_ZjO2AY\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Mon, 12 Oct 2026 05:52:36 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify this issue as exactly one word:
+      bug, feature or question.\nIssue: App crashes when photo is rotated"}], "role":
+      "user"}], "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '250'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"bug\",\n
+        \           \"thoughtSignature\": \"AY89a19acjBxXp5AkvxF7hb7imN+LICP8CoEiLnEVDcQUeFFKM/AnNb0wDiGlQ6C0Lr2LhrmTrkmEjYJnUjJSiZnZH5DssodxaYB8bZ51dOuhVWku+GnCVM/\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 24,\n    \"candidatesTokenCount\":
+        1,\n    \"totalTokenCount\": 25,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 24\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 1\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T05:52:39.853675Z\",\n
+        \ \"responseId\": \"p3XMaquNNLKbr8kP-bic-Qw\"\n}\n"
+    headers:
+      content-length:
+      - '844'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 05:52:40 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many open issues does the web team
+      have?"}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Count open Trackr issues for one team.", "name": "count_open",
+      "parameters": {"properties": {"team": {"enum": ["web", "api", "mobile", "infra"],
+      "type": "STRING"}}, "required": ["team"], "type": "OBJECT"}}, {"description":
+      "Find open issues whose title contains the text, in any letter case.", "name":
+      "search_issues", "parameters": {"properties": {"text": {"type": "STRING"}},
+      "required": ["text"], "type": "OBJECT"}}, {"description": "Open a new issue
+      and return it with its new id.", "name": "create_issue", "parameters": {"properties":
+      {"title": {"description": "title is {''type'': ''string''}", "type": "STRING"},
+      "team": {"enum": ["web", "api", "mobile", "infra"], "type": "STRING"}, "severity":
+      {"enum": ["low", "medium", "high", "critical"], "type": "STRING"}}, "required":
+      ["title", "team", "severity"], "type": "OBJECT"}}, {"description": "Close one
+      open issue by id. Fails if the id is unknown or the issue is already closed.",
+      "name": "close_issue", "parameters": {"properties": {"issue_id": {"type": "INTEGER"}},
+      "required": ["issue_id"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1311'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"count_open\",\n              \"args\": {\n                \"team\":
+        \"web\"\n              },\n              \"id\": \"call_3114827\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1/VcBqCB9HFf4SQAnDMAy4I2qFaEA2ZIILWYDgVBoPjqjSNfUHrQKk1A2F1z7biXibvH6FbC8IJ/NXMdqhdLpONAV5aHlC10ogYeA99HSvxFPyVefKI\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 170,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 186,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 170\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T05:52:43.858574Z\",\n  \"responseId\": \"q3XMas6zNKr87bEPhL_6qAU\"\n}\n"
+    headers:
+      content-length:
+      - '1009'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 05:52:44 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many open issues does the web team
+      have?"}], "role": "user"}, {"parts": [{"functionCall": {"args": {"team": "web"},
+      "name": "count_open"}, "thoughtSignature": "AY89a1_VcBqCB9HFf4SQAnDMAy4I2qFaEA2ZIILWYDgVBoPjqjSNfUHrQKk1A2F1z7biXibvH6FbC8IJ_NXMdqhdLpONAV5aHlC10ogYeA99HSvxFPyVefKI"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "count_open", "response":
+      {"output": [{"type": "text", "text": "3", "id": "lc_f7a33421-7c8b-4475-9a41-7ba65b68980e"}]}}}],
+      "role": "user"}], "safetySettings": [], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '608'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"The web\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.1-flash-lite\",\"createTime\": \"2026-10-12T05:52:47.840214Z\",\"responseId\":
+        \"r3XMapakM4KLr8kP_rzwkQ8\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" team currently has 3 open issues.\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T05:52:47.840214Z\",\"responseId\": \"r3XMapakM4KLr8kP_rzwkQ8\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\",\"thoughtSignature\": \"AY89a1/0/XdVhqhEYGRrFJpjwXwsSOmHNyzMmdZ7+F9YCTn6DjpNWledKOcHrALG4FxWDlY2qh0NLx82B+MUe6D321pep6e/jN71Wo7ahHFaZnNUUhHJE/33\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 69,\"candidatesTokenCount\":
+        10,\"totalTokenCount\": 79,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 69}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 10}]},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-12T05:52:47.840214Z\",\"responseId\": \"r3XMapakM4KLr8kP_rzwkQ8\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Mon, 12 Oct 2026 05:52:48 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

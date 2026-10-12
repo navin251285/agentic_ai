@@ -1,0 +1,257 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which issues are open in trackr-web?
+      Use the tool."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "List the open issues of one repo (trackr-web or trackr-api)
+      for the nightly triage. Acts for alice.", "name": "open_github_issues", "parameters":
+      {"properties": {"repo": {"type": "STRING"}}, "required": ["repo"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '506'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"open_github_issues\",\n              \"args\":
+        {\n                \"repo\": \"trackr-web\"\n              },\n              \"id\":
+        \"call_469785\"\n            },\n            \"thoughtSignature\": \"AY89a18PgXA1+2XcsvPShvgSkkvl+UY7dcJ0ptgG2cpquzs8CtmnF8mzjMgsRRGcCc2Jv+jCL7UJwOzot8FIauq6h0hYSgqYEWWAoa2N7OaYGpfZUw3BUgCL\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 60,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 81,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 60\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 21\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T16:47:51.803971Z\",\n
+        \ \"responseId\": \"Nw_NaoOJMdjh-O4Pto31gAc\"\n}\n"
+    headers:
+      content-length:
+      - '1020'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 16:47:52 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":1,"method":"server/discover","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '245'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8351
+      mcp-method:
+      - server/discover
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:8351/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":1,"result":{"cacheScope":"private","capabilities":{"prompts":{"listChanged":true},"resources":{"listChanged":true,"subscribe":true},"tools":{"listChanged":true}},"resultType":"complete","supportedVersions":["2026-07-28"],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Trackr","version":""}}}}'
+    headers:
+      content-length:
+      - '332'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 16:47:51 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"open_github_issues","arguments":{"repo":"trackr-web","on_behalf_of":"alice"},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '325'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8351
+      mcp-method:
+      - tools/call
+      mcp-name:
+      - open_github_issues
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:8351/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":2,"result":{"content":[{"text":"Login page flickers
+        on Safari\nExport CSV drops the owner column","type":"text"}],"isError":false,"resultType":"complete","structuredContent":{"result":"Login
+        page flickers on Safari\nExport CSV drops the owner column"},"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Trackr","version":""}}}}'
+    headers:
+      content-length:
+      - '353'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 16:47:51 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":3,"method":"tools/list","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '240'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8351
+      mcp-method:
+      - tools/list
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:8351/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":3,"result":{"cacheScope":"private","resultType":"complete","tools":[{"annotations":{"readOnlyHint":true},"description":"","inputSchema":{"type":"object","properties":{"repo":{"title":"Repo","type":"string"},"on_behalf_of":{"title":"On
+        Behalf Of","type":"string"}},"required":["repo","on_behalf_of"],"title":"open_github_issuesArguments"},"name":"open_github_issues","outputSchema":{"properties":{"result":{"title":"Result","type":"string"}},"required":["result"],"title":"open_github_issuesOutput","type":"object"},"title":"Open
+        GitHub issues"}],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Trackr","version":""}}}}'
+    headers:
+      content-length:
+      - '657'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 16:47:51 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which issues are open in trackr-web?
+      Use the tool."}], "role": "user"}, {"parts": [{"functionCall": {"args": {"repo":
+      "trackr-web"}, "name": "open_github_issues"}, "thoughtSignature": "AY89a18PgXA1-2XcsvPShvgSkkvl-UY7dcJ0ptgG2cpquzs8CtmnF8mzjMgsRRGcCc2Jv-jCL7UJwOzot8FIauq6h0hYSgqYEWWAoa2N7OaYGpfZUw3BUgCL"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "open_github_issues",
+      "response": {"output": "Login page flickers on Safari\nExport CSV drops the
+      owner column"}}}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "List the open issues of one repo (trackr-web or trackr-api)
+      for the nightly triage. Acts for alice.", "name": "open_github_issues", "parameters":
+      {"properties": {"repo": {"type": "STRING"}}, "required": ["repo"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '937'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        open issues in `trackr-web` are:\\n* Login page flickers on Safari\\n* Export
+        CSV drops the owner column\",\n            \"thoughtSignature\": \"AY89a181BBD3RUw5S6dOCVznr8noQPoSy20VvHsQUGfRfS0tJ2lV/2bo0ySj88odu6YhGhrM5xSQ2wFMjiL4yNW8VE5sR5ONQ77+pD5SZIc66x8l7vyNL3tw\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 97,\n    \"candidatesTokenCount\":
+        28,\n    \"totalTokenCount\": 125,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 97\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 28\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T16:47:52.690547Z\",\n  \"responseId\": \"OA_NavOSKrKbr8kP-bic-Qw\"\n}\n"
+    headers:
+      content-length:
+      - '950'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 16:47:53 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

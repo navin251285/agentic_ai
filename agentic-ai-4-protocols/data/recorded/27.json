@@ -1,0 +1,5 @@
+{
+  "note": "Recorded output of the Inspector cell in lesson 27: npx @modelcontextprotocol/inspector@2.10.1 --cli <python> apps/03/trackr_server.py --method tools/list --format json (Node v26.4.0, 2026-10-12). Exit code 0.",
+  "inspector_exit_code": 0,
+  "tools_list_names": ["count_open", "search_issues", "create_issue", "close_issue"]
+}

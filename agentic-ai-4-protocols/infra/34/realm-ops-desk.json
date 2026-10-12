@@ -1,0 +1,122 @@
+{
+  "realm": "ops-desk",
+  "enabled": true,
+  "accessTokenLifespan": 300,
+  "revokeRefreshToken": true,
+  "refreshTokenMaxReuse": 0,
+  "clientScopes": [
+    {
+      "name": "issues:read",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "true",
+        "consent.screen.text": "issues:read"
+      }
+    },
+    {
+      "name": "issues:write",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "true",
+        "consent.screen.text": "issues:write"
+      }
+    },
+    {
+      "name": "runbooks:read",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "true",
+        "consent.screen.text": "runbooks:read"
+      }
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "trackr-mcp",
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "attributes": {
+        "resource_url": "http://127.0.0.1:8341/mcp"
+      }
+    },
+    {
+      "clientId": "runbooks-mcp",
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "attributes": {
+        "resource_url": "http://127.0.0.1:8342/mcp"
+      }
+    }
+  ],
+  "clientProfiles": {
+    "profiles": [
+      {
+        "name": "cimd-profile",
+        "executors": [
+          {
+            "executor": "client-id-metadata-document",
+            "configuration": {
+              "cimd-allow-http-scheme": "true",
+              "cimd-allow-permitted-domains": [
+                "host.docker.internal",
+                "127.0.0.1"
+              ],
+              "cimd-restrict-same-domain": "false",
+              "only-allow-confidential-client": "false",
+              "accept-public-client-with-confidential-client-only-grant": "false",
+              "cimd-resource-indicator-allow-list": [
+                "http://127.0.0.1:8341/mcp",
+                "http://127.0.0.1:8342/mcp"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "clientPolicies": {
+    "policies": [
+      {
+        "name": "cimd-policy",
+        "enabled": true,
+        "conditions": [
+          {
+            "condition": "client-id-uri",
+            "configuration": {
+              "client-id-uri-scheme": [
+                "http",
+                "https"
+              ],
+              "client-id-uri-allow-permitted-domains": [
+                "host.docker.internal",
+                "127.0.0.1"
+              ]
+            }
+          }
+        ],
+        "profiles": [
+          "cimd-profile"
+        ]
+      }
+    ]
+  },
+  "defaultOptionalClientScopes": [
+    "issues:read",
+    "issues:write",
+    "runbooks:read"
+  ],
+  "users": [
+    {
+      "username": "alice",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "alice@example.com",
+      "firstName": "Alice",
+      "lastName": "Ops",
+      "requiredActions": []
+    }
+  ]
+}

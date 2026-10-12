@@ -1,0 +1,185 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 11:41:34 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many open issues does the web team
+      have on the old server, and on the modern one? Use the tools."}], "role": "user"}],
+      "safetySettings": [], "tools": [{"functionDeclarations": [{"description": "Count
+      open issues for one team on the old server.", "name": "old_count_open", "parameters":
+      {"properties": {"team": {"type": "STRING"}}, "required": ["team"], "type": "OBJECT"}},
+      {"description": "Count open issues for one team on the modern server.", "name":
+      "modern_count_open", "parameters": {"properties": {"team": {"type": "STRING"}},
+      "required": ["team"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '679'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"old_count_open\",\n              \"args\": {\n
+        \               \"team\": \"web\"\n              },\n              \"id\":
+        \"call_523180\"\n            },\n            \"thoughtSignature\": \"AY89a19oAclS8ZjO+2uIUHMu0beiPAqZV+hh7glD7tEjqq2gVy4cXrBSHJxK871/LJe3ukhBWo4WIShhi/9QM//kDttRSH86tuvNXK5ZhT8mEZow/bWPhmUM\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"modern_count_open\",\n              \"args\": {\n                \"team\":
+        \"web\"\n              },\n              \"id\": \"call_523181\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 84,\n    \"candidatesTokenCount\":
+        36,\n    \"totalTokenCount\": 120,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 84\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 36\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T11:41:34.306527Z\",\n  \"responseId\": \"bsfMat_aEtTk-O4P2u7MqQs\"\n}\n"
+    headers:
+      content-length:
+      - '1227'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 11:41:35 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many open issues does the web team
+      have on the old server, and on the modern one? Use the tools."}], "role": "user"},
+      {"parts": [{"functionCall": {"args": {"team": "web"}, "name": "old_count_open"},
+      "thoughtSignature": "AY89a19oAclS8ZjO-2uIUHMu0beiPAqZV-hh7glD7tEjqq2gVy4cXrBSHJxK871_LJe3ukhBWo4WIShhi_9QM__kDttRSH86tuvNXK5ZhT8mEZow_bWPhmUM"},
+      {"functionCall": {"args": {"team": "web"}, "name": "modern_count_open"}}], "role":
+      "model"}, {"parts": [{"functionResponse": {"name": "old_count_open", "response":
+      {"output": 3}}}, {"functionResponse": {"name": "modern_count_open", "response":
+      {"output": 3}}}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Count open issues for one team on the old server.", "name":
+      "old_count_open", "parameters": {"properties": {"team": {"type": "STRING"}},
+      "required": ["team"], "type": "OBJECT"}}, {"description": "Count open issues
+      for one team on the modern server.", "name": "modern_count_open", "parameters":
+      {"properties": {"team": {"type": "STRING"}}, "required": ["team"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1184'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        web team has 3 open issues on the old server and 3 open issues on the modern
+        server.\",\n            \"thoughtSignature\": \"AY89a19ziNxwGVJS3GBfw24iuvnDUmOwPxcPmRp/22HMYMaYJjdCHn5Gzc81BQ0SbwDEDNKUs22+4s3vq+9R990ObgKZcWy7lZNNc2hRnSOQrgcH7FUajlEw\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 128,\n    \"candidatesTokenCount\":
+        22,\n    \"totalTokenCount\": 150,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 128\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 22\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T11:41:38.285668Z\",\n  \"responseId\": \"csfMauS3EbKbr8kP-bic-Qw\"\n}\n"
+    headers:
+      content-length:
+      - '934'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 11:41:38 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

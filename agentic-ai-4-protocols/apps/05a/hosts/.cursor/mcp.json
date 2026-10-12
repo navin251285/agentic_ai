@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "trackr": {
+      "command": "./.venv/bin/python",
+      "args": [
+        "./apps/03/trackr_server.py"
+      ],
+      "env": {}
+    },
+    "runbooks": {
+      "command": "./.venv/bin/python",
+      "args": [
+        "./apps/05/runbooks_server.py"
+      ],
+      "env": {}
+    },
+    "trackr-remote": {
+      "url": "https://trackr.team.example/mcp"
+    }
+  }
+}

@@ -1,0 +1,675 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:9231
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:9231/.well-known/agent-card.json
+  response:
+    body:
+      string: '{"name":"triage-agent","description":"Classifies Trackr issues as bug,
+        feature or question.","supportedInterfaces":[{"url":"http://127.0.0.1:9231/","protocolBinding":"JSONRPC","protocolVersion":"1.0"}],"version":"1.0.0","capabilities":{"streaming":false,"pushNotifications":false},"defaultInputModes":["text/plain"],"defaultOutputModes":["text/plain"],"skills":[{"id":"classify_issues","name":"Classify
+        issues","description":"One line per issue.","tags":["triage"],"examples":["4:
+        App crashes when photo is rotated"],"inputModes":["text/plain"],"outputModes":["text/plain"]}]}'
+    headers:
+      content-length:
+      - '576'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:16:18 GMT
+      etag:
+      - W/"696e1b533525727cff51b097b3423ea1085256491295016c25ccdf38a6d6833b"
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:9231
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:9231/.well-known/agent-card.json
+  response:
+    body:
+      string: '{"name":"triage-agent","description":"Classifies Trackr issues as bug,
+        feature or question.","supportedInterfaces":[{"url":"http://127.0.0.1:9231/","protocolBinding":"JSONRPC","protocolVersion":"1.0"}],"version":"1.0.0","capabilities":{"streaming":false,"pushNotifications":false},"defaultInputModes":["text/plain"],"defaultOutputModes":["text/plain"],"skills":[{"id":"classify_issues","name":"Classify
+        issues","description":"One line per issue.","tags":["triage"],"examples":["4:
+        App crashes when photo is rotated"],"inputModes":["text/plain"],"outputModes":["text/plain"]}]}'
+    headers:
+      content-length:
+      - '576'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:16:18 GMT
+      etag:
+      - W/"696e1b533525727cff51b097b3423ea1085256491295016c25ccdf38a6d6833b"
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify each issue as exactly one word:
+      bug, feature or question.\nReply with one line per issue, in the form ''<id>:
+      <label>'', and nothing else.\n4: App crashes when photo is rotated\n9: Typo
+      on the pricing page\n15: Battery drain in background sync"}], "role": "user"}],
+      "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '417'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"4:
+        bug\\n9: bug\\n15: bug\",\n            \"thoughtSignature\": \"AY89a19SFZnC5E92DYyCBchxe2zUJiupmR3nFuA6J/yE1ewdGQusjGpQ4rr6+OpCkprGvH9F3PfxeR7LM85OXyZvFrWC5JCGQYuOMGP9PkVQuDpY/nPj3YSS\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 63,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 75,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 63\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 12\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T13:16:18.547194Z\",\n
+        \ \"responseId\": \"ot3MavqyIYKLr8kP_rzwkQ8\"\n}\n"
+    headers:
+      content-length:
+      - '866'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 13:16:19 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"method":"SendMessage","params":{"message":{"messageId":"msg-batch-1","role":"ROLE_USER","parts":[{"text":"4:
+      App crashes when photo is rotated\n9: Typo on the pricing page\n15: Battery
+      drain in background sync"}]},"configuration":{}},"id":"81ca40ce-5c60-47cb-9a11-af66de0ca6da","jsonrpc":"2.0"}'
+    headers:
+      a2a-version:
+      - '1.0'
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '296'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9231
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9231/
+  response:
+    body:
+      string: '{"result":{"task":{"id":"5ce3b248-ef29-429c-b878-0d551d459dee","contextId":"87106058-bce6-4943-840e-d6037b95db98","status":{"state":"TASK_STATE_COMPLETED","timestamp":"2026-10-12T13:16:19.115764Z"},"artifacts":[{"artifactId":"8d026e2a-5559-4dbe-a8b5-6205e7caa015","name":"model","parts":[{"text":"4:
+        bug\n9: bug\n15: bug"}]}],"history":[{"messageId":"msg-batch-1","contextId":"87106058-bce6-4943-840e-d6037b95db98","taskId":"5ce3b248-ef29-429c-b878-0d551d459dee","role":"ROLE_USER","parts":[{"text":"4:
+        App crashes when photo is rotated\n9: Typo on the pricing page\n15: Battery
+        drain in background sync"}]}]}},"id":"81ca40ce-5c60-47cb-9a11-af66de0ca6da","jsonrpc":"2.0"}'
+    headers:
+      content-length:
+      - '671'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:16:18 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"method":"SendMessage","params":{"message":{"messageId":"msg-batch-1","role":"ROLE_USER","parts":[{"text":"4:
+      App crashes when photo is rotated\n9: Typo on the pricing page\n15: Battery
+      drain in background sync"}]},"configuration":{}},"id":"ae05ede4-7f70-4517-a1a1-3c95fe3bf63d","jsonrpc":"2.0"}'
+    headers:
+      a2a-version:
+      - '1.0'
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '296'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9231
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9231/
+  response:
+    body:
+      string: '{"result":{"task":{"id":"92001c9f-29d6-4cde-a005-cdeedfcda0a0","contextId":"572437ac-c9fd-4d13-940b-7fac2bfe32ba","status":{"state":"TASK_STATE_COMPLETED","timestamp":"2026-10-12T13:16:19.124288Z"},"artifacts":[{"artifactId":"9d6401c9-342d-4438-84a2-50b0f3ef9fd6","name":"replayed","parts":[{"text":"4:
+        bug\n9: bug\n15: bug"}]}],"history":[{"messageId":"msg-batch-1","contextId":"572437ac-c9fd-4d13-940b-7fac2bfe32ba","taskId":"92001c9f-29d6-4cde-a005-cdeedfcda0a0","role":"ROLE_USER","parts":[{"text":"4:
+        App crashes when photo is rotated\n9: Typo on the pricing page\n15: Battery
+        drain in background sync"}]}]}},"id":"ae05ede4-7f70-4517-a1a1-3c95fe3bf63d","jsonrpc":"2.0"}'
+    headers:
+      content-length:
+      - '674'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:16:18 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:9232
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:9232/health
+  response:
+    body:
+      string: '{"ok":true}'
+    headers:
+      content-length:
+      - '11'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:16:19 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "File a bug: ''Photo upload fails on
+      iOS 18'' for the mobile team, severity high."}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Open a Trackr issue.
+      Use it when the user asks to file or open a bug.", "name": "create_issue", "parameters":
+      {"properties": {"title": {"description": "title is {''type'': ''string''}",
+      "type": "STRING"}, "team": {"enum": ["web", "api", "mobile", "infra"], "type":
+      "STRING"}, "severity": {"enum": ["low", "medium", "high", "critical"], "type":
+      "STRING"}}, "required": ["title", "team", "severity"], "type": "OBJECT"}}, {"description":
+      "Send open Trackr issues to triage-agent, which labels each as bug, feature
+      or question.", "name": "classify_issues", "parameters": {"properties": {"issue_ids":
+      {"items": {"type": "INTEGER"}, "type": "ARRAY"}}, "required": ["issue_ids"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '990'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"create_issue\",\n              \"args\": {\n
+        \               \"title\": \"Photo upload fails on iOS 18\",\n                \"severity\":
+        \"high\",\n                \"team\": \"mobile\"\n              },\n              \"id\":
+        \"call_430500\"\n            },\n            \"thoughtSignature\": \"AY89a19WWr60xw7b7iPinvnnnmexnleNXL6mcH9Hehz/AjprSWbNERXiDXYA4VRA8uJ3g7p3pE3qoOYf92b1lIioxE0Jj+46E0ez+SmWc5JJ04K0Qd+DugNg\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 129,\n    \"candidatesTokenCount\":
+        35,\n    \"totalTokenCount\": 164,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 129\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 35\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T13:16:19.612159Z\",\n  \"responseId\": \"o93Mar-uJd-Kr8kPuMm1wQ4\"\n}\n"
+    headers:
+      content-length:
+      - '1106'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 13:16:20 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"threadId":"thread-ops-1","runId":"run-1","state":{},"tools":[],"context":[],"forwardedProps":{"opId":"op-photo-upload-1","deadlineMs":1791811039557},"messages":[{"id":"m-run-1","role":"user","content":"File
+      a bug: ''Photo upload fails on iOS 18'' for the mobile team, severity high."}]}'
+    headers:
+      accept:
+      - text/event-stream
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '286'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9232
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9232/agent
+  response:
+    body:
+      string: 'data: {"type":"RUN_STARTED","threadId":"thread-ops-1","runId":"run-1"}
+
+
+        data: {"type":"TOOL_CALL_START","toolCallId":"call_430500","toolCallName":"create_issue"}
+
+
+        data: {"type":"TOOL_CALL_ARGS","toolCallId":"call_430500","delta":"{\"title\":
+        \"Photo upload fails on iOS 18\", \"severity\": \"high\", \"team\": \"mobile\"}"}
+
+
+        data: {"type":"TOOL_CALL_END","toolCallId":"call_430500"}
+
+
+        data: {"type":"TOOL_CALL_RESULT","messageId":"952f8cfe-5614-4ad2-ac15-7ab530b5133d","toolCallId":"call_430500","content":"issue
+        24 created"}
+
+
+        data: {"type":"RUN_FINISHED","threadId":"thread-ops-1","runId":"run-1","outcome":{"type":"success"}}
+
+
+        '
+    headers:
+      content-type:
+      - text/event-stream; charset=utf-8
+      date:
+      - Mon, 12 Oct 2026 13:16:19 GMT
+      server:
+      - uvicorn
+      transfer-encoding:
+      - chunked
+      x-accel-buffering:
+      - 'no'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "File a bug: ''Photo upload fails on
+      iOS 18'' for the mobile team, severity high."}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Open a Trackr issue.
+      Use it when the user asks to file or open a bug.", "name": "create_issue", "parameters":
+      {"properties": {"title": {"description": "title is {''type'': ''string''}",
+      "type": "STRING"}, "team": {"enum": ["web", "api", "mobile", "infra"], "type":
+      "STRING"}, "severity": {"enum": ["low", "medium", "high", "critical"], "type":
+      "STRING"}}, "required": ["title", "team", "severity"], "type": "OBJECT"}}, {"description":
+      "Send open Trackr issues to triage-agent, which labels each as bug, feature
+      or question.", "name": "classify_issues", "parameters": {"properties": {"issue_ids":
+      {"items": {"type": "INTEGER"}, "type": "ARRAY"}}, "required": ["issue_ids"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '990'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"create_issue\",\n              \"args\": {\n
+        \               \"severity\": \"high\",\n                \"title\": \"Photo
+        upload fails on iOS 18\",\n                \"team\": \"mobile\"\n              },\n
+        \             \"id\": \"call_725344\"\n            },\n            \"thoughtSignature\":
+        \"AY89a1/XViljzCDMf7RzlcY0Pi/fV953iaUnqgmjCwqlGBU+MkCZtRHVlD3M0Vycc2et7w+Kt4GIes20DeWSBsd59JqB2bDHSYAmKq1ET4fiDdDE8kgM1DDt\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 129,\n    \"candidatesTokenCount\":
+        35,\n    \"totalTokenCount\": 164,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 129\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 35\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T13:16:20.266072Z\",\n  \"responseId\": \"pN3MatieEKr87bEPhL_6qAU\"\n}\n"
+    headers:
+      content-length:
+      - '1106'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 13:16:21 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"threadId":"thread-ops-1","runId":"run-2","state":{},"tools":[],"context":[],"forwardedProps":{"opId":"op-photo-upload-1","deadlineMs":1791811039557},"messages":[{"id":"m-run-2","role":"user","content":"File
+      a bug: ''Photo upload fails on iOS 18'' for the mobile team, severity high."}]}'
+    headers:
+      accept:
+      - text/event-stream
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '286'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9232
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9232/agent
+  response:
+    body:
+      string: 'data: {"type":"RUN_STARTED","threadId":"thread-ops-1","runId":"run-2"}
+
+
+        data: {"type":"TOOL_CALL_START","toolCallId":"call_725344","toolCallName":"create_issue"}
+
+
+        data: {"type":"TOOL_CALL_ARGS","toolCallId":"call_725344","delta":"{\"severity\":
+        \"high\", \"title\": \"Photo upload fails on iOS 18\", \"team\": \"mobile\"}"}
+
+
+        data: {"type":"TOOL_CALL_END","toolCallId":"call_725344"}
+
+
+        data: {"type":"TOOL_CALL_RESULT","messageId":"b708a9c9-e331-49b2-b982-7fcee2229841","toolCallId":"call_725344","content":"issue
+        24 already created (replayed)"}
+
+
+        data: {"type":"RUN_FINISHED","threadId":"thread-ops-1","runId":"run-2","outcome":{"type":"success"}}
+
+
+        '
+    headers:
+      content-type:
+      - text/event-stream; charset=utf-8
+      date:
+      - Mon, 12 Oct 2026 13:16:19 GMT
+      server:
+      - uvicorn
+      transfer-encoding:
+      - chunked
+      x-accel-buffering:
+      - 'no'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify issues 4, 9 and 15 as bug,
+      feature or question."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Open a Trackr issue. Use it when the user asks to file or
+      open a bug.", "name": "create_issue", "parameters": {"properties": {"title":
+      {"description": "title is {''type'': ''string''}", "type": "STRING"}, "team":
+      {"enum": ["web", "api", "mobile", "infra"], "type": "STRING"}, "severity": {"enum":
+      ["low", "medium", "high", "critical"], "type": "STRING"}}, "required": ["title",
+      "team", "severity"], "type": "OBJECT"}}, {"description": "Send open Trackr issues
+      to triage-agent, which labels each as bug, feature or question.", "name": "classify_issues",
+      "parameters": {"properties": {"issue_ids": {"items": {"type": "INTEGER"}, "type":
+      "ARRAY"}}, "required": ["issue_ids"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '968'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"classify_issues\",\n              \"args\": {\n
+        \               \"issue_ids\": [\n                  4,\n                  9,\n
+        \                 15\n                ]\n              },\n              \"id\":
+        \"call_981917\"\n            },\n            \"thoughtSignature\": \"AY89a1+/XfN4oyXy6QWFQ7ManKRJX1M3xNYdyFzt4Yl9KVnxvbpZF30KQ3HWhubdZacHJ9X0EJLQO7TnChZpwoGYHeGizxjsieFAnkgTTXLF7Sp6Hq6dtiX8\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 126,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 147,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 126\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T13:16:21.392805Z\",\n  \"responseId\": \"pd3MauX8F8jf-O4PkOKtsAI\"\n}\n"
+    headers:
+      content-length:
+      - '1095'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 13:16:22 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"method":"SendMessage","params":{"message":{"messageId":"op-classify-2:classify","role":"ROLE_USER","parts":[{"text":"4:
+      App crashes when photo is rotated\n9: Typo on the pricing page\n15: Battery
+      drain in background sync"}]},"configuration":{},"metadata":{"deadlineMs":1791810991337.0}},"id":"6fefaf31-b602-4340-9073-9ec0b9917120","jsonrpc":"2.0"}'
+    headers:
+      a2a-version:
+      - '1.0'
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '349'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9231
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9231/
+  response:
+    body:
+      string: '{"result":{"task":{"id":"a0c35f69-bfe0-4dc5-b985-10c05b06b0c0","contextId":"a669758a-e3c2-46a5-a87f-183fa687c4af","status":{"state":"TASK_STATE_FAILED","message":{"messageId":"46464456-f18e-45b0-9d3f-f844344bd083","contextId":"a669758a-e3c2-46a5-a87f-183fa687c4af","taskId":"a0c35f69-bfe0-4dc5-b985-10c05b06b0c0","role":"ROLE_AGENT","parts":[{"text":"deadline_exceeded
+        before the model call"}]},"timestamp":"2026-10-12T13:16:31.338007Z"},"history":[{"messageId":"op-classify-2:classify","contextId":"a669758a-e3c2-46a5-a87f-183fa687c4af","taskId":"a0c35f69-bfe0-4dc5-b985-10c05b06b0c0","role":"ROLE_USER","parts":[{"text":"4:
+        App crashes when photo is rotated\n9: Typo on the pricing page\n15: Battery
+        drain in background sync"}]}]}},"id":"6fefaf31-b602-4340-9073-9ec0b9917120","jsonrpc":"2.0"}'
+    headers:
+      content-length:
+      - '794'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 13:16:22 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"threadId":"thread-ops-1","runId":"run-3","state":{},"tools":[],"context":[],"forwardedProps":{"opId":"op-classify-2","deadlineMs":1791810991337},"messages":[{"id":"m-run-3","role":"user","content":"Classify
+      issues 4, 9 and 15 as bug, feature or question."}]}'
+    headers:
+      accept:
+      - text/event-stream
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '260'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:9232
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:9232/agent
+  response:
+    body:
+      string: 'data: {"type":"RUN_STARTED","threadId":"thread-ops-1","runId":"run-3"}
+
+
+        data: {"type":"TOOL_CALL_START","toolCallId":"call_981917","toolCallName":"classify_issues"}
+
+
+        data: {"type":"TOOL_CALL_ARGS","toolCallId":"call_981917","delta":"{\"issue_ids\":
+        [4, 9, 15]}"}
+
+
+        data: {"type":"TOOL_CALL_END","toolCallId":"call_981917"}
+
+
+        data: {"type":"RUN_ERROR","message":"triage-agent: deadline_exceeded before
+        the model call","code":"deadline_exceeded"}
+
+
+        '
+    headers:
+      content-type:
+      - text/event-stream; charset=utf-8
+      date:
+      - Mon, 12 Oct 2026 13:16:20 GMT
+      server:
+      - uvicorn
+      transfer-encoding:
+      - chunked
+      x-accel-buffering:
+      - 'no'
+    status:
+      code: 200
+      message: OK
+version: 1

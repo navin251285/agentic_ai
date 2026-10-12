@@ -1,0 +1,16 @@
+# Lesson 39: one Keycloak 26.8.0 for the whole organisation (lab, one container). Pinned image, no :latest.
+# Started from the notebook with --env-file ../.env, so the admin user and password come from .env.
+# The realm file holds no passwords: the notebook sets them through the admin API from .env.
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.8.0
+    container_name: tut-agentic-ai-4-protocols-39-keycloak
+    command: start-dev --features=token-exchange-standard:v2 --import-realm --hostname=http://127.0.0.1:8390
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+    ports:
+      - "127.0.0.1:8390:8080"
+    volumes:
+      - ./realm-ops-org.json:/opt/keycloak/data/import/realm.json:ro
+    mem_limit: 1g

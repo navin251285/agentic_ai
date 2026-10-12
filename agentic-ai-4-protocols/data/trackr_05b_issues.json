@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Login button does nothing on Safari",
+    "team": "web",
+    "status": "open",
+    "severity": "high"
+  },
+  {
+    "id": 3,
+    "title": "Dark mode hides the save icon",
+    "team": "web",
+    "status": "closed",
+    "severity": "low"
+  },
+  {
+    "id": 9,
+    "title": "Typo on the pricing page",
+    "team": "web",
+    "status": "open",
+    "severity": "low"
+  },
+  {
+    "id": 2,
+    "title": "Signup email arrives twice",
+    "team": "api",
+    "status": "open",
+    "severity": "medium"
+  },
+  {
+    "id": 4,
+    "title": "App crashes when photo is rotated",
+    "team": "mobile",
+    "status": "open",
+    "severity": "critical"
+  },
+  {
+    "id": 5,
+    "title": "Rate limiter blocks health checks",
+    "team": "infra",
+    "status": "open",
+    "severity": "high"
+  }
+]

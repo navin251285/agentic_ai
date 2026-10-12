@@ -1,0 +1,317 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+      metadata-flavor:
+      - Google
+      x-goog-api-client:
+      - gl-python/3.12.13 auth/2.61.0 auth-request-type/mds
+    method: GET
+    uri: http://169.254.169.254/
+  response:
+    body:
+      string: 'computeMetadata/
+
+        '
+    headers:
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/text
+      Date:
+      - Mon, 12 Oct 2026 06:29:46 GMT
+      Metadata-Flavor:
+      - Google
+      Server:
+      - Metadata Server for VM
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many open issues does the web team
+      have? Use a tool."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Count the open issues for one team (web, api, ...). Needs
+      issues:read.", "name": "count_open", "parameters": {"properties": {"team": {"type":
+      "STRING"}}, "required": ["team"], "type": "OBJECT"}}, {"description": "Close
+      one issue by id. Needs issues:write; the client steps up if the token lacks
+      it.", "name": "close_issue", "parameters": {"properties": {"issue_id": {"type":
+      "INTEGER"}}, "required": ["issue_id"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '688'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"count_open\",\n              \"args\": {\n                \"team\":
+        \"web\"\n              },\n              \"id\": \"call_2969286\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18XLLJdZepXblf3Ot/jsTSoKhGYeFBDBd/u4+xnraur+HC3950aE+lS+x+56IIhqvUmuKn05N0qy13hsxmos+JFydMuc4cavL2rQNi/AL/aRLfRr8dO\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 92,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 108,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 92\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T06:29:46.335839Z\",\n  \"responseId\": \"Wn7Mat-_FIKLr8kP_rzwkQ8\"\n}\n"
+    headers:
+      content-length:
+      - '1007'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 06:29:47 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "How many open issues does the web team
+      have? Use a tool."}], "role": "user"}, {"parts": [{"functionCall": {"args":
+      {"team": "web"}, "name": "count_open"}, "thoughtSignature": "AY89a18XLLJdZepXblf3Ot_jsTSoKhGYeFBDBd_u4-xnraur-HC3950aE-lS-x-56IIhqvUmuKn05N0qy13hsxmos-JFydMuc4cavL2rQNi_AL_aRLfRr8dO"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "count_open", "response":
+      {"output": 3}}}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Count the open issues for one team (web, api, ...). Needs
+      issues:read.", "name": "count_open", "parameters": {"properties": {"team": {"type":
+      "STRING"}}, "required": ["team"], "type": "OBJECT"}}, {"description": "Close
+      one issue by id. Needs issues:write; the client steps up if the token lacks
+      it.", "name": "close_issue", "parameters": {"properties": {"issue_id": {"type":
+      "INTEGER"}}, "required": ["issue_id"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1031'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        web team has 3 open issues.\",\n            \"thoughtSignature\": \"AY89a19H9QcXTR0xZwo1U1D/fU+FuTArzEK21QZMgbSlYM/zFqK2GzQnLoDZwqJ1hqa68usy941VvnHT/6uz52oT5WW16lRyqvNm9NXwGEbHTqcIwzd1U0pz\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 110,\n    \"candidatesTokenCount\":
+        9,\n    \"totalTokenCount\": 119,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 110\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 9\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T06:29:50.312435Z\",\n
+        \ \"responseId\": \"Xn7MavOIE7Kbr8kP-bic-Qw\"\n}\n"
+    headers:
+      content-length:
+      - '875'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 06:29:50 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Issue 2 is fixed. Close it with a tool."}],
+      "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations": [{"description":
+      "Count the open issues for one team (web, api, ...). Needs issues:read.", "name":
+      "count_open", "parameters": {"properties": {"team": {"type": "STRING"}}, "required":
+      ["team"], "type": "OBJECT"}}, {"description": "Close one issue by id. Needs
+      issues:write; the client steps up if the token lacks it.", "name": "close_issue",
+      "parameters": {"properties": {"issue_id": {"type": "INTEGER"}}, "required":
+      ["issue_id"], "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0,
+      "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '671'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"close_issue\",\n              \"args\": {\n                \"issue_id\":
+        2\n              },\n              \"id\": \"call_219298\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18M7C+WgrVhqX7tUSvJKmEmEDaGerlDL+1WFiff4jdBMj4m8aZ6UaflSBmXrEgCVECW8innXii+k4C/06MG2O809Rls9LWdmW3wj1a1IFrdL7YAvD+z\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 90,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 106,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 90\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T06:29:54.302265Z\",\n  \"responseId\": \"Yn7Marm5EoOFidsPvIGv2QI\"\n}\n"
+    headers:
+      content-length:
+      - '1007'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 06:29:54 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Issue 2 is fixed. Close it with a tool."}],
+      "role": "user"}, {"parts": [{"functionCall": {"args": {"issue_id": 2}, "name":
+      "close_issue"}, "thoughtSignature": "AY89a18M7C-WgrVhqX7tUSvJKmEmEDaGerlDL-1WFiff4jdBMj4m8aZ6UaflSBmXrEgCVECW8innXii-k4C_06MG2O809Rls9LWdmW3wj1a1IFrdL7YAvD-z"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "close_issue", "response":
+      {"id": 2, "title": "Signup email arrives twice", "team": "api", "status": "closed",
+      "severity": "medium"}}}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Count the open issues for one team (web, api, ...). Needs
+      issues:read.", "name": "count_open", "parameters": {"properties": {"team": {"type":
+      "STRING"}}, "required": ["team"], "type": "OBJECT"}}, {"description": "Close
+      one issue by id. Needs issues:write; the client steps up if the token lacks
+      it.", "name": "close_issue", "parameters": {"properties": {"issue_id": {"type":
+      "INTEGER"}}, "required": ["issue_id"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1108'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/projects/PROJECT/locations/global/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"OK.
+        I've closed issue 2.\",\n            \"thoughtSignature\": \"AY89a192BgGSact2hsAt0FlCb3FKwGm9op+6ntEVKMHGiYDpgohopuu+JK/28hcV2R+ruXPcpZZtuR6bQWNWfYMwzdYkAyMHJr92y/iaKDYHjVPj9Ik7YxPy\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 121,\n    \"candidatesTokenCount\":
+        10,\n    \"totalTokenCount\": 131,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 121\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 10\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T06:29:58.304839Z\",\n  \"responseId\": \"Zn7MasfNEpvpidsPzequmAM\"\n}\n"
+    headers:
+      content-length:
+      - '870'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 06:29:58 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

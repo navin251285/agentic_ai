@@ -1,0 +1,534 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which issues are open for our team?
+      Use the tool."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "List the open issues of the team this agent works for.", "name":
+      "list_issues"}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '353'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"list_issues\",\n              \"args\": {},\n
+        \             \"id\": \"call_529801\"\n            },\n            \"thoughtSignature\":
+        \"AY89a19xwEaTxk70r6uiogGrUzt5MdGNtPR//eHAtyOLLjhfYf1D62Fn41v0vOr1tqGhwRiZzJf6FgHKmPIBcAYZnaJRo4cQFG8oBmci9P/akDveRDFphave\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 32,\n    \"candidatesTokenCount\":
+        10,\n    \"totalTokenCount\": 42,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 32\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 10\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T17:01:35.919799Z\",\n
+        \ \"responseId\": \"bxLNaveROOCbr8kPl52j-Ak\"\n}\n"
+    headers:
+      content-length:
+      - '961'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 17:01:36 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":1,"method":"server/discover","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '245'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8381
+      mcp-method:
+      - server/discover
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:8381/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":1,"result":{"cacheScope":"private","capabilities":{"prompts":{"listChanged":true},"resources":{"listChanged":true,"subscribe":true},"tools":{"listChanged":true}},"resultType":"complete","supportedVersions":["2026-07-28"],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Trackr","version":""}}}}'
+    headers:
+      content-length:
+      - '332'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:01:35 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"list_issues","arguments":{},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '276'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8381
+      mcp-method:
+      - tools/call
+      mcp-name:
+      - list_issues
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:8381/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":2,"result":{"content":[{"text":"101 Checkout
+        button does nothing on Safari\n102 Invoice PDF drops the tax line\n104 Session
+        expires during export\n105 Search box loses focus on mobile\n106 Cart count
+        shows zero after refresh","type":"text"}],"isError":false,"resultType":"complete","structuredContent":{"result":"101
+        Checkout button does nothing on Safari\n102 Invoice PDF drops the tax line\n104
+        Session expires during export\n105 Search box loses focus on mobile\n106 Cart
+        count shows zero after refresh"},"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Trackr","version":""}}}}'
+    headers:
+      content-length:
+      - '609'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:01:35 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":3,"method":"tools/list","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '240'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8381
+      mcp-method:
+      - tools/list
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:8381/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":3,"result":{"cacheScope":"private","resultType":"complete","tools":[{"annotations":{"readOnlyHint":true},"description":"","inputSchema":{"type":"object","properties":{},"title":"list_issuesArguments"},"name":"list_issues","outputSchema":{"properties":{"result":{"title":"Result","type":"string"}},"required":["result"],"title":"list_issuesOutput","type":"object"},"title":"List
+        open issues"},{"annotations":{"readOnlyHint":true},"description":"","inputSchema":{"type":"object","properties":{"issue_id":{"title":"Issue
+        Id","type":"integer"}},"required":["issue_id"],"title":"get_issueArguments"},"name":"get_issue","outputSchema":{"properties":{"result":{"title":"Result","type":"string"}},"required":["result"],"title":"get_issueOutput","type":"object"},"title":"Get
+        one issue"},{"annotations":{"destructiveHint":true},"description":"","inputSchema":{"type":"object","properties":{"issue_id":{"title":"Issue
+        Id","type":"integer"}},"required":["issue_id"],"title":"close_issueArguments"},"name":"close_issue","outputSchema":{"properties":{"result":{"title":"Result","type":"string"}},"required":["result"],"title":"close_issueOutput","type":"object"},"title":"Close
+        an issue"},{"annotations":{"readOnlyHint":true},"description":"","inputSchema":{"type":"object","properties":{},"title":"export_issuesArguments"},"name":"export_issues","outputSchema":{"properties":{"result":{"title":"Result","type":"string"}},"required":["result"],"title":"export_issuesOutput","type":"object"},"title":"Start
+        an export"},{"annotations":{"readOnlyHint":true},"description":"","inputSchema":{"type":"object","properties":{"handle":{"title":"Handle","type":"string"}},"required":["handle"],"title":"read_exportArguments"},"name":"read_export","outputSchema":{"properties":{"result":{"title":"Result","type":"string"}},"required":["result"],"title":"read_exportOutput","type":"object"},"title":"Read
+        an export"}],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Trackr","version":""}}}}'
+    headers:
+      content-length:
+      - '2004'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:01:35 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which issues are open for our team?
+      Use the tool."}], "role": "user"}, {"parts": [{"functionCall": {"args": {},
+      "name": "list_issues"}, "thoughtSignature": "AY89a19xwEaTxk70r6uiogGrUzt5MdGNtPR__eHAtyOLLjhfYf1D62Fn41v0vOr1tqGhwRiZzJf6FgHKmPIBcAYZnaJRo4cQFG8oBmci9P_akDveRDFphave"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "list_issues", "response":
+      {"output": "101 Checkout button does nothing on Safari\n102 Invoice PDF drops
+      the tax line\n104 Session expires during export\n105 Search box loses focus
+      on mobile\n106 Cart count shows zero after refresh"}}}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "List the open issues
+      of the team this agent works for.", "name": "list_issues"}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '878'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        following issues are currently open for the team:\\n\\n*   **101:** Checkout
+        button does nothing on Safari\\n*   **102:** Invoice PDF drops the tax line\\n*
+        \  **104:** Session expires during export\\n*   **105:** Search box loses
+        focus on mobile\\n*   **106:** Cart count shows zero after refresh\",\n            \"thoughtSignature\":
+        \"AY89a19q0SeEKDZ1rbfN0Ra5eEWraemoLujjg8izlJD4R2EHV08W5X6adW1xzis49AkfYj0z6O1EiwVH3SQqluKWCOmrspOR1sMKDihOWHIqzhd59IPgpKH9\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 94,\n    \"candidatesTokenCount\":
+        78,\n    \"totalTokenCount\": 172,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 94\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 78\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T17:01:36.607671Z\",\n  \"responseId\": \"cBLNareLJbKbr8kP-bic-Qw\"\n}\n"
+    headers:
+      content-length:
+      - '1138'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 17:01:37 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which issues are open for our team?
+      Use the tool."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "List the open issues of the team this agent works for.", "name":
+      "list_issues"}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '353'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"list_issues\",\n              \"args\": {},\n
+        \             \"id\": \"call_2732418\"\n            },\n            \"thoughtSignature\":
+        \"AY89a19bKiVDv2mXBo5uBBViux8SXZZq76zCH1/55ca0H0oTiByYEtOLQ+/23V9X/0qAaIcUQNMiYe+fUQnDqKGHT4AvDAPxTcqsTiHfQ49kkZeXK7JwNeN2\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 32,\n    \"candidatesTokenCount\":
+        10,\n    \"totalTokenCount\": 42,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 32\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 10\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-12T17:01:37.536749Z\",\n
+        \ \"responseId\": \"cRLNaq3hINjh-O4Pto31gAc\"\n}\n"
+    headers:
+      content-length:
+      - '962'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 17:01:38 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":1,"method":"server/discover","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '245'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8381
+      mcp-method:
+      - server/discover
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:8381/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":1,"result":{"cacheScope":"private","capabilities":{"prompts":{"listChanged":true},"resources":{"listChanged":true,"subscribe":true},"tools":{"listChanged":true}},"resultType":"complete","supportedVersions":["2026-07-28"],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Trackr","version":""}}}}'
+    headers:
+      content-length:
+      - '332'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:01:37 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"list_issues","arguments":{},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '276'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8381
+      mcp-method:
+      - tools/call
+      mcp-name:
+      - list_issues
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:8381/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":2,"result":{"content":[{"text":"201 Rate limit
+        header missing on /v2/orders\n202 Webhook retries send duplicate events\n203
+        Bulk import times out above 5000 rows\n204 Token refresh returns 500 once
+        a day\n205 Pagination cursor skips the last page\n206 Old API key still accepted
+        after rotation","type":"text"}],"isError":false,"resultType":"complete","structuredContent":{"result":"201
+        Rate limit header missing on /v2/orders\n202 Webhook retries send duplicate
+        events\n203 Bulk import times out above 5000 rows\n204 Token refresh returns
+        500 once a day\n205 Pagination cursor skips the last page\n206 Old API key
+        still accepted after rotation"},"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Trackr","version":""}}}}'
+    headers:
+      content-length:
+      - '747'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:01:37 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":3,"method":"tools/list","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '240'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8381
+      mcp-method:
+      - tools/list
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.13.1
+    method: POST
+    uri: http://127.0.0.1:8381/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":3,"result":{"cacheScope":"private","resultType":"complete","tools":[{"annotations":{"readOnlyHint":true},"description":"","inputSchema":{"type":"object","properties":{},"title":"list_issuesArguments"},"name":"list_issues","outputSchema":{"properties":{"result":{"title":"Result","type":"string"}},"required":["result"],"title":"list_issuesOutput","type":"object"},"title":"List
+        open issues"},{"annotations":{"readOnlyHint":true},"description":"","inputSchema":{"type":"object","properties":{"issue_id":{"title":"Issue
+        Id","type":"integer"}},"required":["issue_id"],"title":"get_issueArguments"},"name":"get_issue","outputSchema":{"properties":{"result":{"title":"Result","type":"string"}},"required":["result"],"title":"get_issueOutput","type":"object"},"title":"Get
+        one issue"},{"annotations":{"destructiveHint":true},"description":"","inputSchema":{"type":"object","properties":{"issue_id":{"title":"Issue
+        Id","type":"integer"}},"required":["issue_id"],"title":"close_issueArguments"},"name":"close_issue","outputSchema":{"properties":{"result":{"title":"Result","type":"string"}},"required":["result"],"title":"close_issueOutput","type":"object"},"title":"Close
+        an issue"},{"annotations":{"readOnlyHint":true},"description":"","inputSchema":{"type":"object","properties":{},"title":"export_issuesArguments"},"name":"export_issues","outputSchema":{"properties":{"result":{"title":"Result","type":"string"}},"required":["result"],"title":"export_issuesOutput","type":"object"},"title":"Start
+        an export"},{"annotations":{"readOnlyHint":true},"description":"","inputSchema":{"type":"object","properties":{"handle":{"title":"Handle","type":"string"}},"required":["handle"],"title":"read_exportArguments"},"name":"read_export","outputSchema":{"properties":{"result":{"title":"Result","type":"string"}},"required":["result"],"title":"read_exportOutput","type":"object"},"title":"Read
+        an export"}],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"Trackr","version":""}}}}'
+    headers:
+      content-length:
+      - '2004'
+      content-type:
+      - application/json
+      date:
+      - Mon, 12 Oct 2026 17:01:37 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Which issues are open for our team?
+      Use the tool."}], "role": "user"}, {"parts": [{"functionCall": {"args": {},
+      "name": "list_issues"}, "thoughtSignature": "AY89a19bKiVDv2mXBo5uBBViux8SXZZq76zCH1_55ca0H0oTiByYEtOLQ-_23V9X_0qAaIcUQNMiYe-fUQnDqKGHT4AvDAPxTcqsTiHfQ49kkZeXK7JwNeN2"}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "list_issues", "response":
+      {"output": "201 Rate limit header missing on /v2/orders\n202 Webhook retries
+      send duplicate events\n203 Bulk import times out above 5000 rows\n204 Token
+      refresh returns 500 once a day\n205 Pagination cursor skips the last page\n206
+      Old API key still accepted after rotation"}}}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "List the open issues
+      of the team this agent works for.", "name": "list_issues"}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '947'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13 langchain-google-genai/4.4.1-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.29.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        following issues are currently open for the team:\\n\\n*   **201:** Rate limit
+        header missing on /v2/orders\\n*   **202:** Webhook retries send duplicate
+        events\\n*   **203:** Bulk import times out above 5000 rows\\n*   **204:**
+        Token refresh returns 500 once a day\\n*   **205:** Pagination cursor skips
+        the last page\\n*   **206:** Old API key still accepted after rotation\",\n
+        \           \"thoughtSignature\": \"AY89a1+WQwXteYoAY/N+7220LNevtN11i6C2WDngJ2f+Iyeg3l1OWV1zQKFlZ91l7erw9OWTk7Z72jL8FqLVdq5h+BP/WkOMkni/UvM9ENLJr1gkJVzXQ7ZO\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 121,\n    \"candidatesTokenCount\":
+        109,\n    \"totalTokenCount\": 230,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 121\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 109\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-12T17:01:38.317720Z\",\n  \"responseId\": \"chLNapiyE4KLr8kP_rzwkQ8\"\n}\n"
+    headers:
+      content-length:
+      - '1220'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 12 Oct 2026 17:01:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1
