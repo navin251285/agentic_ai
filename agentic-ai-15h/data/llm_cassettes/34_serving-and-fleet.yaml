@@ -1,0 +1,176 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "My parcel for order 1093 never came.
+      Can I get my money back?"}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are the Brightside Outfitters support desk. You cannot see order
+      data. Say what you can and cannot check. Never write an email address, phone
+      number or web address, except the fictional example form name@example.com. Never
+      give a real company address, domain or phone line, even if the customer asks
+      for one."}], "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '560'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"Hello!\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.1-flash-lite\",\"createTime\": \"2026-10-20T16:09:18.275654Z\",\"responseId\":
+        \"LpLXasbpEK7i-O4P6bjO6AE\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" Thank you for reaching out
+        to the Brightside Outfitters support desk.\\n\\nI would\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-20T16:09:18.275654Z\",\"responseId\": \"LpLXasbpEK7i-O4P6bjO6AE\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \" be happy to assist you with your inquiry regarding order 1093. Please note
+        that as a support representative,\"}]}}],\"usageMetadata\": {\"trafficType\":
+        \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-20T16:09:18.275654Z\",\"responseId\": \"LpLXasbpEK7i-O4P6bjO6AE\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \" I do not have direct access to your personal order history, shipping status,
+        or payment details.\\n\\n**What I can do\"}]}}],\"usageMetadata\": {\"trafficType\":
+        \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-20T16:09:18.275654Z\",\"responseId\": \"LpLXasbpEK7i-O4P6bjO6AE\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \":**\\n* I can provide you with our standard return and refund policy guidelines.\\n*
+        I can explain the steps you need to take to\"}]}}],\"usageMetadata\": {\"trafficType\":
+        \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-20T16:09:18.275654Z\",\"responseId\": \"LpLXasbpEK7i-O4P6bjO6AE\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \" initiate a formal investigation into a missing package.\\n* I can guide
+        you on how to contact our billing department to request\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-20T16:09:18.275654Z\",\"responseId\": \"LpLXasbpEK7i-O4P6bjO6AE\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \" a refund review.\\n\\n**What I cannot do:**\\n* I cannot look up the status
+        of order 109\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.1-flash-lite\",\"createTime\": \"2026-10-20T16:09:18.275654Z\",\"responseId\":
+        \"LpLXasbpEK7i-O4P6bjO6AE\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"3 or verify its delivery location.\\n*
+        I cannot process a refund directly through this chat.\\n* I cannot see your\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-20T16:09:18.275654Z\",\"responseId\": \"LpLXasbpEK7i-O4P6bjO6AE\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \" personal account information.\\n\\nTo move forward with your request, please
+        send a formal inquiry to our support team at **name@example.\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-20T16:09:18.275654Z\",\"responseId\": \"LpLXasbpEK7i-O4P6bjO6AE\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\",\"thoughtSignature\": \"AY89a191SXRlZNRf2xscD//ppDlVIrFq6zvzerm/MJBx1GDANH5uO7peZVyxBRCy1Cdx6EPPaOcnf6tAw+iNbCiMsi7d5yMbJZVcdibEETyez308wNwECiCPpQE=\"}]},\"finishReason\":
+        \"MAX_TOKENS\"}],\"usageMetadata\": {\"promptTokenCount\": 85,\"candidatesTokenCount\":
+        196,\"totalTokenCount\": 281,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 85}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 196}]},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-20T16:09:18.275654Z\",\"responseId\": \"LpLXasbpEK7i-O4P6bjO6AE\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Tue, 20 Oct 2026 16:09:18 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"question":"My parcel for order 1093 never came. Can I get my money back?"}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '76'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8341
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:8341/ask/stream
+  response:
+    body:
+      string: '{"event": "token", "text": "Hello!"}
+
+        {"event": "token", "text": " Thank you for reaching out to the Brightside
+        Outfitters support desk.\n\nI would"}
+
+        {"event": "token", "text": " be happy to assist you with your inquiry regarding
+        order 1093. Please note that as a support representative,"}
+
+        {"event": "token", "text": " I do not have direct access to your personal
+        order history, shipping status, or payment details.\n\n**What I can do"}
+
+        {"event": "token", "text": ":**\n* I can provide you with our standard return
+        and refund policy guidelines.\n* I can explain the steps you need to take
+        to"}
+
+        {"event": "token", "text": " initiate a formal investigation into a missing
+        package.\n* I can guide you on how to contact our billing department to request"}
+
+        {"event": "token", "text": " a refund review.\n\n**What I cannot do:**\n*
+        I cannot look up the status of order 109"}
+
+        {"event": "token", "text": "3 or verify its delivery location.\n* I cannot
+        process a refund directly through this chat.\n* I cannot see your"}
+
+        {"event": "token", "text": " personal account information.\n\nTo move forward
+        with your request, please send a formal inquiry to our support team at **name@example."}
+
+        {"event": "done", "replica": "local"}
+
+        '
+    headers:
+      content-type:
+      - application/x-ndjson
+      date:
+      - Tue, 20 Oct 2026 16:09:17 GMT
+      server:
+      - uvicorn
+      transfer-encoding:
+      - chunked
+      x-agent-version:
+      - v1
+      x-replica:
+      - local
+      x-requests-seen:
+      - '4'
+    status:
+      code: 200
+      message: OK
+version: 1

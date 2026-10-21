@@ -1,0 +1,4 @@
+# the desk's saved state (memory, refunds, runs) lives here; created on first run, never committed
+state/
+__pycache__/
+*.egg-info/

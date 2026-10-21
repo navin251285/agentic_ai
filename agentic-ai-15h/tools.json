@@ -1,0 +1,6 @@
+{
+  "Gemini API (Vertex AI)": "Gemini API key",
+  "Anthropic API (Claude Haiku 5.5)": "Anthropic API key",
+  "OpenAI API": "recorded replay",
+  "OpenTelemetry SDK": "local: JSON-lines exporter (default)"
+}

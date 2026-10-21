@@ -1,0 +1,367 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "You are the orchestrator of the Brightside
+      support desk. Split the customer message into subtasks, one question each. Use
+      worker ''order_status'' for one order (give its order_id) and ''returns_policy''
+      for a return, refund or delivery question. Do not answer the questions yourself.\n\nCustomer
+      message: Where is order 1093? It should have arrived three days ago. Also, if
+      I return the jacket from order 2207, can I get my money back?"}], "role": "user"}],
+      "generationConfig": {"temperature": 0.0, "responseMimeType": "application/json",
+      "responseJsonSchema": {"$defs": {"Subtask": {"properties": {"worker": {"enum":
+      ["order_status", "returns_policy"], "title": "Worker", "type": "string"}, "question":
+      {"title": "Question", "type": "string"}, "order_id": {"anyOf": [{"type": "string"},
+      {"type": "null"}], "default": null, "title": "Order Id"}}, "required": ["worker",
+      "question"], "title": "Subtask", "type": "object"}}, "properties": {"subtasks":
+      {"items": {"$ref": "#/$defs/Subtask"}, "title": "Subtasks", "type": "array"}},
+      "required": ["subtasks"], "title": "Plan", "type": "object"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Timeout:
+      - '30'
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: post
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"subtasks\\\": [\\n    {\\n      \\\"worker\\\": \\\"order_status\\\",\\n
+        \     \\\"question\\\": \\\"Where is order 1093? It should have arrived three
+        days ago.\\\",\\n      \\\"order_id\\\": \\\"1093\\\"\\n    },\\n    {\\n
+        \     \\\"worker\\\": \\\"returns_policy\\\",\\n      \\\"question\\\": \\\"If
+        I return the jacket from order 2207, can I get my money back?\\\",\\n      \\\"order_id\\\":
+        \\\"2207\\\"\\n    }\\n  ]\\n}\",\n            \"thoughtSignature\": \"AY89a1+84usQzd0oilDZVu3EcRQSH9aHZkDNLtkqRB8s65rKFfkeiVjJhcgLG8NtcKnq34EbeY77HWH4eI0n/Ts5xI20J29Skkb6U00S48x0mf1aPWXTWANKu6o=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 296,\n    \"candidatesTokenCount\":
+        120,\n    \"totalTokenCount\": 416,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 296\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 120\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T09:30:40.120791Z\",\n  \"responseId\": \"wDTXatevB9WKr8kP56GE6AY\"\n}\n"
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 20 Oct 2026 09:30:41 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      - X-Origin
+      - Referer
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+      content-length:
+      - '1222'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Write the reply to the customer. Be
+      warm and reassuring.\nCustomer message: Where is order 1093? It should have
+      arrived three days ago. Also, if I return the jacket from order 2207, can I
+      get my money back?\nFacts from the workers: [{''status'': ''in transit'', ''days_late'':
+      3}, {''policy'': ''Brightside returns policy (written for this course; it agrees
+      with the 30-day rule).\\nItems can be returned within 30 days of delivery, unused
+      and in their original packaging.\\nRefunds are approved by a person on the support
+      team. The support desk never promises a refund.\\nDamaged items: the customer
+      sends a photo, and a person decides on a replacement or a refund.''}]\n"}],
+      "role": "user"}], "generationConfig": {"temperature": 0.0}}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Timeout:
+      - '30'
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: post
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Subject:
+        Update regarding your orders 1093 and 2207\\n\\nHi [Customer Name],\\n\\nThank
+        you for reaching out to us. I am so sorry to hear that your order #1093 hasn\u2019t
+        arrived yet. I completely understand how frustrating it is to wait for a package,
+        especially when it\u2019s already a few days past the expected delivery date.\\n\\nI
+        have checked the status of your shipment, and I can confirm that it is currently
+        in transit. While it is running about three days behind schedule, it is on
+        its way to you. I will keep a close eye on the tracking information and send
+        you an update as soon as I see any movement.\\n\\nRegarding your question
+        about the jacket from order #2207, I would be happy to help you with that.
+        Under our Brightside returns policy, you are welcome to return items within
+        30 days of delivery, provided they are unused and in their original packaging.
+        \\n\\nOnce you send the item back, our support team will review the return
+        to process your refund request. Please just let me know if you\u2019d like
+        me to send over the return instructions, and I\u2019ll be happy to guide you
+        through the next steps!\\n\\nThank you for your patience, and please let me
+        know if there is anything else I can assist you with today.\\n\\nWarmly,\\n\\n[Your
+        Name]\\nBrightside Support Team\",\n            \"thoughtSignature\": \"AY89a1/yaEc2eYBwLbLJignPGLX3k97cMvkO/uPTDfA8QG9dvHMh76CRxABi070B6n1DWoCsZnu7xBRrgT7XHsnzJLIR9hCaOUoJxjGbjObSqijli8iq8j1BUPs=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 166,\n    \"candidatesTokenCount\":
+        290,\n    \"totalTokenCount\": 456,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 166\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 290\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T09:30:41.244779Z\",\n  \"responseId\": \"wTTXaqv4Dq7i-O4P6bjO6AE\"\n}\n"
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 20 Oct 2026 09:30:42 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      - X-Origin
+      - Referer
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+      content-length:
+      - '2117'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check the draft against these criteria:
+      1. Answers every question in the customer message. 2. Uses only the facts given;
+      adds none. 3. Promises no refund: a person approves refunds. 4. Four sentences
+      at most.\nFacts: [{''status'': ''in transit'', ''days_late'': 3}, {''policy'':
+      ''Brightside returns policy (written for this course; it agrees with the 30-day
+      rule).\\nItems can be returned within 30 days of delivery, unused and in their
+      original packaging.\\nRefunds are approved by a person on the support team.
+      The support desk never promises a refund.\\nDamaged items: the customer sends
+      a photo, and a person decides on a replacement or a refund.''}]\nDraft: Subject:
+      Update regarding your orders 1093 and 2207\n\nHi [Customer Name],\n\nThank you
+      for reaching out to us. I am so sorry to hear that your order #1093 hasn\u2019t
+      arrived yet. I completely understand how frustrating it is to wait for a package,
+      especially when it\u2019s already a few days past the expected delivery date.\n\nI
+      have checked the status of your shipment, and I can confirm that it is currently
+      in transit. While it is running about three days behind schedule, it is on its
+      way to you. I will keep a close eye on the tracking information and send you
+      an update as soon as I see any movement.\n\nRegarding your question about the
+      jacket from order #2207, I would be happy to help you with that. Under our Brightside
+      returns policy, you are welcome to return items within 30 days of delivery,
+      provided they are unused and in their original packaging. \n\nOnce you send
+      the item back, our support team will review the return to process your refund
+      request. Please just let me know if you\u2019d like me to send over the return
+      instructions, and I\u2019ll be happy to guide you through the next steps!\n\nThank
+      you for your patience, and please let me know if there is anything else I can
+      assist you with today.\n\nWarmly,\n\n[Your Name]\nBrightside Support Team\nGive
+      verdict pass or fail, and list the problems (empty when it passes)."}], "role":
+      "user"}], "generationConfig": {"temperature": 0.0, "responseMimeType": "application/json",
+      "responseJsonSchema": {"properties": {"verdict": {"enum": ["pass", "fail"],
+      "title": "Verdict", "type": "string"}, "problems": {"items": {"type": "string"},
+      "title": "Problems", "type": "array"}}, "required": ["verdict", "problems"],
+      "title": "Verdict", "type": "object"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Timeout:
+      - '30'
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: post
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"verdict\\\": \\\"fail\\\",\\n  \\\"problems\\\": [\\n    \\\"The draft
+        exceeds the four-sentence limit.\\\",\\n    \\\"The draft includes information
+        not provided in the facts (e.g., 'I will keep a close eye on the tracking
+        information', 'I would be happy to help you with that').\\\"\\n  ]\\n}\",\n
+        \           \"thoughtSignature\": \"AY89a18L9QHjCNEHJH0G+JvJtpQphEmSH7DD72eAbx3RmGW50ndc2aar0V0XV40VME/QCIWcCowbUYSh37ULeJL4Nu2xK8s9Ml/XD+3Hufn/ppcxHWSYOazRmHE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 570,\n    \"candidatesTokenCount\":
+        74,\n    \"totalTokenCount\": 644,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 570\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 74\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T09:30:42.718168Z\",\n  \"responseId\": \"wjTXatjqK9-ar8kPg5aO8A0\"\n}\n"
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 20 Oct 2026 09:30:43 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      - X-Origin
+      - Referer
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+      content-length:
+      - '1128'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Write the reply to the customer. Be
+      warm and reassuring.\nCustomer message: Where is order 1093? It should have
+      arrived three days ago. Also, if I return the jacket from order 2207, can I
+      get my money back?\nFacts from the workers: [{''status'': ''in transit'', ''days_late'':
+      3}, {''policy'': ''Brightside returns policy (written for this course; it agrees
+      with the 30-day rule).\\nItems can be returned within 30 days of delivery, unused
+      and in their original packaging.\\nRefunds are approved by a person on the support
+      team. The support desk never promises a refund.\\nDamaged items: the customer
+      sends a photo, and a person decides on a replacement or a refund.''}]\nA reviewer
+      found these problems in the last draft. Fix them: The draft exceeds the four-sentence
+      limit.; The draft includes information not provided in the facts (e.g., ''I
+      will keep a close eye on the tracking information'', ''I would be happy to help
+      you with that'').\n"}], "role": "user"}], "generationConfig": {"temperature":
+      0.0}}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Timeout:
+      - '30'
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: post
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Hello,
+        I am sorry to hear that order 1093 is three days late, and I can confirm it
+        is currently in transit. Regarding order 2207, you may return unused items
+        in their original packaging within 30 days of delivery. Once received, a member
+        of our support team will review your request to determine if a refund is approved.
+        Please let us know if you have any further questions.\",\n            \"thoughtSignature\":
+        \"AY89a1+YfKID2B6+GMC1WrwxBKW/79I+ZsHcEbMm0SQBZ1vDq9KoSRf7isqTDOPvvuaDOlAp0PCPCNus7lrcSV/d7NOW1xnZKFGogebeP2QJxAB03Mj4IdvOfvo=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 226,\n    \"candidatesTokenCount\":
+        86,\n    \"totalTokenCount\": 312,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 226\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 86\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T09:30:43.523356Z\",\n  \"responseId\": \"wzTXatz4H7aIr8kPtLK8-AY\"\n}\n"
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 20 Oct 2026 09:30:44 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      - X-Origin
+      - Referer
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+      content-length:
+      - '1224'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check the draft against these criteria:
+      1. Answers every question in the customer message. 2. Uses only the facts given;
+      adds none. 3. Promises no refund: a person approves refunds. 4. Four sentences
+      at most.\nFacts: [{''status'': ''in transit'', ''days_late'': 3}, {''policy'':
+      ''Brightside returns policy (written for this course; it agrees with the 30-day
+      rule).\\nItems can be returned within 30 days of delivery, unused and in their
+      original packaging.\\nRefunds are approved by a person on the support team.
+      The support desk never promises a refund.\\nDamaged items: the customer sends
+      a photo, and a person decides on a replacement or a refund.''}]\nDraft: Hello,
+      I am sorry to hear that order 1093 is three days late, and I can confirm it
+      is currently in transit. Regarding order 2207, you may return unused items in
+      their original packaging within 30 days of delivery. Once received, a member
+      of our support team will review your request to determine if a refund is approved.
+      Please let us know if you have any further questions.\nGive verdict pass or
+      fail, and list the problems (empty when it passes)."}], "role": "user"}], "generationConfig":
+      {"temperature": 0.0, "responseMimeType": "application/json", "responseJsonSchema":
+      {"properties": {"verdict": {"enum": ["pass", "fail"], "title": "Verdict", "type":
+      "string"}, "problems": {"items": {"type": "string"}, "title": "Problems", "type":
+      "array"}}, "required": ["verdict", "problems"], "title": "Verdict", "type":
+      "object"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Timeout:
+      - '30'
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: post
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"verdict\\\": \\\"pass\\\",\\n  \\\"problems\\\": []\\n}\",\n            \"thoughtSignature\":
+        \"AY89a18XaLqtlJjmxetPLOK70RcpFM/AUYamh1iSp7SGjWd5pfuyieWiMdofaWjEIyDlwtbkbv4i+ACL30Hg7eEr1TlkvPHjN5YAKgMlA87ypm9ckpozzDj/Gxs=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 366,\n    \"candidatesTokenCount\":
+        18,\n    \"totalTokenCount\": 384,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 366\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 18\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T09:30:44.424912Z\",\n  \"responseId\": \"xDTXatD3GdyJr8kPs5792Ag\"\n}\n"
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 20 Oct 2026 09:30:45 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      - X-Origin
+      - Referer
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+      content-length:
+      - '900'
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,357 @@
+{
+  "title": "Part 3: workflows, memory and retrieval",
+  "subtitle": "Agentic AI: hello world to enterprise · Part 3 · lessons 11 to 18",
+  "course": "Agentic AI: hello world to enterprise",
+  "audience": "learners of this course (developers who code)",
+  "audience_type": "technical",
+  "scope": {
+    "part": 3
+  },
+  "theme": {
+    "accent": "4F46E5",
+    "accent2": "F59E0B"
+  },
+  "slides": [
+    {
+      "layout": "title",
+      "title": "Part 3: workflows, memory and retrieval",
+      "subtitle": "Agentic AI: hello world to enterprise · Part 3 · lessons 11 to 18",
+      "notes": "Part 3 is where the agent stops being one loop and becomes a system you can design. We cover four ideas: fixed workflows, the control patterns and approval pauses that decide who picks the next step, the memory the model is given on each call, and retrieval of the right text from documents. Every idea follows the same path: an everyday comparison, the exact definition, a small piece of real code from the lessons, then the version that grows from it. The notebooks run on a laptop with no key, because every model call is recorded once and replayed. Keep the notebook open beside the deck and switch to it when a slide names a lesson."
+    },
+    {
+      "layout": "analogy",
+      "title": "A kitchen line checks each plate before it moves",
+      "everyday": {
+        "name": "A restaurant kitchen line",
+        "text": "Each station does one job; a check comes first."
+      },
+      "tech": {
+        "name": "A fixed workflow",
+        "text": "Your code sets the steps; a model fills some, with gates."
+      },
+      "breaks": "A cook can improvise; a workflow runs only the steps you wrote.",
+      "lessons": [
+        "11"
+      ],
+      "notes": "Start with a kitchen, because everyone has seen one. The line works because the path is fixed: the grill station always does the grill, and a check happens before the plate moves on. Lesson 11 makes the same point for support messages. Many of them are known in advance, such as where is my order or can I get a refund. For those, a fixed workflow makes the same calls in the same order, so you can price a message before it runs. The lesson's own worked numbers are rough: about 1,000 input tokens and 100 output tokens per step. Use the analogy only for the path. It breaks where the cook improvises, and a workflow must not."
+    },
+    {
+      "layout": "before_after",
+      "title": "A fixed workflow makes a known number of calls",
+      "before": {
+        "label": "Agent: model picks steps",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Customer message",
+            "Model picks each step",
+            "Reply after unknown calls"
+          ]
+        },
+        "caption": "Call count varies; errors show at the end."
+      },
+      "after": {
+        "label": "Workflow: code picks the path",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Customer message",
+            "Route and extract together",
+            "Order gate, then draft"
+          ]
+        },
+        "caption": "Three fixed, testable calls."
+      },
+      "lessons": [
+        "11"
+      ],
+      "notes": "This is lesson 11's before and after. On the left the model decides every step, so the call count changes per message and a wrong reply shows only at the end. On the right the same message makes three calls in a fixed order: route and extract run together, the order gate checks the order exists, and only then does the draft run. The lesson's logged calls were small, about 40 to 115 input tokens each, and three calls cost about $0.0001. The worked price in Step 2 is a sketch; the logged calls are the measurement. A workflow is predictable and testable, not always cheaper. Its limit: a fixed path cannot handle a message whose next step you cannot predict."
+    },
+    {
+      "layout": "concept",
+      "title": "A workflow is a path your code writes",
+      "definition": "A workflow is a fixed path your code writes, with a model filling in some steps.",
+      "parts": [
+        {
+          "term": "Prompt chain",
+          "meaning": "steps in order; a gate checks each"
+        },
+        {
+          "term": "Router",
+          "meaning": "one call picks a branch; unknown goes to a queue"
+        },
+        {
+          "term": "Parallel calls",
+          "meaning": "independent jobs run together"
+        }
+      ],
+      "example": "Order 1093: route and extract run together.",
+      "lessons": [
+        "11"
+      ],
+      "notes": "The exact definition, from lesson 11: a workflow is a fixed path your code writes, with a model filling in some steps. An agent is the other choice, where the model chooses the path. A prompt chain runs steps in order, and a gate, a plain Python check, decides whether the next step runs. A router uses one call to pick a branch, and an unknown label goes to the general queue, never to a guess. Parallel calls run independent jobs together with asyncio.gather. They cut waiting time, not cost, because you pay for every branch. Lesson 12 adds an evaluator loop with a stop rule; it is a professional-path lesson, and the steps slide at the end gives it one line."
+    },
+    {
+      "layout": "code",
+      "title": "The route check sends unknown labels to a queue",
+      "code": "def route_check(label: str) -> str:\n    label = label.strip().lower()\n    return label if label in ROUTES else \"other\"\n...\n# route_check(\"refund\")\n# route_check(\" Order_Status \")\n# route_check(\"pizza\")\n# the three calls, printed on one line:",
+      "lang": "python",
+      "highlight": [
+        3
+      ],
+      "output": "refund | order_status | other",
+      "points": [
+        "The label is cleaned, then checked",
+        "An unknown label becomes other"
+      ],
+      "lessons": [
+        "11"
+      ],
+      "notes": "This is the smallest piece of the workflow and the first code of Part 3. The model returns a label such as refund or order_status. Code cleans it, then checks it against the routes. Anything not on the list becomes other, which goes to the general queue. The three comment lines are the inputs: refund passes, a label with spaces and capitals is cleaned to order_status, and pizza becomes other. The output line is what the lesson prints for those three calls. This check is code, so you can test it without a model call. Ask yourself: what does your system do with a label it has never seen? If it guesses, fix this line first."
+    },
+    {
+      "layout": "compare",
+      "title": "A control pattern decides who picks the next step",
+      "columns": [
+        {
+          "head": "ReAct",
+          "points": [
+            "Model picks each step",
+            "Calls: one per tool request, plus one"
+          ]
+        },
+        {
+          "head": "Plan-and-execute",
+          "points": [
+            "Whole plan first, code runs it",
+            "Calls: two, however long the plan"
+          ]
+        },
+        {
+          "head": "Reflection",
+          "points": [
+            "A second pass on a draft",
+            "Calls: one more, only if a check fails"
+          ]
+        }
+      ],
+      "lessons": [
+        "13"
+      ],
+      "notes": "Lesson 13 runs the three patterns on the same customer message and counts the calls. The idea is who picks the next step. ReAct lets the model pick each step after it sees the last result, so its cost grows with the steps: one call per tool request plus one for the answer. Plan-and-execute asks for the whole plan first, and your code runs it with no model call, so it is two calls however long the plan is. Reflection sends a draft back for a second pass, and it helps only when the check brings new information, such as a policy rule checked by code; the lesson adds that second call only when the check finds a problem. Example: order 1003, lost and 9 days late; the three ways cost about 0.05 cents in total. Reflection is rare in job postings, about 2 percent in the market sample, so teach it as a tool for a real check, not a default."
+    },
+    {
+      "layout": "diagram",
+      "title": "Refunds wait as saved state, not memory",
+      "diagram": {
+        "type": "flow",
+        "items": [
+          "Proposed: waiting_approval",
+          "Run ends, holds nothing",
+          "Reviewer decides",
+          "Resume pays once",
+          "Status: paid"
+        ]
+      },
+      "caption": "Like a cheque awaiting a signature.",
+      "points": [
+        "Saved state: a status in a database row",
+        "Decide tool: approves; the agent never holds it",
+        "Resume checks saved status; retries cannot pay twice"
+      ],
+      "lessons": [
+        "14"
+      ],
+      "notes": "Lesson 14 turns a write into a saved pause. The agent proposes the refund, which writes a row with status waiting_approval, and the run ends. Nothing waits in a Python list, because a list vanishes when the process ends, so a restart loses nothing. A reviewer decides later, in another process, through a conditional update, so only one decision can win. Resume reads the saved status and pays once, using the run id as an idempotency key, so the same key cannot pay twice. The course rule: a refund above $50 needs a senior reviewer; exactly $50 does not. Keep the decide function out of the agent's tools."
+    },
+    {
+      "layout": "analogy",
+      "title": "A desk clears old paperwork, keeps a handover note",
+      "everyday": {
+        "name": "A support desk at shift change",
+        "text": "Files finished papers; writes a handover note."
+      },
+      "tech": {
+        "name": "Short-term memory",
+        "text": "The messages your code resends each call."
+      },
+      "breaks": "A clerk remembers what they keep; the model rereads everything sent.",
+      "lessons": [
+        "15"
+      ],
+      "notes": "Lesson 15 starts from a fact that surprises many developers. A model call has no memory of its own. Your code sends the whole chat again on every call, so the bill and the wait grow with each message. The desk analogy fits the fix: the clerk files finished papers, writes a short handover note for the old part of the shift, and keeps the last few letters open on the desk. The analogy breaks at one point. The model only knows what is in the list you send. So the list is the memory, and every item in it costs input tokens on every call that reads it."
+    },
+    {
+      "layout": "concept",
+      "title": "Context engineering chooses what each call reads",
+      "definition": "Context engineering is the choice of what goes into the list of messages you send on each call.",
+      "parts": [
+        {
+          "term": "Trim",
+          "meaning": "drop oldest; keep the last few whole"
+        },
+        {
+          "term": "Clear",
+          "meaning": "old tool results become a stub"
+        },
+        {
+          "term": "Summarise",
+          "meaning": "older turns become one model note"
+        },
+        {
+          "term": "Cache",
+          "meaning": "stable text first, billed less"
+        }
+      ],
+      "example": "Order 1093's status moves into a summary.",
+      "lessons": [
+        "15"
+      ],
+      "notes": "Lesson 15's exact definition: short-term memory is the list of messages you resend on each call, and context engineering is the choice of what goes into that list. Start from the fact that a model call has no memory of its own, so your code resends the whole chat every time. The desk comparison fits the fix: the clerk files finished papers and writes a short handover note, and the analogy breaks at one point. The model only knows what is in the list you send, so the list is the memory, and every item costs input tokens on every call that reads it. Four levers do most of the work. Trim drops the oldest entries. Clear replaces old tool results with a stub that says the detail can be looked up again. Summarise, also called compaction, turns older entries into one model note; it is lossy, so the lesson checks that order numbers and statuses survived. Cache puts the long, unchanging text first. On Gemini 2.5 and newer, caching is implicit and best effort, so read the cached-token count. The lesson's price note: cached input was billed at 90% off; check current pricing."
+    },
+    {
+      "layout": "code",
+      "title": "Each reply rereads the whole chat, so cost grows",
+      "code": "def chars_sent(chat: list[dict]) -> int:\n    return sum(len(e[\"text\"]) for e in chat)\n...\nfor n in range(1, len(CHAT) + 1):\n    print(f\"{n:>4} {chars_sent(CHAT[:n]):>16,}\")",
+      "lang": "python",
+      "highlight": [
+        2,
+        5
+      ],
+      "output": "turn  characters sent\n   1               27\n   2              798\ntotal read over the chat: 14,362 characters",
+      "points": [
+        "Each turn reads everything before it",
+        "The total dwarfs the chat itself"
+      ],
+      "lessons": [
+        "15"
+      ],
+      "notes": "Measure before trimming. The function counts the characters a reply reads when the whole chat is resent; characters are a rough stand-in for tokens. Turn 1 reads 27 characters and turn 2 reads 798, because the second call resends the first turn as well as the new one. The total over the chat is 14,362 characters, while the chat itself is 2,085. That gap is the point: every turn rereads the past. Then the lesson clears old tool results, which takes the window from 2,085 characters to 690, and the stored rows stay whole. Each change is checked against the usage numbers the model returns."
+    },
+    {
+      "layout": "analogy",
+      "title": "A catalogue hands you the three best cards",
+      "everyday": {
+        "name": "A library card catalogue",
+        "text": "One card per part; the librarian compares each card."
+      },
+      "tech": {
+        "name": "Retrieval, top-k",
+        "text": "The k chunks whose vectors are closest."
+      },
+      "breaks": "A librarian understands cards; a score only ranks them.",
+      "lessons": [
+        "17"
+      ],
+      "notes": "Lesson 17 needs an analogy for retrieval. A library catalogue has one card per part of the collection. The librarian does not read the whole library for each question; she compares the question with every card and hands over the best three. Retrieval does the same: each chunk and the question become embeddings, lists of numbers, and the store keeps the chunks whose vectors point closest to the question's. The analogy breaks in two places. A librarian understands the cards; a score only ranks them, and 0.76 does not mean 76 percent correct. Measure recall on your own labelled questions. For a knowledge base under about 200,000 tokens, putting everything in the prompt may be simpler."
+    },
+    {
+      "layout": "concept",
+      "title": "Retrieval keeps the chunks whose vectors point closest",
+      "definition": "Top-k retrieval scores every chunk by cosine similarity and keeps the k best.",
+      "parts": [
+        {
+          "term": "Embedding",
+          "meaning": "numbers a model computes from text"
+        },
+        {
+          "term": "Chunk",
+          "meaning": "a paragraph-sized piece, about 120 words"
+        },
+        {
+          "term": "Cosine similarity",
+          "meaning": "near 1: same meaning; near 0: unrelated"
+        },
+        {
+          "term": "Top-k",
+          "meaning": "sort the scores; keep the k best"
+        }
+      ],
+      "example": "Jacket question, k = 3: 21, 8, 15. No match: say the guide lacks it.",
+      "lessons": [
+        "17",
+        "18"
+      ],
+      "notes": "The exact definition, from lesson 17: each chunk is embedded once, the question is embedded with the same model and size, and the store ranks chunks by cosine similarity. Cosine similarity measures the direction of two vectors: close to 1 means the same meaning, close to 0 means unrelated. Top-k means score every chunk, sort, and keep the k best; here k is 3, so the jacket question returns chunks 21, 8 and 15, the same ids the vector list starts with on the next slide. The example is the FTC mail-order guide, split at blank lines into paragraphs of up to 120 words. A common mistake: a question embedded at a different size cannot be compared with chunks embedded at 768, and the store refuses it. The behaviour to teach: when no chunk is close, the system says the guide does not cover the question instead of guessing."
+    },
+    {
+      "layout": "code",
+      "title": "Rank fusion merges two lists by rank, not score",
+      "code": "def fuse(lists: list[list[int]], k: int = 60) -> list[int]:\n    score: dict[int, float] = {}\n    for ranked in lists:\n        for rank, cid in enumerate(ranked, start=1):\n            score[cid] = score.get(cid, 0) + 1 / (k + rank)\n    return sorted(score, key=score.get, reverse=True)\n...\n# kw and vec: the keyword and vector ids, best first\nfused = fuse([kw, vec])[:8]",
+      "lang": "python",
+      "highlight": [
+        5
+      ],
+      "output": "keyword : [4, 25, 13, 9, 15, 16, 21, 49]\nvector  : [21, 8, 15, 47, 9, 27, 12, 13]\nfused   : [21, 15, 9, 13, 4, 25, 8, 47]",
+      "points": [
+        "keyword = exact words; vector = meaning",
+        "fuse = merge by rank; each list adds 1 / (k + rank)",
+        "reranker = a second model that reorders the top results"
+      ],
+      "lessons": [
+        "18"
+      ],
+      "notes": "Lesson 18 searches the same guide two ways. Keyword search, BM25, scores the query words a chunk contains, so it finds seven working days but misses money back. Vector search scores by meaning, so it finds the refund rule for money back. Hybrid search runs both and merges the two ranked lists with reciprocal rank fusion: each list adds 1 divided by (60 plus the rank), and the sums are sorted. The constant k = 60 comes from the original paper. Ranks, not raw scores, because the two scales differ. The output is the fused top eight for the jacket question; the vector list is the one from the previous slide, and the keyword list is different, so the fused order differs too. A reranker, a second model that reads each question and passage closely, then cuts eight candidates to three. Anthropic's contextual retrieval post measured top-20 failures at 5.7 percent with plain embeddings and 1.9 percent with the full combination."
+    },
+    {
+      "layout": "steps",
+      "title": "Part 3 grows the agent in five steps",
+      "steps": [
+        {
+          "head": "11 Workflow",
+          "text": "Chain, route, parallel: a fixed path."
+        },
+        {
+          "head": "12 Evaluator",
+          "text": "Judge each draft; stop after two rounds."
+        },
+        {
+          "head": "13–14 Control",
+          "text": "Pick a pattern; pause writes for approval."
+        },
+        {
+          "head": "15–16 Memory",
+          "text": "Trim the window; typed, expiring facts."
+        },
+        {
+          "head": "17–18 Retrieval",
+          "text": "Embed, rank by cosine, fuse, cite."
+        }
+      ],
+      "lessons": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18"
+      ],
+      "notes": "This is the build path for Part 3. First, a fixed workflow with a route check and parallel calls. Then lesson 12's evaluator loop: one call writes a draft, a second judges it against written criteria, and the loop stops after two rounds, with a person writing the reply if the draft still fails. Then lesson 13's choice of control pattern: ReAct costs one call per tool request plus one for the answer; plan-and-execute costs two however long the plan; reflection adds a call only when a real check finds a problem, and reflection is rare in job postings, about 2 percent in the market sample. Then the approval gate, which pauses a write as saved state. Then memory: trimmed windows, and typed facts with a source and an expiry, where a code guard blocks card numbers and passwords before any write, and erase deletes one customer's rows. Last, retrieval: embeddings, top-k by cosine, hybrid fusion, cited answers. Each step adds one thing and has a test."
+    },
+    {
+      "layout": "questions",
+      "title": "Questions to ask before you add autonomy or memory",
+      "questions": [
+        "Which steps are known in advance?",
+        "What does each call read?",
+        "Which write waits for a person?",
+        "What does retrieval return with no answer?",
+        "Who can erase a customer's facts, and when?"
+      ],
+      "closing": "Next: Part 4, LangGraph and tool protocols",
+      "lessons": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18"
+      ],
+      "notes": "End with questions for your own design, because an interview or code review will ask them. The first decides between a workflow and an agent: if you can write the steps in advance, the call count is known and each step is testable. The second is cost and quality: the bill is what each call reads, so measure it with the usage numbers. The third is writes: a pause, a run id as the payment key, and no agent access to the approve function. The fourth is retrieval: a good system says the guide does not cover the question instead of guessing. The fifth is privacy: every memory has a source, an expiry and a way to erase it. Close by pointing ahead: Part 4 gives the agent a standard graph runtime and standard tool protocols."
+    }
+  ]
+}

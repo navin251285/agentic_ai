@@ -1,0 +1,381 @@
+{
+  "title": "Part 4: a support desk that pauses, shares tools and gets graded",
+  "subtitle": "Agentic AI · Advanced build · lessons 19 to 23",
+  "course": "Agentic AI (15 h)",
+  "audience": "learners of this course",
+  "audience_type": "technical",
+  "scope": {
+    "part": 4
+  },
+  "theme": {
+    "accent": "4F46E5"
+  },
+  "slides": [
+    {
+      "layout": "title",
+      "icon": "cube",
+      "notes": "Part 4 is the advanced build of the support desk: lessons 19 to 23. The desk starts as a loop, becomes a LangGraph graph that can pause for a senior and survive a restart, takes its tools from a shared MCP server, and is graded as a whole run. Say at the start that every number on these slides comes from the lessons, and that the judge in lesson 22 is deliberately not yet trusted. Mention that Part 5 builds on this graded desk."
+    },
+    {
+      "layout": "analogy",
+      "title": "A restaurant ticket waits, then resumes",
+      "everyday": {
+        "name": "Restaurant ticket",
+        "text": "Follows the order between stations; a cook can pick it up later."
+      },
+      "tech": {
+        "name": "Saved state",
+        "text": "Saved after each node under a thread id; a paused run resumes."
+      },
+      "breaks": "A ticket cannot undo a charge, and neither can a checkpoint.",
+      "lessons": [
+        "19",
+        "20"
+      ],
+      "notes": "Everyone has waited for a restaurant order. The ticket moves between the grill, the fryer and the pass, and if the cook steps out, the next cook reads the ticket and carries on. That is the job of a checkpointer in LangGraph. Each step's state is written down under a thread id, and a paused run resumes from its last written step. Say where the picture stops: a ticket cannot stop a card being charged twice. Lesson 19 shows this on a refund, and the fix is an idempotency key: slide four names it, and lesson 19's refund_order shows it."
+    },
+    {
+      "layout": "concept",
+      "title": "A graph saves its state after every node",
+      "definition": "Nodes and edges over one typed state, saved after every node by a checkpointer.",
+      "parts": [
+        {
+          "term": "State",
+          "meaning": "Typed record every node reads"
+        },
+        {
+          "term": "Node",
+          "meaning": "A function doing one step"
+        },
+        {
+          "term": "Edge",
+          "meaning": "Says what runs next; can read state"
+        },
+        {
+          "term": "Checkpointer",
+          "meaning": "Saves state; interrupt() pauses"
+        }
+      ],
+      "example": "The refund waits at the approval node under thread desk-2207 until a person resumes it.",
+      "lessons": [
+        "19"
+      ],
+      "notes": "Give the exact definition first, then the four parts. The state is a typed record, here a list of turns plus the pending refund and the decision. A node is a plain function that returns only its change, which keeps each node small and testable. Edges say what runs next, and a conditional edge is the router that sends a refund to approval and a lookup to the tools node. The checkpointer is what makes the run survive a restart. In lesson 19 the thread id is desk-2207, and LangGraph resumes that same thread in a new process with Command(resume=...). Ask the room: which of these four would you have to write yourself in a plain loop?"
+    },
+    {
+      "layout": "code",
+      "title": "A side effect before interrupt() runs again on resume",
+      "code": "def charge_then_ask(state: SupportState) -> dict:\n    # charge here: a side effect, runs again on resume\n    return {\"decision\": interrupt(\"approve?\")}",
+      "lang": "python",
+      "highlight": [
+        2,
+        3
+      ],
+      "output": "charges recorded: ['charged', 'charged']",
+      "points": [
+        "The node runs again from its first line on resume",
+        "Move the charge after interrupt(), behind a key"
+      ],
+      "lessons": [
+        "19"
+      ],
+      "notes": "This is the smallest version of the trap. The slide shows a comment where the charge goes; the lesson's own line, verbatim, is `    RUNS.append(\"charged\")  # a side effect before interrupt(): it runs again on resume`. The node charges first and then calls interrupt(). The first run pauses and saves. When the approver resumes the same thread, LangGraph re-runs the node from its first line, so the charge happens twice, and the output shows two charges for one approval. The fix is to move the money movement after the pause and protect it with a key per order, as refund_order does with LEDGER in the same lesson. Lesson 19 lists this as its first common mistake; lesson 32 covers retries and idempotency. Remember the rule: the graph saves the place, and the key protects the money."
+    },
+    {
+      "layout": "before_after",
+      "title": "A saved run resumes at the last step",
+      "before": {
+        "label": "Loop: state in variables",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Refund asked",
+            "Loop pays at once",
+            "Process restarts",
+            "Chat lost: asked again"
+          ]
+        },
+        "caption": "A restart asks the model again."
+      },
+      "after": {
+        "label": "Graph: checkpointer",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Refund asked",
+            "Approval pauses",
+            "State saved by thread",
+            "Approved: pay once"
+          ]
+        },
+        "caption": "A restart resumes at the saved step."
+      },
+      "lessons": [
+        "19"
+      ],
+      "notes": "This is the before and after for lesson 19, measured with the same refund request. In the loop, the money moved before any person looked, and a crash after the payment would leave no record of where the loop had stopped. In the graph, the run pauses at approval, the pause is saved, and a process restart does not lose it. The notebook counts model calls to show the difference: the graph resumes without asking the model for the refund again. Be honest about the cost: a saver, a database file and a framework version to pin. Lesson 20 weighs that cost against the alternatives."
+    },
+    {
+      "layout": "compare",
+      "title": "Pick by the pause first, then the simplest loop",
+      "columns": [
+        {
+          "head": "Hand loop",
+          "points": [
+            "You own loop, stop rule, state",
+            "Every step visible",
+            "Few tools, no pause"
+          ]
+        },
+        {
+          "head": "Vendor SDK",
+          "points": [
+            "SDK runs loop and tools",
+            "One fixed vendor",
+            "Its defaults rule"
+          ]
+        },
+        {
+          "head": "LangGraph",
+          "points": [
+            "Saves state per node",
+            "Pauses and resumes",
+            "More to learn"
+          ]
+        }
+      ],
+      "lessons": [
+        "20"
+      ],
+      "notes": "Lesson 20 gives five questions, answered in order; the first one that settles the matter ends the choice. Question one: must the run pause for a person or survive a restart? Then LangGraph. Question two: is one vendor fixed, and do you want its loop? Then that vendor's SDK. Question three: must you change every step, such as a custom stop rule? Then a hand loop. Questions four and five are about the team and the maintenance plan, and need human judgement. In the job sample of 1,135 agent-role listings (March to May 2026), LangGraph is named in 22.6 percent and LangChain in 34.5 percent (lesson 20, At work)."
+    },
+    {
+      "layout": "analogy",
+      "title": "A USB port: any computer uses a new device",
+      "everyday": {
+        "name": "USB port",
+        "text": "The device states what it can do; any computer can use it."
+      },
+      "tech": {
+        "name": "MCP server",
+        "text": "Publishes its tools; any host with a client calls them."
+      },
+      "breaks": "USB carries signals in hardware; MCP sends JSON messages.",
+      "lessons": [
+        "21"
+      ],
+      "notes": "Everyone has plugged a device into a laptop without installing a driver for that exact device. The port and the standard do the work. MCP, the Model Context Protocol, does the same for AI apps: a server describes its tools, and any host with an MCP client can call them. In lesson 21 the server is the orders server, with lookup_order, a policy resource and a reply prompt. The analogy stops at the wire: USB moves electrical signals, while MCP sends JSON-RPC messages, a small standard format in which each request has a method name and an id. Its key point for a security review: the tool still runs where the server runs, so the server is where access rules belong."
+    },
+    {
+      "layout": "concept",
+      "title": "MCP: one standard way to use tools",
+      "definition": "The standard way for a host to use a server's tools, data and prompts.",
+      "parts": [
+        {
+          "term": "Server",
+          "meaning": "Tools, resources and prompts it publishes"
+        },
+        {
+          "term": "Client",
+          "meaning": "The host's part that speaks MCP"
+        },
+        {
+          "term": "Capabilities",
+          "meaning": "Actions, readable data, templates"
+        },
+        {
+          "term": "Transport",
+          "meaning": "stdio, or a Streamable HTTP URL"
+        }
+      ],
+      "example": "The orders server's lookup_order(order_id) is called by the support chat over HTTP.",
+      "lessons": [
+        "21"
+      ],
+      "notes": "The exact definition comes from lesson 21. The server is what you write once; the client is what every host embeds. Tools are actions with an input schema, resources are data read by URI such as the returns policy, and prompts are templates a host can fill in. The transport decides how messages travel: stdio means the client starts the server as a subprocess on the same machine; Streamable HTTP means the server runs at a URL, which is how you deploy it. Only the transport changes when the server moves from a laptop to a network. Note the version: lesson 21 uses the v2 names MCPServer and Client, and older FastMCP examples differ."
+    },
+    {
+      "layout": "before_after",
+      "title": "Four apps, four tools: 16 adapters become 8 pieces",
+      "before": {
+        "label": "Apps copy tools",
+        "diagram": {
+          "type": "mesh",
+          "left": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "right": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        "caption": "16 copies, each to keep in step."
+      },
+      "after": {
+        "label": "One MCP server per tool set",
+        "diagram": {
+          "type": "hub",
+          "left": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "right": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "hub": "MCP"
+        },
+        "caption": "4 clients + 4 servers = 8 pieces."
+      },
+      "lessons": [
+        "21"
+      ],
+      "notes": "Count the work the way lesson 21 does. Without a protocol, each app copies each tool in its own schema format: four apps and four tools need sixteen adapters, and a renamed argument breaks the copy nobody updated. With MCP, each app has one client and each capability is written once as a server: eight pieces. The hub is the shape that matters, not the exact count. For scale, lesson 21 cites Uber's MCP gateway: more than 800 servers and 5,000 tools, new tools start disabled, and each has an access policy (lesson 21, At work). For one app with one tool, a plain function is enough."
+    },
+    {
+      "layout": "code",
+      "title": "The client lists the tools the server publishes",
+      "code": "@mcp.tool()\ndef lookup_order(order_id: str) -> dict:\n    # the docstring becomes the tool's description\n    return ORDERS[order_id]\n\nasync with Client(STDIO) as client:\n    tools = (await client.list_tools()).tools",
+      "lang": "python",
+      "highlight": [
+        2,
+        7
+      ],
+      "output": "lookup_order | needs: ['order_id'] | Look up one customer order: its status, days late and total. Use it when the customer gives an order number.",
+      "points": [
+        "The schema comes from the server's function",
+        "The client wrote none of this description"
+      ],
+      "lessons": [
+        "21"
+      ],
+      "notes": "The decorator publishes the function. Its type hints become the input schema, and its docstring becomes the description the client sees. The client starts the server as a subprocess over stdio, asks for tools/list, and prints each tool's name and required arguments. The printed line shows order_id is required, and the description came from the docstring, not from the client. The slide shows the docstring in short form; the printed line shows the lesson's longer docstring, which is why the output runs longer than the code line. The same session then calls the tool, reads the policy resource and fetches the prompt. Point out the mistakes lesson 21 teaches: a wrong argument name returns is_error set rather than raising, so check is_error before you parse the text, and every Client method is a coroutine, so forgetting await returns a coroutine object rather than a result."
+    },
+    {
+      "layout": "analogy",
+      "title": "A car service: fault codes, then a judged repair",
+      "everyday": {
+        "name": "A car service",
+        "text": "The mechanic reads fault codes, then a second inspector grades the repair."
+      },
+      "tech": {
+        "name": "Error analysis, LLM judge",
+        "text": "Name the failing part; a judge grades wording against a rubric."
+      },
+      "breaks": "A rig measures brakes exactly; a judge only reads words.",
+      "lessons": [
+        "22"
+      ],
+      "notes": "A good garage does not just say the car is fine. It reads the fault codes, runs a test rig on each system, and has a second inspector grade the repair against a checklist. That inspector is trusted only after agreeing with the chief inspector on a few cars: that is calibration, the central idea of lesson 22. Error analysis sorts each failing run into a component: arguments, routing, outcome or reply. The judge is a second model call that grades a reply against a rubric. The break matters: a rig measures brakes exactly, while a judge reads words, and lesson 22 shows a judge passing a reply that invents '5 working days'."
+    },
+    {
+      "layout": "concept",
+      "title": "Grade the path, the world, then the reply",
+      "definition": "A judge is a second model call that grades output against a written rubric.",
+      "parts": [
+        {
+          "term": "Trajectory",
+          "meaning": "Which tools ran or did not"
+        },
+        {
+          "term": "Outcome",
+          "meaning": "The world matches the end state"
+        },
+        {
+          "term": "LLM judge",
+          "meaning": "Grades wording against a rubric"
+        },
+        {
+          "term": "Calibration",
+          "meaning": "Agreement with humans, as kappa"
+        }
+      ],
+      "example": "t04 opened a ticket on a lookup request: routing failed, though the judge passed the reply.",
+      "lessons": [
+        "22"
+      ],
+      "notes": "Start from the definition: a judge is a second model call with a rubric, and calibration tells you how far to trust it. The three code checks come before the judge: trajectory checks the path, outcome checks the world, and the judge is kept for wording. Lesson 22's numbers show why. On twelve human labels the judge agreed with people on 58 percent of replies, with a Cohen's kappa of 0.21. After one label was corrected, kappa was 0.35, still below the 0.6 rule of thumb, so the judge gates nothing yet. The example on the slide is a path failure the judge could not see; lesson 22 calls the invented '5 working days' the costliest miss."
+    },
+    {
+      "layout": "code",
+      "title": "A grader that ships only when every check passes",
+      "code": "def ship(checks: dict) -> str:\n    failed = [name for name, ok in checks.items() if not ok]\n    # \"ship\", or \"hold: \" plus the failed names\n    ...\n# checks: named booleans read from the run, e.g. paid once\nprint(ship({\"policy searched\": True, \"paid once\": False}))",
+      "lang": "python",
+      "highlight": [
+        4,
+        6
+      ],
+      "output": "hold: paid once",
+      "points": [
+        "Checks are named booleans, read from the run",
+        "A failed check holds the run and names it"
+      ],
+      "lessons": [
+        "23"
+      ],
+      "notes": "The checkpoint lesson ends with a small function. The slide shows the function with its return line elided (`...`), because the lesson's return line, verbatim, is `    return \"ship\" if not failed else \"hold: \" + \", \".join(failed)`, 65 characters, wider than a slide line can be. The slide's call passes checks that include paid once as false, so the function holds the run and names the failed check; the output line is the lesson's real output for that call. The lesson's first print, which says ship for a run where every check passes, is left off the slide: its checks are defined in an earlier cell of the notebook, not on this slide. Each check is a named boolean read from the run's tool log, ledger and answer: the policy was searched, the refund was 210.00 USD for order 1007, it was paid once, it was approved only by senior-lead, every cited passage was shown by the search, and no forbidden tool ran. Because the grader is code, it runs on every change with no model call. Ship or hold, with the failed names, is the decision a release gate needs. The limit the lesson states: the citation check proves the id was shown, not that the passage backs the sentence. That needs a judge, which is not yet calibrated."
+    },
+    {
+      "layout": "steps",
+      "title": "One refund desk, built one check at a time",
+      "steps": [
+        {
+          "head": "19 Graph",
+          "text": "State saved per node"
+        },
+        {
+          "head": "20 Choose",
+          "text": "Five questions, pause first"
+        },
+        {
+          "head": "21 Tools",
+          "text": "One MCP server, two transports"
+        },
+        {
+          "head": "22 Judge",
+          "text": "Name the part; calibrate judge"
+        },
+        {
+          "head": "23 Desk",
+          "text": "Approval, one payment, grader"
+        }
+      ],
+      "lessons": [
+        "19",
+        "20",
+        "21",
+        "22",
+        "23"
+      ],
+      "notes": "This is the build path for Part 4, from the smallest version to the full desk. Start with the graph, because a pause and a restart are what a loop cannot do. Choose the framework with the five questions, not the trend. Put tools behind one MCP server so every app shares one definition. Grade runs by components and end states, and calibrate the judge before it gates anything. Lesson 23 joins the pieces: the agent asks the model, the tools node runs lookups, and the approval node pauses for a senior before any refund is paid. The chat makes four model calls, under a cap of five."
+    },
+    {
+      "layout": "questions",
+      "title": "Questions to ask about your agent design",
+      "questions": [
+        "Which side effects run before your pause?",
+        "Do your apps share one tool server?",
+        "Do you grade end states, not only wording?",
+        "Is your judge calibrated, with kappa reported?",
+        "When would a plain loop beat a graph?"
+      ],
+      "lessons": [
+        "19",
+        "20",
+        "21",
+        "22",
+        "23"
+      ],
+      "notes": "Close with questions the learner can take into a code review or an interview. The first is the one that prevents the double charge in slide four. The second is the case for MCP: one definition, many hosts. The third and fourth ask how the run is graded and whether the judge is trusted, and the honest answer in lesson 22 is that the judge was not yet calibrated. The fifth keeps the framework choice honest: a hand loop is the right answer when no pause, restart or shared tool is needed. Suggest that learners answer each question in one sentence and link it to a lesson in this Part before moving on to Part 5."
+    }
+  ]
+}

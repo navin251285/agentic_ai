@@ -1,0 +1,35 @@
+{
+  "server": true,
+  "worker_a_ready": true,
+  "money_moved_before_kill": true,
+  "result": {
+    "charge": "charge #1",
+    "receipt": "receipt sent"
+  },
+  "calls": [
+    [
+      1,
+      "charged"
+    ],
+    [
+      2,
+      "saved answer"
+    ]
+  ],
+  "charges": [
+    [
+      "charge #1"
+    ]
+  ],
+  "receipts": 1,
+  "events": [
+    "WORKFLOW_EXECUTION_STARTED",
+    "ACTIVITY_TASK_SCHEDULED",
+    "ACTIVITY_TASK_STARTED",
+    "ACTIVITY_TASK_COMPLETED",
+    "ACTIVITY_TASK_SCHEDULED",
+    "ACTIVITY_TASK_STARTED",
+    "ACTIVITY_TASK_COMPLETED",
+    "WORKFLOW_EXECUTION_COMPLETED"
+  ]
+}

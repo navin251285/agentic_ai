@@ -1,0 +1,168 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where is order 1093? It should have
+      arrived three days ago."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "Label the customer message with exactly one of: order_status, refund,
+      other. Reply with the label only."}], "role": "user"}, "generationConfig": {"temperature":
+      0.0}}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Timeout:
+      - '30'
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: post
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"order_status\",\n
+        \           \"thoughtSignature\": \"AY89a19xkWdNC8N+q424ZWjIKcJSwM2EWdQfVMwk5I2O7TP+BhSDmIlj5DkPx8lmUnBXMHIo5tpFd8uCWMFaj5hQadrsCd3E/Zj/mypIBRAkLEj8Tt9yggiWE80=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 40,\n    \"candidatesTokenCount\":
+        3,\n    \"totalTokenCount\": 43,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 40\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 3\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-20T08:59:30.911477Z\",\n
+        \ \"responseId\": \"ci3XavXQN9-ar8kPg5aO8A0\"\n}\n"
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 20 Oct 2026 08:59:31 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      - X-Origin
+      - Referer
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+      content-length:
+      - '857'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where is order 1093? It should have
+      arrived three days ago."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "Copy the order number the customer wrote, digits only. Use null if
+      there is none."}], "role": "user"}, "generationConfig": {"temperature": 0.0,
+      "responseMimeType": "application/json", "responseJsonSchema": {"properties":
+      {"order_id": {"anyOf": [{"type": "string"}, {"type": "null"}], "title": "Order
+      Id"}}, "required": ["order_id"], "title": "Extract", "type": "object"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Timeout:
+      - '30'
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: post
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"order_id\\\": \\\"1093\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1+q+g4zrtbUpJytrhgGy0hO5Lg5OlYYLhkj4+htFud8TViUr5qkzVStrvLIL+HfHU5vzlW/J9QD6046On2MSkaVfZ/51SuWGZg7hNwUHhSiWd/eVW2ZS9Y=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 114,\n    \"candidatesTokenCount\":
+        16,\n    \"totalTokenCount\": 130,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 114\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 16\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T08:59:30.907122Z\",\n  \"responseId\": \"ci3XavKuN9WKr8kP56GE6AY\"\n}\n"
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 20 Oct 2026 08:59:31 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      - X-Origin
+      - Referer
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+      content-length:
+      - '880'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order facts: {''status'': ''in transit'',
+      ''days_late'': 3}\nCustomer message: Where is order 1093? It should have arrived
+      three days ago.\nWrite a two-sentence reply to the customer. Use only these
+      facts."}], "role": "user"}], "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      200}}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Timeout:
+      - '30'
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: post
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Your
+        order 1093 is currently in transit. It is three days late.\",\n            \"thoughtSignature\":
+        \"AY89a19IncVJVKXpaHZZ0jwqcUqR79Y4RX/eNSxgF4Tu434Hvw9uRFw3berA+ngs9aU7B2eR5VnFnFULayTFodOlfbF57ArBhENVrGNo2NF9FmPYrfbVSMAAVmU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 55,\n    \"candidatesTokenCount\":
+        18,\n    \"totalTokenCount\": 73,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 55\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 18\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-20T08:59:31.932613Z\",\n
+        \ \"responseId\": \"cy3XaoX2OK7i-O4P6bjO6AE\"\n}\n"
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 20 Oct 2026 08:59:32 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      - X-Origin
+      - Referer
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+      content-length:
+      - '910'
+    status:
+      code: 200
+      message: OK
+version: 1

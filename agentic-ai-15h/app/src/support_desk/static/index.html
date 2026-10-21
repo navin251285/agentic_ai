@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brightside support desk</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7f9; color: #1d2330; }
+    main { max-width: 760px; margin: 0 auto; padding: 24px; }
+    h1 { font-size: 1.4rem; margin: 0 0 4px; }
+    h2 { font-size: 1.1rem; margin: 32px 0 4px; }
+    .hint { color: #5b6270; margin: 0 0 16px; font-size: 0.95rem; }
+    .log { background: #fff; border: 1px solid #d9dde5; border-radius: 8px; padding: 12px; min-height: 160px; }
+    .msg { margin: 8px 0; padding: 8px 10px; border-radius: 6px; white-space: pre-wrap; }
+    .you { background: #e8f0fe; }
+    .bot { background: #f1f3f4; }
+    .calls { font-family: ui-monospace, monospace; font-size: 0.85rem; color: #3c4658; white-space: pre-wrap; }
+    .meta { font-size: 0.8rem; color: #5b6270; }
+    form { display: flex; gap: 8px; margin-top: 12px; }
+    input[type=text], textarea, select { padding: 10px; border: 1px solid #b8c0cc; border-radius: 6px; font-size: 1rem; }
+    input[type=text], textarea { flex: 1; }
+    textarea { width: 100%; box-sizing: border-box; min-height: 64px; font-family: inherit; }
+    button { padding: 10px 16px; border: 0; border-radius: 6px; background: #1a57db; color: #fff; font-size: 1rem; cursor: pointer; }
+    button.refuse { background: #9c2b2b; }
+    button:disabled { background: #9aa6bd; cursor: default; }
+    .row { display: flex; gap: 8px; align-items: center; margin: 8px 0; flex-wrap: wrap; }
+    .approval { background: #fff8e1; border: 1px solid #e6c65c; border-radius: 8px; padding: 12px; margin-top: 12px; }
+    .approval[hidden] { display: none; }
+    table { width: 100%; border-collapse: collapse; background: #fff; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #e3e6ec; }
+    tbody tr { cursor: pointer; }
+    tbody tr:hover { background: #f1f5ff; }
+    button.quiet { background: #5b6270; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Brightside support desk</h1>
+  <p class="hint">Two tools on one page. The order lookup answers from a tool; the refund desk cites the policy,
+    remembers the customer and waits for a person before a refund is paid.</p>
+
+  <h2>Order lookup</h2>
+  <p class="hint">Ask about an order, such as "Where is my parcel for order 1002?". The agent looks it up with a tool and shows each tool call under its answer.</p>
+  <div id="log" class="log" aria-live="polite"></div>
+  <form id="ask">
+    <input id="message" type="text" maxlength="500" placeholder="Ask about an order" required>
+    <button id="send" type="submit">Send</button>
+  </form>
+
+  <h2>Refund desk</h2>
+  <p class="hint">Customer C-88 has a lost parcel. Ask for the refund: the desk searches the policy, asks for the
+    approval, and pays only after a person decides. Facts you save here are read at the start of each question.</p>
+  <div class="row">
+    <label for="customer">Customer</label>
+    <input id="customer" type="text" maxlength="40" value="C-88" style="max-width: 140px;">
+  </div>
+  <form id="remember">
+    <input id="topic" type="text" maxlength="40" value="contact" style="max-width: 120px;" aria-label="Topic">
+    <input id="fact" type="text" maxlength="300" placeholder="A fact, such as Prefers replies by email">
+    <button type="submit">Remember</button>
+  </form>
+  <p id="remembered" class="meta"></p>
+  <form id="desk-ask" style="display: block;">
+    <textarea id="desk-message" maxlength="500" required>I want a refund for order 1007, it never arrived. Please refund the 210.00 USD I paid. What does your policy say about a lost parcel?</textarea>
+    <div class="row"><button id="desk-send" type="submit">Ask the desk</button></div>
+  </form>
+  <div id="desk-log" class="log" aria-live="polite"></div>
+  <div id="approval" class="approval" hidden>
+    <p id="approval-text"></p>
+    <div class="row">
+      <label for="reviewer">Decided by</label>
+      <select id="reviewer">
+        <option value="agent-desk-1">agent-desk-1 (a desk reviewer)</option>
+        <option value="senior-lead">senior-lead</option>
+      </select>
+      <button id="approve" type="button">Approve</button>
+      <button id="refuse" type="button" class="refuse">Refuse</button>
+    </div>
+  </div>
+
+  <h2>Traces and cost</h2>
+  <p class="hint">Each question and each decision leaves a trace: one call of the desk, its model calls with their
+    tokens, and its tool calls with what the desk decided. Click a ticket to see its tree. The trace holds ids and
+    counts, never the customer's words.</p>
+  <div class="row">
+    <button id="traces-refresh" type="button" class="quiet">Refresh</button>
+    <span id="traces-summary" class="meta"></span>
+  </div>
+  <table aria-label="Tickets">
+    <thead><tr><th>Ticket</th><th>Outcome</th><th>Model calls</th><th>Tool calls</th><th>Refused</th><th>Cost</th><th>Time</th></tr></thead>
+    <tbody id="traces-rows"></tbody>
+  </table>
+  <p id="traces-empty" class="meta">No traces yet: ask the desk a question and they appear here.</p>
+  <pre id="trace-tree" class="log calls" hidden></pre>
+</main>
+<script>
+  // ---- order lookup (step 1) ----
+  const log = document.getElementById("log");
+  const form = document.getElementById("ask");
+  const input = document.getElementById("message");
+  const send = document.getElementById("send");
+
+  function add(target, cls, text) {
+    const div = document.createElement("div");
+    div.className = "msg " + cls;
+    div.textContent = text;
+    target.appendChild(div);
+    return div;
+  }
+
+  function showReply(data) {
+    add(log, "bot", data.answer || "(no answer: the agent stopped at " + data.stop + ")");
+    if (data.calls.length) {
+      add(log, "calls", data.calls.map(c => c.name + "(" + JSON.stringify(c.args) + ") -> " + JSON.stringify(c.result)).join("\n"));
+    }
+    add(log, "meta", "stop: " + data.stop + " · model calls: " + data.steps + " · cost: $" + data.cost_usd.toFixed(6));
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const message = input.value.trim();
+    if (!message) return;
+    add(log, "you", message);
+    input.value = "";
+    send.disabled = true;
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        add(log, "bot", "Sorry, the agent is unavailable: " + (data.detail || response.statusText));
+      } else {
+        showReply(data);
+      }
+    } catch (err) {
+      add(log, "bot", "Could not reach the server: " + err.message);
+    } finally {
+      send.disabled = false;
+      input.focus();
+    }
+  });
+
+  // ---- refund desk (step 2) ----
+  const deskLog = document.getElementById("desk-log");
+  const deskForm = document.getElementById("desk-ask");
+  const deskMessage = document.getElementById("desk-message");
+  const deskSend = document.getElementById("desk-send");
+  const customer = document.getElementById("customer");
+  const approval = document.getElementById("approval");
+  const approvalText = document.getElementById("approval-text");
+  const reviewer = document.getElementById("reviewer");
+  let thread = null;  // the saved run of the question on the page; a new question starts a new run
+
+  function errorText(data, status) {
+    if (typeof data.detail === "string") return data.detail;
+    return "the request is not valid (" + status + ")";
+  }
+
+  function showDesk(data) {
+    approval.hidden = true;
+    if (data.status === "waiting for approval") {
+      const p = data.pending;
+      add(deskLog, "bot", "Paused. The refund waits for a decision: nothing is paid yet.");
+      approvalText.textContent = "Refund " + p.refund.amount_usd.toFixed(2) + " USD for order " + p.refund.order_id
+        + ". Needs: " + p.needs + ".";
+      approval.hidden = false;
+    } else {
+      add(deskLog, "bot", data.answer || "(no answer: the desk stopped at " + data.stop + ")");
+    }
+    if (data.calls.length) {
+      add(deskLog, "calls", data.calls.map(c => c.name + "(" + JSON.stringify(c.args) + ") -> " + JSON.stringify(c.result)).join("\n"));
+    }
+    if (data.cites.ids.length) {
+      const ids = data.cites.ids.map(i => "policy-" + i).join(", ");
+      add(deskLog, "meta", "citations: " + ids + (data.cites.all_shown ? " · each one was shown by the policy search" : " · not every citation was shown by the search"));
+    }
+    add(deskLog, "meta", "status: " + data.status + " · stop: " + (data.stop || "-") + " · model calls: " + data.model_calls
+      + " · cost: $" + data.cost_usd.toFixed(6) + " · run: " + data.thread_id);
+    loadTraces();
+  }
+
+  async function post(url, body) {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    return { ok: response.ok, status: response.status, data: await response.json() };
+  }
+
+  deskForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const message = deskMessage.value.trim();
+    if (!message) return;
+    thread = "run-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+    add(deskLog, "you", message);
+    deskSend.disabled = true;
+    try {
+      const result = await post("/api/desk/chat", { customer_id: customer.value.trim(), thread_id: thread, message });
+      if (!result.ok) add(deskLog, "bot", "Sorry, the desk is unavailable: " + errorText(result.data, result.status));
+      else showDesk(result.data);
+    } catch (err) {
+      add(deskLog, "bot", "Could not reach the server: " + err.message);
+    } finally {
+      deskSend.disabled = false;
+    }
+  });
+
+  async function decide(approve) {
+    if (!thread) return;
+    approval.hidden = true;
+    add(deskLog, "you", (approve ? "Approve" : "Refuse") + " (" + reviewer.value + ")");
+    try {
+      const result = await post("/api/desk/decision", { thread_id: thread, reviewer: reviewer.value, approve });
+      if (!result.ok) add(deskLog, "bot", "Sorry, the decision was not recorded: " + errorText(result.data, result.status));
+      else showDesk(result.data);
+    } catch (err) {
+      add(deskLog, "bot", "Could not reach the server: " + err.message);
+    }
+  }
+  document.getElementById("approve").addEventListener("click", () => decide(true));
+  document.getElementById("refuse").addEventListener("click", () => decide(false));
+
+  // ---- traces and cost (step 3) ----
+  const tracesRows = document.getElementById("traces-rows");
+  const tracesSummary = document.getElementById("traces-summary");
+  const tracesEmpty = document.getElementById("traces-empty");
+  const traceTree = document.getElementById("trace-tree");
+
+  function money(value) {
+    return value === null ? "-" : "$" + value.toFixed(6);
+  }
+
+  function summaryText(s) {
+    if (s.tickets === 0) return "";
+    const rate = s.answered_rate === null ? "no finished ticket yet" : Math.round(s.answered_rate * 100) + "% answered";
+    const slo = s.slo_breached === null ? "" : (s.slo_breached ? " · below the " + Math.round(s.slo_answered * 100) + "% target" : " · within the target");
+    return s.tickets + " tickets · " + rate + " · cost per ticket " + money(s.cost_per_ticket_usd)
+      + " · p95 time " + (s.p95_latency_ms === null ? "-" : s.p95_latency_ms.toFixed(0) + " ms") + slo;
+  }
+
+  async function loadTraces() {
+    const response = await fetch("/api/traces");
+    if (!response.ok) return;
+    const data = await response.json();
+    tracesRows.replaceChildren();
+    for (const row of data.tasks) {
+      const tr = document.createElement("tr");
+      const cells = [row.task, row.outcome, row.model_calls, row.tool_calls, row.refused, money(row.cost_usd),
+                     row.latency_ms.toFixed(0) + " ms"];
+      for (const value of cells) {
+        const td = document.createElement("td");
+        td.textContent = String(value);
+        tr.appendChild(td);
+      }
+      tr.addEventListener("click", () => loadTrace(row.task));
+      tracesRows.appendChild(tr);
+    }
+    tracesEmpty.hidden = data.tasks.length > 0;
+    tracesSummary.textContent = summaryText(data.summary);
+  }
+
+  async function loadTrace(task) {
+    const response = await fetch("/api/traces/" + encodeURIComponent(task));
+    const data = await response.json();
+    if (!response.ok) {
+      traceTree.textContent = "No trace for " + task + ".";
+    } else {
+      traceTree.textContent = "Trace of " + task + "\n" + data.spans.map(s => {
+        const a = s.attributes;
+        const extra = [];
+        if (a["gen_ai.usage.input_tokens"] !== undefined) extra.push("tokens in " + a["gen_ai.usage.input_tokens"] + " out " + a["gen_ai.usage.output_tokens"]);
+        if (a["support.decision"]) extra.push("decision " + a["support.decision"]);
+        if (a["support.outcome"]) extra.push("outcome " + a["support.outcome"]);
+        if (a["support.reason"]) extra.push(a["support.reason"]);
+        return "  ".repeat(s.depth) + s.name + " · " + s.status + " · " + s.ms.toFixed(0) + " ms"
+          + (extra.length ? " · " + extra.join(" · ") : "");
+      }).join("\n");
+    }
+    traceTree.hidden = false;
+  }
+
+  document.getElementById("traces-refresh").addEventListener("click", loadTraces);
+  loadTraces();
+
+  document.getElementById("remember").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const fact = document.getElementById("fact").value.trim();
+    if (!fact) return;
+    const result = await post("/api/desk/memory", { customer_id: customer.value.trim(), topic: document.getElementById("topic").value.trim(), fact });
+    const out = document.getElementById("remembered");
+    out.textContent = result.ok ? "Memory: " + result.data.result : "Memory: " + errorText(result.data, result.status);
+    if (result.ok && result.data.result === "saved") document.getElementById("fact").value = "";
+  });
+</script>
+</body>
+</html>

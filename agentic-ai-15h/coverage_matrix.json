@@ -1,0 +1,1119 @@
+{
+ "updated": "2026-10-20",
+ "sources": [
+  {
+   "id": "docs",
+   "kind": "docs",
+   "what": "Official docs: Anthropic, OpenAI, Gemini API; LangGraph; MCP spec (docs maps in sibling RESEARCH.md, opened 2026-10-15/16)",
+   "url": "see agentic-ai-1-foundations-v2/RESEARCH.md sec 2"
+  },
+  {
+   "id": "gOAI",
+   "kind": "docs",
+   "what": "OpenAI 'A practical guide to building agents' (sections: what is an agent, when to build, design foundations, orchestration, guardrails)",
+   "url": "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-agents/"
+  },
+  {
+   "id": "eBEA",
+   "kind": "docs",
+   "what": "Anthropic 'Building effective agents' (workflows vs agents, five patterns)",
+   "url": "https://www.anthropic.com/engineering/building-effective-agents"
+  },
+  {
+   "id": "tut",
+   "kind": "docs",
+   "what": "Official quickstarts: Anthropic 'Build a tool-using agent', Gemini quickstart (opened 2026-10-15 in sibling research)",
+   "url": "see agentic-ai-1-foundations-v2/RESEARCH.md 5b"
+  },
+  {
+   "id": "cDL",
+   "kind": "course",
+   "what": "DeepLearning.AI Agentic AI (Andrew Ng, Coursera), 5 modules, item list from docs/BENCHMARKS.md (opened 2026-10-18)",
+   "url": "https://www.coursera.org/learn/dlai-agentic-ai",
+   "practitioner": true,
+   "standing": "Andrew Ng / DeepLearning.AI course on Coursera; rating and learner count not re-verified this run"
+  },
+  {
+   "id": "cMS",
+   "kind": "course",
+   "what": "Microsoft AI Agents for Beginners, 18 lessons on the GitHub README (opened 2026-10-20; the 2026-10-18 devblog said 10 lessons, the course has grown)",
+   "url": "https://github.com/microsoft/ai-agents-for-beginners",
+   "practitioner": true,
+   "standing": "official Microsoft open-source course, 77.5k GitHub stars (2026-10-20), 18 lessons"
+  },
+  {
+   "id": "cHF",
+   "kind": "course",
+   "what": "Hugging Face Agents Course, units 1-4 + bonuses (official Hugging Face; opened 2026-10-18)",
+   "url": "https://huggingface.co/learn/agents-course/unit0/introduction",
+   "practitioner": true,
+   "standing": "official Hugging Face course, free, large community"
+  },
+  {
+   "id": "cAnth",
+   "kind": "course",
+   "what": "anthropics/courses: API fundamentals, prompt engineering, tool use, prompt evaluations (opened 2026-10-15)",
+   "url": "https://github.com/anthropics/courses",
+   "practitioner": true,
+   "standing": "official Anthropic course repo"
+  },
+  {
+   "id": "bAIE",
+   "kind": "book",
+   "what": "Chip Huyen, AI Engineering (O'Reilly 2025): evaluation, RAG and agents, inference optimisation, monitoring",
+   "url": "https://www.oreilly.com/library/view/ai-engineering/9781098166298/",
+   "practitioner": true,
+   "standing": "best-selling practitioner book (O'Reilly, 2025)"
+  },
+  {
+   "id": "cAIP",
+   "kind": "certification",
+   "what": "AWS Certified Generative AI Developer - Professional (AIP-C01) exam guide, opened 2026-10-20: 5 domains (31/26/20/12/11%), 65 scored questions, pass 750/1000; 'implement agentic AI solutions' is a listed task",
+   "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-professional-01/ai-professional-01.md",
+   "practitioner": true,
+   "standing": "official AWS professional certification"
+  },
+  {
+   "id": "jP",
+   "kind": "jobs",
+   "what": "446 AI/LLM/agent engineer postings, 48 companies, board APIs 2026-10-16 (research_cache sec 1)",
+   "url": "topics/agentic-ai-6-production-v2/RESEARCH.cache-ai-engineering.md"
+  },
+  {
+   "id": "jG2",
+   "kind": "jobs",
+   "what": "243 agent-engineering postings, 24 boards, 2026-10-15",
+   "url": "topics/agentic-ai-2-patterns-memory-rag-v2/RESEARCH.md 5b"
+  },
+  {
+   "id": "jAgg",
+   "kind": "jobs",
+   "what": "agentic-engineering-jobs.com, 1,135 listings Mar-May 2026 (page returned HTTP 500 on 2026-10-20; figures carried)",
+   "url": "https://agentic-engineering-jobs.com"
+  },
+  {
+   "id": "iAV",
+   "kind": "interviews",
+   "what": "Analytics Vidhya, 30 Agentic AI interview questions (2026-02; re-opened 2026-10-20)",
+   "url": "https://www.analyticsvidhya.com/blog/2026/02/agentic-ai-interview-questions-and-answers/"
+  },
+  {
+   "id": "iCl",
+   "kind": "interviews",
+   "what": "ClavePrep, Agentic AI Interview Questions 2026 (2026-07-03; opened 2026-10-20)",
+   "url": "https://claveprep.com/blog/agentic-ai-interview-questions-2026"
+  },
+  {
+   "id": "iCa",
+   "kind": "interviews",
+   "what": "careery.pro AI Engineer Interview Questions 2026 (opened 2026-10-16)",
+   "url": "https://careery.pro/blog/ai-careers/ai-engineer-interview-questions"
+  },
+  {
+   "id": "iTI",
+   "kind": "interviews",
+   "what": "techinterview.org Anthropic / OpenAI loop pages and applied-AI page (updated 2026-07)",
+   "url": "https://www.techinterview.org/post/3233474914/anthropic-interview-process-ai-collaborative-2026/"
+  },
+  {
+   "id": "qSO",
+   "kind": "questions",
+   "what": "Stack Overflow tag counts and GitHub issues (sibling research 2026-10-15)",
+   "url": "see agentic-ai-1-foundations-v2/RESEARCH.md 5b"
+  },
+  {
+   "id": "dLG",
+   "kind": "docs",
+   "what": "LangChain/LangGraph Python docs (opened 2026-10-20 via docs.langchain.com llms index): langchain quickstart, agents, streaming, short-term/long-term memory, middleware, human-in-the-loop, multi-agent (subagents, handoffs, router), test/evals; langgraph quickstart, persistence, checkpointers, stores, fault tolerance, interrupts, time-travel, subgraphs, graph vs functional API",
+   "url": "https://docs.langchain.com/oss/python/langgraph/quickstart.md"
+  },
+  {
+   "id": "dOAS",
+   "kind": "docs",
+   "what": "OpenAI Agents SDK docs (opened 2026-10-20): agents, tools, handoffs, guardrails, running agents, streaming, sessions, human-in-the-loop, MCP, tracing, testing, sandbox agents",
+   "url": "https://openai.github.io/openai-agents-python/"
+  },
+  {
+   "id": "dCAS",
+   "kind": "docs",
+   "what": "Claude Agent SDK overview (opened 2026-10-20): built-in tools, hooks, subagents, MCP, permissions, sessions, skills, plugins",
+   "url": "https://code.claude.com/docs/en/agent-sdk/overview"
+  },
+  {
+   "id": "dADK",
+   "kind": "docs",
+   "what": "Google Agent Development Kit docs (adk.dev, opened 2026-10-20): ADK 2.0; agents, workflow agents, tools, MCP, sessions, memory, callbacks, evaluation, deployment, A2A",
+   "url": "https://adk.dev/"
+  },
+  {
+   "id": "eCR",
+   "kind": "docs",
+   "what": "Anthropic 'Contextual Retrieval' (2024-09-19, opened 2026-10-20): BM25 + embeddings + rank fusion + rerank; failure rate 5.7% to 1.9%",
+   "url": "https://www.anthropic.com/engineering/contextual-retrieval"
+  },
+  {
+   "id": "dGE",
+   "kind": "docs",
+   "what": "Gemini API embeddings docs (opened 2026-10-20): gemini-embedding-2 (multimodal, 8,192 tokens), gemini-embedding-001; 128-3072 dims",
+   "url": "https://ai.google.dev/gemini-api/docs/embeddings"
+  }
+ ],
+ "benchmarks": [
+  "cDL",
+  "cMS",
+  "cHF",
+  "cAnth",
+  "bAIE",
+  "cAIP",
+  "gOAI"
+ ],
+ "benchmark_items": {
+  "cDL": [
+   "M1 What is agentic AI/degrees of autonomy/benefits/applications",
+   "M1 Task decomposition",
+   "M1 Evaluating agentic AI",
+   "M1 Agentic design patterns",
+   "M2 Reflection (why, chart generation, evaluating impact, external feedback)",
+   "M3 What are tools / creating a tool / tool syntax",
+   "M3 Code execution",
+   "M3 MCP",
+   "M4 Evaluations, error analysis, component-level evals, addressing problems, development process",
+   "M4 Latency and cost optimisation",
+   "M5 Planning workflows, creating/executing plans, planning with code execution",
+   "M5 Multi-agentic workflows",
+   "M5 Communication patterns for multi-agent"
+  ],
+  "cMS": [
+   "01 Intro to agents and use cases",
+   "02 Exploring agentic frameworks",
+   "03 Agentic design patterns",
+   "04 Tool use pattern",
+   "05 Agentic RAG",
+   "06 Building trustworthy agents",
+   "07 Planning pattern",
+   "08 Multi-agent pattern",
+   "09 Metacognition pattern",
+   "10 Agents in production",
+   "11 Agentic protocols (MCP, A2A, NLWeb)",
+   "12 Context engineering",
+   "13 Managing agentic memory",
+   "14 Microsoft Agent Framework",
+   "15 Computer use agents (CUA)",
+   "16 Deploying scalable agents",
+   "17 Creating local AI agents",
+   "18 Securing AI agents"
+  ],
+  "cHF": [
+   "U1 tools",
+   "U1 thoughts-actions-observations",
+   "U1 LLMs, messages, special tokens, chat templates",
+   "U1 Python functions as tools",
+   "U2 smolagents",
+   "U2 LlamaIndex",
+   "U2 LangGraph",
+   "U3 Agentic RAG use case",
+   "U4 final project on a benchmark",
+   "Bonus observability and evaluation",
+   "Bonus function-calling fine-tune (go deeper)",
+   "Bonus agents in games (go deeper)"
+  ],
+  "cAIP": [
+   "D1 FM integration, data management, compliance 31%",
+   "D2 Implementation and integration (agentic solutions, orchestration) 26%",
+   "D3 Safety, security, governance 20%",
+   "D4 Operational efficiency and optimisation 12%",
+   "D5 Testing, validation, troubleshooting 11%"
+  ]
+ },
+ "gaps": [
+  "Ratings/learner counts for Coursera and HF courses not re-fetched; 'standing' text is qualitative.",
+  "AWS AIP-C01 task statements per domain not opened (only the outline page); domain pages are linked from the exam guide.",
+  "No GCC round-by-round source found; no first-hand Anthropic/OpenAI official interview guides."
+ ],
+ "concepts": [
+  {
+   "concept": "AREA What an agent is: LLM basics for builders (tokens, context window, roles, sampling, structured output, API errors and cost)",
+   "sources": [
+    "docs",
+    "gOAI",
+    "cDL",
+    "cMS",
+    "cHF",
+    "cAnth",
+    "bAIE",
+    "iAV",
+    "iCl",
+    "qSO",
+    "jP"
+   ],
+   "must": true,
+   "interview": true,
+   "area": true,
+   "posting_share": 54.7,
+   "module": "anthropic / openai / google-genai",
+   "adoption": "official SDKs; Python named in 54.7% of postings (jP), OpenAI named 33.9%, Claude 21.3%"
+  },
+  {
+   "concept": "AREA Tool calling and the agent loop (function schemas, tool round trip, stop conditions, tool errors)",
+   "sources": [
+    "docs",
+    "gOAI",
+    "eBEA",
+    "tut",
+    "cDL",
+    "cMS",
+    "cHF",
+    "cAnth",
+    "iAV",
+    "iCl",
+    "iTI",
+    "jG2",
+    "jP"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true,
+   "area": true,
+   "posting_share": 23,
+   "module": "official SDK tool APIs; pydantic",
+   "adoption": "pydantic is the schema layer of OpenAI/Anthropic/Gemini SDK helpers"
+  },
+  {
+   "concept": "AREA Agentic design patterns and workflows (chaining, routing, parallel, orchestrator-workers, evaluator-optimizer, ReAct, plan-and-execute, reflection)",
+   "sources": [
+    "gOAI",
+    "eBEA",
+    "cDL",
+    "cMS",
+    "bAIE",
+    "iAV",
+    "iCl",
+    "jG2"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true,
+   "area": true,
+   "posting_share": 32
+  },
+  {
+   "concept": "AREA Context engineering and memory (short-term, long-term, compaction, caching)",
+   "sources": [
+    "docs",
+    "cDL",
+    "bAIE",
+    "iAV",
+    "iCl",
+    "jG2",
+    "jP"
+   ],
+   "must": true,
+   "interview": true,
+   "area": true,
+   "posting_share": 14
+  },
+  {
+   "concept": "AREA RAG and agentic RAG (embeddings, chunking, vector search, retrieval as a tool, reranking)",
+   "sources": [
+    "docs",
+    "cMS",
+    "cHF",
+    "bAIE",
+    "cAIP",
+    "iAV",
+    "iCl",
+    "iCa",
+    "jP",
+    "jG2",
+    "dGE",
+    "eCR"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true,
+   "area": true,
+   "posting_share": 40.4,
+   "module": "chromadb / qdrant-client / numpy",
+   "adoption": "vector DB or embeddings in 22.2% of postings; RAG/retrieval 40.4% (jP), 46% (jG2)"
+  },
+  {
+   "concept": "AREA Agent frameworks (LangGraph state graphs and checkpoints; vendor Agent SDKs; framework landscape)",
+   "sources": [
+    "docs",
+    "cMS",
+    "cHF",
+    "cAIP",
+    "iAV",
+    "jAgg",
+    "jP",
+    "dLG",
+    "dOAS",
+    "dCAS",
+    "dADK"
+   ],
+   "must": true,
+   "area": true,
+   "posting_share": 21,
+   "module": "langgraph / langchain",
+   "adoption": "LangChain 10.8% and LangGraph 10.5% of jP; 34.5% / 22.6% of jAgg; CrewAI/AutoGen 3.1% jP, 9.3%/6.5% jAgg"
+  },
+  {
+   "concept": "AREA Protocols: MCP and A2A",
+   "sources": [
+    "docs",
+    "cDL",
+    "cMS",
+    "cAIP",
+    "iAV",
+    "jP",
+    "jG2",
+    "jAgg"
+   ],
+   "must": true,
+   "interview": true,
+   "area": true,
+   "posting_share": 14.3,
+   "module": "mcp",
+   "adoption": "official MCP Python SDK; MCP named in 14.3% (jP), 22-25% (jG2, jAgg); A2A 1.3%"
+  },
+  {
+   "concept": "AREA Multi-agent systems (when not to, supervisor/handoffs, sub-agents, failure modes, cost)",
+   "sources": [
+    "gOAI",
+    "cDL",
+    "cMS",
+    "cHF",
+    "iAV",
+    "iCl",
+    "jG2",
+    "jP"
+   ],
+   "must": true,
+   "interview": true,
+   "area": true,
+   "posting_share": 17
+  },
+  {
+   "concept": "AREA Evaluation and testing of agents (golden sets, trajectory evals, LLM-as-judge, regression gates in CI, error analysis)",
+   "sources": [
+    "gOAI",
+    "cDL",
+    "cAnth",
+    "cHF",
+    "bAIE",
+    "cAIP",
+    "iAV",
+    "iCl",
+    "iCa",
+    "iTI",
+    "jP",
+    "jG2"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true,
+   "area": true,
+   "posting_share": 66.1,
+   "module": "pytest / deepeval / inspect_ai",
+   "adoption": "evals word in 66.1% of jP (upper bound); LaunchDarkly names DeepEval; testing 38.1%"
+  },
+  {
+   "concept": "AREA Observability and debugging (traces of model and tool calls, what to log, dashboards, OpenTelemetry)",
+   "sources": [
+    "docs",
+    "cDL",
+    "cHF",
+    "bAIE",
+    "cAIP",
+    "iAV",
+    "iTI",
+    "jP",
+    "jG2"
+   ],
+   "must": true,
+   "interview": true,
+   "area": true,
+   "posting_share": 50.4,
+   "module": "opentelemetry-sdk / langfuse",
+   "adoption": "observability 50.4% (jP); dedicated tools 4.3%; OpenTelemetry named 1.3%"
+  },
+  {
+   "concept": "AREA Security and safety (prompt injection, least privilege, guardrails, sandboxing, human approval)",
+   "sources": [
+    "gOAI",
+    "cMS",
+    "bAIE",
+    "cAIP",
+    "iAV",
+    "iCl",
+    "iCa",
+    "jP",
+    "jG2"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true,
+   "area": true,
+   "posting_share": 18.6
+  },
+  {
+   "concept": "AREA Production: reliability, cost, latency, gateway/routing, durable runs, deployment and serving",
+   "sources": [
+    "bAIE",
+    "cDL",
+    "cMS",
+    "cAIP",
+    "iCl",
+    "iCa",
+    "iTI",
+    "jP",
+    "qSO"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true,
+   "area": true,
+   "posting_share": 46.4,
+   "module": "tenacity / fastapi / temporalio",
+   "adoption": "reliability 46.4%, cost 29.4%, latency 27.1%, routing/gateway 15.2%, Docker/K8s 16.4%, FastAPI/REST 9.2%, durable workflow 10.3% (jP)"
+  },
+  {
+   "concept": "AREA Enterprise governance: identity and authorisation, audit, privacy and compliance, managed agent runtimes",
+   "sources": [
+    "cAIP",
+    "bAIE",
+    "jP"
+   ],
+   "must": true,
+   "area": true,
+   "posting_share": 10.3
+  },
+  {
+   "concept": "Agent definition: model + tools + instructions in a loop; agent vs chatbot vs workflow; degrees of autonomy; when not to build an agent",
+   "sources": [
+    "gOAI",
+    "eBEA",
+    "cDL",
+    "cMS",
+    "cHF",
+    "iAV",
+    "iCl"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Messages format, roles, chat templates, special tokens; stateless API, client resends history",
+   "sources": [
+    "docs",
+    "cHF",
+    "cAnth",
+    "iAV",
+    "qSO"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Tokens, context window limits, token counting, price per million tokens",
+   "sources": [
+    "docs",
+    "bAIE",
+    "iAV",
+    "qSO"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Sampling controls; reasoning/thinking effort dials; model choice small vs large; deprecations and pinning",
+   "sources": [
+    "docs",
+    "bAIE",
+    "iAV",
+    "jP"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Streaming, rate limits, 429/503 handling, retries with backoff and jitter, timeouts",
+   "sources": [
+    "docs",
+    "bAIE",
+    "iCa",
+    "qSO"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true,
+   "module": "tenacity",
+   "adoption": "tenacity 9.2.1 (337M downloads/month per track-1 research); retry library"
+  },
+  {
+   "concept": "Structured output (JSON schema + Pydantic) and validation retries",
+   "sources": [
+    "docs",
+    "cAnth",
+    "cDL",
+    "jG2"
+   ],
+   "must": true,
+   "interview": true,
+   "module": "pydantic",
+   "adoption": "pydantic 2.14.1; schema layer used by all three SDKs"
+  },
+  {
+   "concept": "Prompt engineering for agents: system prompts, examples, XML structure",
+   "sources": [
+    "cAnth",
+    "iAV",
+    "jP"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Tool/function calling round trip; schemas; tool_choice; parallel tool calls",
+   "sources": [
+    "docs",
+    "cDL",
+    "cMS",
+    "cHF",
+    "cAnth",
+    "iAV"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true
+  },
+  {
+   "concept": "Python functions as tools; writing good tools (names, descriptions, narrow inputs, actionable errors)",
+   "sources": [
+    "cHF",
+    "cDL",
+    "eBEA",
+    "gOAI"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "The agent loop: thought-action-observation (ReAct); implement it yourself with step and cost caps",
+   "sources": [
+    "cHF",
+    "cMS",
+    "iAV",
+    "iTI",
+    "iCl"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true
+  },
+  {
+   "concept": "Stopping conditions and loop detection (step cap, spend cap, repeated-call detection)",
+   "sources": [
+    "iTI",
+    "iCl",
+    "iAV",
+    "gOAI"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true
+  },
+  {
+   "concept": "Code execution as a tool, sandboxed",
+   "sources": [
+    "cDL",
+    "docs"
+   ],
+   "must": true
+  },
+  {
+   "concept": "Task decomposition and prompt chaining with gates",
+   "sources": [
+    "cDL",
+    "eBEA"
+   ],
+   "must": true
+  },
+  {
+   "concept": "Prompt chaining, routing, parallelisation, orchestrator-workers, evaluator-optimizer",
+   "sources": [
+    "eBEA",
+    "gOAI",
+    "cMS",
+    "iAV"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Reflection: self-critique, external feedback, measuring impact",
+   "sources": [
+    "cDL",
+    "eBEA"
+   ],
+   "must": false
+  },
+  {
+   "concept": "Planning: create and execute plans (plan-and-execute, ReWOO); planning with code execution",
+   "sources": [
+    "cDL",
+    "cMS",
+    "bAIE",
+    "iAV"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Metacognition and asking for help / confidence",
+   "sources": [
+    "cMS"
+   ],
+   "must": false
+  },
+  {
+   "concept": "Short-term memory: message list, trimming, summarising, compaction",
+   "sources": [
+    "docs",
+    "cDL",
+    "bAIE",
+    "iAV"
+   ],
+   "must": true,
+   "interview": true,
+   "module": "langgraph.checkpoint.sqlite",
+   "adoption": "checkpointer for short-term state; or plain list (hand_code why)"
+  },
+  {
+   "concept": "Long-term memory: semantic, episodic, procedural; hot-path vs background writes; forgetting and privacy",
+   "sources": [
+    "cDL",
+    "iAV",
+    "jG2"
+   ],
+   "must": false
+  },
+  {
+   "concept": "Prompt caching and context caching",
+   "sources": [
+    "docs",
+    "iAV",
+    "bAIE"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Context engineering: what goes in the window, just-in-time retrieval, tool-result clearing",
+   "sources": [
+    "docs",
+    "iAV",
+    "jP"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Embeddings, cosine similarity + top-k retrieval (implement from scratch)",
+   "sources": [
+    "bAIE",
+    "cAIP",
+    "iCa",
+    "iAV",
+    "dGE",
+    "eCR"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true,
+   "module": "numpy / google-genai embeddings",
+   "adoption": "numpy 2.5.4 is the array layer of every vector library; embeddings from the model SDK"
+  },
+  {
+   "concept": "Chunking, vector stores, reranking, retrieval evaluation",
+   "sources": [
+    "cAIP",
+    "bAIE",
+    "iCl",
+    "iCa",
+    "eCR"
+   ],
+   "must": true,
+   "interview": true,
+   "module": "chromadb / qdrant-client / sqlite-vec",
+   "adoption": "chromadb 1.5.9 and qdrant-client 1.19.1 on PyPI; vector DB or embeddings in 22.2% of jP postings (market part)"
+  },
+  {
+   "concept": "Agentic RAG: retrieval as a tool, query routing, when to retrieve again",
+   "sources": [
+    "cMS",
+    "cHF",
+    "iAV",
+    "eCR"
+   ],
+   "must": true,
+   "interview": true,
+   "module": "langgraph / vendor SDK tool APIs",
+   "adoption": "retrieval exposed as a tool in cMS lesson 5 and cHF unit 3"
+  },
+  {
+   "concept": "LangGraph: state, nodes, edges, conditional edges, checkpointers, interrupts",
+   "sources": [
+    "docs",
+    "cHF",
+    "cMS",
+    "jAgg",
+    "jP",
+    "dLG"
+   ],
+   "must": true,
+   "interview": true,
+   "module": "langgraph",
+   "adoption": "langgraph 1.2.16 (2026-10-16); LangGraph 10.5% of jP, 22.6% of jAgg"
+  },
+  {
+   "concept": "Framework landscape: OpenAI Agents SDK, Claude Agent SDK, Google ADK, smolagents, LlamaIndex, CrewAI/AutoGen, Microsoft Agent Framework; choosing",
+   "sources": [
+    "cMS",
+    "cHF",
+    "jAgg",
+    "iAV",
+    "dOAS",
+    "dCAS",
+    "dADK",
+    "dLG"
+   ],
+   "must": true,
+   "interview": true,
+   "module": "openai-agents / claude_agent_sdk / google.adk",
+   "adoption": "openai-agents 0.24.0, claude-agent-sdk 0.2.168, google-adk 2.12.0 (PyPI 2026-10-20)"
+  },
+  {
+   "concept": "MCP: servers, clients, tools/resources/prompts, transports, building a server",
+   "sources": [
+    "docs",
+    "cDL",
+    "cAIP",
+    "jP",
+    "jG2"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "MCP security and gateway: auth, authorisation, tool poisoning; A2A agent cards and tasks",
+   "sources": [
+    "docs",
+    "jP",
+    "iCa"
+   ],
+   "must": false
+  },
+  {
+   "concept": "Multi-agent: single-agent first, supervisor/worker, handoffs, sub-agents with isolated context, token economics",
+   "sources": [
+    "gOAI",
+    "cDL",
+    "cMS",
+    "iCl",
+    "jG2",
+    "dLG",
+    "dOAS",
+    "dADK"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Multi-agent failure modes (loops, lost context, error amplification) and termination guards",
+   "sources": [
+    "iAV",
+    "iTI",
+    "jG2"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Golden dataset, task success rate, pass@k, outcome vs trajectory grading",
+   "sources": [
+    "cDL",
+    "cAnth",
+    "bAIE",
+    "iAV",
+    "iCl",
+    "jP",
+    "iCa"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true
+  },
+  {
+   "concept": "Error analysis and component-level evals; development loop",
+   "sources": [
+    "cDL",
+    "cAnth",
+    "bAIE"
+   ],
+   "must": true
+  },
+  {
+   "concept": "LLM-as-judge with rubric; calibrate against human labels; limits",
+   "sources": [
+    "bAIE",
+    "iAV",
+    "iCl",
+    "iCa",
+    "jP"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Regression suite in CI blocking prompt/model changes; shadow, canary, rollback",
+   "sources": [
+    "iCa",
+    "iCl",
+    "cAIP",
+    "jP",
+    "dLG"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true
+  },
+  {
+   "concept": "Agent benchmarks (SWE-bench, tau-bench, GAIA, WebArena)",
+   "sources": [
+    "cHF",
+    "jP"
+   ],
+   "must": false
+  },
+  {
+   "concept": "Tracing model and tool calls (spans), OpenTelemetry GenAI conventions, LLM observability tools",
+   "sources": [
+    "cHF",
+    "bAIE",
+    "iAV",
+    "iTI",
+    "jP",
+    "cAIP",
+    "dOAS"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "What to log and not log (PII, prompt hashes, cost, latency, model version)",
+   "sources": [
+    "iCa",
+    "cAIP",
+    "jP"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Dashboards: success rate, cost per task, p95 latency, SLOs, alerts",
+   "sources": [
+    "jP",
+    "bAIE",
+    "cAIP"
+   ],
+   "must": true
+  },
+  {
+   "concept": "Prompt injection direct and indirect; lethal trifecta; layered mitigations; injection test set",
+   "sources": [
+    "gOAI",
+    "cMS",
+    "iAV",
+    "iCa",
+    "cAIP",
+    "jP"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Least privilege tools, read vs write, sandboxing, preventing destructive actions",
+   "sources": [
+    "iCl",
+    "iTI",
+    "gOAI",
+    "cMS",
+    "jP"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Input/output guardrails, moderation, PII redaction",
+   "sources": [
+    "gOAI",
+    "cAIP",
+    "iCa",
+    "jP"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Human-in-the-loop: approval gates, interrupt and resume, escalation",
+   "sources": [
+    "gOAI",
+    "iAV",
+    "iTI",
+    "jP",
+    "jG2",
+    "dLG",
+    "dOAS"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true
+  },
+  {
+   "concept": "Idempotent tools and durable execution for restarted runs (no double charge)",
+   "sources": [
+    "iTI",
+    "jP",
+    "jG2"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true
+  },
+  {
+   "concept": "Cost control: token budgets, caps per request, batch API, caching, model routing, LLM gateway with fallbacks",
+   "sources": [
+    "bAIE",
+    "iCa",
+    "iTI",
+    "cAIP",
+    "cDL",
+    "jP"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true
+  },
+  {
+   "concept": "Latency: streaming, parallel tool calls, caching, small models; latency budgets",
+   "sources": [
+    "cDL",
+    "iCl",
+    "jP",
+    "bAIE"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Rate limiting for LLM APIs (token bucket)",
+   "sources": [
+    "iCa",
+    "jP"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true
+  },
+  {
+   "concept": "Serving an agent as a service (FastAPI, streaming endpoint, async, Docker)",
+   "sources": [
+    "cMS",
+    "jP",
+    "cAIP"
+   ],
+   "must": true
+  },
+  {
+   "concept": "Managed agent runtimes (Bedrock AgentCore, Gemini Enterprise Agent Platform, Foundry Agent Service) vs own containers",
+   "sources": [
+    "cAIP",
+    "cMS",
+    "jP"
+   ],
+   "must": false
+  },
+  {
+   "concept": "Agent identity and authorisation (OAuth on-behalf-of, per-agent credentials), audit logs",
+   "sources": [
+    "jP",
+    "cAIP",
+    "iCa"
+   ],
+   "must": false
+  },
+  {
+   "concept": "Governance and compliance: EU AI Act, ISO 42001, NIST AI RMF, data residency (vocabulary)",
+   "sources": [
+    "cAIP",
+    "jP"
+   ],
+   "must": false
+  },
+  {
+   "concept": "Multi-tenancy and per-user isolation of memory and tools",
+   "sources": [
+    "jP",
+    "jG2"
+   ],
+   "must": false
+  },
+  {
+   "concept": "Fine-tuning vs distillation; fine-tuning for function calling",
+   "sources": [
+    "cHF",
+    "iAV",
+    "bAIE",
+    "jP"
+   ],
+   "must": false,
+   "interview": true,
+   "level": "advanced-optional"
+  },
+  {
+   "concept": "Transformer internals, Mamba/Titans",
+   "sources": [
+    "iAV"
+   ],
+   "must": false,
+   "level": "research"
+  },
+  {
+   "concept": "Computer-use and browser agents",
+   "sources": [
+    "cMS",
+    "jP"
+   ],
+   "must": false
+  }
+ ],
+ "use_cases": [
+  "customer-support / ticket-triage agent with refund approval (Meta design round prompt, ClavePrep worked example, Sierra/Decagon/Intercom postings)",
+  "research / deep-research assistant (orchestrator-workers)",
+  "coding and code-review agents (Coinbase, GitLab, Cursor postings)",
+  "internal enterprise agents through an MCP gateway (Okta)",
+  "document extraction and RAG assistants over company knowledge",
+  "agent eval and observability platforms (Datadog, LaunchDarkly, Honeycomb)"
+ ],
+ "platforms": {
+  "share_of_postings_pct": {
+   "aws": 19.5,
+   "gcp": 14.6,
+   "azure": 10.1,
+   "bedrock": 4.2
+  },
+  "n": 446,
+  "note": "vendor-neutral core + service map; model vendors: OpenAI 33.9, Claude 21.3, Gemini 2.0 in jP"
+ }
+}

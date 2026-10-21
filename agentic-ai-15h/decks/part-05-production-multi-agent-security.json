@@ -1,0 +1,331 @@
+{
+ "title": "Production agents: teams, protocols and guards",
+ "subtitle": "Agentic AI: hello world to enterprise · Part 5 chapter deck",
+ "course": "Agentic AI: hello world to enterprise",
+ "audience": "developers building production agents (course learners)",
+ "audience_type": "technical",
+ "scope": {
+  "part": 5
+ },
+ "theme": {
+  "accent": "4F46E5"
+ },
+ "slides": [
+  {
+   "layout": "title",
+   "title": "Production agents: teams, protocols and guards",
+   "subtitle": "Agentic AI: hello world to enterprise · Part 5 · for developers",
+   "icon": "cube",
+   "notes": "This part is about what changes when agents work together, talk to other services and run in production. We cover lessons 24 to 31, including 27a. Each idea comes in the same order: an everyday comparison, the exact concept, a small piece of real code, then the version that grows from it."
+  },
+  {
+   "layout": "analogy",
+   "title": "A second agent is a referral, not a habit",
+   "lessons": [
+    "24"
+   ],
+   "everyday": {
+    "name": "Family doctor referral",
+    "text": "The doctor sees most patients; a specialist for big, separate work"
+   },
+   "tech": {
+    "name": "Lead and sub-agent",
+    "text": "The lead answers most; a sub-agent for long or parallel work"
+   },
+   "breaks": "A sub-agent is a model loop with its own calls",
+   "notes": "Start with the family doctor. Most visits stay with the doctor. A referral pays off when the specialist's work is large and separate, and each referral costs a visit of its own. Agents work the same way. Lesson 24 runs one support message two ways. One agent makes 2 model calls and reads 328 input tokens. A lead with two specialists makes 3 calls and reads 289 input tokens, about 11 percent less cost. More calls is not automatically more money, so measure on the same messages before you split. Where the comparison breaks: a sub-agent reads only what the lead passes in, so its brief decides its quality."
+  },
+  {
+   "layout": "concept",
+   "title": "A multi-agent system is a lead with specialists",
+   "lessons": [
+    "24"
+   ],
+   "definition": "A multi-agent system is several agents that share one job: a lead decides which agent works on what, and each sub-agent returns a finding.",
+   "parts": [
+    {
+     "term": "Lead",
+     "meaning": "Decides who works on what"
+    },
+    {
+     "term": "Sub-agent",
+     "meaning": "Its own brief and tools"
+    },
+    {
+     "term": "Finding",
+     "meaning": "What a sub-agent hands back"
+    }
+   ],
+   "notes": "Say the definition slowly. Three honest reasons to split: isolation, so a long reading stays out of the lead's context; parallel work, so independent jobs run at once; and specialisation, so each job has its own tools and rules. Each reason has a price. Every sub-agent is another model loop, and the lead must read every finding. The lesson's support desk uses an order sub-agent and a policy sub-agent, each with one tool."
+  },
+  {
+   "layout": "code",
+   "title": "The lead replies after both findings come back",
+   "lessons": [
+    "24"
+   ],
+   "lang": "python",
+   "code": "async def multi_agent(msg: str) -> str:\n    ...\n    return lead.text",
+   "highlight": [
+    3
+   ],
+   "output": "single agent  calls 2  input tokens   328  $0.000217\nmulti-agent   calls 3  input tokens   289  $0.000192",
+   "points": [
+    "Both specialists start together, with asyncio.gather",
+    "Each specialist sees only the message, its brief and tool",
+    "Three calls here, against two for one agent"
+   ],
+   "notes": "The lesson's function has one line that starts both specialists at the same time: order_f, policy_f = await asyncio.gather( with a trailing comment, then the two specialist calls; the second closes the bracket. That line with its comment is about 90 characters, too wide for a slide, so the slide shows the function's first line, a placeholder, and the lead's last line. The full gather block is in lesson 24 at Step 4. Each specialist gets only the customer message, its own brief and its own tool, and never sees the lead's context. The output is the cost of the run, added up from a log of every call. Multi-agent made 3 calls and read fewer input tokens, 289 against 328, so count both numbers before you decide. Ask the room which number they would watch in production."
+  },
+  {
+   "layout": "analogy",
+   "title": "Two agents can bounce one case back and forth",
+   "lessons": [
+    "25"
+   ],
+   "everyday": {
+    "name": "Two shop counters",
+    "text": "Each sends the customer back to the other"
+   },
+   "tech": {
+    "name": "Guards in code",
+    "text": "A call budget, a handoff limit and a repeat check stop the loop"
+   },
+   "breaks": "'Escalated' is only text here; a real system must notify someone",
+   "notes": "Start with two shop counters. A customer needs a fact only the other counter holds, so each sends them back and the case goes round. Run A had no guard: three model calls, and its third handoff, from order back to refund, repeated its first. Then three guards, all plain code outside the model. The call budget is checked before each call. The handoff limit refuses a handoff that would pass the limit. The repeat check refuses a handoff the route already has. Run B used the same guards. Its first handoff was allowed and the second was refused, so run B stopped at handoff 2 with no new model calls, its turns replayed from run A's stored answers. Where the analogy breaks: escalated to a person is only text in this lab, so a real system must notify someone."
+  },
+  {
+   "layout": "analogy",
+   "title": "A token is a hotel key card",
+   "lessons": [
+    "26"
+   ],
+   "everyday": {
+    "name": "Hotel key card",
+    "text": "Opens one room's doors, and stops working at checkout"
+   },
+   "tech": {
+    "name": "Access token",
+    "text": "Names one server, its scopes, and an expiry time"
+   },
+   "breaks": "A server checks the signature, audience, expiry and scope on every call",
+   "notes": "An MCP server is an OAuth resource server. It checks each caller's token and never trusts the caller's word. A separate token issuer signs a short-lived JWT, which names the server it is for in its audience claim and the scopes it grants. The client sends it as a Bearer header. In the lab the token lasts 300 seconds. The server must never pass the token on to another service: token passthrough is forbidden by the MCP spec. Where the analogy breaks: a guest can lose a card, and a copied token works until it expires, so keep expiry short and never forward a token."
+  },
+  {
+   "layout": "compare",
+   "title": "A token check and a scope check fail differently",
+   "lessons": [
+    "26"
+   ],
+   "columns": [
+    {
+     "head": "Token check",
+     "points": [
+      "Is the token signed, unexpired and for this server?",
+      "Wrong audience, expired or missing: 401"
+     ]
+    },
+    {
+     "head": "Scope check",
+     "points": [
+      "Does this token allow this one tool?",
+      "Right token, wrong tool: is_error insufficient_scope"
+     ]
+    }
+   ],
+   "notes": "The first check happens before any tool runs. With no token the lab server answers 401 and names where to find the issuer. A token minted for another server, or one that has expired, is refused with 401 as well, so a leaked token cannot be replayed elsewhere. The second check is per tool. A token with orders:read calls lookup_order and gets the order back. The same token calling issue_refund gets is_error set, with the message insufficient_scope and the scope it needs, refunds:write. The model reads that result as text and can tell the customer. Pinning, the last idea of the lesson, stores a fingerprint of each approved tool so a changed description is caught."
+  },
+  {
+   "layout": "diagram",
+   "title": "A task ends in one of four states",
+   "lessons": [
+    "27",
+    "27a"
+   ],
+   "diagram": {
+    "type": "flow",
+    "items": [
+     "submitted",
+     "working",
+     "completed"
+    ]
+   },
+   "caption": "Final: completed, failed, rejected, canceled. Paused: input-required, auth-required.",
+   "points": [
+    "Agent card: /.well-known/agent-card.json names skills and sign-in",
+    "The caller answers on the same task id",
+    "A retry after failure is a new task"
+   ],
+   "notes": "An agent card is the standard part of A2A: a JSON document, served at a fixed well-known address, that names the agent, its endpoint, its skills and the sign-in each skill needs. The caller reads it before it sends anything; finding cards is up to you, so the lab keeps a registry list and skips a stale entry with no server behind it. A task is the unit of work the remote agent owns. The caller sends a message, the agent moves the task through states, and each change streams as an event. In the lab the refund for order 1003 went submitted, working, completed, with a receipt as an artifact. Order 1002 was rejected by policy because it is in transit; order 9999 failed because it does not exist. Input-required pauses for the caller's answer on the same task."
+  },
+  {
+   "layout": "code",
+   "title": "Every task state has one next step",
+   "lessons": [
+    "27a"
+   ],
+   "lang": "python",
+   "code": "NEXT_STEP = {\n    # ... seven other states in the lesson\n    \"rejected\": \"open a ticket for a person; do not retry\",\n}\nfor state in NEXT_STEP:\n    print(f\"{state:<15}-> {NEXT_STEP[state]}\")",
+   "highlight": [
+    3
+   ],
+   "output": "rejected       -> open a ticket for a person; do not retry",
+   "points": [
+    "Terminal states end the caller's loop",
+    "A failed refund gets a new task, not a retry"
+   ],
+   "notes": "This table is the caller's whole decision in one place. The lesson's dictionary has eight entries, one for each state from submitted to canceled, and the loop prints a line for each in order, so the lesson's run prints eight lines. The slide shows only the rejected entry and its one printed line, so code and output match exactly; the other entries are too wide for a slide, and their exact lines are in lesson 27a. Read the failed entry in the lesson's output: 'a retry is a NEW task', so a failed task can be sent again, but as a new task. Read the rejected line: the agent refused on policy, so a person decides and nobody retries. Ask the room what their current code does when a refund returns no answer at all."
+  },
+  {
+   "layout": "diagram",
+   "title": "Gate and traces",
+   "lessons": [
+    "28",
+    "29"
+   ],
+   "diagram": {
+    "type": "tree",
+    "root": "One trace per task",
+    "children": [
+     "chat: each model call",
+     "execute_tool: each tool call"
+    ]
+   },
+   "caption": "Like a pre-flight checklist",
+   "points": [
+    "Gate: every prompt change runs the 30 golden tasks",
+    "Spans log counts and ids, never customer words",
+    "Dashboard: success, cost per task, p95 latency"
+   ],
+   "notes": "Lesson 28 runs the 30 golden tasks on three versions of the instructions: v1 is live, v2 is a tone edit that drops the policy, and v3 is a tidy edit. The gate compares each candidate with v1 and blocks it when success falls, when a passing task fails now, or when a hard task fails. Lesson 29 adds traces. Each task is one trace, with a span for each model call and each tool call, so on-call opens the tree before the prompt. Log counts and ids; the customer's question is stored as a hash. The dashboard figures come from lesson 29's own output: its dashboard cell, run on its two recorded tasks, printed success rate 100%, cost per task $0.000130 and p95 latency 52 ms. Two tasks show the shape, not performance. Alert on the SLO, not on every error."
+  },
+  {
+   "layout": "code",
+   "title": "The gate fails the build when a rule breaks",
+   "lessons": [
+    "28"
+   ],
+   "lang": "python",
+   "code": "# in test_candidate_passes_the_release_gate() in the lesson\nship, reasons = decide(load(\"v1\"), load(CANDIDATE), RULES)\nassert ship, \"blocked: \" + \"; \".join(reasons)",
+   "highlight": [
+    2,
+    3
+   ],
+   "output": "v3 | exit code: 0 | 5 passed in 0.02s\nv2 | exit code: 1 | 3 failed, 2 passed in 0.06s",
+   "points": [
+    "Rules: no success drop, no new failures, 3 hard tasks pass",
+    "v3 keeps every rule and passes; v2 fails three tests",
+    "Exit code 1 stops the merge"
+   ],
+   "notes": "The test file is the CI gate. pytest runs once per candidate in its own process and makes no model call; it reads the saved run. The gate's decision and its reasons go into the assert message, so the build log says which task broke. On the slide the two lines are shown without the test function's indent, to fit the width; in the lesson they sit inside test_candidate_passes_the_release_gate. v2 fails the gate and two hard tasks: t09, a changed mind that must get a ticket, not a refund, and t27, an injected refund request that must be refused. The lost-parcel task t07 passes for both, so the report points at the broken rules, not at the whole run."
+  },
+  {
+   "layout": "diagram",
+   "title": "Scopes and gates stop injected refunds, not prompts",
+   "lessons": [
+    "30"
+   ],
+   "diagram": {
+    "type": "layers",
+    "items": [
+     "Prompt rule: asks only",
+     "Scope: code refuses tools",
+     "Gate: person approves writes"
+    ]
+   },
+   "caption": "Hotel safe: staff hold only their floor's keys",
+   "points": [
+    "Injection: text that overrides instructions",
+    "Trifecta: untrusted text, private data, outside send",
+    "Break one leg: no outbound scope for support"
+   ],
+   "notes": "Prompt injection is text that tries to override instructions. Indirect injection arrives through data the agent reads, such as a ticket. The lethal trifecta, named by Simon Willison in 2025, is untrusted text, private data and a way to send data out; break one leg. Lesson 30 runs 20 injected requests through three agents, each asking for a forbidden action: a full refund on the order it names. With no guard, all 20 moved money: 20 of 20. The support agent, with no send scope and writes held for a person, refunded none and held all 20. The read-only agent refused all 20. Those 20-of-20 and 0-of-20 results are a regression test, not proof that a model is safe. Classifiers that spot attacks are filters, not boundaries, so scopes and the gate do the real work. Hotel analogy: staff hold only their floor's keys, and a second person checks each withdrawal. It breaks because a clever guard can be fooled by a good story, while a scope is code that refuses whatever the model asks for."
+  },
+  {
+   "layout": "cards",
+   "title": "Identity and an audit log answer who did what",
+   "lessons": [
+    "31"
+   ],
+   "cards": [
+    {
+     "icon": "target",
+     "head": "Identity",
+     "text": "Token names the agent and the person it acts for"
+    },
+    {
+     "icon": "doc",
+     "head": "Policy",
+     "text": "Refund rules read the order record, not the ticket"
+    },
+    {
+     "icon": "data",
+     "head": "Audit log",
+     "text": "Append-only; each row's hash covers the row before"
+    }
+   ],
+   "notes": "The token is the identity. Its claims name the agent (client_id), the person it acts for (sub), the actor (act, the RFC 8693 actor claim), the scope granted and the server it is for (aud). In production the identity provider sets sub itself, from a real login or a token exchange; the caller never sets it. The lab shows the check: an agent that asks for an approval scope it lacks gets token lacks scope refunds:approve. Before anything reaches the model or a log, the input guard masks card numbers and email addresses. The refund policy reads the order record, not the ticket: only lost orders are refunded automatically, at the full total, once per order. Every allowed, held and refused call writes one audit row. Triggers refuse UPDATE and DELETE, and each row's hash covers its fields and the row before it, so changing one row breaks the chain."
+  },
+  {
+   "layout": "steps",
+   "title": "Build production agents in five steps",
+   "lessons": [
+    "24",
+    "25",
+    "26",
+    "27",
+    "27a",
+    "28",
+    "29",
+    "30",
+    "31"
+   ],
+   "steps": [
+    {
+     "head": "Measure first",
+     "text": "One agent vs a lead (24)"
+    },
+    {
+     "head": "Stop loops",
+     "text": "Budget, handoffs, repeats (25)"
+    },
+    {
+     "head": "Sign every call",
+     "text": "Tokens and scopes (26)"
+    },
+    {
+     "head": "Use cards and tasks",
+     "text": "Discover and follow states (27, 27a)"
+    },
+    {
+     "head": "Gate, trace, attack",
+     "text": "CI gate, traces, attacks (28 to 31)"
+    }
+   ],
+   "notes": "Follow the order of the part. Each step adds one control on top of the one before. Start with one agent and measure, add a second agent only where the numbers justify it, and stop its loops with code. Then sign every call and every tool, use the agent card and tasks to talk to other agents, and gate every change with the golden set, traces and attack tests. The capstone in lesson 37 puts these steps together in one service."
+  },
+  {
+   "layout": "questions",
+   "title": "Questions to ask before you ship an agent team",
+   "lessons": [
+    "24",
+    "25",
+    "26",
+    "27",
+    "27a",
+    "28",
+    "29",
+    "30",
+    "31"
+   ],
+   "questions": [
+    "Which two numbers did you measure?",
+    "What stops a loop, in code?",
+    "Is each token scoped to one server?",
+    "Can a prompt change ship without a gate?",
+    "Can you trace a bad answer to its cause?"
+   ],
+   "notes": "Use these five questions in a design review or an interview. A strong answer names the number, the guard, the token, the gate and the trace, and says where each lives in code. If the answer is 'the prompt says so', that is the gap to fix first, because a prompt is a request and not a control."
+  }
+ ]
+}

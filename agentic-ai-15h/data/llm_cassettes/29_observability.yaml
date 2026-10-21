@@ -1,0 +1,284 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where are my orders 1093 and 2207? Check
+      both, then answer in two sentences."}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Look up the status of one order by its number.", "name": "lookup_order",
+      "parameters_json_schema": {"type": "object", "properties": {"order_id": {"type":
+      "string"}}, "required": ["order_id"], "additionalProperties": false}}]}], "toolConfig":
+      {"functionCallingConfig": {"mode": "AUTO"}}, "generationConfig": {"temperature":
+      0.0}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '515'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"1093\"\n              },\n              \"id\":
+        \"call_452509\"\n            },\n            \"thoughtSignature\": \"AY89a18Ha6tPXD7Klj53c8G9n+WdMTmlhLKTN2ReHLHmdS/b5evffjZES86vlJKGAiTslM3hJyGGtrme/TkEN1C6yV6WI5fMfaGHajklrROxWo2FQXusJUWic8c=\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"lookup_order\",\n              \"args\": {\n                \"order_id\":
+        \"2207\"\n              },\n              \"id\": \"call_452510\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 57,\n    \"candidatesTokenCount\":
+        42,\n    \"totalTokenCount\": 99,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 57\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 42\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-20T11:08:54.245606Z\",\n
+        \ \"responseId\": \"xkvXaub-DtWKr8kP56GE6AY\"\n}\n"
+    headers:
+      content-length:
+      - '1233'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 11:08:54 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where are my orders 1093 and 2207? Check
+      both, then answer in two sentences."}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_452509", "args": {"order_id": "1093"}, "name": "lookup_order"},
+      "thoughtSignature": "AY89a18Ha6tPXD7Klj53c8G9n-WdMTmlhLKTN2ReHLHmdS_b5evffjZES86vlJKGAiTslM3hJyGGtrme_TkEN1C6yV6WI5fMfaGHajklrROxWo2FQXusJUWic8c="},
+      {"functionCall": {"id": "call_452510", "args": {"order_id": "2207"}, "name":
+      "lookup_order"}}], "role": "model"}, {"parts": [{"functionResponse": {"name":
+      "lookup_order", "response": {"status": "in transit", "days_late": 3}}}, {"functionResponse":
+      {"name": "lookup_order", "response": {"status": "delivered", "days_late": 0}}}],
+      "role": "user"}], "tools": [{"functionDeclarations": [{"description": "Look
+      up the status of one order by its number.", "name": "lookup_order", "parameters_json_schema":
+      {"type": "object", "properties": {"order_id": {"type": "string"}}, "required":
+      ["order_id"], "additionalProperties": false}}]}], "toolConfig": {"functionCallingConfig":
+      {"mode": "AUTO"}}, "generationConfig": {"temperature": 0.0}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1115'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Order
+        1093 is currently in transit and is three days late. Order 2207 has been successfully
+        delivered.\",\n            \"thoughtSignature\": \"AY89a1/ZaPsySwj4qUpD/HYv5zkM5TvVlsbjl0BlDw1Wwpr88c/roVuUUWq95qd9JpNF7v//CnYsl9PxhV4vU4K+CSM0bMpr+qvYZu5ozT0j4kgCGfvWp5eIDFQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 112,\n    \"candidatesTokenCount\":
+        27,\n    \"totalTokenCount\": 139,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 112\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 27\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T11:08:55.021163Z\",\n  \"responseId\": \"x0vXaqulAc7f-O4Ple_0yQk\"\n}\n"
+    headers:
+      content-length:
+      - '952'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 11:08:55 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where is order 9999? Check it and tell
+      me what you found."}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Look up the status of one order by its number.", "name": "lookup_order",
+      "parameters_json_schema": {"type": "object", "properties": {"order_id": {"type":
+      "string"}}, "required": ["order_id"], "additionalProperties": false}}]}], "toolConfig":
+      {"functionCallingConfig": {"mode": "AUTO"}}, "generationConfig": {"temperature":
+      0.0}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '496'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"9999\"\n              },\n              \"id\":
+        \"call_518040\"\n            },\n            \"thoughtSignature\": \"AY89a1/srpOEiMmlCj6hcu4ZEz2vevUmtET6a1hyccGfrHtcSseD1ytzWclVZBmeqPESRS61IrRNSGLnAKzOWVhUchy0xqf0iCk2xWMuv7o33RTbU03O5KgoM9M=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 50,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 71,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 50\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 21\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-20T11:08:55.709683Z\",\n
+        \ \"responseId\": \"x0vXarOoK9-ar8kPg5aO8A0\"\n}\n"
+    headers:
+      content-length:
+      - '1016'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 11:08:57 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where is order 9999? Check it and tell
+      me what you found."}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_518040",
+      "args": {"order_id": "9999"}, "name": "lookup_order"}, "thoughtSignature": "AY89a1_srpOEiMmlCj6hcu4ZEz2vevUmtET6a1hyccGfrHtcSseD1ytzWclVZBmeqPESRS61IrRNSGLnAKzOWVhUchy0xqf0iCk2xWMuv7o33RTbU03O5KgoM9M="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"error": "no order with id 9999"}}}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Look up the status of one order by its number.", "name": "lookup_order",
+      "parameters_json_schema": {"type": "object", "properties": {"order_id": {"type":
+      "string"}}, "required": ["order_id"], "additionalProperties": false}}]}], "toolConfig":
+      {"functionCallingConfig": {"mode": "AUTO"}}, "generationConfig": {"temperature":
+      0.0}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '894'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"I'm
+        sorry, but I couldn't find an order with the ID 9999. Please double-check
+        the order number and try again.\",\n            \"thoughtSignature\": \"AY89a19Wy8u8xS8ln2TMYmtcYJpdJPG180r6CSAdBDlfsThqKq0+Z1lUBPYoic52mAx2GfTvzI9u/4zvsF9HKJSiVefosIJxdWU2bojuc0ALr/Xj+lBof3RL85c=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 81,\n    \"candidatesTokenCount\":
+        33,\n    \"totalTokenCount\": 114,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 81\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 33\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T11:08:57.112610Z\",\n  \"responseId\": \"yUvXauLvBq7i-O4P6bjO6AE\"\n}\n"
+    headers:
+      content-length:
+      - '957'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 11:08:57 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

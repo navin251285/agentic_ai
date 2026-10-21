@@ -1,0 +1,488 @@
+interactions:
+- request:
+    body: '{"jsonrpc":"2.0","id":1,"method":"server/discover","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '245'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8210
+      mcp-method:
+      - server/discover
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.15.1
+    method: POST
+    uri: http://127.0.0.1:8210/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":1,"result":{"cacheScope":"private","capabilities":{"prompts":{"listChanged":true},"resources":{"listChanged":true,"subscribe":true},"tools":{"listChanged":true}},"instructions":"Read-only
+        order tools for the Brightside Outfitters support desk.","resultType":"complete","supportedVersions":["2026-07-28"],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"brightside-orders","version":""}}}}'
+    headers:
+      content-length:
+      - '426'
+      content-type:
+      - application/json
+      date:
+      - Tue, 20 Oct 2026 09:37:51 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '240'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8210
+      mcp-method:
+      - tools/list
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.15.1
+    method: POST
+    uri: http://127.0.0.1:8210/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":2,"result":{"cacheScope":"private","resultType":"complete","tools":[{"description":"Look
+        up one customer order: its status, days late and total. Use it when the customer
+        gives an order number.","inputSchema":{"type":"object","properties":{"order_id":{"title":"Order
+        Id","type":"string"}},"required":["order_id"],"title":"lookup_orderArguments"},"name":"lookup_order"}],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"brightside-orders","version":""}}}}'
+    headers:
+      content-length:
+      - '491'
+      content-type:
+      - application/json
+      date:
+      - Tue, 20 Oct 2026 09:37:51 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where is my parcel for order 1002? It
+      was due on Monday."}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Look up one customer order: its status, days late and total.
+      Use it when the customer gives an order number.", "name": "lookup_order", "parameters_json_schema":
+      {"type": "object", "properties": {"order_id": {"title": "Order Id", "type":
+      "string"}}, "required": ["order_id"], "title": "lookup_orderArguments"}}]}],
+      "generationConfig": {"temperature": 0.0}}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Timeout:
+      - '30'
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: post
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"1002\"\n              },\n              \"id\":
+        \"call_8876200\"\n            },\n            \"thoughtSignature\": \"AY89a19I9BFRqcX5kOz7fQ0qi+05L/+g4SYOYCUcaib9pGoGYgJfTL8aKO0jZzB91kEIr1mK3jphTFBrk1f3LhHj65eFrGT0nGHxDnbhhcItL7cWOSvVBanwqOs=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 71,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 92,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 71\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 21\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-20T09:37:51.859184Z\",\n
+        \ \"responseId\": \"bzbXarC4NM7f-O4Ple_0yQk\"\n}\n"
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 20 Oct 2026 09:37:52 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      - X-Origin
+      - Referer
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+      content-length:
+      - '1017'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"lookup_order","arguments":{"order_id":"1002"},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '294'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8210
+      mcp-method:
+      - tools/call
+      mcp-name:
+      - lookup_order
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.15.1
+    method: POST
+    uri: http://127.0.0.1:8210/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":3,"result":{"content":[{"text":"{\n  \"status\":
+        \"in transit\",\n  \"days_late\": 4,\n  \"total\": 45.0\n}","type":"text"}],"isError":false,"resultType":"complete","_meta":{"io.modelcontextprotocol/serverInfo":{"name":"brightside-orders","version":""}}}}'
+    headers:
+      content-length:
+      - '277'
+      content-type:
+      - application/json
+      date:
+      - Tue, 20 Oct 2026 09:37:52 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where is my parcel for order 1002? It
+      was due on Monday."}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_8876200",
+      "args": {"order_id": "1002"}, "name": "lookup_order"}, "thoughtSignature": "AY89a19I9BFRqcX5kOz7fQ0qi-05L_-g4SYOYCUcaib9pGoGYgJfTL8aKO0jZzB91kEIr1mK3jphTFBrk1f3LhHj65eFrGT0nGHxDnbhhcItL7cWOSvVBanwqOs="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"output": "{\n  \"status\": \"in transit\",\n  \"days_late\": 4,\n  \"total\":
+      45.0\n}"}}}], "role": "user"}], "tools": [{"functionDeclarations": [{"description":
+      "Look up one customer order: its status, days late and total. Use it when the
+      customer gives an order number.", "name": "lookup_order", "parameters_json_schema":
+      {"type": "object", "properties": {"order_id": {"title": "Order Id", "type":
+      "string"}}, "required": ["order_id"], "title": "lookup_orderArguments"}}]}],
+      "generationConfig": {"temperature": 0.0}}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Timeout:
+      - '30'
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: post
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"I'm
+        sorry to hear your parcel hasn't arrived yet. According to our records, order
+        1002 is currently in transit and is 4 days late. I apologize for the delay.\",\n
+        \           \"thoughtSignature\": \"AY89a19M2fKZDVrbpOZCMOEvsC7pAqzLNiIH0XHbAhQdaPmGuOoqXfjCwHESDGdbAA7uWODdkmyT4CjnXz/RCfBy+p+RA1VDDj9tL/K8E34qwmnLycA5GurPXhs=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 125,\n    \"candidatesTokenCount\":
+        42,\n    \"totalTokenCount\": 167,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 125\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 42\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T09:37:52.538512Z\",\n  \"responseId\": \"cDbXapDvINWKr8kP56GE6AY\"\n}\n"
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 20 Oct 2026 09:37:53 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      - X-Origin
+      - Referer
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - '0'
+      content-length:
+      - '1007'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":1,"method":"server/discover","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '245'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8210
+      mcp-method:
+      - server/discover
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.15.1
+    method: POST
+    uri: http://127.0.0.1:8210/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":1,"result":{"cacheScope":"private","capabilities":{"prompts":{"listChanged":true},"resources":{"listChanged":true,"subscribe":true},"tools":{"listChanged":true}},"instructions":"Read-only
+        order tools for the Brightside Outfitters support desk.","resultType":"complete","supportedVersions":["2026-07-28"],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"brightside-orders","version":""}}}}'
+    headers:
+      content-length:
+      - '426'
+      content-type:
+      - application/json
+      date:
+      - Tue, 20 Oct 2026 09:37:52 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"lookup_order","arguments":{"id":"1002"},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '288'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8210
+      mcp-method:
+      - tools/call
+      mcp-name:
+      - lookup_order
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.15.1
+    method: POST
+    uri: http://127.0.0.1:8210/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":2,"result":{"content":[{"text":"Error executing
+        tool lookup_order: 1 validation error for lookup_orderArguments\norder_id\n  Field
+        required [type=missing, input_value={''id'': ''1002''}, input_type=dict]\n    For
+        further information visit https://errors.pydantic.dev/2.14/v/missing","type":"text"}],"isError":true,"resultType":"complete","_meta":{"io.modelcontextprotocol/serverInfo":{"name":"brightside-orders","version":""}}}}'
+    headers:
+      content-length:
+      - '446'
+      content-type:
+      - application/json
+      date:
+      - Tue, 20 Oct 2026 09:37:52 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":1,"method":"server/discover","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '245'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8210
+      mcp-method:
+      - server/discover
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.15.1
+    method: POST
+    uri: http://127.0.0.1:8210/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":1,"result":{"cacheScope":"private","capabilities":{"prompts":{"listChanged":true},"resources":{"listChanged":true,"subscribe":true},"tools":{"listChanged":true}},"instructions":"Read-only
+        order tools for the Brightside Outfitters support desk.","resultType":"complete","supportedVersions":["2026-07-28"],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"brightside-orders","version":""}}}}'
+    headers:
+      content-length:
+      - '426'
+      content-type:
+      - application/json
+      date:
+      - Tue, 20 Oct 2026 09:37:52 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"lookup_order","arguments":{"order_id":"1002"},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '294'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8210
+      mcp-method:
+      - tools/call
+      mcp-name:
+      - lookup_order
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.15.1
+    method: POST
+    uri: http://127.0.0.1:8210/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":2,"result":{"content":[{"text":"{\n  \"status\":
+        \"in transit\",\n  \"days_late\": 4,\n  \"total\": 45.0\n}","type":"text"}],"isError":false,"resultType":"complete","_meta":{"io.modelcontextprotocol/serverInfo":{"name":"brightside-orders","version":""}}}}'
+    headers:
+      content-length:
+      - '277'
+      content-type:
+      - application/json
+      date:
+      - Tue, 20 Oct 2026 09:37:52 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":3,"method":"tools/list","params":{"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '240'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8210
+      mcp-method:
+      - tools/list
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.15.1
+    method: POST
+    uri: http://127.0.0.1:8210/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":3,"result":{"cacheScope":"private","resultType":"complete","tools":[{"description":"Look
+        up one customer order: its status, days late and total. Use it when the customer
+        gives an order number.","inputSchema":{"type":"object","properties":{"order_id":{"title":"Order
+        Id","type":"string"}},"required":["order_id"],"title":"lookup_orderArguments"},"name":"lookup_order"}],"ttlMs":0,"_meta":{"io.modelcontextprotocol/serverInfo":{"name":"brightside-orders","version":""}}}}'
+    headers:
+      content-length:
+      - '491'
+      content-type:
+      - application/json
+      date:
+      - Tue, 20 Oct 2026 09:37:52 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"lookup_order","arguments":{"order_id":"9999"},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientInfo":{"name":"mcp","version":"0.1.0"},"io.modelcontextprotocol/clientCapabilities":{}}}}'
+    headers:
+      accept:
+      - application/json, text/event-stream
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '294'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8210
+      mcp-method:
+      - tools/call
+      mcp-name:
+      - lookup_order
+      mcp-protocol-version:
+      - '2026-07-28'
+      user-agent:
+      - python-httpx2/2.15.1
+    method: POST
+    uri: http://127.0.0.1:8210/mcp
+  response:
+    body:
+      string: '{"jsonrpc":"2.0","id":4,"result":{"content":[{"text":"{\n  \"error\":
+        \"no order 9999\",\n  \"next_step\": \"Ask for the number in the confirmation
+        email.\"\n}","type":"text"}],"isError":false,"resultType":"complete","_meta":{"io.modelcontextprotocol/serverInfo":{"name":"brightside-orders","version":""}}}}'
+    headers:
+      content-length:
+      - '307'
+      content-type:
+      - application/json
+      date:
+      - Tue, 20 Oct 2026 09:37:52 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+version: 1

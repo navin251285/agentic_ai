@@ -1,0 +1,1742 @@
+{
+  "topic": "Agentic AI: hello world to enterprise",
+  "slug": "agentic-ai-15h",
+  "max_hours": 15,
+  "depth": "crisp",
+  "focus": "application",
+  "profile": "system",
+  "audience": "Developers who can write a little Python and call a web API; no machine-learning background assumed. The course uses the Python 3.12 standard library and the official SDKs.",
+  "outcome": "Build an agent that calls tools safely, grounds its answers in documents, remembers the right things, runs as a service and survives failures; know the enterprise practice (evals in CI, tracing, security, durable runs, tenancy, cost, governance) well enough to build it, operate it and pass a developer interview.",
+  "running_example": {
+    "name": "Brightside Outfitters support desk",
+    "why": "Everyone has chased a late parcel, so the support desk needs no explanation; refunds make approval, idempotency and injection real problems.",
+    "evolution": "order lookup agent (chapter 1) -> RAG, memory and a refund approval in a LangGraph graph (chapters 3-4) -> multi-agent with evals in CI, traces and security (chapter 5) -> reliable, cheap, served and durable with tenants (chapter 6)"
+  },
+  "python": "3.12",
+  "llm": {
+    "used": true,
+    "mode": "heavy",
+    "lessons": "most",
+    "why": "the course is about agents built on models; every model call is recorded once with a key and replayed without one"
+  },
+  "stack": [
+    {
+      "tool": "Python 3.12",
+      "role": "the language for every lesson and the app",
+      "lessons": "01-37",
+      "options": [
+        "local: Python 3.12 (default)"
+      ],
+      "default": "local: Python 3.12 (default)",
+      "verified": "2026-10-20",
+      "source": "https://www.python.org/downloads/"
+    },
+    {
+      "tool": "Gemini API (Vertex AI)",
+      "role": "default model for the agent in most lessons",
+      "lessons": "02-37",
+      "options": [
+        "Gemini API key (default)",
+        "Vertex AI project and location"
+      ],
+      "default": "Gemini API key (default)",
+      "settings": [
+        "GOOGLE_CLOUD_API_KEY"
+      ],
+      "verified": "2026-10-20",
+      "source": "https://ai.google.dev/gemini-api/docs",
+      "module": "google.genai",
+      "adoption": "official SDK for Gemini"
+    },
+    {
+      "tool": "Anthropic API (Claude Haiku 5.5)",
+      "role": "the second vendor for the wire-format and SDK comparisons",
+      "lessons": "05, 20",
+      "options": [
+        "recorded replay (default, no key)",
+        "Anthropic API key"
+      ],
+      "default": "recorded replay (default, no key)",
+      "settings": [
+        "ANTHROPIC_API_KEY"
+      ],
+      "verified": "2026-10-20",
+      "source": "https://docs.anthropic.com",
+      "module": "anthropic",
+      "adoption": "official SDK for Claude"
+    },
+    {
+      "tool": "OpenAI API",
+      "role": "the third vendor for the wire-format and SDK comparisons",
+      "lessons": "05, 20",
+      "options": [
+        "recorded replay (default, no key)",
+        "OpenAI API key"
+      ],
+      "default": "recorded replay (default, no key)",
+      "settings": [
+        "OPENAI_API_KEY"
+      ],
+      "verified": "2026-10-20",
+      "source": "https://platform.openai.com/docs",
+      "module": "openai",
+      "adoption": "official SDK for OpenAI"
+    },
+    {
+      "tool": "llm_replay (vcrpy)",
+      "role": "records each model call once and replays it with no key",
+      "lessons": "all model lessons",
+      "options": [
+        "local: recorded replay (default)"
+      ],
+      "default": "local: recorded replay (default)",
+      "verified": "2026-10-20",
+      "source": "https://github.com/kevin1024/vcrpy"
+    },
+    {
+      "tool": "Ollama (local model)",
+      "role": "a free small model for the token and sampling lessons",
+      "lessons": "03",
+      "options": [
+        "local: Ollama (default, free, gemma3:1b under 1 GB download)"
+      ],
+      "default": "local: Ollama (default, free, gemma3:1b under 1 GB download)",
+      "verified": "2026-10-20",
+      "source": "https://ollama.com",
+      "module": "ollama",
+      "adoption": "the official Python client for the local Ollama server"
+    },
+    {
+      "tool": "pydantic",
+      "role": "structured output and the data models of the app",
+      "lessons": "04, 05, 07, 17, 24",
+      "options": [
+        "local"
+      ],
+      "default": "local",
+      "verified": "2026-10-20",
+      "source": "https://docs.pydantic.dev",
+      "module": "pydantic",
+      "adoption": "the validation library FastAPI and most agent SDKs use"
+    },
+    {
+      "tool": "SQLite (standard library)",
+      "role": "memory, the CRM and the audit log",
+      "lessons": "08, 15, 16, 18, 31",
+      "options": [
+        "local"
+      ],
+      "default": "local",
+      "verified": "2026-10-20",
+      "source": "https://www.sqlite.org/docs.html",
+      "module": "sqlite3",
+      "adoption": "ships with Python and is the database inside most agent memory and eval tooling"
+    },
+    {
+      "tool": "LangGraph (with SQLite checkpointer)",
+      "role": "the agent as a graph with state and interrupts",
+      "lessons": "19, 20, 23",
+      "options": [
+        "local"
+      ],
+      "default": "local",
+      "verified": "2026-10-20",
+      "source": "https://langchain-ai.github.io/langgraph/",
+      "module": "langgraph",
+      "adoption": "the most-used agent framework in the job-posting sample (about 10-35% of agent jobs)"
+    },
+    {
+      "tool": "MCP Python SDK",
+      "role": "exposing the tools as an MCP server and connecting a client",
+      "lessons": "21, 26, 30",
+      "options": [
+        "local: stdio and Streamable HTTP on localhost"
+      ],
+      "default": "local: stdio and Streamable HTTP on localhost",
+      "verified": "2026-10-20",
+      "source": "https://modelcontextprotocol.io",
+      "module": "mcp",
+      "adoption": "the open protocol for agent tools, named in 14-25% of agent postings"
+    },
+    {
+      "tool": "A2A SDK",
+      "role": "one agent calling another with an agent card",
+      "lessons": "27",
+      "options": [
+        "local: two localhost servers"
+      ],
+      "default": "local: two localhost servers",
+      "verified": "2026-10-20",
+      "source": "https://a2a-protocol.org",
+      "module": "a2a",
+      "adoption": "the official Python SDK for the A2A protocol"
+    },
+    {
+      "tool": "FastAPI + uvicorn",
+      "role": "the API of the app and the served agent",
+      "lessons": "34, 37",
+      "options": [
+        "local"
+      ],
+      "default": "local",
+      "verified": "2026-10-20",
+      "source": "https://fastapi.tiangolo.com",
+      "module": "fastapi",
+      "adoption": "the most-used Python API framework in current job postings"
+    },
+    {
+      "tool": "Docker + Compose",
+      "role": "the three-replica fleet, Temporal and the capstone",
+      "lessons": "34, 35, 37",
+      "options": [
+        "local: Docker Compose (needs-docker)"
+      ],
+      "default": "local: Docker Compose (needs-docker)",
+      "verified": "2026-10-20",
+      "source": "https://docs.docker.com/compose/"
+    },
+    {
+      "tool": "Temporal (temporalio)",
+      "role": "durable runs that survive a worker kill",
+      "lessons": "35",
+      "options": [
+        "local: Temporal dev server in Compose (needs-docker)"
+      ],
+      "default": "local: Temporal dev server in Compose (needs-docker)",
+      "verified": "2026-10-20",
+      "source": "https://docs.temporal.io",
+      "module": "temporalio",
+      "adoption": "the durable-execution runtime most often named next to agents"
+    },
+    {
+      "tool": "OpenTelemetry SDK",
+      "role": "traces of model and tool calls",
+      "lessons": "29, 37",
+      "options": [
+        "local: JSON-lines exporter (default)",
+        "local: Phoenix in pip (optional)"
+      ],
+      "default": "local: JSON-lines exporter (default)",
+      "verified": "2026-10-20",
+      "source": "https://opentelemetry.io/docs/",
+      "module": "opentelemetry",
+      "adoption": "the vendor-neutral standard for traces; the GenAI conventions are its agent tracing layer"
+    },
+    {
+      "tool": "Chroma (embedded)",
+      "role": "the vector store for RAG",
+      "lessons": "17, 18",
+      "options": [
+        "local: embedded in-process (default)"
+      ],
+      "default": "local: embedded in-process (default)",
+      "verified": "2026-10-20",
+      "source": "https://docs.trychroma.com",
+      "module": "chromadb",
+      "adoption": "the embedded vector store most RAG tutorials start with"
+    },
+    {
+      "tool": "numpy",
+      "role": "cosine similarity written and checked against the library",
+      "lessons": "17",
+      "options": [
+        "local"
+      ],
+      "default": "local",
+      "verified": "2026-10-20",
+      "source": "https://numpy.org/doc/",
+      "module": "numpy",
+      "adoption": "the numeric library under most Python ML and RAG code"
+    },
+    {
+      "tool": "tenacity",
+      "role": "retries with backoff and jitter",
+      "lessons": "02, 32",
+      "options": [
+        "local"
+      ],
+      "default": "local",
+      "verified": "2026-10-20",
+      "source": "https://tenacity.readthedocs.io",
+      "module": "tenacity",
+      "adoption": "the standard Python retry library"
+    },
+    {
+      "tool": "pytest",
+      "role": "the eval harness and tests",
+      "lessons": "08, 22, 28, 37",
+      "options": [
+        "local"
+      ],
+      "default": "local",
+      "verified": "2026-10-20",
+      "source": "https://docs.pytest.org",
+      "module": "pytest",
+      "adoption": "the standard Python test runner"
+    },
+    {
+      "tool": "Authlib (local dev auth server)",
+      "role": "OAuth for the MCP walkthrough",
+      "lessons": "26",
+      "options": [
+        "local: small token issuer written with Authlib"
+      ],
+      "default": "local: small token issuer written with Authlib",
+      "verified": "2026-10-20",
+      "source": "https://docs.authlib.org",
+      "module": "authlib",
+      "adoption": "the standard Python OAuth library"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "brightside_crm.sqlite",
+      "what": "mock CRM: customers, orders, order_items, tickets, refunds, audit_log (about 200 customers, 400 orders, 60 tickets)",
+      "lessons": "02-37",
+      "generated": "seeded generator in src/make_data.py (fixed seed); addresses are name@example.com"
+    },
+    {
+      "name": "brightside_policy.md",
+      "what": "own-written one-page returns policy that agrees with the FTC rule",
+      "lessons": "17, 18",
+      "generated": "written by hand in data/"
+    },
+    {
+      "name": "ftc_30_day_rule.txt",
+      "what": "FTC Business Guide to the mail, internet or telephone order merchandise rule: How to Comply and Q&A (about 4k words)",
+      "lessons": "17, 18",
+      "url": "https://www.ftc.gov/business-guidance/resources/business-guide-ftcs-mail-internet-or-telephone-order-merchandise-rule",
+      "license": "US federal government work (17 USC 105); the page carries no licence statement"
+    },
+    {
+      "name": "support_eval.json",
+      "what": "30 golden support tasks with expected end states and a 20-case injection set",
+      "lessons": "08, 22, 28, 30",
+      "generated": "written by hand in data/"
+    },
+    {
+      "name": "ftc_chunks_embeddings.json",
+      "what": "pre-computed embeddings of the FTC chunks so replay needs no key",
+      "lessons": "17, 18",
+      "generated": "made once under llm_replay with the Gemini embedding model"
+    }
+  ],
+  "app": {
+    "name": "Brightside support desk",
+    "what": "a local FastAPI service with a one-page chat UI, run with uvicorn; it grows one step after each chapter",
+    "steps": [
+      {
+        "step": 1,
+        "title": "Order lookup chat",
+        "after_chapter": 2,
+        "level": "Basic",
+        "adds": "chat page, order-lookup and calculator tools, step and cost caps",
+        "status": "done"
+      },
+      {
+        "step": 2,
+        "title": "Policy answers and approvals",
+        "after_chapter": 4,
+        "level": "Intermediate",
+        "adds": "answers that cite the policy, memory, a refund approval gate and the LangGraph graph",
+        "status": "done"
+      },
+      {
+        "step": 3,
+        "title": "Traces, cost meter and tenants",
+        "after_chapter": 5,
+        "level": "Advanced",
+        "adds": "trace view, cost per ticket, injection tests, a policy check before each tool call",
+        "status": "done"
+      },
+      {
+        "step": 4,
+        "title": "Finish and run it",
+        "after_chapter": 6,
+        "level": "Advanced",
+        "adds": "one run command, full tests, README",
+        "final": true,
+        "status": "done"
+      }
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "level": "L1",
+      "title": "Foundations: the first model call and the tool loop",
+      "checkpoint": "05",
+      "lessons": [
+        {
+          "id": "01",
+          "slug": "why-agentic-ai",
+          "title": "Why agentic AI, and what an agent is (and is not)",
+          "goal": "Tell an agent from a chatbot and from a fixed workflow, and say when not to build an agent.",
+          "concepts": [
+            "Agent definition: model + tools + instructions in a loop",
+            "Degrees of autonomy and when not to build an agent"
+          ],
+          "builds_on": [],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 15,
+          "kind": "concept",
+          "status": "done",
+          "why_lesson": "course",
+          "kit": "2026.11.07",
+          "note": "accepted after 1 fix round; recorded on gemini-3.1-flash-lite"
+        },
+        {
+          "id": "02",
+          "slug": "first-model-call",
+          "title": "Your first model call: messages, usage, cost and streaming",
+          "goal": "Make a model call with the official SDK, read the usage and cost, and stream the answer.",
+          "concepts": [
+            "Messages format, roles, chat templates; stateless API, client resends history",
+            "Streaming, rate limits, 429/503 handling, retries with backoff and jitter, timeouts"
+          ],
+          "builds_on": [
+            "01"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "03",
+          "slug": "tokens-context-sampling",
+          "title": "Tokens, context windows and sampling dials",
+          "goal": "Count tokens, price a call, and see what the context window and the sampling controls do (and which models lock them).",
+          "concepts": [
+            "Tokens, context window limits, token counting, price per million tokens",
+            "Sampling controls; reasoning/thinking effort dials; model choice small vs large",
+            "Fine-tuning vs distillation; fine-tuning for function calling"
+          ],
+          "builds_on": [
+            "02"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "04",
+          "slug": "structured-output-prompts",
+          "title": "Prompting for agents and structured output with Pydantic",
+          "goal": "Write a system prompt for an agent and get validated JSON back from the model, with a retry when it is invalid.",
+          "concepts": [
+            "Structured output (JSON schema + Pydantic) and validation retries",
+            "Prompt engineering for agents: system prompts, examples, XML structure"
+          ],
+          "builds_on": [
+            "03"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "05",
+          "slug": "tool-call-round-trip",
+          "title": "The tool-call round trip on three vendor wire formats",
+          "goal": "Declare a tool, let the model ask for it, run it and return the result, in the Claude, OpenAI and Gemini formats.",
+          "concepts": [
+            "Tool/function calling round trip; schemas; tool_choice; parallel tool calls"
+          ],
+          "builds_on": [
+            "04"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "under_the_hood": [
+            "Tool/function calling round trip; schemas; tool_choice; parallel tool calls"
+          ],
+          "kit": "2026.11.07"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "level": "L2",
+      "title": "Core: an agent you can test and secure",
+      "checkpoint": "10",
+      "lessons": [
+        {
+          "id": "06",
+          "slug": "agent-loop-from-scratch",
+          "title": "Build the agent loop yourself, with step and cost caps",
+          "goal": "Write the thought-action-observation loop with a step cap, a spend cap and repeated-call detection.",
+          "concepts": [
+            "The agent loop: thought-action-observation (ReAct); implement it yourself with step and cost caps",
+            "Stopping conditions and loop detection (step cap, spend cap, repeated-call detection)"
+          ],
+          "builds_on": [
+            "05"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "under_the_hood": [
+            "AREA Tool calling and the agent loop (function schemas, tool round trip, stop conditions, tool errors)",
+            "The agent loop: thought-action-observation (ReAct); implement it yourself with step and cost caps",
+            "Stopping conditions and loop detection (step cap, spend cap, repeated-call detection)"
+          ],
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "07",
+          "slug": "writing-good-tools",
+          "title": "Writing good tools: names, schemas and errors the model can act on",
+          "goal": "Turn Python functions into tools the model uses correctly, and make tool errors something the model can recover from.",
+          "concepts": [
+            "Python functions as tools; writing good tools (names, descriptions, narrow inputs, actionable errors)"
+          ],
+          "builds_on": [
+            "05"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "08",
+          "slug": "first-eval",
+          "title": "Your first eval: a golden set and a test that needs no model",
+          "goal": "Write the first 10 of the 30 golden tasks, with expected end states, and a pytest that scores a scripted fake agent.",
+          "concepts": [
+            "Golden dataset, task success rate, pass@k, outcome vs trajectory grading"
+          ],
+          "builds_on": [
+            "06"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "under_the_hood": [
+            "Golden dataset, task success rate, pass@k, outcome vs trajectory grading"
+          ],
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "09",
+          "slug": "safety-basics",
+          "title": "Safety basics: untrusted tool output, least privilege and approval for writes",
+          "goal": "Show how a ticket can hijack an agent, then limit what each tool can do and flag every write for approval (the gate itself is lesson 14).",
+          "concepts": [
+            "Prompt injection direct and indirect; lethal trifecta; layered mitigations; injection test set",
+            "Least privilege tools, read vs write, sandboxing, preventing destructive actions"
+          ],
+          "builds_on": [
+            "06"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "10",
+          "slug": "checkpoint-order-assistant",
+          "title": "Checkpoint: the order-lookup assistant (app v1)",
+          "goal": "Ship a Basic-level agent with tools, caps, a golden set and safety checks, and run it with one command.",
+          "concepts": [],
+          "builds_on": [
+            "07",
+            "08",
+            "09"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "level": "L3",
+      "title": "Practical: workflows, memory and retrieval",
+      "checkpoint": "18",
+      "lessons": [
+        {
+          "id": "11",
+          "slug": "why-workflows-first",
+          "title": "Why workflows come before autonomy: chaining, routing and parallel calls",
+          "goal": "Compare a fixed pipeline with an agent on cost, reliability and debuggability, then build the three basic workflow shapes.",
+          "concepts": [
+            "Task decomposition and prompt chaining with gates"
+          ],
+          "builds_on": [
+            "06"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "why_lesson": true,
+          "under_the_hood": [
+            "AREA Agentic design patterns and workflows (chaining, routing, parallel, orchestrator-workers, evaluator-optimizer, ReAct, plan-and-execute, reflection)"
+          ],
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "12",
+          "slug": "orchestrator-and-evaluator",
+          "title": "Orchestrator-workers and evaluator-optimizer loops",
+          "goal": "Split one task across worker calls with an orchestrator, and add a judge that sends work back for a second pass.",
+          "concepts": [
+            "Orchestrator-workers and evaluator-optimizer loops"
+          ],
+          "builds_on": [
+            "11"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 15,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "13",
+          "slug": "react-plan-reflect",
+          "title": "ReAct, plan-and-execute and reflection: which fits and what each costs",
+          "goal": "Choose a control pattern for a task from its cost, latency and failure modes, and see why reflection is used sparingly.",
+          "concepts": [
+            "Planning: create and execute plans (plan-and-execute, ReWOO); planning with code execution",
+            "Reflection: self-critique, external feedback, measuring impact"
+          ],
+          "builds_on": [
+            "11"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 15,
+          "kind": "walkthrough",
+          "status": "done",
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "14",
+          "slug": "human-approval-gate",
+          "title": "A human approval gate with interrupt and resume",
+          "goal": "Pause a refund before it is paid, wait for a person, and resume the same run safely.",
+          "concepts": [
+            "Human-in-the-loop: approval gates, interrupt and resume, escalation"
+          ],
+          "builds_on": [
+            "06",
+            "09"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "under_the_hood": [
+            "Human-in-the-loop: approval gates, interrupt and resume, escalation"
+          ],
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "15",
+          "slug": "short-term-memory-context",
+          "title": "Short-term memory and context engineering: trim, summarise, compact, cache",
+          "goal": "Keep a long conversation inside the window: trim, summarise and compact, and cache the stable prefix.",
+          "concepts": [
+            "Short-term memory: message list, trimming, summarising, compaction",
+            "Context engineering: what goes in the window, just-in-time retrieval, tool-result clearing",
+            "Prompt caching and context caching"
+          ],
+          "builds_on": [
+            "03",
+            "06"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "16",
+          "slug": "long-term-memory-sqlite",
+          "title": "Long-term memory in SQLite: what to remember, forgetting and privacy",
+          "goal": "Store customer facts the agent can recall later, with deletion and a rule for what must never be stored.",
+          "concepts": [
+            "Long-term memory: semantic, episodic, procedural; hot-path vs background writes; forgetting and privacy"
+          ],
+          "builds_on": [
+            "15"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "accepted after fix round and one re-record"
+        },
+        {
+          "id": "17",
+          "slug": "rag-basics",
+          "title": "RAG basics: embeddings, chunking and cosine top-k",
+          "goal": "Embed policy chunks, retrieve the top-k by cosine similarity, and answer with the retrieved text in the prompt.",
+          "concepts": [
+            "Embeddings, cosine similarity + top-k retrieval (implement from scratch)",
+            "Chunking, vector stores, reranking, retrieval evaluation"
+          ],
+          "builds_on": [
+            "07"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "under_the_hood": [
+            "Embeddings, cosine similarity + top-k retrieval (implement from scratch)",
+            "AREA RAG and agentic RAG (embeddings, chunking, vector search, retrieval as a tool, reranking)"
+          ],
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "18",
+          "slug": "hybrid-agentic-rag",
+          "title": "Hybrid search, reranking and agentic RAG with citations",
+          "goal": "Combine keyword and vector search, let the agent decide when to search again, and cite the section it used.",
+          "concepts": [
+            "Agentic RAG: retrieval as a tool, query routing, when to retrieve again"
+          ],
+          "builds_on": [
+            "17"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "accepted after fix round"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "level": "L4",
+      "title": "Advanced build: LangGraph, MCP and the eval loop",
+      "checkpoint": "23",
+      "lessons": [
+        {
+          "id": "19",
+          "slug": "why-langgraph",
+          "title": "Why a graph: the loop as state, nodes, edges and checkpoints",
+          "goal": "Rebuild the support loop as a LangGraph graph and see what state, checkpoints and interrupts give you that a loop does not.",
+          "concepts": [
+            "LangGraph: state, nodes, edges, conditional edges, checkpointers, interrupts"
+          ],
+          "builds_on": [
+            "06",
+            "15"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "why_lesson": true,
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "20",
+          "slug": "choosing-sdks",
+          "title": "Vendor agent SDKs, LangGraph or a hand loop: how to choose",
+          "goal": "Compare one vendor SDK with LangGraph and the hand loop on the same task, then pick one with reasons.",
+          "concepts": [
+            "Framework landscape: OpenAI Agents SDK, Claude Agent SDK, Google ADK, smolagents, LlamaIndex, CrewAI/AutoGen, Microsoft Agent Framework; choosing"
+          ],
+          "builds_on": [
+            "19"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 15,
+          "kind": "walkthrough",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "accepted after 2 fix rounds"
+        },
+        {
+          "id": "21",
+          "slug": "mcp-server-and-client",
+          "title": "MCP: build a server and connect a client",
+          "goal": "Expose the order tools as an MCP server, connect a client to it, and call a tool over the protocol.",
+          "concepts": [
+            "MCP: servers, clients, tools/resources/prompts, transports, building a server"
+          ],
+          "builds_on": [
+            "07"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "22",
+          "slug": "eval-depth",
+          "title": "Eval depth: error analysis, LLM-as-judge and trajectory grading",
+          "goal": "Find the failing component with error analysis, grade a free-text answer with a judge, and check the judge against human labels.",
+          "concepts": [
+            "Error analysis and component-level evals; development loop",
+            "LLM-as-judge with rubric; calibrate against human labels; limits"
+          ],
+          "builds_on": [
+            "08"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "under_the_hood": [
+            "AREA Evaluation and testing of agents (golden sets, trajectory evals, LLM-as-judge, regression gates in CI, error analysis)"
+          ],
+          "kit": "2026.11.07",
+          "note": "accepted after fix round; 196 code lines kept as known debt"
+        },
+        {
+          "id": "23",
+          "slug": "checkpoint-support-desk",
+          "title": "Checkpoint: the support desk with memory, approval and a graph (app v2)",
+          "goal": "Run the Intermediate support desk: retrieval, memory, a refund approval and a LangGraph graph, scored by the eval.",
+          "concepts": [],
+          "builds_on": [
+            "14",
+            "16",
+            "18",
+            "19",
+            "22"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "accepted after 2 fix rounds; 128 code lines (justified)"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "level": "L5",
+      "title": "Production: multi-agent, protocols, evals in CI and security",
+      "checkpoint": "31",
+      "lessons": [
+        {
+          "id": "24",
+          "slug": "why-multi-agent",
+          "title": "Why multi-agent, and when a single agent is better",
+          "goal": "Measure what a second agent costs in tokens and latency, and use one only when isolation or parallel work pays.",
+          "concepts": [
+            "Multi-agent: single-agent first, supervisor/worker, handoffs, sub-agents with isolated context, token economics"
+          ],
+          "builds_on": [
+            "11",
+            "21"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "why_lesson": true,
+          "kit": "2026.11.07",
+          "note": "accepted after fix round"
+        },
+        {
+          "id": "25",
+          "slug": "multi-agent-failure-modes",
+          "title": "Multi-agent failure modes: loops, lost context and guards",
+          "goal": "Reproduce a loop between two agents and add the guards that stop it: budgets, handoff limits and a shared state check.",
+          "concepts": [
+            "Multi-agent failure modes (loops, lost context, error amplification) and termination guards"
+          ],
+          "builds_on": [
+            "24"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "accepted after fix rounds; FM labels from abstract-level check"
+        },
+        {
+          "id": "26",
+          "slug": "mcp-auth-and-gateway",
+          "title": "MCP auth and a gateway: what it adds in front of tools",
+          "goal": "Walk through OAuth for an MCP server, tool poisoning, and what a gateway adds, with a local dev authorization server.",
+          "concepts": [
+            "MCP security and gateway: auth, authorisation, tool poisoning"
+          ],
+          "builds_on": [
+            "21"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "walkthrough",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "accepted after fix round"
+        },
+        {
+          "id": "27",
+          "slug": "a2a-agent-discovery",
+          "title": "A2A: agent discovery and agent cards",
+          "goal": "Publish an agent card, let another agent discover it at the well-known URL, and read its skills and auth requirements before sending a task.",
+          "concepts": [
+            "Agent discovery: agent cards, the well-known URL, skills, capabilities and registries"
+          ],
+          "builds_on": [
+            "21"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "professional",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "accepted; a2a-sdk line to enable in requirements at merge"
+        },
+        {
+          "id": "27a",
+          "slug": "a2a-task-lifecycle",
+          "title": "A2A: the task lifecycle, streaming and delegating to another agent",
+          "goal": "Send a task to a remote agent, follow its states (submitted, working, input-required, completed, failed, canceled), stream its updates, and handle a failure.",
+          "concepts": [
+            "A2A tasks: states, messages and artifacts, streaming updates",
+            "Agent lifecycle: create, run, pause for input, resume, finish or fail, clean up"
+          ],
+          "builds_on": [
+            "27"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "professional",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "reviewed ACCEPT; tester CLEAR; optional polish noted"
+        },
+        {
+          "id": "28",
+          "slug": "evals-in-ci",
+          "title": "Evals in CI: a regression gate that blocks a bad change",
+          "goal": "Put the golden set in CI, fail the build when success drops, and roll out a model change behind a canary.",
+          "concepts": [
+            "Regression suite in CI blocking prompt/model changes; shadow, canary, rollback"
+          ],
+          "builds_on": [
+            "22"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "under_the_hood": [
+            "Regression suite in CI blocking prompt/model changes; shadow, canary, rollback"
+          ],
+          "kit": "2026.11.07",
+          "note": "accepted after fix rounds; CI example quoted"
+        },
+        {
+          "id": "29",
+          "slug": "observability",
+          "title": "Observability: traces, what to log, and a dashboard",
+          "goal": "Trace every model and tool call as spans, log what is safe to log, and build a dashboard for success, cost and latency.",
+          "concepts": [
+            "Tracing model and tool calls (spans), OpenTelemetry GenAI conventions, LLM observability tools",
+            "What to log and not log (PII, prompt hashes, cost, latency, model version)",
+            "Dashboards: success rate, cost per task, p95 latency, SLOs, alerts"
+          ],
+          "builds_on": [
+            "06"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "accepted round 2"
+        },
+        {
+          "id": "30",
+          "slug": "security-injection-sandbox",
+          "title": "Security: an injection test set, sandboxed code and least privilege",
+          "goal": "Attack the support agent with a test set of injected tickets, then fix it with least privilege and a sandboxed code tool.",
+          "concepts": [
+            "Prompt injection direct and indirect; lethal trifecta; layered mitigations; injection test set",
+            "Code execution as a tool, sandboxed",
+            "Least privilege tools, read vs write, sandboxing, preventing destructive actions"
+          ],
+          "builds_on": [
+            "09",
+            "21"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "accepted round 2; line count over crisp aim, noted"
+        },
+        {
+          "id": "31",
+          "slug": "guardrails-identity-audit",
+          "title": "Guardrails, policy checks, agent identity and an audit log",
+          "goal": "Add a policy check before each tool call, give each agent its own identity, and write an audit log that answers who did what.",
+          "concepts": [
+            "Input/output guardrails, moderation, PII redaction",
+            "Agent identity and authorisation (OAuth on-behalf-of, per-agent credentials), audit logs"
+          ],
+          "builds_on": [
+            "30"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "under_the_hood": [
+            "AREA Security and safety (prompt injection, least privilege, guardrails, sandboxing, human approval)"
+          ],
+          "kit": "2026.11.07",
+          "note": "accepted round 2; line count over crisp aim, noted"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "level": "L6",
+      "title": "Enterprise: reliability, cost, serving, durable runs and governance",
+      "checkpoint": "37",
+      "lessons": [
+        {
+          "id": "32",
+          "slug": "reliability-retries-idempotency",
+          "title": "Reliability: retries, timeouts, idempotency and rate limits",
+          "goal": "Make the refund tool safe to retry: backoff with jitter, timeouts, idempotency keys, and a token-bucket limiter.",
+          "concepts": [
+            "Idempotent tools (no double charge)",
+            "Rate limiting for LLM APIs (token bucket)"
+          ],
+          "builds_on": [
+            "06",
+            "14"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "under_the_hood": [
+            "Streaming, rate limits, 429/503 handling, retries with backoff and jitter, timeouts",
+            "Rate limiting for LLM APIs (token bucket)",
+            "AREA Production: reliability, cost, latency, gateway/routing, durable runs, deployment and serving"
+          ],
+          "kit": "2026.11.07",
+          "note": "accepted round 2; tester clear"
+        },
+        {
+          "id": "33",
+          "slug": "cost-and-latency",
+          "title": "Cost and latency: caps, caching, routing and batch",
+          "goal": "Price a ticket, cap its spend, cut cost with caching, routing and batch calls, and check the latency budget.",
+          "concepts": [
+            "Cost control: token budgets, caps per request, batch API, caching, model routing, LLM gateway with fallbacks",
+            "Latency: streaming, parallel tool calls, caching, small models; latency budgets"
+          ],
+          "builds_on": [
+            "32"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 15,
+          "kind": "hands-on",
+          "status": "done",
+          "under_the_hood": [
+            "Cost control: token budgets, caps per request, batch API, caching, model routing, LLM gateway with fallbacks"
+          ],
+          "kit": "2026.11.07",
+          "note": "accepted round 2; line count over crisp aim, noted"
+        },
+        {
+          "id": "34",
+          "slug": "serving-and-fleet",
+          "title": "Serving and deployment: FastAPI, Docker, a three-replica fleet and a load test",
+          "goal": "Serve the agent as an API in a container, run three replicas behind a gateway, load-test it, and roll out a new version safely.",
+          "concepts": [
+            "Serving an agent as a service (FastAPI, streaming endpoint, async, Docker)"
+          ],
+          "builds_on": [
+            "32"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-docker"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07"
+        },
+        {
+          "id": "35",
+          "slug": "durable-execution",
+          "title": "Durable execution: checkpoints, Temporal and a worker-kill drill",
+          "goal": "Kill the worker in the middle of a refund run, restart it, and check that the run finishes once and only once.",
+          "concepts": [
+            "Idempotent tools and durable execution for restarted runs (no double charge)"
+          ],
+          "builds_on": [
+            "19",
+            "32"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-docker"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "accepted after 2 fix rounds"
+        },
+        {
+          "id": "36",
+          "slug": "enterprise-map",
+          "title": "The enterprise map: tenancy, managed runtimes, governance and HA/DR",
+          "goal": "Place the agent in an organisation: tenant isolation, managed runtimes, governance, backups and restore objectives.",
+          "concepts": [
+            "Managed agent runtimes (Bedrock AgentCore, Gemini Enterprise Agent Platform, Foundry Agent Service) vs own containers",
+            "Multi-tenancy and per-user isolation of memory and tools",
+            "Governance and compliance: EU AI Act, ISO 42001, NIST AI RMF, data residency (vocabulary)"
+          ],
+          "builds_on": [
+            "30",
+            "35"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "professional",
+          "est_minutes": 20,
+          "kind": "walkthrough",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "accepted after 2 fix rounds"
+        },
+        {
+          "id": "37",
+          "slug": "capstone-support-desk",
+          "title": "Capstone: the support desk as a production service with an eval gate and a drill",
+          "goal": "Ship the support desk as a tested, traced, budget-capped service with a CI eval gate, and pass a kill drill on the Compose fleet.",
+          "concepts": [],
+          "builds_on": [
+            "23",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "34",
+            "35"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm",
+            "needs-docker"
+          ],
+          "priority": "core",
+          "est_minutes": 45,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.07",
+          "note": "accepted after 2 fix rounds; 305 code lines (capstone, noted)"
+        }
+      ]
+    }
+  ],
+  "developer_coverage": {
+    "D1 Purpose and architecture": [
+      "01",
+      "36"
+    ],
+    "D2 Mental model and core concepts": [
+      "01",
+      "02",
+      "03"
+    ],
+    "D3 Setup and first working app": [
+      "02",
+      "10"
+    ],
+    "D4 Day-to-day API surface": [
+      "02",
+      "04",
+      "05"
+    ],
+    "D5 Data, schemas and configuration": [
+      "04",
+      "16"
+    ],
+    "D6 Integration with the app stack": [
+      "21",
+      "34"
+    ],
+    "D7 Async, concurrency and performance basics": [
+      "33",
+      "34"
+    ],
+    "D8 Errors, validation and reliability": [
+      "04",
+      "32"
+    ],
+    "D9 Testing and evaluation": [
+      "08",
+      "22",
+      "28"
+    ],
+    "D10 Debugging and observability": [
+      "06",
+      "29"
+    ],
+    "D11 Security": [
+      "09",
+      "30",
+      "31"
+    ],
+    "D12 Packaging, deployment and operations": [
+      "10",
+      "34"
+    ],
+    "D13 Scaling and cost": [
+      "33",
+      "34"
+    ],
+    "D14 Versions, upgrades and migration": [
+      "02",
+      "21"
+    ],
+    "D15 Ecosystem and choosing": [
+      "20"
+    ],
+    "D16 Common pitfalls and anti-patterns": [
+      "06",
+      "25"
+    ],
+    "D17 Reference architectures and real use cases": [
+      "36"
+    ],
+    "D18 End-to-end capstone": [
+      "37"
+    ]
+  },
+  "enterprise_coverage": {
+    "1 distributed architecture internals": [
+      "35"
+    ],
+    "2 cluster operations": [
+      "34"
+    ],
+    "3 failure and recovery": [
+      "35"
+    ],
+    "4 extreme scale": [
+      "33"
+    ],
+    "5 deployment options": [
+      "34"
+    ],
+    "6 performance engineering at scale": [
+      "34"
+    ],
+    "7 high availability and disaster recovery": [
+      "36"
+    ],
+    "8 zero-downtime change": [
+      "34"
+    ],
+    "9 multi-tenancy and isolation": [
+      "36"
+    ],
+    "10 security and compliance at scale": [
+      "36"
+    ],
+    "11 cost engineering": [
+      "33"
+    ],
+    "12 platform and organisation patterns": [
+      "36"
+    ],
+    "13 frontier": [
+      "36"
+    ],
+    "14 case studies": [
+      "36"
+    ]
+  },
+  "concept_coverage": {
+    "AREA What an agent is: LLM basics for builders (tokens, context window, roles, sampling, structured output, API errors and cost)": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "AREA Tool calling and the agent loop (function schemas, tool round trip, stop conditions, tool errors)": [
+      "05",
+      "06",
+      "07"
+    ],
+    "AREA Agentic design patterns and workflows (chaining, routing, parallel, orchestrator-workers, evaluator-optimizer, ReAct, plan-and-execute, reflection)": [
+      "11",
+      "12",
+      "13"
+    ],
+    "AREA Context engineering and memory (short-term, long-term, compaction, caching)": [
+      "15",
+      "16"
+    ],
+    "AREA RAG and agentic RAG (embeddings, chunking, vector search, retrieval as a tool, reranking)": [
+      "17",
+      "18"
+    ],
+    "AREA Agent frameworks (LangGraph state graphs and checkpoints; vendor Agent SDKs; framework landscape)": [
+      "19",
+      "20"
+    ],
+    "AREA Protocols: MCP and A2A": [
+      "21",
+      "26",
+      "27",
+      "27a"
+    ],
+    "AREA Multi-agent systems (when not to, supervisor/handoffs, sub-agents, failure modes, cost)": [
+      "24",
+      "25"
+    ],
+    "AREA Evaluation and testing of agents (golden sets, trajectory evals, LLM-as-judge, regression gates in CI, error analysis)": [
+      "08",
+      "22",
+      "28"
+    ],
+    "AREA Observability and debugging (traces of model and tool calls, what to log, dashboards, OpenTelemetry)": [
+      "29"
+    ],
+    "AREA Security and safety (prompt injection, least privilege, guardrails, sandboxing, human approval)": [
+      "09",
+      "30",
+      "31"
+    ],
+    "AREA Production: reliability, cost, latency, gateway/routing, durable runs, deployment and serving": [
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "AREA Enterprise governance: identity and authorisation, audit, privacy and compliance, managed agent runtimes": [
+      "36"
+    ],
+    "Agent definition: model + tools + instructions in a loop; agent vs chatbot vs workflow; degrees of autonomy; when not to build an agent": [
+      "01"
+    ],
+    "Messages format, roles, chat templates, special tokens; stateless API, client resends history": [
+      "02"
+    ],
+    "Tokens, context window limits, token counting, price per million tokens": [
+      "03"
+    ],
+    "Sampling controls; reasoning/thinking effort dials; model choice small vs large; deprecations and pinning": [
+      "03"
+    ],
+    "Streaming, rate limits, 429/503 handling, retries with backoff and jitter, timeouts": [
+      "02",
+      "32"
+    ],
+    "Structured output (JSON schema + Pydantic) and validation retries": [
+      "04"
+    ],
+    "Prompt engineering for agents: system prompts, examples, XML structure": [
+      "04"
+    ],
+    "Tool/function calling round trip; schemas; tool_choice; parallel tool calls": [
+      "05"
+    ],
+    "Python functions as tools; writing good tools (names, descriptions, narrow inputs, actionable errors)": [
+      "07"
+    ],
+    "The agent loop: thought-action-observation (ReAct); implement it yourself with step and cost caps": [
+      "06"
+    ],
+    "Stopping conditions and loop detection (step cap, spend cap, repeated-call detection)": [
+      "06",
+      "25"
+    ],
+    "Code execution as a tool, sandboxed": [
+      "30"
+    ],
+    "Task decomposition and prompt chaining with gates": [
+      "11"
+    ],
+    "Prompt chaining, routing, parallelisation, orchestrator-workers, evaluator-optimizer": [
+      "11",
+      "12"
+    ],
+    "Reflection: self-critique, external feedback, measuring impact": [
+      "13"
+    ],
+    "Planning: create and execute plans (plan-and-execute, ReWOO); planning with code execution": [
+      "13"
+    ],
+    "Metacognition and asking for help / confidence": "Go deeper — confidence and asking for help is a prompt habit covered in 13; a full pattern adds little to build-and-run work (2% of postings)",
+    "Short-term memory: message list, trimming, summarising, compaction": [
+      "15"
+    ],
+    "Long-term memory: semantic, episodic, procedural; hot-path vs background writes; forgetting and privacy": [
+      "16"
+    ],
+    "Prompt caching and context caching": [
+      "15",
+      "33"
+    ],
+    "Context engineering: what goes in the window, just-in-time retrieval, tool-result clearing": [
+      "15"
+    ],
+    "Embeddings, cosine similarity + top-k retrieval (implement from scratch)": [
+      "17"
+    ],
+    "Chunking, vector stores, reranking, retrieval evaluation": [
+      "17",
+      "18"
+    ],
+    "Agentic RAG: retrieval as a tool, query routing, when to retrieve again": [
+      "18"
+    ],
+    "LangGraph: state, nodes, edges, conditional edges, checkpointers, interrupts": [
+      "19"
+    ],
+    "Framework landscape: OpenAI Agents SDK, Claude Agent SDK, Google ADK, smolagents, LlamaIndex, CrewAI/AutoGen, Microsoft Agent Framework; choosing": [
+      "20"
+    ],
+    "MCP: servers, clients, tools/resources/prompts, transports, building a server": [
+      "21"
+    ],
+    "MCP security and gateway: auth, authorisation, tool poisoning; A2A agent cards and tasks": [
+      "26",
+      "27"
+    ],
+    "Multi-agent: single-agent first, supervisor/worker, handoffs, sub-agents with isolated context, token economics": [
+      "24"
+    ],
+    "Multi-agent failure modes (loops, lost context, error amplification) and termination guards": [
+      "25"
+    ],
+    "Golden dataset, task success rate, pass@k, outcome vs trajectory grading": [
+      "08",
+      "22"
+    ],
+    "Error analysis and component-level evals; development loop": [
+      "22",
+      "28"
+    ],
+    "LLM-as-judge with rubric; calibrate against human labels; limits": [
+      "22"
+    ],
+    "Regression suite in CI blocking prompt/model changes; shadow, canary, rollback": [
+      "28"
+    ],
+    "Agent benchmarks (SWE-bench, tau-bench, GAIA, WebArena)": "Go deeper — benchmark internals (SWE-bench, tau-bench, GAIA, WebArena) matter when you compare models, not when you build and run an agent",
+    "Tracing model and tool calls (spans), OpenTelemetry GenAI conventions, LLM observability tools": [
+      "29"
+    ],
+    "What to log and not log (PII, prompt hashes, cost, latency, model version)": [
+      "29"
+    ],
+    "Dashboards: success rate, cost per task, p95 latency, SLOs, alerts": [
+      "29"
+    ],
+    "Prompt injection direct and indirect; lethal trifecta; layered mitigations; injection test set": [
+      "09",
+      "30"
+    ],
+    "Least privilege tools, read vs write, sandboxing, preventing destructive actions": [
+      "09",
+      "30"
+    ],
+    "Input/output guardrails, moderation, PII redaction": [
+      "31"
+    ],
+    "Human-in-the-loop: approval gates, interrupt and resume, escalation": [
+      "14"
+    ],
+    "Idempotent tools and durable execution for restarted runs (no double charge)": [
+      "32",
+      "35"
+    ],
+    "Cost control: token budgets, caps per request, batch API, caching, model routing, LLM gateway with fallbacks": [
+      "33"
+    ],
+    "Latency: streaming, parallel tool calls, caching, small models; latency budgets": [
+      "33"
+    ],
+    "Rate limiting for LLM APIs (token bucket)": [
+      "32"
+    ],
+    "Serving an agent as a service (FastAPI, streaming endpoint, async, Docker)": [
+      "34"
+    ],
+    "Managed agent runtimes (Bedrock AgentCore, Gemini Enterprise Agent Platform, Foundry Agent Service) vs own containers": [
+      "36"
+    ],
+    "Agent identity and authorisation (OAuth on-behalf-of, per-agent credentials), audit logs": [
+      "31"
+    ],
+    "Governance and compliance: EU AI Act, ISO 42001, NIST AI RMF, data residency (vocabulary)": [
+      "36"
+    ],
+    "Multi-tenancy and per-user isolation of memory and tools": [
+      "36"
+    ],
+    "Fine-tuning vs distillation; fine-tuning for function calling": [
+      "03"
+    ],
+    "Transformer internals, Mamba/Titans": "out of scope — research level; papers go to Go deeper",
+    "Computer-use and browser agents": "Go deeper — coding, browser and long-horizon agents are frontier work; the controls they need come from lessons 30 and 31"
+  },
+  "out_of_scope": [
+    {
+      "item": "Kubernetes labs",
+      "why": "its own course; the fleet runs on Docker Compose (rule: no Kubernetes labs here)"
+    },
+    {
+      "item": "Transformer internals, Mamba and Titans",
+      "why": "research level; papers go to Go deeper"
+    }
+  ],
+  "go_deeper": [
+    {
+      "topic": "Reflexion, LATS and Tree of Thoughts",
+      "why": "search and self-critique patterns cost many calls; the 2% of postings that ask for them is covered by lesson 13",
+      "link": "https://arxiv.org/abs/2303.11366"
+    },
+    {
+      "topic": "GraphRAG, Self-RAG and Corrective RAG",
+      "why": "retrieval research variants; the basic and agentic RAG lessons cover what job work needs",
+      "link": "https://arxiv.org/abs/2404.16130"
+    },
+    {
+      "topic": "Mem0, Letta and LangMem internals",
+      "why": "memory products; lesson 16 builds the mechanism they wrap",
+      "link": "https://github.com/langchain-ai/langmem"
+    },
+    {
+      "topic": "CrewAI, AutoGen/AG2, Microsoft Agent Framework, Strands, Pydantic AI and Google ADK in depth",
+      "why": "one row each in the framework landscape (lesson 20) is enough to choose; deep use is per framework",
+      "link": "https://adk.dev"
+    },
+    {
+      "topic": "AP2, AGNTCY and NLWeb",
+      "why": "agent payments and discovery are new and not yet in most job work",
+      "link": "https://github.com/agntcy"
+    },
+    {
+      "topic": "Fine-tuning and RL for agents",
+      "why": "a training course; the agent is built and run without it",
+      "link": "https://platform.openai.com/docs/guides/fine-tuning"
+    },
+    {
+      "topic": "Computer-use desktop sandboxes and microVMs",
+      "why": "lesson 37 maps the controls; running desktop sandboxes is a platform job",
+      "link": "https://docs.anthropic.com"
+    },
+    {
+      "topic": "SWE-bench, tau-bench, GAIA and WebArena internals",
+      "why": "for comparing models; not needed to build and run an agent",
+      "link": "https://www.swebench.com"
+    },
+    {
+      "topic": "EU AI Act, ISO 42001 and NIST AI RMF text",
+      "why": "lesson 36 gives the vocabulary; the legal and certification text is a compliance job",
+      "link": "https://www.nist.gov/itl/ai-risk-management-framework"
+    },
+    {
+      "topic": "Failure taxonomies of multi-agent systems",
+      "why": "lesson 25 covers the failure modes that job work hits; the taxonomy paper is for research",
+      "link": "https://arxiv.org/abs/2503.13657"
+    },
+    {
+      "topic": "AG-UI and agent-to-user interface protocols",
+      "why": "lesson 27 (A2A) covers the agent-to-agent side; the user-interface protocol is a front-end concern",
+      "link": "https://github.com/ag-ui-protocol/ag-ui"
+    },
+    {
+      "topic": "Coding, browser and long-horizon agents",
+      "why": "frontier work; the controls they need (least privilege, approval, budgets, tracing) are taught in lessons 29-31 and 33",
+      "link": "https://docs.anthropic.com"
+    },
+    {
+      "topic": "Kubernetes deployment, operators and autoscaling",
+      "why": "its own course; lesson 34 deploys the fleet with Compose",
+      "link": "https://kubernetes.io/docs/home/"
+    },
+    {
+      "topic": "Multi-region HA and DR beyond the lesson",
+      "why": "lesson 36 covers backups, restore and RPO/RTO; full multi-region runbooks are a platform job",
+      "link": "https://docs.temporal.io"
+    },
+    {
+      "topic": "Langfuse or Phoenix self-hosted at scale",
+      "why": "lesson 29 runs the OpenTelemetry exporter locally; the self-hosted server needs 16 GiB",
+      "link": "https://langfuse.com/self-hosting"
+    },
+    {
+      "topic": "Agent benchmark suites (SWE-bench, GAIA, WebArena)",
+      "why": "concept 60 in the matrix; lesson 28 uses the golden-set method those suites use",
+      "link": "https://www.swebench.com"
+    }
+  ],
+  "approved": "2026-10-20",
+  "version": 2,
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-10-20",
+      "changes": "first approval"
+    },
+    {
+      "version": 2,
+      "date": "2026-10-20",
+      "changes": "stack metadata: google.genai module, llm_replay without vcr module, Ollama module and gemma3:1b size"
+    }
+  ],
+  "port_base": 8000,
+  "releases": {
+    "all": {
+      "date": "2026-10-21",
+      "version": 2
+    }
+  }
+}

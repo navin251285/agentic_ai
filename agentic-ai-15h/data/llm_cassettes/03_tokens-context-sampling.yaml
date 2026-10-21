@@ -1,0 +1,266 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Brightside Outfitters returns policy
+      (made up for this lesson).\nItems can be returned within 30 days of delivery.
+      The item must be unused, in its original packaging,\nand with the tags on. Start
+      a return from your order page; we send a prepaid label by email within one\nworking
+      day. Refunds go back to the original payment method within 5 to 10 working days
+      after the\nreturned parcel is scanned at our warehouse. Delivery charges are
+      not refunded unless the item arrived\ndamaged or the wrong item was sent. Sale
+      items marked final sale cannot be returned. Gift cards are not\nrefundable;
+      we issue store credit instead. For a lost parcel, contact the desk after 10
+      working days\nfrom dispatch; we will trace the parcel or send a replacement
+      or refund once the carrier confirms the loss."}], "role": "user"}]}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '846'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 168,\n  \"totalBillableCharacters\": 646,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 168\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 07:31:05 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order 1093 cost $84 including $6 delivery.
+      The customer returns the $30 item and keeps the rest. Delivery is not refunded.
+      How much is refunded? Answer with the number and one line of working."}], "role":
+      "user"}], "generationConfig": {"temperature": 0.0, "maxOutputTokens": 1024,
+      "thinkingConfig": {"thinking_level": "LOW"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '361'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"$30\\n\\nThe
+        refund is simply the cost of the returned item ($30), as the delivery fee
+        is non-refundable.\",\n            \"thoughtSignature\": \"AY89a1+hwUrRhmj3OrxZpsh/tjlk6G0OVrg+DYgvBe00w1SJsm80bDSgtIk20qm8WRBss5Uot2UU8U5ehiDbp/XjQC4jSe0lTkd8wmaIAFS8hxLejzTw8QumDupTT+hmpfTQI7l5+Ybz1YrDjTbeyP4tJ0Dtt+P/UsAOhIR4MFzTaHBUy85zOmbVRrjksiFnjc/H+nRf8uwvghfNexlbwH9bZQL/2QPjhTGneWl1nHhSRO06wfxlgtD8qIqgQen9vTbBIqZtUVZHUe44w0uuRoeGCLGmB4hDhntVuN05uoFBb3/lbpfNjNTt7eBSgfK9dhX5p1Lv92SO1WugcgEThYzxGMVfwpr+f2oVKcL9V5jGS8XiVmfIQ4+LISTH5W5pXxQVqDP1MerMzvb5clV3CKe83qAD5iEYr2DutEa8KQlVPYz5rvleq3n3h4uvQjAZ1t6ytUpDF1mLICEKcsrrRGWKQqMRJlSIq6AZSjFKdrH75JOZFRNptKkgUtArmxkk5t+I8FLgq7q8kqdQlpn75Sb7RjOCPGMO1gT0XVdVT8wZki76ljzZliezmfWcvR6j6rqCfBqRktjhRlqf6CFPasbMFQFfp0Wg618CrjCisWbuPnF738sjuiR5ZZavt3jJWeIPaBgrNzoqCRWcWvNivfTr3qkFIW/81TGEiZ8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 48,\n    \"candidatesTokenCount\":
+        27,\n    \"totalTokenCount\": 196,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 48\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 27\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 121\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-20T07:31:05.591051Z\",\n
+        \ \"responseId\": \"uRjXasuJJK7i-O4P6bjO6AE\"\n}\n"
+    headers:
+      content-length:
+      - '1538'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 07:31:06 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order 1093 cost $84 including $6 delivery.
+      The customer returns the $30 item and keeps the rest. Delivery is not refunded.
+      How much is refunded? Answer with the number and one line of working."}], "role":
+      "user"}], "generationConfig": {"temperature": 0.0, "maxOutputTokens": 1024,
+      "thinkingConfig": {"thinking_level": "HIGH"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '362'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"$30\\nThe
+        refund is equal to the price of the returned item ($30), as the delivery fee
+        is non-refundable.\",\n            \"thoughtSignature\": \"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\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 48,\n    \"candidatesTokenCount\":
+        28,\n    \"totalTokenCount\": 535,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 48\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 28\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 459\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-20T07:31:06.517420Z\",\n
+        \ \"responseId\": \"uhjXaqzKH9-ar8kPg5aO8A0\"\n}\n"
+    headers:
+      content-length:
+      - '3063'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 07:31:08 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model":"gemma3:1b","stream":false,"options":{"temperature":0.0,"top_p":1.0,"seed":7,"num_predict":80},"messages":[{"role":"user","content":"Tell
+      a customer in one sentence why a parcel can be late."}],"tools":[]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '214'
+      content-type:
+      - application/json
+      host:
+      - localhost:11434
+      user-agent:
+      - ollama-python/0.6.3 (x86_64 linux) Python/3.12.13
+    method: POST
+    uri: http://localhost:11434/api/chat
+  response:
+    body:
+      string: '{"model":"gemma3:1b","created_at":"2026-10-20T07:49:45.754362116Z","message":{"role":"assistant","content":"Due
+        to unforeseen circumstances like weather, increased volume, or logistical
+        delays, a parcel may arrive later than expected."},"done":true,"done_reason":"stop","total_duration":1742997729,"load_duration":1057744,"prompt_eval_count":22,"prompt_eval_cached_count":17,"prompt_eval_duration":191506000,"eval_count":23,"eval_duration":1546495000}'
+    headers:
+      content-length:
+      - '451'
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Tue, 20 Oct 2026 07:49:45 GMT
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model":"gemma3:1b","stream":false,"options":{"temperature":1.5,"top_p":0.9,"seed":7,"num_predict":80},"messages":[{"role":"user","content":"Tell
+      a customer in one sentence why a parcel can be late."}],"tools":[]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '214'
+      content-type:
+      - application/json
+      host:
+      - localhost:11434
+      user-agent:
+      - ollama-python/0.6.3 (x86_64 linux) Python/3.12.13
+    method: POST
+    uri: http://localhost:11434/api/chat
+  response:
+    body:
+      string: '{"model":"gemma3:1b","created_at":"2026-10-20T07:49:47.168148066Z","message":{"role":"assistant","content":"Due
+        to unexpected delays at our shipping facility, your parcel may arrive later
+        than originally estimated."},"done":true,"done_reason":"stop","total_duration":1410328836,"load_duration":1515645,"prompt_eval_count":22,"prompt_eval_cached_count":17,"prompt_eval_duration":175138000,"eval_count":19,"eval_duration":1230120000}'
+    headers:
+      content-length:
+      - '431'
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Tue, 20 Oct 2026 07:49:47 GMT
+    status:
+      code: 200
+      message: OK
+version: 1

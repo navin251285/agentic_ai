@@ -1,0 +1,60 @@
+{
+  "up": {
+    "gateway": true,
+    "replicas": 3
+  },
+  "before_kill": {
+    "requests": 300,
+    "codes": {
+      "200": 300
+    },
+    "p50_ms": 14.2,
+    "p95_ms": 63.0,
+    "replicas": 3,
+    "versions": {
+      "v1": 300
+    },
+    "one_shared_counter": true
+  },
+  "killed": "dc98c38d7aae",
+  "load": {
+    "requests": 600,
+    "codes": {
+      "200": 600
+    },
+    "needed_a_second_try": 0
+  },
+  "refund": {
+    "tries": [
+      {
+        "attempt": 1,
+        "first_try": true,
+        "order_id": "1011",
+        "amount_usd": 15.0,
+        "replica": "4dda41817113"
+      },
+      {
+        "attempt": 1,
+        "first_try": false,
+        "order_id": "1011",
+        "amount_usd": 15.0,
+        "replica": "4dda41817113"
+      },
+      {
+        "attempt": 1,
+        "first_try": false,
+        "order_id": "1011",
+        "amount_usd": 15.0,
+        "replica": "4dda41817113"
+      }
+    ],
+    "charges": 1
+  },
+  "replicas_after": [
+    "agent running",
+    "agent running",
+    "gateway running",
+    "redis running"
+  ],
+  "drill_passed": true
+}

@@ -1,0 +1,338 @@
+{
+  "updated": "2026-10-20",
+  "next_paths": [
+    {
+      "name": "Forward deployed engineer",
+      "kind": "role",
+      "maturity": "established",
+      "what": "An engineer embedded with customers who scopes, builds and ships LLM/agent solutions on the customer's data and systems.",
+      "why_next": "This course teaches the part an FDE does first: wire a model to a customer's tools with a loop you can explain and test, then prove it with evals and budgets.",
+      "learn": [
+        "Scoping an agent use case with a customer (is it a workflow or an agent?)",
+        "Evals on customer data and acceptance criteria",
+        "Integrating with customer systems safely (least privilege, approvals)",
+        "Deployment, data-retention and security reviews",
+        "Explaining cost, latency and failure modes to non-engineers"
+      ],
+      "builds_on": [
+        4,
+        5,
+        7
+      ],
+      "evidence": [
+        {
+          "url": "https://databricks.com/company/careers/open-positions",
+          "what": "Databricks 'AI Engineer - FDE (Forward Deployed Engineer)' posting (Greenhouse board, updated 2026-10-06)",
+          "kind": "jobs"
+        },
+        {
+          "url": "https://stripe.com/jobs/search?gh_jid=7230452",
+          "what": "Stripe 'Forward Deployed Engineer, Privy' posting (Greenhouse board)",
+          "kind": "jobs"
+        }
+      ],
+      "evidence_note": "Across 10 public Greenhouse boards pulled on 2026-10-15, 143 of 4,414 open postings have 'Forward Deployed' in the title (most at Databricks). Titles were counted; job descriptions were not read in full. Vendor/infra companies skew the sample.",
+      "command": "/tutorial \"Forward deployed engineering for AI\" basic-v2"
+    },
+    {
+      "name": "Context engineering",
+      "kind": "discipline",
+      "maturity": "growing",
+      "what": "Deciding what goes into the model's window, in what order, and what is fetched just in time, compacted or left out.",
+      "why_next": "Lesson on context windows and the agent loop shows the window filling with tool results; this discipline is how production agents keep quality as the window fills.",
+      "learn": [
+        "Context rot and attention budget",
+        "Just-in-time retrieval with lightweight identifiers",
+        "Compaction, tool-result clearing and structured note-taking",
+        "Sub-agents with clean contexts",
+        "Prompt caching layout (stable prefix first)"
+      ],
+      "builds_on": [
+        1,
+        6
+      ],
+      "evidence": [
+        {
+          "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+          "what": "Anthropic engineering essay, 2025-09-29: context engineering as the successor to prompt engineering",
+          "kind": "official"
+        },
+        {
+          "url": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs?content=true",
+          "what": "Databricks 'Senior Staff Applied AI Engineer - Context Retrieval' and Elastic 'Principal AI Engineer - Context - Agents and Context' titles appear in public Greenhouse boards (2026-10-15); 4 of 20 sampled agent postings mention context window/engineering",
+          "kind": "jobs"
+        }
+      ],
+      "command": "/tutorial \"Context engineering for agents\" basic-v2"
+    },
+    {
+      "name": "Agent evaluation and observability platforms",
+      "kind": "technology",
+      "maturity": "growing",
+      "what": "Tools and practice for grading agent runs (outcome and trajectory), tracing every model and tool call, and gating releases on evals.",
+      "why_next": "The foundations course ends with a first golden-set eval and a run log; platforms turn those into dashboards, CI gates and production monitoring (track 6).",
+      "learn": [
+        "Task, trial, grader, transcript, outcome vocabulary",
+        "pass@k vs pass^k",
+        "LLM-as-judge calibration against human labels",
+        "OpenTelemetry GenAI conventions and tracing back ends",
+        "Evals in CI for every prompt or model change"
+      ],
+      "builds_on": [
+        5,
+        7
+      ],
+      "evidence": [
+        {
+          "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+          "what": "Anthropic engineering, 2026-01-09: eval vocabulary, grader types, pass@k vs pass^k, start with 20-50 real failures",
+          "kind": "official"
+        },
+        {
+          "url": "https://careers.datadoghq.com/detail/7107437/?gh_jid=7107437",
+          "what": "Datadog 'Staff AI Engineer - Agent Observability' posting (2026-10-13)",
+          "kind": "jobs"
+        },
+        {
+          "url": "https://databricks.com/company/careers/open-positions",
+          "what": "Databricks 'Staff Software Engineer, Agent Quality' posting (2026-09-24)",
+          "kind": "jobs"
+        }
+      ],
+      "command": "/tutorial \"Agent evaluation and observability\" basic-v2"
+    },
+    {
+      "name": "Harness engineering",
+      "kind": "discipline",
+      "maturity": "emerging",
+      "what": "Designing the scaffolding around a model: system prompt, tools, context delivery, verification loops, memory, sandboxes, so an agent can finish real tasks.",
+      "why_next": "The 150-line loop you write here is a minimal harness; harness engineering is what that loop grows into for long-running work.",
+      "learn": [
+        "Initializer + incremental coding-agent pattern",
+        "Progress files and clean committed state between sessions",
+        "Verification (tests, browser automation) inside the loop",
+        "Permissions and sandboxing",
+        "Which harness parts become unnecessary as models improve"
+      ],
+      "builds_on": [
+        5,
+        6,
+        7
+      ],
+      "evidence": [
+        {
+          "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+          "what": "Anthropic engineering, 2025-11-26: harness for long-running agents (initializer agent, progress log, JSON feature list)",
+          "kind": "official"
+        },
+        {
+          "url": "https://github.com/ai-boost/awesome-harness-engineering",
+          "what": "Community list defining the discipline and collecting OpenAI/Anthropic sources (its annotations only; not an official definition)",
+          "kind": "writing"
+        }
+      ],
+      "evidence_note": "Mostly blogs and curated lists; the term is new. OpenAI's 'Harness Engineering' and 'Unrolling the Codex agent loop' pages returned HTTP 403 and were not read.",
+      "command": "/tutorial \"Harness engineering\" basic-v2"
+    },
+    {
+      "name": "Loop engineering",
+      "kind": "discipline",
+      "maturity": "emerging",
+      "what": "Designing the systems that prompt coding agents repeatedly (goal loops, cron or event triggers, fresh context per item) instead of prompting by hand.",
+      "why_next": "You build the inner loop (model, tools, stop) here; loop engineering is the outer loop around it, with success criteria and budgets.",
+      "learn": [
+        "Ralph-style one-item-per-iteration loops with success criteria",
+        "Triggers and schedules (CI failures, new tickets, nightly runs)",
+        "Stop conditions and token budgets for unattended runs",
+        "Fresh context per iteration to limit context rot",
+        "Cost control at API prices"
+      ],
+      "builds_on": [
+        5,
+        6
+      ],
+      "evidence": [
+        {
+          "url": "https://newsletter.pragmaticengineer.com/p/what-is-loop-engineering",
+          "what": "The Pragmatic Engineer, 2026-07-14 (preview only, rest paywalled): definition, Ralph loops, built-in loop commands, skeptics",
+          "kind": "writing"
+        },
+        {
+          "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+          "what": "Anthropic 2025-11-26: agents working across many sessions with a progress log, the pattern loop engineering builds on",
+          "kind": "official"
+        }
+      ],
+      "evidence_note": "Emerging: one paywalled newsletter post and vendor engineering notes; no job postings use the term. Do not oversell.",
+      "command": "/tutorial \"Loop engineering\" basic-v2"
+    },
+    {
+      "name": "Agent protocols (MCP)",
+      "kind": "technology",
+      "maturity": "growing",
+      "what": "Standard ways to expose tools and data to any agent (Model Context Protocol) instead of one-off function schemas per app.",
+      "why_next": "You hand-wrote tool schemas and a registry; MCP is the shared version of that contract (track 4 of this roadmap).",
+      "learn": [
+        "Host, client and server roles",
+        "Tools, resources, prompts",
+        "stdio vs Streamable HTTP",
+        "Authorization and tool-poisoning risks",
+        "Code Mode: models writing code against MCP tools"
+      ],
+      "builds_on": [
+        4,
+        5
+      ],
+      "evidence": [
+        {
+          "url": "https://agentic-engineering-jobs.com/ai-agent-frameworks-job-market-2026",
+          "what": "Analysis of 1,135 agentic AI listings (2026-03-31..05-22): MCP appears in 17-24% of postings that name an agent framework (publisher runs the job board)",
+          "kind": "jobs"
+        },
+        {
+          "url": "https://blog.cloudflare.com/code-mode/",
+          "what": "Cloudflare, 2025-09-26: Code Mode, an argument for calling MCP through generated TypeScript",
+          "kind": "writing"
+        }
+      ],
+      "command": "/tutorial \"Agentic AI protocols MCP A2A\" basic-v2"
+    }
+  ],
+  "reading": [
+    {
+      "title": "Building effective AI agents",
+      "org": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "date": "2024-12-19",
+      "chapter": 1,
+      "why": "Workflows versus agents and the simple augmented-LLM loop that the first chapter builds.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "Writing effective tools for agents — with agents",
+      "org": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+      "date": "2025-09-11",
+      "chapter": 1,
+      "why": "How to design, describe and evaluate the tools your loop calls.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "Beyond permission prompts: making Claude Code more secure and autonomous",
+      "org": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/claude-code-sandboxing",
+      "date": "2025-10-20",
+      "chapter": 2,
+      "why": "How sandboxing and permission boundaries make an agent safer to run unattended.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "Background Coding Agents: Predictable Results Through Strong Feedback Loops (Honk, Part 3)",
+      "org": "Spotify",
+      "url": "https://engineering.atspotify.com/2025/12/feedback-loops-background-coding-agents-part-3",
+      "date": "2025-12-09",
+      "chapter": 2,
+      "why": "How verifiers and feedback loops make an agent's output testable and trustworthy.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "Introducing Contextual Retrieval",
+      "org": "Anthropic",
+      "url": "https://www.anthropic.com/news/contextual-retrieval",
+      "date": "2024-09-19",
+      "chapter": 3,
+      "why": "A concrete technique that cuts retrieval failures in RAG, with measured results.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "Effective context engineering for AI agents",
+      "org": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "date": "2025-09-29",
+      "chapter": 3,
+      "why": "What to keep in, fetch just in time or compact out of the window as memory grows.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "Introducing the Model Context Protocol",
+      "org": "Anthropic",
+      "url": "https://www.anthropic.com/news/model-context-protocol",
+      "date": "2024-11-25",
+      "chapter": 4,
+      "why": "The original motivation and design of MCP, the protocol behind chapter 4's tool servers.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "Code execution with MCP: Building more efficient agents",
+      "org": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/code-execution-with-mcp",
+      "date": "2025-11-04",
+      "chapter": 4,
+      "why": "Why many MCP tools bloat context and how code execution reduces tokens.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "Code Mode: the better way to use MCP",
+      "org": "Cloudflare",
+      "url": "https://blog.cloudflare.com/code-mode/",
+      "date": "2025-09-26",
+      "chapter": 4,
+      "why": "An alternative way to call MCP tools through generated code, with the reasoning behind it.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "How we built our multi-agent research system",
+      "org": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "date": "2025-06-13",
+      "chapter": 5,
+      "why": "Orchestrator-worker design, token cost and lessons from a real multi-agent system.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "Announcing the Agent2Agent Protocol (A2A)",
+      "org": "Google",
+      "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/",
+      "date": "2025-04-09",
+      "chapter": 5,
+      "why": "Why agent-to-agent interoperability needs a protocol and how A2A is shaped.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "Demystifying evals for AI agents",
+      "org": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "date": "2026-01-09",
+      "chapter": 5,
+      "why": "Graders, pass@k versus pass^k and how to start an eval suite that gates releases.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "1,500+ PRs Later: Spotify's Journey with Our Background Coding Agent (Honk, Part 1)",
+      "org": "Spotify",
+      "url": "https://engineering.atspotify.com/2025/11/spotifys-background-coding-agent-part-1",
+      "date": "2025-11-06",
+      "chapter": 6,
+      "why": "Running a coding agent at company scale: results, failures and operating lessons.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "Effective harnesses for long-running agents",
+      "org": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "date": "2025-11-26",
+      "chapter": 6,
+      "why": "How agents keep progress and clean state across many sessions, the basis of durable runs.",
+      "checked": "2026-10-21"
+    },
+    {
+      "title": "AI Gateway is generally available: a unified interface for managing and scaling your generative AI workloads",
+      "org": "Cloudflare",
+      "url": "https://blog.cloudflare.com/ai-gateway-is-generally-available/",
+      "date": "2024-05-22",
+      "chapter": 6,
+      "why": "Caching, rate limiting, retries and analytics in front of model calls for cost and reliability.",
+      "checked": "2026-10-21"
+    }
+  ]
+}

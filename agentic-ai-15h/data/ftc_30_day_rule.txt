@@ -1,0 +1,309 @@
+How to Comply With the Rule
+
+The following information will help you comply with the Rule.
+
+What You Should Know Before You Make a Shipment Representation
+
+When you offer to sell merchandise, you must have a "reasonable basis" for:
+
+- any express or implied shipment representation, or
+
+- believing you can ship within 30 days of receipt of an order -- if you make no shipment representation or if the shipment representation is not clear and conspicuous.
+
+Whenever you change the shipment date by providing a delay notice, you must have a "reasonable basis" for:
+
+- the new shipment date, or
+
+- any representation that you do not know when you can ship the merchandise.
+
+When you take orders by telephone, or the Internet, you may choose to provide prospective customers with updated shipment information. This may differ from what you said or implied about the shipment time in your advertising. The updated shipment information you provide on the telephone or the Internet supersedes any shipment representation you made in the advertising. You also must have a reasonable basis for the updated shipment representation.
+
+"Reasonable basis" means that the merchant has, at the time of making the representation, such information as would under the circumstances satisfy a reasonable and prudent businessperson, acting in good faith, that the representation is true.
+
+The evidence you need to demonstrate the reasonableness of your shipment representations varies with circumstances. The following, however, is important:
+
+- Anticipated demand. Is the demand for each advertised item reasonably anticipated?
+
+- Supply. For each advertised item, is there a sufficient inventory on hand or adequate sources of supply to meet the anticipated demand for the product?
+
+- Fulfillment system. For all promotions in the relevant sales seasons, can the fulfillment system handle the cumulative anticipated demand for all products?
+
+- Recordkeeping. Are adequate records kept of the key events (see section headed "Why You Should Keep Records" for a list of key events) in each individual transaction to ensure that items can be shipped within the applicable time, as established by the Rule?
+
+Remember: Whether you make a shipment representation or rely on the 30-day rule, your advertising should be unambiguous about when you will ship.
+
+What You Must Know Before Making Shipment Representations in Sales Involving Credit Applications
+
+If your customers apply to you to establish an in-house new credit account or increase an existing credit line to pay for the merchandise they order, the Rule provides the following:
+
+- If you make no shipment representation when you solicit the order, you are allowed 50 (instead of 30) days to ship the order. The extra 20 days is to enable you to process the credit application. If you wish to use this provision of the Rule, you must have a reasonable basis to believe you can ship in 50 days.
+
+- If you do make a shipment representation when you solicit the order, you must have a reasonable basis for being able to ship in that time, regardless of whether the order is accompanied by an application for credit or extension of a credit line. You are presumed to have factored in the time needed to process the credit application or to have qualified your shipment representation appropriately.
+
+When Your Fulfillment Or Other Obligations Begin ("Properly Completed" Orders)
+
+The "clock" on your obligation to ship or take other action under the Rule begins as soon as you receive a "properly completed" order. An order is properly completed when you receive the correct full or partial (in whatever form you accept) payment, accompanied by all the information you need to fill the order. Payment may be by cash, check, money order, the customer’s authorization to charge an existing account (including one you have created for the customer), the customer’s application to you for credit to pay for the order, or any other method.
+
+It is irrelevant when you post or deposit payment, when checks clear, or when your bank credits your account. The clock begins to run when you receive a properly completed order.
+
+Note, however, that if a customer’s check is returned or a customer is refused credit, the Rule stops the shipment clock. It is reset at day one when the customer gives you cash, the customer’s check is honored, or you receive notice that the customer qualifies for credit. At this point, you may take the amount of time you originally stated to fulfill the order.
+
+What You Must Do If You Learn You Cannot Ship on Time
+
+When you learn that you cannot ship on time, you must decide whether you will ever be able to ship the order. If you decide that you cannot, you must promptly cancel the order and make a full refund.
+
+If you decide you can ship the order later, you must seek the customer’s consent to the delay. You may use whatever means you wish to do this -- such as the telephone, fax, mail, or email -- as long as you notify the customer of the delay reasonably quickly. The customer must have sufficient advance notification to make a meaningful decision to consent to the delay or cancel the order.
+
+Some businesses adopt internal deadlines that are earlier than those set by the Rule to ensure that their delay notices give all customers a meaningful opportunity to consent to the delay. If businesses fail to ship or give delay notifications by their internal deadlines, they automatically cancel the orders and make refunds.
+
+In any event, no notification to the customer can take longer than the time you originally promised or, if no time was promised, 30 days. If you cannot ship the order or provide the notice within this time, you must cancel the order and make a prompt refund.
+
+What a First Delay Option Notice Must Say
+
+In seeking your customer’s consent to delay, the first delay notice you provide to the customer (the "delay option" notice) must include:
+
+- a definite revised shipment date or, if unknown, a statement that you are unable to provide a revised shipment date;
+
+- a statement that, if the customer chooses not to wait, the customer can cancel the order and obtain a full and prompt refund; and
+
+- some means for the customer to choose to cancel at your expense (e.g., by providing a postage prepaid reply card, toll-free telephone number, or website).
+
+- the following information when you cannot provide a revised shipping date:
+- the reason for the delay, and
+
+- a statement that, if the customer agrees to the indefinite delay, the customer may cancel the order any time until you ship the merchandise.
+
+If your first delay option notice provides a definite revised shipping date of 30 days or less, you must inform customers that their non-response will be treated as a consent to the delay.
+
+Thus, your delay option notice might look something like this:
+
+We will be unable to ship the merchandise listed above until [date 30 days or less later than original promised time]. If you don’t want to wait, you may cancel your order and receive a prompt refund by calling our toll-free customer service number, (800) 555-1234. If we do not hear from you before we ship the merchandise to you, we will assume that you have agreed to this shipment delay.
+
+(Many merchants add clarifying language such as "Remember, if you want the merchandise, don’t call.")
+
+If your first delay option notice provides a definite revised shipping date of more than 30 days or states that you do not know when you will be able to ship, you must tell your customers that if they do not respond, the order will be cancelled automatically within the originally promised time plus 30 days.
+
+For example, suppose you have a reasonable basis for being able to ship in 30 days and you have chosen to make no shipment representation in your advertising. Within the 30 day period after you receive the customer’s properly completed order you learn that you cannot ship in time and, although you believe you will be able to ship at some point, you don’t know when. Your delay option notice to the customer might look something like this:
+
+Because [explanation of backorder problem], we are unable to ship the merchandise listed above. We don’t know when we will be able to ship it.
+
+If you don’t want to wait, you may cancel your order and receive a prompt refund by calling our toll-free customer service number, (800) 555-1234. If we do not hear from you and we have not shipped by [date 30 days later than original promised shipment time -- in this example, 60 days after receipt of the properly completed order], your order will be cancelled automatically and your money will be refunded.
+
+If you do not want your order automatically cancelled on [date 30 days later than original promised shipment time], you may request that we keep your order and fill it later. If you do request that we keep your order and fill it later, you still have the right to cancel the order at any time before we ship it to you. You may use our toll-free number, (800) 555-1234, either to request that we fill your order later or to cancel it.
+
+Remember: You are required to explain the nature of the backorder problem only if you provide an indefinite revised shipment date. This explanation should be detailed enough to permit the customer to judge what the possible length of the delay might be.
+
+You also have the option of seeking your customer’s affirmative agreement to the delay. In any event, you must indicate what will happen if the customer does not respond.
+
+What Later Notices Must Say
+
+If you cannot ship the merchandise by the definite revised shipment date included in your most recent delay option notice, before that date you must seek the consent of your customers to any further delay. You must do this by providing customers a "renewed" delay option notice. A renewed delay option notice is similar in many ways to the first delay option notice. One important difference: the customer’s silence may not be treated as a consent to delay.
+
+A renewed delay option notice must include:
+
+- a new definite revised shipment date or, if unknown, a statement that you are unable to provide any date;
+
+- a statement that, if the customer chooses not to wait, the customer can cancel the order immediately and obtain a full and prompt refund;
+
+- a statement that, unless you receive notice that the customer agrees to wait beyond the most recent definite revised shipment date and you have not shipped by then, the customer’s order automatically will be cancelled and a prompt refund will be provided; and
+
+- some means for the customer to inform you at your expense (e.g., by providing a postage prepaid reply card, toll-free telephone number, or website) whether the customer agrees to the delay or is canceling the order.
+
+- the following information when you cannot provide a new definite revised shipping date:
+
+- the reason for the delay, and
+
+- a statement that, if the customer agrees to the indefinite delay, the customer may cancel the order any time until you ship.
+
+If you have provided an appropriate and timely delay option notice and the customer agrees to an indefinite revised shipment date, no additional delay notices are required.
+
+When You May Cancel an Order
+
+Instead of seeking the customer’s consent to delay, you can always cancel the order and send a refund. In that case, you must notify the customer and send the refund within the time you would have sent any delay notice required by the Rule.
+
+When You Must Cancel an Order
+
+You must cancel an order and provide a prompt refund when:
+
+- the customer exercises any option to cancel before you ship the merchandise;
+
+- the customer does not respond to your first notice of a definite revised shipment date of 30 days or less and you have not shipped the merchandise or received the customer’s consent to a further delay by the definite revised shipment date;
+
+- the customer does not respond to your notice of a definite revised shipment date of more than 30 days (or your notice that you are unable to provide a definite revised shipment date) and you have not shipped the merchandise within 30 days of the original shipment date;
+
+- the customer consents to a definite delay and you have not shipped or obtained the customer’s consent to any additional delay by the shipment time the customer consented to;
+
+- you have not shipped or provided the required delay or renewed option notices on time; or
+
+- you determine that you will never be able to ship the merchandise.
+
+The following is one example of a delayed order scenario:
+
+- You have a reasonable basis to be able to ship the merchandise in 30 days. That being the case, you make no shipment representation in your advertising. When your prospective customer calls to place the order on July 1, nothing has happened to change your belief that you can ship in 30 days, so in accepting the order you provide no updated shipment information. You plan to ship the order by July 31.
+
+- On July 10, you realize you cannot ship by July 31. Within a few days (reasonably quickly so the customer has time to make a decision), you send a delay notice with a revised shipment date. Based on information such as customer demand for the merchandise and information you recently received from your suppliers, you reasonably believe that you will be able to ship 30 days from the original shipment date. The revised shipping date you provide in the delay notice is August 30, i.e., 30 days from July 31. Your delay notice explains that, unless the customer tells you otherwise, you will assume that the customer is willing to wait for the merchandise until then.
+
+- Having heard nothing from the customer, on August 10 you realize that you will not be able to ship by August 30, so reasonably promptly you send a second delay option notice saying when you now reasonably believe you will be able to ship. The notice tells the customer that the order will be cancelled automatically on August 30 unless you have already shipped by then or the customer expressly tells you not to cancel.
+
+How Quickly You Must Make a Refund
+
+When you must make a Rule-required refund, the following applies:
+
+- If the customer paid by cash, check, money order, or by credit where a third party is the creditor, or by any other method except credit where you are a creditor, you must refund the correct amount within seven working days after the order is cancelled.
+
+- If the customer paid by credit where you are a creditor, you must credit the customter's account or notify the customer that the account will not be charged within one billing cycle after the order is cancelled.
+
+How Much You Must Refund
+
+If you cannot ship any of the merchandise ordered by the customer, you must refund the entire amount the customer "tendered," including any shipping, handling, insurance, or other costs. If you ship some, but not all, of the merchandise ordered, you must refund the difference between the total amount paid and the amount the customer would have paid, according to your ordering instructions, for the shipped items only.
+
+For example, if you charge a flat fee for shipping and handling regardless of the total number or cost of the items ordered, you need not refund any shipping and handling charges if you ship some items. On the other hand, if your shipping and handling charges are indexed to the number of items or the dollar amount of the order, you can keep only those shipping and handling charges that are appropriate to the number or dollar amount of the items actually shipped.
+
+When making Rule-required refunds, you cannot substitute credit toward future purchases, credit vouchers, or scrip.
+
+When the order is paid for in whole or in part by proofs of purchase, coupons, or other promotional devices, you must provide "reasonable compensation" to the customer for the proofs of purchase plus any shipping, handling, or other charges the customer paid. (The circumstances of each promotion may affect what is deemed to be reasonable.) 
+
+Why You Should Keep Records
+
+Although you are not required to keep records, an accurate, up-to-date recordkeeping system can help show that you are complying with the Rule. This is especially important because, in any action to enforce the Rule, if you cannot document your use of systems and procedures for complying, the Rule provides that you bear the burden of proving you do comply. Your documentation should provide answers to the following questions.
+
+- Substantiation for shipment representations. How is demand anticipated? How is inventory monitored? How is inventory acquisition coordinated with customer demand and order cancellation? How are demand needs communicated to and met by buyers/suppliers/drop shippers?
+
+- Fulfillment system. How is the fulfillment system designed to meet the requirements of the Rule? Are the delay option notices in compliance? Does the customer’s active or passive exercise of any cancellation option result in a prompt refund response?
+
+- Recordkeeping. Are adequate records kept for each individual order demonstrating the date you received the order; the contents of and date you provided any delay option notice; the date you received any exercise of a cancellation option; the date of any shipment and the merchandise shipped; the date of any refund and the merchandise for which the refund was made?
+
+If you provide delay option notices by telephone, you may want to keep accurate records of the scripts you use. To help document your compliance with the Rule, you may find it useful to maintain a chronological record of all calls you make, including the number from which the call is made, the called number, the party contacted, and the duration of the contact.
+
+Businesses often ask how long they should keep their records relating to Rule compliance. The statute of limitations on actions to enforce the Rule is three years for consumer redress and five years for civil penalties. State statutes of limitations for individual customer or state actions are sometimes longer. Check the state laws where you plan to do business.
+
+What the Rule Does Not Cover
+
+The following sales are exempt from the Rule:
+
+- magazine subscriptions (and similar serial deliveries), except for the first shipment;
+
+- sales of seeds and growing plants;
+
+- orders made on a collect-on-delivery basis (C.O.D.); and,
+
+- transactions covered by the FTC’s Negative Option Rule (such as book and music clubs).
+
+The Rule also does not cover services, such as mail order photo-finishing. In the question and answer section that follows, you will notice other circumstances in which mail, Internet, or telephone order merchandise may not be covered by the Rule.
+
+Why You Should Comply with the Rule
+
+Merchants who violate the Rule can be sued by the FTC for injunctive relief, monetary civil penalties of up to $53,088 per violation (any time during the five years preceding the filing of the complaint), and consumer redress (any time during the three years preceding the filing of the complaint). When the mails are involved, the Postal Service also has authority to take action for problems such as non-delivery. State law enforcement agencies can take action for violating state consumer protection laws.
+
+Apart from this, your failure to ship on time, or your failure to notify your customers promptly about delays and to obtain their consent to the delays, or your failure to make full and prompt refunds when your customers do not consent to delayed shipment, can adversely affect your business by discouraging repeat purchases. Accordingly, most businesses regard compliance with the Rule as simply good business practice.
+
+Questions and Answers About the Rule
+
+The FTC staff receives questions from mail, Internet, or telephone order merchants who want to know how to comply with the Rule in certain circumstances. Provided below are commonly-asked questions and staff responses.
+
+Using a Fulfillment House or Drop-Shipper
+
+Q: Who is liable for Rule violations caused by a fulfillment house or drop shipper?
+
+A: The seller is. This is because the person soliciting the order, not the agent fulfilling it, is the seller under the Rule. The person soliciting the order can control -- among other things -- the shipment representations made in soliciting the sale and the choice of fulfillment houses. The seller can adjust the shipment representations to include the time needed to transmit orders to a fulfillment house and for the fulfillment house to respond.
+
+However, staff considers the following circumstances when deciding whether to recommend an enforcement action: 
+
+- whether the merchant made all reasonable efforts to prevent violations, including, e.g.,
+- contracting with the fulfillment house to require it to comply with the Rule (or, at least, require it to promptly inform the merchant of any problems that could involve the Rule);
+
+- "seeding" orders with the fulfillment house to monitor its fulfillment time; and
+
+- monitoring customer complaints for unusual surges.
+
+- whether the violations were genuinely unforeseeable and beyond the merchant’s control to prevent;
+
+- whether the merchant, from all objective circumstances, did not know and did not have reason to know of the violations when they occurred; and,
+
+- whether the merchant promptly took all reasonable steps to remedy the fulfillment, notification, or refund systems failures as soon as it discovered them, and to remedy any resulting customer injury.
+
+"Bill-me" Orders; Sales On Approval
+
+Q: We offer to ship merchandise ordered by mail or telephone and to bill the customer later. Are we covered by the Rule?
+
+A: Whether the transaction is covered by the Rule depends on whether you bill as part of a credit arrangement made with the customer. For example, suppose you ship the merchandise under an arrangement where the customer has an open account or a charge account you have provided, and the customer authorizes you to charge the account. This is a credit sale and is covered by the Rule. The customer’s authorization to place a charge on the customer’s account meets the Rule’s test for coverage that the order is prepaid and thus properly completed when received by the merchant.
+
+On the other hand, suppose you ship the merchandise along with an invoice payable upon receipt. This is not a credit or prepaid sale and is not covered by the Rule. Of course, if you are unreasonably slow in shipping the merchandise or do not ship in the time you promised, you could violate the FTC Act’s general prohibition against unfair or deceptive practices. In addition, in some instances, the customer may have the right under state law to refuse to accept the merchandise.
+
+Q: Does the Rule cover sales on approval?
+
+A: No. Sales on approval permit the prospective customer to return merchandise, usually after a "no obligation" or "free trial" period, even though it is exactly as represented in the merchant’s advertising. These sales do not require the customer to pay for the order until the merchandise is received and approved. Because the order is not prepaid with cash, check, money order, or charge, it cannot be treated as the "receipt of a properly completed order" -- which would trigger the Rule’s requirements.
+
+Unordered Merchandise
+
+Whether or not the Rule is involved, in any approval or other sale you must obtain the customer’s prior express agreement to receive the merchandise. Otherwise the merchandise may be treated as unordered merchandise. It is unlawful to:
+
+- Send any merchandise by any means without the express request of the recipient (unless the merchandise is clearly identified as a gift, free sample, or the like); or,
+
+- Try to obtain payment for or the return of the unordered merchandise.
+
+Merchants who ship unordered merchandise with knowledge that it is unlawful to do so can be subject to civil penalties of up to $53,088 per violation. Moreover, customers who receive unordered merchandise are legally entitled to treat the merchandise as a gift. Using the U.S. mails to ship unordered merchandise also violates the Postal laws.
+
+Insurance Charges
+
+Q: What are our responsibilities if we charge to insure delivery?
+
+A: Instead of directing customers to make claims against the common carriers who may be responsible for losing merchandise, most merchants reship for the sake of customer satisfaction. To pay for these reshipment policies, some merchants ask customers to buy "insurance" or provide it as an option. By offering insurance, the merchant implicitly represents that it will honor any claim of nondelivery by providing prompt reshipment or, if reshipment is impossible, a prompt refund. It would be improper to collect fees from customers for reshipment insurance and not respond promptly and appropriately to their bona fide claims of loss.
+
+Substitutions
+
+Q: If a customer orders an item which is backordered, can we substitute an item of similar or better quality without the customer’s consent?
+
+A: For backorders, the Rule provides only two ways of responding to a properly completed order for mail, Internet, or telephone order merchandise: obtain the customer’s agreement to delayed shipment or provide a full and prompt refund. Unless the customer expressly agrees to the substitution beforehand, you do not have the option of substituting merchandise that is materially different from your advertised merchandise. The term "materially different" means that the merchandise differs in some manner that is likely to affect the customer’s choice of, or conduct regarding, the merchandise. Any product feature would be deemed material if it is expressly mentioned or depicted in advertising. Differences in design, style, color, fabric, or promoted end use also would be deemed material.
+
+Dry-testing
+
+Q: We want to sell by mail or telephone a product that is not yet available. Does the Rule apply?
+
+A: It depends. In an advisory opinion, the FTC told a publishing company that it could "dry-test" its merchandise as long as the following conditions were met:
+
+- In promoting the merchandise, the merchant can make no suggestion that the merchandise will be shipped or that customers expressing an interest in it will receive it.
+
+- In all promotional materials, the merchant must disclose all material aspects of the promotion, including the fact that the merchandise is only planned and may not be shipped.
+
+- If any part of the promotion is later dropped, the merchant must notify subscribers of the fact within a reasonable time after soliciting their subscriptions.
+
+- If, within a reasonable time after soliciting their subscriptions, the merchant has made no decision to ship the merchandise, it must notify subscribers of this fact and give them the opportunity to cancel and, where payment has been made, make a prompt refund.
+
+- The merchant can make no substitutions of any merchandise for that ordered.
+
+If these conditions are not met, the Rule applies.
+
+Making Fast Shipment Representations
+
+Q: We represent that we ship in 48 hours. In case of delay, when are we required to provide notification of delay?
+
+A: Within 48 hours of receipt of the order.
+
+Q: Can we say 48 hours "most of the time?"
+
+A: If you represent that you ship in 48 hours most of the time, you will be required to ship or provide notification of delay in 48 hours all the time. The Rule requires you to ship in the time you say. If you say you ship in 48 hours "most of the time," reasonable consumers will infer that you will ship their orders in 48 hours. Similarly, if you represent, "in-stock items ship immediately," unless you tell consumer when they order that the item is not in stock, you will be required to ship, provide notification of delay, or cancel the order immediately.
+
+Notice by Posting and E-Mail
+
+Q: Can we send the delay option notice to the customer’s e-mail address?
+
+A: Yes.
+
+Q: Can we provide a delay option notice by posting it on the customer’s "order-status" page of our website?
+
+A: If you provide a delay option notice, you must choose a way that is reasonably likely to provide all the required information within the time period required by the Rule. If the consumer doesn’t visit the order-status page until after she misses her order, you haven’t complied with the Rule’s requirements that the delay option notice be provided within the promised shipment time. Of course, posting on the customer’s order-status page can be an excellent way to back up notification by another means.
+
+Qualifying 30-day or Other Shipment Representations
+
+Q: In soliciting telephone orders we make no shipment representation, so the 30-day rule applies. In taking the order, the sales representative tells the customer that the merchandise will be shipped in 72 hours. Then we discover that the merchandise cannot be shipped in 72 hours, but can be shipped within 30 days. Do we have to get the customer’s agreement to a delay?
+
+A: Yes. The shipment representation you make in negotiating the sale during the telephone call supersedes any express shipment representation you made in soliciting the order or, if you made no express shipment representation, the 30-day shipment time. Your compliance with the Mail, Internet, or Telephone Order Merchandise Rule will be determined based upon the 72-hour shipment representation.
+
+WHERE TO GO FOR HELP
+
+For more information about the Mail, Internet, or Telephone Order Merchandise Rule, call the Federal Trade Commission toll-free: 1-877-FTC-HELP; write: Federal Trade Commission, Consumer Response Center, 600 Pennsylvania Avenue, N.W., Washington, DC 20580; or visit: www.ftc.gov.
+
+You also may want to contact relevant trade associations, such as the Direct Marketing Association. Contact the DMA’s Washington, DC office at: 202-955-5030; write: 1111 19th Street, N.W., Suite 1100, Washington, DC 20036-3603; or visit: www.the-dma.org.
+
+Your local U.S. Postal Service or consumer protection agency may offer additional assistance. State and local governments also may have requirements with which you must comply. You should consult appropriate state agencies for information about laws that affect your business.

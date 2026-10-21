@@ -1,0 +1,90 @@
+{
+  "up": {
+    "gateway": {
+      "ok": true,
+      "version": "v1"
+    },
+    "containers": [
+      "agent running",
+      "agent running",
+      "agent running",
+      "gateway running",
+      "redis running"
+    ]
+  },
+  "load_v1": {
+    "requests": 300,
+    "codes": {
+      "200": 300
+    },
+    "p50_ms": 14.3,
+    "p95_ms": 62.3,
+    "replicas": 3,
+    "versions": {
+      "v1": 300
+    },
+    "one_shared_counter": true
+  },
+  "refund": {
+    "tries": [
+      {
+        "first_try": true,
+        "replica": "217049d1cc6e"
+      },
+      {
+        "first_try": false,
+        "replica": "6b133680015b"
+      },
+      {
+        "first_try": false,
+        "replica": "1a3e5c39a4f9"
+      },
+      {
+        "first_try": false,
+        "replica": "217049d1cc6e"
+      }
+    ],
+    "charges": 1
+  },
+  "gate": {
+    "tasks": 10,
+    "differences": [],
+    "verdict": "PASS"
+  },
+  "load_canary": {
+    "requests": 300,
+    "codes": {
+      "200": 300
+    },
+    "p50_ms": 14.0,
+    "p95_ms": 39.1,
+    "replicas": 4,
+    "versions": {
+      "v1": 225,
+      "v2": 75
+    },
+    "one_shared_counter": true
+  },
+  "rollback": {
+    "requests": 600,
+    "codes": {
+      "200": 600
+    },
+    "p50_ms": 17.9,
+    "p95_ms": 46.4,
+    "replicas": 4,
+    "versions": {
+      "v1": 531,
+      "v2": 69
+    },
+    "one_shared_counter": true,
+    "after_rollback": {
+      "codes": {
+        "200": 60
+      },
+      "versions": {
+        "v1": 60
+      }
+    }
+  }
+}

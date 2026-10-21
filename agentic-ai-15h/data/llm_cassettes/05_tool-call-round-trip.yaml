@@ -1,0 +1,369 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where are my orders 1093 and 2207? Check
+      both, then answer in two sentences."}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Look up the status of one order by its number.", "name": "lookup_order",
+      "parameters_json_schema": {"additionalProperties": false, "description": "The
+      arguments of lookup_order. Pydantic writes the JSON Schema and checks each call.",
+      "properties": {"order_id": {"description": "The order number the customer wrote,
+      digits only, such as 1093.", "title": "Order Id", "type": "string"}}, "required":
+      ["order_id"], "title": "OrderQuery", "type": "object"}}]}], "toolConfig": {"functionCallingConfig":
+      {"mode": "AUTO"}}, "generationConfig": {"temperature": 0.0}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '744'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"1093\"\n              },\n              \"id\":
+        \"call_6306359\"\n            },\n            \"thoughtSignature\": \"AY89a1+VW2lvo6ldJY94GweGQoeT5jF8TojsrxN77zINFdCNZqLStOqAlL09f1B+f2gwrbByEySi7r2H4ayOqYvvADNsBJ3AiPnZ/KDVdCqs3RK01nhAtwiNalk=\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"lookup_order\",\n              \"args\": {\n                \"order_id\":
+        \"2207\"\n              },\n              \"id\": \"call_6306360\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 102,\n    \"candidatesTokenCount\":
+        42,\n    \"totalTokenCount\": 144,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 102\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 42\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T08:26:41.863139Z\",\n  \"responseId\": \"wSXXaqPXNMje-O4PnJCB-AQ\"\n}\n"
+    headers:
+      content-length:
+      - '1238'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 08:26:42 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where are my orders 1093 and 2207? Check
+      both, then answer in two sentences."}], "role": "user"}, {"parts": [{"functionCall":
+      {"id": "call_6306359", "args": {"order_id": "1093"}, "name": "lookup_order"},
+      "thoughtSignature": "AY89a1-VW2lvo6ldJY94GweGQoeT5jF8TojsrxN77zINFdCNZqLStOqAlL09f1B-f2gwrbByEySi7r2H4ayOqYvvADNsBJ3AiPnZ_KDVdCqs3RK01nhAtwiNalk="},
+      {"functionCall": {"id": "call_6306360", "args": {"order_id": "2207"}, "name":
+      "lookup_order"}}], "role": "model"}, {"parts": [{"functionResponse": {"name":
+      "lookup_order", "response": {"status": "in transit", "days_late": 3}}}, {"functionResponse":
+      {"name": "lookup_order", "response": {"status": "delivered", "days_late": 0}}}],
+      "role": "user"}], "tools": [{"functionDeclarations": [{"description": "Look
+      up the status of one order by its number.", "name": "lookup_order", "parameters_json_schema":
+      {"additionalProperties": false, "description": "The arguments of lookup_order.
+      Pydantic writes the JSON Schema and checks each call.", "properties": {"order_id":
+      {"description": "The order number the customer wrote, digits only, such as 1093.",
+      "title": "Order Id", "type": "string"}}, "required": ["order_id"], "title":
+      "OrderQuery", "type": "object"}}]}], "toolConfig": {"functionCallingConfig":
+      {"mode": "AUTO"}}, "generationConfig": {"temperature": 0.0}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1346'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Order
+        1093 is currently in transit and is three days late. Order 2207 has been successfully
+        delivered.\",\n            \"thoughtSignature\": \"AY89a19zdFj32XpF4OooT/TNYCM9MHtiPWJOHlzxtBJkNW/RvqnK0+TWHywpWwww4OIBJKKLkVsFYrSm/8y7q2jZfcLPEwEaYnhDqp5ZE4r7hg5PgM6cbM2zl6I=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 157,\n    \"candidatesTokenCount\":
+        27,\n    \"totalTokenCount\": 184,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 157\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 27\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T08:26:42.503823Z\",\n  \"responseId\": \"wiXXao_gHt-ar8kPg5aO8A0\"\n}\n"
+    headers:
+      content-length:
+      - '952'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 08:26:43 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"max_tokens":1024,"messages":[{"role":"user","content":"Where are my orders
+      1093 and 2207? Check both, then answer in two sentences."}],"model":"claude-haiku-5-5","tool_choice":{"type":"auto"},"tools":[{"name":"lookup_order","description":"Look
+      up the status of one order by its number.","input_schema":{"additionalProperties":false,"description":"The
+      arguments of lookup_order. Pydantic writes the JSON Schema and checks each call.","properties":{"order_id":{"description":"The
+      order number the customer wrote, digits only, such as 1093.","title":"Order
+      Id","type":"string"}},"required":["order_id"],"title":"OrderQuery","type":"object"}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '642'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - Anthropic/Python 1.15.0
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.15.0
+      x-stainless-read-timeout:
+      - '30'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.13
+      x-stainless-timeout:
+      - NOT_GIVEN
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: '{"model":"claude-haiku-5-5","id":"msg_011CgDAtgW9rNTy2SzzX7bBB","type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_01Ft69QkhgurrbNhe8s3ydHq","name":"lookup_order","input":{"order_id":"1093"},"caller":{"type":"direct"}},{"type":"tool_use","id":"toolu_01B5pHWuUgs7b8S4VFnzsrk1","name":"lookup_order","input":{"order_id":"2207"},"caller":{"type":"direct"}}],"container":null,"stop_reason":"tool_use","stop_sequence":null,"stop_details":null,"usage":{"input_tokens":492,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":101,"output_tokens_details":{"thinking_tokens":0},"service_tier":"standard","inference_geo":"global","speed":"standard"},"diagnostics":null}'
+    headers:
+      anthropic-organization-id:
+      - 2ebb3f99-ff6d-4364-9e41-66ea89bc3116
+      anthropic-ratelimit-input-tokens-limit:
+      - '10000000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '10000000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2026-10-20T08:26:43Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '2000000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '2000000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2026-10-20T08:26:43Z'
+      anthropic-ratelimit-requests-limit:
+      - '10000'
+      anthropic-ratelimit-requests-remaining:
+      - '9999'
+      anthropic-ratelimit-requests-reset:
+      - '2026-10-20T08:26:43Z'
+      anthropic-ratelimit-tokens-limit:
+      - '12000000'
+      anthropic-ratelimit-tokens-remaining:
+      - '12000000'
+      anthropic-ratelimit-tokens-reset:
+      - '2026-10-20T08:26:43Z'
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4d6a3a3bd891ce8-ORD
+      connection:
+      - keep-alive
+      content-length:
+      - '788'
+      content-security-policy:
+      - default-src 'none'; frame-ancestors 'none'
+      content-type:
+      - application/json
+      date:
+      - Tue, 20 Oct 2026 08:26:43 GMT
+      request-id:
+      - req_011CgDAtg8Kg7cGXK99W16AM
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      traceresponse:
+      - 00-6ad725c300000000ba82f22203f0f5e0-2411b00884d81ccd-01
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-robots-tag:
+      - none
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"max_tokens":1024,"messages":[{"role":"user","content":"Where are my orders
+      1093 and 2207? Check both, then answer in two sentences."},{"role":"assistant","content":[{"id":"toolu_01Ft69QkhgurrbNhe8s3ydHq","caller":{"type":"direct"},"input":{"order_id":"1093"},"name":"lookup_order","type":"tool_use"},{"id":"toolu_01B5pHWuUgs7b8S4VFnzsrk1","caller":{"type":"direct"},"input":{"order_id":"2207"},"name":"lookup_order","type":"tool_use"}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_01Ft69QkhgurrbNhe8s3ydHq","content":"{\"status\":
+      \"in transit\", \"days_late\": 3}"},{"type":"tool_result","tool_use_id":"toolu_01B5pHWuUgs7b8S4VFnzsrk1","content":"{\"status\":
+      \"delivered\", \"days_late\": 0}"}]}],"model":"claude-haiku-5-5","tool_choice":{"type":"auto"},"tools":[{"name":"lookup_order","description":"Look
+      up the status of one order by its number.","input_schema":{"additionalProperties":false,"description":"The
+      arguments of lookup_order. Pydantic writes the JSON Schema and checks each call.","properties":{"order_id":{"description":"The
+      order number the customer wrote, digits only, such as 1093.","title":"Order
+      Id","type":"string"}},"required":["order_id"],"title":"OrderQuery","type":"object"}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      anthropic-version:
+      - '2023-06-01'
+      connection:
+      - keep-alive
+      content-length:
+      - '1230'
+      content-type:
+      - application/json
+      host:
+      - api.anthropic.com
+      user-agent:
+      - Anthropic/Python 1.15.0
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.15.0
+      x-stainless-read-timeout:
+      - '30'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.13
+      x-stainless-timeout:
+      - NOT_GIVEN
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: '{"model":"claude-haiku-5-5","id":"msg_011CgDAtk4xeyCyMjAicWYG6","type":"message","role":"assistant","content":[{"type":"text","text":"Order
+        1093 is in transit and 3 days late. Order 2207 has been delivered and arrived
+        on time."}],"container":null,"stop_reason":"end_turn","stop_sequence":null,"stop_details":null,"usage":{"input_tokens":687,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":37,"output_tokens_details":{"thinking_tokens":0},"service_tier":"standard","inference_geo":"global","speed":"standard"},"diagnostics":null}'
+    headers:
+      anthropic-organization-id:
+      - 2ebb3f99-ff6d-4364-9e41-66ea89bc3116
+      anthropic-ratelimit-input-tokens-limit:
+      - '10000000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '9999000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2026-10-20T08:26:44Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '2000000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '2000000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2026-10-20T08:26:44Z'
+      anthropic-ratelimit-requests-limit:
+      - '10000'
+      anthropic-ratelimit-requests-remaining:
+      - '9999'
+      anthropic-ratelimit-requests-reset:
+      - '2026-10-20T08:26:44Z'
+      anthropic-ratelimit-tokens-limit:
+      - '12000000'
+      anthropic-ratelimit-tokens-remaining:
+      - '11999000'
+      anthropic-ratelimit-tokens-reset:
+      - '2026-10-20T08:26:44Z'
+      cf-cache-status:
+      - DYNAMIC
+      cf-ray:
+      - a4d6a3a8f8601ce8-ORD
+      connection:
+      - keep-alive
+      content-length:
+      - '635'
+      content-security-policy:
+      - default-src 'none'; frame-ancestors 'none'
+      content-type:
+      - application/json
+      date:
+      - Tue, 20 Oct 2026 08:26:44 GMT
+      request-id:
+      - req_011CgDAtjhP9CrVwpXStoBkn
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      traceresponse:
+      - 00-6ad725c400000000c5064ce2321a5ff9-2aef2811a865744f-01
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-robots-tag:
+      - none
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,395 @@
+{
+  "title": "Enterprise agents: retries, durable runs, caps and boundaries",
+  "subtitle": "Agentic AI · Part 6 · Enterprise · lessons 32 to 37",
+  "course": "Agentic AI: hello world to enterprise",
+  "audience": "learners of the Agentic AI course (developers)",
+  "audience_type": "technical",
+  "scope": {
+    "part": 6
+  },
+  "theme": {
+    "accent": "0F766E"
+  },
+  "slides": [
+    {
+      "layout": "title",
+      "notes": "This is the enterprise chapter of the Agentic AI course, lessons 32 to 37. Three ideas carry it: a retry must not charge twice, state must live outside the process, and every model call is checked against a cap before it is sent. The slides follow the lessons in order, then the build path from one refund to a production desk, and the questions to ask yourself in an interview or a code review."
+    },
+    {
+      "layout": "analogy",
+      "title": "A coat-check ticket returns the same coat",
+      "lessons": [
+        "32"
+      ],
+      "sources": [
+        "https://docs.stripe.com/api/idempotent_requests"
+      ],
+      "everyday": {
+        "name": "Coat-check ticket",
+        "text": "Show the same ticket again: you get the first coat back"
+      },
+      "tech": {
+        "name": "Idempotency key",
+        "text": "A refund ID; a repeat gets the first answer back"
+      },
+      "breaks": "a cloakroom only hands the coat back; a server must store each answer, and keys expire",
+      "notes": "Everyone has handed in a coat-check ticket. Show the same ticket again and the attendant hands back the same coat, not a second one. A payment API works the same way: the client sends a key with the refund, and the provider stores the first answer under that key. Where the comparison stops: a cloakroom only hands the coat back, while a server must store each answer. Stripe may prune a key only once it is at least 24 hours old, and a key reused after pruning starts a new request. The key must come from the code, never from the model, because a model may type a different key on the second try."
+    },
+    {
+      "layout": "concept",
+      "title": "A repeated payment with one key is charged once",
+      "lessons": [
+        "32"
+      ],
+      "sources": [
+        "https://docs.stripe.com/api/idempotent_requests",
+        "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/"
+      ],
+      "definition": "A unique ID the client sends with a write, so the server recognises a retry.",
+      "parts": [
+        {
+          "term": "Retry policy",
+          "meaning": "Only transient errors, never a refusal"
+        },
+        {
+          "term": "Timeout",
+          "meaning": "Bounds each try"
+        },
+        {
+          "term": "Key",
+          "meaning": "Made from the run id, by code"
+        },
+        {
+          "term": "Jitter",
+          "meaning": "Random wait; retries spread out"
+        }
+      ],
+      "notes": "Say the definition slowly; it is the one the provider documents: a unique key that the server uses to recognise later retries of the same request. Four parts: the retry policy retries only transient errors, such as a timeout, a lost reply or a 429, and never a refusal. The timeout bounds each try. The key comes from the run id, and jitter adds a random part to each wait. In Brooker's 2015 AWS test with 100 contending clients, jitter cut the call count by more than half. Example: the 84.00 USD refund for order 2207, with the key refund:r-2001. A lost reply is retried, and the card is charged once."
+    },
+    {
+      "layout": "code",
+      "title": "Start small: a retry with no key pays twice",
+      "lessons": [
+        "32"
+      ],
+      "sources": [
+        "https://docs.stripe.com/api/idempotent_requests"
+      ],
+      "lang": "python",
+      "code": "# the provider's first reply is lost\ntry:\n    payments.charge(\"2207\", 84.00)\nexcept ReplyLost as err:\n    print(\"error:\", err)\n# the retry: no key, so the provider charges again\npayments.charge(\"2207\", 84.00)",
+      "highlight": [
+        7
+      ],
+      "output": "error: charged, but the reply was lost\ncharges made: 2 · paid: 168.0 USD for an 84.00 USD order",
+      "points": [
+        "The card is charged before the reply is lost",
+        "A retry with no key is a new charge",
+        "The notebook total: 2 charges, 168.0 USD"
+      ],
+      "notes": "This is the smallest version of the problem, from lesson 32. The first reply is lost after the card has been charged. The client cannot tell charged from not charged, so the retry is a new charge. The notebook prints the total on its second line: two charges, 168.0 USD for an 84.00 USD order. The payments object is the lesson's fake provider, a stub with scripted faults, not a real API. Point at the last line. The next slide shows the same retry with one key, the fix."
+    },
+    {
+      "layout": "before_after",
+      "title": "The same key makes the retry a saved answer",
+      "lessons": [
+        "32"
+      ],
+      "sources": [
+        "https://docs.stripe.com/api/idempotent_requests",
+        "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/"
+      ],
+      "before": {
+        "label": "No key: each try charges again",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Reply lost after charge",
+            "Retry, no key",
+            "Charged again"
+          ]
+        },
+        "caption": "2 charges, 168.0 USD"
+      },
+      "after": {
+        "label": "One key from the run",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Reply lost after charge",
+            "Retry, key refund:r-2001",
+            "Saved answer: charge #1"
+          ]
+        },
+        "caption": "pay_refund(payments, \"2207\", 84.00, idem_key=\"refund:r-2001\")"
+      },
+      "notes": "Left: with no key, the retry is a new request, and the provider charges again. Right: the retry passes the key refund:r-2001, made from the run id, so the provider returns the saved answer and the card is charged once. The caption shows that call exactly as the lesson writes it, with the key passed in. The lesson's full print line is longer than 60 characters, so the caption carries the call alone. Its output is 'requests: 2 · charges made: 1'. Retry only transient errors, never a refusal: the lesson's common mistake sends one refusal three times."
+    },
+    {
+      "layout": "analogy",
+      "title": "A prepaid plan stops when the balance runs out",
+      "lessons": [
+        "33"
+      ],
+      "sources": [
+        "https://ai.google.dev/gemini-api/docs/pricing"
+      ],
+      "everyday": {
+        "name": "Prepaid phone plan",
+        "text": "Balance drops with each use; service stops when it is empty"
+      },
+      "tech": {
+        "name": "Spend guard",
+        "text": "Adds each reply's cost; refuses the next call once spent"
+      },
+      "breaks": "a balance only shows the number; the guard must refuse the call in code",
+      "notes": "Everyone has topped up a prepaid phone plan. The balance drops with each use, and when it is empty, the service stops. Model calls work the same way: every reply carries its own usage, so its cost is arithmetic. Prices from the lesson, from the Gemini pricing page: 0.25 USD per million input tokens, 1.50 per million output tokens, and 0.025 for a cached input token. Output costs six times input, so cap the reply as well as the prompt. Where the analogy stops: a balance only shows the number. The guard must refuse the next call in code, and one big call can take the spend past the cap."
+    },
+    {
+      "layout": "code",
+      "title": "Once spent, the cap stops the next model call",
+      "lessons": [
+        "33"
+      ],
+      "sources": [
+        "https://ai.google.dev/gemini-api/docs/pricing"
+      ],
+      "lang": "python",
+      "code": "class SpendGuard:\n    def __init__(self, max_usd: float):\n        self.max_usd, self.spent = max_usd, 0.0\n    def check(self) -> None:\n        if self.spent >= self.max_usd:\n            # raise BudgetExceeded: the call is never sent\n            ...\n    def add(self, resp) -> None:\n        self.spent += cost_of(resp)",
+      "highlight": [
+        5,
+        6
+      ],
+      "output": "stopped: spent $0.000261 of the $0.000200 cap; no call made",
+      "points": [
+        "check() runs before every model call",
+        "add() uses the usage in the real reply",
+        "The call that crosses the cap is sent; the next is refused"
+      ],
+      "notes": "The guard has two steps around each call: check before it, add after it. The check refuses only when the cap is already spent, so the call that crosses the cap is sent and can overshoot. The add uses the real reply's cost. In the notebook the first ticket cost 0.000261 USD against a 0.0002 cap, so the next check stopped the run with no call made. The comment stands for the lesson's raise, a BudgetExceeded message with the spent and cap amounts; that line is over 60 characters. guarded_ask wraps a real model call the same way, but it is not called here."
+    },
+    {
+      "layout": "before_after",
+      "title": "Replica memories let one refund pay twice",
+      "lessons": [
+        "34"
+      ],
+      "before": {
+        "label": "Two copies, two memories",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Replica A pays 15.00",
+            "Replica B pays again"
+          ]
+        },
+        "caption": "paid 30.00 USD for a 15.00 USD refund"
+      },
+      "after": {
+        "label": "One shared store (Redis)",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Replica A saves the key",
+            "Replica B sees the key",
+            "Saved answer: paid once"
+          ]
+        },
+        "caption": "one payment for one refund"
+      },
+      "notes": "Two identical copies of the service, replica A and replica B, each keep their own memory of the refund keys they have seen. The first try lands on A and stores the key. The retry lands on B, whose memory is empty, so it pays again. The notebook's real output: paid 30.00 USD for a 15.00 USD refund. Right: the replicas share one store, Redis, which holds the keys, so B sees A's key and returns the saved answer. Replicas keep no state of their own. The shared store's 'write only if absent' means that when two replicas race, the first writer wins. Example: refund:r-2001 for order 1011, as in lesson 34."
+    },
+    {
+      "layout": "analogy",
+      "title": "A kitchen ticket shows which course is done",
+      "lessons": [
+        "35"
+      ],
+      "sources": [
+        "https://docs.temporal.io/workflow-execution/event"
+      ],
+      "everyday": {
+        "name": "Kitchen ticket",
+        "text": "One tick per course done"
+      },
+      "tech": {
+        "name": "Durable run",
+        "text": "Finished steps saved; a new worker resumes"
+      },
+      "breaks": "paper stays in one kitchen; a run's record lives on a server",
+      "notes": "A restaurant kitchen ticket lists the courses, and the cook ticks each one as it is done. If the cook leaves, the next cook starts at the first untick and does not cook the starter twice. A durable run keeps the same kind of record. Where the analogy stops: a step's result is saved only when the server records it. A step can still run after its money has moved and before the record is saved, so it needs an idempotency key too. That is why lesson 35 puts the key from the run id on every charge."
+    },
+    {
+      "layout": "concept",
+      "title": "A durable run saves each finished step",
+      "lessons": [
+        "35"
+      ],
+      "sources": [
+        "https://docs.temporal.io/workflow-execution/event"
+      ],
+      "definition": "A durable run saves each finished step outside the process, so any worker can resume.",
+      "parts": [
+        {
+          "term": "Event history",
+          "meaning": "Each step's saved result"
+        },
+        {
+          "term": "Activity",
+          "meaning": "One step, with its own timeout"
+        },
+        {
+          "term": "Worker",
+          "meaning": "Runs steps; may die any time"
+        },
+        {
+          "term": "Timeout",
+          "meaning": "After it, the step is retried"
+        }
+      ],
+      "notes": "Temporal's event history stores each activity's result, and a restarted worker replays the workflow code, so finished steps return their saved results. The drill kills worker A during the charge, with a SIGKILL. Four parts: the event history on the server, the activity as one step, the worker that may die, and the start-to-close timeout that makes the server try the step again. The history is kept for the life of the run; Temporal warns at 10,240 events and terminates above 51,200, so a long loop must use Continue-As-New. Example: refund-2207-1."
+    },
+    {
+      "layout": "code",
+      "title": "The run is a plan the server can resume",
+      "lessons": [
+        "35"
+      ],
+      "sources": [
+        "https://docs.temporal.io/workflow-execution/event"
+      ],
+      "lang": "python",
+      "code": "@workflow.defn\nclass RefundRun:\n    @workflow.run\n    async def run(self, refund: dict) -> dict:\n        # charge = await workflow.execute_activity(\n        ...\n        return {\"charge\": charge, \"receipt\": receipt}",
+      "highlight": [
+        5
+      ],
+      "output": "run result: {'charge': 'charge #1', 'receipt': 'receipt sent'}",
+      "points": [
+        "Each step is an activity the server records",
+        "No reply in 3 seconds: the step is tried again",
+        "Key: f\"refund:{info.workflow_id}\", same on every try"
+      ],
+      "notes": "The durable run is a plan: it calls the charge activity, then the receipt, and the server records each result. The highlighted line is the lesson's real call, charge = await workflow.execute_activity(, shown as a comment because its arguments and closing parenthesis are on lines longer than 60 characters. Those lines take \"charge_card\", refund, a 3-second start-to-close timeout and a retry policy. That timeout means a lost worker is noticed after 3 seconds. Inside charge_card the key is key = f\"refund:{info.workflow_id}\", made from the run, not the attempt. The notebook's final result: one charge and one receipt."
+    },
+    {
+      "layout": "cards",
+      "title": "Four boundaries, four fixes",
+      "lessons": [
+        "36"
+      ],
+      "sources": [
+        "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/disaster-recovery-dr-objectives.html",
+        "https://www.uber.com/us/en/blog/designing-mcp-gateway/"
+      ],
+      "cards": [
+        {
+          "icon": "cube",
+          "head": "Tenancy",
+          "text": "Cache mixed Brightside and Northfield. Fix: tenant id in keys"
+        },
+        {
+          "icon": "cloud",
+          "head": "Runtime",
+          "text": "One session can read another's files. Fix: sandbox per session"
+        },
+        {
+          "icon": "doc",
+          "head": "Governance",
+          "text": "Nobody owns the rules. Ask legal the EU AI Act tier"
+        },
+        {
+          "icon": "bolt",
+          "head": "Recovery",
+          "text": "RPO (recovery point): data you may lose. RTO (recovery time): downtime"
+        }
+      ],
+      "notes": "Tenancy: the tenant id goes into every cache key, memory row and credential, and each lookup checks the owner. In the notebook, a shared cache keyed by the question alone sent Brightside's order status to Northfield; the fixed lookup raised PermissionError for another tenant's order. Runtime: a managed sandbox per session, with the user-to-session map still in your backend. Governance: named owners and written rules, and ask legal which EU AI Act tier applies. That EU law sorts AI systems into risk tiers, and the tier is a legal decision. Recovery: RPO is the most data you can afford to lose, RTO the longest the service may be down. The business sets both per record type."
+    },
+    {
+      "layout": "compare",
+      "title": "The release gate blocks v2 and ships v3",
+      "lessons": [
+        "37"
+      ],
+      "columns": [
+        {
+          "head": "v2: BLOCKED",
+          "points": [
+            "Success fell from 90% to 63%, from the course's golden-set data",
+            "Ten tasks that passed on v1 now fail",
+            "Hard tasks failed: t09 and t27"
+          ]
+        },
+        {
+          "head": "v3: SHIP",
+          "points": [
+            "All 5 gate tests pass",
+            "No reasons to hold: decide returns none"
+          ]
+        }
+      ],
+      "notes": "Lesson 37's first check is the release gate from lesson 28. The gate reads the saved golden-set runs, so it needs no model call. Candidate v2 drops success from 90% to 63%: ten tasks that passed on v1 now fail, and two hard ones, t09 and t27, fail too. The gate blocks it and prints the reasons. Candidate v3 passes all five tests and ships. The kill drill is recorded in the course data and runs live only with Docker: a replica is killed during 600 lookups, all 600 are answered with status 200 and none needs a second try, and the refund is charged once. Ask your team: what does your release gate check before a release?"
+    },
+    {
+      "layout": "steps",
+      "title": "Five steps take one refund to production",
+      "lessons": [
+        "32",
+        "33",
+        "34",
+        "35",
+        "37"
+      ],
+      "sources": [
+        "https://docs.stripe.com/api/idempotent_requests",
+        "https://docs.temporal.io/workflow-execution/event",
+        "https://ai.google.dev/gemini-api/docs/pricing"
+      ],
+      "steps": [
+        {
+          "head": "Retry safely",
+          "text": "One key per refund (32)"
+        },
+        {
+          "head": "Cap each turn",
+          "text": "Check spend before each call (33)"
+        },
+        {
+          "head": "Share state",
+          "text": "Stateless replicas, shared store (34)"
+        },
+        {
+          "head": "Survive a crash",
+          "text": "Resume at first unfinished step (35)"
+        },
+        {
+          "head": "Gate and drill",
+          "text": "Block bad releases; kill a replica (37)"
+        }
+      ],
+      "notes": "Walk the chapter in this order. Each step is one lesson's fix. Retry safely gives every write one key. Cap each turn stops a runaway loop before its money is spent. Share state makes the replicas stateless, so any of them can answer a retry. Survive a crash lets a worker die mid-run and the run finish once. The capstone, lesson 37, ties them into a release gate and a kill drill. The drill passes when every lookup is answered within three tries and the refund is charged once. Run the drill live only with Docker and the TUT_ENABLE switch set."
+    },
+    {
+      "layout": "questions",
+      "title": "Questions to ask in an interview or code review",
+      "lessons": [
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37"
+      ],
+      "sources": [
+        "https://docs.stripe.com/api/idempotent_requests"
+      ],
+      "questions": [
+        "A payment times out after the charge. What now?",
+        "Which errors do you retry?",
+        "What must replicas share?",
+        "What are your RPO and RTO?",
+        "What checks each model call before it is sent?"
+      ],
+      "notes": "Use these in an interview or a code review. Answers in one line each. First: retry with the same key made from the run id, so the provider returns the saved answer. Second: transient errors only, such as a timeout, a lost reply or a 429, never a refusal. Third: the shared store for idempotency keys and spend counters, Redis in lesson 34. Fourth: RPO is the most data you can afford to lose, RTO the longest downtime the service may have; the business sets both per record type. Fifth: the spend guard, which refuses the next call once the cap is spent. Then check your design: a tenant id on every cache key, one key per write."
+    }
+  ]
+}

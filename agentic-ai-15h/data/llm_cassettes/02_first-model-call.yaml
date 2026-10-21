@@ -1,0 +1,283 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "My parcel for order 1093 never came.
+      Can I get my money back?"}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are the Brightside Outfitters support desk. You cannot see order
+      data. Say what you can and cannot check. Answer in two sentences."}], "role":
+      "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '382'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"I cannot
+        access your personal order details or tracking information, so I am unable
+        to verify the status of your shipment. Please contact our billing department
+        with your order number so they can review your eligibility for a refund.\",\n
+        \           \"thoughtSignature\": \"AY89a1+BvXRy9bZH6VjehrHVW1XyQzLsMZ7vLXO93wmLE1TiFZwanScy3jy5I75W7NcuoQmU/xwFOF9iSO5dM0ZSS+oBhaU6LtVz2Q+mqLoCxs8eaAcOyXtCuRw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 47,\n    \"candidatesTokenCount\":
+        42,\n    \"totalTokenCount\": 89,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 47\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 42\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-20T08:20:37.643891Z\",\n
+        \ \"responseId\": \"VSTXarOmJ87f-O4Ple_0yQk\"\n}\n"
+    headers:
+      content-length:
+      - '1080'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 08:20:38 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "What was the order number I just gave
+      you? Answer with the number only."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are the Brightside Outfitters support desk. You cannot
+      see order data. Say what you can and cannot check. Answer in two sentences."}],
+      "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '392'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"I do
+        not have access to your personal order history or any information you may
+        have previously provided. I can assist with general store policies and product
+        inquiries, but I cannot view or verify specific order numbers.\",\n            \"thoughtSignature\":
+        \"AY89a1/vpeWyjVMJY7Sdm/hSDZAnTEoU3FHv7Oav5XIB3mED9uxGvvINnxNRxJX0AqZf80vAAPvmumBXOoae6tAZKbQTBXcnMq676X/yx3mzMgUnbleAKxkMB5s=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 44,\n    \"candidatesTokenCount\":
+        40,\n    \"totalTokenCount\": 84,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 44\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 40\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-20T08:20:38.398110Z\",\n
+        \ \"responseId\": \"ViTXap6mGMje-O4PnJCB-AQ\"\n}\n"
+    headers:
+      content-length:
+      - '1067'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 08:20:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "My parcel for order 1093 never came.
+      Can I get my money back?"}], "role": "user"}, {"parts": [{"text": "I cannot
+      access your personal order details or tracking information, so I am unable to
+      verify the status of your shipment. Please contact our billing department with
+      your order number so they can review your eligibility for a refund."}], "role":
+      "model"}, {"parts": [{"text": "What was the order number I just gave you? Answer
+      with the number only."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are the Brightside Outfitters support desk. You cannot see order data.
+      Say what you can and cannot check. Answer in two sentences."}], "role": "user"},
+      "generationConfig": {"temperature": 0.0, "maxOutputTokens": 200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '773'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"1093\",\n
+        \           \"thoughtSignature\": \"AY89a1+I3FBZXnJjn1E6HMrqBXgM5CdhOoVVc8ZEGkabIZkhp8KYOC7WVmLLk/ZP8qPKFvS+XsYpW3kniy+o40SSrL7Xhgckbg04hfWYJgpksIX2FdAIGDAWLPY=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 105,\n    \"candidatesTokenCount\":
+        4,\n    \"totalTokenCount\": 109,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 105\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 4\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-20T08:20:39.118704Z\",\n
+        \ \"responseId\": \"VyTXarCfB67i-O4P6bjO6AE\"\n}\n"
+    headers:
+      content-length:
+      - '852'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 08:20:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "A parcel is lost in transit. In two
+      sentences, what can the customer do next?"}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are the Brightside Outfitters support desk. You cannot
+      see order data. Say what you can and cannot check. Answer in two sentences."}],
+      "role": "user"}, "generationConfig": {"temperature": 0.0, "maxOutputTokens":
+      200}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '398'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"I cannot\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.1-flash-lite\",\"createTime\": \"2026-10-20T08:20:39.662157Z\",\"responseId\":
+        \"VyTXao21KN-ar8kPg5aO8A0\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" access your order history or
+        track specific shipments, but I can provide general guidance on how to contact\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-20T08:20:39.662157Z\",\"responseId\": \"VyTXao21KN-ar8kPg5aO8A0\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \" the carrier. Please reach out to our support team with your order number
+        so we can initiate a formal investigation into your missing\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-20T08:20:39.662157Z\",\"responseId\": \"VyTXao21KN-ar8kPg5aO8A0\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \" parcel.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-3.1-flash-lite\",\"createTime\": \"2026-10-20T08:20:39.662157Z\",\"responseId\":
+        \"VyTXao21KN-ar8kPg5aO8A0\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"AY89a1/e3fYt6+YwzWMaapTTkBq5vBThHQrFMl+rrdMA0OWNhuCyIqPY8YbiHMEtKCAmr+o4C+ADnsE5Yk9XlbZaCGvG55tc8PzShm7x+1d0t+9g29rtor7PN+A=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 46,\"candidatesTokenCount\":
+        47,\"totalTokenCount\": 93,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 46}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 47}]},\"modelVersion\": \"gemini-3.1-flash-lite\",\"createTime\":
+        \"2026-10-20T08:20:39.662157Z\",\"responseId\": \"VyTXao21KN-ar8kPg5aO8A0\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Tue, 20 Oct 2026 08:20:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

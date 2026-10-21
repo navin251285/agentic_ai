@@ -1,0 +1,315 @@
+{
+  "title": "Part 2: an agent you can test and secure",
+  "subtitle": "Agentic AI: hello world to enterprise · Part 2 · lessons 06 to 10",
+  "course": "Agentic AI: hello world to enterprise",
+  "audience": "learners of this course (developers who code)",
+  "audience_type": "technical",
+  "scope": {
+    "part": 2
+  },
+  "theme": {
+    "accent": "4F46E5",
+    "accent2": "F59E0B"
+  },
+  "slides": [
+    {
+      "layout": "title",
+      "title": "Part 2: an agent you can test and secure",
+      "subtitle": "Lessons 06 to 10: loop, tools, test, safety, checkpoint",
+      "notes": "This part turns the loop from lesson 05 into an agent you can stop, test and trust. Five lessons, one running example: the order-lookup assistant for a fictional shop. At the end you have app v1, a command that answers ship or hold. Every number on these slides comes from the lessons; the notes name the lesson each one comes from."
+    },
+    {
+      "layout": "analogy",
+      "title": "A cook with a timer knows when to stop",
+      "everyday": {
+        "name": "A cook with a timer",
+        "text": "Follows the recipe; stops at the timer or budget."
+      },
+      "tech": {
+        "name": "Agent loop with caps",
+        "text": "Model picks each step; code stops on an answer or a cap."
+      },
+      "breaks": "A cook judges for themselves; the model does not.",
+      "lessons": [
+        "06"
+      ],
+      "notes": "Start with the cook, because everyone has watched one. A cook follows a recipe, keeps a timer and a food budget, and stops when the dish is done. Lesson 06 builds that for an agent: the model picks each step, your code decides when the loop stops. Say where it breaks: the cook judges for themselves, the model does not, so the limits live in code. The cost of a missing limit, from lesson 06: one step with 1,000 input and 100 output tokens costs $0.0004, so 10,000 stuck steps cost $4."
+    },
+    {
+      "layout": "concept",
+      "title": "The loop repeats until an answer or a cap",
+      "definition": "An agent loop is a while loop with exits: each pass calls the model, then runs the tools it asks for.",
+      "parts": [
+        {
+          "term": "Model call",
+          "meaning": "one step; each pass is a paid call"
+        },
+        {
+          "term": "Tool request",
+          "meaning": "a function your code runs when asked"
+        },
+        {
+          "term": "Caps",
+          "meaning": "limits: steps, spend or a repeated call"
+        }
+      ],
+      "example": "Two order lookups, then one answer.",
+      "lessons": [
+        "06"
+      ],
+      "notes": "Define the terms before the code. A tool is a function your code runs when the model asks; the model only writes the request. The loop has three exits: the step cap counts model calls, the spend cap adds up each reply's usage, and repeated-call detection stops when the same tool gets the same arguments again. Every stop prints its reason. Running example: orders 1093 and 2207 mean two lookups, then one answer, with the stop reason answered."
+    },
+    {
+      "layout": "code",
+      "title": "Start with three caps, set in one place",
+      "code": "@dataclass\nclass Caps:\n    # the step cap is max_steps: model calls per task\n    max_steps: int = 6\n    ...\nprint(\"default caps:\", Caps())",
+      "lang": "python",
+      "highlight": [
+        4,
+        6
+      ],
+      "output": "default caps: Caps(max_steps=6, max_usd=0.01, max_same_calls=1)",
+      "points": [
+        "Limits are numbers in one object",
+        "A test can change them without a model"
+      ],
+      "lessons": [
+        "06"
+      ],
+      "notes": "This is the smallest working piece: a dataclass holding the three limits. max_steps is the step cap, six model calls per task. max_usd is the spend cap, one cent per task in the default. max_same_calls is 1: an identical call may run once, and the next one stops the loop. The printed line is real output from the executed notebook. The dotted line stands for the other two lines of the class, which you can read in the lesson."
+    },
+    {
+      "layout": "code",
+      "title": "The loop checks the caps before any tool runs",
+      "code": "def agent_loop(question: str, caps: Caps) -> Run:\n    while True:\n        ...\n        run.usd += cost_of(resp)\n        ...\n        if not requests:\n            return run\n        ...\n        results = run_requests(requests, counts, caps)\n        if results is None:\n            run.stop = \"repeated call\"\n            return run",
+      "lang": "python",
+      "highlight": [
+        9,
+        10
+      ],
+      "output": "stop: repeated call · model calls: 2 · spent $0.000113\n  model asked: lookup_order {\"order_id\": \"1093\"}\n  model asked: lookup_order {\"order_id\": \"1093\"}",
+      "points": [
+        "Every pass is one model call",
+        "The stop reason is returned, never hidden"
+      ],
+      "lessons": [
+        "06"
+      ],
+      "notes": "The grown version, with the parts we kept. Each pass makes one model call and adds its cost. If the reply has no tool request, the loop ends with the answer. Otherwise the caps are checked before any tool runs, and the repeated-call check runs in run_requests, one request at a time. The output is from run 2 of the notebook: the second identical lookup is blocked before it runs, after two model calls and $0.000113 of recorded spend. A stop you can log is a stop you can debug."
+    },
+    {
+      "layout": "diagram",
+      "title": "Each pass either answers or runs the tools",
+      "diagram": {
+        "type": "cycle",
+        "items": [
+          "Model call (one step)",
+          "Caps checked first",
+          "Tools run, errors returned",
+          "Results back to model"
+        ]
+      },
+      "caption": "Only exits: an answer, a cap, or a repeat. Step repetition: 15.7% of multi-agent failures (MAST).",
+      "lessons": [
+        "06",
+        "07"
+      ],
+      "notes": "The loop in one picture. The model call is one step. The caps are checked after each reply and before any tool runs. A tool error is not a crash: lesson 07 returns it as a result the model can read, with the bad field and a next step. The exits are an answer, a step cap, a spend cap and a repeated call. Lesson 06 cites the MAST study of multi-agent failures, where step repetition was 15.7 percent, which is why the repeat rule exists even for one agent."
+    },
+    {
+      "layout": "analogy",
+      "title": "A golden set is a driving test",
+      "everyday": {
+        "name": "A driving test",
+        "text": "Checks the car reached the address, and no solid line was crossed."
+      },
+      "tech": {
+        "name": "A golden set",
+        "text": "Tasks with a known end state; a grader checks the result."
+      },
+      "breaks": "A test route is fixed; a golden set covers only the cases written.",
+      "lessons": [
+        "08"
+      ],
+      "notes": "Most people have sat a driving test, so start there. The examiner does not judge the driver's words: they check the outcome, the car at the address, and the path, no solid line crossed. Lesson 08 uses the same two checks. Outcome grading looks at the world: a refund row exists, or a ticket is open. Trajectory grading looks at the path: no forbidden tool ran, and the required lookup did run. Where it breaks: a golden set proves only the cases on the list."
+    },
+    {
+      "layout": "concept",
+      "title": "A golden set grades end states, not wording",
+      "definition": "A golden set is tasks, each with a request and the expected end state (end state = what the database holds afterward: refund row, ticket).",
+      "parts": [
+        {
+          "term": "Outcome grading",
+          "meaning": "checks the world: the refund row exists or not"
+        },
+        {
+          "term": "Trajectory grading",
+          "meaning": "checks the path: no forbidden tool ran"
+        },
+        {
+          "term": "Task success rate",
+          "meaning": "passed tasks divided by all tasks"
+        }
+      ],
+      "example": "Order 1003 is lost: expect a refund of 89.5 and no ticket.",
+      "lessons": [
+        "08"
+      ],
+      "notes": "The golden set in lesson 08 holds 30 support tasks and a fictional world of 12 orders, with no personal data. Each task has a request and an expected end state, which the grader reads back with SQL. The success rate is passed tasks over all tasks; the first run scored 77 percent, 23 of 30. The grader never reads the reply's wording: 'refunded' with no refund is a failure. Order 1003 is the task lesson 08 asks you to write yourself in its Try-it."
+    },
+    {
+      "layout": "code",
+      "title": "One test checks the end state of each task",
+      "code": "def run_and_check(task: dict) -> list[str]:\n    db = make_db(GOLDEN[\"world\"])\n    calls = set(run_support_agent(task[\"request\"], db))\n    end = end_state(db)\n    ...\n    return problems\n\ndef test_task(task):\n    problems = run_and_check(task)\n    assert not problems, \"; \".join(problems)",
+      "lang": "python",
+      "highlight": [
+        4,
+        10
+      ],
+      "output": "24 passed, 7 xfailed",
+      "points": [
+        "The agent is scripted: no model call",
+        "xfailed = known miss, marked on purpose; 23 tasks + 1 gate pass"
+      ],
+      "lessons": [
+        "08"
+      ],
+      "notes": "This is the whole check for one task. It builds a fresh fictional database, runs the scripted agent on the request, and reads the end state back. The list of problems is empty when the task passes, and the pytest assert checks exactly that. The agent is fixed rules, so no model call is made, and a guard fails any attempt to create a model client. The summary line is real output: 24 passed and 7 xfailed. The 24 passes are 23 tasks plus the gate, which is the one check that the golden set itself runs. The 7 xfailed are known misses, marked on purpose so they stay visible; when a fix works, its mark must be removed."
+    },
+    {
+      "layout": "compare",
+      "title": "Without a golden set, a regression reaches customers",
+      "columns": [
+        {
+          "head": "Without an eval",
+          "points": [
+            "Try three questions by hand",
+            "Judge the wording of replies",
+            "Customers find the regression"
+          ]
+        },
+        {
+          "head": "With a golden set",
+          "points": [
+            "30 tasks run with no model call",
+            "Grade the end state, not the wording",
+            "A regression fails before shipping"
+          ]
+        }
+      ],
+      "lessons": [
+        "08"
+      ],
+      "notes": "Read the two columns as before and after. Without an eval, you change a prompt, try three questions, see nothing wrong, and ship. The lesson's example is a rule that now refunds 'I changed my mind'; the first person to notice is a customer. With a golden set, the same change runs 30 tasks with no model call and fails the build when an end state is wrong. The list of misses says which tasks broke. Lesson 10 turns the same idea into a ship or hold gate."
+    },
+    {
+      "layout": "analogy",
+      "title": "A ticket is data; only a person approves money",
+      "everyday": {
+        "name": "A bank teller",
+        "text": "A note is only paper; only a manager's stamp moves money."
+      },
+      "tech": {
+        "name": "Your support agent",
+        "text": "Ticket text can carry a hidden order (injection); writes wait."
+      },
+      "breaks": "A teller spots forgeries by eye; a model cannot, so code guards.",
+      "lessons": [
+        "09"
+      ],
+      "notes": "A bank teller reads every note a customer hands over, but a note is not an order. A model is in the same position: a ticket arrives as text in the same prompt as the real request. Lesson 09 plants an attack in ticket T-1042, a line asking for a refund of 84 dollars that is not mentioned. That is indirect prompt injection: the attack arrives through data the agent fetches. The defence is in code, not in the teller's judgement: scopes and a gate that holds every write."
+    },
+    {
+      "layout": "cards",
+      "title": "Three guards; only the last two are guarantees",
+      "cards": [
+        {
+          "icon": "chat",
+          "head": "Prompt rule",
+          "text": "Tells the model not to follow the ticket. A request, so it can fail."
+        },
+        {
+          "icon": "gear",
+          "head": "Least privilege",
+          "text": "The agent gets only the tools it needs (read-only by default)."
+        },
+        {
+          "icon": "target",
+          "head": "Approval gate",
+          "text": "Holds every write until a person approves the real amount."
+        }
+      ],
+      "lessons": [
+        "09"
+      ],
+      "notes": "Rank the three guards from weakest to strongest, as lesson 09 does. The prompt rule lowers the odds of an attack but cannot stop one. Least privilege is enforced in code: a read-only agent asked to refund is refused before anything runs. The approval gate holds each write so a person sees the real amount first; lesson 14 builds the gate with a pause that survives a restart. The lesson's run changed three things at once, so it does not show which guard did the work."
+    },
+    {
+      "layout": "diagram",
+      "title": "A tool request passes three checks before it runs",
+      "diagram": {
+        "type": "flow",
+        "items": [
+          "Model asks for a tool",
+          "Tool inside the scopes?",
+          "Write? Held for a person",
+          "Read: runs"
+        ]
+      },
+      "caption": "Every request goes through one dispatcher. The model never runs a tool directly.",
+      "lessons": [
+        "09"
+      ],
+      "notes": "This is the path every tool request takes in lesson 09's dispatcher. First, the tool name must exist and be inside the agent's scopes; if not, the refusal is a result the model can read. Second, a write with the gate on is stored as pending and nothing changes in the world. Third, a read runs. The refund tool also refuses an amount above the order total, so calling it directly still fails safely. The dispatcher is the one place to change when a rule changes."
+    },
+    {
+      "layout": "steps",
+      "title": "One assistant, built one check at a time",
+      "steps": [
+        {
+          "head": "06 Loop",
+          "text": "Stops on an answer or a cap."
+        },
+        {
+          "head": "07 Tools",
+          "text": "Refuses bad input; errors as results."
+        },
+        {
+          "head": "08 Golden set",
+          "text": "30 tasks, graded on end state."
+        },
+        {
+          "head": "09 Safety",
+          "text": "Data stays data; scopes; held writes."
+        },
+        {
+          "head": "10 Checkpoint",
+          "text": "One command: ship or hold."
+        }
+      ],
+      "lessons": [
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "notes": "Walk the build path. Lesson 06 gives the loop and its caps. Lesson 07 makes each tool refuse bad input and return errors the model can act on. Lesson 08 adds the golden set with a pass bar of 75 percent; the first run scored 77. Lesson 09 adds the guards: untrusted text, least privilege, held writes. Lesson 10 puts them in one order-lookup assistant and one command that answers ship or hold. Its rule: a new miss holds the build even when the rate is high. This is app v1, the core the course app wraps."
+    },
+    {
+      "layout": "questions",
+      "title": "Questions to ask about your agent",
+      "questions": [
+        "Which caps stop your loop, and what do they count?",
+        "Which tools can write, and who approves them?",
+        "Does your golden set grade end states or wording?",
+        "Where can outside text reach your prompt?",
+        "Does one command say ship or hold?"
+      ],
+      "lessons": [
+        "10"
+      ],
+      "notes": "End with questions the learner can answer about their own design, as in a code review or an interview. Lesson 10's interview prompt is a good closer: what do you need before a customer uses a working agent demo? A strong answer names caps on steps and spend, tools that refuse bad input with a reason, a golden set with a pass bar, and writes held for a person, with one command that says ship or hold. Ask each learner to check one question against their own app v1."
+    }
+  ]
+}

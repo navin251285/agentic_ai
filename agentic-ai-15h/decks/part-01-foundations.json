@@ -1,0 +1,339 @@
+{
+  "title": "Part 1: the model asks, your code acts",
+  "subtitle": "Agentic AI · Part 1 · lessons 01–05",
+  "course": "Agentic AI: hello world to enterprise",
+  "audience": "learners of this course (developers)",
+  "audience_type": "technical",
+  "scope": {
+    "part": 1
+  },
+  "theme": {
+    "accent": "4F46E5",
+    "accent2": "F59E0B"
+  },
+  "slides": [
+    {
+      "layout": "title",
+      "notes": "This is Part 1 of the course: five lessons, 01 to 05. The promise is one model call, then one tool round trip, and by the end you will know exactly what each piece of your code must do. Every lesson runs on a laptop with no key: the model answers are recorded once and replayed. Keep the notebook open beside this deck. The slides name the idea; the notebook shows it running."
+    },
+    {
+      "layout": "before_after",
+      "title": "Hand-written rules stop at the first new phrasing",
+      "lessons": [
+        "01"
+      ],
+      "before": {
+        "label": "Your rules decide each step",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Customer message",
+            "Keyword rule matches?",
+            "No match: sorry reply"
+          ]
+        },
+        "caption": "Two rules: 1 of 4 test messages handled"
+      },
+      "after": {
+        "label": "The model picks the next tool",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Customer message",
+            "Model asks: lookup_order",
+            "Your code runs it"
+          ]
+        }
+      },
+      "notes": "Start with the support desk from lesson 01, with no model at all. Two hand-written rules handle the messages someone thought of. Run on four real-looking messages, it handled one of four: the exact phrase worked, and every rephrasing got the sorry line. Each missed phrasing is a lost customer, and each new question is another branch. On the right, the model reads the wording and asks for a tool, and your code runs it. The model never runs anything itself. That single sentence is the whole idea of an agent; the rest of the course is how to make it safe."
+    },
+    {
+      "layout": "compare",
+      "title": "Chatbot, workflow or agent: who picks the next step",
+      "lessons": [
+        "01"
+      ],
+      "columns": [
+        {
+          "head": "Chatbot",
+          "points": [
+            "One reply, no tools",
+            "Desk: explains refund policy"
+          ]
+        },
+        {
+          "head": "Workflow",
+          "points": [
+            "Your code fixes the steps",
+            "Desk: always look up order, then reply"
+          ]
+        },
+        {
+          "head": "Agent",
+          "points": [
+            "The model picks the next tool",
+            "Desk: decides whether to look up, or ask"
+          ]
+        }
+      ],
+      "notes": "Three systems look alike from a chat window. A chatbot writes one reply and cannot act; it can only describe actions. A workflow is code that runs its steps in a fixed order, and the model may fill in one of them, as in the desk example. An agent lets the model choose the next tool and decide when to stop. The lesson's rule is to start with the simplest system that works. Anything that changes money or data needs an approval gate at any autonomy level; lesson 14 builds one. Ask the room which of their tasks have a known order of steps. Those are workflows: fewer model calls, and easier to test."
+    },
+    {
+      "layout": "analogy",
+      "title": "A restaurant ticket: the waiter asks, the kitchen cooks",
+      "lessons": [
+        "05"
+      ],
+      "everyday": {
+        "name": "A restaurant order",
+        "text": "The waiter writes a ticket for the kitchen."
+      },
+      "tech": {
+        "name": "A tool call",
+        "text": "The model names a function and arguments; your code runs it."
+      },
+      "breaks": "A model can write a wrong ticket: check name and arguments against the schema first.",
+      "notes": "Almost everyone has ordered from a restaurant. The waiter writes a ticket with a dish and a table number; the kitchen makes the dish, and it comes back under the same ticket number. A tool call works the same way. The model writes a ticket, a function name and arguments. Your code cooks it: it runs the function. The result returns tied to that request. Where the picture breaks: a kitchen cooks what the ticket says, but a model can write a wrong ticket. So your code checks the ticket before it cooks. Lesson 05 uses this picture."
+    },
+    {
+      "layout": "concept",
+      "title": "A tool call is a request your code answers",
+      "lessons": [
+        "05"
+      ],
+      "definition": "A tool call is a request from the model, not an action: a function name and arguments that your code runs.",
+      "parts": [
+        {
+          "term": "Name",
+          "meaning": "Which function the model wants to run"
+        },
+        {
+          "term": "Arguments",
+          "meaning": "JSON values that must match the tool's schema"
+        },
+        {
+          "term": "Result",
+          "meaning": "What your code returns, tied to that request"
+        }
+      ],
+      "example": "lookup_order for order 1093 returns: in transit, 3 days late",
+      "notes": "Say the definition slowly: a tool call is a request, not an action. The model writes a function name and arguments that match a JSON Schema you gave it. Your code runs the function and sends the result back, and then the model writes its answer from that result. A round trip is two model calls: one for the request and one for the answer. The vendors differ in the wire format. Gemini matches each function_response to its call by name and order; Claude and OpenAI tie each result to an id. The example from the lesson: order 1093 comes back as in transit, three days late."
+    },
+    {
+      "layout": "code",
+      "title": "Start small: your code runs the tool by name",
+      "lessons": [
+        "05",
+        "06"
+      ],
+      "lang": "python",
+      "code": "def run_tool(name: str, args: dict) -> dict:\n    fn, schema = REGISTRY[name]\n    ...\n    return fn(**checked)\n\nprint(run_tool(\"lookup_order\", {\"order_id\": \"1093\"}))",
+      "highlight": [
+        4
+      ],
+      "output": "{'status': 'in transit', 'days_late': 3}",
+      "points": [
+        "The model sends a name and arguments",
+        "run_tool finds the function by name",
+        "The result goes back as data, not text"
+      ],
+      "notes": "This is the smallest working version. A registry maps each tool name to a function and its argument schema, and run_tool looks the name up. The dots on line 3 stand for the schema check. The lesson's real line 107 is checked = schema.model_validate(args).model_dump(), and it carries a trailing comment, so it is too wide for the slide. model_validate refuses bad arguments before any function runs, and model_dump turns the checked values into a plain dictionary for the function. The return line on line 4 is the call that runs the function. The print line and the output come from lesson 05, where the same call runs on the same order table, so the output is real. Ask who chose what to run. The model chose the name; your code chose to run it. Run the cell and read the output: a dictionary with the status and the days late, returned as data. The order table is made up for the lesson, so nothing here touches a real system."
+    },
+    {
+      "layout": "analogy",
+      "title": "A helpdesk that forgets you between calls",
+      "lessons": [
+        "02"
+      ],
+      "everyday": {
+        "name": "A helpdesk phone call",
+        "text": "The agent forgets you when you hang up; you repeat yourself."
+      },
+      "tech": {
+        "name": "A model call",
+        "text": "The API keeps no memory; your code resends the messages."
+      },
+      "breaks": "A human remembers some things; the API remembers nothing.",
+      "notes": "Think of a helpdesk phone call where the agent forgets everything the moment you hang up. You repeat the story on the next call. A model API behaves the same way. Each call is independent, and the server keeps no memory between calls. So your code must send the conversation again, every time. Where the picture breaks: a human agent remembers some things, while the API keeps nothing at all. The cost of memory is therefore the cost of resending it, and lesson 03 shows that bill in tokens."
+    },
+    {
+      "layout": "concept",
+      "title": "Each model call starts blank; resend the history",
+      "lessons": [
+        "02",
+        "03"
+      ],
+      "definition": "A model call is stateless: it forgets everything after each call, so your code resends the messages, and you pay per token.",
+      "parts": [
+        {
+          "term": "Messages",
+          "meaning": "Turns, each with a role: user or model"
+        },
+        {
+          "term": "System instruction",
+          "meaning": "The rules, sent apart from the list"
+        },
+        {
+          "term": "Token",
+          "meaning": "A small chunk of text, about four characters, that you pay for"
+        },
+        {
+          "term": "Usage",
+          "meaning": "Input and output token counts per reply"
+        }
+      ],
+      "notes": "The exact definition: a model call is stateless. The API keeps no memory between calls, so the message list is sent every time, and you pay for each input token and each output token. There are four parts. The messages are turns, each with a role: user for the customer, and model for the assistant's earlier replies, which is Gemini's name for that role. The system instruction holds the rules and travels apart. A token is a small chunk of text, about four characters by the rule of thumb in lesson 03, and the usage record counts the tokens of each call. The lesson's example: a follow-up asked alone gets 'I do not have access to your order history'; the same question sent after turn 1 gets 1093."
+    },
+    {
+      "layout": "code",
+      "title": "Resend the history; the usage shows what it costs",
+      "lessons": [
+        "02",
+        "03"
+      ],
+      "lang": "python",
+      "code": "history = []\n# history.append({\"role\": \"user\", ...})  # turn 1 question\n# history.append({\"role\": \"model\", ...})  # turn 1 reply\n# history.append({\"role\": \"user\", ...})  # turn 2 follow-up\ntogether = ask(model=MODEL, contents=history, config=CONFIG)\nprint(\"With history:   \", together.text)\n_ = show_usage(together)",
+      "highlight": [
+        5
+      ],
+      "output": "With history:    1093\ninput 105 tokens · output 4 (incl. thinking) · total 109\ncost of this call: $0.000032",
+      "points": [
+        "Turn 1, its reply and the follow-up are all sent",
+        "Input tokens grow with every turn",
+        "Usage counts the tokens of this one call"
+      ],
+      "notes": "This is the grown version of the helpdesk call. The history list holds the question, the reply and the follow-up; the three append lines are shown as comments to fit the slide, and one ask() call sends all of it. The output shows the answer 1093 and the usage: 105 input tokens for this call, against 47 for the very first call. The cost of this call is about $0.000032. Input grows every turn, so a long chat costs more each time. Lesson 03 adds the next step: count tokens with the model's own tokenizer rather than guessing from characters. The lesson's policy text gave 168 tokens, where the four-characters guess said 195."
+    },
+    {
+      "layout": "analogy",
+      "title": "A claim form: fixed boxes, checked before payment",
+      "lessons": [
+        "04"
+      ],
+      "everyday": {
+        "name": "An insurance claim form",
+        "text": "Fixed boxes; a clerk checks each box before paying."
+      },
+      "tech": {
+        "name": "Structured output",
+        "text": "The reply must follow a JSON schema; Pydantic checks each value before code acts."
+      },
+      "breaks": "A clerk can judge intent; Pydantic only checks the rules you wrote.",
+      "notes": "A claim form at an insurer has fixed boxes. A clerk checks each box against the policy before paying, and a bad form goes back with a note on the wrong box, not thrown away. Structured output works the same way. The model must fill a JSON schema, and Pydantic is the clerk who checks every value. Where the picture breaks: a clerk can judge what a customer meant, while Pydantic only checks the rules you wrote. A value that passes is well-formed, not necessarily right. Lesson 04 builds the desk's triage this way."
+    },
+    {
+      "layout": "concept",
+      "title": "The model fills a schema; Pydantic checks it",
+      "lessons": [
+        "04"
+      ],
+      "definition": "Structured output means the reply must follow a JSON schema (a list of the fields and types allowed), and Pydantic, a Python library, checks the values.",
+      "parts": [
+        {
+          "term": "Schema",
+          "meaning": "The shape the reply must follow: fields and types"
+        },
+        {
+          "term": "Pydantic model",
+          "meaning": "A Python class that checks types and your rules"
+        },
+        {
+          "term": "Validation retry",
+          "meaning": "Sends the error back once; capped at two calls"
+        }
+      ],
+      "example": "order_id 1093 is refused, because the desk stores BO-1093",
+      "notes": "Structured output means the reply must follow a JSON schema you give with the request. A Pydantic model is a Python class that describes the same shape and also checks the values: their types, the allowed words and your own rules. There are three parts. The schema tells the model the shape. The Pydantic model decides whether your code may use the object. The validation retry sends the error back once, with the bad answer, so the model fixes only that value. The retry is capped at two calls, so a bad model cannot loop forever. The rule of the lesson: the schema shapes the reply, and the hard rules live in code."
+    },
+    {
+      "layout": "code",
+      "title": "A validator refuses 1093; the desk needs BO-1093",
+      "lessons": [
+        "04"
+      ],
+      "lang": "python",
+      "code": "@field_validator(\"order_id\")\n@classmethod\ndef desk_format(cls, value: str) -> str:\n    if not re.fullmatch(r\"BO-\\d{4}\", value):\n        ...\n    return value",
+      "highlight": [
+        4
+      ],
+      "output": "attempt 1: invalid\norder_id: order_id must look like BO-1234 (the desk's format), got '1093'\nattempt 2: valid",
+      "points": [
+        "The desk's rule lives in code, not only in the prompt",
+        "A failed check names the field and the rule",
+        "Error text is sent back; the retry loop (lesson 04) prints the attempts"
+      ],
+      "notes": "Here the desk's rule is written in code: a pattern on order_id that needs the letters BO, a dash and four digits. The customer types 1093, and the validator refuses it. The highlighted line is the test itself. The line that refuses it is lesson 04's real line 81. No shorter real line refuses it, so the dots stand in for it on the slide. The full line is: raise ValueError(f\"order_id must look like BO-1234 (the desk's format), got {value!r}\"). The message names the rule and adds the value that failed, which is why the output shows got '1093'. The dots hide the rest of the lesson's code. The output shows what Pydantic reports: the field name and the rule it broke. That same text is what the retry sends back to the model, so it must say what is wrong. Ask yourself where a rule the model cannot know belongs. The answer is the validator, not the prompt alone."
+    },
+    {
+      "layout": "code",
+      "title": "Urgent refunds go to a person",
+      "lessons": [
+        "04"
+      ],
+      "lang": "python",
+      "code": "def needs_human(t: Triage) -> bool:\n    return t.category == \"refund\" and t.urgent\n\nprint(needs_human(late), needs_human(calm))   # True False",
+      "highlight": [
+        2
+      ],
+      "output": "True False",
+      "points": [
+        "A checked object drives a plain decision",
+        "Only an urgent refund goes to a person",
+        "The model proposes; code and people decide"
+      ],
+      "notes": "This is the decision that follows a valid object. Once the reply is a checked Triage object, ordinary code decides: an urgent refund goes to a person, and the refund code never sees it. The output shows True for the urgent refund and False for the calm one. The lesson's warning is worth repeating: a valid object can still be the wrong decision, so any refund still goes through an approval or a deterministic check. Here late and calm stand for two Triage objects built in the notebook. The model proposes; code and people decide."
+    },
+    {
+      "layout": "steps",
+      "title": "From one call to a safe tool round trip",
+      "lessons": [
+        "02",
+        "03",
+        "04",
+        "05"
+      ],
+      "steps": [
+        {
+          "head": "One call",
+          "text": "Read the reply and its usage"
+        },
+        {
+          "head": "Count tokens",
+          "text": "Count with the model's tokenizer"
+        },
+        {
+          "head": "Typed output",
+          "text": "Pydantic checks every value"
+        },
+        {
+          "head": "Tool round trip",
+          "text": "Return each result with its request"
+        },
+        {
+          "head": "Next: the loop",
+          "text": "Step and cost caps (lesson 06)"
+        }
+      ],
+      "notes": "Read this slide as the build path. One call and its usage is lesson 02. Counting tokens and setting the dials is lesson 03. Typed output with a checked retry is lesson 04. The tool round trip is lesson 05. The next part, lesson 06, writes the loop yourself: the same round trip repeated, with a step cap and a cost cap. Say the whole of Part 1 in one sentence: the model asks, your code acts, and every value is checked before anything uses it."
+    },
+    {
+      "layout": "questions",
+      "title": "Questions to ask before you design an agent",
+      "lessons": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05"
+      ],
+      "questions": [
+        "Which steps need a model, and which need code?",
+        "What is resent each turn, and what does it cost?",
+        "Which tool arguments does code check first?",
+        "Which values must match a schema?",
+        "Which writes, like refunds, need a person?"
+      ],
+      "notes": "Ask these before any design review. Which steps truly need a model, and which can plain code do? What is resent every turn, and what does the usage record say it costs? Which tool arguments does your code check before a function runs? Which values must match a schema, and where is the rule that checks them? Which writes need a person before they happen? These are the questions that separate a demo from a system. Suggest the room bring one real task and answer all five for it, before part 2."
+    }
+  ]
+}

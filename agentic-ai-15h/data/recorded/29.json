@@ -1,0 +1,292 @@
+[
+ {
+  "name": "chat gemini-3.1-flash-lite",
+  "context": {
+   "trace_id": "0x26a99ac0d5506fff924dd55a143b2334",
+   "span_id": "0x84dd44e950c3dfe2",
+   "trace_state": "[]"
+  },
+  "kind": "SpanKind.INTERNAL",
+  "parent_id": "0x35b2d48285ab60db",
+  "start_time": "2026-10-20T11:26:48.638501Z",
+  "end_time": "2026-10-20T11:26:48.675074Z",
+  "status": {
+   "status_code": "UNSET"
+  },
+  "attributes": {
+   "gen_ai.operation.name": "chat",
+   "gen_ai.request.model": "gemini-3.1-flash-lite",
+   "gen_ai.usage.input_tokens": 57,
+   "gen_ai.usage.output_tokens": 42
+  },
+  "events": [],
+  "links": [],
+  "resource": {
+   "attributes": {
+    "telemetry.sdk.language": "python",
+    "telemetry.sdk.name": "opentelemetry",
+    "telemetry.sdk.version": "1.45.1",
+    "service.instance.id": "90dff371-3c05-4d39-8e45-5f71da103d20",
+    "service.name": "unknown_service:python"
+   },
+   "schema_url": ""
+  }
+ },
+ {
+  "name": "execute_tool lookup_order",
+  "context": {
+   "trace_id": "0x26a99ac0d5506fff924dd55a143b2334",
+   "span_id": "0x8742ea5cd4f5e61a",
+   "trace_state": "[]"
+  },
+  "kind": "SpanKind.INTERNAL",
+  "parent_id": "0x35b2d48285ab60db",
+  "start_time": "2026-10-20T11:26:48.675663Z",
+  "end_time": "2026-10-20T11:26:48.675706Z",
+  "status": {
+   "status_code": "UNSET"
+  },
+  "attributes": {
+   "gen_ai.operation.name": "execute_tool",
+   "gen_ai.tool.name": "lookup_order"
+  },
+  "events": [],
+  "links": [],
+  "resource": {
+   "attributes": {
+    "telemetry.sdk.language": "python",
+    "telemetry.sdk.name": "opentelemetry",
+    "telemetry.sdk.version": "1.45.1",
+    "service.instance.id": "90dff371-3c05-4d39-8e45-5f71da103d20",
+    "service.name": "unknown_service:python"
+   },
+   "schema_url": ""
+  }
+ },
+ {
+  "name": "execute_tool lookup_order",
+  "context": {
+   "trace_id": "0x26a99ac0d5506fff924dd55a143b2334",
+   "span_id": "0x16560440b7e07145",
+   "trace_state": "[]"
+  },
+  "kind": "SpanKind.INTERNAL",
+  "parent_id": "0x35b2d48285ab60db",
+  "start_time": "2026-10-20T11:26:48.677464Z",
+  "end_time": "2026-10-20T11:26:48.677491Z",
+  "status": {
+   "status_code": "UNSET"
+  },
+  "attributes": {
+   "gen_ai.operation.name": "execute_tool",
+   "gen_ai.tool.name": "lookup_order"
+  },
+  "events": [],
+  "links": [],
+  "resource": {
+   "attributes": {
+    "telemetry.sdk.language": "python",
+    "telemetry.sdk.name": "opentelemetry",
+    "telemetry.sdk.version": "1.45.1",
+    "service.instance.id": "90dff371-3c05-4d39-8e45-5f71da103d20",
+    "service.name": "unknown_service:python"
+   },
+   "schema_url": ""
+  }
+ },
+ {
+  "name": "chat gemini-3.1-flash-lite",
+  "context": {
+   "trace_id": "0x26a99ac0d5506fff924dd55a143b2334",
+   "span_id": "0xd9c899b5ec7b5e53",
+   "trace_state": "[]"
+  },
+  "kind": "SpanKind.INTERNAL",
+  "parent_id": "0x35b2d48285ab60db",
+  "start_time": "2026-10-20T11:26:48.677812Z",
+  "end_time": "2026-10-20T11:26:48.682627Z",
+  "status": {
+   "status_code": "UNSET"
+  },
+  "attributes": {
+   "gen_ai.operation.name": "chat",
+   "gen_ai.request.model": "gemini-3.1-flash-lite",
+   "gen_ai.usage.input_tokens": 112,
+   "gen_ai.usage.output_tokens": 27
+  },
+  "events": [],
+  "links": [],
+  "resource": {
+   "attributes": {
+    "telemetry.sdk.language": "python",
+    "telemetry.sdk.name": "opentelemetry",
+    "telemetry.sdk.version": "1.45.1",
+    "service.instance.id": "90dff371-3c05-4d39-8e45-5f71da103d20",
+    "service.name": "unknown_service:python"
+   },
+   "schema_url": ""
+  }
+ },
+ {
+  "name": "invoke_agent support-desk",
+  "context": {
+   "trace_id": "0x26a99ac0d5506fff924dd55a143b2334",
+   "span_id": "0x35b2d48285ab60db",
+   "trace_state": "[]"
+  },
+  "kind": "SpanKind.INTERNAL",
+  "parent_id": null,
+  "start_time": "2026-10-20T11:26:48.631102Z",
+  "end_time": "2026-10-20T11:26:48.682976Z",
+  "status": {
+   "status_code": "OK"
+  },
+  "attributes": {
+   "gen_ai.operation.name": "invoke_agent",
+   "gen_ai.conversation.id": "task-1",
+   "question.sha256": "0775816c00fa47de"
+  },
+  "events": [],
+  "links": [],
+  "resource": {
+   "attributes": {
+    "telemetry.sdk.language": "python",
+    "telemetry.sdk.name": "opentelemetry",
+    "telemetry.sdk.version": "1.45.1",
+    "service.instance.id": "90dff371-3c05-4d39-8e45-5f71da103d20",
+    "service.name": "unknown_service:python"
+   },
+   "schema_url": ""
+  }
+ },
+ {
+  "name": "chat gemini-3.1-flash-lite",
+  "context": {
+   "trace_id": "0x83d7be0a78f70e305c0e209df64be5ae",
+   "span_id": "0x79cae204811b6032",
+   "trace_state": "[]"
+  },
+  "kind": "SpanKind.INTERNAL",
+  "parent_id": "0x20461b5bed62d8e8",
+  "start_time": "2026-10-20T11:26:48.683517Z",
+  "end_time": "2026-10-20T11:26:48.686806Z",
+  "status": {
+   "status_code": "UNSET"
+  },
+  "attributes": {
+   "gen_ai.operation.name": "chat",
+   "gen_ai.request.model": "gemini-3.1-flash-lite",
+   "gen_ai.usage.input_tokens": 50,
+   "gen_ai.usage.output_tokens": 21
+  },
+  "events": [],
+  "links": [],
+  "resource": {
+   "attributes": {
+    "telemetry.sdk.language": "python",
+    "telemetry.sdk.name": "opentelemetry",
+    "telemetry.sdk.version": "1.45.1",
+    "service.instance.id": "90dff371-3c05-4d39-8e45-5f71da103d20",
+    "service.name": "unknown_service:python"
+   },
+   "schema_url": ""
+  }
+ },
+ {
+  "name": "execute_tool lookup_order",
+  "context": {
+   "trace_id": "0x83d7be0a78f70e305c0e209df64be5ae",
+   "span_id": "0xf12b5419db4f57c5",
+   "trace_state": "[]"
+  },
+  "kind": "SpanKind.INTERNAL",
+  "parent_id": "0x20461b5bed62d8e8",
+  "start_time": "2026-10-20T11:26:48.687114Z",
+  "end_time": "2026-10-20T11:26:48.687170Z",
+  "status": {
+   "status_code": "ERROR",
+   "description": "tool returned an error"
+  },
+  "attributes": {
+   "gen_ai.operation.name": "execute_tool",
+   "gen_ai.tool.name": "lookup_order"
+  },
+  "events": [],
+  "links": [],
+  "resource": {
+   "attributes": {
+    "telemetry.sdk.language": "python",
+    "telemetry.sdk.name": "opentelemetry",
+    "telemetry.sdk.version": "1.45.1",
+    "service.instance.id": "90dff371-3c05-4d39-8e45-5f71da103d20",
+    "service.name": "unknown_service:python"
+   },
+   "schema_url": ""
+  }
+ },
+ {
+  "name": "chat gemini-3.1-flash-lite",
+  "context": {
+   "trace_id": "0x83d7be0a78f70e305c0e209df64be5ae",
+   "span_id": "0x1408c3a8c8656b07",
+   "trace_state": "[]"
+  },
+  "kind": "SpanKind.INTERNAL",
+  "parent_id": "0x20461b5bed62d8e8",
+  "start_time": "2026-10-20T11:26:48.687422Z",
+  "end_time": "2026-10-20T11:26:48.691212Z",
+  "status": {
+   "status_code": "UNSET"
+  },
+  "attributes": {
+   "gen_ai.operation.name": "chat",
+   "gen_ai.request.model": "gemini-3.1-flash-lite",
+   "gen_ai.usage.input_tokens": 81,
+   "gen_ai.usage.output_tokens": 33
+  },
+  "events": [],
+  "links": [],
+  "resource": {
+   "attributes": {
+    "telemetry.sdk.language": "python",
+    "telemetry.sdk.name": "opentelemetry",
+    "telemetry.sdk.version": "1.45.1",
+    "service.instance.id": "90dff371-3c05-4d39-8e45-5f71da103d20",
+    "service.name": "unknown_service:python"
+   },
+   "schema_url": ""
+  }
+ },
+ {
+  "name": "invoke_agent support-desk",
+  "context": {
+   "trace_id": "0x83d7be0a78f70e305c0e209df64be5ae",
+   "span_id": "0x20461b5bed62d8e8",
+   "trace_state": "[]"
+  },
+  "kind": "SpanKind.INTERNAL",
+  "parent_id": null,
+  "start_time": "2026-10-20T11:26:48.683377Z",
+  "end_time": "2026-10-20T11:26:48.691491Z",
+  "status": {
+   "status_code": "OK"
+  },
+  "attributes": {
+   "gen_ai.operation.name": "invoke_agent",
+   "gen_ai.conversation.id": "task-2",
+   "question.sha256": "1ec26f81963396fd"
+  },
+  "events": [],
+  "links": [],
+  "resource": {
+   "attributes": {
+    "telemetry.sdk.language": "python",
+    "telemetry.sdk.name": "opentelemetry",
+    "telemetry.sdk.version": "1.45.1",
+    "service.instance.id": "90dff371-3c05-4d39-8e45-5f71da103d20",
+    "service.name": "unknown_service:python"
+   },
+   "schema_url": ""
+  }
+ }
+]

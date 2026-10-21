@@ -1,0 +1,281 @@
+{
+  "title": "Agentic AI: hello world to enterprise",
+  "subtitle": "Course kickoff · 38 lessons · about 15 hours",
+  "course": "Agentic AI: hello world to enterprise",
+  "audience": "Developers who can write a little Python and call a web API",
+  "audience_type": "technical",
+  "scope": {
+    "kickoff": true
+  },
+  "theme": {
+    "accent": "4F46E5",
+    "accent2": "F59E0B"
+  },
+  "slides": [
+    {
+      "layout": "title",
+      "title": "Agentic AI: hello world to enterprise",
+      "subtitle": "Course kickoff · 38 lessons · about 15 hours",
+      "notes": "Welcome to the first teaching session. The course is one fifteen-hour path: thirty-eight lessons in six chapters, from a first model call to a service that survives failures. Everything in this deck comes from the approved syllabus. We will meet one running example, the Brightside Outfitters support desk, and see a short preview of code. The first real lesson is lesson 01."
+    },
+    {
+      "layout": "big_idea",
+      "title": "Most agent demos stop after one answer",
+      "text": "A real agent acts, so it must be tested, capped and kept safe.",
+      "icon": "bolt",
+      "notes": "Most agent demos ask a model one question and show one good answer. Real agents take actions: they look up orders, issue refunds and read text written by strangers. Three problems appear as soon as an agent does real work. A change can make it worse without anyone noticing, so it needs tests. A loop can run up a bill, so it needs caps. A ticket can contain instructions that try to hijack the agent, so it needs safety limits. The course teaches all three from the first chapter on, using one support desk that grows."
+    },
+    {
+      "layout": "analogy",
+      "title": "Think of an agent as a new support hire",
+      "everyday": {
+        "name": "A new support hire",
+        "text": "A manual, a login, one rule: refunds need a manager's yes."
+      },
+      "tech": {
+        "name": "An agent",
+        "text": "A model with instructions and tools, run in a loop."
+      },
+      "breaks": "A model forgets between calls unless your code resends its history.",
+      "notes": "Picture a new support hire on day one. They get a manual of rules, a desk with a login, and one firm rule: refunds need a manager's yes. They work through tickets one step at a time, looking things up before they answer. That is close to an agent: a model with instructions, tools and a loop. Where the comparison breaks: a hire learns and remembers across shifts, while a model forgets everything between calls unless your code sends the history again. Keep that difference in mind for chapters 2 and 3."
+    },
+    {
+      "layout": "cards",
+      "title": "Build a safe support desk by the end",
+      "cards": [
+        {
+          "icon": "chat",
+          "head": "Act with tools",
+          "text": "Look up orders and run functions safely."
+        },
+        {
+          "icon": "doc",
+          "head": "Answer from documents",
+          "text": "Find the policy and cite its section."
+        },
+        {
+          "icon": "data",
+          "head": "Remember what matters",
+          "text": "Keep useful facts; delete on request."
+        },
+        {
+          "icon": "cloud",
+          "head": "Run as a service",
+          "text": "Retry safely, survive crashes, report cost."
+        }
+      ],
+      "notes": "By the end you will have built one support desk that does four things. It acts through tools: it looks up an order and calls your own functions, inside rules you set. It answers from documents: it finds the returns policy and cites the section. It remembers the right facts and deletes them when asked. And it runs as a web service that retries safely and recovers from a crash. The last chapters add enterprise practice: evals in CI, tracing, security, durable runs and cost control. Those are the topics a developer interview asks about."
+    },
+    {
+      "layout": "concept",
+      "title": "An agent: a model using tools in a loop",
+      "definition": "An agent is a language model using tools on feedback, in a loop, until the task is done.",
+      "parts": [
+        {
+          "term": "Model",
+          "meaning": "Reads the goal and results; picks the next step."
+        },
+        {
+          "term": "Tools",
+          "meaning": "Functions your code runs, like order lookup."
+        },
+        {
+          "term": "Instructions",
+          "meaning": "The system prompt: role, rules, limits."
+        },
+        {
+          "term": "Loop",
+          "meaning": "Act, read the result, repeat, within caps."
+        }
+      ],
+      "example": "Where is my order? The model calls lookup_order, reads 'shipped', then answers.",
+      "notes": "Use the course's definition, which matches Anthropic's essay Building Effective Agents (19 December 2024): an agent is an LLM, a language model, using tools based on environmental feedback in a loop. Name four parts. The model reads the goal and the results and chooses the next step. Tools are ordinary functions your code runs. Instructions are the system prompt that sets the role and the rules. The loop repeats act, read, repeat until the task is done or a cap stops it. Lesson 01 defines this and separates an agent from a fixed workflow."
+    },
+    {
+      "layout": "code",
+      "title": "Preview: a tool is a plain Python function",
+      "lang": "python",
+      "code": "ORDERS = {\"BS-1001\": \"shipped, arrives Friday\"}\n\ndef lookup_order(order_id: str) -> str:\n    \"\"\"Return the status of one order.\"\"\"\n    return ORDERS.get(order_id, \"no such order\")\n\nprint(lookup_order(\"BS-1001\"))\nprint(lookup_order(\"BS-0000\"))",
+      "highlight": [
+        3,
+        5
+      ],
+      "output": "shipped, arrives Friday\nno such order",
+      "points": [
+        "Preview only, written for this deck",
+        "The model asks for the function by name",
+        "Lesson 07 writes tools properly"
+      ],
+      "notes": "This is a preview, not a lesson. It was written for this deck from the support desk example, and lesson 07 writes tools properly. Read it top to bottom: a dictionary stands in for the order system, the function looks one order up and returns its status, and the two prints show a found order and a missing one. The key idea is that the model never runs this function itself. It asks for it by name, your code runs it, and the answer goes back to the model. Lesson 05 shows that round trip on three vendor formats."
+    },
+    {
+      "layout": "diagram",
+      "title": "The support desk grows one step per chapter",
+      "diagram": {
+        "type": "flow",
+        "items": [
+          "Ch 1-2: order lookup chat",
+          "Ch 3-4: policy answers, approval",
+          "Ch 5: traces, cost, tenants",
+          "Ch 6: one command, tests"
+        ]
+      },
+      "caption": "Brightside Outfitters support desk: a local web app with a chat page, built in four steps.",
+      "notes": "The app is the same support desk, shown as a local web page with a chat box. After chapter 2 it can look up orders. After chapter 4 it answers policy questions with citations, remembers customers, and asks a person before a refund goes through. After chapter 5 it shows traces, which are records of each step, plus a cost meter and tenants: one tenant is one customer or organisation whose data must stay apart. After chapter 6 one run command starts it, with tests and a README. The app lives in its own folder, so the notebooks stand on their own."
+    },
+    {
+      "layout": "agenda",
+      "title": "Six chapters, 38 lessons, about 15 hours",
+      "notes": "Chapters 1 and 2 are Basic: ten lessons, about 3.7 hours, ending with the order-lookup assistant. Chapters 3 and 4 are Intermediate: thirteen lessons, about 4.9 hours, with memory, retrieval and a graph. Chapters 5 and 6 are Advanced: fifteen lessons, about 6.4 hours, on production and enterprise practice. Each row's time adds up the lesson estimates, and the syllabus rounds the levels to 4, 5 and 6 hours. Words you will meet: LangGraph runs an agent as a graph with saved state; MCP, the Model Context Protocol, is a standard way to plug tools in; evals are tests that score agent runs; Temporal resumes long runs after a crash; A2A lets one agent call another."
+    },
+    {
+      "layout": "steps",
+      "title": "Every lesson follows the same short path",
+      "steps": [
+        {
+          "head": "Why it matters",
+          "text": "The problem without this idea."
+        },
+        {
+          "head": "The idea",
+          "text": "Plain words, a picture, the exact concept."
+        },
+        {
+          "head": "Step by step",
+          "text": "Run the cells; read the real output."
+        },
+        {
+          "head": "Try it",
+          "text": "A short exercise; answer in a hidden cell."
+        }
+      ],
+      "notes": "Each lesson is a notebook of about 15 to 45 minutes; most are around 20. Start with why it matters: the problem you would have without this idea, made concrete. Then the idea in plain words with a picture, and the exact concept. Then step by step: you run the cells and read the output, which was recorded when the lesson was built. Model calls are recorded once and replayed, so you can run them without a key where the lesson allows it. Then Try it, an exercise whose answer sits in a hidden cell. Core lessons end with an Interview line: how a developer interview asks about the idea."
+    },
+    {
+      "layout": "compare",
+      "title": "Three levels, each ending in a working app",
+      "columns": [
+        {
+          "head": "Basic · ch 1-2",
+          "points": [
+            "10 lessons, 3.7 h",
+            "Tools, caps, a first eval"
+          ]
+        },
+        {
+          "head": "Intermediate · ch 3-4",
+          "points": [
+            "13 lessons, 4.9 h",
+            "Workflows, memory, retrieval"
+          ]
+        },
+        {
+          "head": "Advanced · ch 5-6",
+          "points": [
+            "15 lessons, 6.4 h",
+            "Multi-agent, CI evals, durability"
+          ]
+        }
+      ],
+      "notes": "Basic is chapters 1 and 2: ten lessons, from the first model call through tools, caps and a first eval, to the order-lookup assistant. Intermediate is chapters 3 and 4: thirteen lessons on workflows, memory, retrieval and the graph, ending with the support desk that asks a person before a refund. Advanced is chapters 5 and 6: fifteen lessons on multi-agent systems, protocols, evals in CI, security, reliability, cost, serving and durable runs, ending with a production service. Hours are the sum of each lesson's estimate, rounded the way the syllabus rounds them. Each level stands on the one before."
+    },
+    {
+      "layout": "cards",
+      "title": "Before you start: four things to set up",
+      "cards": [
+        {
+          "icon": "gear",
+          "head": "Python 3.12",
+          "text": "Small functions and calling a web API."
+        },
+        {
+          "icon": "cube",
+          "head": "Docker",
+          "text": "Needed for lessons 34, 35 and 37."
+        },
+        {
+          "icon": "star",
+          "head": "A model key",
+          "text": "A Gemini API key, or a Vertex AI project."
+        },
+        {
+          "icon": "doc",
+          "head": "Your .env file",
+          "text": "Copy .env.example; never commit .env."
+        }
+      ],
+      "notes": "Check four things. Python 3.12 is the language of every lesson and the app, so you should be able to write small functions and call a web API. Docker runs some services in sealed containers; the syllabus lists it for lessons 34, 35 and 37. Most model lessons use a Gemini API key, or a Vertex AI project. Lessons 05 and 20 use the Anthropic and OpenAI APIs and replay recorded answers by default, so they need no key. Ollama, which runs a small free model on your own machine, is optional for lesson 03. Copy the template to a file named .env and fill in only what you choose. The course asks which option you want just before the lesson that needs it."
+    },
+    {
+      "layout": "compare",
+      "title": "Each chapter proves itself three ways",
+      "columns": [
+        {
+          "head": "Checkpoints",
+          "points": [
+            "Six star projects",
+            "Lessons 05, 10, 18, 23, 31, 37"
+          ]
+        },
+        {
+          "head": "Golden tests",
+          "points": [
+            "Lesson 08: 30 golden tasks",
+            "Lesson 28: CI blocks bad change"
+          ]
+        },
+        {
+          "head": "Interview line",
+          "points": [
+            "Core lessons end with one",
+            "Say it aloud before you move on"
+          ]
+        }
+      ],
+      "notes": "Proof comes three ways. First, six checkpoints marked with a star: lessons 05, 10, 18, 23, 31 and 37. Each is a runnable project for its chapter, so you finish a chapter with something that works. Second, golden tests: lesson 08 starts a set of thirty support tasks, each with an expected end state, and a pytest scores a scripted agent with no model needed; lesson 28 puts that set into CI so a worse change fails the build. Third, each core lesson ends with an Interview line you can say aloud. The capstone in lesson 37 is the evidence that brings it together."
+    },
+    {
+      "layout": "terms",
+      "title": "Six words you will hear",
+      "terms": [
+        {
+          "term": "Agent",
+          "plain": "A model running tools in a loop."
+        },
+        {
+          "term": "Tool",
+          "plain": "A function the model may request."
+        },
+        {
+          "term": "Token",
+          "plain": "A chunk of text that is billed."
+        },
+        {
+          "term": "Context window",
+          "plain": "The most text one call holds."
+        },
+        {
+          "term": "RAG",
+          "plain": "Look up documents, then answer."
+        },
+        {
+          "term": "MCP",
+          "plain": "A standard plug for tools."
+        }
+      ],
+      "notes": "Six words to hold on to. An agent is a model that uses tools in a loop. A tool is an ordinary function your code runs when the model asks for it. A token is a small chunk of text that models read and bill by; a context window is the most text one call can hold, input and output together. RAG stands for retrieval-augmented generation: the program first finds the right documents, then the model answers from them with citations. MCP, the Model Context Protocol, is one standard way for an agent to reach tools. Each lesson defines its terms exactly the first time it uses them."
+    },
+    {
+      "layout": "questions",
+      "title": "Five questions you will answer by the end",
+      "questions": [
+        "Workflow or agent: which one fits a task?",
+        "What stops a refund being paid twice?",
+        "How do you know a change made it worse?",
+        "What can a malicious ticket make it do?",
+        "What does a ticket cost, and how is it capped?"
+      ],
+      "notes": "Five questions you should be able to answer by the end. First, workflow or agent: which fits a task, and why most tasks start as a workflow. Second, refunds: what stops a refund being paid twice; the answer is idempotency, lesson 32, where a repeated request has the same effect as one. Third, evaluation: how you know a change made the agent worse, from lessons 08 and 28. Fourth, security: what a malicious ticket can make your agent do, lesson 30. Fifth, cost: what one ticket costs and how you cap it, lessons 06 and 33."
+    }
+  ]
+}

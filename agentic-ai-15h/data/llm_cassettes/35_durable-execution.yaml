@@ -1,0 +1,73 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order 2207 arrived with a torn box.
+      The refund of 84.00 USD is approved. Please issue it."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are the support assistant for
+      Brightside Outfitters. The refund is approved: call issue_refund."}], "role":
+      "user"}, "tools": [{"functionDeclarations": [{"description": "Pay an approved
+      refund for one order.", "name": "issue_refund", "parameters_json_schema": {"type":
+      "object", "properties": {"order_id": {"type": "string"}, "amount_usd": {"type":
+      "number"}}, "required": ["order_id", "amount_usd"]}}]}], "generationConfig":
+      {"temperature": 0.0}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '640'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"issue_refund\",\n              \"args\": {\n
+        \               \"amount_usd\": 84,\n                \"order_id\": \"2207\"\n
+        \             },\n              \"id\": \"call_500534\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18SwMrrVkgkChcSv0QXhGemgqmQPDr3/+oC/gy1d3E4TItkG3w27RdjwBv8iTBeohuLN1ee2teah6431GPPCz92UGJyloOa0lMFohscTBkFLCP8XXLeiHg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 86,\n    \"candidatesTokenCount\":
+        28,\n    \"totalTokenCount\": 114,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 86\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 28\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-21T07:25:28.142122Z\",\n  \"responseId\": \"6GjYaqrWCNWKr8kP56GE6AY\"\n}\n"
+    headers:
+      content-length:
+      - '1051'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Wed, 21 Oct 2026 07:25:28 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

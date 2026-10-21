@@ -1,0 +1,303 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where is my parcel for order 1093? It
+      was due on Monday."}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Lookup.", "name": "lookup", "parameters_json_schema": {"properties":
+      {"data": {"title": "Data", "type": "string"}}, "required": ["data"], "title":
+      "Anything", "type": "object"}}]}], "toolConfig": {"functionCallingConfig": {"mode":
+      "AUTO"}}, "generationConfig": {"temperature": 0.0}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '449'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup\",\n              \"args\": {\n                \"data\":
+        \"I am an AI assistant and do not have access to your personal order history,
+        private accounts, or specific shipping databases. To find the status of your
+        order #1093, please try the following steps:\\n\\n1. **Check your email:**
+        Look for a shipping confirmation email from the company you ordered from.
+        It usually contains a tracking number and a link to the carrier's website
+        (e.g., UPS, FedEx, DHL, USPS).\\n2. **Log in to the website:** Go to the website
+        where you placed the order, log in to your account, and look for an \\\"Order
+        History\\\" or \\\"My Orders\\\" section. The tracking information is typically
+        listed there.\\n3. **Contact the merchant:** If you cannot find a tracking
+        number, contact the customer support team of the company you purchased from.
+        Provide them with your order number (1093) and they will be able to look up
+        the status for you.\\n\\nIf you have a tracking number, you can paste it here,
+        and I can help you identify which carrier it belongs to or explain what the
+        tracking status means.\"\n              },\n              \"id\": \"call_615784\"\n
+        \           },\n            \"thoughtSignature\": \"AY89a1+AU8yWfBEfvI1GMinAbVkjVMiRDM2Gq0xSvnX3oL8w5ppoSZtKupsnr9NKBM4831tBF6waZMEmGq4ZLYAIukesow8WLyBZBPokUrvdZhO3JO00r3+LxOE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 39,\n    \"candidatesTokenCount\":
+        240,\n    \"totalTokenCount\": 279,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 39\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 240\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T08:38:59.460924Z\",\n  \"responseId\": \"oyjXavyQHNWKr8kP56GE6AY\"\n}\n"
+    headers:
+      content-length:
+      - '2011'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 08:39:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where is my parcel for order 1093? It
+      was due on Monday."}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Look up one customer order: its status and how many days late
+      it is. Use it when the customer gives an order number. Do not use it to search
+      by name, email or date.", "name": "lookup_order", "parameters_json_schema":
+      {"additionalProperties": false, "properties": {"order_id": {"description": "The
+      order number from the confirmation email, as the customer wrote it, such as
+      1093.", "title": "Order Id", "type": "string"}}, "required": ["order_id"], "title":
+      "OrderQuery", "type": "object"}}]}], "toolConfig": {"functionCallingConfig":
+      {"mode": "AUTO"}}, "generationConfig": {"temperature": 0.0}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '761'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"1093\"\n              },\n              \"id\":
+        \"call_527129\"\n            },\n            \"thoughtSignature\": \"AY89a19vhrTmDOvqjtgmJ8yjIrb+lp7gcwWptlTf+ktZiQvbU9O4yrMMciAweqnUJgSDmeWkCQuQ0yb3R5QmO89njg5dUk6PmdUhzOUn49iH3cZdchhVE4L16r8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 107,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 128,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 107\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T08:39:00.824264Z\",\n  \"responseId\": \"pCjXasinMv3y7bEP6t7PyQs\"\n}\n"
+    headers:
+      content-length:
+      - '1019'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 08:39:01 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "My parcel for order 10930 never came.
+      Where is it?"}], "role": "user"}], "tools": [{"functionDeclarations": [{"description":
+      "Look up one customer order: its status and how many days late it is. Use it
+      when the customer gives an order number. Do not use it to search by name, email
+      or date.", "name": "lookup_order", "parameters_json_schema": {"additionalProperties":
+      false, "properties": {"order_id": {"description": "The order number from the
+      confirmation email, as the customer wrote it, such as 1093.", "title": "Order
+      Id", "type": "string"}}, "required": ["order_id"], "title": "OrderQuery", "type":
+      "object"}}]}], "toolConfig": {"functionCallingConfig": {"mode": "AUTO"}}, "generationConfig":
+      {"temperature": 0.0}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '755'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"10930\"\n              },\n              \"id\":
+        \"call_336555\"\n            },\n            \"thoughtSignature\": \"AY89a1/0vBp3yQ3JGs/RsR8DWUr4BPgsXtywwtW0fgL5em95IPtY/qWtPawu6sDNzpG+BWnzfUqSjLdGG8stWHYQYt5oB9G2VPFHTPYr8w9fANd1aiJP5KUT160=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 106,\n    \"candidatesTokenCount\":
+        22,\n    \"totalTokenCount\": 128,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 106\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 22\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T08:39:01.537599Z\",\n  \"responseId\": \"pSjXav_nIM7f-O4Ple_0yQk\"\n}\n"
+    headers:
+      content-length:
+      - '1020'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 08:39:02 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "My parcel for order 10930 never came.
+      Where is it?"}], "role": "user"}, {"parts": [{"functionCall": {"id": "call_336555",
+      "args": {"order_id": "10930"}, "name": "lookup_order"}, "thoughtSignature":
+      "AY89a1_0vBp3yQ3JGs_RsR8DWUr4BPgsXtywwtW0fgL5em95IPtY_qWtPawu6sDNzpG-BWnzfUqSjLdGG8stWHYQYt5oB9G2VPFHTPYr8w9fANd1aiJP5KUT160="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"error": "no order 10930 in the system", "next_step": "Ask the customer for
+      the number in their confirmation email, then call again with that number. Do
+      not guess other numbers."}}}], "role": "user"}], "tools": [{"functionDeclarations":
+      [{"description": "Look up one customer order: its status and how many days late
+      it is. Use it when the customer gives an order number. Do not use it to search
+      by name, email or date.", "name": "lookup_order", "parameters_json_schema":
+      {"additionalProperties": false, "properties": {"order_id": {"description": "The
+      order number from the confirmation email, as the customer wrote it, such as
+      1093.", "title": "Order Id", "type": "string"}}, "required": ["order_id"], "title":
+      "OrderQuery", "type": "object"}}]}], "toolConfig": {"functionCallingConfig":
+      {"mode": "AUTO"}}, "generationConfig": {"temperature": 0.0}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1300'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+      x-server-timeout:
+      - '30'
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"I'm
+        sorry to hear that your parcel hasn't arrived. I've checked our system for
+        order 10930, but I couldn't find an order with that number.\\n\\nCould you
+        please double-check the order number in your confirmation email and let me
+        know if it's correct? Once you have the right number, I'll be happy to look
+        into it for you.\",\n            \"thoughtSignature\": \"AY89a1/PwVKVa7i4Cb/ys+VBDSmYCoqQNtXcQxjCYaJYme4LqhJKVncoWAIXn1uCNpKVAi+Fh2pmbPOl1OjQF/oOTqp2M/ZOfo6752/PAZ5xizZlgQkZhxoElWk=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 167,\n    \"candidatesTokenCount\":
+        84,\n    \"totalTokenCount\": 251,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 167\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 84\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-20T08:39:02.055871Z\",\n  \"responseId\": \"pijXar-0A9-ar8kPg5aO8A0\"\n}\n"
+    headers:
+      content-length:
+      - '1169'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 20 Oct 2026 08:39:02 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1
