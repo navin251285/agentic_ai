@@ -1,0 +1,9 @@
+{
+ "release": "triage service 1.2.0 with the candidate prompt v2",
+ "tag": "1.2.0",
+ "prompt": "candidate v2",
+ "gate_passed": true,
+ "pass_rate": 1.0,
+ "regressions": [],
+ "shipped_pass_rate": 1.0
+}

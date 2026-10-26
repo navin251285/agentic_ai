@@ -1,0 +1,13 @@
+task,kind,criterion,owner,needs_files,start_day,end_day
+Access requests; agree targets with the ops lead,task,-,FDE and ops lead,False,1,1
+Read the message export and check its columns,task,C1,FDE,False,2,2
+Get and read the reviewed-label export,task,C1,FDE,False,3,3
+"KILL CHECK: both exports in hand, or stop and rescope",kill check,-,ops lead,False,3,3
+Hold out a test set the rule never sees,task,C1,FDE,True,4,4
+Write the rule-based triage,task,C1,FDE,False,5,5
+Run the triage on the held-out set and score it,task,C1,FDE,True,6,6
+"Count unlabelled messages and label times (C2, C3)",task,C2,FDE,True,7,7
+Count hand-labelled messages per week,task,C4,support lead,False,8,8
+"Fix the three most common wrong labels, then rerun",task,C1,FDE,True,9,9
+Demo script and handoff notes,task,-,FDE,False,10,10
+DECISION: check M1 to M3 against their tests,decision,M1-M3,ops lead and FDE,False,10,10

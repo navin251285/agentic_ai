@@ -1,0 +1,276 @@
+{
+  "updated": "2026-10-26",
+  "next_paths": [
+    {
+      "name": "Forward Deployed AI Engineer / Applied AI Engineer",
+      "kind": "role",
+      "maturity": "established",
+      "what": "Customer-embedded engineer who scopes, builds, deploys and runs LLM systems for named customers, at AI labs and data-platform vendors.",
+      "why_next": "This course is that job end to end: discovery, proof of concept, evals, restricted-network deployment, handoff and field reports.",
+      "learn": [
+        "Stronger TypeScript and Python full-stack delivery",
+        "Agent frameworks and MCP in customer systems",
+        "Enterprise sales cycle: technical evaluation to procurement",
+        "Executive business cases and ROI",
+        "Customer-site security and compliance reviews"
+      ],
+      "builds_on": [
+        1,
+        2,
+        3
+      ],
+      "evidence": [
+        {
+          "url": "https://jobs.lever.co/palantir/ff1029bd-bb6d-4d78-a03e-5f9744d0b798",
+          "what": "Palantir Forward Deployed AI Engineer (London): lead client delivery, LLM apps, evaluation",
+          "kind": "jobs"
+        },
+        {
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390795008",
+          "what": "Anthropic Applied AI Engineer, Enterprise (Munich): technical evaluation to deployment, business cases",
+          "kind": "jobs"
+        }
+      ]
+    },
+    {
+      "name": "Generative AI Solutions Architect",
+      "kind": "role",
+      "maturity": "established",
+      "what": "Customer-facing architect who designs and prototypes GenAI systems on a vendor platform and de-risks them with account teams.",
+      "why_next": "You already scope, prototype, evaluate and explain trade-offs to customers; this role adds platform depth and pre-sales architecture.",
+      "learn": [
+        "One cloud or data platform in depth (AWS, Azure, GCP or Databricks)",
+        "MLflow-style evaluation and monitoring",
+        "Reference architectures and sizing",
+        "Fine-tuning versus RAG trade-offs"
+      ],
+      "builds_on": [
+        2,
+        3
+      ],
+      "evidence": [
+        {
+          "url": "https://jobs.thrivecap.com/companies/databricks/jobs/97141610-lead-solutions-architect-generative-ai-emea-emerging-dnb",
+          "what": "Databricks Lead Solutions Architect, Generative AI: prototypes, RAG, agents, evaluation, guardrails",
+          "kind": "jobs"
+        },
+        {
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5390795008",
+          "what": "Anthropic Applied AI Engineer posting mentions working with Applied AI Architects through technical evaluation",
+          "kind": "jobs"
+        }
+      ]
+    },
+    {
+      "name": "Agent evaluation engineering",
+      "kind": "discipline",
+      "maturity": "growing",
+      "what": "Designing eval suites, graders, judges and regression gates that tell a team whether an AI system is getting better or worse.",
+      "why_next": "Evals were the backbone of Part 2; this goes deeper into grader calibration, trace review and eval infrastructure.",
+      "learn": [
+        "Calibrating LLM judges against human raters",
+        "Trace-based and multi-turn agent evals",
+        "Eval noise and infrastructure effects",
+        "Online monitoring of production quality"
+      ],
+      "builds_on": [
+        2
+      ],
+      "evidence": [
+        {
+          "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+          "what": "Anthropic guide to building and grading agent evals (Jan 2026)",
+          "kind": "writing"
+        },
+        {
+          "url": "https://www.databricks.com/en/blog/building-custom-llm-judges-ai-agent-accuracy",
+          "what": "Databricks custom judges, Judge Builder, agent-as-a-judge (Nov 2025)",
+          "kind": "writing"
+        }
+      ]
+    },
+    {
+      "name": "Harness engineering",
+      "kind": "discipline",
+      "maturity": "emerging",
+      "what": "Designing the scaffolding around a model (tools, context, verification, sandboxes, loops) so long-running agents stay reliable.",
+      "why_next": "Customer agents fail in the environment around the model; you have already built tools, guardrails and a deployed runtime.",
+      "learn": [
+        "Generator and evaluator agent pairs",
+        "Context handoff across sessions",
+        "Removing harness parts as models improve",
+        "Sandboxing and credential isolation"
+      ],
+      "builds_on": [
+        2,
+        3
+      ],
+      "evidence": [
+        {
+          "url": "https://www.anthropic.com/engineering/harness-design-long-running-apps",
+          "what": "Anthropic: harness design for long-running application development (Mar 2026)",
+          "kind": "writing"
+        },
+        {
+          "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+          "what": "Anthropic: effective harnesses for long-running agents (Nov 2025)",
+          "kind": "writing"
+        }
+      ]
+    },
+    {
+      "name": "AI gateways, sandboxing and agent security",
+      "kind": "technology",
+      "maturity": "growing",
+      "what": "Gateways and isolation layers that add auth, spend limits, caching, DLP and egress control between agents and models or tools.",
+      "why_next": "Your restricted-network, secrets, cost and guardrail lessons are the building blocks; these products package them.",
+      "learn": [
+        "Gateway routing, fallback and spend limits",
+        "Egress proxies and domain allow-lists",
+        "Keeping credentials out of agent sandboxes",
+        "DLP and prompt-injection containment"
+      ],
+      "builds_on": [
+        2,
+        3
+      ],
+      "evidence": [
+        {
+          "url": "https://developers.cloudflare.com/ai-gateway/features/",
+          "what": "Cloudflare AI Gateway feature list: caching, spend limits, fallback, guardrails, DLP, BYOK",
+          "kind": "official"
+        },
+        {
+          "url": "https://www.anthropic.com/engineering/claude-code-sandboxing",
+          "what": "Anthropic sandboxing: network proxy and credentials outside the sandbox",
+          "kind": "writing"
+        },
+        {
+          "url": "https://www.context.ai/blog/agents-in-your-vpc",
+          "what": "Context: running an agent platform entirely inside the customer's VPC (Jun 2026, vendor)",
+          "kind": "writing"
+        }
+      ]
+    },
+    {
+      "name": "Site reliability engineering for AI systems",
+      "kind": "discipline",
+      "maturity": "established",
+      "what": "Running services against SLOs with incident command, blameless postmortems and capacity planning, applied to model-backed systems.",
+      "why_next": "You wrote runbooks and a provider-outage drill; SRE is the discipline that makes them routine across many deployments.",
+      "learn": [
+        "SLOs and error budgets for AI features",
+        "Incident command roles and comms",
+        "Postmortem practice",
+        "Model-provider failover and rate-limit capacity"
+      ],
+      "builds_on": [
+        2,
+        3
+      ],
+      "evidence": [
+        {
+          "url": "https://sre.google/workbook/incident-response/",
+          "what": "Google SRE Workbook: incident response roles",
+          "kind": "official"
+        },
+        {
+          "url": "https://sre.google/sre-book/postmortem-culture/",
+          "what": "Google SRE Book: blameless postmortem culture",
+          "kind": "official"
+        },
+        {
+          "url": "https://blog.cloudflare.com/18-november-2025-outage/",
+          "what": "Cloudflare public incident report, Nov 2025",
+          "kind": "writing"
+        }
+      ]
+    }
+  ],
+  "reading": [
+    {
+      "title": "Building effective agents",
+      "org": "Anthropic Engineering",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "date": "2024-12-19",
+      "chapter": 1,
+      "why": "Start with the simplest workflow that works and add agent complexity only when it measurably helps: the same discipline that keeps a two-week proof of concept scoped and demoable.",
+      "checked": "2026-10-26"
+    },
+    {
+      "title": "Designing robust and predictable APIs with idempotency",
+      "org": "Stripe",
+      "url": "https://stripe.com/blog/idempotency",
+      "date": "2017-02-22",
+      "chapter": 1,
+      "why": "Classic (2017) and still the reference for idempotency keys and retry with backoff and jitter, the exact habits needed when integrating with a customer's API; no newer first-party write-up replaces it.",
+      "checked": "2026-10-26",
+      "classic": true
+    },
+    {
+      "title": "Timeouts, retries, and backoff with jitter",
+      "org": "Amazon Builders' Library (AWS)",
+      "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+      "date": "2019-12-05",
+      "chapter": 1,
+      "why": "Classic (2019) by Marc Brooker: why unbounded retries turn a slow customer API into an outage, and how capped backoff with jitter prevents it.",
+      "checked": "2026-10-26",
+      "classic": true
+    },
+    {
+      "title": "Demystifying evals for AI agents",
+      "org": "Anthropic Engineering",
+      "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "date": "2026-01-09",
+      "chapter": 2,
+      "why": "How to build, grade and maintain automated tests for agents so regressions show up before the customer sees them; maps to building the eval set and choosing code, model and human graders.",
+      "checked": "2026-10-26"
+    },
+    {
+      "title": "Creating custom LLM judges to improve AI agent accuracy",
+      "org": "Databricks",
+      "url": "https://www.databricks.com/en/blog/building-custom-llm-judges-ai-agent-accuracy",
+      "date": "2025-11-04",
+      "chapter": 2,
+      "why": "A vendor that deploys AI for enterprises shows judges tuned with expert feedback and checked against human raters: the practical way to trust a model grader.",
+      "checked": "2026-10-26"
+    },
+    {
+      "title": "Beyond permission prompts: making Claude Code more secure and autonomous",
+      "org": "Anthropic Engineering",
+      "url": "https://www.anthropic.com/engineering/claude-code-sandboxing",
+      "date": "2025-10-20",
+      "chapter": 2,
+      "why": "Filesystem and network isolation with an egress proxy and credentials kept outside the sandbox: the same ideas as least privilege and a restricted-network deployment.",
+      "checked": "2026-10-26"
+    },
+    {
+      "title": "Incident report: Cloudflare outage on November 18, 2025",
+      "org": "Cloudflare",
+      "url": "https://blog.cloudflare.com/18-november-2025-outage/",
+      "date": "2025-11-18",
+      "chapter": 3,
+      "why": "A timestamped public post-incident write-up (cause, detection, mitigation, restore): a model for runbooks, incident communication and the customer-facing report after a failure.",
+      "checked": "2026-10-26"
+    },
+    {
+      "title": "Prompt caching with Claude",
+      "org": "Anthropic (Claude blog)",
+      "url": "https://claude.com/blog/prompt-caching",
+      "date": "2025-08-14",
+      "chapter": 3,
+      "why": "Numbers for cutting cost by up to 90% and latency by up to 85% on long prompts, the lever behind unit economics for a customer deployment.",
+      "checked": "2026-10-26"
+    },
+    {
+      "title": "Online migrations at scale",
+      "org": "Stripe",
+      "url": "https://stripe.com/blog/online-migrations",
+      "date": "2017-02-02",
+      "chapter": 3,
+      "why": "Classic (2017): dual writes, backfill and live comparison to move data without downtime, the pattern behind zero-downtime migrations on a customer system; no newer first-party equivalent found.",
+      "checked": "2026-10-26",
+      "classic": true
+    }
+  ]
+}

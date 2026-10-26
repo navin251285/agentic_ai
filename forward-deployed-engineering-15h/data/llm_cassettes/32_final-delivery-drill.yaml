@@ -1,0 +1,202 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "F01: I ordered two cartons of oat milk
+      and only one came in the bag.\nF02: The bananas arrived but the strawberries
+      I paid for are not in the bag.\nF03: I asked for full-fat milk and got skimmed
+      milk instead.\nF04: My slot was 6 to 7pm, it is now 9pm and the order still
+      shows pending.\nF05: Three eggs were cracked when I unpacked the box.\nF06:
+      The courier left the bags at the wrong flat, not at my door.\nF07: Only three
+      of the five apples came, the rest are missing.\nF08: The yogurt tubs were split
+      open and leaking over the other shopping.\nF09: I got a bag of brown rice but
+      I ordered basmati rice.\nF10: The order was due this morning and it came after
+      noon.\nF11: Two of the four bottles of juice were in the bag, not all four.\nF12:
+      The driver would not wait at the door while I got my card."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "Label each grocery delivery support
+      message with one issue: missing_item, wrong_item, late, damaged or other. Return
+      one label for every case id.\nDefinitions:\n- missing_item: the customer did
+      not get all of an item they paid for, even when they say only some of it arrived.\n-
+      late: the delivery came after the slot, or still shows as pending.\n- damaged:
+      broken, bruised, crushed, split or leaking.\n- wrong_item: the customer got
+      a different item from the one ordered.\n- other: none of the above, such as
+      a courier problem.\n- Rule: if the customer says only part of an item they paid
+      for arrived (two of four, only three, not all), the issue is missing_item."}]},
+      "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024, "responseMimeType": "application/json", "responseJsonSchema":
+      {"$defs": {"Triage": {"properties": {"case_id": {"description": "the case id
+      exactly as given, such as F01", "title": "Case Id", "type": "string"}, "issue":
+      {"enum": ["missing_item", "wrong_item", "late", "damaged", "other"], "title":
+      "Issue", "type": "string"}}, "required": ["case_id", "issue"], "title": "Triage",
+      "type": "object"}}, "properties": {"labels": {"description": "one entry for
+      every case id given", "items": {"$ref": "#/$defs/Triage"}, "title": "Labels",
+      "type": "array"}}, "required": ["labels"], "title": "TriageBatch", "type": "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2300'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"labels\\\": [\\n    {\\n      \\\"case_id\\\": \\\"F01\\\",\\n      \\\"issue\\\":
+        \\\"missing_item\\\"\\n    },\\n    {\\n      \\\"case_id\\\": \\\"F02\\\",\\n
+        \     \\\"issue\\\": \\\"missing_item\\\"\\n    },\\n    {\\n      \\\"case_id\\\":
+        \\\"F03\\\",\\n      \\\"issue\\\": \\\"wrong_item\\\"\\n    },\\n    {\\n
+        \     \\\"case_id\\\": \\\"F04\\\",\\n      \\\"issue\\\": \\\"late\\\"\\n
+        \   },\\n    {\\n      \\\"case_id\\\": \\\"F05\\\",\\n      \\\"issue\\\":
+        \\\"damaged\\\"\\n    },\\n    {\\n      \\\"case_id\\\": \\\"F06\\\",\\n
+        \     \\\"issue\\\": \\\"other\\\"\\n    },\\n    {\\n      \\\"case_id\\\":
+        \\\"F07\\\",\\n      \\\"issue\\\": \\\"missing_item\\\"\\n    },\\n    {\\n
+        \     \\\"case_id\\\": \\\"F08\\\",\\n      \\\"issue\\\": \\\"damaged\\\"\\n
+        \   },\\n    {\\n      \\\"case_id\\\": \\\"F09\\\",\\n      \\\"issue\\\":
+        \\\"wrong_item\\\"\\n    },\\n    {\\n      \\\"case_id\\\": \\\"F10\\\",\\n
+        \     \\\"issue\\\": \\\"late\\\"\\n    },\\n    {\\n      \\\"case_id\\\":
+        \\\"F11\\\",\\n      \\\"issue\\\": \\\"missing_item\\\"\\n    },\\n    {\\n
+        \     \\\"case_id\\\": \\\"F12\\\",\\n      \\\"issue\\\": \\\"other\\\"\\n
+        \   }\\n  ]\\n}\",\n            \"thoughtSignature\": \"AY89a18GqrnGuYhdA5W4VSnGGT4BGIQdA0GpV7nWnREjuENC8R/vkav3kJCMUttn36JhX0o4/UhurLX7DvbRAuIaZLeYWDF/79viMh6qTsKxvq91f+wB7SN+ras=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 580,\n    \"candidatesTokenCount\":
+        336,\n    \"totalTokenCount\": 916,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 580\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 336\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-26T13:33:44.237185Z\",\n  \"responseId\": \"uFbfaoG9Dqzw-O4Pr6jY4Ac\"\n}\n"
+    headers:
+      content-length:
+      - '1781'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 26 Oct 2026 13:33:45 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "F01: I ordered two cartons of oat milk
+      and only one came in the bag.\nF02: The bananas arrived but the strawberries
+      I paid for are not in the bag.\nF03: I asked for full-fat milk and got skimmed
+      milk instead.\nF04: My slot was 6 to 7pm, it is now 9pm and the order still
+      shows pending.\nF05: Three eggs were cracked when I unpacked the box.\nF06:
+      The courier left the bags at the wrong flat, not at my door.\nF07: Only three
+      of the five apples came, the rest are missing.\nF08: The yogurt tubs were split
+      open and leaking over the other shopping.\nF09: I got a bag of brown rice but
+      I ordered basmati rice.\nF10: The order was due this morning and it came after
+      noon.\nF11: Two of the four bottles of juice were in the bag, not all four.\nF12:
+      The driver would not wait at the door while I got my card."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "Label each grocery delivery support
+      message with one issue: missing_item, wrong_item, late, damaged or other. Return
+      one label for every case id.\nDefinitions:\n- missing_item: the customer did
+      not get all of an item they paid for, even when they say only some of it arrived.\n-
+      late: the delivery came after the slot, or still shows as pending.\n- damaged:
+      broken, bruised, crushed, split or leaking.\n- wrong_item: the customer got
+      a different item from the one ordered.\n- other: none of the above, such as
+      a courier problem.\n- Rule: if the customer says only part of an item they paid
+      for arrived (two of four, only three, not all), the issue is late."}]}, "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024, "responseMimeType": "application/json", "responseJsonSchema": {"$defs":
+      {"Triage": {"properties": {"case_id": {"description": "the case id exactly as
+      given, such as F01", "title": "Case Id", "type": "string"}, "issue": {"enum":
+      ["missing_item", "wrong_item", "late", "damaged", "other"], "title": "Issue",
+      "type": "string"}}, "required": ["case_id", "issue"], "title": "Triage", "type":
+      "object"}}, "properties": {"labels": {"description": "one entry for every case
+      id given", "items": {"$ref": "#/$defs/Triage"}, "title": "Labels", "type": "array"}},
+      "required": ["labels"], "title": "TriageBatch", "type": "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2292'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"labels\\\": [\\n    {\\n      \\\"case_id\\\": \\\"F01\\\",\\n      \\\"issue\\\":
+        \\\"late\\\"\\n    },\\n    {\\n      \\\"case_id\\\": \\\"F02\\\",\\n      \\\"issue\\\":
+        \\\"missing_item\\\"\\n    },\\n    {\\n      \\\"case_id\\\": \\\"F03\\\",\\n
+        \     \\\"issue\\\": \\\"wrong_item\\\"\\n    },\\n    {\\n      \\\"case_id\\\":
+        \\\"F04\\\",\\n      \\\"issue\\\": \\\"late\\\"\\n    },\\n    {\\n      \\\"case_id\\\":
+        \\\"F05\\\",\\n      \\\"issue\\\": \\\"damaged\\\"\\n    },\\n    {\\n      \\\"case_id\\\":
+        \\\"F06\\\",\\n      \\\"issue\\\": \\\"other\\\"\\n    },\\n    {\\n      \\\"case_id\\\":
+        \\\"F07\\\",\\n      \\\"issue\\\": \\\"late\\\"\\n    },\\n    {\\n      \\\"case_id\\\":
+        \\\"F08\\\",\\n      \\\"issue\\\": \\\"damaged\\\"\\n    },\\n    {\\n      \\\"case_id\\\":
+        \\\"F09\\\",\\n      \\\"issue\\\": \\\"wrong_item\\\"\\n    },\\n    {\\n
+        \     \\\"case_id\\\": \\\"F10\\\",\\n      \\\"issue\\\": \\\"late\\\"\\n
+        \   },\\n    {\\n      \\\"case_id\\\": \\\"F11\\\",\\n      \\\"issue\\\":
+        \\\"late\\\"\\n    },\\n    {\\n      \\\"case_id\\\": \\\"F12\\\",\\n      \\\"issue\\\":
+        \\\"other\\\"\\n    }\\n  ]\\n}\",\n            \"thoughtSignature\": \"AY89a18/HSLfrkG69J8BD0C6ZZ9Jzs6XWFaMaljntuGnibbjkpFxNP136wPCROQ2OaL5rLLKv2JQJOEmextbmc2Mcz0Tyqc2ibupERnu+PN1F3iFT8RCyeU9ktM=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 578,\n    \"candidatesTokenCount\":
+        330,\n    \"totalTokenCount\": 908,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 578\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 330\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-26T13:33:45.732182Z\",\n  \"responseId\": \"uVbfapbYLPiJr8kPmKzs2Aw\"\n}\n"
+    headers:
+      content-length:
+      - '1757'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 26 Oct 2026 13:33:46 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

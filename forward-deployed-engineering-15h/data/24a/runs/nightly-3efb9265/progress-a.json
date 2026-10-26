@@ -1,0 +1,9 @@
+{
+  "concurrency": 3,
+  "node": "a",
+  "owned": 64,
+  "retries": 0,
+  "skipped_at_start": 64,
+  "state": "done",
+  "written_this_start": 0
+}

@@ -1,0 +1,54 @@
+{
+  "about": "Invented per-store settings for the lab (lesson 23). A real customer keeps its limits in its contract and config store; no secrets belong in this file.",
+  "default_tenant": "store-02",
+  "tenants": [
+    {
+      "tenant_id": "store-01",
+      "max_qty_per_line": 2000
+    },
+    {
+      "tenant_id": "store-02",
+      "max_qty_per_line": 2000
+    },
+    {
+      "tenant_id": "store-03",
+      "max_qty_per_line": 2000
+    },
+    {
+      "tenant_id": "store-04",
+      "max_qty_per_line": 2000
+    },
+    {
+      "tenant_id": "store-05",
+      "max_qty_per_line": 2000
+    },
+    {
+      "tenant_id": "store-06",
+      "max_qty_per_line": 2000
+    },
+    {
+      "tenant_id": "store-07",
+      "max_qty_per_line": 2000
+    },
+    {
+      "tenant_id": "store-08",
+      "max_qty_per_line": 2000
+    },
+    {
+      "tenant_id": "store-09",
+      "max_qty_per_line": 1000
+    },
+    {
+      "tenant_id": "store-10",
+      "max_qty_per_line": 2000
+    },
+    {
+      "tenant_id": "store-11",
+      "max_qty_per_line": 2000
+    },
+    {
+      "tenant_id": "store-12",
+      "max_qty_per_line": 2000
+    }
+  ]
+}

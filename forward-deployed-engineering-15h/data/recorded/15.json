@@ -1,0 +1,8 @@
+{
+  "direct": "http://api.model-vendor.example:8000/health no answer: ConnectError\nhttp://1.1.1.1/ no answer: ConnectError",
+  "via_proxy": "triage {'order_id': 'BB-1000', 'label': 'missing items', 'version': '1.2.0'}\nexplain 200 {'order_id': 'BB-1000', 'label': 'missing items', 'draft': 'Hi, part of your order was short. We will credit the missing items to your account.', 'version': '1.2.0'}",
+  "denied": "example.org 403 refused by Squid",
+  "proxy_log": "TCP_MISS/200 GET http://api.model-vendor.example:8000/health\nTCP_MISS/200 POST http://api.model-vendor.example:8000/v1/draft\nTCP_DENIED/403 GET http://example.org/",
+  "no_proxy_mistake": "NO_PROXY without erp: 502 erp:8000 returned 403\nNO_PROXY with erp:    read ok",
+  "wrong_proxy_name": "no proxy seen: 502 api.model-vendor.example:8000 unreachable: ConnectError\nproxy set:     explain ok missing items"
+}

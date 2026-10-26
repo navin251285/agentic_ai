@@ -1,0 +1,10 @@
+{
+ "up_v1": "exit code: 0\nSERVICE   STATUS\nnode-a    Up 4 seconds (healthy)\nnode-b    Up 4 seconds (healthy)\nproxy     Up Less than a second",
+ "up_probes": "Counter({(200, '1.0.0'): 5})",
+ "bad_start": "exit code: 1",
+ "bad_logs": "node-a-1  |     raise RuntimeError(\"orders file has no missing_items column: migrate the file first\")\nnode-a-1  | RuntimeError: orders file has no missing_items column: migrate the file first",
+ "bad_probes": "Counter({(200, '1.0.0'): 5})",
+ "rollback": "exit code: 0 | proxy reload: 0 | probes: Counter({(200, '1.0.0'): 5})",
+ "rolling": "['node-a: exit 0', 'node-b: exit 0']\nanswers: 496 | status: {200: 496} | failed: 0\nversions seen: {'1.0.0': 305, '2.0.0': 191}",
+ "_recorded": "2026-10-26"
+}

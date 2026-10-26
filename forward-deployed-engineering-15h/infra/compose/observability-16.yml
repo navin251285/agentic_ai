@@ -1,0 +1,61 @@
+# Customer environment with observability for lesson 16 (lab, invented data). Started from the notebook with
+# docker compose -p <project> -f <this file> --env-file ../.env up -d --build --wait
+# -f and --env-file resolve from the folder Compose runs in (the notebooks folder), not from this file's folder.
+services:
+  erp:
+    build:
+      context: ../../apps
+      dockerfile: 16/Dockerfile
+      args:
+        APP_FILE: 16/erp_slow_lab.py
+    image: bb-erp-lab:16
+    environment:
+      ERP_SIGNING_KEY: ${ERP_SIGNING_KEY}
+      ERP_READER_CLIENT_SECRET: ${ERP_READER_CLIENT_SECRET}
+      ERP_CREDIT_BOT_CLIENT_SECRET: ${ERP_CREDIT_BOT_CLIENT_SECRET}
+      ERP_SLOW_MS: ${ERP_SLOW_MS:-1500}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  triage:
+    build:
+      context: ../../apps
+      dockerfile: 16/Dockerfile
+      args:
+        APP_FILE: 16/triage_service.py
+    image: bb-triage:${TRIAGE_TAG:-1.2.0}
+    environment:
+      ERP_URL: http://erp:8000
+      ERP_READER_CLIENT_ID: ${ERP_READER_CLIENT_ID:-bb-orders-reader}
+      ERP_READER_CLIENT_SECRET: ${ERP_READER_CLIENT_SECRET}
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://otel-collector:4318}
+    ports:
+      - "8160:8000"
+    depends_on:
+      erp:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.163.2
+    command: ["--config=/etc/otel/config.yaml"]
+    volumes:
+      - ./observability/otel-collector.yaml:/etc/otel/config.yaml:ro
+  jaeger:
+    image: jaegertracing/jaeger:2.22.0
+    command: ["--config=/jaeger/config.yaml"]
+    volumes:
+      - ./observability/jaeger.yaml:/jaeger/config.yaml:ro
+    ports:
+      - "8161:16686"
+  prometheus:
+    image: prom/prometheus:v3.15.1
+    volumes:
+      - ./observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "8162:9090"

@@ -1,0 +1,50 @@
+{
+ "C01": {
+  "passed": false,
+  "reason": "The reply promises to process a refund immediately, which is a specific time commitment."
+ },
+ "C02": {
+  "passed": false,
+  "reason": "The reply promises to issue a credit right away, which is a specific time commitment."
+ },
+ "C03": {
+  "passed": true,
+  "reason": "The reply addresses the damaged item issue without making a specific promise about time or amount."
+ },
+ "C04": {
+  "passed": true,
+  "reason": "The reply addresses the late delivery issue without making a specific promise about time or amount."
+ },
+ "C05": {
+  "passed": false,
+  "reason": "The reply promises to send the item as soon as possible, which is a specific time commitment."
+ },
+ "C06": {
+  "passed": true,
+  "reason": "The reply addresses the late delivery issue without making a specific promise about time or amount."
+ },
+ "C07": {
+  "passed": false,
+  "reason": "The reply promises to process a full refund immediately, which is a specific time commitment."
+ },
+ "C08": {
+  "passed": true,
+  "reason": "The reply addresses the damaged item issue without making a specific promise about time or amount."
+ },
+ "C09": {
+  "passed": false,
+  "reason": "The reply promises to ensure a refund is processed right away, which is a specific time commitment."
+ },
+ "C10": {
+  "passed": true,
+  "reason": "The reply addresses the delivery issue without making a specific promise about time or amount."
+ },
+ "C11": {
+  "passed": false,
+  "reason": "The reply promises to credit the account immediately, which is a specific time commitment."
+ },
+ "C12": {
+  "passed": true,
+  "reason": "The reply addresses the damaged item issue without making a specific promise about time or amount."
+ }
+}

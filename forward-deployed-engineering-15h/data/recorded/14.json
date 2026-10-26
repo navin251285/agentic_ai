@@ -1,0 +1,9 @@
+{
+ "compose_version": "Compose 5.2.0",
+ "triage": "{'ok': True, 'version': '1.0.0'}\nBB-1000 200 {'order_id': 'BB-1000', 'label': 'missing items', 'version': '1.0.0'}\nBB-1001 200 {'order_id': 'BB-1001', 'label': 'complete', 'version': '1.0.0'}\nBB-1002 200 {'order_id': 'BB-1002', 'label': 'missing items', 'version': '1.0.0'}\nBB-1003 200 {'order_id': 'BB-1003', 'label': 'missing items', 'version': '1.0.0'}",
+ "bad_start": "exit code: 1\ntriage-1  |     CLIENT_SECRET = os.environ[\"ERP_READER_SECRET\"]  # injected from the secret store, never in the image\ntriage-1  |                     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\ntriage-1  |   File \"<frozen os>\", line 714, in __getitem__\ntriage-1  | KeyError: 'ERP_READER_SECRET'",
+ "bad_ps": "SERVICE   STATUS\nerp       Up 15 seconds (healthy)\ntriage    Exited (1) Less than a second ago",
+ "rollback": "{'ok': True, 'version': '1.0.0'}\n{'order_id': 'BB-1000', 'label': 'missing items', 'version': '1.0.0'}",
+ "up_v1": "exit code: 0\n Container tut-forward-deployed-engineering-15h-14-triage-1 Starting \n Container tut-forward-deployed-engineering-15h-14-triage-1 Started \n Container tut-forward-deployed-engineering-15h-14-erp-1 Waiting \n Container tut-forward-deployed-engineering-15h-14-triage-1 Waiting \n Container tut-forward-deployed-engineering-15h-14-erp-1 Healthy \n Container tut-forward-deployed-engineering-15h-14-triage-1 Healthy\nSERVICE   STATUS\nerp       Up 11 seconds (healthy)\ntriage    Up 5 seconds (healthy)",
+ "rollback_up": "exit code: 0\n Container tut-forward-deployed-engineering-15h-14-triage-1 Starting \n Container tut-forward-deployed-engineering-15h-14-triage-1 Started \n Container tut-forward-deployed-engineering-15h-14-erp-1 Waiting \n Container tut-forward-deployed-engineering-15h-14-triage-1 Waiting \n Container tut-forward-deployed-engineering-15h-14-erp-1 Healthy \n Container tut-forward-deployed-engineering-15h-14-triage-1 Healthy"
+}

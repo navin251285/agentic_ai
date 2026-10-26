@@ -1,0 +1,9 @@
+id,area,question
+Q1,residency,Where is customer data stored? Name the region.
+Q2,residency,Which region does the model provider process prompts in?
+Q3,PII,How is personal data removed before records are stored?
+Q4,audit,Is every write to customer data logged with who did it and when?
+Q5,audit,Can an audit log entry hold a secret or personal data?
+Q6,access,"How long do access tokens live, and how are they scoped?"
+Q7,retention,"How long are triage records kept, and when are they deleted?"
+Q8,assurance,Do you hold a SOC 2 Type II report for this service?

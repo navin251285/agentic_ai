@@ -1,0 +1,369 @@
+{
+ "title": "Forward Deployed Engineering",
+ "subtitle": "Course kickoff: from first principles to enterprise delivery",
+ "course": "Forward Deployed Engineering from First Principles to Enterprise Delivery · 15-hour course",
+ "audience": "software engineers new to the forward deployed engineer role",
+ "audience_type": "technical",
+ "scope": {
+  "kickoff": true
+ },
+ "theme": {
+  "accent": "0F766E",
+  "accent2": "F59E0B"
+ },
+ "slides": [
+  {
+   "layout": "title",
+   "icon": "gear",
+   "notes": "Welcome. This first session says why the course exists, what the forward deployed engineer role is, what you will build and how each lesson runs. Nothing needs installing yet. The course has 33 lessons in three chapters, 14.6 hours of lesson time in total. You will be asked for any key just before the lessons that need it, and the Before you start slide lists what to have ready. Open by asking the room who has ever been sent to a customer's site to fix something."
+  },
+  {
+   "layout": "analogy",
+   "title": "A forward deployed engineer is a field technician",
+   "lessons": [
+    "01"
+   ],
+   "everyday": {
+    "name": "Field technician",
+    "text": "Fixes the machine on site, then reports why it breaks"
+   },
+   "tech": {
+    "name": "Forward deployed engineer",
+    "text": "Fixes the software on site, then sends the pattern back"
+   },
+   "breaks": "A technician repairs hardware; an FDE writes code someone must maintain",
+   "notes": "Begin with a technician most of us have met: the person who comes to the site, fixes the machine there, then reports to the factory why it keeps breaking. A forward deployed engineer, FDE, is that technician for software. They work inside the customer's systems, fix the real problem and send the repeated cause back to the product team. Be precise about where the comparison stops working. A technician repairs hardware, but an FDE writes code that someone has to maintain afterwards. That is why the course spends so much time on handover and on keeping custom work from splitting the product."
+  },
+  {
+   "layout": "before_after",
+   "title": "Without an FDE, every fix waits in line",
+   "lessons": [
+    "01"
+   ],
+   "before": {
+    "label": "Without an FDE",
+    "diagram": {
+     "type": "flow",
+     "items": [
+      "Ops lead's ticket",
+      "Support",
+      "Engineering",
+      "Product backlog",
+      "Next release"
+     ]
+    },
+    "caption": "Invented timeline: fix ships day 62"
+   },
+   "after": {
+    "label": "With an FDE",
+    "diagram": {
+     "type": "flow",
+     "items": [
+      "Engineer on site",
+      "Reads the export",
+      "Tests fix with ops lead"
+     ]
+    },
+    "caption": "Same problem: working fix by day 4"
+   },
+   "notes": "Walk the left side with the ops lead of Basket Bazaar, a fictional grocery delivery customer. A missing-item complaint passes through support, which cannot see the store system, then engineering, the product backlog and a scheduled release. Lesson 01 adds invented wait times to show the shape of that queue, and the fix ships on day 62. On the right, an engineer is on site, reads the delivery-message export and tests a fix with the ops lead by day 4. Say clearly that these numbers are invented, not measured. The product team is not careless: the fix needs access that only the customer side has, and release cycles serve every customer."
+  },
+  {
+   "layout": "concept",
+   "title": "A forward deployed engineer owns the outcome to go-live",
+   "lessons": [
+    "01"
+   ],
+   "definition": "A forward deployed engineer is a software engineer who works inside the customer's environment: their systems, their data and their people.",
+   "parts": [
+    {
+     "term": "Embedded",
+     "meaning": "Works in the customer's systems and team"
+    },
+    {
+     "term": "Owns the outcome",
+     "meaning": "Stays until go-live, then hands over"
+    },
+    {
+     "term": "Writes production code",
+     "meaning": "Code runs in the customer's environment"
+    },
+    {
+     "term": "Sends patterns back",
+     "meaning": "Repeated fixes go to the product team"
+    }
+   ],
+   "example": "Basket Bazaar: a missing-item complaint, fixed on site",
+   "notes": "Give the definition exactly as lesson 01 states it, then the four parts. Stress the owns-the-outcome part: the FDE stays until go-live, the day the customer's real work runs on the service, and then hands over (lesson 22). The example is the Basket Bazaar ops lead's missing-item complaint, a fictional customer. Ask the room which part a product engineer usually does not own. The answer is the outcome at one customer. Job titles differ by company, so lesson 01 compares the role with a software engineer, a solutions architect and a consultant in a table. Read the job posting, not only the title."
+  },
+  {
+   "layout": "steps",
+   "title": "By the end, you take one problem to go-live",
+   "lessons": [
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "22",
+    "32"
+   ],
+   "steps": [
+    {
+     "head": "Scope",
+     "text": "Complaint to testable proof of concept"
+    },
+    {
+     "head": "Integrate",
+     "text": "Customer APIs: auth, paging, retries"
+    },
+    {
+     "head": "Build and evaluate",
+     "text": "AI features with checked output"
+    },
+    {
+     "head": "Deploy and secure",
+     "text": "Compose, secrets, restricted network"
+    },
+    {
+     "head": "Hand over",
+     "text": "Docs and a team that runs it"
+    }
+   ],
+   "notes": "Five steps, one per stage of a real engagement. Scope turns a complaint into a testable proof of concept with success criteria (lessons 02 and 03). Integrate means calling the customer's API safely, with tokens, paging and retries that do not write twice (lessons 04 and 05). Build and evaluate covers the AI feature, with checked output and an eval set (lessons 06, 11 and 12). Deploy and secure is Docker Compose on a restricted network, with auth and secrets (lessons 13 to 15). Hand over closes the loop with docs and a trained customer team (lesson 22). The final checkpoint, lesson 32, runs the whole path against a fresh scenario."
+  },
+  {
+   "layout": "code",
+   "title": "Each wait is added to the day before",
+   "lessons": [
+    "01"
+   ],
+   "lang": "python",
+   "code": "# runs once per timeline, from lesson 01\nday = 0\nprint(f\"{name} (illustrative days)\")\nfor stage, wait in steps:\n    day += wait\n    print(f\"  day {day:>3}: {stage}\")",
+   "highlight": [
+    4,
+    5
+   ],
+   "output": "Without an FDE (illustrative days)\n  day   2: Ticket triaged: support cannot see the store system\n  day  32: Feature waits in the product backlog\n  day  62: Fix ships in the next scheduled release",
+   "points": [
+    "The lesson runs this loop once per timeline",
+    "The days are invented: they show the shape of the wait"
+   ],
+   "notes": "This is the first code of the course, from lesson 01. Two timelines are defined above the loop, one without an FDE and one with it, and the loop runs once for each. Each step adds its wait to the day before and prints the running day. That running total is the whole idea, and it is the arithmetic behind day 62 and day 4 on the earlier slide. The output shows the first four lines of the lesson's executed notebook, the timeline without an FDE. The numbers are illustrative, not measured. Point to the two highlighted lines and ask the room how they would test the same arithmetic."
+  },
+  {
+   "layout": "diagram",
+   "title": "The Basket Bazaar triage service grows in four steps",
+   "lessons": [
+    "09",
+    "20",
+    "32"
+   ],
+   "diagram": {
+    "type": "flow",
+    "items": [
+      "1. Triage API, web page",
+      "2. Storage, tests, errors",
+      "3. Logs, trace, eval gate",
+      "4. One run command"
+    ]
+   },
+   "caption": "FastAPI backend and one-page web UI, run with uvicorn",
+   "points": [
+    "Its own app folder, with a guide",
+    "Each step follows a chapter"
+   ],
+   "notes": "The course builds one service: the Basket Bazaar delivery-issues service, a local FastAPI backend with a one-page web interface, started with uvicorn. It lives in its own app folder, with a guide, and the notebooks stay complete on their own. Step 1 comes after chapter 1, with lesson 09: one endpoint triages one delivery issue with a model call and checked output. Step 2 comes after chapter 2 and adds stored issues, tests and clear error responses. Step 3, after chapter 3, adds structured logs, a trace, an eval gate and a service token. Step 4 gives one run command, full tests and a README. Because each step follows a chapter, there is always a working service to compare your own code with."
+  },
+  {
+   "layout": "agenda",
+   "title": "Three chapters, 33 lessons, 14.6 hours in all",
+   "notes": "The rows come straight from the syllabus, one per chapter, and each chapter is one level. Basic is chapter 1: nine lessons and about 3.8 hours, ending in a working proof of concept. Intermediate is chapter 2: eleven lessons and about 5.1 hours, on evals, security, deployment and observability. Advanced is chapter 3: thirteen lessons and about 5.7 hours, on production, handover, productizing and delivery. Together they make 33 lessons and 14.6 hours. If you have less time, the Essentials path runs only the 22 core lessons, and the professional lessons can wait without breaking the story."
+  },
+  {
+   "layout": "steps",
+   "title": "Each lesson: one notebook, 20 to 30 minutes",
+   "lessons": [
+    "01",
+    "04",
+    "06"
+   ],
+   "steps": [
+    {
+     "head": "Read the goal",
+     "text": "Goal and Why it matters"
+    },
+    {
+     "head": "See the idea",
+     "text": "The idea and its picture"
+    },
+    {
+     "head": "Run the cells",
+     "text": "In order, reading the real output"
+    },
+    {
+     "head": "Try it",
+     "text": "Attempt first, then the hidden answer"
+    },
+    {
+     "head": "Check yourself",
+     "text": "Common mistakes and the interview line"
+    }
+   ],
+   "notes": "Each lesson is one notebook of 20 to 30 minutes, and the order matters. Start with the goal and Why it matters, which name the problem without the idea. Then read the idea and its picture. Run the cells in order and read the real output rather than skipping ahead. Each Try-it has its answer in a hidden cell: attempt it first, then open the answer. Finish with the common mistakes and the interview line, a sentence you could say in an interview. Lessons that call the model record each call once and replay it without a key, so most of the course runs offline."
+  },
+  {
+   "layout": "compare",
+   "title": "Three levels build from one customer to delivery",
+   "lessons": [
+    "01",
+    "10",
+    "21"
+   ],
+   "columns": [
+    {
+     "head": "Basic · 9 lessons",
+     "points": [
+      "Discovery, scoping, first integration",
+      "Ends with a proof of concept"
+     ]
+    },
+    {
+     "head": "Intermediate · 11 lessons",
+     "points": [
+      "Evals, security, deployment",
+      "Ends with a deployable service"
+     ]
+    },
+    {
+     "head": "Advanced · 13 lessons",
+     "points": [
+      "Production, handover, cost",
+      "Ends with a delivery drill"
+     ]
+    }
+   ],
+   "notes": "Read the columns as chapters, with the hours in the agenda. Basic is about the customer: discovery, scoping, a first integration, structured model output, and a demo for a non-engineer, ending with a checkpoint. Intermediate turns the proof of concept into something you can trust and run: evals, grading, auth, Docker Compose, a restricted network, observability, cost budgets and agents with tools. Advanced takes it to production: what changes, handover, multi-tenancy, zero-downtime change, long batch jobs, security evidence, a failure drill, unit economics and the business case, ending in a delivery drill. The level sets the depth, and the order is fixed: you need Basic before Intermediate."
+  },
+  {
+   "layout": "cards",
+   "title": "Before you start: Python, Docker and a model key",
+   "lessons": [
+    "06",
+    "14"
+   ],
+   "cards": [
+    {
+     "icon": "gear",
+     "head": "Python 3.11",
+     "text": "Functions and web API calls; no ML needed"
+    },
+    {
+     "icon": "cube",
+     "head": "Docker",
+     "text": "Runs the customer environment locally"
+    },
+    {
+     "icon": "cloud",
+     "head": "A model key",
+     "text": "Gemini API key, or a Google Cloud project"
+    },
+    {
+     "icon": "doc",
+     "head": "Keys stay in .env",
+     "text": "Never in code; asked for when needed"
+    }
+   ],
+   "notes": "Check four things before the first lesson. Python 3.11, with comfort in functions and calling a web API; no machine learning background is needed. Docker on your laptop, because the customer environment runs in containers, and Docker needs no account. A model key: the default is a Gemini API key, and the alternative is a Google Cloud project and location. You will be asked for keys just before the lessons that need them, not now. Every value lives in the course's .env file, which is never committed or printed, and the .env.example file lists the names. Lesson 06 is the first lesson that calls the model."
+  },
+  {
+   "layout": "cards",
+   "title": "Learning is proven three ways: checkpoints, questions, projects",
+   "lessons": [
+    "09",
+    "20",
+    "32"
+   ],
+   "cards": [
+    {
+     "icon": "star",
+     "head": "Three checkpoints",
+     "text": "Lessons 09, 20 and 32: build it, then show it"
+    },
+    {
+     "icon": "chat",
+     "head": "Interview question bank",
+     "text": "Questions with a hiring rubric, one set per level"
+    },
+    {
+     "icon": "target",
+     "head": "Project briefs",
+     "text": "Basic, intermediate and advanced briefs for your portfolio"
+    }
+   ],
+   "notes": "Learning is checked three ways. Checkpoints are lessons 09, 20 and 32: each one builds a larger working piece, and you show it, the first to a non-engineer. The interview question bank has questions with a hiring rubric for each level, and its answer key is kept for instructors. The project briefs come in three sets, basic, intermediate and advanced, for your portfolio; each brief says what to build and how to show that it works. Treat the checkpoints as your record of work, because each one is evidence you can point to in an interview."
+  },
+  {
+   "layout": "terms",
+   "title": "Words you will hear early",
+   "lessons": [
+    "01",
+    "04",
+    "10",
+    "15",
+    "17"
+   ],
+   "terms": [
+    {
+     "term": "Forward deployed engineer",
+     "plain": "Works inside a customer's systems"
+    },
+    {
+     "term": "Proof of concept",
+     "plain": "Small working test on real data"
+    },
+    {
+     "term": "Idempotency key",
+     "plain": "Stops a retried write doubling"
+    },
+    {
+     "term": "Eval",
+     "plain": "Repeatable test of an AI feature"
+    },
+    {
+     "term": "Runbook",
+     "plain": "Written steps for one incident"
+    },
+    {
+     "term": "Egress proxy",
+     "plain": "The one controlled network exit"
+    }
+   ],
+   "notes": "Six words you will hear from the first lesson on. Forward deployed engineer is the role. Proof of concept is the small working test on real data, used to answer one question before a full build. An idempotency key is the value a client sends with a write, so a retry returns the first answer and does not write twice (lesson 04). An eval is a repeatable test for an AI feature: fixed inputs, expected answers and a score you can compare between versions (lesson 10). A runbook is the written procedure for one known incident (lesson 17). An egress proxy is the single controlled exit from a private network, which allows each host and logs each call (lesson 15). The course glossary defines every term with its lesson."
+  },
+  {
+   "layout": "questions",
+   "title": "Questions to answer by the end",
+   "lessons": [
+    "01",
+    "04",
+    "11",
+    "22",
+    "25"
+   ],
+   "questions": [
+    "When is a product alone enough?",
+    "Why can a retry create a duplicate?",
+    "How do you show a model change helped?",
+    "What must the customer run without you?",
+    "Which custom fix becomes shared code?"
+   ],
+   "notes": "End with five questions you should be able to answer by the last lesson, and try them on a colleague. When is a product alone enough, and when do you need an FDE on the account (lesson 01)? Why can a retry create a duplicate, and what stops it (lesson 04)? How would you show that a model change made a feature better, not just different (lesson 11)? What must the customer's team be able to run without you at handover (lesson 22)? Which custom fix should become shared code, and which should stay one customer's (lesson 25)? Write your answers in your own words, then check them against those lessons."
+  }
+ ]
+}

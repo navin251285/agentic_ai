@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Basket Bazaar · delivery issue triage</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7f9; color: #1d2330; }
+    main { max-width: 760px; margin: 0 auto; padding: 24px 16px; }
+    h1 { font-size: 1.5rem; margin: 0 0 4px; }
+    h2 { font-size: 1.1rem; margin: 0 0 8px; }
+    .lead { color: #56607a; margin: 0 0 20px; }
+    form, .result, .cases, .panel { background: #fff; border: 1px solid #dde1ea; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+    label { font-weight: 600; display: block; margin-bottom: 8px; }
+    textarea, input, select { width: 100%; box-sizing: border-box; padding: 8px; font: inherit; border: 1px solid #c4cad6; border-radius: 6px; }
+    textarea { min-height: 90px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px; }
+    button { margin-top: 12px; background: #1f6feb; color: #fff; border: 0; border-radius: 6px; padding: 9px 16px; font: inherit; cursor: pointer; }
+    button.secondary { background: #e6ebf3; color: #1d2330; }
+    button:disabled { background: #8aa9d9; cursor: wait; }
+    .status { display: inline-block; padding: 3px 10px; border-radius: 999px; font-weight: 600; font-size: 0.9rem; }
+    .opened, .passed { background: #dcfce7; color: #14532d; }
+    .needs_review, .blocked { background: #fef3c7; color: #78350f; }
+    .error { background: #fee2e2; color: #7f1d1d; }
+    .note { color: #56607a; margin: 12px 0 0; }
+    dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 12px 0 0; }
+    dt { color: #56607a; }
+    dd { margin: 0; }
+    code { font-size: 0.9em; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #e6e9f0; vertical-align: top; }
+    th { color: #56607a; font-weight: 600; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Delivery issue triage</h1>
+  <p class="lead">Paste a customer message. The model reads it, looks up the order, fills a case form, and a plain-code check decides whether the case opens. Every case is stored.</p>
+
+  <section class="panel">
+    <label for="token">Service token</label>
+    <input id="token" type="password" autocomplete="off" placeholder="the TRIAGE_SERVICE_TOKEN from the course .env">
+    <p class="note">The browser keeps it for this tab only. Every call to the API sends it.</p>
+  </section>
+
+  <form id="triage-form">
+    <div class="row">
+      <div>
+        <label for="tenant">Store</label>
+        <select id="tenant"></select>
+      </div>
+    </div>
+    <label for="message">Customer message (invented example, edit freely)</label>
+    <textarea id="message" required maxlength="2000">Hi, I'm writing about order BB-1108. The delivery came today but the milk is missing. I paid for four. Can I get a credit?</textarea>
+    <button type="submit" id="submit">Triage this message</button>
+  </form>
+
+  <section id="result" class="result hidden" aria-live="polite">
+    <span id="status" class="status"></span>
+    <p id="stored" class="note"></p>
+    <dl>
+      <dt>Store</dt><dd id="store"></dd>
+      <dt>Order</dt><dd id="order"></dd>
+      <dt>Issue</dt><dd id="issue"></dd>
+      <dt>Item</dt><dd id="item"></dd>
+      <dt>Quantity claimed</dt><dd id="qty"></dd>
+      <dt>Summary</dt><dd id="summary"></dd>
+      <dt>Trace</dt><dd><code id="trace"></code></dd>
+    </dl>
+    <div id="problems-box" class="hidden">
+      <strong>The check rejected this record:</strong>
+      <ul id="problems"></ul>
+    </div>
+  </section>
+
+  <section id="error" class="result error hidden" role="alert"></section>
+
+  <section class="panel">
+    <h2>Eval gate</h2>
+    <p class="note">The gate passes when enough of the labelled cases from lesson 11 get the right label.</p>
+    <button type="button" id="gate" class="secondary">Check the eval gate</button>
+    <p id="gate-result" class="note hidden"></p>
+  </section>
+
+  <section class="cases">
+    <h2>Stored cases</h2>
+    <button type="button" id="refresh" class="secondary">Refresh list</button>
+    <table>
+      <thead>
+        <tr><th>Case</th><th>Store</th><th>Order</th><th>Issue</th><th>Status</th><th>Stored at</th></tr>
+      </thead>
+      <tbody id="cases"></tbody>
+    </table>
+    <p id="no-cases" class="note hidden">No cases stored yet. Triage a message to store the first one.</p>
+  </section>
+</main>
+
+<script>
+  const form = document.getElementById("triage-form");
+  const button = document.getElementById("submit");
+  const tokenInput = document.getElementById("token");
+  const tenantSelect = document.getElementById("tenant");
+  const show = (id, visible) => document.getElementById(id).classList.toggle("hidden", !visible);
+
+  // The token lives in sessionStorage: this tab only, never in the page's HTML.
+  tokenInput.value = sessionStorage.getItem("triage-token") || "";
+  tokenInput.addEventListener("change", () => {
+    sessionStorage.setItem("triage-token", tokenInput.value.trim());
+    loadStores();
+    refreshCases();
+  });
+
+  function errorText(data) {
+    // Every error has a plain detail and a stable code (errors.py), so the page shows both.
+    const detail = data.detail || "Something went wrong.";
+    return data.code ? `${detail} (code: ${data.code})` : detail;
+  }
+
+  function showError(message) {
+    const box = document.getElementById("error");
+    box.textContent = message;
+    show("error", true);
+  }
+
+  // Every /api call sends the service token (step 3, lesson 13).
+  function apiFetch(url, options = {}) {
+    const headers = { ...(options.headers || {}), Authorization: "Bearer " + tokenInput.value.trim() };
+    return fetch(url, { ...options, headers });
+  }
+
+  async function loadStores() {
+    const response = await apiFetch("/api/tenants");
+    if (!response.ok) {
+      tenantSelect.replaceChildren();
+      return;
+    }
+    const data = await response.json();
+    tenantSelect.replaceChildren(...data.tenants.map((t) => {
+      const option = document.createElement("option");
+      option.value = t.tenant_id;
+      option.textContent = `${t.tenant_id} (limit ${t.max_qty_per_line} per line)`;
+      option.selected = t.tenant_id === data.default;
+      return option;
+    }));
+  }
+
+  function showResult(data) {
+    const status = document.getElementById("status");
+    status.textContent = data.status === "opened" ? "Case opened" : "Needs a person to review";
+    status.className = "status " + data.status;
+    document.getElementById("stored").textContent = data.duplicate
+      ? `This case was already stored as ${data.case_id}, so nothing new was written.`
+      : `Stored as ${data.case_id}.`;
+    const r = data.record;
+    document.getElementById("store").textContent = data.tenant;
+    document.getElementById("order").textContent = r.order_id;
+    document.getElementById("issue").textContent = r.issue;
+    document.getElementById("item").textContent = r.item ?? "not named";
+    document.getElementById("qty").textContent = r.qty_claimed ?? "not given";
+    document.getElementById("summary").textContent = r.summary;
+    document.getElementById("trace").textContent = data.trace_id;
+    const list = document.getElementById("problems");
+    list.replaceChildren(...data.problems.map((p) => {
+      const li = document.createElement("li");
+      li.textContent = p;
+      return li;
+    }));
+    show("problems-box", data.problems.length > 0);
+    show("result", true);
+  }
+
+  function cell(text) {
+    const td = document.createElement("td");
+    td.textContent = text;
+    return td;
+  }
+
+  async function refreshCases() {
+    const response = await apiFetch("/api/issues?limit=20");
+    const cases = await response.json();
+    if (!response.ok) {
+      showError(errorText(cases));
+      return;
+    }
+    const body = document.getElementById("cases");
+    body.replaceChildren(...cases.map((c) => {
+      const tr = document.createElement("tr");
+      const issue = c.item ? `${c.issue} (${c.item})` : c.issue;
+      tr.append(cell(c.case_id), cell(c.tenant || "-"), cell(c.order_id), cell(issue), cell(c.status), cell(c.created_at));
+      return tr;
+    }));
+    show("no-cases", cases.length === 0);
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    show("error", false);
+    show("result", false);
+    button.disabled = true;
+    button.textContent = "Triaging...";
+    try {
+      const response = await apiFetch("/api/triage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: document.getElementById("message").value.trim(),
+          tenant: tenantSelect.value || null,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        showError(errorText(data));
+      } else {
+        showResult(data);
+        await refreshCases();
+      }
+    } catch (err) {
+      showError("The server did not answer. Is it running on this page's address?");
+    } finally {
+      button.disabled = false;
+      button.textContent = "Triage this message";
+    }
+  });
+
+  document.getElementById("gate").addEventListener("click", async () => {
+    const box = document.getElementById("gate-result");
+    try {
+      const response = await apiFetch("/api/evals/gate");
+      const data = await response.json();
+      if (!response.ok) {
+        box.textContent = errorText(data);
+        box.className = "note error";
+        return;
+      }
+      const percent = Math.round(data.pass_rate * 100);
+      const bar = Math.round(data.min_pass_rate * 100);
+      box.textContent = `${data.passed ? "Passed" : "Blocked"}: ${percent}% of ${data.cases} cases right (bar ${bar}%).`
+        + (data.failed.length ? ` Wrong or missing: ${data.failed.join(", ")}.` : "");
+      box.className = "note " + (data.passed ? "passed" : "blocked");
+    } catch (err) {
+      box.textContent = "The server did not answer.";
+      box.className = "note error";
+    }
+  });
+
+  document.getElementById("refresh").addEventListener("click", refreshCases);
+  loadStores();
+  refreshCases();
+</script>
+</body>
+</html>

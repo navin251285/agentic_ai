@@ -1,0 +1,46 @@
+{
+ "up": "SERVICE          STATUS\nerp              Up 12 seconds (healthy)\njaeger           Up 12 seconds\notel-collector   Up 12 seconds\nprometheus       Up 12 seconds\ntriage           Up 6 seconds (healthy)",
+ "trail": {
+  "steps": [
+   "0 brief",
+   "1 scope",
+   "2 config",
+   "3 security",
+   "4 cases",
+   "5 gate",
+   "6 release note",
+   "7 deploy"
+  ],
+  "deployed_tag": "1.2.0"
+ },
+ "verify": {
+  "health": 200,
+  "answers": {
+   "BB-1000": {
+    "order_id": "BB-1000",
+    "label": "missing items",
+    "version": "1.2.0"
+   },
+   "BB-1001": {
+    "order_id": "BB-1001",
+    "label": "complete",
+    "version": "1.2.0"
+   },
+   "BB-1002": {
+    "order_id": "BB-1002",
+    "label": "missing items",
+    "version": "1.2.0"
+   },
+   "BB-1003": {
+    "order_id": "BB-1003",
+    "label": "missing items",
+    "version": "1.2.0"
+   }
+  },
+  "erp_published": false,
+  "jaeger_services": [
+   "bb-triage"
+  ],
+  "metric_series": 11
+ }
+}

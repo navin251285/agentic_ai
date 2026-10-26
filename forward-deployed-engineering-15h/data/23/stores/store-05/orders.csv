@@ -1,0 +1,22 @@
+order_id,store,item,qty,unit,ordered_at
+BB-1064,Store 05,rice,566,g,2026-10-21 08:32
+BB-1007,Store 05,milk,3,each,20/10/2026 10:41
+BB-1064,Store 05,bread,1,each,2026-10-21 08:32
+ bb-1009 ,Store 05,Milk ,1,each,2026-10-20 11:27
+BB-1008,Store 05,rice,3,kg,2026-10-20 11:04
+BB-1084,Store 05,milk,1,each,21/10/2026 16:12
+BB-1008,Store 05,bread,1,each,2026-10-20 11:04
+BB-1041,Store 05,milk,3,each,20/10/2026 23:43
+BB-1074,Store 05,rice,1674,g,2026-10-21 12:22
+ bb-1066 ,Store 05,Bread ,2,each,2026-10-21 09:18
+BB-1042,Store 05,bread,2,each,2026-10-21 00:06
+BB-1084,Store 05,bread,2,each,21/10/2026 16:12
+BB-1041,Store 05,bread,1,each,20/10/2026 23:43
+BB-1061,Store 05,bread,2,each,2026-10-21 07:23
+BB-1064,Store 05,milk,1,each,2026-10-21 08:32
+BB-1061,Store 05,rice,3,kg,2026-10-21 07:23
+BB-1041,Store 05,eggs,3,dozen,20/10/2026 23:43
+BB-1061,Store 05,milk,3,each,2026-10-21 07:23
+BB-1007,Store 05,eggs,1,dozen,20/10/2026 10:41
+BB-1009,Store 05,milk,1,each,2026-10-20 11:27
+BB-1066,Store 05,bread,2,each,2026-10-21 09:18

@@ -1,0 +1,515 @@
+# %% [markdown]
+# # 04 · Integrating with a customer's API: auth, pagination, retries, idempotency
+#
+# Level L1 · Part 1 · core · ~30 min · builds on lesson 03
+
+# %% [markdown]
+# ## Goal
+#
+# By the end of this lesson you can call a customer's REST API with a bearer token, read every page of a list, retry only the failures that are safe to retry, and make a write safe to repeat with an **idempotency key**. You can also find the bugs in a broken call that raised no error.
+
+# %% [markdown]
+# ## Why it matters
+#
+# Lesson 03 kept a live connection to the store system out of the proof of concept. This lesson shows what calling a customer's order API takes, so that choice is made with the facts. The order API used here is **invented**: a mock that runs on your laptop, with 137 orders made up by a fixed random seed.
+#
+# The cell below is the first script most teams write. It needs only pure Python: the numbers are invented.
+
+# %%
+# Invented numbers: 137 orders, and an API that returns 20 per page by default.
+ORDER_COUNT = 137
+DEFAULT_PAGE = 20
+
+import math
+
+print(f"naive script: 1 call, {min(DEFAULT_PAGE, ORDER_COUNT)} of {ORDER_COUNT} orders, and no error raised")
+print(f"reading every page: {math.ceil(ORDER_COUNT / DEFAULT_PAGE)} calls")
+
+# %% [markdown]
+# - **Without it:** the naive script reports 20 orders as the whole week. Nothing fails, so nobody notices. A 503 crashes the job, and a retried credit can be booked twice.
+# - **With it:** a small client that follows the page cursor, retries only the failures that can succeed later, and sends an idempotency key on every write.
+# - **When you don't need it:** when the vendor's official SDK already does all of this (check first), or when the data arrives as a file (lesson 05).
+
+# %% [markdown]
+# ## The idea
+#
+# Four ideas, one per problem. **Bearer token**: the client sends `Authorization: Bearer <token>` on every call, and the server checks it. Treat the token like a password. **Cursor pagination**: a list comes back in pages. Each reply holds a `next_cursor`, an opaque string for the next page. You stop when it is empty.
+#
+# **Retry with backoff**: after a failed call, wait, then try again, waiting longer each time. **Jitter** adds a random extra wait, so many clients do not retry at the same moment.
+
+# %% [markdown]
+# Retry only the failures a later try can fix: 429 (**rate limit**: too many calls; the **Retry-After** header says how long to wait), 502, 503, 504 and timeouts. A 400, 401 or 422 will fail the same way again, so fix the request instead.
+#
+# **Idempotency key**: a unique string the client sends with a write. The server saves the first answer under that key and returns it for any repeat, so a retry cannot write twice. Think of a restaurant order slip: the kitchen that gets the same slip twice cooks once.
+
+# %% [markdown]
+# ## Picture
+#
+# The client retries the same call, and the server does the write only once.
+
+# %% [markdown]
+# ```mermaid
+# sequenceDiagram
+#     participant C as Client (our code)
+#     participant A as Customer API
+#     C->>A: GET /orders (Bearer token)
+#     A-->>C: 429, Retry-After 1
+#     C->>A: GET /orders (after the wait)
+#     A-->>C: 200, data and next_cursor
+#     C->>A: POST /credits, Idempotency-Key K1
+#     A-->>C: 503, but the credit was written
+#     C->>A: POST /credits, same key K1
+#     A-->>C: 200, saved answer (replayed)
+# ```
+
+# %% [markdown]
+# ## Step by step
+
+# %% [markdown]
+# ### Step 1: start the mock customer API
+#
+# The mock is a real HTTP server on this lesson's port (8040). Its code is in `../apps/04/mock_erp.py`, which the cell below writes to disk. It is **invented** and stands in for a customer's order system, so the lesson runs offline. The `/lab/` endpoints are for this lesson only: a real customer would not have them.
+
+# %%
+%%writefile ../apps/04/mock_erp.py
+"""Basket Bazaar mock customer API. INVENTED data, lab only: it stands in for a customer's order system."""
+import os
+import random
+
+from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request, Response
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel, Field
+
+TOKEN = os.environ.get("MOCK_ERP_TOKEN", "")
+rng = random.Random(4)  # fixed seed: the same invented orders on every run
+ORDERS = [{"id": f"BB-{1000 + i}", "store": f"Store {rng.randint(1, 12):02d}",
+           "lines_short": rng.choice([0, 0, 0, 1, 2])} for i in range(137)]
+CREDITS: list[dict] = []
+SAVED: dict[str, dict] = {}   # Idempotency-Key -> the body first returned for it
+FAULTS: list[str] = []        # faults for the next calls: "429", "503" or "lost"
+LOG: list[dict] = []          # one entry per request: method, path, status
+
+app = FastAPI(title="Basket Bazaar mock customer API (invented)")
+
+
+class Credit(BaseModel):
+    order_id: str
+    item: str
+    qty: int = Field(ge=1)
+
+
+class Plan(BaseModel):
+    faults: list[str]
+
+
+def require_token(authorization: str | None = Header(default=None)):
+    if authorization != f"Bearer {TOKEN}":
+        raise HTTPException(401, "missing or wrong bearer token")
+
+
+def next_fault() -> str | None:
+    return FAULTS.pop(0) if FAULTS else None
+
+
+def error(code: int) -> JSONResponse:
+    headers = {"Retry-After": "1"} if code == 429 else {}
+    return JSONResponse({"detail": f"injected {code}"}, status_code=code, headers=headers)
+
+
+@app.middleware("http")
+async def log_calls(request: Request, call_next):
+    response = await call_next(request)
+    LOG.append({"method": request.method, "path": request.url.path, "status": response.status_code})
+    return response
+
+
+@app.get("/health")
+def health():
+    return {"ok": True}
+
+
+@app.get("/orders", dependencies=[Depends(require_token)])
+def list_orders(limit: int = Query(20, ge=1, le=50), cursor: str = "0"):
+    fault = next_fault()
+    if fault in ("429", "503"):
+        return error(int(fault))
+    start, end = int(cursor), int(cursor) + limit
+    more = end < len(ORDERS)
+    return {"data": ORDERS[start:end], "has_more": more,
+            "next_cursor": str(end) if more else None, "total": len(ORDERS)}
+
+
+@app.post("/credits", dependencies=[Depends(require_token)])
+def create_credit(credit: Credit, response: Response,
+                  idempotency_key: str | None = Header(default=None)):
+    if idempotency_key and idempotency_key in SAVED:  # a repeat: return the first answer, write nothing
+        response.headers["Idempotent-Replayed"] = "true"
+        return SAVED[idempotency_key]
+    fault = next_fault()
+    if fault in ("429", "503"):  # rejected before any write
+        return error(int(fault))
+    CREDITS.append(credit.model_dump())
+    body = {"credit_id": f"CR-{len(CREDITS)}", **credit.model_dump()}
+    if idempotency_key:
+        SAVED[idempotency_key] = body
+    if fault == "lost":  # the write happened, but the reply is lost on the way back
+        return error(503)
+    return body
+
+
+@app.post("/lab/faults")
+def set_faults(plan: Plan):  # lab only: queue faults for the next calls
+    FAULTS[:] = plan.faults
+    return {"queued": len(FAULTS)}
+
+
+@app.post("/lab/reset")
+def reset():  # lab only: empty the credits, the saved answers and the call log
+    for store in (CREDITS, FAULTS, LOG):
+        store.clear()
+    SAVED.clear()
+    return {"ok": True}
+
+
+@app.get("/lab/state")
+def state():  # lab only: what the customer's system holds right now
+    return {"credits": CREDITS, "calls": LOG}
+
+# %% [markdown]
+# Now start it. The cell checks that the port is free, starts the server, and polls its health endpoint until it answers. It does not use a fixed sleep. `atexit` stops the server if the kernel exits early.
+
+# %%
+import atexit, os, socket, subprocess, sys, time
+
+import httpx
+
+sys.path.insert(0, "..")
+from tut_env import env
+
+PORT = 8040  # this lesson's port (progress.py --ports 04)
+BASE = f"http://127.0.0.1:{PORT}"
+os.environ["MOCK_ERP_TOKEN"] = env("MOCK_ERP_TOKEN", "lab-token-not-a-secret")  # exported, never printed; the client and pytest read it from os.environ
+
+with socket.socket() as probe:
+    if probe.connect_ex(("127.0.0.1", PORT)) == 0:
+        raise RuntimeError(f"port {PORT} is already in use: stop the other process first")
+
+server = subprocess.Popen(
+    [sys.executable, "-m", "uvicorn", "mock_erp:app", "--app-dir", os.path.abspath("../apps/04"),
+     "--port", str(PORT), "--log-level", "warning"])
+stop_at_exit = atexit.register(server.terminate)  # also stops the server if the kernel exits early
+print("server started on this lesson's port; health check next")
+
+# %% [markdown]
+# The health check polls `/health` every 0.2 seconds for up to 15 seconds. A server that never starts gives a clear error, not a hang.
+
+# %%
+def wait_healthy(timeout=15.0):
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        try:
+            if httpx.get(f"{BASE}/health", timeout=0.5).status_code == 200:
+                return True
+        except httpx.TransportError:
+            pass  # not listening yet
+        time.sleep(0.2)
+    return False
+
+
+if not wait_healthy():
+    raise RuntimeError("the mock customer API did not start")
+print("mock customer API is up")
+
+# %% [markdown]
+# ### Step 2: read the contract
+#
+# Before you write a call, read what the API says it accepts. FastAPI publishes its contract as **OpenAPI** JSON (OpenAPI is the standard format for describing a REST API) at `/openapi.json`. The customer's API team would give you the same document, or a page that describes it.
+
+# %%
+spec = httpx.get(f"{BASE}/openapi.json").json()
+for path, methods in spec["paths"].items():
+    print(f"{', '.join(m.upper() for m in methods):<12} {path}")
+
+for param in spec["paths"]["/orders"]["get"]["parameters"]:
+    print(param["name"], "->", param["schema"])
+
+# %% [markdown]
+# The contract says `limit` is 1 to 50 and defaults to 20. Keep that in mind: the naive script from *Why it matters* used the default.
+#
+# The three `/lab/` paths are lab-only controls this mock adds so you can inject faults and inspect what it holds. A real customer API has none of them; its contract has only `/health`, `/orders` and `/credits`.
+
+# %% [markdown]
+# ### Step 3: send the token
+#
+# Every call needs the token. The cleanest way is one `httpx.Client` that sends the header on every request. Here are two calls: one without a token, one with it. The token is never printed.
+
+# %%
+no_token = httpx.get(f"{BASE}/orders")
+print("no token:", no_token.status_code, no_token.json()["detail"])
+
+client = httpx.Client(base_url=BASE, timeout=5.0,
+                      headers={"Authorization": f"Bearer {os.environ['MOCK_ERP_TOKEN']}"})
+ok = client.get("/orders", params={"limit": 2})
+print("with token:", ok.status_code, "| total orders:", ok.json()["total"])
+
+# %% [markdown]
+# ### Step 4: follow the pages
+#
+# The first call returns one page. The reply tells you there is more: `has_more` is true and `next_cursor` holds the position of the next page. Pass that cursor back until `next_cursor` is `None`.
+
+# %%
+first = client.get("/orders").json()  # no limit: the default of 20
+print("first page:", len(first["data"]), "orders | has_more:", first["has_more"], "| total:", first["total"])
+
+
+def send(client, method, path, **kwargs):
+    response = client.request(method, path, **kwargs)
+    response.raise_for_status()
+    return response
+
+
+def fetch_all_orders(client, limit=50):
+    orders, cursor = [], "0"
+    while cursor is not None:  # None means: that was the last page
+        body = send(client, "GET", "/orders", params={"limit": limit, "cursor": cursor}).json()
+        orders.extend(body["data"])
+        cursor = body["next_cursor"]
+    return orders
+
+
+orders = fetch_all_orders(client)
+print("all orders:", len(orders), "| first:", orders[0]["id"], "| last:", orders[-1]["id"])
+
+# %% [markdown]
+# ### Step 5: retry only what can succeed later
+#
+# The same `send` function now retries. It uses the **tenacity** library, the standard Python retry package, so the retry rules are one decorator and not a hand-written loop. The rules: retry 429, 502, 503, 504 and transport errors (timeouts, dropped connections), up to four attempts. Honour `Retry-After` when the server sends it. Otherwise back off with jitter.
+
+# %%
+from tenacity import retry, retry_if_exception, stop_after_attempt, wait_exponential_jitter
+
+RETRYABLE = {429, 502, 503, 504}  # a later try may succeed; a 400, 401 or 422 never will
+backoff = wait_exponential_jitter(initial=0.2, max=5)  # returns a callable: state in, seconds out
+
+
+def should_try_again(exc: BaseException) -> bool:
+    if isinstance(exc, httpx.HTTPStatusError):
+        return exc.response.status_code in RETRYABLE
+    return isinstance(exc, httpx.TransportError)  # timeouts and dropped connections
+
+
+def wait_policy(retry_state) -> float:
+    """Obey Retry-After when the server sends it; otherwise back off with jitter."""
+    exc = retry_state.outcome.exception()
+    if isinstance(exc, httpx.HTTPStatusError) and "Retry-After" in exc.response.headers:
+        return float(exc.response.headers["Retry-After"])
+    return backoff(retry_state)
+
+# %% [markdown]
+# The next cell redefines `send` with the `@retry` decorator, so `fetch_all_orders` now uses the retrying version without any change to its code.
+#
+# Two words in that cell: **`retry_state`** is tenacity's record of one failed attempt (the attempt number and the last error). **`wait_policy`** reads it and returns the seconds to wait.
+
+# %%
+RETRY_LOG: list[str] = []  # print_attempt writes here; each cell prints the lines its own calls added
+
+
+def print_attempt(retry_state):
+    exc = retry_state.outcome.exception()
+    status = exc.response.status_code if isinstance(exc, httpx.HTTPStatusError) else type(exc).__name__
+    RETRY_LOG.append(f"  attempt {retry_state.attempt_number} failed ({status}); waiting {retry_state.next_action.sleep:.1f} s")
+
+
+@retry(retry=retry_if_exception(should_try_again), wait=wait_policy,
+       stop=stop_after_attempt(4), before_sleep=print_attempt, reraise=True)
+def send(client, method, path, **kwargs):
+    response = client.request(method, path, **kwargs)
+    response.raise_for_status()
+    return response
+
+# %% [markdown]
+# Now the mock fails the next two calls: one 429 (rate limit) and one 503 (server busy). The client should recover without any change to `fetch_all_orders`.
+
+# %%
+client.post("/lab/faults", json={"faults": ["429", "503"]})
+RETRY_LOG.clear()
+orders = fetch_all_orders(client)
+print("\n".join(RETRY_LOG))
+print("all orders after retries:", len(orders))
+
+# %% [markdown]
+# The first printed line is the 429: the mock sent `Retry-After: 1`, so the client waited 1.0 s, as the printed line shows. The 503 has no `Retry-After`, so it used the jittered backoff; that wait is random and changes from run to run.
+#
+# The other half of the rule: a 422 means the request itself is wrong. Here the limit is above the maximum of 50, so the client gives up after one attempt.
+
+# %%
+try:
+    send(client, "GET", "/orders", params={"limit": 500})
+except httpx.HTTPStatusError as err:
+    # send.statistics is tenacity's record of the last call; attempt_number counts its tries.
+    print("status:", err.response.status_code, "| attempts:", send.statistics["attempt_number"])
+
+# %% [markdown]
+# ### Step 6: make the write safe to repeat
+#
+# A GET can be repeated without harm. A **write** cannot, unless the server knows it is the same request. The credit below is for one short line, for an invented order. First, the unsafe way: no key. The mock's `lost` fault writes the credit, then replies 503, as a dropped connection would. The retry writes again.
+
+# %%
+credit = {"order_id": "BB-1003", "item": "eggs", "qty": 2}  # invented credit for a short line
+client.post("/lab/reset")
+client.post("/lab/faults", json={"faults": ["lost"]})  # "lost": credit is written, reply is 503
+RETRY_LOG.clear()
+send(client, "POST", "/credits", json=credit)  # no key: the retry writes a second time
+print("\n".join(RETRY_LOG))
+print("one credit requested; credits held by the customer:", len(client.get("/lab/state").json()["credits"]))
+
+# %% [markdown]
+# Now the safe way. The key is built from the business event (order, item, action), so every retry of this one operation sends the same key. A UUID also works, as long as the client stores it and reuses it on retries.
+
+# %%
+client.post("/lab/reset")
+client.post("/lab/faults", json={"faults": ["lost"]})
+key = "credit-BB-1003-eggs-2026-10-24"  # same operation, same key, on every retry
+# The date is part of the operation's identity: a credit for the same line on a different day is a new operation and gets a new key.
+RETRY_LOG.clear()
+resp = send(client, "POST", "/credits", json=credit, headers={"Idempotency-Key": key})
+print("\n".join(RETRY_LOG))
+print("status:", resp.status_code, "| replayed:", resp.headers.get("Idempotent-Replayed"))
+print("credits held by the customer:", len(client.get("/lab/state").json()["credits"]))
+
+# %% [markdown]
+# ### Step 7: test the rules with pytest
+#
+# A test keeps the rules true after the next change. The file below has three checks that run against the live mock: every page is read, a wrong token is refused, and a keyed credit is written once even when its reply was lost.
+
+# %%
+%%writefile ../apps/04/test_erp_client.py
+"""Checks for the client rules in lesson 04, run against the live mock (port 8040, token from MOCK_ERP_TOKEN)."""
+import os
+
+import httpx
+import pytest
+
+BASE = "http://127.0.0.1:8040"  # this lesson's port; the mock runs here
+HEADERS = {"Authorization": f"Bearer {os.environ['MOCK_ERP_TOKEN']}"}
+
+
+@pytest.fixture
+def client():
+    with httpx.Client(base_url=BASE, headers=HEADERS, timeout=5) as c:
+        c.post("/lab/reset")
+        yield c
+
+
+def test_every_page_is_read(client):
+    orders, cursor = [], "0"
+    while cursor is not None:
+        body = client.get("/orders", params={"limit": 50, "cursor": cursor}).json()
+        orders.extend(body["data"])
+        cursor = body["next_cursor"]
+    assert len(orders) == client.get("/orders", params={"limit": 1}).json()["total"]
+
+
+def test_wrong_token_is_refused():
+    assert httpx.get(f"{BASE}/orders", headers={"Authorization": "Token nope"}).status_code == 401
+
+
+def test_keyed_credit_is_written_once(client):
+    client.post("/lab/faults", json={"faults": ["lost"]})
+    body, key = {"order_id": "BB-1003", "item": "eggs", "qty": 2}, {"Idempotency-Key": "test-credit-1"}
+    client.post("/credits", json=body, headers=key)  # the reply is lost
+    client.post("/credits", json=body, headers=key)  # the retry
+    assert len(client.get("/lab/state").json()["credits"]) == 1
+
+# %% [markdown]
+# Run the file with pytest, in a subprocess, from the mock's folder. Exit code 0 means every check passed.
+
+# %%
+result = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", "test_erp_client.py"],
+                        cwd=os.path.abspath("../apps/04"), capture_output=True, text=True)
+print("pytest exit code:", result.returncode, "(0 means all checks passed)")
+
+# %% [markdown]
+# ### Step 8: the job, end to end
+#
+# Put the pieces together: read every page with retries, then find the orders that need a credit. The count is over invented data.
+
+# %%
+short_orders = [o for o in orders if o["lines_short"] > 0]
+print(f"orders with at least one short line: {len(short_orders)} of {len(orders)} (invented data)")
+
+# %% [markdown]
+# ## At work
+#
+# - Stripe documents idempotency keys for this case: after a connection error, a repeat with the same key creates no second object. Its API v1 keeps keys at least 24 hours. Source: https://docs.stripe.com/api/idempotent_requests. The same duplicate problem in files is lesson 05's deduplication.
+# - Many customer APIs cap calls per minute and answer 429 with `Retry-After`. A job that ignores it gets blocked longer. Teams use Step 5's rules: a timeout on every call, jitter, and no retry on a 4xx. → lesson 14 runs this client inside a customer network, where egress rules can block it.
+# - A job that reads one page reports a partial total with no error. Checking the count against the API's `total` catches it (the Try it). → lesson 11 turns checks like this into an eval set.
+#
+# Go deeper: the secrets behind the token, and least privilege for it, are lesson 13.
+
+# %% [markdown]
+# ## Common mistakes
+#
+# - **The wrong auth scheme.** The header must read `Bearer <token>`. With `Token <token>` the server refuses the call. Here it is with `raise_for_status()`, so the error prints:
+
+# %% tags=["raises-exception"]
+# Wrong scheme: "Token ..." instead of "Bearer ...". The server answers 401.
+bad = httpx.get(f"{BASE}/orders", headers={"Authorization": "Token " + os.environ["MOCK_ERP_TOKEN"]})
+bad.raise_for_status()
+
+# %% [markdown]
+# The fix is the header in Step 3. Read the status code and the body first; the body usually says what is wrong.
+#
+# - **Reading one page and stopping.** The count looks plausible and is wrong. Follow `next_cursor` until it is `None` (Step 4).
+# - **Retrying a 4xx.** A 400, 401 or 422 never gets better on retry. Fix the request. Step 5 shows the 422 stop after one attempt.
+# - **Retrying a write without a key.** Step 6 shows two credits for one request. Send a key on every write you may retry.
+
+# %% [markdown]
+# ## Try it
+#
+# The function below should count every order, but it prints a wrong number and raises nothing. Find the bugs (there are two). Then fix the call so the count matches the API's `total`.
+
+# %%
+# your code here
+def count_orders_fixed(client):
+    """Return the number of orders in the system. Fix the bugs."""
+    body = client.get("/orders", params={"limt": 100}).json()
+    return len(body["data"])
+
+
+print("counted:", count_orders_fixed(client), "| total in the API:", client.get("/orders", params={"limit": 1}).json()["total"])
+
+# %% [markdown]
+# **Answer** — try it first, then expand the hidden cell below.
+
+# %% tags=["solution"]
+# Bug 1: "limt" is misspelled, so the API ignores it and uses 20. Bug 2: one page, no next_cursor.
+def count_orders_fixed(client):
+    orders, cursor = [], "0"
+    while cursor is not None:
+        body = client.get("/orders", params={"limit": 50, "cursor": cursor}).json()
+        orders.extend(body["data"])
+        cursor = body["next_cursor"]
+    return len(orders)
+
+
+print("counted:", count_orders_fixed(client), "| total in the API:", client.get("/orders", params={"limit": 1}).json()["total"])
+
+# %% [markdown]
+# A quiet bug has no error, so check it against a number you can get another way. Here the API's own `total` is that number.
+
+# %%
+# Stop the mock customer API now that the lesson is done.
+server.terminate(); server.wait(timeout=10)
+print("mock customer API stopped")
+
+# %% [markdown]
+# ## Recap
+#
+# - Send `Authorization: Bearer <token>` on every call. Never print the token.
+# - Read every page: follow `next_cursor` until it is `None`. Check the count against `total`.
+# - Retry only 429, 502, 503, 504 and transport errors. Use backoff with jitter, and honour `Retry-After`. Never retry a 4xx.
+# - Send an idempotency key with every write you may retry. The key must stay the same for one operation.
+# - Words to keep: **bearer token**, **cursor pagination**, **rate limit**, **Retry-After**, **backoff**, **jitter**, **retry**, **idempotency key** (all in GLOSSARY.md).
+#
+# **Interview:** "Walk me through pulling all orders from a customer API that rate-limits you and sometimes times out, and writing credits to it." Strong answer: "I follow the cursor until there is no next page, and I retry only 429, 502 to 504 and timeouts, with exponential backoff, jitter and Retry-After. Every write carries an idempotency key that stays the same across retries, so a retry cannot book the credit twice."

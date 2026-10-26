@@ -1,0 +1,311 @@
+{
+ "title": "Basic: one customer workflow, checked end to end",
+ "subtitle": "Forward Deployed Engineering · Part 1 · lessons 01 to 09 · fictional customer Basket Bazaar",
+ "course": "Forward Deployed Engineering",
+ "audience": "software engineers who can write functions and call a web API",
+ "audience_type": "technical",
+ "scope": {
+  "part": 1
+ },
+ "theme": {
+  "accent": "0F766E",
+  "accent2": "F59E0B"
+ },
+ "slides": [
+  {
+   "layout": "title",
+   "title": "Basic: one customer workflow, checked end to end",
+   "subtitle": "You will leave able to call a customer API safely and write a credit once",
+   "notes": "This deck covers Part 1 of the course: lessons 01 to 09, one fictional customer, Basket Bazaar, a grocery delivery app. By the end the audience has built one workflow. It reads a customer's API with paging, retries and keys, cleans a messy export, lets a model fill a form, checks that form in plain code, and writes one credit exactly once. The code on the slides is copied from the lessons and runs offline against a mock customer API. Say early that the customer, its data and its numbers are invented."
+  },
+  {
+   "layout": "compare",
+   "title": "One testable question, not seven wishes",
+   "lessons": [
+    "02",
+    "03"
+   ],
+   "columns": [
+    {
+     "head": "Seven wishes, no test (invented)",
+     "points": [
+      "21 days vs a 9-day sprint (invented)",
+      "Loudest voice picks the list"
+     ]
+    },
+    {
+     "head": "One question, one test",
+     "points": [
+      "Can triage label messages as well as an agent, on 90% of a test set?",
+      "Below the cut line waits in backlog"
+     ]
+    }
+   ],
+   "notes": "Start with the ops lead's words: our deliveries are bad. Lesson 02 splits that into testable problems, each with an observable, a test and an owner. Lesson 03 then picks one question: can triage label messages as well as an agent, on 90 percent of a test set? The test set is messages an agent has already labelled, which the rule never saw. The 90 percent target is invented and agreed with the ops lead on day 1. The left column is the trap: seven wishes, 21 days of work against a 9-day sprint, both invented estimates. The right column is what the cut line produces: work that serves the criterion goes first, and the rest waits in the backlog. Interviewers ask exactly this: two weeks, and a customer who wants everything."
+  },
+  {
+   "layout": "analogy",
+   "title": "Retrying a payment must not pay twice",
+   "lessons": [
+    "04"
+   ],
+   "everyday": {
+    "name": "Restaurant order slip",
+    "text": "Waiter unsure the slip arrived sends it again; kitchen cooks once"
+   },
+   "tech": {
+    "name": "Idempotency key",
+    "text": "Same key twice; the server replays its first answer"
+   },
+   "breaks": "A kitchen forgets slips by evening; a server keeps keys for a set time",
+   "notes": "Everyone has ordered in a restaurant. If the same slip reaches the kitchen twice, the cook makes the dish once. A waiter who is not sure the slip arrived sends it again: that is a client retrying a lost reply. In the course the write is a credit to the customer, and the same rule stops a retry from booking it twice. The idempotency key is the slip's number: the server returns its first answer for that key and writes nothing new. The analogy breaks at memory. The kitchen forgets slips by evening, but a server must keep saved answers long enough for retries to arrive; lesson 04 cites Stripe, which keeps keys for at least 24 hours. Say where the comparison stops, then move on."
+  },
+  {
+   "layout": "concept",
+   "title": "An idempotency key makes a repeated write harmless",
+   "lessons": [
+    "04"
+   ],
+   "definition": "A unique string sent with a write; the server returns the first answer for any repeat.",
+   "parts": [
+    {
+     "term": "Idempotency-Key",
+     "meaning": "the same string on every retry"
+    },
+    {
+     "term": "Saved answer",
+     "meaning": "the server keeps its first reply"
+    },
+    {
+     "term": "Replay",
+     "meaning": "a repeat gets that reply, no second write"
+    }
+   ],
+   "notes": "Say the definition slowly; it is the one interviewers expect: a unique string the client sends with a write, and the server saves the first answer under that key and returns it for any repeat. Three parts: the header the client sends, the saved answer on the server, and the replay on a repeat. Lesson 04 also sets the retry rule: retry only 429, 502, 503, 504 and timeouts, because a 400, 401 or 422 fails the same way again. The example is a key built from the business event: credit-BB-1003-eggs-2026-10-24. A credit for the same line on the next day is a new operation and gets a new key."
+  },
+  {
+   "layout": "code",
+   "title": "The lost reply writes once, because the key repeats",
+   "lessons": [
+    "04"
+   ],
+   "lang": "python",
+   "code": "...\nclient.post(\"/credits\", json=body, headers=key)  # the retry",
+   "highlight": [
+    2
+   ],
+   "output": "pytest exit code: 0 (0 means all checks passed)",
+   "points": [
+    "The mock writes the credit, then replies 503",
+    "The retry sends the same key and replays",
+    "The test asserts one credit, not two"
+   ],
+   "notes": "Read the two lines. The dots stand for the setup the notebook shows: the lab's lost-reply fault and the key. The highlighted line is the retry. It sends the same headers as the first POST, so the same key. The full key in Step 6 is credit-BB-1003-eggs-2026-10-24, built from the business event. That line is 82 characters, too wide for a slide, so open the notebook section to see it. In the test, the first POST is lost: the mock writes the credit and answers 503. The retry replays the saved answer instead of writing again. The output is the real pytest exit code: 0 means every check passed. Without the key, the same run writes two credits; lesson 04 Step 6 shows that first."
+  },
+  {
+   "layout": "analogy",
+   "title": "A receiving desk logs each delivery once",
+   "lessons": [
+    "05"
+   ],
+   "everyday": {
+    "name": "Receiving desk",
+    "text": "Checks each delivery, logs each line once"
+   },
+   "tech": {
+    "name": "Data pipeline",
+    "text": "Cleans each row, keeps one per stable key"
+   },
+   "breaks": "A desk can phone the supplier; a pipeline stops and names bad rows",
+   "notes": "A receiving desk checks each delivery, converts it to one standard unit and logs it, so a line listed twice on the delivery note counts once. A pipeline does the same for a customer's nightly export: named steps, one base unit, two explicit date formats, and one row per stable key. The analogy breaks where a desk can phone the supplier and a pipeline cannot. So when more than two dates match neither format, the run stops and names the count, which is the limit lesson 05 agreed with the customer. It never guesses a date."
+  },
+  {
+   "layout": "concept",
+   "title": "Deduplication keeps one row per stable key",
+   "lessons": [
+    "05"
+   ],
+   "definition": "Deduplication keeps one row per stable key: the same real thing, named the same way in every export.",
+   "parts": [
+    {
+     "term": "Normalise",
+     "meaning": "trim spaces and fix case first"
+    },
+    {
+     "term": "Convert units",
+     "meaning": "dozen becomes each; kg becomes g"
+    },
+    {
+     "term": "Stable key",
+     "meaning": "the whole cleaned line; no line id"
+    }
+   ],
+   "notes": "Definition: deduplication keeps one row per stable key, a key that names one real thing the same way in every export. This export has no line id, so the key is the whole cleaned line: order, store, item, quantity, unit and time. The steps run in order: normalise the text, convert units, parse the two date formats, then dedupe. The example is the trap. The order ids ' bb-1002 ' and 'BB-1002' look different until you trim and uppercase them, so a copy survives if you dedupe before you normalise."
+  },
+  {
+   "layout": "code",
+   "title": "The by-hand dedupe matches the pipeline: 224 rows",
+   "lessons": [
+    "05"
+   ],
+   "lang": "python",
+   "code": "def dedupe_by_hand(rows, key):\n    seen, kept = set(), []\n    for row in rows:\n        k = key(row)\n        if k not in seen:\n            seen.add(k)\n            kept.append(row)\n    return kept\nprint(\"by hand:\", len(by_hand), \"| pipeline:\", len(clean))",
+   "highlight": [
+    2,
+    5,
+    6
+   ],
+   "output": "by hand: 224 | pipeline: 224",
+   "points": [
+    "A set remembers each key kept",
+    "A row is kept only if its key is new",
+    "The notebook asserts both counts match"
+   ],
+   "notes": "This is the hand-written version. A set remembers each key kept, and a row survives only when its key is new. Lesson 05 writes it by hand because interviewers ask for it, about a dozen lines; in real work you use a library's drop-duplicates. The last line is the check: the by-hand count equals the pipeline's, 224 rows from the invented export of 247 order lines. The notebook also asserts the two counts match. The set grows with the file, so a file too big for memory needs a sort by key, or the customer's warehouse does the merge."
+  },
+  {
+   "layout": "analogy",
+   "title": "A claim form is checked before any money moves",
+   "lessons": [
+    "06"
+   ],
+   "everyday": {
+    "name": "Claims desk",
+    "text": "Agent fills the form; supervisor checks the order"
+   },
+   "tech": {
+    "name": "Model plus check",
+    "text": "Model fills a fixed form; code checks it"
+   },
+   "breaks": "A passing check does not mean the claim is true; only rules we wrote are tested",
+   "notes": "At a claims desk the agent fills in a form, and a supervisor compares it with the order before any money moves. In lesson 06 the model is the agent: it reads the customer's message and fills a fixed form. Plain code is the supervisor. It looks up the order and refuses a form that names an order that does not exist, or claims more than the order holds. The break matters: a supervisor can judge a case that no rule covers, while our check catches only the errors we wrote down. A form that passes the check is not proof the claim is true. Say so before the room asks."
+  },
+  {
+   "layout": "concept",
+   "title": "Model fills a fixed form; code checks it",
+   "lessons": [
+    "06",
+    "09"
+   ],
+   "definition": "Structured output: the model answers in a shape you define.",
+   "parts": [
+    {
+     "term": "CaseRecord",
+     "meaning": "the fixed form the model fills"
+    },
+    {
+     "term": "Fixed issue list",
+     "meaning": "five labels, nothing else"
+    },
+    {
+     "term": "lookup_order",
+     "meaning": "the model asks for the order by calling a function"
+    },
+    {
+     "term": "Pydantic",
+     "meaning": "Python's type checker for the form"
+    }
+   ],
+   "notes": "Definition: structured output means the model answers in a shape you define, here a Pydantic class, not free text. Pydantic is a Python library that checks types, so it is the form's rulebook. Four parts: the CaseRecord form, a fixed list of five labels for the issue, and a lookup tool, so the model asks for the order by calling a function rather than recalling it. Pydantic checks types, not facts; check_record, plain code that runs after the model, is the part that checks facts. The example: BB-1108 says four milks are missing, and the order has four, so the case passes; a claim of nine milk is held."
+  },
+  {
+   "layout": "code",
+   "title": "The check holds any claim the order cannot cover",
+   "lessons": [
+    "06"
+   ],
+   "lang": "python",
+   "code": "def check_record(rec: CaseRecord) -> list[str]:\n    lines = ORDERS.get(rec.order_id)\n    if not lines:\n        ...\n    if rec.issue == \"missing_item\" and not rec.item:\n        ...\n    ...",
+   "highlight": [
+    3,
+    5
+   ],
+   "output": "BB-9999 -> ['order BB-9999 is not in the orders export']\nBB-1108 -> ['a missing-item case must name the item']\nBB-1108 -> ['claims 9 milk, the order has 4']",
+   "caption": "Lesson 06 takes one argument; lesson 09 passes the API's lines: check_record(record, lines)",
+   "points": [
+    "Unknown order: BB-9999 is held",
+    "Missing item: no item named, held",
+    "Claim of 9 milk on an order of 4: held"
+   ],
+   "notes": "Read the rules in order: the order must exist; a missing-item case must name an item; a claimed quantity cannot be more than the order holds. The output is the real Step 7 result from lesson 06: the loop runs three hand-written test cases, which are not model output. An invented order number is held, a missing-item case with no item is held, and a claim of nine milk on an order of four is held. This version takes one argument. Lesson 09 changes the signature to check_record(record, lines), so the check compares the record with the order's lines from the API, not with a file. The quantity rule compares only each-lines, because grams have a different unit; lesson 09 names that as a known gap."
+  },
+  {
+   "layout": "code",
+   "title": "Only a passing case writes, and only once",
+   "lessons": [
+    "09"
+   ],
+   "lang": "python",
+   "code": "def open_case_and_credit(record, client):\n    problems = check_record(record, lines)\n    if problems:\n        ...\n    ...\ndecision = open_case_and_credit(record, client)\nprint(\"decision:\", decision)",
+   "highlight": [
+    2,
+    3,
+    6
+   ],
+   "output": "decision: {'decision': 'credit written', 'credit_id': 'CR-1', 'replayed': 'true'}",
+   "points": [
+    "The check runs before any write",
+    "A held case returns and writes nothing",
+    "The key makes the one write safe to retry"
+   ],
+   "notes": "This is the checkpoint from lesson 09 in one function. The check runs on the lines the API returned, not on the model's word. If problems exist, the function returns held for a person and writes nothing. If the case passes, it sends one credit with an idempotency key built from order, item and date, so a retry cannot repeat it. The output is the real run: the credit was written and replayed true, because the lab injected a lost reply. The elided lines build the key and send the credit. Open the notebook section to see the whole function."
+  },
+  {
+   "layout": "steps",
+   "title": "Build the workflow in five checked steps",
+   "lessons": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09"
+   ],
+   "steps": [
+    {
+     "head": "Check need, scope, plan",
+     "text": "Engineer needed? One test, cut line, risks"
+    },
+    {
+     "head": "Call the API safely",
+     "text": "Paging, retries, keys"
+    },
+    {
+     "head": "Clean the export",
+     "text": "Named steps, one key"
+    },
+    {
+     "head": "Model fills a form",
+     "text": "Code checks it first"
+    },
+    {
+     "head": "Credit once, report",
+     "text": "Labelled numbers, one write"
+    }
+   ],
+   "notes": "This is the build path from lessons 01 to 09, one step per idea. Step one (lessons 01, 02, 03 and 08) asks whether the customer needs an engineer on site at all, lesson 01's test, then scopes one question with a cut line. Lesson 08 turns the plan into a timeline and a risk register, each risk with an owner and a trigger. Step two (lesson 04) calls the API with paging, retries and keys. Step three (lesson 05) cleans the export in named steps and dedupes by a stable key. Step four (lesson 06) lets the model fill the form, and code checks it. Step five (lessons 07 and 09) writes the one credit and a status page where every number is labelled measured, guess or invented. Lesson 09's five requirements are the acceptance test."
+  },
+  {
+   "layout": "questions",
+   "title": "Five questions to ask before shipping a customer workflow",
+   "lessons": [
+    "01",
+    "04",
+    "06",
+    "08",
+    "09"
+   ],
+   "questions": [
+    "Engineer on site? Only if self-serve fails.",
+    "Same key on retries? Yes, one per event.",
+    "Which errors retry? 429, 502 to 504, timeouts.",
+    "What does the check reject? Unknown orders.",
+    "Late export? Day-3 kill check stops the test."
+   ],
+   "notes": "Use these five questions in an interview or a code review. Each has a concrete answer in Part 1. First, lesson 01's test: does this customer need an engineer on site at all? If a self-serve setup or a standard API does the job, no. Second, one idempotency key built from the business event, reused on every retry (lesson 04). Third, only 429, 502 to 504 and timeouts retry; a 4xx never does. Fourth, the check rejects unknown orders and claims above the order, and a person reviews held cases (lessons 06 and 09). Fifth, lesson 08: a late export triggers the day-3 kill check, and the risk gets an owner and a trigger. Say what the demo does not prove: real-data accuracy, and any rate, since one case is not a rate."
+  }
+ ]
+}

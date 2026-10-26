@@ -1,0 +1,55 @@
+# Lesson 24a lab: a customer API and two batch workers ("nodes") that share one results file (lab, invented data).
+# Started from the notebook: docker compose -p <project> -f <this file> --env-file ../.env up -d --build --wait erp
+# BATCH_INPUT and BATCH_RUN_DIR (absolute paths) and BATCH_RUN_ID, BATCH_PARTS, BATCH_CONCURRENCY are set per call.
+x-build: &build
+  context: ../../apps/24a
+  dockerfile: Dockerfile
+services:
+  erp:
+    build: *build
+    image: bb-batch-24a:1.0.0
+    command: ["uvicorn", "erp_mock:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      ERP_LATENCY_MS: ${BATCH_ERP_LATENCY_MS:-150}
+      ERP_MAX_INFLIGHT: ${BATCH_ERP_MAX_INFLIGHT:-8}
+    volumes:
+      - ${BATCH_INPUT}:/input/orders.csv:ro
+    ports:
+      - "9240:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+  worker-a:
+    build: *build
+    image: bb-batch-24a:1.0.0
+    depends_on:
+      erp:
+        condition: service_healthy
+    command: ["python", "batch_worker.py", "--node", "a"]
+    environment:
+      ERP_URL: http://erp:8000
+      BATCH_RUN_ID: ${BATCH_RUN_ID}
+      BATCH_PARTS: ${BATCH_PARTS:-4}
+      BATCH_CONCURRENCY: ${BATCH_CONCURRENCY:-1}
+    volumes:
+      - ${BATCH_INPUT}:/input/orders.csv:ro
+      - ${BATCH_RUN_DIR}:/data
+    restart: "no"
+  worker-b:
+    build: *build
+    image: bb-batch-24a:1.0.0
+    depends_on:
+      erp:
+        condition: service_healthy
+    command: ["python", "batch_worker.py", "--node", "b"]
+    environment:
+      ERP_URL: http://erp:8000
+      BATCH_RUN_ID: ${BATCH_RUN_ID}
+      BATCH_PARTS: ${BATCH_PARTS:-4}
+      BATCH_CONCURRENCY: ${BATCH_CONCURRENCY:-1}
+    volumes:
+      - ${BATCH_INPUT}:/input/orders.csv:ro
+      - ${BATCH_RUN_DIR}:/data
+    restart: "no"

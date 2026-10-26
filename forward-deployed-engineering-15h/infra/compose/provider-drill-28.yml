@@ -1,0 +1,19 @@
+# Provider route for lesson 28 (lab). The notebook starts it from its folder with
+#   docker compose -p tut-forward-deployed-engineering-15h-28 -f ../infra/compose/provider-drill-28.yml --env-file ../.env up -d --build --wait
+# It is the customer's only path to the model. The provider host comes from ../.env (PROVIDER_API_BASE).
+# No key is stored here: the client sends its key, and the route passes it on unchanged.
+services:
+  provider-route:
+    build:
+      context: ../../apps
+      dockerfile: 28/Dockerfile
+    image: bb-provider-route:28.1.0
+    environment:
+      PROVIDER_API_BASE: ${PROVIDER_API_BASE:-https://aiplatform.googleapis.com}
+    ports:
+      - "8280:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10

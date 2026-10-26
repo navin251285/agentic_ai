@@ -1,0 +1,282 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order BB-1108: the milk is missing from
+      my delivery. Can I get a credit?"}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You triage grocery delivery issues for Basket Bazaar. Reply
+      with one label only: missing item, wrong item, late delivery or other."}]},
+      "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 64}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '415'
+      content-type:
+      - application/json
+      host:
+      - localhost:8280
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: http://localhost:8280/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"missing
+        item\",\n            \"thoughtSignature\": \"AY89a1/raIC2pnQ6c5dJn5kNpNNCBGQ9Y3t65UwAMrP+TUfw9pgYJNR0etjD8tLWf3eWMiE/13i84FB+gb+x5Ylu6hlaiJWIViOV6Lj0OODQvJLK2AL8tmzoYfU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 48,\n    \"candidatesTokenCount\":
+        2,\n    \"totalTokenCount\": 50,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 48\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 2\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-24T16:37:02.762296Z\",\n
+        \ \"responseId\": \"rt7carjDLuqFr8kPs5Kd-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '857'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sat, 24 Oct 2026 16:37:02 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '0'
+      host:
+      - localhost:8280
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://localhost:8280/_drill/down
+  response:
+    body:
+      string: '{"down":true,"forwarded":1,"refused":0}'
+    headers:
+      content-length:
+      - '39'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 16:37:02 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order BB-1119: I got the wrong bread,
+      and two loaves were squashed."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You triage grocery delivery issues for Basket Bazaar. Reply with
+      one label only: missing item, wrong item, late delivery or other."}]}, "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      64}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '410'
+      content-type:
+      - application/json
+      host:
+      - localhost:8280
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: http://localhost:8280/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: '{"error":{"code":503,"status":"UNAVAILABLE","message":"lab drill: the
+        model provider is down"}}'
+    headers:
+      content-length:
+      - '95'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 16:37:02 GMT
+      server:
+      - uvicorn
+    status:
+      code: 503
+      message: Service Unavailable
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order BB-1119: I got the wrong bread,
+      and two loaves were squashed."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You triage grocery delivery issues for Basket Bazaar. Reply with
+      one label only: missing item, wrong item, late delivery or other."}]}, "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      64}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '410'
+      content-type:
+      - application/json
+      host:
+      - localhost:8280
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: http://localhost:8280/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: '{"error":{"code":503,"status":"UNAVAILABLE","message":"lab drill: the
+        model provider is down"}}'
+    headers:
+      content-length:
+      - '95'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 16:37:03 GMT
+      server:
+      - uvicorn
+    status:
+      code: 503
+      message: Service Unavailable
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '0'
+      host:
+      - localhost:8280
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://localhost:8280/_drill/up
+  response:
+    body:
+      string: '{"down":false,"forwarded":1,"refused":2}'
+    headers:
+      content-length:
+      - '40'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 16:37:03 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order BB-1140: I got the wrong bread
+      again, and two loaves were squashed."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You triage grocery delivery issues for Basket Bazaar. Reply
+      with one label only: missing item, wrong item, late delivery or other."}]},
+      "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 64}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '416'
+      content-type:
+      - application/json
+      host:
+      - localhost:8280
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: http://localhost:8280/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"wrong
+        item\",\n            \"thoughtSignature\": \"AY89a18HpWYcjhK3vjgiOYV6VOfD3Ei0FFvwbD24wnjtoqJFVGrJQ3QUOsM57Bd6r4GsUmde8aU8H2QGFbOE7vGgOA6tIOBe9YLk/7KoXDCAsWarRCabmzcC+mc=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 48,\n    \"candidatesTokenCount\":
+        2,\n    \"totalTokenCount\": 50,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 48\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 2\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-3.1-flash-lite\",\n  \"createTime\": \"2026-10-24T16:37:09.438851Z\",\n
+        \ \"responseId\": \"td7casPkGrOHr8kPnPjc0QI\"\n}\n"
+    headers:
+      content-length:
+      - '855'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sat, 24 Oct 2026 16:37:08 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - localhost:8280
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://localhost:8280/_drill/state
+  response:
+    body:
+      string: '{"down":false,"forwarded":2,"refused":2}'
+    headers:
+      content-length:
+      - '40'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 16:37:09 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+version: 1

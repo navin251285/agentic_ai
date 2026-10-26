@@ -1,0 +1,40 @@
+# Customer environment for lesson 14 (lab, invented data). Started from the notebook with
+# docker compose -p <project> -f <this file> --env-file ../.env up -d --build --wait
+services:
+  erp:
+    build:
+      context: ../../apps
+      dockerfile: 14/Dockerfile
+      args:
+        APP_FILE: 13/customer_api.py
+    image: bb-erp-mock:13
+    environment:
+      ERP_SIGNING_KEY: ${ERP_SIGNING_KEY}
+      ERP_READER_CLIENT_SECRET: ${ERP_READER_CLIENT_SECRET}
+      ERP_CREDIT_BOT_CLIENT_SECRET: ${ERP_CREDIT_BOT_CLIENT_SECRET}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  triage:
+    build:
+      context: ../../apps
+      dockerfile: 14/Dockerfile
+      args:
+        APP_FILE: ${TRIAGE_SRC:-14/triage_service.py}
+    image: bb-triage:${TRIAGE_TAG:-1.0.0}
+    environment:
+      ERP_URL: http://erp:8000
+      ERP_READER_CLIENT_ID: ${ERP_READER_CLIENT_ID:-bb-orders-reader}
+      ERP_READER_CLIENT_SECRET: ${ERP_READER_CLIENT_SECRET}
+    ports:
+      - "8140:8000"
+    depends_on:
+      erp:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10

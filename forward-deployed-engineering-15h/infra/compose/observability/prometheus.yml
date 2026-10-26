@@ -1,0 +1,8 @@
+# Prometheus: scrapes the triage service's /metrics every 5 seconds (lab).
+global:
+  scrape_interval: 5s
+scrape_configs:
+  - job_name: triage
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["triage:8000"]

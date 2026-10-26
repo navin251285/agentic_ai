@@ -1,0 +1,9 @@
+{
+ "tag": "1.2.0",
+ "prompt": "candidate v2",
+ "pass_rate": 1.0,
+ "gate_minimum": 0.9,
+ "gate_passed": true,
+ "cost_per_case_usd": 5.48e-05,
+ "cost_per_case_ok": true
+}

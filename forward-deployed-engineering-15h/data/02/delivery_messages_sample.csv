@@ -1,0 +1,6 @@
+message_id,order_id,store,received_at,label,message
+M-2001,BB-1001,Store 12,2026-10-20 18:40,missing_item,Order BB-1001: 6 eggs ordered and 4 came. Two eggs are missing.
+M-2002,BB-1002,Store 12,2026-10-20 19:05,late,Order BB-1002: the driver came 50 minutes after the slot.
+M-2003,BB-1003,Store 07,2026-10-20 19:30,damaged,Order BB-1003: the bread arrived squashed flat.
+M-2004,BB-1004,Store 07,2026-10-21 09:50,wrong_item,Order BB-1004: I got oat milk and I ordered whole milk.
+M-2004,BB-1004,Store 07,2026-10-21 09:50,wrong_item,Order BB-1004: I got oat milk and I ordered whole milk.

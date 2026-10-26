@@ -1,0 +1,1198 @@
+{
+  "topic": "Forward Deployed Engineering from First Principles to Enterprise Delivery",
+  "slug": "forward-deployed-engineering-15h",
+  "max_hours": 15,
+  "depth": "crisp",
+  "focus": "application",
+  "profile": "system",
+  "audience": "Software engineers who can write functions and call a web API; no ML background assumed. Some Python is needed.",
+  "outcome": "Scope a customer problem, integrate with its systems, build and evaluate an AI feature, deploy it into a restricted customer environment, hand it over, and explain the trade-offs in an interview.",
+  "running_example": {
+    "name": "Basket Bazaar grocery delivery issues (fictional customer)",
+    "why": "Everyone has ordered groceries or food and received the wrong item; it grows from one CSV to many stores, cities and customers.",
+    "evolution": "a messy orders CSV -> an API that triages one missing item -> evals and auth -> a Compose deployment -> per-store tenancy and a handover"
+  },
+  "python": "3.11",
+  "llm": {
+    "used": true,
+    "mode": "light",
+    "lessons": [
+      "06",
+      "11",
+      "12",
+      "18",
+      "19",
+      "20",
+      "28",
+      "31",
+      "32"
+    ],
+    "why": "The course's work is building AI features for customers; a few lessons call the real model, recorded once and replayed without a key."
+  },
+  "stack": [
+    {
+      "tool": "Gemini on Vertex AI (llm_setup)",
+      "role": "the model behind the LLM lessons",
+      "lessons": "06, 11, 12, 18, 19, 20, 28, 31, 32",
+      "options": [
+        "Gemini API key (default)"
+      ],
+      "default": "Gemini API key (default)",
+      "settings": [
+        "GOOGLE_CLOUD_API_KEY"
+      ]
+    },
+    {
+      "tool": "Docker Compose",
+      "role": "the customer environment: network, proxy, services",
+      "lessons": "14, 15, 16, 20, 24, 28, 31, 32",
+      "options": [
+        "local (Docker, no account)"
+      ],
+      "default": "local (Docker, no account)",
+      "settings": [],
+      "verified": "2026-10-24",
+      "source": "https://docs.docker.com/compose/"
+    },
+    {
+      "tool": "FastAPI",
+      "role": "the mock customer API and the course app",
+      "lessons": "04, 13, 16, 20",
+      "options": [
+        "local (no account)"
+      ],
+      "default": "local (no account)",
+      "settings": [],
+      "module": "fastapi",
+      "adoption": "the default Python API framework in current job postings and official docs",
+      "verified": "2026-10-24",
+      "source": "https://pypi.org/project/fastapi/"
+    },
+    {
+      "tool": "Pydantic",
+      "role": "checked structured output and settings",
+      "lessons": "06, 19",
+      "options": [
+        "local (no account)"
+      ],
+      "default": "local (no account)",
+      "settings": [],
+      "module": "pydantic",
+      "adoption": "the validation layer used by FastAPI and most current LLM SDKs",
+      "verified": "2026-10-24",
+      "source": "https://pypi.org/project/pydantic/"
+    },
+    {
+      "tool": "pytest",
+      "role": "regression tests for evals and APIs",
+      "lessons": "04, 11, 12, 32",
+      "options": [
+        "local (no account)"
+      ],
+      "default": "local (no account)",
+      "settings": [],
+      "module": "pytest",
+      "adoption": "the standard Python test runner",
+      "verified": "2026-10-24",
+      "source": "https://pypi.org/project/pytest/"
+    },
+    {
+      "tool": "OpenTelemetry (Python)",
+      "role": "traces across the model call",
+      "lessons": "16, 20",
+      "options": [
+        "local (Collector, Jaeger, Prometheus in Compose)"
+      ],
+      "default": "local (Collector, Jaeger, Prometheus in Compose)",
+      "settings": [],
+      "module": "opentelemetry",
+      "adoption": "the vendor-neutral tracing standard",
+      "verified": "2026-10-24",
+      "source": "https://pypi.org/project/opentelemetry-api/"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "orders.csv",
+      "what": "a few hundred synthetic grocery orders with duplicate rows, missing items and mixed units, for the delivery-exception story",
+      "lessons": [
+        "05",
+        "11",
+        "12",
+        "18"
+      ],
+      "generated": "made by the lesson 05 code with a fixed random seed; no real customer data"
+    }
+  ],
+  "app": {
+    "name": "Basket Bazaar delivery-issues service",
+    "what": "a local FastAPI backend plus a one-page web UI that triages grocery delivery issues (missing, wrong or late items), run with uvicorn",
+    "steps": [
+      {
+        "step": 1,
+        "title": "A local triage API",
+        "after_chapter": 1,
+        "level": "Basic",
+        "adds": "one endpoint that triages one delivery issue with a model call and checked output, plus a web page",
+        "status": "done"
+      },
+      {
+        "step": 2,
+        "title": "Storage, tests and error handling",
+        "after_chapter": 2,
+        "level": "Intermediate",
+        "adds": "stored delivery issues, tests, retries and clear error responses",
+        "status": "done"
+      },
+      {
+        "step": 3,
+        "title": "Observability, evals and security",
+        "after_chapter": 3,
+        "level": "Advanced",
+        "adds": "structured logs and a trace, an eval gate, a service token and per-customer config",
+        "status": "done"
+      },
+      {
+        "step": 4,
+        "title": "Finish and run it",
+        "after_chapter": 3,
+        "level": "Advanced",
+        "adds": "one run command, full tests, README",
+        "final": true,
+        "status": "done"
+      }
+    ]
+  },
+  "parts": [
+    {
+      "id": 1,
+      "level": "L1",
+      "title": "Basic: the customer problem and the first working proof of concept",
+      "lessons": [
+        {
+          "id": "01",
+          "slug": "why-forward-deployed-engineering",
+          "title": "Why forward deployed engineering, and when you don't need it",
+          "goal": "Explain what a forward deployed engineer does, how the role differs from software engineer, solutions architect and consultant, and when a product alone is enough.",
+          "concepts": [
+            "What a forward deployed engineer is (embed model, FDE vs SWE vs solutions architect vs consultant)"
+          ],
+          "builds_on": [],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "concept",
+          "status": "done",
+          "why_lesson": "course",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "02",
+          "slug": "discovery-and-decomposition",
+          "title": "Finding the real problem: discovery and decomposition",
+          "goal": "Run a discovery interview, split a vague request into problems you can test, and read a customer's systems before writing code.",
+          "concepts": [
+            "Customer discovery and problem decomposition",
+            "Learning an unfamiliar codebase quickly"
+          ],
+          "builds_on": [
+            "01"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "03",
+          "slug": "scoping-the-poc-sprint",
+          "title": "Scoping a proof of concept and a two-week sprint",
+          "goal": "Write success criteria and a scope that fits a sprint, and say what the proof of concept will not do.",
+          "concepts": [
+            "Scoping, solution architecture and the POC sprint"
+          ],
+          "builds_on": [
+            "02"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "walkthrough",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "04",
+          "slug": "integrate-a-customer-api",
+          "title": "Integrating with a customer's API: auth, pagination, retries, idempotency",
+          "goal": "Call a customer's REST API safely with a token, page through results, retry on failure without duplicating writes, and debug a broken call.",
+          "concepts": [
+            "REST API consumption: pagination, retries, idempotency, rate limits",
+            "Debugging a broken API or integration (interview exercise)",
+            "Integrating with customer systems: APIs, auth, data pipelines, legacy",
+            "Python for production services"
+          ],
+          "builds_on": [
+            "03"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "05",
+          "slug": "pipelines-and-deduplication",
+          "title": "Ingesting customer data: files, pipelines and deduplication",
+          "goal": "Load a messy customer export, remove duplicates by a stable key, and write the result in a form the customer's system can read.",
+          "concepts": [
+            "Data ingestion pipelines and ETL into a customer's platform",
+            "Deduplicating records from files; log/call-stack to trace conversion"
+          ],
+          "builds_on": [
+            "04"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "hand_code": "interview",
+          "under_the_hood": [
+            "Deduplicating records from files"
+          ],
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "06",
+          "slug": "structured-output-and-tool-calling",
+          "title": "A customer workflow with structured output and tool calling",
+          "goal": "Use a model to turn a customer's free-text request into a checked record with tools, and decide when a model is the wrong tool.",
+          "concepts": [
+            "Building LLM and agent applications for customers (tool calling, RAG, structured output, MCP)",
+            "When an LLM is the right tool (use-case discernment)"
+          ],
+          "builds_on": [
+            "04"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "07",
+          "slug": "explaining-progress-and-demos",
+          "title": "Explaining progress to non-engineers and running a live demo",
+          "goal": "Give a status update and a live demo to a customer's operations lead, and handle a question you can't answer yet.",
+          "concepts": [
+            "Stakeholder communication, expectation setting, business case and ambiguity",
+            "Technical presentation or live demo to a customer",
+            "Behavioral stories (STAR, leadership principles, past-project deep dive)",
+            "Working across technical and non-technical teams; written and verbal communication"
+          ],
+          "builds_on": [
+            "03"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "walkthrough",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "08",
+          "slug": "engagement-delivery-basics",
+          "title": "Timelines, risk and success metrics for a customer engagement",
+          "goal": "Plan an engagement's timeline, list its risks with owners, and agree measurable success metrics with the customer.",
+          "concepts": [
+            "Engagement delivery: timelines, risk, success metrics, billable work"
+          ],
+          "builds_on": [
+            "03"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "professional",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "09",
+          "slug": "basic-poc-checkpoint",
+          "title": "Checkpoint: a working proof of concept for one customer workflow",
+          "goal": "Build the scoped proof of concept end to end against the mock customer API, and show it to a non-engineer.",
+          "concepts": [
+            "Basic checkpoint: proof of concept end to end"
+          ],
+          "builds_on": [
+            "04",
+            "05",
+            "06",
+            "07"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        }
+      ],
+      "checkpoint": "09"
+    },
+    {
+      "id": 2,
+      "level": "L3",
+      "title": "Intermediate: evaluate, secure, deploy and observe",
+      "lessons": [
+        {
+          "id": "10",
+          "slug": "why-evals-for-customer-ai",
+          "title": "Why customer AI needs evals: failures you can't see",
+          "goal": "Explain why a customer AI feature fails quietly, and what an eval catches that a demo never shows.",
+          "concepts": [
+            "Evaluating customer AI systems (evals, regression tests, guardrails)"
+          ],
+          "builds_on": [
+            "06"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "concept",
+          "status": "done",
+          "why_lesson": true,
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "11",
+          "slug": "eval-set-from-real-failures",
+          "title": "Build an eval set from real failures",
+          "goal": "Turn real failure cases from a customer into a small eval set and a regression test in pytest.",
+          "concepts": [
+            "Eval sets and regression tests",
+            "Testing with pytest"
+          ],
+          "builds_on": [
+            "10"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "12",
+          "slug": "graders-code-model-human",
+          "title": "Grading outputs with code, model and human graders",
+          "goal": "Grade model outputs with a code check, a model grader and a human review, and compare their agreement.",
+          "concepts": [
+            "Evaluating customer AI systems (evals, regression tests, guardrails)"
+          ],
+          "builds_on": [
+            "11"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "13",
+          "slug": "enterprise-auth-and-secrets",
+          "title": "Authentication, secrets and least privilege in a customer system",
+          "goal": "Use a service account with a scoped token, keep secrets out of code, and check who can call what.",
+          "concepts": [
+            "Enterprise authentication: OAuth2/OIDC, SAML SSO, service accounts, secrets management"
+          ],
+          "builds_on": [
+            "04"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "14",
+          "slug": "customer-environment-compose",
+          "title": "Deploying into a customer environment with Docker Compose",
+          "goal": "Package the service in a container, deploy it with Compose, and roll back a bad release.",
+          "concepts": [
+            "Docker and containerized delivery",
+            "CI/CD, release and rollback in a customer environment"
+          ],
+          "builds_on": [
+            "13"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-docker"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "15",
+          "slug": "restricted-network-lab",
+          "title": "Deploying into a restricted network: private networks and an egress proxy",
+          "goal": "Run the service on a Compose network with no direct internet access and reach the model only through an egress proxy.",
+          "concepts": [
+            "Private networking, VPC/private link, on-prem and air-gapped deployment"
+          ],
+          "builds_on": [
+            "14"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-docker"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "16",
+          "slug": "observability-logs-traces-metrics",
+          "title": "Observing a customer system: logs, traces and metrics",
+          "goal": "Add structured logs, a trace across the model call and a metric for latency, and find a slow request from them.",
+          "concepts": [
+            "LLM observability and tracing",
+            "Debugging a broken API or integration (interview exercise)"
+          ],
+          "builds_on": [
+            "14"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-docker"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "17",
+          "slug": "runbooks-and-incidents",
+          "title": "Runbooks and incident response for a customer deployment",
+          "goal": "Write a runbook for the three most likely incidents, including a restore drill from backup.",
+          "concepts": [
+            "From POC to production and handover (runbooks, documentation, enablement, training)"
+          ],
+          "builds_on": [
+            "16"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "walkthrough",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "18",
+          "slug": "cost-and-latency-budgets",
+          "title": "Cost, latency and caching: budgets for a customer's AI features",
+          "goal": "Set a token and latency budget, measure both, and cache repeated lookups with an LRU cache.",
+          "concepts": [
+            "LRU cache (extended with constraints)",
+            "Context-window management and context engineering"
+          ],
+          "builds_on": [
+            "06"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "hand_code": "interview",
+          "under_the_hood": [
+            "LRU cache (extended with constraints)"
+          ],
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "19",
+          "slug": "agent-workflows-tools-and-mcp",
+          "title": "Agent workflows for a customer: tools, MCP servers and guardrails",
+          "goal": "Give an agent a small set of tools through an MCP server, bound its steps and check its guardrails.",
+          "concepts": [
+            "Model Context Protocol (MCP) servers and tools",
+            "Building LLM and agent applications for customers (tool calling, structured output, MCP)"
+          ],
+          "builds_on": [
+            "06",
+            "12"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "20",
+          "slug": "intermediate-checkpoint",
+          "title": "Checkpoint: an evaluated, deployable proof of concept",
+          "goal": "Deploy the proof of concept with an eval gate, auth and observability, and show the eval results to a customer.",
+          "concepts": [
+            "Intermediate checkpoint: evaluated, deployable proof of concept"
+          ],
+          "builds_on": [
+            "16",
+            "18",
+            "13"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-llm",
+            "needs-docker"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        }
+      ],
+      "checkpoint": "20"
+    },
+    {
+      "id": 3,
+      "level": "L5",
+      "title": "Advanced: production, handover, productizing and delivery",
+      "lessons": [
+        {
+          "id": "21",
+          "slug": "from-poc-to-production",
+          "title": "From proof of concept to production: what changes",
+          "goal": "Name what a proof of concept lacks for production, and compare published case studies using only numbers from their sources.",
+          "concepts": [
+            "From POC to production and handover (runbooks, documentation, enablement, training)",
+            "System design for an enterprise AI solution"
+          ],
+          "builds_on": [
+            "17",
+            "20"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "concept",
+          "status": "done",
+          "kit": "2026.11.10",
+          "note": "review: ACCEPT after 1 fix round"
+        },
+        {
+          "id": "22",
+          "slug": "handoff-docs-and-enablement",
+          "title": "Handover: documentation and enabling the customer's team",
+          "goal": "Hand a deployment to a customer team with docs and a training session they can run without you.",
+          "concepts": [
+            "From POC to production and handover (runbooks, documentation, enablement, training)"
+          ],
+          "builds_on": [
+            "21"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "professional",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10",
+          "note": "review: ACCEPT after 2 fix rounds"
+        },
+        {
+          "id": "23",
+          "slug": "multi-tenant-customer-config",
+          "title": "Per-customer configuration and multi-tenancy",
+          "goal": "Run one service for several stores with isolated order files and per-store limits, with CSV and Excel as the only storage.",
+          "concepts": [
+            "Data modelling with files: CSV and Excel, one file per store",
+            "Tenant isolation and per-tenant configuration"
+          ],
+          "builds_on": [
+            "14"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "professional",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10",
+          "note": "review: ACCEPT after 1 fix round"
+        },
+        {
+          "id": "24",
+          "slug": "zero-downtime-rollout",
+          "title": "Zero-downtime changes: rolling upgrades and migrations",
+          "goal": "Roll out a new version and a new column in the orders file to a running deployment with no downtime and a rollback path.",
+          "concepts": [
+            "CI/CD, release and rollback in a customer environment"
+          ],
+          "builds_on": [
+            "14",
+            "23"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-docker"
+          ],
+          "priority": "professional",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "24a",
+          "slug": "long-batch-jobs-restart-and-reconcile",
+          "title": "Long batch jobs: restart, reconcile and finish on time",
+          "goal": "Run a nightly batch of about 1.2 million orders against a deadline on two nodes, restart it after a crash without duplicate or missing rows, and check its pace in order when it falls behind.",
+          "concepts": [
+            "Idempotent batch writes and resumable runs",
+            "Run manifests and per-part count reconciliation"
+          ],
+          "builds_on": [
+            "04",
+            "14",
+            "24"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-docker"
+          ],
+          "priority": "professional",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "25",
+          "slug": "productizing-field-work",
+          "title": "Productizing field work: reusable components, custom vs core",
+          "goal": "Decide what to keep as one customer's code and what to turn into a shared component, then refactor the broken code safely.",
+          "concepts": [
+            "Productizing field work: feedback loops to product, reusable components, custom vs core",
+            "Refactoring and re-engineering broken code"
+          ],
+          "builds_on": [
+            "21"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10",
+          "note": "review: ACCEPT after 2 fix rounds"
+        },
+        {
+          "id": "26",
+          "slug": "field-feedback-to-product",
+          "title": "Feedback loops to product: writing a field report",
+          "goal": "Write a field report that turns a customer's repeated request into a product issue with evidence.",
+          "concepts": [
+            "Productizing field work: feedback loops to product, reusable components, custom vs core"
+          ],
+          "builds_on": [
+            "25"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "professional",
+          "est_minutes": 20,
+          "kind": "walkthrough",
+          "status": "done",
+          "kit": "2026.11.10",
+          "note": "review: ACCEPT after 2 fix rounds"
+        },
+        {
+          "id": "27",
+          "slug": "security-reviews-and-compliance",
+          "title": "Security reviews and compliance evidence",
+          "goal": "Answer a customer's security questionnaire with evidence: data residency, PII handling and audit logs.",
+          "concepts": [
+            "Data residency, PII handling, audit logging, compliance questionnaires (SOC 2, FedRAMP-style)"
+          ],
+          "builds_on": [
+            "13"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "walkthrough",
+          "status": "done",
+          "kit": "2026.11.10",
+          "note": "review: ACCEPT after 2 fix rounds"
+        },
+        {
+          "id": "28",
+          "slug": "model-provider-failure-drill",
+          "title": "Failure drill: a model provider goes down",
+          "goal": "Break the model provider on purpose under load, watch errors and latency, and recover with a fallback and a capped retry per call (a shared budget is a platform decision).",
+          "concepts": [
+            "Failure drills, provider fallback and recovery"
+          ],
+          "builds_on": [
+            "18",
+            "20"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-llm",
+            "needs-docker"
+          ],
+          "priority": "professional",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "29",
+          "slug": "cost-unit-economics",
+          "title": "Cost engineering: unit economics for a customer deployment",
+          "goal": "Work out cost per customer and per query, and find the two biggest cost levers.",
+          "concepts": [
+            "Cost per customer and per query"
+          ],
+          "builds_on": [
+            "18",
+            "28"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "professional",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "30",
+          "slug": "ambiguity-and-the-business-case",
+          "title": "Ambiguity and the business case: saying no and saying what it is worth",
+          "goal": "Write a business case for one customer proposal, say no to an out-of-scope request, and reset expectations after a missed date.",
+          "concepts": [
+            "Presales: technical win, proof of concept, value-based selling",
+            "Stakeholder communication, expectation setting, business case and ambiguity"
+          ],
+          "builds_on": [
+            "08"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [],
+          "priority": "professional",
+          "est_minutes": 25,
+          "kind": "concept",
+          "status": "done",
+          "kit": "2026.11.10",
+          "note": "review: ACCEPT after 2 fix rounds"
+        },
+        {
+          "id": "31",
+          "slug": "end-to-end-customer-delivery",
+          "title": "Delivering one customer deployment end to end",
+          "goal": "Take one scoped customer problem from discovery to a deployed, documented, evaluated service.",
+          "concepts": [
+            "System design for an enterprise AI solution",
+            "End-to-end capstone"
+          ],
+          "builds_on": [
+            "21",
+            "25",
+            "27"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-llm",
+            "needs-docker"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10",
+          "note": "accepted after caveat fixes; open polish: Try-it 're-run from that cell' would repeat the model call in a live run"
+        },
+        {
+          "id": "32",
+          "slug": "final-delivery-drill",
+          "title": "Final checkpoint: the customer delivery drill",
+          "goal": "Run the full delivery drill against a fresh customer scenario, in a time box you set yourself, and present it.",
+          "concepts": [
+            "End-to-end capstone"
+          ],
+          "builds_on": [
+            "31"
+          ],
+          "example": "Basket Bazaar (fictional grocery delivery app): wrong, late and missing items",
+          "tags": [
+            "needs-llm",
+            "needs-docker"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        }
+      ],
+      "checkpoint": "32"
+    }
+  ],
+  "developer_coverage": {
+    "D1 Purpose and architecture": [
+      "01",
+      "19"
+    ],
+    "D2 Mental model and core concepts": [
+      "01",
+      "02",
+      "06"
+    ],
+    "D3 Setup and first working app": [
+      "04",
+      "09"
+    ],
+    "D4 Day-to-day API surface": [
+      "04",
+      "05",
+      "06"
+    ],
+    "D5 Data, schemas and configuration": [
+      "05",
+      "23"
+    ],
+    "D6 Integration with the app stack": [
+      "04",
+      "13",
+      "14"
+    ],
+    "D7 Async, concurrency and performance basics": "N/A — this course uses synchronous calls; async Python is a prerequisite from the Python track",
+    "D8 Errors, validation and reliability": [
+      "04",
+      "28"
+    ],
+    "D9 Testing and evaluation": [
+      "09",
+      "10",
+      "11",
+      "12",
+      "32"
+    ],
+    "D10 Debugging and observability": [
+      "04",
+      "09",
+      "16",
+      "28"
+    ],
+    "D11 Security": [
+      "13",
+      "14",
+      "27"
+    ],
+    "D12 Packaging, deployment and operations": [
+      "14",
+      "17",
+      "24"
+    ],
+    "D13 Scaling and cost": [
+      "18",
+      "28",
+      "29"
+    ],
+    "D14 Versions, upgrades and migration": [
+      "24"
+    ],
+    "D15 Ecosystem and choosing": [
+      "01",
+      "25"
+    ],
+    "D16 Common pitfalls and anti-patterns": [
+      "03",
+      "26"
+    ],
+    "D17 Reference architectures and real use cases": [
+      "21",
+      "31"
+    ],
+    "D18 End-to-end capstone": [
+      "32"
+    ]
+  },
+  "enterprise_coverage": {
+    "1 distributed architecture internals": "Go deeper — the internals of distributed systems belong to a systems course",
+    "2 cluster operations": "Go deeper — multi-node clusters need a data-platform course; this course runs one service with CSV and Excel files",
+    "3 failure and recovery": [
+      "28"
+    ],
+    "4 extreme scale": "Go deeper — capacity maths at 10x to 1000x needs a load-testing course",
+    "5 deployment options": [
+      "14",
+      "15",
+      "24"
+    ],
+    "6 performance engineering at scale": "Go deeper — p99 load testing and capacity models need a load-testing course",
+    "7 high availability and disaster recovery": "Go deeper — multi-region HA belongs to the platform course",
+    "8 zero-downtime change": [
+      "24"
+    ],
+    "9 multi-tenancy and isolation": [
+      "23"
+    ],
+    "10 security and compliance at organisation scale": [
+      "13",
+      "27"
+    ],
+    "11 cost engineering": [
+      "29"
+    ],
+    "12 platform and organisation patterns": [
+      "25"
+    ],
+    "13 frontier": [
+      "19"
+    ],
+    "14 case studies": [
+      "21"
+    ]
+  },
+  "concept_coverage": {
+    "What a forward deployed engineer is (embed model, FDE vs SWE vs solutions architect vs consultant)": [
+      "01"
+    ],
+    "Customer discovery and problem decomposition": [
+      "02"
+    ],
+    "Scoping, solution architecture and the POC sprint": [
+      "03",
+      "09"
+    ],
+    "Integrating with customer systems: APIs, auth, data pipelines, legacy": [
+      "04",
+      "05"
+    ],
+    "Building LLM and agent applications for customers (tool calling, RAG, structured output, MCP)": [
+      "06",
+      "19"
+    ],
+    "Evaluating customer AI systems (evals, regression tests, guardrails)": [
+      "10",
+      "11",
+      "12"
+    ],
+    "Security, compliance and restricted environments (SSO/OAuth, secrets, VPC/on-prem, clearance)": [
+      "13",
+      "27"
+    ],
+    "Deploying and operating in the customer's environment (CI/CD, containers, observability, rollback)": [
+      "14",
+      "16"
+    ],
+    "From POC to production and handoff (runbooks, documentation, enablement, training)": [
+      "21",
+      "22"
+    ],
+    "Productizing field work: feedback loops to product, reusable components, custom vs core": [
+      "25",
+      "26"
+    ],
+    "Stakeholder communication, expectation setting, business case and ambiguity": [
+      "07",
+      "30"
+    ],
+    "Engagement delivery: timelines, risk, success metrics, billable work": [
+      "08"
+    ],
+    "Python for production services": [
+      "04"
+    ],
+    "TypeScript/JavaScript front ends and internal tools": "out of scope — a front-end course; the course app is one plain JavaScript page",
+    "SQL and data modeling": "out of scope — this course uses no database; data modelling is taught with CSV and Excel files",
+    "REST API consumption: pagination, retries, idempotency, rate limits": [
+      "04"
+    ],
+    "Debugging a broken API or integration (interview exercise)": [
+      "04",
+      "16"
+    ],
+    "Learning an unfamiliar codebase quickly": [
+      "02"
+    ],
+    "Refactoring and re-engineering broken code": [
+      "25"
+    ],
+    "LRU cache (extended with constraints)": [
+      "18"
+    ],
+    "Deduplicating records from files; log/call-stack to trace conversion": [
+      "05"
+    ],
+    "Data ingestion pipelines and ETL into a customer's platform": [
+      "05"
+    ],
+    "RAG and retrieval over customer documents": "out of scope — taught in the agentic-ai RAG track; see Go deeper",
+    "Model Context Protocol (MCP) servers and tools": [
+      "19"
+    ],
+    "Context-window management and context engineering": [
+      "18",
+      "19"
+    ],
+    "LLM observability and tracing": [
+      "16"
+    ],
+    "When an LLM is the right tool (use-case discernment)": [
+      "06"
+    ],
+    "Enterprise authentication: OAuth2/OIDC, SAML SSO, service accounts, secrets management": [
+      "13"
+    ],
+    "Data residency, PII handling, audit logging, compliance questionnaires (SOC 2, FedRAMP-style)": [
+      "27"
+    ],
+    "Docker and containerized delivery": [
+      "14"
+    ],
+    "Cloud platform basics (AWS, Azure, GCP)": "out of scope — cloud-platform courses; lessons 14 and 15 name the VPC equivalents",
+    "CI/CD, release and rollback in a customer environment": [
+      "14",
+      "24"
+    ],
+    "System design for an enterprise AI solution": [
+      "31"
+    ],
+    "Technical presentation or live demo to a customer": [
+      "07"
+    ],
+    "Behavioral stories (STAR, leadership principles, past-project deep dive)": [
+      "07"
+    ],
+    "Working across technical and non-technical teams; written and verbal communication": [
+      "07"
+    ]
+  },
+  "out_of_scope": [
+    {
+      "item": "Fine-tuning and model training for customers",
+      "why": "research level, and a different job; see the ML courses"
+    },
+    {
+      "item": "Kubernetes deployment",
+      "why": "Kubernetes is its own course; lesson 15 runs the same service with Compose"
+    }
+  ],
+  "go_deeper": [
+    {
+      "topic": "Kubernetes for customer deployments",
+      "why": "when customers run a cluster you must operate",
+      "link": "https://kubernetes.io/docs/home/"
+    },
+    {
+      "topic": "RAG over customer documents",
+      "why": "16% of FDE postings ask for it; the agentic-ai track teaches it in full",
+      "link": "https://platform.claude.com/docs/en/build-with-claude/overview"
+    },
+    {
+      "topic": "Model Context Protocol",
+      "why": "the full protocol and server patterns",
+      "link": "https://modelcontextprotocol.io/"
+    }
+  ],
+  "port_base": 8000,
+  "approved": "2026-10-26",
+  "version": 3,
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-10-24",
+      "changes": "syllabus refresh"
+    },
+    {
+      "version": 2,
+      "date": "2026-10-26",
+      "changes": "wording and metadata after the packing-to-triage story change: lessons 01-03, 05, 07, 08 on the triage project; 'handoff' renamed 'handover'; lesson 28 capped per-call retry; lesson 32 time box; OpenTelemetry also used in lesson 20; lesson 24 minutes 25"
+    },
+    {
+      "version": 3,
+      "date": "2026-10-26",
+      "changes": "add lesson 24a: long batch jobs (restart, reconcile, finish on time), professional, 30 min, for a system-design question on a resumable nightly run"
+    }
+  ],
+  "releases": {
+    "basic": {
+      "date": "2026-10-26",
+      "version": 1
+    },
+    "intermediate": {
+      "date": "2026-10-26",
+      "version": 1
+    },
+    "advanced": {
+      "date": "2026-10-26",
+      "version": 1
+    },
+    "all": {
+      "date": "2026-10-26",
+      "version": 3
+    }
+  }
+}

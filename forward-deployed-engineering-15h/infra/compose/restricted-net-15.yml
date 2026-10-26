@@ -1,0 +1,72 @@
+# Restricted customer network for lesson 15 (lab, invented data). Started by the notebook with
+# docker compose -p <project> -f <this file> --env-file ../.env up -d --build --wait
+#
+# Two networks, one way out:
+#   customer  internal: true, so it has no route out. erp (customer API) and triage live here.
+#   outside   an ordinary network. The model API stand-in (api.model-vendor.example) lives here.
+#   egress    the one container on both networks: the squid allowlist. triage sends its outside
+#             calls to it (HTTP_PROXY); erp is reached directly (NO_PROXY).
+# No service publishes a port to your laptop: the tests run from inside the customer network.
+services:
+  erp:
+    build:
+      context: ../../apps
+      dockerfile: 15/Dockerfile
+      args:
+        APP_FILE: 13/customer_api.py
+    image: bb-erp-mock:15
+    environment:
+      ERP_SIGNING_KEY: ${ERP_SIGNING_KEY}
+      ERP_READER_CLIENT_SECRET: ${ERP_READER_CLIENT_SECRET}
+      ERP_CREDIT_BOT_CLIENT_SECRET: ${ERP_CREDIT_BOT_CLIENT_SECRET}
+    networks: [customer]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  model-vendor:
+    build:
+      context: ../../apps
+      dockerfile: 15/Dockerfile
+      args:
+        APP_FILE: 15/model_vendor_mock.py
+    image: bb-model-stand-in:15
+    networks:
+      outside:
+        aliases: [api.model-vendor.example]
+  egress:
+    image: ubuntu/squid:7.2-26.04_edge
+    volumes:
+      - ./egress/squid.conf:/etc/squid/squid.conf:ro
+    networks: [customer, outside]
+  triage:
+    build:
+      context: ../../apps
+      dockerfile: 15/Dockerfile
+      args:
+        APP_FILE: ${TRIAGE_SRC:-15/triage_service.py}
+    image: bb-triage:${TRIAGE_TAG:-1.2.0}
+    environment:
+      ERP_URL: http://erp:8000
+      ERP_READER_CLIENT_ID: ${ERP_READER_CLIENT_ID:-bb-orders-reader}
+      ERP_READER_CLIENT_SECRET: ${ERP_READER_CLIENT_SECRET}
+      MODEL_API_URL: ${MODEL_API_URL:-http://api.model-vendor.example:8000}
+      HTTP_PROXY: ${EGRESS_PROXY_URL:-http://egress:3128}
+      HTTPS_PROXY: ${EGRESS_PROXY_URL:-http://egress:3128}
+      NO_PROXY: erp,localhost,127.0.0.1
+    networks: [customer]
+    depends_on:
+      erp:
+        condition: service_healthy
+      egress:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+networks:
+  customer:
+    internal: true
+  outside: {}

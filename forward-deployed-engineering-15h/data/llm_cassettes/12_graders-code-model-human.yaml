@@ -1,0 +1,265 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "C01 (order BB-1101): Order BB-1101:
+      the milk is missing from my delivery.\nC02 (order BB-1102): Order BB-1102: only
+      three of the four eggs made it into the bag.\nC03 (order BB-1103): Order BB-1103:
+      my bananas arrived bruised and brown.\nC04 (order BB-1104): Order BB-1104: the
+      driver came two hours after the slot.\nC05 (order BB-1105): Order BB-1105: I
+      was sent oat milk, I ordered almond.\nC06 (order BB-1106): Order BB-1106: where
+      is my delivery? The app still says pending.\nC07 (order BB-1107): Order BB-1107:
+      two bags of rice were not in the box.\nC08 (order BB-1108): Order BB-1108: the
+      yoghurt came in a crushed pot.\nC09 (order BB-1109): Order BB-1109: no bread
+      at all, and I paid for it.\nC10 (order BB-1110): Order BB-1110: the courier
+      left my order at the wrong flat.\nC11 (order BB-1112): Order BB-1112: I got
+      two of the three cartons I paid for.\nC12 (order BB-1111): Order BB-1111: the
+      box split open and two tins rolled out."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You write the reply a grocery delivery company sends to
+      a customer about a problem with an order. For each case id, write two or three
+      sentences. Name the order id and say what the team will do next. Return one
+      reply for every case id."}]}, "safetySettings": [], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024, "responseMimeType": "application/json",
+      "responseJsonSchema": {"$defs": {"Draft": {"properties": {"case_id": {"description":
+      "the case id exactly as given, such as C01", "title": "Case Id", "type": "string"},
+      "reply": {"description": "the reply to the customer, two or three sentences",
+      "title": "Reply", "type": "string"}}, "required": ["case_id", "reply"], "title":
+      "Draft", "type": "object"}}, "properties": {"replies": {"description": "one
+      reply for every case id given", "items": {"$ref": "#/$defs/Draft"}, "title":
+      "Replies", "type": "array"}}, "required": ["replies"], "title": "DraftBatch",
+      "type": "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2008'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"replies\\\": [\\n    {\\n      \\\"case_id\\\": \\\"C01\\\",\\n      \\\"reply\\\":
+        \\\"We are sorry to hear that the milk was missing from your order BB-1101.
+        Our team will process a refund for the item immediately.\\\"\\n    },\\n    {\\n
+        \     \\\"case_id\\\": \\\"C02\\\",\\n      \\\"reply\\\": \\\"We apologize
+        that your order BB-1102 arrived with a damaged egg count. We will issue a
+        credit to your account for the missing item right away.\\\"\\n    },\\n    {\\n
+        \     \\\"case_id\\\": \\\"C03\\\",\\n      \\\"reply\\\": \\\"We are sorry
+        that the bananas in order BB-1103 did not meet our quality standards. Our
+        team will arrange for a refund for these items today.\\\"\\n    },\\n    {\\n
+        \     \\\"case_id\\\": \\\"C04\\\",\\n      \\\"reply\\\": \\\"We apologize
+        for the significant delay with your order BB-1104. Our team will investigate
+        the courier's route and apply a discount to your next delivery.\\\"\\n    },\\n
+        \   {\\n      \\\"case_id\\\": \\\"C05\\\",\\n      \\\"reply\\\": \\\"We
+        are sorry for the mix-up with your milk choice in order BB-1105. Our team
+        will send the correct almond milk to you as soon as possible.\\\"\\n    },\\n
+        \   {\\n      \\\"case_id\\\": \\\"C06\\\",\\n      \\\"reply\\\": \\\"We
+        apologize for the confusion regarding the status of order BB-1106. Our team
+        is currently tracking the driver and will provide you with an update shortly.\\\"\\n
+        \   },\\n    {\\n      \\\"case_id\\\": \\\"C07\\\",\\n      \\\"reply\\\":
+        \\\"We are sorry to hear that the rice was missing from your order BB-1107.
+        Our team will process a full refund for the missing bags immediately.\\\"\\n
+        \   },\\n    {\\n      \\\"case_id\\\": \\\"C08\\\",\\n      \\\"reply\\\":
+        \\\"We apologize that the yoghurt in order BB-1108 arrived in a crushed pot.
+        Our team will issue a refund for the damaged item to your original payment
+        method.\\\"\\n    },\\n    {\\n      \\\"case_id\\\": \\\"C09\\\",\\n      \\\"reply\\\":
+        \\\"We are sorry that your bread was missing from order BB-1109. Our team
+        will ensure a refund is processed for the missing item right away.\\\"\\n
+        \   },\\n    {\\n      \\\"case_id\\\": \\\"C10\\\",\\n      \\\"reply\\\":
+        \\\"We sincerely apologize that order BB-1110 was delivered to the wrong address.
+        Our team will contact the courier to retrieve your items or issue a full replacement.\\\"\\n
+        \   },\\n    {\\n      \\\"case_id\\\": \\\"C11\\\",\\n      \\\"reply\\\":
+        \\\"We are sorry that you only received two of the three cartons for order
+        BB-1112. Our team will credit your account for the missing carton immediately.\\\"\\n
+        \   },\\n    {\\n      \\\"case_id\\\": \\\"C12\\\",\\n      \\\"reply\\\":
+        \\\"We apologize that the box for order BB-1111 split and caused items to
+        be lost. Our team will arrange for a replacement of the missing tins to be
+        sent to you.\\\"\\n    }\\n  ]\\n}\",\n            \"thoughtSignature\": \"AY89a19mrlvrt4u9s3aYBw5VBw5z5EDG00UOGNQyO2zVHqfFP9RFuPMsBybuI3SW5CvQSBEBrUUGcf4Av4luQhsj2xvFXAyHkLqUHBdBc/z80RYZBV/dhFXXdBI=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 591,\n    \"candidatesTokenCount\":
+        706,\n    \"totalTokenCount\": 1297,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 591\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 706\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-24T14:01:08.647405Z\",\n  \"responseId\": \"JLrcau3BJ-qFr8kPs5Kd-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '3441'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sat, 24 Oct 2026 14:01:11 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "C01 | label: missing_item | customer:
+      Order BB-1101: the milk is missing from my delivery. | reply: We are sorry to
+      hear that the milk was missing from your order BB-1101. Our team will process
+      a refund for the item immediately.\nC02 | label: missing_item | customer: Order
+      BB-1102: only three of the four eggs made it into the bag. | reply: We apologize
+      that your order BB-1102 arrived with a damaged egg count. We will issue a credit
+      to your account for the missing item right away.\nC03 | label: damaged | customer:
+      Order BB-1103: my bananas arrived bruised and brown. | reply: We are sorry that
+      the bananas in order BB-1103 did not meet our quality standards. Our team will
+      arrange for a refund for these items today.\nC04 | label: late | customer: Order
+      BB-1104: the driver came two hours after the slot. | reply: We apologize for
+      the significant delay with your order BB-1104. Our team will investigate the
+      courier''s route and apply a discount to your next delivery.\nC05 | label: wrong_item
+      | customer: Order BB-1105: I was sent oat milk, I ordered almond. | reply: We
+      are sorry for the mix-up with your milk choice in order BB-1105. Our team will
+      send the correct almond milk to you as soon as possible.\nC06 | label: late
+      | customer: Order BB-1106: where is my delivery? The app still says pending.
+      | reply: We apologize for the confusion regarding the status of order BB-1106.
+      Our team is currently tracking the driver and will provide you with an update
+      shortly.\nC07 | label: missing_item | customer: Order BB-1107: two bags of rice
+      were not in the box. | reply: We are sorry to hear that the rice was missing
+      from your order BB-1107. Our team will process a full refund for the missing
+      bags immediately.\nC08 | label: damaged | customer: Order BB-1108: the yoghurt
+      came in a crushed pot. | reply: We apologize that the yoghurt in order BB-1108
+      arrived in a crushed pot. Our team will issue a refund for the damaged item
+      to your original payment method.\nC09 | label: missing_item | customer: Order
+      BB-1109: no bread at all, and I paid for it. | reply: We are sorry that your
+      bread was missing from order BB-1109. Our team will ensure a refund is processed
+      for the missing item right away.\nC10 | label: other | customer: Order BB-1110:
+      the courier left my order at the wrong flat. | reply: We sincerely apologize
+      that order BB-1110 was delivered to the wrong address. Our team will contact
+      the courier to retrieve your items or issue a full replacement.\nC11 | label:
+      missing_item | customer: Order BB-1112: I got two of the three cartons I paid
+      for. | reply: We are sorry that you only received two of the three cartons for
+      order BB-1112. Our team will credit your account for the missing carton immediately.\nC12
+      | label: damaged | customer: Order BB-1111: the box split open and two tins
+      rolled out. | reply: We apologize that the box for order BB-1111 split and caused
+      items to be lost. Our team will arrange for a replacement of the missing tins
+      to be sent to you."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You grade a customer reply. Pass it only if both hold:\n1. It answers the problem
+      the customer reports, using the issue label given (missing_item means something
+      the customer paid for did not arrive).\n2. It makes no promise the company cannot
+      check: no refund amount, no delivery time, no date.\nOtherwise fail it. Give
+      one verdict for every case id."}]}, "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024, "responseMimeType":
+      "application/json", "responseJsonSchema": {"$defs": {"Verdict": {"properties":
+      {"case_id": {"description": "the case id exactly as given", "title": "Case Id",
+      "type": "string"}, "passed": {"description": "true only if the reply meets the
+      rubric", "title": "Passed", "type": "boolean"}, "reason": {"description": "one
+      sentence that quotes the part of the reply that decided it", "title": "Reason",
+      "type": "string"}}, "required": ["case_id", "passed", "reason"], "title": "Verdict",
+      "type": "object"}}, "properties": {"verdicts": {"description": "one verdict
+      for every case id given", "items": {"$ref": "#/$defs/Verdict"}, "title": "Verdicts",
+      "type": "array"}}, "required": ["verdicts"], "title": "VerdictBatch", "type":
+      "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '4300'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"verdicts\\\": [\\n    {\\n      \\\"case_id\\\": \\\"C01\\\",\\n      \\\"passed\\\":
+        false,\\n      \\\"reason\\\": \\\"The reply promises to process a refund
+        immediately, which is a specific time commitment.\\\"\\n    },\\n    {\\n
+        \     \\\"case_id\\\": \\\"C02\\\",\\n      \\\"passed\\\": false,\\n      \\\"reason\\\":
+        \\\"The reply promises to issue a credit right away, which is a specific time
+        commitment.\\\"\\n    },\\n    {\\n      \\\"case_id\\\": \\\"C03\\\",\\n
+        \     \\\"passed\\\": true,\\n      \\\"reason\\\": \\\"The reply addresses
+        the damaged item issue without making a specific promise about time or amount.\\\"\\n
+        \   },\\n    {\\n      \\\"case_id\\\": \\\"C04\\\",\\n      \\\"passed\\\":
+        true,\\n      \\\"reason\\\": \\\"The reply addresses the late delivery issue
+        without making a specific promise about time or amount.\\\"\\n    },\\n    {\\n
+        \     \\\"case_id\\\": \\\"C05\\\",\\n      \\\"passed\\\": false,\\n      \\\"reason\\\":
+        \\\"The reply promises to send the item as soon as possible, which is a specific
+        time commitment.\\\"\\n    },\\n    {\\n      \\\"case_id\\\": \\\"C06\\\",\\n
+        \     \\\"passed\\\": true,\\n      \\\"reason\\\": \\\"The reply addresses
+        the late delivery issue without making a specific promise about time or amount.\\\"\\n
+        \   },\\n    {\\n      \\\"case_id\\\": \\\"C07\\\",\\n      \\\"passed\\\":
+        false,\\n      \\\"reason\\\": \\\"The reply promises to process a full refund
+        immediately, which is a specific time commitment.\\\"\\n    },\\n    {\\n
+        \     \\\"case_id\\\": \\\"C08\\\",\\n      \\\"passed\\\": true,\\n      \\\"reason\\\":
+        \\\"The reply addresses the damaged item issue without making a specific promise
+        about time or amount.\\\"\\n    },\\n    {\\n      \\\"case_id\\\": \\\"C09\\\",\\n
+        \     \\\"passed\\\": false,\\n      \\\"reason\\\": \\\"The reply promises
+        to ensure a refund is processed right away, which is a specific time commitment.\\\"\\n
+        \   },\\n    {\\n      \\\"case_id\\\": \\\"C10\\\",\\n      \\\"passed\\\":
+        true,\\n      \\\"reason\\\": \\\"The reply addresses the delivery issue without
+        making a specific promise about time or amount.\\\"\\n    },\\n    {\\n      \\\"case_id\\\":
+        \\\"C11\\\",\\n      \\\"passed\\\": false,\\n      \\\"reason\\\": \\\"The
+        reply promises to credit the account immediately, which is a specific time
+        commitment.\\\"\\n    },\\n    {\\n      \\\"case_id\\\": \\\"C12\\\",\\n
+        \     \\\"passed\\\": true,\\n      \\\"reason\\\": \\\"The reply addresses
+        the damaged item issue without making a specific promise about time or amount.\\\"\\n
+        \   }\\n  ]\\n}\",\n            \"thoughtSignature\": \"AY89a1+Bdwx/3BbDN7lOnLAxNqfW7WXbM97pzeZY89xM9JsnC/rhHCBOTWt64lTVdPCoUDHuahEauTodfIES3nX9JVeFIcpkunQPbU1O8+43eDesv/COpCtoEnE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 1079,\n    \"candidatesTokenCount\":
+        590,\n    \"totalTokenCount\": 1669,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 1079\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 590\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-24T14:01:11.574018Z\",\n  \"responseId\": \"J7rcasKEI-qFr8kPs5Kd-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '3138'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sat, 24 Oct 2026 14:01:13 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

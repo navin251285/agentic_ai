@@ -1,0 +1,7 @@
+{
+ "problem": "support agents sort delivery messages into missing, wrong, late or damaged items too slowly",
+ "in scope": "label one message with one issue (five labels); show the label to the agent",
+ "out of scope": "refunds, credits, courier dispatch, any write to the customer's order system",
+ "success measure": "pass rate on lesson 11's labelled cases, at least 90%, and no failed release",
+ "baseline": "not measured: how long agents take today is not known yet"
+}

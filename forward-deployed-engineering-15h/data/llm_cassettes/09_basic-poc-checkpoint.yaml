@@ -1,0 +1,1394 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/health
+  response:
+    body:
+      string: '{"ok":true}'
+    headers:
+      content-length:
+      - '11'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:26 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"faults":["429"]}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '18'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:8090/lab/faults
+  response:
+    body:
+      string: '{"queued":1}'
+    headers:
+      content-length:
+      - '12'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:26 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?cursor=0&limit=50
+  response:
+    body:
+      string: '{"detail":"injected 429"}'
+    headers:
+      content-length:
+      - '25'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:26 GMT
+      retry-after:
+      - '1'
+      server:
+      - uvicorn
+    status:
+      code: 429
+      message: Too Many Requests
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?cursor=0&limit=50
+  response:
+    body:
+      string: '{"data":[{"order_id":"BB-1108","store":"Store 02","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-22T01:24"},{"order_id":"BB-1118","store":"Store
+        07","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-22T05:14"},{"order_id":"BB-1063","store":"Store
+        04","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T08:09"},{"order_id":"BB-1087","store":"Store
+        06","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-21T17:21"},{"order_id":"BB-1045","store":"Store
+        08","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T01:15"},{"order_id":"BB-1036","store":"Store
+        07","item":"rice","qty_base":"1470","unit_base":"g","ordered_at":"2026-10-20T21:48"},{"order_id":"BB-1111","store":"Store
+        06","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-22T02:33"},{"order_id":"BB-1100","store":"Store
+        01","item":"rice","qty_base":"739","unit_base":"g","ordered_at":"2026-10-21T22:20"},{"order_id":"BB-1100","store":"Store
+        01","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T22:20"},{"order_id":"BB-1075","store":"Store
+        09","item":"rice","qty_base":"892","unit_base":"g","ordered_at":"2026-10-21T12:45"},{"order_id":"BB-1043","store":"Store
+        11","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-21T00:29"},{"order_id":"BB-1016","store":"Store
+        04","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T14:08"},{"order_id":"BB-1034","store":"Store
+        03","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T21:02"},{"order_id":"BB-1050","store":"Store
+        12","item":"rice","qty_base":"1097","unit_base":"g","ordered_at":"2026-10-21T03:10"},{"order_id":"BB-1022","store":"Store
+        09","item":"eggs","qty_base":"5","unit_base":"each","ordered_at":"2026-10-20T16:26"},{"order_id":"BB-1096","store":"Store
+        08","item":"eggs","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T20:48"},{"order_id":"BB-1078","store":"Store
+        01","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T13:54"},{"order_id":"BB-1114","store":"Store
+        11","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-22T03:42"},{"order_id":"BB-1106","store":"Store
+        02","item":"rice","qty_base":"555","unit_base":"g","ordered_at":"2026-10-22T00:38"},{"order_id":"BB-1072","store":"Store
+        09","item":"eggs","qty_base":"8","unit_base":"each","ordered_at":"2026-10-21T11:36"},{"order_id":"BB-1097","store":"Store
+        11","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T21:11"},{"order_id":"BB-1098","store":"Store
+        10","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T21:34"},{"order_id":"BB-1019","store":"Store
+        03","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T15:17"},{"order_id":"BB-1069","store":"Store
+        04","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-21T10:27"},{"order_id":"BB-1013","store":"Store
+        06","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-20T12:59"},{"order_id":"BB-1058","store":"Store
+        07","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T06:14"},{"order_id":"BB-1024","store":"Store
+        01","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T17:12"},{"order_id":"BB-1089","store":"Store
+        08","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T18:07"},{"order_id":"BB-1085","store":"Store
+        09","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T16:35"},{"order_id":"BB-1072","store":"Store
+        09","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T11:36"},{"order_id":"BB-1029","store":"Store
+        10","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T19:07"},{"order_id":"BB-1069","store":"Store
+        04","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T10:27"},{"order_id":"BB-1105","store":"Store
+        10","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-22T00:15"},{"order_id":"BB-1094","store":"Store
+        03","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T20:02"},{"order_id":"BB-1014","store":"Store
+        11","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-20T13:22"},{"order_id":"BB-1035","store":"Store
+        02","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T21:25"},{"order_id":"BB-1107","store":"Store
+        10","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-22T01:01"},{"order_id":"BB-1064","store":"Store
+        05","item":"rice","qty_base":"566","unit_base":"g","ordered_at":"2026-10-21T08:32"},{"order_id":"BB-1080","store":"Store
+        04","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T14:40"},{"order_id":"BB-1110","store":"Store
+        04","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-22T02:10"},{"order_id":"BB-1026","store":"Store
+        12","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T17:58"},{"order_id":"BB-1091","store":"Store
+        12","item":"eggs","qty_base":"5","unit_base":"each","ordered_at":"2026-10-21T18:53"},{"order_id":"BB-1027","store":"Store
+        08","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T18:21"},{"order_id":"BB-1007","store":"Store
+        05","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T10:41"},{"order_id":"BB-1015","store":"Store
+        12","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T13:45"},{"order_id":"BB-1089","store":"Store
+        08","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-21T18:07"},{"order_id":"BB-1119","store":"Store
+        03","item":"rice","qty_base":"2000","unit_base":"g","ordered_at":"2026-10-22T05:37"},{"order_id":"BB-1000","store":"Store
+        10","item":"rice","qty_base":"571","unit_base":"g","ordered_at":"2026-10-20T08:00"},{"order_id":"BB-1093","store":"Store
+        11","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T19:39"},{"order_id":"BB-1115","store":"Store
+        02","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-22T04:05"}],"has_more":true,"next_cursor":"50","total":224}'
+    headers:
+      content-length:
+      - '6172'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:27 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?cursor=50&limit=50
+  response:
+    body:
+      string: '{"data":[{"order_id":"BB-1047","store":"Store 09","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T02:01"},{"order_id":"BB-1079","store":"Store
+        02","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T14:17"},{"order_id":"BB-1082","store":"Store
+        09","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T15:26"},{"order_id":"BB-1096","store":"Store
+        08","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T20:48"},{"order_id":"BB-1064","store":"Store
+        05","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T08:32"},{"order_id":"BB-1113","store":"Store
+        08","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-22T03:19"},{"order_id":"BB-1048","store":"Store
+        12","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T02:24"},{"order_id":"BB-1011","store":"Store
+        10","item":"eggs","qty_base":"8","unit_base":"each","ordered_at":"2026-10-20T12:13"},{"order_id":"BB-1035","store":"Store
+        02","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-20T21:25"},{"order_id":"BB-1077","store":"Store
+        01","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T13:31"},{"order_id":"BB-1060","store":"Store
+        08","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T07:00"},{"order_id":"BB-1098","store":"Store
+        10","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T21:34"},{"order_id":"BB-1009","store":"Store
+        05","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T11:27"},{"order_id":"BB-1008","store":"Store
+        05","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-20T11:04"},{"order_id":"BB-1084","store":"Store
+        05","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T16:12"},{"order_id":"BB-1103","store":"Store
+        02","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T23:29"},{"order_id":"BB-1016","store":"Store
+        04","item":"rice","qty_base":"1557","unit_base":"g","ordered_at":"2026-10-20T14:08"},{"order_id":"BB-1102","store":"Store
+        11","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T23:06"},{"order_id":"BB-1035","store":"Store
+        02","item":"rice","qty_base":"916","unit_base":"g","ordered_at":"2026-10-20T21:25"},{"order_id":"BB-1006","store":"Store
+        04","item":"eggs","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T10:18"},{"order_id":"BB-1004","store":"Store
+        03","item":"rice","qty_base":"589","unit_base":"g","ordered_at":"2026-10-20T09:32"},{"order_id":"BB-1033","store":"Store
+        07","item":"rice","qty_base":"2000","unit_base":"g","ordered_at":"2026-10-20T20:39"},{"order_id":"BB-1012","store":"Store
+        06","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T12:36"},{"order_id":"BB-1030","store":"Store
+        02","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T19:30"},{"order_id":"BB-1112","store":"Store
+        12","item":"rice","qty_base":"913","unit_base":"g","ordered_at":"2026-10-22T02:56"},{"order_id":"BB-1039","store":"Store
+        11","item":"rice","qty_base":"1850","unit_base":"g","ordered_at":"2026-10-20T22:57"},{"order_id":"BB-1036","store":"Store
+        07","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T21:48"},{"order_id":"BB-1008","store":"Store
+        05","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T11:04"},{"order_id":"BB-1078","store":"Store
+        01","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T13:54"},{"order_id":"BB-1043","store":"Store
+        11","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-21T00:29"},{"order_id":"BB-1113","store":"Store
+        08","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-22T03:19"},{"order_id":"BB-1080","store":"Store
+        04","item":"rice","qty_base":"1258","unit_base":"g","ordered_at":"2026-10-21T14:40"},{"order_id":"BB-1065","store":"Store
+        06","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-21T08:55"},{"order_id":"BB-1115","store":"Store
+        02","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-22T04:05"},{"order_id":"BB-1044","store":"Store
+        01","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T00:52"},{"order_id":"BB-1097","store":"Store
+        11","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T21:11"},{"order_id":"BB-1047","store":"Store
+        09","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T02:01"},{"order_id":"BB-1092","store":"Store
+        09","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T19:16"},{"order_id":"BB-1086","store":"Store
+        04","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T16:58"},{"order_id":"BB-1117","store":"Store
+        06","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-22T04:51"},{"order_id":"BB-1105","store":"Store
+        10","item":"rice","qty_base":"869","unit_base":"g","ordered_at":"2026-10-22T00:15"},{"order_id":"BB-1062","store":"Store
+        09","item":"eggs","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T07:46"},{"order_id":"BB-1041","store":"Store
+        05","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T23:43"},{"order_id":"BB-1040","store":"Store
+        01","item":"rice","qty_base":"1727","unit_base":"g","ordered_at":"2026-10-20T23:20"},{"order_id":"BB-1071","store":"Store
+        11","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T11:13"},{"order_id":"BB-1074","store":"Store
+        05","item":"rice","qty_base":"1674","unit_base":"g","ordered_at":"2026-10-21T12:22"},{"order_id":"BB-1073","store":"Store
+        04","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T11:59"},{"order_id":"BB-1081","store":"Store
+        12","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T15:03"},{"order_id":"BB-1100","store":"Store
+        01","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-21T22:20"},{"order_id":"BB-1010","store":"Store
+        09","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T11:50"}],"has_more":true,"next_cursor":"100","total":224}'
+    headers:
+      content-length:
+      - '6173'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:27 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?cursor=100&limit=50
+  response:
+    body:
+      string: '{"data":[{"order_id":"BB-1044","store":"Store 01","item":"rice","qty_base":"857","unit_base":"g","ordered_at":"2026-10-21T00:52"},{"order_id":"BB-1071","store":"Store
+        11","item":"rice","qty_base":"318","unit_base":"g","ordered_at":"2026-10-21T11:13"},{"order_id":"BB-1033","store":"Store
+        07","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-20T20:39"},{"order_id":"BB-1033","store":"Store
+        07","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T20:39"},{"order_id":"BB-1083","store":"Store
+        12","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T15:49"},{"order_id":"BB-1066","store":"Store
+        05","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T09:18"},{"order_id":"BB-1070","store":"Store
+        12","item":"eggs","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T10:50"},{"order_id":"BB-1055","store":"Store
+        02","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T05:05"},{"order_id":"BB-1026","store":"Store
+        12","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T17:58"},{"order_id":"BB-1029","store":"Store
+        10","item":"rice","qty_base":"1215","unit_base":"g","ordered_at":"2026-10-20T19:07"},{"order_id":"BB-1047","store":"Store
+        09","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T02:01"},{"order_id":"BB-1073","store":"Store
+        04","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T11:59"},{"order_id":"BB-1067","store":"Store
+        06","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T09:41"},{"order_id":"BB-1068","store":"Store
+        03","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T10:04"},{"order_id":"BB-1079","store":"Store
+        02","item":"rice","qty_base":"1215","unit_base":"g","ordered_at":"2026-10-21T14:17"},{"order_id":"BB-1088","store":"Store
+        07","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T17:44"},{"order_id":"BB-1023","store":"Store
+        12","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T16:49"},{"order_id":"BB-1056","store":"Store
+        12","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T05:28"},{"order_id":"BB-1019","store":"Store
+        03","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-20T15:17"},{"order_id":"BB-1042","store":"Store
+        05","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T00:06"},{"order_id":"BB-1049","store":"Store
+        02","item":"eggs","qty_base":"5","unit_base":"each","ordered_at":"2026-10-21T02:47"},{"order_id":"BB-1018","store":"Store
+        03","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-20T14:54"},{"order_id":"BB-1031","store":"Store
+        01","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T19:53"},{"order_id":"BB-1084","store":"Store
+        05","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T16:12"},{"order_id":"BB-1072","store":"Store
+        09","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T11:36"},{"order_id":"BB-1001","store":"Store
+        02","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T08:23"},{"order_id":"BB-1010","store":"Store
+        09","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T11:50"},{"order_id":"BB-1068","store":"Store
+        03","item":"rice","qty_base":"661","unit_base":"g","ordered_at":"2026-10-21T10:04"},{"order_id":"BB-1089","store":"Store
+        08","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T18:07"},{"order_id":"BB-1101","store":"Store
+        07","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T22:43"},{"order_id":"BB-1054","store":"Store
+        03","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T04:42"},{"order_id":"BB-1087","store":"Store
+        06","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T17:21"},{"order_id":"BB-1098","store":"Store
+        10","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T21:34"},{"order_id":"BB-1037","store":"Store
+        10","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T22:11"},{"order_id":"BB-1104","store":"Store
+        02","item":"rice","qty_base":"1417","unit_base":"g","ordered_at":"2026-10-21T23:52"},{"order_id":"BB-1034","store":"Store
+        03","item":"eggs","qty_base":"10","unit_base":"each","ordered_at":"2026-10-20T21:02"},{"order_id":"BB-1063","store":"Store
+        04","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T08:09"},{"order_id":"BB-1076","store":"Store
+        02","item":"eggs","qty_base":"10","unit_base":"each","ordered_at":"2026-10-21T13:08"},{"order_id":"BB-1068","store":"Store
+        03","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T10:04"},{"order_id":"BB-1107","store":"Store
+        10","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-22T01:01"},{"order_id":"BB-1109","store":"Store
+        11","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-22T01:47"},{"order_id":"BB-1085","store":"Store
+        09","item":"eggs","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T16:35"},{"order_id":"BB-1057","store":"Store
+        10","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T05:51"},{"order_id":"BB-1017","store":"Store
+        01","item":"rice","qty_base":"1541","unit_base":"g","ordered_at":"2026-10-20T14:31"},{"order_id":"BB-1017","store":"Store
+        01","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-20T14:31"},{"order_id":"BB-1040","store":"Store
+        01","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T23:20"},{"order_id":"BB-1015","store":"Store
+        12","item":"rice","qty_base":"415","unit_base":"g","ordered_at":"2026-10-20T13:45"},{"order_id":"BB-1077","store":"Store
+        01","item":"rice","qty_base":"1736","unit_base":"g","ordered_at":"2026-10-21T13:31"},{"order_id":"BB-1041","store":"Store
+        05","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T23:43"},{"order_id":"BB-1096","store":"Store
+        08","item":"rice","qty_base":"899","unit_base":"g","ordered_at":"2026-10-21T20:48"}],"has_more":true,"next_cursor":"150","total":224}'
+    headers:
+      content-length:
+      - '6181'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:27 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?cursor=150&limit=50
+  response:
+    body:
+      string: '{"data":[{"order_id":"BB-1031","store":"Store 01","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T19:53"},{"order_id":"BB-1046","store":"Store
+        10","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T01:38"},{"order_id":"BB-1052","store":"Store
+        07","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T03:56"},{"order_id":"BB-1020","store":"Store
+        08","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-20T15:40"},{"order_id":"BB-1037","store":"Store
+        10","item":"rice","qty_base":"2000","unit_base":"g","ordered_at":"2026-10-20T22:11"},{"order_id":"BB-1061","store":"Store
+        05","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T07:23"},{"order_id":"BB-1028","store":"Store
+        10","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T18:44"},{"order_id":"BB-1006","store":"Store
+        04","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T10:18"},{"order_id":"BB-1103","store":"Store
+        02","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T23:29"},{"order_id":"BB-1099","store":"Store
+        02","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T21:57"},{"order_id":"BB-1034","store":"Store
+        03","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-20T21:02"},{"order_id":"BB-1065","store":"Store
+        06","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T08:55"},{"order_id":"BB-1021","store":"Store
+        03","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T16:03"},{"order_id":"BB-1116","store":"Store
+        11","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-22T04:28"},{"order_id":"BB-1043","store":"Store
+        11","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T00:29"},{"order_id":"BB-1069","store":"Store
+        04","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T10:27"},{"order_id":"BB-1003","store":"Store
+        07","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-20T09:09"},{"order_id":"BB-1029","store":"Store
+        10","item":"eggs","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T19:07"},{"order_id":"BB-1023","store":"Store
+        12","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T16:49"},{"order_id":"BB-1058","store":"Store
+        07","item":"eggs","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T06:14"},{"order_id":"BB-1119","store":"Store
+        03","item":"eggs","qty_base":"2","unit_base":"each","ordered_at":"2026-10-22T05:37"},{"order_id":"BB-1053","store":"Store
+        01","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-21T04:19"},{"order_id":"BB-1012","store":"Store
+        06","item":"rice","qty_base":"1136","unit_base":"g","ordered_at":"2026-10-20T12:36"},{"order_id":"BB-1107","store":"Store
+        10","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-22T01:01"},{"order_id":"BB-1064","store":"Store
+        05","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T08:32"},{"order_id":"BB-1025","store":"Store
+        11","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-20T17:35"},{"order_id":"BB-1019","store":"Store
+        03","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T15:17"},{"order_id":"BB-1091","store":"Store
+        12","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T18:53"},{"order_id":"BB-1000","store":"Store
+        10","item":"eggs","qty_base":"11","unit_base":"each","ordered_at":"2026-10-20T08:00"},{"order_id":"BB-1040","store":"Store
+        01","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-20T23:20"},{"order_id":"BB-1051","store":"Store
+        03","item":"eggs","qty_base":"11","unit_base":"each","ordered_at":"2026-10-21T03:33"},{"order_id":"BB-1032","store":"Store
+        12","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T20:16"},{"order_id":"BB-1021","store":"Store
+        03","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-20T16:03"},{"order_id":"BB-1038","store":"Store
+        08","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T22:34"},{"order_id":"BB-1108","store":"Store
+        02","item":"rice","qty_base":"902","unit_base":"g","ordered_at":"2026-10-22T01:24"},{"order_id":"BB-1052","store":"Store
+        07","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T03:56"},{"order_id":"BB-1012","store":"Store
+        06","item":"eggs","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T12:36"},{"order_id":"BB-1061","store":"Store
+        05","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-21T07:23"},{"order_id":"BB-1028","store":"Store
+        10","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T18:44"},{"order_id":"BB-1041","store":"Store
+        05","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-20T23:43"},{"order_id":"BB-1022","store":"Store
+        09","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-20T16:26"},{"order_id":"BB-1046","store":"Store
+        10","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T01:38"},{"order_id":"BB-1025","store":"Store
+        11","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T17:35"},{"order_id":"BB-1103","store":"Store
+        02","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T23:29"},{"order_id":"BB-1112","store":"Store
+        12","item":"eggs","qty_base":"4","unit_base":"each","ordered_at":"2026-10-22T02:56"},{"order_id":"BB-1002","store":"Store
+        04","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T08:46"},{"order_id":"BB-1053","store":"Store
+        01","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T04:19"},{"order_id":"BB-1062","store":"Store
+        09","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-21T07:46"},{"order_id":"BB-1113","store":"Store
+        08","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-22T03:19"},{"order_id":"BB-1112","store":"Store
+        12","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-22T02:56"}],"has_more":true,"next_cursor":"200","total":224}'
+    headers:
+      content-length:
+      - '6178'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:27 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?cursor=200&limit=50
+  response:
+    body:
+      string: '{"data":[{"order_id":"BB-1059","store":"Store 07","item":"eggs","qty_base":"11","unit_base":"each","ordered_at":"2026-10-21T06:37"},{"order_id":"BB-1099","store":"Store
+        02","item":"rice","qty_base":"397","unit_base":"g","ordered_at":"2026-10-21T21:57"},{"order_id":"BB-1061","store":"Store
+        05","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T07:23"},{"order_id":"BB-1005","store":"Store
+        03","item":"rice","qty_base":"1664","unit_base":"g","ordered_at":"2026-10-20T09:55"},{"order_id":"BB-1007","store":"Store
+        05","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-20T10:41"},{"order_id":"BB-1081","store":"Store
+        12","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T15:03"},{"order_id":"BB-1087","store":"Store
+        06","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T17:21"},{"order_id":"BB-1085","store":"Store
+        09","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T16:35"},{"order_id":"BB-1088","store":"Store
+        07","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T17:44"},{"order_id":"BB-1090","store":"Store
+        11","item":"eggs","qty_base":"8","unit_base":"each","ordered_at":"2026-10-21T18:30"},{"order_id":"BB-1082","store":"Store
+        09","item":"rice","qty_base":"1155","unit_base":"g","ordered_at":"2026-10-21T15:26"},{"order_id":"BB-1118","store":"Store
+        07","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-22T05:14"},{"order_id":"BB-1062","store":"Store
+        09","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T07:46"},{"order_id":"BB-1070","store":"Store
+        12","item":"rice","qty_base":"1626","unit_base":"g","ordered_at":"2026-10-21T10:50"},{"order_id":"BB-1106","store":"Store
+        02","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-22T00:38"},{"order_id":"BB-1105","store":"Store
+        10","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-22T00:15"},{"order_id":"BB-1055","store":"Store
+        02","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T05:05"},{"order_id":"BB-1024","store":"Store
+        01","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T17:12"},{"order_id":"BB-1071","store":"Store
+        11","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T11:13"},{"order_id":"BB-1095","store":"Store
+        02","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T20:25"},{"order_id":"BB-1114","store":"Store
+        11","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-22T03:42"},{"order_id":"BB-1083","store":"Store
+        12","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T15:49"},{"order_id":"BB-1039","store":"Store
+        11","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T22:57"},{"order_id":"BB-1013","store":"Store
+        06","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T12:59"}],"has_more":false,"next_cursor":null,"total":224}'
+    headers:
+      content-length:
+      - '2996'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:27 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?limit=1
+  response:
+    body:
+      string: '{"data":[{"order_id":"BB-1108","store":"Store 02","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-22T01:24"}],"has_more":true,"next_cursor":"1","total":224}'
+    headers:
+      content-length:
+      - '178'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:27 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m writing about order BB-1108.
+      The delivery came today but the milk is missing. I paid for four. Can I get
+      a credit?"}], "role": "user"}], "systemInstruction": {"parts": [{"text": "You
+      help Basket Bazaar''s support team. Look up the order when the message gives
+      an order number."}]}, "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Look up one Basket Bazaar order by its order number, such
+      as BB-1108. Returns its lines as JSON, or says it is not found.", "name": "lookup_order",
+      "parameters": {"properties": {"order_id": {"type": "STRING"}}, "required": ["order_id"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '746'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"BB-1108\"\n              },\n              \"id\":
+        \"call_175087\"\n            },\n            \"thoughtSignature\": \"AY89a19FPLyg1gZkcE7/upYwgqj6w9MA0DUQcQ+fFGPKZGI2TrjqkQRy9I3NgH6bA4DAzltN7qiEc1jm45RzRPuTUFsJX1eSYM7xkuBlRqRFDGp69xcIj+EXKoU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 111,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 134,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 111\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 23\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-24T13:26:28.948254Z\",\n  \"responseId\": \"BLLcap7wOazw-O4Pr6jY4Ac\"\n}\n"
+    headers:
+      content-length:
+      - '1022'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sat, 24 Oct 2026 13:26:29 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m writing about order BB-1108.
+      The delivery came today but the milk is missing. I paid for four. Can I get
+      a credit?"}], "role": "user"}, {"parts": [{"functionCall": {"args": {"order_id":
+      "BB-1108"}, "name": "lookup_order"}, "thoughtSignature": "AY89a19FPLyg1gZkcE7_upYwgqj6w9MA0DUQcQ-fFGPKZGI2TrjqkQRy9I3NgH6bA4DAzltN7qiEc1jm45RzRPuTUFsJX1eSYM7xkuBlRqRFDGp69xcIj-EXKoU="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"output": [{"order_id": "BB-1108", "store": "Store 02", "item": "milk", "qty_base":
+      "4", "unit_base": "each", "ordered_at": "2026-10-22T01:24"}, {"order_id": "BB-1108",
+      "store": "Store 02", "item": "rice", "qty_base": "902", "unit_base": "g", "ordered_at":
+      "2026-10-22T01:24"}]}}}], "role": "user"}, {"parts": [{"text": "Fill the case
+      record from the message and the lookup result."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You help Basket Bazaar''s support team. Look up the order
+      when the message gives an order number."}]}, "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024, "responseMimeType":
+      "application/json", "responseJsonSchema": {"description": "One support case,
+      filled from a customer message (invented data, lab only).", "properties": {"order_id":
+      {"description": "the order number as written, such as BB-1108", "title": "Order
+      Id", "type": "string"}, "issue": {"enum": ["missing_item", "wrong_item", "late",
+      "damaged", "other"], "title": "Issue", "type": "string"}, "item": {"anyOf":
+      [{"type": "string"}, {"type": "null"}], "default": null, "description": "the
+      item the customer names, in lower case, or null", "title": "Item"}, "qty_claimed":
+      {"anyOf": [{"type": "integer"}, {"type": "null"}], "default": null, "description":
+      "how many of that item the customer says they paid for, or null", "title": "Qty
+      Claimed"}, "summary": {"description": "one short sentence for the support agent",
+      "title": "Summary", "type": "string"}}, "required": ["order_id", "issue", "summary"],
+      "title": "CaseRecord", "type": "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2115'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"order_id\\\": \\\"BB-1108\\\",\\n  \\\"issue\\\": \\\"missing_item\\\",\\n
+        \ \\\"summary\\\": \\\"Customer reported 4 units of milk missing from order
+        BB-1108.\\\",\\n  \\\"item\\\": \\\"milk\\\",\\n  \\\"qty_claimed\\\": 4\\n}\",\n
+        \           \"thoughtSignature\": \"AY89a1//quiBM6wZuaBXokzusbJ23cLmA7rc4w60QpKxO2Ck3RXnnN/7bl9X/q/kpp7cgjuTW7r6fNn8jxk6GRTK7pWSJ/dsqjfjmiBMXFdb1zIhb/bj7UrdIbw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 497,\n    \"candidatesTokenCount\":
+        68,\n    \"totalTokenCount\": 565,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 497\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 68\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-24T13:26:29.720009Z\",\n  \"responseId\": \"BbLcaon5K-mKr8kPmePwsQE\"\n}\n"
+    headers:
+      content-length:
+      - '1044'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sat, 24 Oct 2026 13:26:30 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"faults":["lost"]}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '19'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:8090/lab/faults
+  response:
+    body:
+      string: '{"queued":1}'
+    headers:
+      content-length:
+      - '12'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:30 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"order_id":"BB-1108","item":"milk","qty":4}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '44'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8090
+      idempotency-key:
+      - credit-BB-1108-milk-2026-10-22
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:8090/credits
+  response:
+    body:
+      string: '{"detail":"injected 503"}'
+    headers:
+      content-length:
+      - '25'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:30 GMT
+      server:
+      - uvicorn
+    status:
+      code: 503
+      message: Service Unavailable
+- request:
+    body: '{"order_id":"BB-1108","item":"milk","qty":4}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '44'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8090
+      idempotency-key:
+      - credit-BB-1108-milk-2026-10-22
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:8090/credits
+  response:
+    body:
+      string: '{"credit_id":"CR-1","order_id":"BB-1108","item":"milk","qty":4}'
+    headers:
+      content-length:
+      - '63'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:31 GMT
+      idempotent-replayed:
+      - 'true'
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/lab/state
+  response:
+    body:
+      string: '{"credits":[{"order_id":"BB-1108","item":"milk","qty":4}]}'
+    headers:
+      content-length:
+      - '58'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:31 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '0'
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:8090/lab/reset
+  response:
+    body:
+      string: '{"ok":true}'
+    headers:
+      content-length:
+      - '11'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:31 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"faults":["429","lost"]}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '25'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:8090/lab/faults
+  response:
+    body:
+      string: '{"queued":2}'
+    headers:
+      content-length:
+      - '12'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:31 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?cursor=0&limit=50
+  response:
+    body:
+      string: '{"detail":"injected 429"}'
+    headers:
+      content-length:
+      - '25'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:31 GMT
+      retry-after:
+      - '1'
+      server:
+      - uvicorn
+    status:
+      code: 429
+      message: Too Many Requests
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?cursor=0&limit=50
+  response:
+    body:
+      string: '{"data":[{"order_id":"BB-1108","store":"Store 02","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-22T01:24"},{"order_id":"BB-1118","store":"Store
+        07","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-22T05:14"},{"order_id":"BB-1063","store":"Store
+        04","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T08:09"},{"order_id":"BB-1087","store":"Store
+        06","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-21T17:21"},{"order_id":"BB-1045","store":"Store
+        08","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T01:15"},{"order_id":"BB-1036","store":"Store
+        07","item":"rice","qty_base":"1470","unit_base":"g","ordered_at":"2026-10-20T21:48"},{"order_id":"BB-1111","store":"Store
+        06","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-22T02:33"},{"order_id":"BB-1100","store":"Store
+        01","item":"rice","qty_base":"739","unit_base":"g","ordered_at":"2026-10-21T22:20"},{"order_id":"BB-1100","store":"Store
+        01","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T22:20"},{"order_id":"BB-1075","store":"Store
+        09","item":"rice","qty_base":"892","unit_base":"g","ordered_at":"2026-10-21T12:45"},{"order_id":"BB-1043","store":"Store
+        11","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-21T00:29"},{"order_id":"BB-1016","store":"Store
+        04","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T14:08"},{"order_id":"BB-1034","store":"Store
+        03","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T21:02"},{"order_id":"BB-1050","store":"Store
+        12","item":"rice","qty_base":"1097","unit_base":"g","ordered_at":"2026-10-21T03:10"},{"order_id":"BB-1022","store":"Store
+        09","item":"eggs","qty_base":"5","unit_base":"each","ordered_at":"2026-10-20T16:26"},{"order_id":"BB-1096","store":"Store
+        08","item":"eggs","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T20:48"},{"order_id":"BB-1078","store":"Store
+        01","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T13:54"},{"order_id":"BB-1114","store":"Store
+        11","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-22T03:42"},{"order_id":"BB-1106","store":"Store
+        02","item":"rice","qty_base":"555","unit_base":"g","ordered_at":"2026-10-22T00:38"},{"order_id":"BB-1072","store":"Store
+        09","item":"eggs","qty_base":"8","unit_base":"each","ordered_at":"2026-10-21T11:36"},{"order_id":"BB-1097","store":"Store
+        11","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T21:11"},{"order_id":"BB-1098","store":"Store
+        10","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T21:34"},{"order_id":"BB-1019","store":"Store
+        03","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T15:17"},{"order_id":"BB-1069","store":"Store
+        04","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-21T10:27"},{"order_id":"BB-1013","store":"Store
+        06","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-20T12:59"},{"order_id":"BB-1058","store":"Store
+        07","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T06:14"},{"order_id":"BB-1024","store":"Store
+        01","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T17:12"},{"order_id":"BB-1089","store":"Store
+        08","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T18:07"},{"order_id":"BB-1085","store":"Store
+        09","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T16:35"},{"order_id":"BB-1072","store":"Store
+        09","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T11:36"},{"order_id":"BB-1029","store":"Store
+        10","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T19:07"},{"order_id":"BB-1069","store":"Store
+        04","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T10:27"},{"order_id":"BB-1105","store":"Store
+        10","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-22T00:15"},{"order_id":"BB-1094","store":"Store
+        03","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T20:02"},{"order_id":"BB-1014","store":"Store
+        11","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-20T13:22"},{"order_id":"BB-1035","store":"Store
+        02","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T21:25"},{"order_id":"BB-1107","store":"Store
+        10","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-22T01:01"},{"order_id":"BB-1064","store":"Store
+        05","item":"rice","qty_base":"566","unit_base":"g","ordered_at":"2026-10-21T08:32"},{"order_id":"BB-1080","store":"Store
+        04","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T14:40"},{"order_id":"BB-1110","store":"Store
+        04","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-22T02:10"},{"order_id":"BB-1026","store":"Store
+        12","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T17:58"},{"order_id":"BB-1091","store":"Store
+        12","item":"eggs","qty_base":"5","unit_base":"each","ordered_at":"2026-10-21T18:53"},{"order_id":"BB-1027","store":"Store
+        08","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T18:21"},{"order_id":"BB-1007","store":"Store
+        05","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T10:41"},{"order_id":"BB-1015","store":"Store
+        12","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T13:45"},{"order_id":"BB-1089","store":"Store
+        08","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-21T18:07"},{"order_id":"BB-1119","store":"Store
+        03","item":"rice","qty_base":"2000","unit_base":"g","ordered_at":"2026-10-22T05:37"},{"order_id":"BB-1000","store":"Store
+        10","item":"rice","qty_base":"571","unit_base":"g","ordered_at":"2026-10-20T08:00"},{"order_id":"BB-1093","store":"Store
+        11","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T19:39"},{"order_id":"BB-1115","store":"Store
+        02","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-22T04:05"}],"has_more":true,"next_cursor":"50","total":224}'
+    headers:
+      content-length:
+      - '6172'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:32 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?cursor=50&limit=50
+  response:
+    body:
+      string: '{"data":[{"order_id":"BB-1047","store":"Store 09","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T02:01"},{"order_id":"BB-1079","store":"Store
+        02","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T14:17"},{"order_id":"BB-1082","store":"Store
+        09","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T15:26"},{"order_id":"BB-1096","store":"Store
+        08","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T20:48"},{"order_id":"BB-1064","store":"Store
+        05","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T08:32"},{"order_id":"BB-1113","store":"Store
+        08","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-22T03:19"},{"order_id":"BB-1048","store":"Store
+        12","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T02:24"},{"order_id":"BB-1011","store":"Store
+        10","item":"eggs","qty_base":"8","unit_base":"each","ordered_at":"2026-10-20T12:13"},{"order_id":"BB-1035","store":"Store
+        02","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-20T21:25"},{"order_id":"BB-1077","store":"Store
+        01","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T13:31"},{"order_id":"BB-1060","store":"Store
+        08","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T07:00"},{"order_id":"BB-1098","store":"Store
+        10","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T21:34"},{"order_id":"BB-1009","store":"Store
+        05","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T11:27"},{"order_id":"BB-1008","store":"Store
+        05","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-20T11:04"},{"order_id":"BB-1084","store":"Store
+        05","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T16:12"},{"order_id":"BB-1103","store":"Store
+        02","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T23:29"},{"order_id":"BB-1016","store":"Store
+        04","item":"rice","qty_base":"1557","unit_base":"g","ordered_at":"2026-10-20T14:08"},{"order_id":"BB-1102","store":"Store
+        11","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T23:06"},{"order_id":"BB-1035","store":"Store
+        02","item":"rice","qty_base":"916","unit_base":"g","ordered_at":"2026-10-20T21:25"},{"order_id":"BB-1006","store":"Store
+        04","item":"eggs","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T10:18"},{"order_id":"BB-1004","store":"Store
+        03","item":"rice","qty_base":"589","unit_base":"g","ordered_at":"2026-10-20T09:32"},{"order_id":"BB-1033","store":"Store
+        07","item":"rice","qty_base":"2000","unit_base":"g","ordered_at":"2026-10-20T20:39"},{"order_id":"BB-1012","store":"Store
+        06","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T12:36"},{"order_id":"BB-1030","store":"Store
+        02","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T19:30"},{"order_id":"BB-1112","store":"Store
+        12","item":"rice","qty_base":"913","unit_base":"g","ordered_at":"2026-10-22T02:56"},{"order_id":"BB-1039","store":"Store
+        11","item":"rice","qty_base":"1850","unit_base":"g","ordered_at":"2026-10-20T22:57"},{"order_id":"BB-1036","store":"Store
+        07","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T21:48"},{"order_id":"BB-1008","store":"Store
+        05","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T11:04"},{"order_id":"BB-1078","store":"Store
+        01","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T13:54"},{"order_id":"BB-1043","store":"Store
+        11","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-21T00:29"},{"order_id":"BB-1113","store":"Store
+        08","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-22T03:19"},{"order_id":"BB-1080","store":"Store
+        04","item":"rice","qty_base":"1258","unit_base":"g","ordered_at":"2026-10-21T14:40"},{"order_id":"BB-1065","store":"Store
+        06","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-21T08:55"},{"order_id":"BB-1115","store":"Store
+        02","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-22T04:05"},{"order_id":"BB-1044","store":"Store
+        01","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T00:52"},{"order_id":"BB-1097","store":"Store
+        11","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T21:11"},{"order_id":"BB-1047","store":"Store
+        09","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T02:01"},{"order_id":"BB-1092","store":"Store
+        09","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T19:16"},{"order_id":"BB-1086","store":"Store
+        04","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T16:58"},{"order_id":"BB-1117","store":"Store
+        06","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-22T04:51"},{"order_id":"BB-1105","store":"Store
+        10","item":"rice","qty_base":"869","unit_base":"g","ordered_at":"2026-10-22T00:15"},{"order_id":"BB-1062","store":"Store
+        09","item":"eggs","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T07:46"},{"order_id":"BB-1041","store":"Store
+        05","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T23:43"},{"order_id":"BB-1040","store":"Store
+        01","item":"rice","qty_base":"1727","unit_base":"g","ordered_at":"2026-10-20T23:20"},{"order_id":"BB-1071","store":"Store
+        11","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T11:13"},{"order_id":"BB-1074","store":"Store
+        05","item":"rice","qty_base":"1674","unit_base":"g","ordered_at":"2026-10-21T12:22"},{"order_id":"BB-1073","store":"Store
+        04","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T11:59"},{"order_id":"BB-1081","store":"Store
+        12","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T15:03"},{"order_id":"BB-1100","store":"Store
+        01","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-21T22:20"},{"order_id":"BB-1010","store":"Store
+        09","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T11:50"}],"has_more":true,"next_cursor":"100","total":224}'
+    headers:
+      content-length:
+      - '6173'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:32 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?cursor=100&limit=50
+  response:
+    body:
+      string: '{"data":[{"order_id":"BB-1044","store":"Store 01","item":"rice","qty_base":"857","unit_base":"g","ordered_at":"2026-10-21T00:52"},{"order_id":"BB-1071","store":"Store
+        11","item":"rice","qty_base":"318","unit_base":"g","ordered_at":"2026-10-21T11:13"},{"order_id":"BB-1033","store":"Store
+        07","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-20T20:39"},{"order_id":"BB-1033","store":"Store
+        07","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T20:39"},{"order_id":"BB-1083","store":"Store
+        12","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T15:49"},{"order_id":"BB-1066","store":"Store
+        05","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T09:18"},{"order_id":"BB-1070","store":"Store
+        12","item":"eggs","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T10:50"},{"order_id":"BB-1055","store":"Store
+        02","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T05:05"},{"order_id":"BB-1026","store":"Store
+        12","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T17:58"},{"order_id":"BB-1029","store":"Store
+        10","item":"rice","qty_base":"1215","unit_base":"g","ordered_at":"2026-10-20T19:07"},{"order_id":"BB-1047","store":"Store
+        09","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T02:01"},{"order_id":"BB-1073","store":"Store
+        04","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T11:59"},{"order_id":"BB-1067","store":"Store
+        06","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T09:41"},{"order_id":"BB-1068","store":"Store
+        03","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T10:04"},{"order_id":"BB-1079","store":"Store
+        02","item":"rice","qty_base":"1215","unit_base":"g","ordered_at":"2026-10-21T14:17"},{"order_id":"BB-1088","store":"Store
+        07","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T17:44"},{"order_id":"BB-1023","store":"Store
+        12","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T16:49"},{"order_id":"BB-1056","store":"Store
+        12","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T05:28"},{"order_id":"BB-1019","store":"Store
+        03","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-20T15:17"},{"order_id":"BB-1042","store":"Store
+        05","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T00:06"},{"order_id":"BB-1049","store":"Store
+        02","item":"eggs","qty_base":"5","unit_base":"each","ordered_at":"2026-10-21T02:47"},{"order_id":"BB-1018","store":"Store
+        03","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-20T14:54"},{"order_id":"BB-1031","store":"Store
+        01","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T19:53"},{"order_id":"BB-1084","store":"Store
+        05","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T16:12"},{"order_id":"BB-1072","store":"Store
+        09","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T11:36"},{"order_id":"BB-1001","store":"Store
+        02","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T08:23"},{"order_id":"BB-1010","store":"Store
+        09","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T11:50"},{"order_id":"BB-1068","store":"Store
+        03","item":"rice","qty_base":"661","unit_base":"g","ordered_at":"2026-10-21T10:04"},{"order_id":"BB-1089","store":"Store
+        08","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T18:07"},{"order_id":"BB-1101","store":"Store
+        07","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T22:43"},{"order_id":"BB-1054","store":"Store
+        03","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T04:42"},{"order_id":"BB-1087","store":"Store
+        06","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T17:21"},{"order_id":"BB-1098","store":"Store
+        10","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T21:34"},{"order_id":"BB-1037","store":"Store
+        10","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T22:11"},{"order_id":"BB-1104","store":"Store
+        02","item":"rice","qty_base":"1417","unit_base":"g","ordered_at":"2026-10-21T23:52"},{"order_id":"BB-1034","store":"Store
+        03","item":"eggs","qty_base":"10","unit_base":"each","ordered_at":"2026-10-20T21:02"},{"order_id":"BB-1063","store":"Store
+        04","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T08:09"},{"order_id":"BB-1076","store":"Store
+        02","item":"eggs","qty_base":"10","unit_base":"each","ordered_at":"2026-10-21T13:08"},{"order_id":"BB-1068","store":"Store
+        03","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T10:04"},{"order_id":"BB-1107","store":"Store
+        10","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-22T01:01"},{"order_id":"BB-1109","store":"Store
+        11","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-22T01:47"},{"order_id":"BB-1085","store":"Store
+        09","item":"eggs","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T16:35"},{"order_id":"BB-1057","store":"Store
+        10","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T05:51"},{"order_id":"BB-1017","store":"Store
+        01","item":"rice","qty_base":"1541","unit_base":"g","ordered_at":"2026-10-20T14:31"},{"order_id":"BB-1017","store":"Store
+        01","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-20T14:31"},{"order_id":"BB-1040","store":"Store
+        01","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T23:20"},{"order_id":"BB-1015","store":"Store
+        12","item":"rice","qty_base":"415","unit_base":"g","ordered_at":"2026-10-20T13:45"},{"order_id":"BB-1077","store":"Store
+        01","item":"rice","qty_base":"1736","unit_base":"g","ordered_at":"2026-10-21T13:31"},{"order_id":"BB-1041","store":"Store
+        05","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T23:43"},{"order_id":"BB-1096","store":"Store
+        08","item":"rice","qty_base":"899","unit_base":"g","ordered_at":"2026-10-21T20:48"}],"has_more":true,"next_cursor":"150","total":224}'
+    headers:
+      content-length:
+      - '6181'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:32 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?cursor=150&limit=50
+  response:
+    body:
+      string: '{"data":[{"order_id":"BB-1031","store":"Store 01","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T19:53"},{"order_id":"BB-1046","store":"Store
+        10","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T01:38"},{"order_id":"BB-1052","store":"Store
+        07","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T03:56"},{"order_id":"BB-1020","store":"Store
+        08","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-20T15:40"},{"order_id":"BB-1037","store":"Store
+        10","item":"rice","qty_base":"2000","unit_base":"g","ordered_at":"2026-10-20T22:11"},{"order_id":"BB-1061","store":"Store
+        05","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T07:23"},{"order_id":"BB-1028","store":"Store
+        10","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T18:44"},{"order_id":"BB-1006","store":"Store
+        04","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T10:18"},{"order_id":"BB-1103","store":"Store
+        02","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T23:29"},{"order_id":"BB-1099","store":"Store
+        02","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T21:57"},{"order_id":"BB-1034","store":"Store
+        03","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-20T21:02"},{"order_id":"BB-1065","store":"Store
+        06","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T08:55"},{"order_id":"BB-1021","store":"Store
+        03","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T16:03"},{"order_id":"BB-1116","store":"Store
+        11","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-22T04:28"},{"order_id":"BB-1043","store":"Store
+        11","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T00:29"},{"order_id":"BB-1069","store":"Store
+        04","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T10:27"},{"order_id":"BB-1003","store":"Store
+        07","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-20T09:09"},{"order_id":"BB-1029","store":"Store
+        10","item":"eggs","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T19:07"},{"order_id":"BB-1023","store":"Store
+        12","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T16:49"},{"order_id":"BB-1058","store":"Store
+        07","item":"eggs","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T06:14"},{"order_id":"BB-1119","store":"Store
+        03","item":"eggs","qty_base":"2","unit_base":"each","ordered_at":"2026-10-22T05:37"},{"order_id":"BB-1053","store":"Store
+        01","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-21T04:19"},{"order_id":"BB-1012","store":"Store
+        06","item":"rice","qty_base":"1136","unit_base":"g","ordered_at":"2026-10-20T12:36"},{"order_id":"BB-1107","store":"Store
+        10","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-22T01:01"},{"order_id":"BB-1064","store":"Store
+        05","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T08:32"},{"order_id":"BB-1025","store":"Store
+        11","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-20T17:35"},{"order_id":"BB-1019","store":"Store
+        03","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T15:17"},{"order_id":"BB-1091","store":"Store
+        12","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T18:53"},{"order_id":"BB-1000","store":"Store
+        10","item":"eggs","qty_base":"11","unit_base":"each","ordered_at":"2026-10-20T08:00"},{"order_id":"BB-1040","store":"Store
+        01","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-20T23:20"},{"order_id":"BB-1051","store":"Store
+        03","item":"eggs","qty_base":"11","unit_base":"each","ordered_at":"2026-10-21T03:33"},{"order_id":"BB-1032","store":"Store
+        12","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-20T20:16"},{"order_id":"BB-1021","store":"Store
+        03","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-20T16:03"},{"order_id":"BB-1038","store":"Store
+        08","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T22:34"},{"order_id":"BB-1108","store":"Store
+        02","item":"rice","qty_base":"902","unit_base":"g","ordered_at":"2026-10-22T01:24"},{"order_id":"BB-1052","store":"Store
+        07","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T03:56"},{"order_id":"BB-1012","store":"Store
+        06","item":"eggs","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T12:36"},{"order_id":"BB-1061","store":"Store
+        05","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-21T07:23"},{"order_id":"BB-1028","store":"Store
+        10","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T18:44"},{"order_id":"BB-1041","store":"Store
+        05","item":"eggs","qty_base":"36","unit_base":"each","ordered_at":"2026-10-20T23:43"},{"order_id":"BB-1022","store":"Store
+        09","item":"rice","qty_base":"3000","unit_base":"g","ordered_at":"2026-10-20T16:26"},{"order_id":"BB-1046","store":"Store
+        10","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T01:38"},{"order_id":"BB-1025","store":"Store
+        11","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T17:35"},{"order_id":"BB-1103","store":"Store
+        02","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T23:29"},{"order_id":"BB-1112","store":"Store
+        12","item":"eggs","qty_base":"4","unit_base":"each","ordered_at":"2026-10-22T02:56"},{"order_id":"BB-1002","store":"Store
+        04","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-20T08:46"},{"order_id":"BB-1053","store":"Store
+        01","item":"bread","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T04:19"},{"order_id":"BB-1062","store":"Store
+        09","item":"rice","qty_base":"1000","unit_base":"g","ordered_at":"2026-10-21T07:46"},{"order_id":"BB-1113","store":"Store
+        08","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-22T03:19"},{"order_id":"BB-1112","store":"Store
+        12","item":"bread","qty_base":"1","unit_base":"each","ordered_at":"2026-10-22T02:56"}],"has_more":true,"next_cursor":"200","total":224}'
+    headers:
+      content-length:
+      - '6178'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:32 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/orders?cursor=200&limit=50
+  response:
+    body:
+      string: '{"data":[{"order_id":"BB-1059","store":"Store 07","item":"eggs","qty_base":"11","unit_base":"each","ordered_at":"2026-10-21T06:37"},{"order_id":"BB-1099","store":"Store
+        02","item":"rice","qty_base":"397","unit_base":"g","ordered_at":"2026-10-21T21:57"},{"order_id":"BB-1061","store":"Store
+        05","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T07:23"},{"order_id":"BB-1005","store":"Store
+        03","item":"rice","qty_base":"1664","unit_base":"g","ordered_at":"2026-10-20T09:55"},{"order_id":"BB-1007","store":"Store
+        05","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-20T10:41"},{"order_id":"BB-1081","store":"Store
+        12","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-21T15:03"},{"order_id":"BB-1087","store":"Store
+        06","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T17:21"},{"order_id":"BB-1085","store":"Store
+        09","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T16:35"},{"order_id":"BB-1088","store":"Store
+        07","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-21T17:44"},{"order_id":"BB-1090","store":"Store
+        11","item":"eggs","qty_base":"8","unit_base":"each","ordered_at":"2026-10-21T18:30"},{"order_id":"BB-1082","store":"Store
+        09","item":"rice","qty_base":"1155","unit_base":"g","ordered_at":"2026-10-21T15:26"},{"order_id":"BB-1118","store":"Store
+        07","item":"eggs","qty_base":"12","unit_base":"each","ordered_at":"2026-10-22T05:14"},{"order_id":"BB-1062","store":"Store
+        09","item":"milk","qty_base":"1","unit_base":"each","ordered_at":"2026-10-21T07:46"},{"order_id":"BB-1070","store":"Store
+        12","item":"rice","qty_base":"1626","unit_base":"g","ordered_at":"2026-10-21T10:50"},{"order_id":"BB-1106","store":"Store
+        02","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-22T00:38"},{"order_id":"BB-1105","store":"Store
+        10","item":"eggs","qty_base":"24","unit_base":"each","ordered_at":"2026-10-22T00:15"},{"order_id":"BB-1055","store":"Store
+        02","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T05:05"},{"order_id":"BB-1024","store":"Store
+        01","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-20T17:12"},{"order_id":"BB-1071","store":"Store
+        11","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-21T11:13"},{"order_id":"BB-1095","store":"Store
+        02","item":"milk","qty_base":"3","unit_base":"each","ordered_at":"2026-10-21T20:25"},{"order_id":"BB-1114","store":"Store
+        11","item":"milk","qty_base":"4","unit_base":"each","ordered_at":"2026-10-22T03:42"},{"order_id":"BB-1083","store":"Store
+        12","item":"milk","qty_base":"2","unit_base":"each","ordered_at":"2026-10-21T15:49"},{"order_id":"BB-1039","store":"Store
+        11","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T22:57"},{"order_id":"BB-1013","store":"Store
+        06","item":"bread","qty_base":"2","unit_base":"each","ordered_at":"2026-10-20T12:59"}],"has_more":false,"next_cursor":null,"total":224}'
+    headers:
+      content-length:
+      - '2996'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:32 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"faults":["lost"]}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '19'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:8090/lab/faults
+  response:
+    body:
+      string: '{"queued":1}'
+    headers:
+      content-length:
+      - '12'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:32 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"order_id":"BB-1108","item":"milk","qty":4}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '44'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8090
+      idempotency-key:
+      - credit-BB-1108-milk-2026-10-22
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:8090/credits
+  response:
+    body:
+      string: '{"detail":"injected 503"}'
+    headers:
+      content-length:
+      - '25'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:32 GMT
+      server:
+      - uvicorn
+    status:
+      code: 503
+      message: Service Unavailable
+- request:
+    body: '{"order_id":"BB-1108","item":"milk","qty":4}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '44'
+      content-type:
+      - application/json
+      host:
+      - 127.0.0.1:8090
+      idempotency-key:
+      - credit-BB-1108-milk-2026-10-22
+      user-agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: http://127.0.0.1:8090/credits
+  response:
+    body:
+      string: '{"credit_id":"CR-1","order_id":"BB-1108","item":"milk","qty":4}'
+    headers:
+      content-length:
+      - '63'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:33 GMT
+      idempotent-replayed:
+      - 'true'
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      host:
+      - 127.0.0.1:8090
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: http://127.0.0.1:8090/lab/state
+  response:
+    body:
+      string: '{"credits":[{"order_id":"BB-1108","item":"milk","qty":4}]}'
+    headers:
+      content-length:
+      - '58'
+      content-type:
+      - application/json
+      date:
+      - Sat, 24 Oct 2026 13:26:33 GMT
+      server:
+      - uvicorn
+    status:
+      code: 200
+      message: OK
+version: 1

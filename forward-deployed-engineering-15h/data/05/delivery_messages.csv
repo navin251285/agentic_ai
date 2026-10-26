@@ -1,0 +1,144 @@
+message_id,order_id,store,received_at,label,message
+M-2096,BB-1096,Store 03,21/10/2026 20:48,late,Order BB-1096: The driver came well after the delivery slot.
+M-2092,BB-1092,Store 10,2026-10-21 19:16,late,Order BB-1092: The driver came well after the delivery slot.
+M-2107,BB-1107,Store 11,2026-10-22 01:01,wrong_item,Order BB-1107: I got oat milk and I ordered whole milk.
+M-2088,BB-1088,Store 03,2026-10-21 17:44,late,Order BB-1088: The driver came well after the delivery slot.
+ m-2103 ,BB-1103,Store 05,2026-10-21 23:29,Missing_Item ,Order BB-1103: Two items are missing from the bag.
+M-2000,BB-1000,Store 10,2026-10-20 08:00,missing_item,Order BB-1000: Two items are missing from the bag.
+M-2018,BB-1018,Store 01,2026-10-20 14:54,late,Order BB-1018: The driver came well after the delivery slot.
+M-2026,BB-1026,Store 04,20/10/2026 17:58,missing_item,Order BB-1026: Two items are missing from the bag.
+M-2021,BB-1021,Store 08,20/10/2026 16:03,damaged,Order BB-1021: The bread arrived squashed flat.
+M-2060,BB-1060,Store 06,2026-10-21 07:00,damaged,Order BB-1060: The bread arrived squashed flat.
+M-2065,BB-1065,Store 06,2026-10-21 08:55,late,Order BB-1065: The driver came well after the delivery slot.
+M-2049,BB-1049,Store 03,2026-10-21 02:47,missing,Order BB-1049: Two items are missing from the bag.
+ m-2054 ,BB-1054,Store 06,2026-10-21 04:42,Damaged ,Order BB-1054: The bread arrived squashed flat.
+M-2099,BB-1099,Store 05,21/10/2026 21:57,missing_item,Order BB-1099: Two items are missing from the bag.
+M-2025,BB-1025,Store 08,20/10/2026 17:35,missing_item,Order BB-1025: Two items are missing from the bag.
+M-2061,BB-1061,Store 09,2026-10-21 07:23,damaged,Order BB-1061: The bread arrived squashed flat.
+M-2074,BB-1074,Store 03,21/10/2026 12:22,damaged,Order BB-1074: The bread arrived squashed flat.
+M-2010,BB-1010,Store 01,20/10/2026 11:50,wrong_item,Order BB-1010: I got oat milk and I ordered whole milk.
+M-2046,BB-1046,Store 03,2026-10-21 01:38,wrong_item,Order BB-1046: I got oat milk and I ordered whole milk.
+M-2105,BB-1105,Store 03,22/10/2026 00:15,damaged,Order BB-1105: The bread arrived squashed flat.
+M-2059,BB-1059,Store 01,2026-10-21 06:37,late,Order BB-1059: The driver came well after the delivery slot.
+M-2088,BB-1088,Store 03,2026-10-21 17:44,late,Order BB-1088: The driver came well after the delivery slot.
+M-2097,BB-1097,Store 05,2026-10-21 21:11,late,Order BB-1097: The driver came well after the delivery slot.
+M-2022,BB-1022,Store 01,2026-10-20 16:26,wrong_item,Order BB-1022: I got oat milk and I ordered whole milk.
+M-2004,BB-1004,Store 02,2026-10-20 09:32,missing_item,Order BB-1004: Two items are missing from the bag.
+M-2039,BB-1039,Store 05,2026-10-20 22:57,late,Order BB-1039: The driver came well after the delivery slot.
+M-2044,BB-1044,Store 03,2026-10-21 00:52,missing,Order BB-1044: Two items are missing from the bag.
+M-2054,BB-1054,Store 06,2026-10-21 04:42,damaged,Order BB-1054: The bread arrived squashed flat.
+M-2050,BB-1050,Store 09,2026-10-21 03:10,wrong_item,Order BB-1050: I got oat milk and I ordered whole milk.
+M-2115,BB-1115,Store 07,2026-10-22 04:05,late,Order BB-1115: The driver came well after the delivery slot.
+M-2116,BB-1116,Store 11,2026-10-22 04:28,damaged,Order BB-1116: The bread arrived squashed flat.
+M-2014,BB-1014,Store 03,2026-10-20 13:22,wrong_item,Order BB-1014: I got oat milk and I ordered whole milk.
+M-2110,BB-1110,Store 05,22/10/2026 02:10,damaged,Order BB-1110: The bread arrived squashed flat.
+M-2113,BB-1113,Store 09,2026-10-22 03:19,late,Order BB-1113: The driver came well after the delivery slot.
+M-2003,BB-1003,Store 04,2026-10-20 09:09,damaged,Order BB-1003: The bread arrived squashed flat.
+M-2043,BB-1043,Store 07,2026-10-21 00:29,missing_item,Order BB-1043: Two items are missing from the bag.
+M-2034,BB-1034,Store 06,2026-10-20 21:02,missing_item,Order BB-1034: Two items are missing from the bag.
+M-2099,BB-1099,Store 05,21/10/2026 21:57,missing_item,Order BB-1099: Two items are missing from the bag.
+M-2055,BB-1055,Store 05,2026-10-21 05:05,missing_item,Order BB-1055: Two items are missing from the bag.
+ m-2019 ,BB-1019,Store 02,2026-10-20 15:17,Missing_Item ,Order BB-1019: Two items are missing from the bag.
+M-2113,BB-1113,Store 09,2026-10-22 03:19,late,Order BB-1113: The driver came well after the delivery slot.
+M-2077,BB-1077,Store 08,21/10/2026 13:31,missing_item,Order BB-1077: Two items are missing from the bag.
+M-2057,BB-1057,Store 12,2026-10-21 05:51,damaged,Order BB-1057: The bread arrived squashed flat.
+M-2060,BB-1060,Store 06,2026-10-21 07:00,damaged,Order BB-1060: The bread arrived squashed flat.
+M-2098,BB-1098,Store 06,2026-10-21 21:34,wrong_item,Order BB-1098: I got oat milk and I ordered whole milk.
+M-2086,BB-1086,Store 03,2026-10-21 16:58,late,Order BB-1086: The driver came well after the delivery slot.
+M-2038,BB-1038,Store 04,2026-10-20 22:34,damaged,Order BB-1038: The bread arrived squashed flat.
+ m-2069 ,BB-1069,Store 10,2026-10-21 10:27,Late ,Order BB-1069: The driver came well after the delivery slot.
+M-2082,BB-1082,Store 12,2026-10-21 15:26,wrong_item,Order BB-1082: I got oat milk and I ordered whole milk.
+M-2053,BB-1053,Store 09,2026-10-21 04:19,missing_item,Order BB-1053: Two items are missing from the bag.
+M-2002,BB-1002,Store 09,2026-10-20 08:46,missing_item,Order BB-1002: Two items are missing from the bag.
+M-2042,BB-1042,Store 12,21/10/2026 00:06,late,Order BB-1042: The driver came well after the delivery slot.
+M-2067,BB-1067,Store 08,21/10/2026 09:41,missing_item,Order BB-1067: Two items are missing from the bag.
+ m-2042 ,BB-1042,Store 12,21/10/2026 00:06,Late ,Order BB-1042: The driver came well after the delivery slot.
+ m-2074 ,BB-1074,Store 03,21/10/2026 12:22,Damaged ,Order BB-1074: The bread arrived squashed flat.
+M-2041,BB-1041,Store 08,20/10/2026 23:43,missing_item,Order BB-1041: Two items are missing from the bag.
+M-2093,BB-1093,Store 10,2026-10-21 19:39,missing_item,Order BB-1093: Two items are missing from the bag.
+ m-2068 ,BB-1068,Store 11,21/10/2026 10:04,Damaged ,Order BB-1068: The bread arrived squashed flat.
+M-2075,BB-1075,Store 08,21/10/2026 12:45,wrong_item,Order BB-1075: I got oat milk and I ordered whole milk.
+M-2116,BB-1116,Store 11,2026-10-22 04:28,damaged,Order BB-1116: The bread arrived squashed flat.
+M-2024,BB-1024,Store 06,2026-10-20 17:12,missing_item,Order BB-1024: Two items are missing from the bag.
+M-2063,BB-1063,Store 07,2026-10-21 08:09,missing_item,Order BB-1063: Two items are missing from the bag.
+M-2029,BB-1029,Store 10,2026-10-20 19:07,damaged,Order BB-1029: The bread arrived squashed flat.
+M-2106,BB-1106,Store 08,2026-10-22 00:38,damaged,Order BB-1106: The bread arrived squashed flat.
+M-2069,BB-1069,Store 10,2026-10-21 10:27,late,Order BB-1069: The driver came well after the delivery slot.
+M-2081,BB-1081,Store 05,2026-10-21 15:03,wrong_item,Order BB-1081: I got oat milk and I ordered whole milk.
+M-2066,BB-1066,Store 03,2026-10-21 09:18,missing,Order BB-1066: Two items are missing from the bag.
+M-2036,BB-1036,Store 08,20/10/2026 21:48,missing_item,Order BB-1036: Two items are missing from the bag.
+M-2032,BB-1032,Store 06,2026-10-20 20:16,wrong_item,Order BB-1032: I got oat milk and I ordered whole milk.
+M-2030,BB-1030,Store 05,2026-10-20 19:30,missing_item,Order BB-1030: Two items are missing from the bag.
+M-2074,BB-1074,Store 03,21/10/2026 12:22,damaged,Order BB-1074: The bread arrived squashed flat.
+M-2112,BB-1112,Store 10,22/10/2026 02:56,missing_item,Order BB-1112: Two items are missing from the bag.
+M-2033,BB-1033,Store 12,2026-10-20 20:39,late,Order BB-1033: The driver came well after the delivery slot.
+M-2039,BB-1039,Store 05,2026-10-20 22:57,late,Order BB-1039: The driver came well after the delivery slot.
+M-2070,BB-1070,Store 05,2026-10-21 10:50,damaged,Order BB-1070: The bread arrived squashed flat.
+M-2108,BB-1108,Store 02,22/10/2026 01:24,missing_item,Order BB-1108: Two items are missing from the bag.
+M-2080,BB-1080,Store 06,2026-10-21 14:40,missing_item,Order BB-1080: Two items are missing from the bag.
+M-2064,BB-1064,Store 12,2026-10-21 08:32,late,Order BB-1064: The driver came well after the delivery slot.
+M-2072,BB-1072,Store 04,2026-10-21 11:36,missing_item,Order BB-1072: Two items are missing from the bag.
+M-2119,BB-1119,Store 02,22/10/2026 05:37,missing_item,Order BB-1119: Two items are missing from the bag.
+M-2036,BB-1036,Store 08,20/10/2026 21:48,missing_item,Order BB-1036: Two items are missing from the bag.
+M-2094,BB-1094,Store 04,2026-10-21 20:02,late,Order BB-1094: The driver came well after the delivery slot.
+M-2101,BB-1101,Store 05,21/10/2026 22:43,missing_item,Order BB-1101: Two items are missing from the bag.
+M-2047,BB-1047,Store 08,2026-10-21 02:01,damaged,Order BB-1047: The bread arrived squashed flat.
+M-2083,BB-1083,Store 01,2026-10-21 15:49,late,Order BB-1083: The driver came well after the delivery slot.
+M-2045,BB-1045,Store 03,2026-10-21 01:15,late,Order BB-1045: The driver came well after the delivery slot.
+M-2089,BB-1089,Store 04,2026-10-21 18:07,wrong_item,Order BB-1089: I got oat milk and I ordered whole milk.
+M-2062,BB-1062,Store 06,2026-10-21 07:46,missing_item,Order BB-1062: Two items are missing from the bag.
+M-2076,BB-1076,Store 03,2026-10-21 13:08,missing,Order BB-1076: Two items are missing from the bag.
+M-2087,BB-1087,Store 11,2026-10-21 17:21,late,Order BB-1087: The driver came well after the delivery slot.
+M-2040,BB-1040,Store 01,2026-10-20 23:20,wrong_item,Order BB-1040: I got oat milk and I ordered whole milk.
+M-2011,BB-1011,Store 04,20/10/2026 12:13,wrong_item,Order BB-1011: I got oat milk and I ordered whole milk.
+M-2055,BB-1055,Store 05,2026-10-21 05:05,missing_item,Order BB-1055: Two items are missing from the bag.
+M-2001,BB-1001,Store 12,2026-10-20 08:23,wrong_item,Order BB-1001: I got oat milk and I ordered whole milk.
+M-2070,BB-1070,Store 05,2026-10-21 10:50,damaged,Order BB-1070: The bread arrived squashed flat.
+M-2111,BB-1111,Store 06,2026-10-22 02:33,missing_item,Order BB-1111: Two items are missing from the bag.
+M-2051,BB-1051,Store 08,21/10/2026 03:33,wrong_item,Order BB-1051: I got oat milk and I ordered whole milk.
+M-2104,BB-1104,Store 01,21/10/2026 23:52,missing_item,Order BB-1104: Two items are missing from the bag.
+M-2015,BB-1015,Store 07,2026-10-20 13:45,missing_item,Order BB-1015: Two items are missing from the bag.
+M-2100,BB-1100,Store 11,2026-10-21 22:20,damaged,Order BB-1100: The bread arrived squashed flat.
+M-2073,BB-1073,Store 11,2026-10-21 11:59,missing_item,Order BB-1073: Two items are missing from the bag.
+M-2007,BB-1007,Store 03,2026-10-20 10:41,wrong_item,Order BB-1007: I got oat milk and I ordered whole milk.
+M-2035,BB-1035,Store 11,2026-10-20 21:25,missing_item,Order BB-1035: Two items are missing from the bag.
+M-2009,BB-1009,Store 10,20/10/2026 11:27,damaged,Order BB-1009: The bread arrived squashed flat.
+M-2095,BB-1095,Store 12,2026-10-21 20:25,missing_item,Order BB-1095: Two items are missing from the bag.
+M-2048,BB-1048,Store 05,2026-10-21 02:24,missing_item,Order BB-1048: Two items are missing from the bag.
+M-2084,BB-1084,Store 05,2026-10-21 16:12,late,Order BB-1084: The driver came well after the delivery slot.
+M-2013,BB-1013,Store 09,2026-10-20 12:59,wrong_item,Order BB-1013: I got oat milk and I ordered whole milk.
+M-2071,BB-1071,Store 11,2026-10-21 11:13,missing_item,Order BB-1071: Two items are missing from the bag.
+M-2005,BB-1005,Store 07,2026-10-20 09:55,late,Order BB-1005: The driver came well after the delivery slot.
+M-2027,BB-1027,Store 08,2026-10-20 18:21,missing_item,Order BB-1027: Two items are missing from the bag.
+M-2079,BB-1079,Store 02,21/10/2026 14:17,late,Order BB-1079: The driver came well after the delivery slot.
+M-2008,BB-1008,Store 03,20/10/2026 11:04,damaged,Order BB-1008: The bread arrived squashed flat.
+M-2020,BB-1020,Store 08,20/10/2026 15:40,damaged,Order BB-1020: The bread arrived squashed flat.
+M-2102,BB-1102,Store 07,2026-10-21 23:06,missing_item,Order BB-1102: Two items are missing from the bag.
+M-2052,BB-1052,Store 08,2026-10-21 03:56,missing_item,Order BB-1052: Two items are missing from the bag.
+M-2118,BB-1118,Store 12,22/10/2026 05:14,missing_item,Order BB-1118: Two items are missing from the bag.
+M-2078,BB-1078,Store 08,2026-10-21 13:54,missing_item,Order BB-1078: Two items are missing from the bag.
+M-2023,BB-1023,Store 07,2026-10-20 16:49,missing_item,Order BB-1023: Two items are missing from the bag.
+M-2019,BB-1019,Store 02,2026-10-20 15:17,missing_item,Order BB-1019: Two items are missing from the bag.
+M-2018,BB-1018,Store 01,2026-10-20 14:54,late,Order BB-1018: The driver came well after the delivery slot.
+M-2117,BB-1117,Store 07,2026-10-22 04:51,late,Order BB-1117: The driver came well after the delivery slot.
+M-2090,BB-1090,Store 06,2026-10-21 18:30,wrong_item,Order BB-1090: I got oat milk and I ordered whole milk.
+M-2037,BB-1037,Store 10,2026-10-20 22:11,late,Order BB-1037: The driver came well after the delivery slot.
+M-2063,BB-1063,Store 07,2026-10-21 08:09,missing_item,Order BB-1063: Two items are missing from the bag.
+M-2114,BB-1114,Store 11,22/10/2026 03:42,late,Order BB-1114: The driver came well after the delivery slot.
+M-2091,BB-1091,Store 07,2026-10-21 18:53,missing_item,Order BB-1091: Two items are missing from the bag.
+M-2028,BB-1028,Store 09,2026-10-20 18:44,missing_item,Order BB-1028: Two items are missing from the bag.
+M-2056,BB-1056,Store 05,21/10/2026 05:28,wrong_item,Order BB-1056: I got oat milk and I ordered whole milk.
+M-2061,BB-1061,Store 09,2026-10-21 07:23,damaged,Order BB-1061: The bread arrived squashed flat.
+M-2031,BB-1031,Store 02,2026-10-20 19:53,missing_item,Order BB-1031: Two items are missing from the bag.
+M-2012,BB-1012,Store 03,2026-10-20 12:36,missing,Order BB-1012: Two items are missing from the bag.
+M-2082,BB-1082,Store 12,2026-10-21 15:26,wrong_item,Order BB-1082: I got oat milk and I ordered whole milk.
+M-2103,BB-1103,Store 05,2026-10-21 23:29,missing_item,Order BB-1103: Two items are missing from the bag.
+ m-2006 ,BB-1006,Store 01,2026-10-20 10:18,Damaged ,Order BB-1006: The bread arrived squashed flat.
+M-2109,BB-1109,Store 05,2026-10-22 01:47,late,Order BB-1109: The driver came well after the delivery slot.
+M-2085,BB-1085,Store 10,2026-10-21 16:35,missing_item,Order BB-1085: Two items are missing from the bag.
+M-2006,BB-1006,Store 01,2026-10-20 10:18,damaged,Order BB-1006: The bread arrived squashed flat.
+M-2016,BB-1016,Store 03,20/10/2026 14:08,wrong_item,Order BB-1016: I got oat milk and I ordered whole milk.
+M-2021,BB-1021,Store 08,20/10/2026 16:03,damaged,Order BB-1021: The bread arrived squashed flat.
+M-2068,BB-1068,Store 11,21/10/2026 10:04,damaged,Order BB-1068: The bread arrived squashed flat.
+M-2058,BB-1058,Store 06,2026-10-21 06:14,damaged,Order BB-1058: The bread arrived squashed flat.
+M-2017,BB-1017,Store 06,2026-10-20 14:31,missing_item,Order BB-1017: Two items are missing from the bag.

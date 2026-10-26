@@ -1,0 +1,67 @@
+[
+ [
+  "Gate verdict, candidate",
+  "passed",
+  "recorded (model call, replayed)"
+ ],
+ [
+  "Pass rate, candidate",
+  "100% (minimum 90%, 12 invented cases)",
+  "recorded (model call, replayed)"
+ ],
+ [
+  "Red-team candidate",
+  "refused, as it must be",
+  "recorded (model call, replayed)"
+ ],
+ [
+  "Cost per case, gate run",
+  "$0.0000541 (budget $0.001)",
+  "recorded (model call, replayed); prices from lesson 18, dated 2026-10-22"
+ ],
+ [
+  "Shared service code changed for this customer",
+  "no",
+  "measured (file fingerprint)"
+ ],
+ [
+  "Service version",
+  "1.2.0",
+  "recorded"
+ ],
+ [
+  "Customer API reachable from laptop",
+  "no",
+  "recorded"
+ ],
+ [
+  "Triage traces in Jaeger",
+  "yes",
+  "recorded"
+ ],
+ [
+  "Drill clock, notebook run (not a met time box)",
+  "0.0 min; box is 30 min",
+  "measured (notebook clock only)"
+ ],
+ [
+  "Baseline for agent time",
+  "not measured",
+  "not measured"
+ ],
+ [
+  "Live customer traffic",
+  "not measured: this drill has no customer data",
+  "not measured"
+ ],
+ [
+  "What the gate did not prove",
+  "12 invented cases (a wide interval); no real customer messages; the shipped stack does not run this prompt",
+  "not measured"
+ ],
+ [
+  "Runbook for failures",
+  "lesson 17 runbook; drill in lesson 28",
+  "documented, not run here"
+ ]
+]

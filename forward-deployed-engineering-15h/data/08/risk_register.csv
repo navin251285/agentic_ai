@@ -1,0 +1,8 @@
+id,risk,likelihood,impact,owner,mitigation,trigger,score
+R1,Reviewed-label export not sent by day 3,3,5,support team lead,request the file in writing on day 1; kill check on day 3,no file by the end of day 2,15
+R2,"Rule overfits the few messages it was written from, so the score looks too high",4,3,FDE,write the rule before the held-out set is opened; score only on the held-out set,held-out score far below the score on the rule's own messages,12
+R3,Message export columns differ from the lesson 02 sample,3,3,FDE,read the header the day the export arrives (day 2) and map the columns before joining,a column is missing or renamed,9
+R4,IT freeze on day 8 cuts the sprint by one day,2,4,ops lead,"know the freeze date on day 1; if it cuts a day, cut the least useful item from the plan",freeze date announced,8
+R5,"Store managers ask for extra features mid-sprint, such as a shopper app (unpaid scope)",4,2,FDE,send each ask to the backlog or a written change request,a new request in the team channel,8
+R6,Message export holds customer details beyond what the triage needs,2,5,customer data owner,export only the needed columns; keep no copies outside the agreed folder,"a file with names, phone numbers or card numbers",10
+R7,Store IT access takes more than one day,3,3,ops lead,file the access request on day 0 (before the sprint starts),no confirmation by the end of day 1,9

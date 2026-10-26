@@ -1,0 +1,154 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m writing about order BB-9999.
+      The bread never arrived. Can I get a credit?"}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You help Basket Bazaar''s support team. Look up the order
+      when the message gives an order number."}]}, "safetySettings": [], "tools":
+      [{"functionDeclarations": [{"description": "Look up one Basket Bazaar order
+      by its order number, such as BB-1108. Returns its lines as JSON, or says it
+      is not found.", "name": "lookup_order", "parameters": {"properties": {"order_id":
+      {"type": "STRING"}}, "required": ["order_id"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '705'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"BB-9999\"\n              },\n              \"id\":
+        \"call_1198095\"\n            },\n            \"thoughtSignature\": \"AY89a18Bf2MIXq/BBiAPNS0EWvZYjvEi5SGa2dXC+ZtKzdgVko5y2t1jv/sI9OsY69w31NXoBwU5OCXnrb6bAzo3xitTJBHznbyJopAdxTZk8uK/nGRz9fej8cg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 101,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 124,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 101\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 23\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-26T04:21:09.987614Z\",\n  \"responseId\": \"NdXeat6jPLOHr8kPnPjc0QI\"\n}\n"
+    headers:
+      content-length:
+      - '1023'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 26 Oct 2026 04:21:10 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m writing about order BB-9999.
+      The bread never arrived. Can I get a credit?"}], "role": "user"}, {"parts":
+      [{"functionCall": {"args": {"order_id": "BB-9999"}, "name": "lookup_order"},
+      "thoughtSignature": "AY89a18Bf2MIXq_BBiAPNS0EWvZYjvEi5SGa2dXC-ZtKzdgVko5y2t1jv_sI9OsY69w31NXoBwU5OCXnrb6bAzo3xitTJBHznbyJopAdxTZk8uK_nGRz9fej8cg="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"output": "order BB-9999 not found"}}}], "role": "user"}, {"parts": [{"text":
+      "Fill the case record from the message and the lookup result."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You help Basket Bazaar''s support
+      team. Look up the order when the message gives an order number."}]}, "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024, "responseMimeType": "application/json", "responseJsonSchema": {"description":
+      "One support case, filled from a customer message. Same fields as lesson 06,
+      step 2.", "properties": {"order_id": {"description": "the order number as written,
+      such as BB-1108", "title": "Order Id", "type": "string"}, "issue": {"enum":
+      ["missing_item", "wrong_item", "late", "damaged", "other"], "title": "Issue",
+      "type": "string"}, "item": {"anyOf": [{"type": "string"}, {"type": "null"}],
+      "default": null, "description": "the item the customer names, in lower case,
+      or null", "title": "Item"}, "qty_claimed": {"anyOf": [{"type": "integer"}, {"type":
+      "null"}], "default": null, "description": "how many of that item the customer
+      says they paid for, or null", "title": "Qty Claimed"}, "summary": {"description":
+      "one short sentence for the support agent", "title": "Summary", "type": "string"}},
+      "required": ["order_id", "issue", "summary"], "title": "CaseRecord", "type":
+      "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1840'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"order_id\\\": \\\"BB-9999\\\",\\n  \\\"issue\\\": \\\"missing_item\\\",\\n
+        \ \\\"summary\\\": \\\"Customer reports bread from order BB-9999 never arrived
+        and is requesting a credit, but the order number was not found in the system.\\\",\\n
+        \ \\\"item\\\": \\\"bread\\\",\\n  \\\"qty_claimed\\\": null\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1+40xAqLWWK1YWA0VlfSO9Y4R63BUxRyL33SlGCdqkvcK98rHBJUCPecagU3DtHzNhsWW7Or/MBeMJQ0c9Lu3v7+o3dIAHjJSAIagXm4Jx+iAZ4XLJQgo0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 412,\n    \"candidatesTokenCount\":
+        80,\n    \"totalTokenCount\": 492,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 412\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 80\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-26T04:21:10.629308Z\",\n  \"responseId\": \"NtXeary0Jqzw-O4Pr6jY4Ac\"\n}\n"
+    headers:
+      content-length:
+      - '1120'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Mon, 26 Oct 2026 04:21:11 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

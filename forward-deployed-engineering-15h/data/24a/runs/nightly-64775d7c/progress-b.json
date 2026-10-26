@@ -1,0 +1,9 @@
+{
+  "concurrency": 3,
+  "node": "b",
+  "owned": 60,
+  "retries": 0,
+  "skipped_at_start": 60,
+  "state": "done",
+  "written_this_start": 0
+}

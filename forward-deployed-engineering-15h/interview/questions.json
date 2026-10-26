@@ -1,0 +1,1139 @@
+{
+  "bar": 2,
+  "syllabus_version": 3,
+  "topic": "Forward deployed engineering for customer-facing AI (15 hours)",
+  "questions": [
+    {
+      "course": "basic",
+      "category": "Fundamentals deep-dive",
+      "level": "mid",
+      "q": "A customer's order API answers 429, 400, 401, 422, 502, 503 and then a read timeout. For each, say whether your client retries and how long it waits. Then explain why a POST that creates a credit needs an idempotency key even when the first call looked like a failure.",
+      "follow_ups": [
+        "The 429 carries Retry-After: 30. What changes in your wait?",
+        "How do you build the key so two different credits for the same order item cannot share one?"
+      ],
+      "lessons": [
+        "04"
+      ],
+      "answer_outline": "- Retry 429, 502, 503, 504 and transport errors (timeouts, dropped connections). Honour Retry-After when present; otherwise exponential backoff with jitter.\n- Do not retry 400, 401 or 422: the same request fails again. Fix the request or the credentials.\n- A timeout is ambiguous: the server may already have written the credit.\n- An idempotency key stays the same across retries of one business operation; the server returns the saved first answer for a repeat.\n- Build the key from the business event (order, item, action) so it survives a client restart. A random UUID also works if it is stored and reused.",
+      "tests": "Knows which HTTP failures are safe to retry, and why a write needs a stable idempotency key.",
+      "tiers": [
+        "gcc",
+        "product",
+        "faang"
+      ],
+      "asked_like": "REST API consumption: pagination, retries, idempotency, rate limits",
+      "rubric": {
+        "strong": "Sorts all seven cases into retry or stop-and-fix, with a reason for each. Uses Retry-After and jitter. Explains that a timed-out write may have succeeded, so the key must stay stable across retries.",
+        "average": "Lists the retry codes but retries 400 or 422, or retries without any idempotency key, or does not say why a timeout is ambiguous.",
+        "red_flags": "Retries everything, including 401 and 422. Uses a new random key on every attempt. Says a POST is safe to repeat because the client retries it."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "basic",
+      "category": "Coding",
+      "level": "senior",
+      "q": "Write fetch_all(client, path) for a cursor-paginated API. It follows next_cursor until it is None, retries 429, 502, 503, 504 and transport errors up to 4 attempts with backoff, honours Retry-After, and raises at once on 401 or 422. For P pages and R retryable failures, how many requests are sent? State time and memory in terms of N total rows.",
+      "follow_ups": [
+        "Make it a generator so memory is O(page size). What changes for the caller?",
+        "The API returns the same next_cursor twice. How does your loop stop?"
+      ],
+      "lessons": [
+        "04"
+      ],
+      "answer_outline": "- Loop: start with no cursor, call, extend the rows, take body['next_cursor'], stop when it is None.\n- Retry only the transient set, with a bounded attempt count (4), backoff with jitter, and Retry-After when present.\n- Raise immediately on 401 and 422. A 422 means fix the request, not retry it.\n- Requests: P pages plus R retries, so P + R and at most 4P. Time O(N) for the rows; memory O(N) if you return a list, O(page) if you yield.\n- Edge cases: a repeated cursor (guard with a seen set or a page limit), an empty page, Retry-After given as seconds or as an HTTP date.",
+      "tests": "Writes a bounded cursor loop with a precise retry rule, and states the request count and complexity.",
+      "tiers": [
+        "gcc",
+        "faang"
+      ],
+      "asked_like": "REST API consumption: pagination, retries, idempotency, rate limits",
+      "rubric": {
+        "strong": "A loop that stops on next_cursor None, a retry predicate that matches the list exactly, and a stated count of P + R requests with O(N) time and the list-versus-generator memory trade-off. Guards against a repeated cursor.",
+        "average": "Gets the loop right but retries every error, gives no complexity, or ignores Retry-After.",
+        "red_flags": "Infinite loop on a repeated cursor with no guard. Retries 401 or 422. Catches every exception and returns partial data without saying so."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "basic",
+      "category": "Coding",
+      "level": "senior",
+      "q": "A customer's nightly order-lines file is 5 GB, with columns order_id, item, qty, unit and ordered_at. The pair (order_id, item) can repeat, and copies can disagree on qty. Item names vary in case and spacing (for example 'Eggs' and 'eggs '), so normalise before you compare. Write the dedup step: one pass, one row kept per key, and every disagreeing key written to a conflicts file, never resolved by guessing. State the time and memory complexity.",
+      "follow_ups": [
+        "The distinct keys no longer fit in RAM. What do you change, and what does it cost?",
+        "When quantities disagree, which copy wins, and who decides?"
+      ],
+      "lessons": [
+        "05"
+      ],
+      "answer_outline": "- Stream the file with csv.DictReader. Normalise text, parse dates and convert units before comparing rows. Key = (order_id, item).\n- Keep a dict from key to first row: O(n) expected time, O(k) memory for k distinct keys.\n- On a repeat: identical normalised fields means drop and count; different fields means write both to the conflicts file.\n- If k does not fit in memory: hash-partition the file into buckets by hash(key) and dedupe each bucket, or external-sort by key (O(n log n) time, bounded memory).\n- Count rows in, out, dropped and in conflict, so the result can be checked.",
+      "tests": "Streams a large file, deduplicates by key without silently picking a copy, and reasons about memory.",
+      "tiers": [
+        "faang",
+        "gcc"
+      ],
+      "asked_like": "Deduplicating records from files; log/call-stack to trace conversion",
+      "rubric": {
+        "strong": "One streaming pass with a hash map. Normalises before comparing. Never picks a copy silently when copies differ. Gives memory as O(distinct keys) and a partitioning or external-sort answer for the 5 GB case.",
+        "average": "Deduplicates in memory with a dict and keeps the last row silently. No conflict handling, no answer for memory.",
+        "red_flags": "Runs drop_duplicates on raw text without normalising, so spelling variants survive. Deduplicates on the whole row. Says 'use a database' without naming the cost."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "basic",
+      "category": "Trade-offs and judgement",
+      "level": "senior",
+      "q": "A customer's ops lead says, 'Our deliveries are bad,' and wants a fix by Friday. You have 45 minutes and one store's export. What do you ask in the first 20 minutes, and which three testable problems do you leave with, each with an observable, a test and an owner?",
+      "follow_ups": [
+        "The ops lead says it is obvious and cuts you off. What now?",
+        "Which of your three problems do you start with, and why?"
+      ],
+      "lessons": [
+        "02"
+      ],
+      "answer_outline": "- Ask for specific failures with counts and examples: what, how often, which stores, which weeks.\n- Separate facts (counts), numbers (to check in the data) and guesses (to label as guesses).\n- Split the request into problems that each have an observable, a test and an owner.\n- Start with the problem the data can test first, the cheapest one to check.\n- Do not promise a feature before the test exists.",
+      "tests": "Turns a vague complaint into testable problems with owners, and asks the right first questions.",
+      "tiers": [
+        "product",
+        "faang",
+        "gcc"
+      ],
+      "asked_like": "Customer discovery and problem decomposition",
+      "rubric": {
+        "strong": "Turns the complaint into concrete questions and names the data needed. Leaves with three problems, each with an owner and a test. Starts with the cheapest test.",
+        "average": "Asks good questions but leaves with a feature list, or with problems that have no owner.",
+        "red_flags": "Proposes a solution in the first minute. Accepts 'deliveries are bad' as a requirement. Treats the customer's guess as a fact."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "basic",
+      "category": "Trade-offs and judgement",
+      "level": "senior",
+      "q": "Scope the two-week proof of concept for a delivery-triage request. Basket Bazaar's delivery-message export has a few thousand messages a week, and about 600 of them already carry an agent's label. The customer asks for four labels on every message (missing item, wrong item, late, damaged), a live feed from its store system and a dashboard for store managers. The sprint has 10 working days, one reserved for the demo. Give the one question the POC answers, the success criteria with baseline, target and test, what you cut and why, and a dated kill criterion.",
+      "follow_ups": [
+        "Day 3: the reviewed-label export and the message export have not arrived. What do you decide, and who hears it first?",
+        "The customer now asks for the dashboard inside the POC. What do you say?"
+      ],
+      "lessons": [
+        "03",
+        "08"
+      ],
+      "answer_outline": "- One question tied to the customer's stated need, answerable with data: can a triage step label each delivery message as missing item or wrong item for at least 90% of the messages an agent has already labelled? Late and damaged messages go to the backlog, with the reason.\n- Success criteria as numbers: observable, baseline, target, test, owner. For example C1: share of reviewed messages the triage labels the same as the agent did; baseline 0%, since no automatic label exists; target 90%, agreed with the ops lead on day 1; test on a held-out set the rule was never written from; owner the ops lead.\n- A cut line: capacity minus reserved days, with the cut items written down. The rule-based triage sits above it; the login, the store manager dashboard and the customer reply drafts sit below.\n- Non-goals: changing Basket Bazaar's store or order system, the live feed, the store manager dashboard and refunds, each with why and where the work goes.\n- A dated kill criterion: if the reviewed-label export or the message export is not sent by day 3, the POC stops and is rescoped. The support team, which owns the export, is the first to hear it, that day, and the ops lead is told the same day. No labels are invented to score the triage in the meantime.\n- The dashboard follow-up: the store manager dashboard is below the cut line, so the answer within this sprint is no. It comes in only by dropping a criterion-serving item, or by a dated scope change agreed with the ops lead.",
+      "tests": "Scopes a POC: one question, numeric success criteria, a cut line, non-goals and a kill rule.",
+      "tiers": [
+        "product",
+        "gcc"
+      ],
+      "asked_like": "Scoping, solution architecture and the POC sprint",
+      "rubric": {
+        "strong": "Answers with one triage question and a numeric C1 criterion: 90% agreement with the agents' reviewed labels, tested on a held-out set. Narrows the four-label ask to missing and wrong items and backlogs late and damaged. The cut line fits the sprint. Writes the non-goals and a dated day-3 kill rule, names who owns the missing export as the first to hear, and refuses to score the triage on invented labels.",
+        "average": "Lists features and a timeline, with success described as 'the triage works well'.",
+        "red_flags": "Promises all stores, the live feed and the dashboard in two weeks. Success criteria are adjectives. Writes the rule before the reviewed-label export arrives, or scores it on made-up labels. No way to stop the work when an export is missing."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "basic",
+      "category": "Trade-offs and judgement",
+      "level": "mid",
+      "q": "A customer wants one LLM agent to read each refund request, decide the refund up to $500 and send the credit. Split the job between the model and plain code, and say which part must never be the model's call. Then name one case where you would tell the customer not to use an LLM at all, and why.",
+      "lessons": [
+        "06"
+      ],
+      "answer_outline": "- The model reads free text and fills a typed form (issue type, which item).\n- Plain code does the order lookup, the amount rule from the order lines, the $500 cap and the credit write with an idempotency key.\n- The amount and the money movement are never the model's call; a check rejects unknown orders and over-cap amounts before any action.\n- No LLM where one right answer exists for each input, such as a cap or a date comparison, or where a wrong answer costs more than the saving.\n- Measure the reject rate on an eval set before going live.",
+      "tests": "Decides which parts of a workflow suit a model and which need plain rules, using money as the test.",
+      "tiers": [
+        "product",
+        "gcc"
+      ],
+      "asked_like": "When an LLM is the right tool (use-case discernment)",
+      "rubric": {
+        "strong": "Keeps the model to what has no exact rule. Keeps money movement in code with a cap. Names a concrete no-LLM case with the reason.",
+        "average": "Puts the decision with the model and adds a warning to the prompt. Cannot name a no-LLM case.",
+        "red_flags": "Lets the model choose the amount and send the credit. Says the model is always more accurate than rules."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "basic",
+      "category": "Behavioral",
+      "level": "senior",
+      "q": "Tell me about a time you explained unfinished work to a non-technical stakeholder who wanted a yes or no. Answer in STAR form: situation, task, your actions, the result, and what you would change. Use a real example that involved a demo, open questions and a customer decision.",
+      "follow_ups": [
+        "What did you say when you did not know the answer?",
+        "How did you check the stakeholder understood what the demo did not prove?"
+      ],
+      "lessons": [
+        "07"
+      ],
+      "answer_outline": "- Situation: a concrete stakeholder, a deadline and the open questions.\n- Task: the decision the stakeholder needed.\n- Actions: showed what was proven and separated it from what was not; named each open question with an owner and a day; gave no number that was not measured.\n- Result: a decision or a number, stated honestly.\n- Reflection: one change for next time, such as a written status before the demo.",
+      "tests": "Explains unfinished work honestly to a non-technical stakeholder, in STAR form.",
+      "tiers": [
+        "faang",
+        "product",
+        "gcc"
+      ],
+      "asked_like": "Behavioral stories (STAR, leadership principles, past-project deep dive)",
+      "rubric": {
+        "strong": "A specific story with the candidate's own actions. Shows they separated what was proven from what was not. Gives an owner and a date for open items. Honest about the result.",
+        "average": "The team does everything and the candidate's part is unclear. The result is vague.",
+        "red_flags": "Claims success that was not measured. Blames the stakeholder. Gives no concrete action."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "basic",
+      "category": "Project deep-dive",
+      "level": "mid",
+      "q": "Defend step 1 of the course's Basket Bazaar triage app as your own project. Why does the model never look up the order itself? What does plain code check after the model? Name one gap you would close before a customer uses it on Monday, and how you would close it.",
+      "follow_ups": [
+        "Why not let a vendor's agent framework run the whole loop?",
+        "How many model calls does one triage make, and what does each one cost?"
+      ],
+      "lessons": [
+        "05",
+        "06"
+      ],
+      "answer_outline": "- The model asks for the order through a lookup tool that runs in our code, so the order data comes from the export and not from memory.\n- A second model call fills a typed case form with fixed field types.\n- Plain code checks the order and the quantity against the export and holds any case that fails.\n- Name a real gap: evals, error handling or cost limits. Give a concrete way to close it before Monday.\n- Defend the two model calls with measured cost and latency, not with a guess.",
+      "tests": "Defends one real design choice in the course app and names the gap before real use.",
+      "tiers": [
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Building LLM and agent applications for customers (tool calling, RAG, structured output, MCP)",
+      "rubric": {
+        "strong": "Explains each design choice by the failure it prevents. Points at the lookup tool and the check. Names a gap before real use and a plan to close it.",
+        "average": "Describes what the code does but not why. Names no gap.",
+        "red_flags": "Claims the app is production-ready. Cannot say what the check covers. Defends the model's answer as correct."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "basic",
+      "category": "Coding",
+      "level": "mid",
+      "q": "Write check_claim(rec, orders) for a case record with order_id, item and qty_claimed. orders maps order_id to a dict of item to qty_delivered. Return a list of problems, not an exception. The problems are: unknown order; item not on that order; qty_claimed above qty_delivered; and qty_claimed outside 1 to 20. Say what the lookup costs per case, and list the tests you would write.",
+      "lessons": [
+        "06"
+      ],
+      "answer_outline": "- Nested dicts make each lookup O(1) on average. Building them costs O(n) once.\n- Return all problems as a list, so the case is held with reasons.\n- Checks: unknown order; item not on that order; claimed above delivered; quantity outside 1 to 20.\n- Tests: one per problem, plus one clean record that returns an empty list.\n- Edge cases the candidate must find: qty_claimed of 0 or negative (outside 1 to 20, so test both); an order whose item dict is empty (every item is 'not on that order'); a claim whose order_id is absent from orders (a problem, not a KeyError).",
+      "tests": "Writes a practical validation function in the stack and tests every rule.",
+      "tiers": [
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Integrating with customer systems: APIs, auth, data pipelines, legacy",
+      "rubric": {
+        "strong": "Uses lookups keyed by order and item. Returns every problem. Tests each rule and a clean record. Finds the 0, negative and empty-item-dict cases unprompted.",
+        "average": "Checks only the order id, or returns the first problem only. Misses one of the edge cases.",
+        "red_flags": "Trusts the model's quantity. Scans a list for every case and calls it fine. Raises instead of holding the case."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "basic",
+      "category": "Fundamentals deep-dive",
+      "level": "mid",
+      "q": "A customer's integration is 3,000 lines of Python with no tests and a README that is out of date. The ops lead needs one change in three days. Describe your first day: what you read first, how you map the code, what you run on real input before you touch it, and what you would say you did not yet understand.",
+      "lessons": [
+        "02"
+      ],
+      "answer_outline": "- Find the entry points and the data the code reads. Run it on real input rather than reading all 3,000 lines.\n- Draw a module map: what each part calls, and mark the parts that touch money or customer data.\n- Record what the code does today on a sample, so you can see any change.\n- Plan the one change with a test that fails first.\n- List what you do not understand yet, with an owner, so nothing is guessed.",
+      "tests": "Learns an unfamiliar codebase fast, with a method and a clear list of unknowns.",
+      "tiers": [
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Learning an unfamiliar codebase quickly",
+      "rubric": {
+        "strong": "A method: entry points, data, module map, a recorded baseline, a failing test first. Names the unknowns and the risks.",
+        "average": "Reads the code top to bottom with no baseline and no plan for the change.",
+        "red_flags": "Rewrites the code before understanding it. Says it understood everything in a day. Changes behaviour with no test."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Trade-offs and judgement",
+      "level": "senior",
+      "q": "Your triage feature has a 12-case eval set. The shipped prompt scores 12 of 12, and the candidate also scores 12 of 12. A teammate says equal scores mean ship the candidate, because it reads cleaner. Both score 12 of 12. What does that tell you? What do you check before you agree? Then say how you would make the set separate the two prompts: the case-by-case results you compare, and the cases near the decision boundary you add.",
+      "follow_ups": [
+        "A new case from the support queue fails on the shipped prompt and passes on the candidate. What does that tell you, and does the gate treat it differently from a case that breaks?",
+        "The candidate fixes two cases and breaks one that the shipped prompt passed. What does the gate do, and who signs the decision?"
+      ],
+      "lessons": [
+        "10",
+        "11"
+      ],
+      "answer_outline": "- Both at 12 of 12 means the set is saturated: no case fails either prompt, so it cannot show a difference, and equal scores prove nothing about change.\n- Compare case by case anyway. A swap (one case fixed, one broken) is invisible in a total, and a set that everything passes cannot catch it.\n- Add real failures from the support queue, labelled before the run, and cases near the decision boundary that the shipped prompt gets right only some of the time.\n- The gate: any case that passed in the shipped version and fails in the candidate blocks the release, and the named case is the reason.\n- Keep the set growing from incidents. Saturated cases move into the regression set; they are not deleted.",
+      "tests": "Judges whether equal eval scores mean no change, and proposes a case set that can tell prompts apart.",
+      "tiers": [
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Evaluating customer AI systems (evals, regression tests, guardrails)",
+      "rubric": {
+        "strong": "Refuses 'equal means safe'. Says what 12 of 12 on both means (saturation). Compares per case. Proposes hard, labelled, real cases near the boundary, and states the gate rule: any pass-to-fail flip blocks.",
+        "average": "Says 'add more tests' with no boundary cases, or compares only the totals.",
+        "red_flags": "Ships on equal scores. Re-labels the eval set until the candidate passes."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Coding",
+      "level": "senior",
+      "q": "Write a pytest regression gate. Inputs: the eval case ids, and two dicts from case id to pass or fail, one for the shipped prompt and one for the candidate. Fail when a case passed in the shipped run and fails in the candidate, when a case has no result in either run, or when the eval set has duplicate ids. Return the problems with reasons. State the time complexity for n cases.",
+      "follow_ups": [
+        "A waiver lets the team accept one named regression. How does the gate record it, and when does it expire?",
+        "The eval file is empty. Should the gate pass or fail, and why?"
+      ],
+      "lessons": [
+        "11"
+      ],
+      "answer_outline": "- Check duplicates by comparing len(list) with len(set(ids)).\n- For each id: a missing result in either run is a problem; shipped True and candidate False is a regression.\n- Return a sorted list of problems with reasons. The pytest test asserts the list is empty.\n- Complexity: O(n) time and O(n) memory for n cases.\n- Edge cases: an empty eval set should fail. A missing result must be reported, never hidden by a default value.",
+      "tests": "Writes a regression gate that fails loudly on missing or duplicate results, and states its complexity.",
+      "tiers": [
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Evaluating customer AI systems (evals, regression tests, guardrails)",
+      "rubric": {
+        "strong": "Explicit checks for missing ids and duplicates. Reports reasons. States O(n). Tests the empty and missing cases, and the test fails loudly.",
+        "average": "Compares values only, misses missing or duplicate ids, returns a boolean.",
+        "red_flags": "Uses dict.get with a default that hides a missing result, so an absent case passes silently. Calls the live model inside the gate, so the test is flaky."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Production and scale",
+      "level": "senior",
+      "q": "A new triage prompt must ship before a Friday freeze. The gate fails on one of 12 eval cases that the shipped prompt passes, though the average rose from 11.4 to 11.6 of 12. The customer's ops lead wants it live anyway. Walk through the release decision: what the gate says, who decides, what you offer the customer, and what the release note records.",
+      "follow_ups": [
+        "The customer signs a waiver for the one case. How is it recorded, and when does it expire?",
+        "The gate ran on last month's eval file. How would the release note show that?"
+      ],
+      "lessons": [
+        "11",
+        "14",
+        "20"
+      ],
+      "answer_outline": "- The gate is the decision. Its verdict and the failing case go into a release note that the deploy reads.\n- Refuse the release on any regression, even when the average rises. One failed case can be the one that matters.\n- Offer the customer three options: keep the shipped prompt, fix the candidate and re-run the gate, or a signed, dated waiver with the risk and an owner.\n- The release note records the image tag, the prompt version, the eval file version, the scores and the budgets.\n- Guard against shipping on the average alone, and against a stale eval file.",
+      "tests": "Runs a release decision under a gate, a regression and a deadline, with the record that proves it.",
+      "tiers": [
+        "product",
+        "gcc"
+      ],
+      "asked_like": "Evaluating customer AI systems (evals, regression tests, guardrails)",
+      "rubric": {
+        "strong": "States the gate rule and that the note decides the deploy. Offers the three options with an owner and an expiry. Records every version that was tested.",
+        "average": "Says 'escalate to the manager' with no rule. Has no release note.",
+        "red_flags": "Overrides the gate in the deploy script. Ships on the average. Hides the failing case from the customer."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "System design",
+      "level": "senior",
+      "q": "Design authentication for a customer's order API that your triage service calls every few seconds. Security forbids shared passwords and wants one identity per integration, least-privilege scopes and no secret in code. Give the token flow, the scopes for a reader and a credit writer, the token lifetime and where the client secret lives.",
+      "follow_ups": [
+        "A support agent must approve each credit through the customer's SSO. Where does the human's identity fit?",
+        "A client secret shows up in a log file. Walk through the first hour."
+      ],
+      "lessons": [
+        "13"
+      ],
+      "answer_outline": "- A service account per integration, with the OAuth 2.0 client credentials flow: the client ID and secret are exchanged at the token endpoint for a short-lived access token that lists scopes.\n- One scope per permission: orders:read for the reader, credits:write only for the credit writer. The API checks the signature and the scope on every call.\n- Short lifetime, so a leaked token expires quickly. Cache the token and refresh it before expiry.\n- The secret sits in the customer's secret store, is read at start and is never printed.\n- Human approval goes through SSO (OIDC or SAML) with the customer's identity provider, kept separate from the service account.",
+      "tests": "Designs service-account authentication with least privilege, token lifetime and secret rotation.",
+      "tiers": [
+        "gcc",
+        "product",
+        "faang"
+      ],
+      "asked_like": "Enterprise authentication: OAuth2/OIDC, SAML SSO, service accounts, secrets management",
+      "rubric": {
+        "strong": "Separates service identity from human identity. Uses one scope per permission. Names a token lifetime. Treats the secret as a password held in the store.",
+        "average": "Says 'use OAuth' and 'store the secret safely' with no flow and no rotation.",
+        "red_flags": "One shared key for all integrations. Trusts a JWT's claims without a signature check. Keeps the secret in a Compose file or in the repository."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Debugging",
+      "level": "senior",
+      "q": "A code review flags this in a customer-facing service: claims = jwt.decode(token, options={\"verify_signature\": False}), then if \"credits:write\" in claims.get(\"scope\", \"\"): write_credit(). The customer's tokens are RS256 and the public key is in config. Explain what a crafted token can do against this code. Write the failing test: what token does it send to POST /credits, what must the API answer, and what must be true of write_credit()? Then give the fix. Last, say what a 401 and a 403 from the customer's API each tell you.",
+      "lessons": [
+        "13"
+      ],
+      "answer_outline": "- Without a signature check, the claims are whatever the token says. Anyone can craft a token with scope credits:write, sign it with any key or none, and write_credit() runs. The substring test also matches longer scope names, so it is wrong even for a valid token.\n- Test first: a forged token with scope credits:write and a signature the key does not verify. POST /credits must answer 401, and write_credit() must never be called. On the buggy code this test fails.\n- Fix, in order: verify with the public key and pin the algorithm, jwt.decode(token, key, algorithms=[\"RS256\"], audience=...). Never take the algorithm from the token header. Expiry is checked on the same call. Then check the scope as a split set: needed in set(scope.split()).\n- 401 means no valid identity: missing, forged, expired or wrong audience. The fix is a fresh, valid token. 403 means a valid caller without the scope: the fix is in the account's scopes. They point to different fixes, so do not mix them up.\n- Average answers name the bug but show no test, or treat 401 and 403 as the same. Strong answers show the forged token and the failing test, and state the fix in order (lesson 13's mock does the verify step).",
+      "tests": "Finds an unverified-token bug, writes the test that shows it, fixes it in order, and reads 401 and 403 correctly.",
+      "tiers": [
+        "gcc",
+        "faang"
+      ],
+      "asked_like": "Enterprise authentication: OAuth2/OIDC, SAML SSO, service accounts, secrets management",
+      "rubric": {
+        "strong": "Explains that unverified claims let a crafted token write credits. Writes the failing test first (forged token, expect 401, write_credit never called). Verifies with the key, pins the algorithm, checks audience and expiry, then checks scope as a split set. Reads 401 and 403 correctly.",
+        "average": "Names the bug but does not show how to test it, or mixes up 401 and 403, or fixes only the scope check.",
+        "red_flags": "Says decode is fine because the token came from our identity provider. Fixes the bug by logging the claims. Catches the exception and carries on. Says a signature check is enough without pinning the algorithm."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Debugging",
+      "level": "mid",
+      "q": "A release of the triage service reads its secret setting name on the first request, not at start-up. After the deploy on the customer's Compose host, the container stays up, /health answers ok, the deploy's up --wait passes, and every triage request returns 500. Why did the health wait pass, and how do you find the cause from the container logs? Then give the fix, the change that stops the next release from shipping the same gap, and the one-command rollback the change board can run. The image tag comes from TRIAGE_TAG.",
+      "lessons": [
+        "14"
+      ],
+      "answer_outline": "- The health wait passed because /health returns ok without reading any setting. The process was up, so the check was green while every request failed.\n- Read the container logs: each triage request logs a traceback ending in a KeyError for a setting name. Compare that name with the name the Compose file passes to the container.\n- Fix the gap: read and validate every required setting at start-up. A missing setting makes the process exit with a readable error that names it, so the container exits and up --wait fails on the next deploy.\n- Fix the mismatch: one name in the code and in the Compose file, checked against .env before the release ships.\n- Rollback: set TRIAGE_TAG back to the previous pinned tag and run up -d --wait. The old image is still on the host, and tags are pinned per release. Do not print the resolved Compose config in a shared terminal: it shows secret values.",
+      "tests": "Diagnoses a config failure that a health check missed, and plans a safe rollback with pinned tags.",
+      "tiers": [
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Debugging a broken API or integration (interview exercise)",
+      "rubric": {
+        "strong": "Explains why /health passed: it checks nothing about settings, and the process was up. Finds the cause in the per-request logs. Validates required settings at start-up so a missing one exits the container and up --wait fails. Rolls back by setting TRIAGE_TAG to the previous pinned tag and running up --wait. Avoids printing secrets.",
+        "average": "Restarts the container and hopes. Fixes the name but adds no start-up validation, so the next missing setting is still silent. Rolls back by rebuilding from latest.",
+        "red_flags": "Pastes the environment into a ticket. Uses the latest tag for every release. Edits the image by hand on the customer's host."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "System design",
+      "level": "senior",
+      "q": "A customer's security team runs the triage service on a network with no route to the internet, and the model API is outside. Design the path from the service to the model: how the service reaches the model through the egress proxy, what the customer allows and logs, and the test that proves a direct call fails. Then name one NO_PROXY entry that, left out, produces an error that points at the wrong place, and say what the caller sees.",
+      "follow_ups": [
+        "The model vendor moves to a new hostname next quarter. What breaks, and what changes?",
+        "The customer adds a second region with the same rules. What is identical, and what is per region?"
+      ],
+      "lessons": [
+        "14",
+        "15"
+      ],
+      "answer_outline": "- The service sits on an internal network with no route out. The only way out is an egress proxy on that network, with an allowlist for the model host, a final deny-all rule, and a log of every call.\n- Internal names are excluded from the proxy with NO_PROXY. Set the proxy variables the client actually reads (HTTP_PROXY and HTTPS_PROXY), and publish no ports on the customer network.\n- The test: from inside the service container, a direct call to the model host fails, and the proxied call to the allowed host works.\n- The trap: a name missing from NO_PROXY, such as the customer API host, is sent to the proxy. The proxy refuses it with a 403 because the name is not on the allowlist. The service reports a 502 that names that host, which looks like an outage on the customer's side.\n- Fix: add the name to NO_PROXY, and check the proxy log to confirm the refusal and the route each call took.",
+      "tests": "Designs a locked-down network path to an external model, with a tested allowlist.",
+      "tiers": [
+        "gcc",
+        "faang"
+      ],
+      "asked_like": "System design for an enterprise AI solution",
+      "rubric": {
+        "strong": "One allowlisted egress with deny-all, no route out, and no published ports on the customer network. Tests the direct failure from inside. Names the NO_PROXY trap, which yields a 502 that points at the wrong host, and its fix. Keeps per-region settings separate.",
+        "average": "Says 'use a proxy' with no allowlist, no internal-name rule and no test.",
+        "red_flags": "Publishes a port on the customer network. Uses allow-all in the proxy. Tests only from the laptop."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Debugging",
+      "level": "senior",
+      "q": "A customer says triage was slow for an hour yesterday. p95 for /triage went from 0.4 s to 9 s for 60 minutes. Request rate was flat. About 7% of triage requests in that hour were retried, and the retried requests were the slow ones. The trace of one slow request shows 8 s in the customer API span. You have a metric of requests and latency by route, structured logs with a request id, and a trace for each call. What do you check next, and what can the data not tell you?",
+      "lessons": [
+        "04",
+        "16"
+      ],
+      "answer_outline": "- The arithmetic: if p95 is 9 s, more than 5% of requests were that slow. About 7% were retried and those were the slow ones, so retries fit the tail.\n- Next check: the retried requests in that hour. Count the attempts per request, the wait between attempts, and the status of each attempt (429, 503, Retry-After or a fixed backoff). Then check whether the 8 s in the customer API span is one slow attempt, or several attempts plus our own retry waits inside the span.\n- Join logs to the trace by request id, and confirm the status code of each attempt. The requests that did not retry stayed fast, so the normal code path is an unlikely cause.\n- Still unknown: why the customer API was slow (its load, its database, its network), whether our retries caused the slowdown or followed it, and what the customer's own dashboards showed.\n- Metric labels stay as route and status code, never order ids.",
+      "tests": "Reads metric and trace data to choose the next check, separates retry waits from the customer's time, and names what the data cannot show.",
+      "tiers": [
+        "gcc",
+        "faang"
+      ],
+      "asked_like": "Debugging a broken API or integration (interview exercise)",
+      "rubric": {
+        "strong": "Reads the data: the slowdown is in the retried requests, and the span may include our own retry waits. Checks the retry count, the waits and the status of each attempt before blaming the customer API, and says why. States what the data cannot show: the customer's cause, and cause versus effect of the retries.",
+        "average": "Restates the numbers without a next check, or blames the customer API without checking the retry waits inside the span.",
+        "red_flags": "Restarts the service first. Adds a metric per order id. Says the model was slow with no evidence for it."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Coding",
+      "level": "senior",
+      "q": "Implement a cache for a support feature with three limits: max_entries, max_total_size in characters, and ttl_seconds, with the clock passed in so tests need no waiting. get and put are O(1) on average. A value larger than max_total_size is refused. An expired entry is a miss. The key includes the tenant and the prompt version. State the complexity and the tests you need.",
+      "follow_ups": [
+        "Two threads call put at the same time. What breaks, and what do you add?",
+        "Three worker processes share the cache. Is an in-process cache still the right tool?"
+      ],
+      "lessons": [
+        "18"
+      ],
+      "answer_outline": "- Use an OrderedDict in recency order: a get moves the key to the end; a put inserts at the end and evicts from the front while any limit is exceeded.\n- Store (value, size, expires_at). Check the expiry on read and remove an expired entry.\n- Refuse any value larger than the total size limit before inserting.\n- Complexity: O(1) average per get and put, amortised over evictions. Memory is bounded by max_total_size.\n- Tests: eviction order, a get refreshes recency, expiry is a miss, an oversized value is refused, and the same question for two tenants gives two entries.",
+      "tests": "Implements an LRU cache with three limits, and states its complexity and edge cases.",
+      "tiers": [
+        "faang",
+        "product",
+        "gcc"
+      ],
+      "asked_like": "LRU cache (extended with constraints)",
+      "rubric": {
+        "strong": "An O(1) LRU with all three limits. Refuses oversized values. Checks expiry on read. Puts the tenant in the key. Tests each edge. Says why the cache is not shared across processes.",
+        "average": "An LRU with a max count only, no expiry or size limit, or a list scan on every get, which makes it O(n).",
+        "red_flags": "Calls a list with index scans O(1). Shares answers between tenants. No expiry for policy answers that go stale."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Production and scale",
+      "level": "senior",
+      "q": "One customer's support feature has doubled its model bill in a month, at about 20,000 messages a day. The team's first idea is a cheaper model. Before you touch the model, what do you measure, which two changes do you make first, and what budget do you set per customer? What happens when the budget is breached?",
+      "follow_ups": [
+        "Case histories have grown to 200 messages. What does the context trim keep, and what does it lose?",
+        "How do you warn the customer about a budget breach before the invoice arrives?"
+      ],
+      "lessons": [
+        "18"
+      ],
+      "answer_outline": "- Measure input and output tokens per call and per resolved case, latency per call and the cache hit rate, on real traffic, split by tenant.\n- Trim the context to a token budget: keep the system message and the newest messages, and check the model's own token count.\n- Add an answer cache keyed by tenant and prompt version, with a size limit and an expiry.\n- Set a per-tenant token and latency budget with an alert before the monthly bill. A breach raises the alert and sends cases to a person.\n- A cheaper model is a later change, measured on the eval set first.",
+      "tests": "Diagnoses cost growth from measurement before any change, and sets per-tenant budgets.",
+      "tiers": [
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Building LLM and agent applications for customers (tool calling, RAG, structured output, MCP)",
+      "rubric": {
+        "strong": "Measures before changing. Names context trimming and a cache keyed by tenant and version. Sets a per-tenant budget with an alert. Tests a cheaper model on the eval set before switching.",
+        "average": "Says 'use a cheaper model' or 'add a cache' with no measurement and no key.",
+        "red_flags": "Shares a cache across customers. Caches with no size limit. Guesses the cause without measuring."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Trade-offs and judgement",
+      "level": "senior",
+      "q": "An agent can look up orders and propose refunds through an MCP server with six tools, one of which issues a refund. Keep it from refunding the wrong order or refunding without approval. Name the layers: which tools the model is offered, what the server checks, where a person approves, and how you test refusals without a model.",
+      "lessons": [
+        "19"
+      ],
+      "answer_outline": "- Offer the model only the tools this step needs (an allow-list). The refund tool exists on the server but is never offered.\n- The server checks every argument against the source: the order exists, the item is on it, the amount is under the policy cap.\n- Money moves only after a person approves a proposal. The model proposes; code and a person decide.\n- Cap the steps per run, for example at most three model calls.\n- Test the refusals with plain calls to the server and no model, so they run in CI.",
+      "tests": "Keeps tool use and money movement inside layers of control, tested without a model.",
+      "tiers": [
+        "faang",
+        "product"
+      ],
+      "asked_like": "Building LLM and agent applications for customers (tool calling, RAG, structured output, MCP)",
+      "rubric": {
+        "strong": "Allow-list, server-side argument checks, human approval and a step cap. Tests refusals without the model. Knows the server's full tool list is not the model's tool list.",
+        "average": "Relies on the system prompt to avoid wrong refunds. No human approval.",
+        "red_flags": "Offers every server tool to the model. Trusts the model's order id. Tests only with a live model call."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Production and scale",
+      "level": "senior",
+      "q": "After a two-minute outage, the customer's order API is down for twenty minutes. Your job runs 200 workers. Each retries a 503 four times with a fixed one-second wait, and each retry is a fresh request. What does the customer's API see, why does the outage last longer, and what do you change in the client and in the job?",
+      "follow_ups": [
+        "A 429 arrives with Retry-After: 30. What does the client do with it, and does that attempt count toward the cap?",
+        "Some of these calls are writes. Which changes are safe for them without an idempotency key?"
+      ],
+      "lessons": [
+        "04",
+        "28"
+      ],
+      "answer_outline": "- Fixed waits make 200 workers retry in waves, so the recovering API sees several times its normal load.\n- Retry only transient codes (429, 502 to 504, transport errors) and honour Retry-After.\n- Exponential backoff with jitter spreads the retries, and a cap limits the attempts.\n- Writes carry an idempotency key, so a retry after a lost reply cannot write twice.\n- Stop at the cap and report the failed calls, rather than retrying without limit.\n- A circuit breaker stops calls during a sustained outage, and lets one test call through after a cooldown. The per-call cap is the client's rule; a shared budget across the 200 workers is a platform decision (lesson 28).",
+      "tests": "Explains synchronised retries, and designs jittered, capped retries with keyed writes.",
+      "tiers": [
+        "faang",
+        "gcc"
+      ],
+      "asked_like": "REST API consumption: pagination, retries, idempotency, rate limits",
+      "rubric": {
+        "strong": "Explains the synchronised retry waves and the load multiplier. Adds jitter, honours Retry-After, caps the attempts and keys the writes.",
+        "average": "Adds jitter but no cap or Retry-After, or proposes more retries with a longer timeout.",
+        "red_flags": "Increases the retries to be safe. Retries 400 and 401. Ignores Retry-After."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Project deep-dive",
+      "level": "senior",
+      "q": "Defend the app's storage and retries as your own project. Each case is stored in a CSV with a dedup key built from the normalised order, item and issue. Model and transient failures are retried up to the number of tries set in TRIAGE_MODEL_ATTEMPTS, and other errors return a clear message. Why a CSV and not a database at this stage? Why this key? When do you change each choice?",
+      "lessons": [
+        "04",
+        "05",
+        "11"
+      ],
+      "answer_outline": "- CSV: one file a customer's team can open, enough for one customer's volume. The cost: no locking for concurrent writers and no query language.\n- The dedup key comes from the case fields, so a retried request maps to the same case and is not stored twice. A random id would not dedupe retries.\n- Retries only for transient errors (429, 502 to 504) with backoff, at most four attempts. Other errors return a clear message at once.\n- Change to a database when more than one writer runs or queries need indexes. Change the key when two different cases can share the same fields.\n- Tests: a recorded model call, and a test that a duplicate request stores one case.",
+      "tests": "Defends a storage and retry design with its limits, and names the triggers to change it.",
+      "tiers": [
+        "gcc",
+        "faang",
+        "product"
+      ],
+      "asked_like": "Integrating with customer systems: APIs, auth, data pipelines, legacy",
+      "rubric": {
+        "strong": "Argues the CSV choice with its limits. Ties the dedup key to retry safety. Names the retry set and the bound. Gives explicit triggers for change.",
+        "average": "Says 'CSV is simple' and 'the key is unique' without the trade-off.",
+        "red_flags": "Claims a CSV is safe for concurrent writers. Builds the key from a timestamp, so every retry is new. Retries on 400 or 401."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Trade-offs and judgement",
+      "level": "senior",
+      "q": "Your answer cache for a customer's support replies has a 45% hit rate. This morning the customer changed its refund window, and some cached answers still quote the old one. How do you set the time to live, how do you invalidate on a policy change, and what do you tell the customer about answers served from the cache in the last hour?",
+      "lessons": [
+        "07",
+        "18"
+      ],
+      "answer_outline": "- Set the time to live from how fast the source changes. A policy change is a version change: put the policy version in the cache key, so old answers stop matching.\n- Invalidate by bumping the version and clearing the tenant's entries when a new policy is published.\n- Price the hit rate: the saved model calls against the risk of a stale answer. Use a short lifetime for refund rules and a longer one for general FAQ text.\n- Tell the customer the exact window of possibly stale answers, the cleanup step, and where the affected cases are logged.\n- Never share caches across tenants.",
+      "tests": "Sets a cache lifetime and an invalidation rule for a policy change, and a customer-facing plan.",
+      "tiers": [
+        "product",
+        "gcc"
+      ],
+      "asked_like": "Building LLM and agent applications for customers (tool calling, RAG, structured output, MCP)",
+      "rubric": {
+        "strong": "Ties the time to live to the change rate. Puts the policy version in the key. Prices the hit rate against staleness. Gives a precise, honest message to the customer.",
+        "average": "Lowers the time to live with no version key and no customer message.",
+        "red_flags": "Flushes everything silently. Caches across tenants. Cannot say which answers were stale."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Trade-offs and judgement",
+      "level": "senior",
+      "q": "You have 15 minutes on a steering call. The customer's ops lead asks, 'When is it live?' You will show the proof of concept live. It reads one 200-row CSV on a laptop, keeps its key in a local settings file, and has been right on every test message. What gap list do you show, in what order do you close the gaps, what date do you quote, and what do you not promise yet?",
+      "follow_ups": [
+        "The customer's network team says the POC cannot leave their VPC for six weeks. Does your date move, and what do you say?"
+      ],
+      "lessons": [
+        "21",
+        "07",
+        "22"
+      ],
+      "answer_outline": "- Gaps by area: real data and bad rows; secrets in the customer's store; the customer's network and egress; timeouts, retries and idempotency; an eval gate on every release; logs, traces and alerts; a runbook and a restore drill; cost per customer; a handover the customer's team has rehearsed.\n- Close first the gaps that block the first live day: data, secrets, network and retries.\n- Quote a date only after every gap has an owner and an estimate.\n- Say what the demo does not prove, and show the gap list on screen next to the demo.\n- Do not promise volume, uptime or cost until they are measured.",
+      "tests": "Gives an honest date and gap list in a live presentation, without promising from a demo.",
+      "tiers": [
+        "product",
+        "gcc"
+      ],
+      "asked_like": "Technical presentation or live demo to a customer",
+      "rubric": {
+        "strong": "A live demo with a gap list on the same screen. Gaps grouped by area, with owners, ordered by what blocks go-live. A date from the gap list, and an explicit list of what is not promised.",
+        "average": "Lists technical gaps but quotes a date from the demo, or leaves out owners.",
+        "red_flags": "Promises a date from the POC. Says the POC is 'basically production'. Ignores the customer's network."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Coding",
+      "level": "senior",
+      "q": "A customer's script totals quantities per item and reports 14 eggs where the true count is 45. It ignores dozens and duplicate copies. Write a characterisation test first. Pin only the totals the old code gets right (milk and bread), and record eggs as a documented known difference with its reason, without pinning 14 as correct. Then write one failing eggs test that expects 45 after the fix, and never edit the pinned values. Then refactor into a core function and a customer config, so a second customer needs only a new config.",
+      "follow_ups": [
+        "Which function must never mention the customer's name, and how would you check that automatically?"
+      ],
+      "lessons": [
+        "25",
+        "05"
+      ],
+      "answer_outline": "- Characterisation check: run the old function on the recorded export. Pin milk and bread, where the old code is right. Record eggs as a known difference: 14 old, 45 true, with the reason (copies, dozens, the spelling 'Eggs ').\n- Write the failing eggs test: it expects 45 and fails on the old code. Never edit a pinned value to make a test pass.\n- Refactor in small steps, keeping the pinned checks green: read rows, normalise text, convert units to a base unit, deduplicate by key, total.\n- Move the customer's rules (custom units and spellings) into a config. Keep the one customer-specific function outside the core.\n- Second customer: a new config, the same core. A check that the core never names a customer or store.",
+      "tests": "Refactors safely behind a characterisation check, and separates core from customer config.",
+      "tiers": [
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Refactoring and re-engineering broken code",
+      "rubric": {
+        "strong": "Writes the characterisation check first, pinning only totals the old code gets right, and records the eggs difference with its reason. Writes the failing eggs-45 test, then refactors in steps with the pinned checks green. Separates core from config. Proves the second customer needs no core edit.",
+        "average": "Refactors without a characterisation check, or copies the script for the second customer.",
+        "red_flags": "Pins 14 eggs as correct, or changes expected values to make a test pass. Forks the core for each customer. Deletes the old test."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Debugging",
+      "level": "senior",
+      "q": "A reviewer reads this route in the multi-store service: path = f'stores/{store_id}.csv', then pd.read_csv(path), and the only check is os.path.exists(path). A caller sends store_id='../orders_all', a file one level above stores/ that holds every store's lines. What does the caller get? Why does the existence check not help? Write the fix.",
+      "follow_ups": [
+        "The team strips '../' and rejects slashes. Is that enough? What about encoded input or a symlink?"
+      ],
+      "lessons": [
+        "23"
+      ],
+      "answer_outline": "- The caller gets every store's lines: the path resolves outside stores/ to the all-stores file.\n- The existence check proves the file is there, not that the caller may read it. Existence is not authorisation.\n- Fix: look the id up in the known store list first and return 404 for anything else, before any path is built. Never join request text into a path.\n- Test: requests with '../', encoded slashes and unknown ids get 404 and read no file.\n- Also check that the store named in the request matches the tenant in the caller's token.",
+      "tests": "Spots a path traversal that leaks another tenant's data, and writes the fix and its test.",
+      "tiers": [
+        "gcc",
+        "faang"
+      ],
+      "asked_like": "Debugging a broken API or integration (interview exercise)",
+      "rubric": {
+        "strong": "Shows the traversal result. Explains that existence is not authorisation. Fixes with a lookup before any path is built, and adds a test with traversal inputs. Checks the token's tenant too.",
+        "average": "Strips '../' with a regex but keeps the join, and adds no test.",
+        "red_flags": "Blacklists characters only. Says 'the folder is private, so it is fine'. Ignores encoded input."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "System design",
+      "level": "staff",
+      "q": "The triage service runs on two nodes behind a proxy at 20 requests a second. The next release adds a missing_items column to the orders file both nodes read, and changes how the service answers. Design the rollout so no request fails: the order of steps, the health gate, the data change, the rollback at each step, and when the old column is removed.",
+      "follow_ups": [
+        "The team wants to drop the old column in the same release. What breaks, and when is it safe?",
+        "Version 2 has a bug found after the cleanup step. What is your rollback now?"
+      ],
+      "lessons": [
+        "24",
+        "14"
+      ],
+      "answer_outline": "- Expand first: add the new column with a safe default that the old code ignores, so the old code keeps working.\n- Roll the code one node at a time behind the proxy. Each node must pass its health check before the next one starts. The new code refuses to start if the column is missing.\n- The proxy retries on the other node when one refuses, so clients see no errors.\n- Rollback is the previous tag with the same command, and the proxy is reloaded when a node's address changes.\n- Contract (remove the old column) only after every node runs the new code and the rollback window has closed. After that, a rollback is a new fix, not a tag change.",
+      "tests": "Designs a zero-downtime rollout with expand, deploy and contract, and a rollback at each step.",
+      "tiers": [
+        "gcc",
+        "faang"
+      ],
+      "asked_like": "System design for an enterprise AI solution",
+      "rubric": {
+        "strong": "Expand, deploy, contract, with a health gate for each node and a proxy reload. Says that rollback after contract is no longer simple. Sets the rollback window.",
+        "average": "Says 'rolling update' with no data step and no gate.",
+        "red_flags": "Restarts both nodes at once. Changes the data and the code in one step. Says the platform handles it without a gate."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Trade-offs and judgement",
+      "level": "senior",
+      "q": "The customer wants six stores after a one-store pilot. The six-store build is $24,000, of which the pilot is $8,000. Running cost is $3,600 a year for six stores. The problem costs the customer $43,200 a year. Define the share as the share of those annual losses the system prevents. At a 50% share, prevented losses are $21,600 a year. The pilot may show a 30% share, which scales the benefit in proportion. Compute the payback in months and the three-year net at 50% and at 30%. Then say what you offer.",
+      "lessons": [
+        "30",
+        "08"
+      ],
+      "answer_outline": "- At 50%: prevented losses $21,600 a year, gain after running cost $18,000, payback 24,000 / 18,000 = 16.0 months, three-year net 3 x 18,000 - 24,000 = +$30,000.\n- At 30%: prevented losses $12,960, gain $9,360, payback 24,000 / 9,360 = about 30.8 months, three-year net 3 x 9,360 - 24,000 = +$4,080. Still positive, but close to the edge.\n- Label the share as a target or a guess. The pilot is what measures it.\n- Offer the pilot first: six weeks in one store, $8,000 of the build, with a measured share and a go or no-go date.\n- Do not sign six stores on the guess. Say what result would change the answer.",
+      "tests": "Builds a payback case with sensitivity, and offers a go or no-go pilot instead of a yes or no.",
+      "tiers": [
+        "product",
+        "gcc"
+      ],
+      "asked_like": "Stakeholder communication, expectation setting, business case and ambiguity",
+      "rubric": {
+        "strong": "Computes payback and net at both shares, shows the sensitivity, labels each input, and offers a pilot with a go or no-go date rather than a plain yes or no.",
+        "average": "Computes only the 50% case, or answers yes or no with no sensitivity.",
+        "red_flags": "Signs off on the guess. Hides the 30% case. Gives the customer only the best-case number."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Behavioral",
+      "level": "senior",
+      "q": "Tell me about an engagement where the work cost more than the contract paid, or was about to. Answer in STAR form. What did you measure first, what did you tell the customer and when, what changed in scope or price, and what was the result in numbers?",
+      "follow_ups": [
+        "Which number was your guess at the start, and which did you measure?",
+        "What would you tell a new engineer to check in week one?"
+      ],
+      "lessons": [
+        "29",
+        "30"
+      ],
+      "answer_outline": "- Situation: the contract value and the real cost, both named.\n- Task: decide whether to go on, change the scope or stop.\n- Actions: measured the cost per unit (per query or per case), the people cost and the fixed cost. Separated measured from guessed. Told the customer early, in writing, with options.\n- Result with numbers: the scope change, the price change or the stop.\n- Reflection: what the candidate now checks first.",
+      "tests": "Owns a real engagement cost overrun, with measured numbers and early written communication.",
+      "tiers": [
+        "faang",
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Behavioral stories (STAR, leadership principles, past-project deep dive)",
+      "rubric": {
+        "strong": "A real engagement with numbers before and after. Early, written communication. A decision that changed scope or price. Honest about what was not solved.",
+        "average": "A story with no numbers, or the team did everything and the candidate's part is unclear.",
+        "red_flags": "No measurement. Hides the overrun. Blames the customer alone. Claims a result with no number."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Behavioral",
+      "level": "senior",
+      "q": "Tell me about a production incident on a customer system where you owned the fix or the customer communication. Answer in STAR form. What did you do in the first 15 minutes, how did you choose between rolling back and debugging, how did you restore the data, and what changed afterwards?",
+      "follow_ups": [
+        "What was your recovery target, and did you meet it?",
+        "What did the runbook say before the incident, and what changed in it?"
+      ],
+      "lessons": [
+        "17",
+        "24"
+      ],
+      "answer_outline": "- Situation: the symptom, the customer's impact and the time window.\n- First minutes: stop the harm first, by rolling back to the last good tag, and tell the customer the window.\n- Restore: from a backup taken before the change, restored to a scratch copy, checked, then cut over. Measure recovery time and data loss against the target.\n- After: a postmortem with the root cause, a runbook step, and a check that would have caught it.\n- Result in numbers: time to recover and records affected.",
+      "tests": "Runs an incident in the right order: stop the harm, restore safely, then learn.",
+      "tiers": [
+        "faang",
+        "gcc"
+      ],
+      "asked_like": "Behavioral stories (STAR, leadership principles, past-project deep dive)",
+      "rubric": {
+        "strong": "Stops the harm before debugging. Restores by checking a copy first. Measures recovery against a target. Changes a runbook or a check.",
+        "average": "Debugs the code for hours before rolling back. No message to the customer.",
+        "red_flags": "Restores over the live file without a check. Blames a colleague or the customer. No postmortem."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Production and scale",
+      "level": "senior",
+      "q": "A customer's security team sends an eight-question questionnaire on data residency, personal data in notes, audit logs and access, due Friday. Two answers have no evidence in your pack: the audit log you hold was written by a notebook, not the running service, and no independent assurance report exists yet. What do you send for each answer, and what do you refuse to write?",
+      "follow_ups": [
+        "The auditor asks for the production audit log. What do you provide, and what do you refuse?",
+        "Their CISO asks for a yes on a control you have not built. What do you say?"
+      ],
+      "lessons": [
+        "27",
+        "13"
+      ],
+      "answer_outline": "- Each answer points to evidence the reviewer can rerun: a setting, code, a test or a log sample from the running system.\n- A gap is written as a gap, with an owner and a date, never as a yes. A log written by a notebook is not evidence about the running system.\n- For an assurance report not yet held: say so, and give the planned audit and its scope, confirmed with the compliance team.\n- Personal data: show the scan result on the raw and the stored notes, and say that a pattern scan is not a full detector.\n- Refuse to answer yes to a control that is not built. Offer the plan and an interim control with dates.",
+      "tests": "Answers a security questionnaire with evidence, and refuses to claim what is not proven.",
+      "tiers": [
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Security, compliance and restricted environments (SSO/OAuth, secrets, VPC/on-prem, clearance)",
+      "rubric": {
+        "strong": "Each answer has a pointer or a gap. Separates lab evidence from production evidence. No yes that cannot be proven. Offers an interim control with dates.",
+        "average": "Answers all eight with yes, or refuses to answer at all.",
+        "red_flags": "Claims compliance. Calls a notebook log production evidence. Invents a report or a certificate."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Trade-offs and judgement",
+      "level": "senior",
+      "q": "A customer has asked for the same change three times in six weeks: re-running the totals after a late file. Your team fixes it by hand each time, about 2 hours. Product has no slot this quarter. Write the field report: each number and its source, the evidence rows, core or custom with the reason, one ask with an owner and a date, and the evidence that would prove you wrong.",
+      "follow_ups": [
+        "Product asks: is this one customer or many? What data do you answer with?"
+      ],
+      "lessons": [
+        "26",
+        "25"
+      ],
+      "answer_outline": "- The problem in one sentence: the customer, the count (three requests in six weeks) and the manual cost (about 2 hours each, 6 hours in total).\n- Each number has a source: the request log, the time records and the evidence rows.\n- Core or custom, with the reason: the re-run is a shared mechanism, so it is core.\n- One ask, with an owner and a date: a decision on a slot, or an estimate of the build.\n- What would prove you wrong: no other customer hits the late file, or the manual fix is cheaper than the build.",
+      "tests": "Writes a sourced field report that makes a clear product decision possible.",
+      "tiers": [
+        "product",
+        "gcc"
+      ],
+      "asked_like": "Stakeholder communication, expectation setting, business case and ambiguity",
+      "rubric": {
+        "strong": "Sourced numbers, a core or custom split with a reason, one ask with an owner and a date, and a named test that would change the view.",
+        "average": "A plea ('customer is angry, please fix') or numbers with no source.",
+        "red_flags": "Exaggerates the count. No sources. Asks for three things at once. Treats one customer's request as demand from the whole market."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Production and scale",
+      "level": "staff",
+      "q": "You hand the triage service to a customer's operations team of six, with two on-call engineers who did not build it. You leave next Friday. What goes in the handover pack, which alerts have runbooks, who owns each alert after you leave, and how do you prove the on-call can run it without you? Name the acceptance test you accept and the one you refuse.",
+      "follow_ups": [
+        "Their on-call runs the drill and skips the verify step. Do you sign off?",
+        "Who owns the cost alert after handover?"
+      ],
+      "lessons": [
+        "22",
+        "17"
+      ],
+      "answer_outline": "- The pack: a runbook for every alert, with symptom, first check, mitigation, verify and escalation. Secret names and where they live. The backup policy. An ownership matrix with no row still owned by us.\n- Validate the pack in code. A runbook without a verify step is refused.\n- Accept: their on-call runs one runbook alone on a staged fault, inside the time limit, with the drill recorded.\n- Refuse: a slide session that ends with 'any questions?', or a pack that nobody has run.\n- After handover, each alert and the cost budget have a named owner team.",
+      "tests": "Defines a handover the customer's team proves it can run alone.",
+      "tiers": [
+        "product",
+        "gcc"
+      ],
+      "asked_like": "Stakeholder communication, expectation setting, business case and ambiguity",
+      "rubric": {
+        "strong": "A pack with a runbook per alert, ownership by team, and a timed staged drill as acceptance. Refuses the slides-only acceptance.",
+        "average": "Lists documents but accepts a training session as proof.",
+        "red_flags": "Hands over with our team still owning the alerts. No drill. Secrets written into the pack."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Project deep-dive",
+      "level": "staff",
+      "q": "Defend the triage app at 10 times scale as your own project. Today it reads one orders file and keeps cases in a CSV on one server. At about 200,000 messages a day across 10 customers, what breaks first, what do you change first, and what would you not do yet? Name the numbers you would watch.",
+      "follow_ups": [
+        "Three workers now write the CSV store. What fails, and what do you move to?",
+        "The model quota is shared by all tenants. How do you stop one noisy tenant from using all of it?"
+      ],
+      "lessons": [
+        "16",
+        "18",
+        "20",
+        "23"
+      ],
+      "answer_outline": "- What breaks first: the CSV store (no safe concurrent writers), then the single process and the model quota, then the per-request read of the orders file.\n- Change first: a database for cases with a unique key for the dedup, a worker queue for model calls with a concurrency limit, and a per-tenant budget.\n- Not yet: sharding, multi-region, and a custom model router.\n- Quality: the eval gate on every prompt release, a weekly human sample, and a check on the label mix.\n- Numbers: latency by route at the 95th percentile, error rate, cost per resolved case and the share sent to a person.",
+      "tests": "Defends a scale plan with the first breaking point, the first changes and the numbers to watch.",
+      "tiers": [
+        "faang",
+        "product"
+      ],
+      "asked_like": "Evaluating customer AI systems (evals, regression tests, guardrails)",
+      "rubric": {
+        "strong": "Names the first breaking point with a reason. Specific changes with limits. Watches quality as well as latency. Says what it would not do yet.",
+        "average": "Says 'add Kubernetes and a cache' with no order of breakage.",
+        "red_flags": "No quality measure. Treats 10 times as 'add more servers'. Cannot name a number to watch."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Project deep-dive",
+      "level": "senior",
+      "q": "Your claim is that triage is 90% right. Defend it as your own project. What exactly does the 90% measure, and on which cases? Then say what a person checks on each release sample, how you measure agreement between that person and the model grader, and what you do when they disagree on a case.",
+      "follow_ups": [
+        "The team re-labels three cases after the candidate fails them. What do you do?"
+      ],
+      "lessons": [
+        "11",
+        "12",
+        "20"
+      ],
+      "answer_outline": "- State what the 90% measures: which cases, which grader, which date. A claim without its measurement is not evidence.\n- The eval set is built from real failures, with labels written before the run. Each case has a source and a date.\n- A person checks a fixed sample on each release, without seeing the model grader's score.\n- Agreement is measured with kappa, not only percent agreement. A disagreement is settled by a written label rule, and the case is then re-graded.\n- The gate: at least the agreed pass rate, and no regression against the shipped prompt. The release note records both the rate and the agreement.",
+      "tests": "Defends a quality claim with what it measures, the human check and its agreement with the grader.",
+      "tiers": [
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Evaluating customer AI systems (evals, regression tests, guardrails)",
+      "rubric": {
+        "strong": "Separates the claim from the evidence. Says what the 90% measures and on which cases. Describes the human check and how it agrees with the grader. Settles disagreements with a written rule, not by re-labelling.",
+        "average": "Repeats 90% with no statement of what it measures, or with no human check.",
+        "red_flags": "Tunes the labels to the candidate. Quotes demo accuracy as the result. No human check."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Fundamentals deep-dive",
+      "level": "senior",
+      "q": "Triage notes sometimes contain an email, a phone number or a card number. Describe the path from the raw note to the stored note and the audit log, and what each step must prove. Why keep a redacted copy rather than edit in place, and why must the audit log hold no note text?",
+      "lessons": [
+        "27"
+      ],
+      "answer_outline": "- The raw note arrives. A scan finds personal patterns (email, phone, card) and writes a redacted stored copy. The raw text is kept only as long as the agreed retention allows.\n- Test on a fixed sample: the raw copy gives hits, and the stored copy gives none.\n- A redacted copy, not an in-place edit, keeps the raw record for investigation under access control, and the stored record stays clean.\n- The audit log records who, when, what action, which record and which request. It holds no note text, because the log is stored and shared more widely.\n- A pattern scan is not a full detector, so a person samples the output.",
+      "tests": "Explains a personal-data path with a test, a redacted copy and an audit log that holds no content.",
+      "tiers": [
+        "gcc",
+        "product",
+        "faang"
+      ],
+      "asked_like": "Security, compliance and restricted environments (SSO/OAuth, secrets, VPC/on-prem, clearance)",
+      "rubric": {
+        "strong": "Explains the flow, a test with zero hits in the stored copy, why the audit log holds no content, and the limits of pattern scanning.",
+        "average": "Says 'redact personal data' with no test and no rule for the log.",
+        "red_flags": "Logs the note text for debugging. Redacts in place with no copy. Claims a regex is complete personal-data detection."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Coding",
+      "level": "senior",
+      "q": "Each line of the service log is JSON with request_id, event (received, model_call_start, model_call_end, replied) and ts_ms, an integer. Write a function that reads an iterable of lines, groups them by request_id, orders each group by ts_ms, and returns each request's total time from received to replied and its largest gap between two events. Lines can be out of order, a request can lack replied, and the file may not fit in memory. State the time and memory complexity.",
+      "follow_ups": [
+        "The log file is 40 GB. How do you group it without holding everything in memory?"
+      ],
+      "lessons": [
+        "16"
+      ],
+      "answer_outline": "- Stream the lines with json.loads. Skip and count malformed lines.\n- Group into a dict from request_id to a list of (ts_ms, event): O(n) time.\n- Sort each group by ts_ms: O(m log m) per group, O(n log n) at worst.\n- Total time is replied minus received when both exist. A missing event is reported, never guessed.\n- The largest gap is the maximum difference between consecutive events, named by its pair of events. For a 40 GB file, partition by request_id hash into buckets, or external-sort, so memory stays bounded.",
+      "tests": "Writes a streaming group-and-order function that handles missing and out-of-order events.",
+      "tiers": [
+        "faang",
+        "gcc"
+      ],
+      "asked_like": "Deduplicating records from files; log/call-stack to trace conversion",
+      "rubric": {
+        "strong": "Streams and groups in O(n). Sorts per group. Reports missing events instead of guessing. Handles malformed lines. Names partitioning or an external sort for the huge file. States the complexity.",
+        "average": "Works in memory and sorts everything. Fails on a request with no replied event.",
+        "red_flags": "Assumes the lines are in order. Crashes on one bad line. Reports timings with no check that they belong to one request."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "Coding",
+      "level": "mid",
+      "q": "Write a Pydantic model StoreConfig with store_id (it must be on a known list of stores), max_qty_per_line (an integer from 1 to 100) and late_after_hours (an integer from 1 to 168). Then write three pytest tests: a valid row loads, a zero limit fails with the field named in the message, and an unknown store is rejected. Say when this check must run, why, and state the cost per row.",
+      "lessons": [
+        "06",
+        "23"
+      ],
+      "answer_outline": "- A Pydantic model with bounded fields, and a validator for the known store list. The error names the failing field.\n- Run the validation at load time. A bad cell then stops the load, and no customer order is ever checked against a bad limit.\n- Tests: a valid row loads; zero is rejected with the field named; an unknown store is rejected; each runs in CI.\n- Edge cases: a blank cell must fail, not turn into a default. The known-store list lives in config, not in code.\n- Say why load time is the right moment: the bad value is easy to fix there and costly later.",
+      "tests": "Validates customer configuration at load time, with tested rules and no silent defaults.",
+      "tiers": [
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Integrating with customer systems: APIs, auth, data pipelines, legacy",
+      "rubric": {
+        "strong": "Bounded fields with Pydantic, a store check, tests for each rule, load-time validation, and a plan for blank cells.",
+        "average": "Validates in the order code instead of at load. No test for the bounds.",
+        "red_flags": "Silently defaults a bad cell. No tests. Validates after an order has already been booked."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "System design",
+      "level": "staff",
+      "q": "Customer two must go live in six weeks, reusing the triage service built for customer one. Design the reference deployment: what is shared core, what is per-customer config and code, which environment each customer gets, how a release reaches both, and how the second customer's data and secrets stay apart from the first's.",
+      "follow_ups": [
+        "Customer one wants a change only they need, and the release pipeline is shared. How does that change ship?",
+        "Customer two's network blocks the container registry you use. What is your fallback?"
+      ],
+      "lessons": [
+        "21",
+        "25",
+        "14"
+      ],
+      "answer_outline": "- Shared core: the triage service code, the eval gate and the runbook templates. Per customer: the config, the data, the secrets and the customer-specific rules, kept outside the core.\n- Each customer gets its own environment, with its own network, secret store and orders data. No shared database.\n- One release pipeline builds one image; each customer deploys a pinned tag, and the gate runs per customer before deploy.\n- Secrets are per customer and never copied between environments. Logs and traces are separated by environment.\n- Name the shared pieces that must stay identical and the ones that may differ, and write them down.",
+      "tests": "Designs a reusable reference deployment, with a clear shared core and a per-customer boundary.",
+      "tiers": [
+        "product",
+        "faang"
+      ],
+      "asked_like": "System design for an enterprise AI solution",
+      "rubric": {
+        "strong": "A clear boundary between shared core and per-customer parts. Separate environments, secrets and data. One pinned release reaching both customers through a per-customer gate.",
+        "average": "Shares one environment for both customers, or lists components with no boundary.",
+        "red_flags": "Copies the secrets between customers. Shares a database. Forks the code for each customer."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Coding",
+      "level": "senior",
+      "q": "Write class RateLimiter(max_calls, window_s, clock) for a client that must never send more than max_calls requests in any window_s-second window. clock is a function that returns seconds as a float and is passed in, so tests need no waiting. acquire() returns True if a call may go now and records it, otherwise False. Use a sliding log. State the time and memory complexity per call. Handle max_calls of 1, a call exactly window_s after the oldest recorded call, and a burst that fills the window at one instant.",
+      "follow_ups": [
+        "Your 200 workers each hold their own limiter. What does the customer's API see, and what do you change?",
+        "The API answers 429 with a Retry-After header. Where does that check go relative to acquire()?"
+      ],
+      "lessons": [
+        "04",
+        "18"
+      ],
+      "answer_outline": "- Keep a deque of call timestamps. In acquire(), pop from the left while now minus the oldest is at least window_s, then append now and return True if the deque holds fewer than max_calls entries.\n- Each timestamp is appended and popped once, so the time is O(1) amortised per call; memory is O(max_calls).\n- The window is half-open: a call exactly window_s after the oldest is allowed. A burst at one instant counts every call until the window is full. Test both with a fake clock.\n- One limiter per process does not cap 200 workers. A shared limiter or a token store is a platform decision, and the answer says where it sits.\n- Average answer uses time.time() inside the class or filters a list on every call (O(max_calls) per call). Strong answer keeps the clock injected and names the 429 path as the server's word.",
+      "tests": "Writes a sliding-window rate limiter with an injected clock, states its cost and its boundary behaviour.",
+      "tiers": [
+        "faang",
+        "gcc"
+      ],
+      "asked_like": "REST API consumption: pagination, retries, idempotency, rate limits",
+      "rubric": {
+        "strong": "Uses a sliding log with a clear boundary rule and O(1) amortised cost. Injects the clock and tests the boundary and the burst. Says one limiter per process does not bound 200 workers and places the shared limit.",
+        "average": "Correct for one process; uses real time in the class or no boundary test.",
+        "red_flags": "Sleeps inside acquire() with no cap. Counts calls, not times, so the window never resets. Claims a per-process limiter protects the customer's API."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "intermediate",
+      "category": "Debugging",
+      "level": "senior",
+      "q": "After a deploy, triage answers normally for about 90 minutes, then every call to the customer's API fails with 'pool timeout' until the container restarts. Open connections rise by about one a minute while the request rate stays flat. The helper that calls the customer's API creates a new HTTP client for each call and closes the response only on the success path. What do you check first, what do you change, and how do you prove the fix before the next release?",
+      "follow_ups": [
+        "The leak only shows up when the customer's API returns 429 at night. How do you reproduce it?"
+      ],
+      "lessons": [
+        "04",
+        "16"
+      ],
+      "answer_outline": "- Confirm the leak in the metrics: open connections against request rate, and the error count for customer API calls. A rising line on flat traffic points to a code path that does not release.\n- Read the helper: a new client per call, and a response closed only on success, leaks on every error path until the pool fills.\n- Fix: one shared client with timeouts and a connection limit; close the response on every path, with a context manager or a finally block.\n- Prove it: a test against a mock customer API that returns errors and timeouts, asserting that open connections return to baseline after many calls, then a soak run with the metric flat.\n- A restart hides the leak. Say so in the release note and the handover; a restart is not the fix.",
+      "tests": "Traces a connection leak from a metric trend to the error path, and proves the fix with a repeatable test.",
+      "tiers": [
+        "gcc",
+        "faang"
+      ],
+      "asked_like": "Debugging a broken API or integration (interview exercise)",
+      "rubric": {
+        "strong": "Uses the metric trend against flat traffic to find the leak. Names the error path and the missing close. Fixes with one shared, bounded client and closes on every path. Proves the fix with a repeatable test and a trend check.",
+        "average": "Restarts and monitors, or finds the leak but has no test that shows the count falls.",
+        "red_flags": "Raises the pool size and calls it fixed. Adds a metric per request id. Ships without a test."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "System design",
+      "level": "senior",
+      "q": "A customer's dispatch desk depends on a triage service that calls one model provider. At peak the primary serves 20 requests a second. The desk needs an answer, or 'held for a person', within 60 seconds. The provider has a 40-minute outage on a Friday. Design the keyword-rules fallback behind a circuit breaker: when the breaker opens and closes, what the rules return, what they get wrong and how the eval set shows it, and what you tell the ops lead. Say what you leave out of the first version.",
+      "follow_ups": [
+        "The drill's breaker trips on one failure. What should the production breaker wait for, and what does a too-low value do all day?",
+        "The customer wants the rules fallback switched on automatically, with no one on call. What do you need in place first?"
+      ],
+      "lessons": [
+        "11",
+        "28"
+      ],
+      "answer_outline": "- Count the load first: 20 requests a second for 40 minutes is 48,000 messages. If every call waited up to 10 s with a retry, the service would need far more parallel calls than it has, and many messages would miss the 60-second answer. The breaker stops those calls from being made at all.\n- The breaker opens after failures in a short window and stays open for a cooldown. After the cooldown one test call goes through; the breaker closes when it succeeds. Only 429 and 5xx are retried; a wrong key (401) is not, and it pages a person.\n- The rules answer in well under 50 ms. Every rules answer is labelled, sent to a person, and shows the reason. The fallback must not crash on an empty message.\n- What the rules get wrong: the first matching keyword wins, so 'not missing, it arrived' reads as missing, and 'late' can hide a wrong item. Run the labelled cases of the eval set through the rules and report the miss rate per label before real messages use it.\n- Tell the ops lead in plain words: which answers are rules, which messages wait for a person, the fallback share, and when the next update comes. Leave out automatic failover and a second model in the first version, and say why.",
+      "tests": "Designs a keyword-rules fallback behind a circuit breaker, works the load arithmetic, measures what the rules get wrong, and states the state of the system.",
+      "tiers": [
+        "faang",
+        "product",
+        "gcc"
+      ],
+      "asked_like": "System design for an enterprise AI solution",
+      "rubric": {
+        "strong": "Does the load arithmetic (20 a second for 40 minutes) and shows why the breaker stops the waiting. Opens and closes the breaker with a cooldown and a test call. Labels every rules answer and sends it to a person. Names the keyword failures and measures them on the eval set. Says what the ops lead hears and what is left out.",
+        "average": "Says add a rules fallback and a breaker, with no load numbers, no measurement of the rules, or no message to the customer.",
+        "red_flags": "Switches to the rules for every error with no label. Drops requests during the outage with no record. Calls the provider from the test suite. Promises the customer the same quality with no measurement."
+      },
+      "review": "pass"
+    },
+    {
+      "course": "advanced",
+      "category": "System design",
+      "level": "senior",
+      "q": "The triage service runs on two nodes in the customer's Compose stack; the customer's on-call now gets the pages. Peak is 20 requests a second. For one hour, a fault in the customer's order API adds 3 seconds to 1 in 10 triage requests. Every page rule fires over a 5-minute window and only with at least 100 requests in it. Design alerting that pages on-call for this fault and no other: for each alert, the signal it reads and why, the rule, and the page's fields. Which signal would you not page on for this fault, and why?",
+      "follow_ups": [
+        "The rule has paged 40 times in one week with no customer impact. What do you change in the rule, and what do you risk losing?",
+        "Node a is slow and node b is healthy, and the proxy splits requests evenly. Does your alert say which node is slow, and what must the metric carry to do that?"
+      ],
+      "lessons": [
+        "16",
+        "17",
+        "22"
+      ],
+      "answer_outline": "- Page on what the customer feels: the share of /triage requests over 1 s, from the latency histogram by route and outcome (lesson 16), evaluated over the given 5-minute window with at least 100 requests. At 20 requests a second, a 1-in-10 slow fault holds the share near 10% for the whole hour. A threshold of 5% sits between the normal share and the fault's share; state the normal share you measured to justify it.\n- Why the share over 1 s and not p95: p95 is a time, not a count. It says where the 95th request falls, not how many customers were slower than the 1 s they feel. The share over 1 s counts the customers hit, which is the number the on-call acts on.\n- One page for one fault: a single alert on the share, not one page per slow request. Paging per slow request would fire about 2 times a second, which is 7,200 pages in the hour. Log lines and traces are for the first check, not for paging.\n- Minimum-count trade-off: the 100-request floor stops a quiet period from paging on a few slow requests, but at low traffic it can hide a real fault. At about 0.3 requests a second a 5-minute window holds fewer than 100 requests, so the rule goes silent while the fault continues. Add a low-traffic alert on the window's count so the silence is itself visible. For the 40-pages-a-week follow-up, raising the threshold or the floor cuts noise and risks exactly this missed page.\n- The page carries the rule, the share and its window, the route, a first check (a slow log line with its trace_id; in the trace the slowest span is the call to the customer's order API), the runbook link, the escalation contact (the customer's API team on-call) and a verify step: the alert clears within a set time after the fault clears (lesson 17). The signal that stays silent is the error-rate alert, because slow requests still succeed. Labels carry route and outcome only, never order or customer ids.",
+      "tests": "Designs one latency alert from the metric, log and trace signals, with a window, a page that carries its runbook, and a named signal that stays silent.",
+      "tiers": [
+        "gcc",
+        "product"
+      ],
+      "asked_like": "Deploying and operating in the customer's environment (CI/CD, containers, observability, rollback)",
+      "rubric": {
+        "strong": "Pages on the share of requests over 1 s from the histogram, over the stated 5-minute window with its 100-request floor, not per request. Says why the share beats p95: p95 is a time and says nothing about how many customers are hit. Works the arithmetic (about 2 slow requests a second, 7,200 an hour, so a per-request page would fire constantly). Names the minimum-count trade-off, a missed page at low traffic, and a way to see it. The page carries the rule, route, first check with trace_id, runbook, escalation contact and verify step. Names the error-rate alert as the one that stays silent, and why. Keeps labels to route and outcome.",
+        "average": "Says 'alert on high latency' with no threshold or window, or pages on each slow request. Uses p95 over a window as the page rule: a sound signal, but a time rather than a count of customers hit. Lists alerts without the page content or runbook. Relies on mean latency, which hides the tail.",
+        "red_flags": "Puts order or customer ids in metric labels. Pages on node CPU for a latency fault. Sends a page with no runbook or escalation contact, so the on-call must call the FDE team. Alerts with no verify step, so no one knows when the fix worked."
+      },
+      "review": "pass"
+    }
+  ]
+}

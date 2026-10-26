@@ -1,0 +1,13 @@
+case_id,order_id,message,want
+F01,CS-2101,I ordered two cartons of oat milk and only one came in the bag.,missing_item
+F02,CS-2102,The bananas arrived but the strawberries I paid for are not in the bag.,missing_item
+F03,CS-2103,I asked for full-fat milk and got skimmed milk instead.,wrong_item
+F04,CS-2104,"My slot was 6 to 7pm, it is now 9pm and the order still shows pending.",late
+F05,CS-2105,Three eggs were cracked when I unpacked the box.,damaged
+F06,CS-2106,"The courier left the bags at the wrong flat, not at my door.",other
+F07,CS-2107,"Only three of the five apples came, the rest are missing.",missing_item
+F08,CS-2108,The yogurt tubs were split open and leaking over the other shopping.,damaged
+F09,CS-2109,I got a bag of brown rice but I ordered basmati rice.,wrong_item
+F10,CS-2110,The order was due this morning and it came after noon.,late
+F11,CS-2111,"Two of the four bottles of juice were in the bag, not all four.",missing_item
+F12,CS-2112,The driver would not wait at the door while I got my card.,other

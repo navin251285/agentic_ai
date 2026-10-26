@@ -1,0 +1,62 @@
+{
+ "C01": {
+  "want": "missing_item",
+  "got": "missing_item",
+  "passed": true
+ },
+ "C02": {
+  "want": "missing_item",
+  "got": "missing_item",
+  "passed": true
+ },
+ "C03": {
+  "want": "damaged",
+  "got": "damaged",
+  "passed": true
+ },
+ "C04": {
+  "want": "late",
+  "got": "late",
+  "passed": true
+ },
+ "C05": {
+  "want": "wrong_item",
+  "got": "wrong_item",
+  "passed": true
+ },
+ "C06": {
+  "want": "late",
+  "got": "other",
+  "passed": false
+ },
+ "C07": {
+  "want": "missing_item",
+  "got": "missing_item",
+  "passed": true
+ },
+ "C08": {
+  "want": "damaged",
+  "got": "damaged",
+  "passed": true
+ },
+ "C09": {
+  "want": "missing_item",
+  "got": "missing_item",
+  "passed": true
+ },
+ "C10": {
+  "want": "other",
+  "got": "other",
+  "passed": true
+ },
+ "C11": {
+  "want": "missing_item",
+  "got": "missing_item",
+  "passed": true
+ },
+ "C12": {
+  "want": "damaged",
+  "got": "damaged",
+  "passed": true
+ }
+}

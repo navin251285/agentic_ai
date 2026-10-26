@@ -1,0 +1,327 @@
+{
+ "title": "Evaluate, secure, deploy and observe: Part 2 of Forward Deployed Engineering",
+ "subtitle": "Lessons 10 to 18 and 20 · Basket Bazaar triage",
+ "course": "Forward Deployed Engineering from First Principles to Enterprise Delivery",
+ "audience": "software engineers who can write functions and call a web API",
+ "audience_type": "technical",
+ "scope": {
+  "part": 2
+ },
+ "theme": {
+  "accent": "0F766E"
+ },
+ "slides": [
+  {
+   "layout": "title",
+   "title": "Evaluate, secure, deploy and observe a customer AI feature",
+   "subtitle": "Part 2 · lessons 10 to 18 and 20 · Basket Bazaar triage",
+   "icon": "target"
+  },
+  {
+   "layout": "analogy",
+   "title": "A demo shows luck; an eval shows the rate",
+   "everyday": {
+    "name": "A driving test",
+    "text": "A fixed route with marked manoeuvres, the same every time"
+   },
+   "tech": {
+    "name": "An eval set",
+    "text": "Fixed labelled cases, a scorer, a score per version"
+   },
+   "breaks": "a driving test is taken once; an eval runs on every change",
+   "lessons": [
+    "10"
+   ],
+   "notes": "Open with the Basket Bazaar story. The team tagged two demo messages correctly and said ready. In week one the support queue filled with wrong tags, and no error was logged. A demo shows that a feature can work, not how often it works. A driving test is a fixed route with marked manoeuvres, so a learner who fails the lane change is told exactly where. An eval does the same for the AI feature: the same labelled cases, scored the same way, on every change. The analogy stops at frequency: a licence is earned once, but the eval must run again after every prompt edit, because a fix in one place can break an old case somewhere else."
+  },
+  {
+   "layout": "concept",
+   "title": "An eval is a repeatable, scored test for AI",
+   "definition": "An eval is a repeatable test for an AI feature: fixed inputs, expected answers, a scorer, and a score per version.",
+   "parts": [
+    {
+     "term": "Eval set",
+     "meaning": "labelled cases with the expected answer"
+    },
+    {
+     "term": "Scorer",
+     "meaning": "marks each output pass or fail"
+    },
+    {
+     "term": "Regression",
+     "meaning": "a case that passed before and now fails"
+    },
+    {
+     "term": "Gate",
+     "meaning": "blocks the release when a regression appears"
+    }
+   ],
+   "example": "C11: 'two of the three cartons' must stay missing_item.",
+   "lessons": [
+    "10",
+    "11",
+    "12"
+   ],
+   "notes": "Define each part with the lesson's own words. The eval set is built before the model runs, so the expected label is not chosen to fit the answer. A regression is the important word: an average can rise while one case a customer cares about breaks. Lesson 11 builds twelve cases, invented but modelled on a support queue; ten come from lesson 10, where a keyword rule got seven wrong. The gate is a plain pytest file that reads saved scores, so a release check needs no model call. Lesson 12 grades the same twelve replies three ways: code rules agree with a person 42% of the time (kappa 0.09), a model grader with a rubric 83% (kappa 0.67). Measure each automatic grader against a person sample before it runs alone. Lesson 10 also says when not to use an eval: a price calculation with one right answer is a unit test."
+  },
+  {
+   "layout": "code",
+   "title": "A regression check compares each case, old against new",
+   "lang": "python",
+   "code": "def test_no_regression_from_shipped_to_candidate():\n    shipped, candidate = scored(\"v1\"), scored(\"v2\")",
+   "highlight": [
+    2
+   ],
+   "output": "4 passed in 0.01s",
+   "points": [
+    "Compares the shipped prompt (v1) with the candidate (v2)",
+    "Passed in v1 and fails in v2 counts as a regression",
+    "Reads saved scores: no model is called"
+   ],
+   "lessons": [
+    "11"
+   ],
+   "notes": "This is the smallest useful check, from lesson 11, step 5. The test loads two saved score files: v1 for the prompt that shipped and v2 for the candidate. The rule that picks the broken cases is one line in the lesson, too wide for a slide: broken = [cid for cid, r in shipped.items() if r[\"passed\"] and not candidate[cid][\"passed\"]]. The next line, assert broken == [], fails the test when that list is not empty. The output is the whole file: four checks passed in 0.01 seconds. Be honest about the limit the lesson gives: on its invented cases both prompts score 12 of 12, so the set cannot tell them apart. The check only proves that nothing that passed got worse."
+  },
+  {
+   "layout": "analogy",
+   "title": "A service account opens only its scopes",
+   "everyday": {
+    "name": "Hotel key card",
+    "text": "Opens your floor, stops at checkout, never the master key"
+   },
+   "tech": {
+    "name": "Service account",
+    "text": "An identity for software: swaps its secret for a short-lived token"
+   },
+   "breaks": "a card belongs to a guest; an account is software holding a secret",
+   "lessons": [
+    "13"
+   ],
+   "notes": "Lesson 04 sent one shared bearer token with every call. In a customer system that causes three problems: every caller can do everything, one leaked key opens everything, and rotating it breaks every caller at once. A hotel key card is a good picture of the fix: it opens the floor you booked and stops at checkout. The analogy breaks in one place. A card belongs to a guest, while a service account is a non-human identity. Its parts: the client secret works like a password and stays out of code; the access token is signed and expires (300 seconds in the lab); a scope is one named permission, such as orders:read. This is the OAuth 2.0 client credentials grant. The token is a JWT: signed, not encrypted, so anyone holding it can read its claims. The point to hold: least privilege, each integration gets only the permissions its job needs."
+  },
+  {
+   "layout": "code",
+   "title": "Give each caller only the scopes it needs",
+   "lang": "python",
+   "code": "needs = {\"reader\": {\"orders:read\"},\n         \"credit bot\": {\"orders:read\", \"credits:write\"},\n         \"dashboard\": {\"orders:read\"}}\n# one shared key grants every scope to every caller\n...\nneeded = sum(len(scopes) for scopes in needs.values())",
+   "highlight": [
+    2
+   ],
+   "output": "shared key grants 6 permissions; the callers need 4\nextra permissions: 2. A leaked key opens every scope (2 here).",
+   "points": [
+    "Four permissions are needed; a shared key grants six",
+    "A leaked shared key opens every scope",
+    "One service account and scope set per integration"
+   ],
+   "lessons": [
+    "13"
+   ],
+   "notes": "Lesson 13 starts with a count, before any server exists. Three invented callers need four permissions: the reader needs orders:read, the credit bot needs orders:read and credits:write, and the dashboard needs orders:read. The highlighted line is the credit bot's, the one caller that needs a write scope. One shared key given to all three grants six permissions (three callers times two scopes), so two are extra, and a leaked key opens every scope. Then the lesson moves to the real server: the reader's token gets 200 on GET /orders and 403 insufficient_scope on POST /credits, because 403 means the caller is known but lacks the scope. The credit bot holds credits:write, so its write succeeds. The last step builds a who-can-call-what table, including a forged token and a call with no token, which the API must refuse."
+  },
+  {
+   "layout": "code",
+   "title": "A bad release crashes; the old tag restores service",
+   "lang": "yaml",
+   "code": "  triage:\n    image: bb-triage:${TRIAGE_TAG:-1.0.0}\n    ...\n    ports:\n      - \"8140:8000\"\n    depends_on:\n      erp:\n        condition: service_healthy",
+   "highlight": [
+    2
+   ],
+   "output": "SERVICE   STATUS\nerp       Up 15 seconds (healthy)\ntriage    Exited (1) Less than a second ago",
+   "points": [
+    "1.1.0 renamed a secret in code but not in Compose: KeyError",
+    "Rollback: TRIAGE_TAG=1.0.0 docker compose up --wait",
+    "depends_on waits until erp reports healthy"
+   ],
+   "lessons": [
+    "14",
+    "15"
+   ],
+   "notes": "Lesson 14 counts the by-hand checklist for three invented hosts (a test, a staging and a production host): 8 steps per host, so 3 times 8, or 24 steps for three hosts, and each host can drift. A container image fixes that: one build, one pinned tag, and one command per host (up --wait). The highlighted image line takes its tag from TRIAGE_TAG, with 1.0.0 as the default. Version 1.1.0 renamed a secret setting in the code but not in the Compose file, so triage crashed on start with a KeyError. The status table is the recorded output of that bad start: the customer API is healthy, triage has exited. The rollback is one call: the lesson runs compose up -d --wait with TRIAGE_TAG set to 1.0.0, which from a shell is TRIAGE_TAG=1.0.0 docker compose up -d --wait. The old image is still on the machine, so nothing is rebuilt. Lesson 15 then moves the same service onto a network with no internet route, where the only way out is an egress proxy that allows one host and logs each allow or deny."
+  },
+  {
+   "layout": "analogy",
+   "title": "A parcel scan, its route, the day's delivery count",
+   "everyday": {
+    "name": "A parcel service",
+    "text": "Scans are logged, a route is traced, the day's delivery count is kept"
+   },
+   "tech": {
+    "name": "Logs, traces, metrics",
+    "text": "Events logged, one request traced, requests counted"
+   },
+   "breaks": "staff scan parcels; your code must emit each signal on purpose",
+   "lessons": [
+    "16"
+   ],
+   "notes": "Lesson 16 uses this parcel-service picture. The scan log is the log: one line per event, with the parcel's id. The route of one parcel is the trace: each stop is a timed step. The day's delivery count is the metric: a count across many parcels, not a rate. The picture fails at one point: scanners run by themselves, whereas the service code must emit each signal deliberately, with the OpenTelemetry library. Two costs follow. Metric labels create series: each distinct label value, such as a route or a customer id, is its own counted series, so keep labels few. Telemetry has a storage cost too: every log line and span is kept and paid for, so log what answers a question. Use the picture to ask the customer what the three signals would have answered on the day triage was slow."
+  },
+  {
+   "layout": "concept",
+   "title": "Three signals answer three questions",
+   "definition": "Observability is answering questions about a running system from its logs, traces and metrics.",
+   "parts": [
+    {
+     "term": "Structured log",
+     "meaning": "one JSON line per event"
+    },
+    {
+     "term": "Trace",
+     "meaning": "timed spans of one request"
+    },
+    {
+     "term": "Metric",
+     "meaning": "counts across many requests"
+    },
+    {
+     "term": "Collector",
+     "meaning": "forwards spans; the app stays tool-neutral"
+    }
+   ],
+   "example": "BB-1002 took 1539 ms.",
+   "lessons": [
+    "16"
+   ],
+   "notes": "Start with the customer's complaint: triage was slow around lunch. Plain text lines with no request id cannot tell two overlapping requests apart; lesson 16 shows that with invented timings. OpenTelemetry is the standard library that creates spans, and spans leave the app in the OTLP format. The Collector receives them and forwards them, so the app does not need to know whether the customer uses Jaeger, Prometheus or another tool. In the lab Jaeger stores traces in memory and Prometheus scrapes the metric every five seconds. Keep metric labels few: each distinct label value is its own series."
+  },
+  {
+   "layout": "code",
+   "title": "A log query finds the slow requests",
+   "lang": "python",
+   "code": "events = log_events(from_run(\"logs\"))\nprint(f\"{len(slow)} slow of {len(events)} requests\")",
+   "highlight": [
+    2
+   ],
+   "output": "2 slow of 8 requests",
+   "points": [
+    "Slow means duration_ms of 1000 or more (lesson 16, step 5)",
+    "Each log line carries the trace id",
+    "The trace id opens the trace of the slow request"
+   ],
+   "lessons": [
+    "16"
+   ],
+   "notes": "The lab sends eight requests; the customer API waits 1.5 seconds on two of its calls, so two requests are slow. The slide shows the lines either side of the filter, because the filter is one character wider than a slide line allows. The filter itself is in lesson 16, step 5: slow = [e for e in events if e.get(\"duration_ms\", 0) >= 1000]. Its result is the list the summary line counts and the slow_id line reads. The output shows only the summary; the recorded run lists BB-1002 at 1539 ms and BB-1001 at 1545 ms, each with a trace id. The trace step opens the first one in Jaeger and shows the wait inside the customer API call, not in triage. The processor that adds the trace id reads the current span and writes its trace id into every log line, so the log and the trace can be matched. The lesson's interview line: start with the metric for the shape, then open one slow trace."
+  },
+  {
+   "layout": "diagram",
+   "title": "A runbook turns an alert into steps",
+   "diagram": {
+    "type": "flow",
+    "items": [
+     "Alert fires",
+     "First check: trace",
+     "Mitigate: roll back",
+     "Verify: sample of 10",
+     "Escalate to owner"
+    ]
+   },
+   "caption": "RTO = time to restore; RPO = data you can lose",
+   "points": [
+    "Restore to scratch, check, then cut over",
+    "Lab alert: 1 in 4 requests over 1 s"
+   ],
+   "lessons": [
+    "17"
+   ],
+   "notes": "Lesson 17 defines a runbook as a written procedure for one known incident: the alert, the first check, the mitigation, the check that proves it worked, and who to escalate to. The lab alert fires when one request in four or more takes over 1 second; that threshold is a lab rule, and the customer sets the real one. The three runbooks are triage slow, the customer API rejects triage's token (502 with erp_error 401 or 403), and a bad release writes wrong labels. The third is the worked example: roll back to the last good tag, then restore the decisions store from the backup taken before the release. The restore drill goes to a scratch file first and runs its checks. The lab values are an RTO of 15 minutes and an RPO of 24 hours; they pass trivially here because the drill runs seconds after the backup. In the lab, the live store goes from 0 'missing items' back to 6 after the restore. Mitigate first; find the cause later in a blameless postmortem."
+  },
+  {
+   "layout": "stat",
+   "title": "About $47 a month (assumed 30% hits) vs $192",
+   "value": "$47 a month",
+   "label": "with a token budget and a cache (30% hits, assumed); about $192 with neither",
+   "source": "Lesson 18, step 4; Gemini API pricing page, 2026-10-22",
+   "points": [
+    "Measured call: 386 input and 10 output tokens",
+    "Invented volume: 20,000 messages a day",
+    "Latency budget: 5,000 ms per call"
+   ],
+   "lessons": [
+    "18"
+   ],
+   "notes": "Lesson 18 starts with the arithmetic a team does before launch. The volume is invented: 20,000 messages a day, with the whole case history pasted into each prompt. At the list price of 0.25 dollars per million input tokens (Gemini API pricing page, checked 2026-10-22) that is about 195 dollars a month, using a rounded 1,300-token guess. The lesson's measured call used 386 input and 10 output tokens, about 0.000112 dollars per call, and the full-thread estimate with no budget and no cache is about 192 dollars a month. Trimming the context to a 400-token budget kept 18 of 61 messages. The 47 dollars assumes a 30 percent cache hit rate; the lesson labels that illustrative, not measured. The token budget is 1,500 per call and the latency budget is 5,000 ms; the replayed call took 172 ms, but a live call is slower. The cache key carries the tenant and the prompt version, so one customer never gets another's answer. Print the price date with every cost."
+  },
+  {
+   "layout": "code",
+   "title": "The gate refuses the weak edit and releases v2",
+   "lang": "python",
+   "code": "verdict_candidate = gate(candidate, shipped)\nverdict_weak = gate(weak, shipped)\nprint(\"candidate v2:\", verdict_candidate)\nprint(\"weak edit:   \", verdict_weak)",
+   "highlight": [
+    2,
+    4
+   ],
+   "output": "candidate v2: {'pass_rate': 1.0, 'minimum': 0.9, 'regressions': [], 'passed': True}\nweak edit:    {'pass_rate': 0.917, 'minimum': 0.9, 'regressions': ['C06'], 'passed': False}",
+   "points": [
+    "Release needs 90% or more and no regressions",
+    "Weak edit: 11 of 12 pass, yet C06 regressed",
+    "The release note carries the verdict to the deploy"
+   ],
+   "lessons": [
+    "20",
+    "11"
+   ],
+   "notes": "This is the checkpoint's grown version of the gate, from lesson 20, step 3. The function gate(candidate, shipped, minimum) returns a verdict with two rules: the pass rate must reach the minimum, and no case the shipped prompt passes may fail now. It returns a regressions list and a passed flag that is true only when the rate is at least the minimum and there are no regressions. The weak edit shows why both rules exist: its average is 91.7 percent, above the 90 percent minimum, so the average alone would ship it. The regression rule names C06, the late delivery case the shipped prompt got right. The lesson also tells the reader to pass the minimum as an argument, because a default value is fixed when the function is defined. The verdict is written to a release note that the deploy reads before it starts anything."
+  },
+  {
+   "layout": "steps",
+   "title": "Built one check at a time",
+   "steps": [
+    {
+     "head": "Count, score",
+     "text": "12 invented cases; both prompts score 12 of 12"
+    },
+    {
+     "head": "Gate regressions",
+     "text": "pytest fails on a broken case"
+    },
+    {
+     "head": "Grade with people",
+     "text": "Model 83%, kappa 0.67 (kappa: agreement beyond chance)"
+    },
+    {
+     "head": "Secure, package",
+     "text": "Scopes; one pinned image"
+    },
+    {
+     "head": "Observe, gate",
+     "text": "Slow hops in logs; combined gate"
+    }
+   ],
+   "lessons": [
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "16",
+    "20"
+   ],
+   "notes": "Walk through how the work grew, one check at a time. Step one: count and score. The twelve cases are invented, modelled on a support queue, and v1 and v2 each score 12 of 12 on them, which is why lesson 11 adds harder ones. Step two: the pytest gate blocks a candidate that breaks a case that passed before. Step three: grade with a person's sample. The model grader agrees with the person 83 percent of the time (kappa 0.67) and the code rules 42 percent (kappa 0.09). Kappa is agreement beyond chance, so only the model grader is a candidate to run alone. Step four: service accounts with scopes, where a missing scope gets a 403, and one pinned image started with Compose. Step five: logs, traces and metrics find the slow hop, and the combined gate of lesson 20 releases only when the pass rate is at least 90 percent with no regressions, and a release note is written for the deploy."
+  },
+  {
+   "layout": "questions",
+   "title": "Questions for your design review",
+   "questions": [
+    "Which cases must never regress, and what blocks them?",
+    "Does each automatic grader agree with a person?",
+    "Can each service account call only its scopes?",
+    "Can on-call find the slow hop and roll back?",
+    "Which cost and latency budget does each case meet?"
+   ],
+   "lessons": [
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "20"
+   ],
+   "notes": "Close by turning the chapter into questions for the reviewer's own design, the way an interviewer would test it. Question 1, which cases must never regress, maps to lessons 10, 11 and 20: the labelled set, the regression test and the combined gate. Question 2, does each automatic grader agree with a person, maps to lesson 12: ask for the kappa with its sample size. Question 3, can each service account call only its scopes, maps to lesson 13: a 200 for an allowed scope and a 403 for a missing one. Question 4, can on-call find the slow hop and roll back, maps to lessons 14, 16 and 17: the status table, the trace of the slow request, and the runbook's mitigation step with its verify check. Question 5, which cost and latency budget does each case meet, maps to lesson 18: tokens per call against the budget, with the price date. Lesson 15's restricted network is the check that the only way out is the egress proxy. Ask the candidate to show the number, not the feeling."
+  }
+ ]
+}

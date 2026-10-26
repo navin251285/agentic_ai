@@ -1,0 +1,74 @@
+# Delivery stack for the lesson 32 drill (lab, invented data). Started from the notebook with
+#   docker compose -p tut-forward-deployed-engineering-15h-32 -f <this file> --env-file ../.env up -d --build --wait
+# The same shape as the lesson 31 delivery stack, on its own ports (8320-8329) and its own project name.
+# Build context is apps/ (this folder's parent), so the service code is the lesson 13 and 16 code, unchanged.
+# The observability configs are lesson 16's, read from infra/compose/observability.
+# Network rule from lesson 15: the customer API sits on an internal network with no route outside and no
+# published port. The triage service is the one door: it is on the edge network too, so the laptop can call it.
+services:
+  erp:
+    build:
+      context: ..
+      dockerfile: 16/Dockerfile
+      args:
+        APP_FILE: 16/erp_slow_lab.py
+    image: bb-erp-drill:32
+    environment:
+      ERP_SIGNING_KEY: ${ERP_SIGNING_KEY}
+      ERP_READER_CLIENT_SECRET: ${ERP_READER_CLIENT_SECRET}
+      ERP_CREDIT_BOT_CLIENT_SECRET: ${ERP_CREDIT_BOT_CLIENT_SECRET}
+      ERP_SLOW_MS: ${ERP_SLOW_MS:-1500}
+    networks: [customer]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  triage:
+    build:
+      context: ..
+      dockerfile: 16/Dockerfile
+      args:
+        APP_FILE: 16/triage_service.py
+    image: bb-triage-drill:${TRIAGE_TAG:-1.2.0}
+    environment:
+      ERP_URL: http://erp:8000
+      ERP_READER_CLIENT_ID: ${ERP_READER_CLIENT_ID:-bb-orders-reader}
+      ERP_READER_CLIENT_SECRET: ${ERP_READER_CLIENT_SECRET}
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+    ports:
+      - "8320:8000"
+    networks: [customer, edge]
+    depends_on:
+      erp:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.163.2
+    command: ["--config=/etc/otel/config.yaml"]
+    volumes:
+      - ../../infra/compose/observability/otel-collector.yaml:/etc/otel/config.yaml:ro
+    networks: [customer]
+  jaeger:
+    image: jaegertracing/jaeger:2.22.0
+    command: ["--config=/jaeger/config.yaml"]
+    volumes:
+      - ../../infra/compose/observability/jaeger.yaml:/jaeger/config.yaml:ro
+    ports:
+      - "8321:16686"
+    networks: [customer, edge]
+  prometheus:
+    image: prom/prometheus:v3.15.1
+    volumes:
+      - ../../infra/compose/observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "8322:9090"
+    networks: [customer, edge]
+networks:
+  customer:
+    internal: true
+  edge: {}

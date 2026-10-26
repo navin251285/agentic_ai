@@ -1,0 +1,360 @@
+{
+  "title": "Advanced: change it live, finish long jobs, prove it",
+  "subtitle": "Forward Deployed Engineering · Part 3 · lessons 21 to 32, with 24a",
+  "course": "Forward Deployed Engineering from First Principles to Enterprise Delivery",
+  "audience": "learners of this course (developers who can write functions and call a web API)",
+  "audience_type": "technical",
+  "scope": {
+    "part": 3
+  },
+  "theme": {
+    "accent": "0F766E"
+  },
+  "slides": [
+    {
+      "layout": "title",
+      "icon": "cube",
+      "title": "Advanced: change it live, finish long jobs, prove it",
+      "subtitle": "Forward Deployed Engineering · Part 3 · lessons 21 to 32, with 24a",
+      "lessons": [
+        "21",
+        "22",
+        "23",
+        "24",
+        "24a",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32"
+      ],
+      "notes": "This deck covers Part 3: lessons 21 to 32, with the new lesson 24a on long batch jobs. Three ideas carry the code: expand the data before the code that reads it; make a batch write an upsert on order and run, then reconcile before the run counts as done; and retry only the errors a later try can fix, with a labelled fallback. The other slides show the practice around them. Basket Bazaar and Corner Shop Co are fictional customers, and so are their stores and orders."
+    },
+    {
+      "layout": "before_after",
+      "title": "Production closes the gaps a prototype never tests",
+      "lessons": [
+        "21",
+        "22"
+      ],
+      "before": {
+        "label": "Proof of concept",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "One CSV, 224 lines",
+            "Key in a .env file",
+            "Demo, then a date"
+          ]
+        },
+        "caption": "Demo only"
+      },
+      "after": {
+        "label": "Production",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Live feed, bad rows",
+            "Secrets in customer store",
+            "Alerts and runbook",
+            "Handover drill passed"
+          ]
+        },
+        "caption": "Data, secrets, network, failure, quality, visibility, operations, cost"
+      },
+      "notes": "A prototype proves one path. Production adds a live feed with duplicates and bad rows, the customer's own secret store, and alerts with runbooks the customer's team has rehearsed. Lesson 21's table has eight rows, and each is owned by a lesson: data in 05, secrets in 13, network in 14 and 15, failures in 04 and 28, evals in 11 and 12, visibility in 16, operations in 17 and 22, cost in 18 and 29. Read the caption as the list of gaps. Lesson 22 is the handover row. Ask the room which of the eight the team has never tested in front of the customer."
+    },
+    {
+      "layout": "analogy",
+      "title": "Roadworks close one lane, and traffic keeps moving",
+      "lessons": [
+        "24"
+      ],
+      "everyday": {
+        "name": "Motorway roadworks",
+        "text": "One lane closes; traffic keeps moving"
+      },
+      "tech": {
+        "name": "A rolling upgrade",
+        "text": "One node at a time behind a proxy"
+      },
+      "breaks": "A data change is not undone by a restart.",
+      "notes": "Think of a motorway with roadworks. One lane closes at a time, traffic keeps moving in the other, and nobody closes the bridge to rewire it. Lesson 24 runs two order nodes behind one proxy. The proxy sends each request to a node that is up. The first node is replaced, the proxy is reloaded, and only then is the second node replaced, each one behind a health check. The recorded rollout under traffic sent 496 answers and failed none. The analogy breaks at data. A closed lane reopens, but restarting a node does not undo a change to the orders file, so a data change needs its own steps."
+    },
+    {
+      "layout": "concept",
+      "title": "Expand, deploy, contract changes a data shape safely",
+      "lessons": [
+        "24"
+      ],
+      "definition": "A data-shape change runs as expand, deploy, contract: add first, read second, remove last.",
+      "parts": [
+        {
+          "term": "Expand",
+          "meaning": "Add the column with a safe default"
+        },
+        {
+          "term": "Deploy",
+          "meaning": "Ship code that reads it, one node at a time"
+        },
+        {
+          "term": "Contract",
+          "meaning": "Qty goes last: only after deploy 2.1.0 reads quantity"
+        }
+      ],
+      "example": "Ask the room: which recent release changed the data and the code in one step?",
+      "notes": "Expand, deploy, contract is lesson 24's rule for a data change. Expand adds the column with a safe default: missing_items is filled with 0, so version 1, which reads its columns by name, keeps answering. Deploy ships version 2, which reads the column one node at a time, and refuses to start if the column is missing: a clear error, not a wrong answer. Contract removes the old column only in a later release, once every node runs the new code. The Try-it plan renames qty to quantity. Expand quantity, deploy 2.1.0, then contract qty: the check returns True. Deploy first and it returns False. The lesson splits one risky release into three safe ones."
+    },
+    {
+      "layout": "analogy",
+      "title": "A re-sat exam still gives one mark",
+      "lessons": [
+        "24a"
+      ],
+      "everyday": {
+        "name": "Exam register",
+        "text": "A student who sits the same paper twice has one mark"
+      },
+      "tech": {
+        "name": "Upsert on (order_id, run_id)",
+        "text": "A replayed order updates its one row"
+      },
+      "breaks": "A teacher checks a register by eye; the batch counts rows in code, against the manifest.",
+      "notes": "The seating plan says who should be in the hall, and the register says who sat. Lesson 24a uses the same idea for a batch. A student who sits the same paper twice still has one mark, so a restart that writes an order again should update its one row, not add a second. The analogy breaks in one place: a teacher checks a register by eye, but the batch must count its rows in code and compare each part with the manifest. The next slide shows that code."
+    },
+    {
+      "layout": "concept",
+      "title": "Upsert plus reconcile makes a restart safe",
+      "lessons": [
+        "24a"
+      ],
+      "definition": "An upsert keyed by (order_id, run_id) overwrites a replayed row, and the run is done only when reconcile matches.",
+      "parts": [
+        {
+          "term": "Upsert",
+          "meaning": "Inserts a row, or updates it when its key exists"
+        },
+        {
+          "term": "Manifest",
+          "meaning": "Planned orders per part, plus the input's checksum"
+        },
+        {
+          "term": "Reconcile",
+          "meaning": "Each part's count must match before the run counts as done"
+        }
+      ],
+      "example": "Lab run: killed at 42 rows, restarted, ended with 120 rows and 0 duplicates.",
+      "notes": "An upsert is a write that inserts a row or, when its key already exists, updates it. The key here is order_id and run_id together. The lab's workers write each result this way, so a replay of the same run overwrites the same row, and a restart reads the finished keys and skips them. The manifest holds the planned count for each of the four parts and the checksum of the input. Reconcile compares each part with it: planned 30, in the table 30, for every part. The run counts as done only when every part matches and there are no duplicates. The lab's recorded run killed both nodes at 42 written rows, and the restart finished with 120 rows and zero duplicates."
+    },
+    {
+      "layout": "code",
+      "title": "A replay updates one row; reconcile checks the count",
+      "lessons": [
+        "24a"
+      ],
+      "lang": "python",
+      "code": "for _ in range(2):  # the first write, then the replay\n    # key (order_id, run_id): the same row is updated\n    ...\ndef reconcile():\n    ...\n    got = per_part.get(int(p), 0)\n    ...\n    return lines",
+      "highlight": [
+        2,
+        6
+      ],
+      "output": "rows for one order: 1\ntotal rows 120, distinct orders 120, duplicates 0\ninput checksum matches the manifest: True",
+      "points": [
+        "Each order is one row per run, however often it is written",
+        "The run is done when every part matches its manifest",
+        "Lab: 120 rows for 120 orders, after a kill and a restart"
+      ],
+      "notes": "The first lines show the replay loop and the key. The full statement, with ON CONFLICT (order_id, run_id) DO UPDATE, is wider than the slide, so the key is a comment here; the lesson's cell runs it twice and prints one row. The second part is reconcile: the code reads each part's count from the results table and compares it with the manifest, one line per part. The output lines are real, from the recorded run: 120 rows, 120 distinct orders, zero duplicates, and the input checksum matches. A part that does not match is a stop: find the missing or extra orders, and only then rerun."
+    },
+    {
+      "layout": "code",
+      "title": "Tenant check runs before any file is read",
+      "lessons": [
+        "23"
+      ],
+      "lang": "python",
+      "code": "def tenant(store_id: str) -> StoreConfig:\n    if store_id not in TENANTS:\n        raise HTTPException(404, detail=\"unknown store\")\n    return TENANTS[store_id]",
+      "highlight": [
+        2,
+        3
+      ],
+      "output": "2 wrong store: 404 order not found in this store\n3 unknown store: 404 unknown store",
+      "points": [
+        "Every route starts with this check",
+        "The file path is never built from request text",
+        "The lookup is where a store's config is read"
+      ],
+      "notes": "This is the check that makes one service safe for 12 stores. Lesson 23 serves every store from one FastAPI service, with one orders file per store and limits in a workbook that is checked when it loads. Every route calls tenant() first. It looks the store id up in the known list and returns a 404 when the id is not there; this lookup is also where a store's config is read. The second output line is the second guard: a valid store asking for an order that belongs to another store gets 'order not found in this store'. The naive lookup by order id alone returned Store 07's lines to a caller who never named Store 07."
+    },
+    {
+      "layout": "analogy",
+      "title": "One shared socket, one adapter per country",
+      "lessons": [
+        "25",
+        "26"
+      ],
+      "everyday": {
+        "name": "Wall socket and plug adapter",
+        "text": "The wall is shared; each country brings its adapter"
+      },
+      "tech": {
+        "name": "Core code and customer config",
+        "text": "Core is the shared socket; config is the adapter"
+      },
+      "breaks": "Stops at a change: a fork for one customer is two copies that drift apart.",
+      "notes": "A plug adapter fits one country, and the wall socket is the same for every traveller. Lesson 25 applies this to field code. Basket Bazaar's cleaning rules, its stable key and its unit table are the adapter; the shared mechanism that cleans the rows is the wall. Lesson 25 warns that copying the script for each new customer makes copies that drift apart, and every bug must be fixed in each one. The analogy breaks at a change: a fork of the core for one customer is two copies that drift apart, which is the mistake this lesson stops. Lesson 26 then sends the pattern to product as a field report, so the next customer gets one shared fix."
+    },
+    {
+      "layout": "code",
+      "title": "Deploy only from a release note whose gate passed",
+      "lessons": [
+        "32"
+      ],
+      "lang": "python",
+      "code": "def deploy_from(note_path: Path) -> str:\n    note = json.loads(note_path.read_text())\n    ...\n    return note[\"tag\"]\nprint(\"newest note:\", latest_note().name)\ndeploy_from(latest_note())",
+      "highlight": [
+        6
+      ],
+      "output": "newest note: refused_note.json",
+      "points": [
+        "The newest note is the refused red-team one: 9 of 12",
+        "Refused: the gate refused the red-team prompt at 75%",
+        "12 invented cases, a rehearsal, not a real gate"
+      ],
+      "notes": "Lesson 32 writes two release notes. The candidate prompt passed the gate at 100 percent, 12 of 12 invented cases, against a minimum of 90 percent. The red-team prompt, which has one wrong rule on purpose, scored 75 percent, 9 of 12, and its note says gate_passed is false. The newest file is the red-team note, so a deploy that takes the newest note would ship a refused release. The guard in deploy_from is one assert: gate_passed must be true, or the deploy stops and names the file. The lesson's assert line is longer than this slide allows, so the slide shows the real call and the real AssertionError. Twelve invented cases are a rehearsal, not a real gate."
+    },
+    {
+      "layout": "analogy",
+      "title": "Retry what can recover; label the fallback",
+      "lessons": [
+        "28"
+      ],
+      "everyday": {
+        "name": "Card machine down",
+        "text": "Clerk retries twice, then writes orders on a pad"
+      },
+      "tech": {
+        "name": "Retry, breaker, fallback",
+        "text": "Retry 429 and 5xx; flagged rules answer"
+      },
+      "breaks": "A clerk tells a declined card from a dead machine; code must read the status code.",
+      "notes": "A shop's card machine goes down. The clerk tries the card twice, then stops trying the machine for a few minutes, writes the orders on a pad and enters them later. Lesson 28 does the same in code. The retry is capped at one retry, and only for 429 and 5xx errors; a wrong key, a 401, is never retried. A breaker counts failures and stops calls while the route is down. The labelled fallback is keyword rules whose answers always go to a person. The analogy breaks at the status code: a clerk reads a declined card, and the code must check the number before it retries."
+    },
+    {
+      "layout": "concept",
+      "title": "Retry only 429 and 5xx; label every fallback answer",
+      "lessons": [
+        "28"
+      ],
+      "definition": "A retry repeats a model call only for errors a later try can fix, and a fallback answer is labelled for a person.",
+      "parts": [
+        {
+          "term": "Retry",
+          "meaning": "Only 429 (too many requests), 5xx (server errors)"
+        },
+        {
+          "term": "Breaker",
+          "meaning": "Stops calls after failures; one test later"
+        },
+        {
+          "term": "Labelled fallback",
+          "meaning": "Keyword rules, flagged for a person"
+        }
+      ],
+      "example": "Lab: 33 messages; 31 to the rules and a person.",
+      "notes": "The drill makes the route answer 503. The model is tried, retried once after 0.5 to 0.75 seconds, and then the keyword rules answer, flagged for a person. In the scorecard, 33 messages were all answered: 2 by the model and 31 by the rules, sent to a person. Retry is for errors a later try can fix: 429 (too many requests) and 5xx (server errors). The lesson's code lists 500, 502, 503 and 504. A 400 or 401 pages a person instead of being retried. Production waits for several failures before the breaker opens; the drill uses one, to be short. Ask the team: what share of answers reaches a person this week, and who watches it?"
+    },
+    {
+      "layout": "terms",
+      "title": "Six definitions to write down",
+      "lessons": [
+        "22",
+        "24a",
+        "26",
+        "27",
+        "29",
+        "30"
+      ],
+      "terms": [
+        {
+          "term": "Handover pack",
+          "plain": "Runbook per alert; owner per part"
+        },
+        {
+          "term": "Calls in flight",
+          "plain": "Rate x latency: 9 calls"
+        },
+        {
+          "term": "Field report",
+          "plain": "Proof, cost, core or custom"
+        },
+        {
+          "term": "Evidence",
+          "plain": "A rerunnable check or gap"
+        },
+        {
+          "term": "Cost per resolved case",
+          "plain": "Bill over cases with no person"
+        },
+        {
+          "term": "Payback",
+          "plain": "Build cost over yearly gain"
+        }
+      ],
+      "notes": "Each has its lesson number. Handover pack (22): the written material plus a drill the customer's on-call passes alone. Calls in flight (24a): rate times latency. The story's 1.2 million orders in six hours need 55.6 orders a second, which is 8.3 calls at 150 ms, so at least 9. Field report (26): an evidence-backed note with a core or custom proposal. Evidence (27): a check a reviewer can rerun; with none, the answer is a gap. Cost per resolved case (29): the monthly bill over answers with no person involved; the lab gives $0.0256. Payback (30): build cost over the yearly gain after running costs; six stores pay back in 15.2 months at a guessed 50% share."
+    },
+    {
+      "layout": "steps",
+      "title": "Four safeguards, each added before the next",
+      "lessons": [
+        "23",
+        "24",
+        "24a",
+        "31",
+        "32"
+      ],
+      "steps": [
+        {
+          "head": "Check the store first",
+          "text": "Known list, then read (23)"
+        },
+        {
+          "head": "Expand, then roll",
+          "text": "Column first; one node at a time (24)"
+        },
+        {
+          "head": "Restart without double writes",
+          "text": "(24a) upsert, then reconcile"
+        },
+        {
+          "head": "Deploy from a gate",
+          "text": "The passed note decides (31, 32)"
+        }
+      ],
+      "notes": "This is the build path from the first safeguard to the last, in the order the chapter adds them. Lesson 23: check the store id against the known list before any read. Lesson 24: expand the data first, so old code keeps answering, then roll one node at a time behind a health-checked proxy. Lesson 24a: make every write an upsert keyed by order and run, size the calls in flight from the deadline with rate times latency, and reconcile each part against the manifest before the run counts as done. Lessons 31 and 32: deploy only from a release note whose gate passed. Ask the team which of these four they already have, and which one they would miss first."
+    },
+    {
+      "layout": "questions",
+      "title": "Questions to ask in your code review or interview",
+      "lessons": [
+        "23",
+        "24",
+        "24a",
+        "28",
+        "29",
+        "30"
+      ],
+      "questions": [
+        "Which data change ships with its reader?",
+        "Which request could name another store?",
+        "Can a restarted job write any order twice?",
+        "Which retry or fallback reaches a person?",
+        "What does one resolved case cost, and does it pay?"
+      ],
+      "notes": "End with questions for your own design or a code review. Each maps to a lesson. Which data change ships with its reader? Lesson 24: expand first, then deploy, then contract later. Which request could name another store? Lesson 23's store check. Can a restarted job write any order twice? Lesson 24a: a key on order and run, and a reconcile before you say done. Which retry or fallback reaches a person? Lesson 28: only 429 and 5xx errors are retried, and every fallback answer is labelled for a person. What does one resolved case cost, and does the business case pay back? Lessons 29 and 30. Ask these before you quote a date."
+    }
+  ]
+}

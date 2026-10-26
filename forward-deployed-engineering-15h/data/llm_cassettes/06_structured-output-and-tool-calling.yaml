@@ -1,0 +1,156 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m writing about order BB-1108.
+      The delivery came today but the milk is missing. I paid for four. Can I get
+      a credit?"}], "role": "user"}], "systemInstruction": {"parts": [{"text": "You
+      help Basket Bazaar''s support team. Look up the order when the message gives
+      an order number."}]}, "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Look up one Basket Bazaar order by its order number, such
+      as BB-1108. Returns its lines as JSON, or says it is not found.", "name": "lookup_order",
+      "parameters": {"properties": {"order_id": {"type": "STRING"}}, "required": ["order_id"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '746'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"BB-1108\"\n              },\n              \"id\":
+        \"call_792075\"\n            },\n            \"thoughtSignature\": \"AY89a1+Blci0pWgS3Ms+FymSVuPq6usKqnxGvw+7gmN3+qqW7qBS8sru9yB6hkwH/PrTwmqHXgoslnRP+X8qIYcn98kSJd4njL0Hbqk5WhU3LaQMOf9skv7pvpw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 111,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 134,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 111\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 23\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-24T13:08:16.922751Z\",\n  \"responseId\": \"wK3cav-oOOqFr8kPs5Kd-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1022'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sat, 24 Oct 2026 13:08:17 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Hi, I''m writing about order BB-1108.
+      The delivery came today but the milk is missing. I paid for four. Can I get
+      a credit?"}], "role": "user"}, {"parts": [{"functionCall": {"args": {"order_id":
+      "BB-1108"}, "name": "lookup_order"}, "thoughtSignature": "AY89a1-Blci0pWgS3Ms-FymSVuPq6usKqnxGvw-7gmN3-qqW7qBS8sru9yB6hkwH_PrTwmqHXgoslnRP-X8qIYcn98kSJd4njL0Hbqk5WhU3LaQMOf9skv7pvpw="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"output": [{"order_id": "BB-1108", "store": "Store 02", "item": "milk", "qty_base":
+      "4", "unit_base": "each", "ordered_at": "2026-10-22T01:24"}, {"order_id": "BB-1108",
+      "store": "Store 02", "item": "rice", "qty_base": "902", "unit_base": "g", "ordered_at":
+      "2026-10-22T01:24"}]}}}], "role": "user"}, {"parts": [{"text": "Fill the case
+      record from the message and the lookup result."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You help Basket Bazaar''s support team. Look up the order
+      when the message gives an order number."}]}, "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024, "responseMimeType":
+      "application/json", "responseJsonSchema": {"description": "One support case,
+      filled from a customer message. The fields are for this lab only.", "properties":
+      {"order_id": {"description": "the order number as written, such as BB-1108",
+      "title": "Order Id", "type": "string"}, "issue": {"enum": ["missing_item", "wrong_item",
+      "late", "damaged", "other"], "title": "Issue", "type": "string"}, "item": {"anyOf":
+      [{"type": "string"}, {"type": "null"}], "default": null, "description": "the
+      item the customer names, in lower case, or null", "title": "Item"}, "qty_claimed":
+      {"anyOf": [{"type": "integer"}, {"type": "null"}], "default": null, "description":
+      "how many of that item the customer says they paid for, or null", "title": "Qty
+      Claimed"}, "summary": {"description": "one short sentence for the support agent",
+      "title": "Summary", "type": "string"}}, "required": ["order_id", "issue", "summary"],
+      "title": "CaseRecord", "type": "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2123'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"order_id\\\": \\\"BB-1108\\\",\\n  \\\"issue\\\": \\\"missing_item\\\",\\n
+        \ \\\"summary\\\": \\\"Customer reported four units of milk missing from order
+        BB-1108.\\\",\\n  \\\"item\\\": \\\"milk\\\",\\n  \\\"qty_claimed\\\": 4\\n}\",\n
+        \           \"thoughtSignature\": \"AY89a19VEoUDeeCgwJ47ME5Brem1WXV4xCzF+vYlwj2zJhTpwJOwD53bOcaXDDMMS4itpiH+IblnEaSBdTIUm/SGWW5oaEaNepLlvAIDAoa2xm5oa3xlWOgEZDg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 497,\n    \"candidatesTokenCount\":
+        67,\n    \"totalTokenCount\": 564,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 497\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 67\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-24T13:08:17.658416Z\",\n  \"responseId\": \"wa3cavCXKP3S-O4PiN2N2Q8\"\n}\n"
+    headers:
+      content-length:
+      - '1047'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sat, 24 Oct 2026 13:08:18 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

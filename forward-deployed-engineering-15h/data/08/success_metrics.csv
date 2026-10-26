@@ -1,0 +1,5 @@
+id,metric,baseline,target,test,owner,signed_by
+M1,"Share of labelled delivery messages the triage labels correctly (held out from the rule, from the reviewed-label export)",0% (no triage labels exist yet),"90% (invented, to agree)",run the triage on the held-out messages from the reviewed-label export and compare each label with the expected label; correct = same label,ops lead,
+M2,Share of messages the triage leaves with no label for an agent,not measured,"at most 10% (invented, to agree)",count the messages with no label in the same run as M1,ops lead,
+M3,Share of messages labelled within 5 minutes of received_at,not measured,"95% of messages (invented, to agree)",compare received_at with the label time in the run log,support lead,
+M4,Hand-labelled delivery messages per week,"not measured (the ops lead guesses about 12 a week; a guess, not a count)",,count hand-labelled messages in week 1,support lead,

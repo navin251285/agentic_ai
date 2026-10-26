@@ -1,0 +1,13 @@
+case_id,order_id,message,want
+C01,BB-1101,Order BB-1101: the milk is missing from my delivery.,missing_item
+C02,BB-1102,Order BB-1102: only three of the four eggs made it into the bag.,missing_item
+C03,BB-1103,Order BB-1103: my bananas arrived bruised and brown.,damaged
+C04,BB-1104,Order BB-1104: the driver came two hours after the slot.,late
+C05,BB-1105,"Order BB-1105: I was sent oat milk, I ordered almond.",wrong_item
+C06,BB-1106,Order BB-1106: where is my delivery? The app still says pending.,late
+C07,BB-1107,Order BB-1107: two bags of rice were not in the box.,missing_item
+C08,BB-1108,Order BB-1108: the yoghurt came in a crushed pot.,damaged
+C09,BB-1109,"Order BB-1109: no bread at all, and I paid for it.",missing_item
+C10,BB-1110,Order BB-1110: the courier left my order at the wrong flat.,other
+C11,BB-1112,Order BB-1112: I got two of the three cartons I paid for.,missing_item
+C12,BB-1111,Order BB-1111: the box split open and two tins rolled out.,damaged

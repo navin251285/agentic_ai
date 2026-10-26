@@ -1,0 +1,37 @@
+{
+  "erp_up": [
+    "exit code: 0",
+    "api health: {'ok': True, 'orders': 128}"
+  ],
+  "start_nodes": [
+    "exit code: 0",
+    "nodes started with 1 call in flight each"
+  ],
+  "pace": [
+    "rows done: 38, needed by now: 48, behind: True",
+    "api: 40 calls, 0 refused (429), most in flight at once: 2"
+  ],
+  "action": [
+    "ordered check says: 3. the API is fine and every node uses all its slots: add calls in flight"
+  ],
+  "restart": [
+    "killed both nodes with 40 rows written; exit code: 0",
+    "restarted with 3 calls in flight each; exit code: 0; finished: True",
+    "progress after restart: [('a', 20, 44), ('b', 20, 44)]"
+  ],
+  "reconcile": [
+    "part  node   planned  in table  match",
+    "0     a           32        32   True",
+    "1     b           31        31   True",
+    "2     a           32        32   True",
+    "3     b           33        33   True",
+    "total rows 128, distinct orders 128, duplicates 0",
+    "input checksum matches the manifest: True"
+  ],
+  "replay": [
+    "rows before the replay: 128, after: 128",
+    "api calls during the replay: 0",
+    "progress during the replay (node, skipped, written): [('a', 64, 0), ('b', 64, 0)]",
+    "replay start exit code: 0; finished: True"
+  ]
+}

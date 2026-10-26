@@ -1,0 +1,172 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Noted. Support has logged the late delivery
+      for BB-1122."}], "role": "model"}, {"parts": [{"text": "Day 23: I checked order
+      BB-1123 and the delivery was 69 minutes late."}], "role": "user"}, {"parts":
+      [{"text": "Noted. Support has logged the late delivery for BB-1123."}], "role":
+      "model"}, {"parts": [{"text": "Day 24: I checked order BB-1124 and the delivery
+      was 72 minutes late."}], "role": "user"}, {"parts": [{"text": "Noted. Support
+      has logged the late delivery for BB-1124."}], "role": "model"}, {"parts": [{"text":
+      "Day 25: I checked order BB-1125 and the delivery was 75 minutes late."}], "role":
+      "user"}, {"parts": [{"text": "Noted. Support has logged the late delivery for
+      BB-1125."}], "role": "model"}, {"parts": [{"text": "Day 26: I checked order
+      BB-1126 and the delivery was 78 minutes late."}], "role": "user"}, {"parts":
+      [{"text": "Noted. Support has logged the late delivery for BB-1126."}], "role":
+      "model"}, {"parts": [{"text": "Day 27: I checked order BB-1127 and the delivery
+      was 81 minutes late."}], "role": "user"}, {"parts": [{"text": "Noted. Support
+      has logged the late delivery for BB-1127."}], "role": "model"}, {"parts": [{"text":
+      "Day 28: I checked order BB-1128 and the delivery was 84 minutes late."}], "role":
+      "user"}, {"parts": [{"text": "Noted. Support has logged the late delivery for
+      BB-1128."}], "role": "model"}, {"parts": [{"text": "Day 29: I checked order
+      BB-1129 and the delivery was 87 minutes late."}], "role": "user"}, {"parts":
+      [{"text": "Noted. Support has logged the late delivery for BB-1129."}], "role":
+      "model"}, {"parts": [{"text": "Day 30: I checked order BB-1130 and the delivery
+      was 90 minutes late."}], "role": "user"}, {"parts": [{"text": "Noted. Support
+      has logged the late delivery for BB-1130."}], "role": "model"}, {"parts": [{"text":
+      "order bb-1108: the milk is missing from my delivery. can i get a credit?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You help Basket
+      Bazaar''s support team. Reply in one line: the issue type and the order number."}]},
+      "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 80}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2175'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Missing
+        item, BB-1108.\",\n            \"thoughtSignature\": \"AY89a19tZTru9LiCVG9EZp2Evpn/BwDuKm8uW6fUhTltL8MKUXS26uHGEFmlJFWIwmqngIWvr2NE/X3zjviEOvN36Oduy35b7VaGvx2inMjSYQfUbRg9E+szj+c=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 389,\n    \"candidatesTokenCount\":
+        10,\n    \"totalTokenCount\": 399,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 389\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 10\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-24T13:54:37.213876Z\",\n  \"responseId\": \"nbjcavSGDf3S-O4PiN2N2Q8\"\n}\n"
+    headers:
+      content-length:
+      - '872'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sat, 24 Oct 2026 13:54:37 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Noted. Support has logged the late delivery
+      for BB-1122."}], "role": "model"}, {"parts": [{"text": "Day 23: I checked order
+      BB-1123 and the delivery was 69 minutes late."}], "role": "user"}, {"parts":
+      [{"text": "Noted. Support has logged the late delivery for BB-1123."}], "role":
+      "model"}, {"parts": [{"text": "Day 24: I checked order BB-1124 and the delivery
+      was 72 minutes late."}], "role": "user"}, {"parts": [{"text": "Noted. Support
+      has logged the late delivery for BB-1124."}], "role": "model"}, {"parts": [{"text":
+      "Day 25: I checked order BB-1125 and the delivery was 75 minutes late."}], "role":
+      "user"}, {"parts": [{"text": "Noted. Support has logged the late delivery for
+      BB-1125."}], "role": "model"}, {"parts": [{"text": "Day 26: I checked order
+      BB-1126 and the delivery was 78 minutes late."}], "role": "user"}, {"parts":
+      [{"text": "Noted. Support has logged the late delivery for BB-1126."}], "role":
+      "model"}, {"parts": [{"text": "Day 27: I checked order BB-1127 and the delivery
+      was 81 minutes late."}], "role": "user"}, {"parts": [{"text": "Noted. Support
+      has logged the late delivery for BB-1127."}], "role": "model"}, {"parts": [{"text":
+      "Day 28: I checked order BB-1128 and the delivery was 84 minutes late."}], "role":
+      "user"}, {"parts": [{"text": "Noted. Support has logged the late delivery for
+      BB-1128."}], "role": "model"}, {"parts": [{"text": "Day 29: I checked order
+      BB-1129 and the delivery was 87 minutes late."}], "role": "user"}, {"parts":
+      [{"text": "Noted. Support has logged the late delivery for BB-1129."}], "role":
+      "model"}, {"parts": [{"text": "Day 30: I checked order BB-1130 and the delivery
+      was 90 minutes late."}], "role": "user"}, {"parts": [{"text": "Noted. Support
+      has logged the late delivery for BB-1130."}], "role": "model"}, {"parts": [{"text":
+      "order bb-1118: two loaves of bread arrived squashed."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You help Basket Bazaar''s support
+      team. Reply in one line: the issue type and the order number."}]}, "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      80}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2155'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Damaged
+        items, BB-1118.\",\n            \"thoughtSignature\": \"AY89a1/emJKiIHtUr1vImcTObS+srQbeQrKaDXoLBS8i5GJQZnJJ3zXWreB+jPS6iGTcY5wYMZtVrRa8AClc9/3rF06i3XlSWCqxR1nQh2qOOuDPygdkBgAIbls=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 383,\n    \"candidatesTokenCount\":
+        11,\n    \"totalTokenCount\": 394,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 383\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 11\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-24T13:54:37.973139Z\",\n  \"responseId\": \"nbjcatOyO-qFr8kPs5Kd-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '873'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sat, 24 Oct 2026 13:54:38 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

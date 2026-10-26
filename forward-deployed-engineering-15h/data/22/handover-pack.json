@@ -1,0 +1,38 @@
+{
+  "service": "Basket Bazaar triage (lab)",
+  "handed_over_on": "2026-11-06",
+  "owners": {
+    "triage code and image": "Basket Bazaar platform team",
+    "customer API": "orders API team (customer)",
+    "reader secret and its rotation": "identity team (customer)",
+    "decisions store and backups": "Basket Bazaar operations"
+  },
+  "secrets": "the customer's secret store; the handover pack names the secret, never its value",
+  "backups": "decisions store copied before each release; RPO 24 hours; restore drill before go-live",
+  "support": {
+    "tier 1": "operations desk, 24/7",
+    "tier 2": "owning team, business hours",
+    "tier 3": "vendor FDE team, by agreement"
+  },
+  "alerts": [
+    "triage_slow",
+    "erp_auth_failed",
+    "backup_older_than_24h"
+  ],
+  "runbooks": {
+    "triage_slow": {
+      "symptom": "more than 1 in 4 triage requests take over 1 s",
+      "first_check": "open one slow log line; its trace_id shows the slowest span",
+      "mitigation": "do not restart triage: the time is in the orders API call; send that team the trace_id",
+      "verify": "one /triage call answers in under 1 s and the alert clears within 5 minutes",
+      "escalate_to": "orders API on-call (tier 2), with the time window"
+    },
+    "erp_auth_failed": {
+      "symptom": "triage answers 502; logs show erp_error with status 401 or 403",
+      "first_check": "ask the orders API team if the reader secret was rotated; never paste a secret into a ticket",
+      "mitigation": "put the current secret in the secret store and redeploy the same image tag",
+      "verify": "one /triage call answers 200 and no new erp_error lines appear",
+      "escalate_to": "identity team (tier 2) if the reader account is locked"
+    }
+  }
+}
