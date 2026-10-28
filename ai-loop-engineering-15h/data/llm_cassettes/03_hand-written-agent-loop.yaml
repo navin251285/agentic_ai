@@ -1,0 +1,302 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer C-17 says the trail jacket
+      from order BS-1042 arrived torn after one wash. Look up the order and refund
+      what was paid."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are the support desk for Brightside Outfitters. Look up the order before
+      any refund. Never refund more than was paid."}]}, "safetySettings": [], "tools":
+      [{"functionDeclarations": [{"description": "Look up one order: customer, item,
+      amount paid and delivery status.", "name": "get_order", "parameters": {"properties":
+      {"order_id": {"type": "STRING"}}, "required": ["order_id"], "type": "OBJECT"}},
+      {"description": "Refund an amount on one order. The amount may not be more than
+      the amount paid.", "name": "issue_refund", "parameters": {"properties": {"order_id":
+      {"type": "STRING"}, "amount_usd": {"type": "NUMBER"}}, "required": ["order_id",
+      "amount_usd"], "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0,
+      "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '999'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"get_order\",\n              \"args\": {\n                \"order_id\":
+        \"BS-1042\"\n              },\n              \"id\": \"call_501260\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a199X5prdBaw6D7BxhauIR5No8lekyivVp5pW3o8i0L5d9IBzpCfHQ/MrGE2qbgPLQsOAJ/34SmYbwzoeCkj6fBHgd68CSj7LP3NIjmeePzwt831Y4xMXvU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 141,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 164,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 141\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 23\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T14:39:26.513390Z\",\n  \"responseId\": \"nrfgau6qH-qFr8kPs5Kd-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1019'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 14:39:27 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer C-17 says the trail jacket
+      from order BS-1042 arrived torn after one wash. Look up the order and refund
+      what was paid."}], "role": "user"}, {"parts": [{"functionCall": {"args": {"order_id":
+      "BS-1042"}, "name": "get_order"}, "thoughtSignature": "AY89a199X5prdBaw6D7BxhauIR5No8lekyivVp5pW3o8i0L5d9IBzpCfHQ_MrGE2qbgPLQsOAJ_34SmYbwzoeCkj6fBHgd68CSj7LP3NIjmeePzwt831Y4xMXvU="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "get_order", "response":
+      {"output": "{''customer'': ''C-17'', ''item'': ''Trail jacket'', ''paid_usd'':
+      120.0, ''status'': ''delivered''}"}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are the support desk for Brightside Outfitters. Look
+      up the order before any refund. Never refund more than was paid."}]}, "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one order:
+      customer, item, amount paid and delivery status.", "name": "get_order", "parameters":
+      {"properties": {"order_id": {"type": "STRING"}}, "required": ["order_id"], "type":
+      "OBJECT"}}, {"description": "Refund an amount on one order. The amount may not
+      be more than the amount paid.", "name": "issue_refund", "parameters": {"properties":
+      {"order_id": {"type": "STRING"}, "amount_usd": {"type": "NUMBER"}}, "required":
+      ["order_id", "amount_usd"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1439'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"issue_refund\",\n              \"args\": {\n
+        \               \"amount_usd\": 120,\n                \"order_id\": \"BS-1042\"\n
+        \             },\n              \"id\": \"call_496550\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a1/flMU2xzwntjb+bXx/OMNNxCha8q6/bU0vr0rPAQSB+2jFzZi/fXiCASDZM56kZGH7odpxW8rSY58DZ8vFpGWOHiOu+1xSec9FUEiHRZZTpFSTaBtoTRQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 199,\n    \"candidatesTokenCount\":
+        31,\n    \"totalTokenCount\": 230,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 199\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 31\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T14:39:27.221755Z\",\n  \"responseId\": \"n7fgarvEDf-Qr8kP6P_ksA0\"\n}\n"
+    headers:
+      content-length:
+      - '1057'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 14:39:27 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer C-17 says the trail jacket
+      from order BS-1042 arrived torn after one wash. Look up the order and refund
+      what was paid."}], "role": "user"}, {"parts": [{"functionCall": {"args": {"order_id":
+      "BS-1042"}, "name": "get_order"}, "thoughtSignature": "AY89a199X5prdBaw6D7BxhauIR5No8lekyivVp5pW3o8i0L5d9IBzpCfHQ_MrGE2qbgPLQsOAJ_34SmYbwzoeCkj6fBHgd68CSj7LP3NIjmeePzwt831Y4xMXvU="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "get_order", "response":
+      {"output": "{''customer'': ''C-17'', ''item'': ''Trail jacket'', ''paid_usd'':
+      120.0, ''status'': ''delivered''}"}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"args": {"amount_usd": 120, "order_id": "BS-1042"}, "name": "issue_refund"},
+      "thoughtSignature": "AY89a1_flMU2xzwntjb-bXx_OMNNxCha8q6_bU0vr0rPAQSB-2jFzZi_fXiCASDZM56kZGH7odpxW8rSY58DZ8vFpGWOHiOu-1xSec9FUEiHRZZTpFSTaBtoTRQ="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "issue_refund", "response":
+      {"output": "refunded 120.0 on BS-1042"}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are the support desk for Brightside Outfitters. Look
+      up the order before any refund. Never refund more than was paid."}]}, "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one order:
+      customer, item, amount paid and delivery status.", "name": "get_order", "parameters":
+      {"properties": {"order_id": {"type": "STRING"}}, "required": ["order_id"], "type":
+      "OBJECT"}}, {"description": "Refund an amount on one order. The amount may not
+      be more than the amount paid.", "name": "issue_refund", "parameters": {"properties":
+      {"order_id": {"type": "STRING"}, "amount_usd": {"type": "NUMBER"}}, "required":
+      ["order_id", "amount_usd"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1843'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"I have
+        looked up order BS-1042 and processed a full refund of $120.00 for the trail
+        jacket.\",\n            \"thoughtSignature\": \"AY89a18aSryFosAKUqL14gZl3iDxBG3JVSmVZ5OJjYEKX7zz84n6C7lhD0Sb2plNQ4gdp4/6h62qAB3c05ZFkLdyP2JbrPBRzKheo6NYHqeFdGbhdTXI+6RegR0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 244,\n    \"candidatesTokenCount\":
+        29,\n    \"totalTokenCount\": 273,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 244\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 29\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T14:39:27.778148Z\",\n  \"responseId\": \"n7fgaqS_L6GLr8kP9I6dwQ8\"\n}\n"
+    headers:
+      content-length:
+      - '941'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 14:39:28 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer C-17 says the trail jacket
+      from order BS-1042 arrived torn after one wash. Look up the order and refund
+      what was paid."}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are the support desk for Brightside Outfitters. Look up the order before
+      any refund. Never refund more than was paid."}]}, "safetySettings": [], "tools":
+      [{"functionDeclarations": [{"description": "Look up one order: customer, item,
+      amount paid and delivery status.", "name": "get_order", "parameters": {"properties":
+      {"order_id": {"type": "STRING"}}, "required": ["order_id"], "type": "OBJECT"}},
+      {"description": "Refund an amount on one order. The amount may not be more than
+      the amount paid.", "name": "issue_refund", "parameters": {"properties": {"order_id":
+      {"type": "STRING"}, "amount_usd": {"type": "NUMBER"}}, "required": ["order_id",
+      "amount_usd"], "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0,
+      "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '999'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"get_order\",\n              \"args\": {\n                \"order_id\":
+        \"BS-1042\"\n              },\n              \"id\": \"call_314148\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a184PaqM0+VA4/zfEb2tmJg9/jFLzvnHKIKRVZ4UDrjyLq6hXUFU2jEqslb6SL6o7iYnAp1W7dEr9TIMb3Tq8WWCjJ07Tiv9kbtEt4gMf1MF3e2s6TKcluA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 141,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 164,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 141\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 23\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T14:39:28.385194Z\",\n  \"responseId\": \"oLfgaqrBF4mDidsPh_bCwAk\"\n}\n"
+    headers:
+      content-length:
+      - '1019'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 14:39:28 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

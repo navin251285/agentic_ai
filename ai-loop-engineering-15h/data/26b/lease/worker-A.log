@@ -1,0 +1,3 @@
+worker-A: run C-17, attempt 1
+  worker-A C-17 iteration 1: refund written
+WROTE C-17: refund is in the ledger

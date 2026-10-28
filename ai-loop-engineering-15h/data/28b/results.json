@@ -1,0 +1,30 @@
+{
+ "experiments": [
+  {
+   "workers": 1,
+   "drain_s": 14.3,
+   "requests_ok": 4,
+   "requests_429": 3,
+   "first_429_after_s": 9.0,
+   "refund_rows": 4,
+   "workers_that_claimed": 1
+  },
+  {
+   "workers": 3,
+   "drain_s": 13.5,
+   "requests_ok": 4,
+   "requests_429": 7,
+   "first_429_after_s": 3.0,
+   "refund_rows": 4,
+   "workers_that_claimed": 3
+  }
+ ],
+ "drill": {
+  "killed_owner": "3cbbb4244eb0",
+  "killed_attempt": 1,
+  "takeover_owner": "2371085d837c",
+  "takeover_attempt": 2,
+  "refund_rows_for_finding_2": 1,
+  "stale_write": "refused"
+ }
+}

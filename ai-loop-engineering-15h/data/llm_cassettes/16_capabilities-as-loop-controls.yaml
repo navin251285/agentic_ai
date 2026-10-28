@@ -1,0 +1,242 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer C-17 says the trail jacket
+      from order BS-1042 arrived torn after one wash. Refund what was paid."}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "You are the support desk
+      for Brightside Outfitters. Skills you can load by name:\n- refund-policy: Brightside
+      refund rules for the support desk. Read before any refund decision.\nLoad the
+      skill before a refund decision. Call issue_refund at most once."}]}, "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one order:
+      customer, item, amount paid and delivery status.", "name": "get_order", "parameters":
+      {"properties": {"order_id": {"type": "STRING"}}, "required": ["order_id"], "type":
+      "OBJECT"}}, {"description": "Refund an amount on one order. The amount may not
+      be more than the amount paid.", "name": "issue_refund", "parameters": {"properties":
+      {"order_id": {"type": "STRING"}, "amount_usd": {"type": "NUMBER"}}, "required":
+      ["order_id", "amount_usd"], "type": "OBJECT"}}, {"description": "Load the full
+      instructions of one team skill, by its name from the catalog.", "name": "load_skill",
+      "parameters": {"properties": {"name": {"type": "STRING"}}, "required": ["name"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1325'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"load_skill\",\n              \"args\": {\n                \"name\":
+        \"refund-policy\"\n              }\n            }\n          }\n        ]\n
+        \     },\n      \"finishReason\": \"STOP\"\n    }\n  ],\n  \"usageMetadata\":
+        {\n    \"promptTokenCount\": 168,\n    \"candidatesTokenCount\": 16,\n    \"totalTokenCount\":
+        184,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n
+        \     {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 168\n      }\n
+        \   ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 16\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-2.5-flash-lite\",\n  \"createTime\": \"2026-10-27T18:29:28.822579Z\",\n
+        \ \"responseId\": \"iO3garOaMrrb3NoPoKHzGA\"\n}\n"
+    headers:
+      content-length:
+      - '826'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 18:29:29 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer C-17 says the trail jacket
+      from order BS-1042 arrived torn after one wash. Refund what was paid."}], "role":
+      "user"}, {"parts": [{"functionCall": {"args": {"name": "refund-policy"}, "name":
+      "load_skill"}}], "role": "model"}, {"parts": [{"functionResponse": {"name":
+      "load_skill", "response": {"output": "# Refund policy\n1. Look up the order
+      with get_order first. Never refund more than was paid.\n2. A damaged item of
+      100 USD or less: call issue_refund once with the amount paid.\n3. Above 100
+      USD: do not refund. Say that a person will review the case."}}}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are the support desk for Brightside
+      Outfitters. Skills you can load by name:\n- refund-policy: Brightside refund
+      rules for the support desk. Read before any refund decision.\nLoad the skill
+      before a refund decision. Call issue_refund at most once."}]}, "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one order:
+      customer, item, amount paid and delivery status.", "name": "get_order", "parameters":
+      {"properties": {"order_id": {"type": "STRING"}}, "required": ["order_id"], "type":
+      "OBJECT"}}, {"description": "Refund an amount on one order. The amount may not
+      be more than the amount paid.", "name": "issue_refund", "parameters": {"properties":
+      {"order_id": {"type": "STRING"}, "amount_usd": {"type": "NUMBER"}}, "required":
+      ["order_id", "amount_usd"], "type": "OBJECT"}}, {"description": "Load the full
+      instructions of one team skill, by its name from the catalog.", "name": "load_skill",
+      "parameters": {"properties": {"name": {"type": "STRING"}}, "required": ["name"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1785'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"get_order\",\n              \"args\": {\n                \"order_id\":
+        \"BS-1042\"\n              }\n            }\n          }\n        ]\n      },\n
+        \     \"finishReason\": \"STOP\"\n    }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\":
+        250,\n    \"candidatesTokenCount\": 21,\n    \"totalTokenCount\": 271,\n    \"trafficType\":
+        \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 250\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-2.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T18:29:29.263472Z\",\n  \"responseId\": \"ie3garCKENyr3NoPtf684AU\"\n}\n"
+    headers:
+      content-length:
+      - '824'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 18:29:29 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer C-17 says the trail jacket
+      from order BS-1042 arrived torn after one wash. Refund what was paid."}], "role":
+      "user"}, {"parts": [{"functionCall": {"args": {"name": "refund-policy"}, "name":
+      "load_skill"}}], "role": "model"}, {"parts": [{"functionResponse": {"name":
+      "load_skill", "response": {"output": "# Refund policy\n1. Look up the order
+      with get_order first. Never refund more than was paid.\n2. A damaged item of
+      100 USD or less: call issue_refund once with the amount paid.\n3. Above 100
+      USD: do not refund. Say that a person will review the case."}}}], "role": "user"},
+      {"parts": [{"functionCall": {"args": {"order_id": "BS-1042"}, "name": "get_order"}}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "get_order", "response":
+      {"output": "{''customer'': ''C-17'', ''item'': ''Trail jacket'', ''paid_usd'':
+      120.0, ''status'': ''delivered''}"}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are the support desk for Brightside Outfitters. Skills
+      you can load by name:\n- refund-policy: Brightside refund rules for the support
+      desk. Read before any refund decision.\nLoad the skill before a refund decision.
+      Call issue_refund at most once."}]}, "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Look up one order: customer, item, amount paid and delivery
+      status.", "name": "get_order", "parameters": {"properties": {"order_id": {"type":
+      "STRING"}}, "required": ["order_id"], "type": "OBJECT"}}, {"description": "Refund
+      an amount on one order. The amount may not be more than the amount paid.", "name":
+      "issue_refund", "parameters": {"properties": {"order_id": {"type": "STRING"},
+      "amount_usd": {"type": "NUMBER"}}, "required": ["order_id", "amount_usd"], "type":
+      "OBJECT"}}, {"description": "Load the full instructions of one team skill, by
+      its name from the catalog.", "name": "load_skill", "parameters": {"properties":
+      {"name": {"type": "STRING"}}, "required": ["name"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2077'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"I am
+        sorry to hear that the trail jacket arrived torn. I have looked up your order
+        and it states that you paid 120.00 USD. Since the amount paid is above 100.00
+        USD, I am unable to issue a refund. However, I will escalate this case for
+        a senior associate to review.\"\n          }\n        ]\n      },\n      \"finishReason\":
+        \"STOP\"\n    }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 300,\n
+        \   \"candidatesTokenCount\": 70,\n    \"totalTokenCount\": 370,\n    \"trafficType\":
+        \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 300\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 70\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-2.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T18:29:29.676078Z\",\n  \"responseId\": \"ie3gau6hKamg3NoP97aE6Ao\"\n}\n"
+    headers:
+      content-length:
+      - '955'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 18:29:30 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

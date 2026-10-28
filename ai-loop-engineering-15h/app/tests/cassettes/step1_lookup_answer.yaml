@@ -1,0 +1,234 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "What did customer C-17 pay for order
+      BS-1042, and what is that doubled?"}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are the support desk for Brightside Outfitters. Look
+      up the order with get_order before you answer about it. Use calculator for any
+      arithmetic. Answer in two sentences or fewer."}]}, "safetySettings": [], "tools":
+      [{"functionDeclarations": [{"description": "Look up one order: customer, item,
+      amount paid and delivery status.", "name": "get_order", "parameters": {"properties":
+      {"order_id": {"description": "Order id in the form BS-1042", "type": "STRING"}},
+      "required": ["order_id"], "type": "OBJECT"}}, {"description": "Work out an arithmetic
+      expression exactly, for example a refund total. Only numbers and + - * / work.",
+      "name": "calculator", "parameters": {"properties": {"expression": {"description":
+      "Arithmetic with numbers, + - * / and parentheses, such as (120 - 18) * 2",
+      "type": "STRING"}}, "required": ["expression"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1117'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"get_order\",\n              \"args\": {\n                \"order_id\":
+        \"BS-1042\"\n              },\n              \"id\": \"call_919000\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18DAW/kfbs5H/QBL9BcMJPnaAs/V7kg11zwv/394wUXKzKiOD8IzsWgD0RJx3Yt+6dfpAkGeSKKoOAXSLn082NlxT7HAt5Ub9Bl3a+kfVJcmCUklfjcgKI=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 171,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 194,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 171\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 23\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-28T07:30:43.560104Z\",\n  \"responseId\": \"o6ThauiXIqqNr8kP6YuX0Qk\"\n}\n"
+    headers:
+      content-length:
+      - '1019'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Wed, 28 Oct 2026 07:30:44 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "What did customer C-17 pay for order
+      BS-1042, and what is that doubled?"}], "role": "user"}, {"parts": [{"functionCall":
+      {"args": {"order_id": "BS-1042"}, "name": "get_order"}, "thoughtSignature":
+      "AY89a18DAW_kfbs5H_QBL9BcMJPnaAs_V7kg11zwv_394wUXKzKiOD8IzsWgD0RJx3Yt-6dfpAkGeSKKoOAXSLn082NlxT7HAt5Ub9Bl3a-kfVJcmCUklfjcgKI="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "get_order", "response":
+      {"order_id": "BS-1042", "customer": "C-17", "item": "Trail jacket", "paid_usd":
+      120.0, "status": "delivered"}}}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are the support desk for Brightside Outfitters. Look up the order
+      with get_order before you answer about it. Use calculator for any arithmetic.
+      Answer in two sentences or fewer."}]}, "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Look up one order: customer, item, amount paid and delivery
+      status.", "name": "get_order", "parameters": {"properties": {"order_id": {"description":
+      "Order id in the form BS-1042", "type": "STRING"}}, "required": ["order_id"],
+      "type": "OBJECT"}}, {"description": "Work out an arithmetic expression exactly,
+      for example a refund total. Only numbers and + - * / work.", "name": "calculator",
+      "parameters": {"properties": {"expression": {"description": "Arithmetic with
+      numbers, + - * / and parentheses, such as (120 - 18) * 2", "type": "STRING"}},
+      "required": ["expression"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1566'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"calculator\",\n              \"args\": {\n                \"expression\":
+        \"120 * 2\"\n              },\n              \"id\": \"call_1402505\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18UFqJofcKiklMxsbomHhdXz1M6hP48un21CulN1ouXLfI2edgYg0TpWP4qCBzcLk3NrMqSOFJcbFZxIn5svKziXED/V+FAJj43qZp85YWhsuMtxZBaO/8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 219,\n    \"candidatesTokenCount\":
+        19,\n    \"totalTokenCount\": 238,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 219\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 19\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-28T07:30:44.481920Z\",\n  \"responseId\": \"pKThaoC1HcaCr8kPzYTjqAk\"\n}\n"
+    headers:
+      content-length:
+      - '1023'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Wed, 28 Oct 2026 07:30:45 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "What did customer C-17 pay for order
+      BS-1042, and what is that doubled?"}], "role": "user"}, {"parts": [{"functionCall":
+      {"args": {"order_id": "BS-1042"}, "name": "get_order"}, "thoughtSignature":
+      "AY89a18DAW_kfbs5H_QBL9BcMJPnaAs_V7kg11zwv_394wUXKzKiOD8IzsWgD0RJx3Yt-6dfpAkGeSKKoOAXSLn082NlxT7HAt5Ub9Bl3a-kfVJcmCUklfjcgKI="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "get_order", "response":
+      {"order_id": "BS-1042", "customer": "C-17", "item": "Trail jacket", "paid_usd":
+      120.0, "status": "delivered"}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"args": {"expression": "120 * 2"}, "name": "calculator"}, "thoughtSignature":
+      "AY89a18UFqJofcKiklMxsbomHhdXz1M6hP48un21CulN1ouXLfI2edgYg0TpWP4qCBzcLk3NrMqSOFJcbFZxIn5svKziXED_V-FAJj43qZp85YWhsuMtxZBaO_8="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "calculator", "response":
+      {"output": 240}}}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are the support desk for Brightside Outfitters. Look up the order with
+      get_order before you answer about it. Use calculator for any arithmetic. Answer
+      in two sentences or fewer."}]}, "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Look up one order: customer, item, amount paid and delivery
+      status.", "name": "get_order", "parameters": {"properties": {"order_id": {"description":
+      "Order id in the form BS-1042", "type": "STRING"}}, "required": ["order_id"],
+      "type": "OBJECT"}}, {"description": "Work out an arithmetic expression exactly,
+      for example a refund total. Only numbers and + - * / work.", "name": "calculator",
+      "parameters": {"properties": {"expression": {"description": "Arithmetic with
+      numbers, + - * / and parentheses, such as (120 - 18) * 2", "type": "STRING"}},
+      "required": ["expression"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1925'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Customer
+        C-17 paid $120 for order BS-1042. Doubling that amount results in $240.\",\n
+        \           \"thoughtSignature\": \"AY89a197Eafi99QURLNcyd8i0XVBG3iR7Y5A9Whfs4eVin75l+tWdcuiHGOdKJnnfrtVvQXlzfagCPIIS4eOHB+4VsbaIWcuOSdzg5gioKWBhSLRkjaNlGcwlmw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 240,\n    \"candidatesTokenCount\":
+        30,\n    \"totalTokenCount\": 270,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 240\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 30\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-28T07:30:45.106372Z\",\n  \"responseId\": \"paThaoS_Bvri-O4P48Gc0Qs\"\n}\n"
+    headers:
+      content-length:
+      - '930'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Wed, 28 Oct 2026 07:30:45 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

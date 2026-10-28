@@ -1,0 +1,814 @@
+{
+ "updated": "2026-10-26",
+ "sources": [
+  {
+   "id": "docs",
+   "kind": "docs",
+   "what": "Claude Code docs: /loop scheduled tasks, /goal, Agent SDK agent loop (opened 2026-10-26)",
+   "url": "https://code.claude.com/docs/en/goal"
+  },
+  {
+   "id": "gAnthLoops",
+   "kind": "docs",
+   "what": "Anthropic blog: Loop Engineering, getting started with loops (2026-06-30)",
+   "url": "https://claude.com/blog/getting-started-with-loops"
+  },
+  {
+   "id": "eHarness",
+   "kind": "docs",
+   "what": "Anthropic Engineering: Effective harnesses for long-running agents (2025-11-26)",
+   "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents"
+  },
+  {
+   "id": "gOAI",
+   "kind": "docs",
+   "what": "OpenAI practical guide to building agents (carried)",
+   "url": "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-agents/"
+  },
+  {
+   "id": "eBEA",
+   "kind": "docs",
+   "what": "Anthropic Building effective agents (carried)",
+   "url": "https://www.anthropic.com/engineering/building-effective-agents"
+  },
+  {
+   "id": "gOsm",
+   "kind": "writing",
+   "what": "Addy Osmani, Loop engineering (2026-06-07; O Reilly Radar 2026-06-22)",
+   "url": "https://addyosmani.com/blog/loop-engineering/"
+  },
+  {
+   "id": "gIBM",
+   "kind": "writing",
+   "what": "IBM Think, What is loop engineering (2026-07-17)",
+   "url": "https://www.ibm.com/think/topics/loop-engineering"
+  },
+  {
+   "id": "gBF",
+   "kind": "writing",
+   "what": "Build Fast with AI, Loop engineering guide (2026-07-14; secondary)",
+   "url": "https://blog.buildfastwithai.com/loop-engineering-ai-agents-guide"
+  },
+  {
+   "id": "gHunt",
+   "kind": "writing",
+   "what": "Geoffrey Huntley, the Ralph loop (2026-01-17)",
+   "url": "https://ghuntley.com/loop/"
+  },
+  {
+   "id": "pVercel",
+   "kind": "docs",
+   "what": "vercel-labs/ralph-loop-agent README (Apache-2.0, experimental)",
+   "url": "https://github.com/vercel-labs/ralph-loop-agent"
+  },
+  {
+   "id": "pArx",
+   "kind": "writing",
+   "what": "arXiv 2608.21884 Loop Engineering: Building Blocks, Adoption, and Impact (JAWs@ASE 2026): gray-literature review of loop building blocks, 217 loops in 36,710 repos",
+   "url": "https://arxiv.org/abs/2608.21884"
+  },
+  {
+   "id": "cDLAS",
+   "kind": "course",
+   "what": "DeepLearning.AI Agent Skills with Anthropic (2h19m, 10 video lessons, updated 2026-07-17)",
+   "url": "https://www.deeplearning.ai/courses/agent-skills-with-anthropic",
+   "practitioner": true,
+   "standing": "official vendor short course on DeepLearning.AI (Anthropic instructor); rating and learners not shown on page"
+  },
+  {
+   "id": "cAIB",
+   "kind": "course",
+   "what": "AI Builder Club Mastering AI Agents, 50 lessons, chapter list opened 2026-10-26",
+   "url": "https://www.aibuilderclub.com/courses/mastering-ai-agents",
+   "practitioner": true,
+   "standing": "self-published 50-lesson intermediate course, closest content match; no rating or learner count shown (topic map, not a standing benchmark)"
+  },
+  {
+   "id": "cDL",
+   "kind": "course",
+   "what": "DeepLearning.AI Agentic AI (Andrew Ng, Coursera), 5 modules, item list from docs/BENCHMARKS.md (opened 2026-10-18) (carried from agentic-ai-15h)",
+   "url": "https://www.coursera.org/learn/dlai-agentic-ai",
+   "practitioner": true,
+   "standing": "Andrew Ng / DeepLearning.AI course on Coursera; rating and learner count not re-verified this run"
+  },
+  {
+   "id": "cMS",
+   "kind": "course",
+   "what": "Microsoft AI Agents for Beginners, 18 lessons on the GitHub README (opened 2026-10-20; the 2026-10-18 devblog said 10 lessons, the course has grown) (carried from agentic-ai-15h)",
+   "url": "https://github.com/microsoft/ai-agents-for-beginners",
+   "practitioner": true,
+   "standing": "official Microsoft open-source course, 77.5k GitHub stars (2026-10-20), 18 lessons"
+  },
+  {
+   "id": "cHF",
+   "kind": "course",
+   "what": "Hugging Face Agents Course, units 1-4 + bonuses (official Hugging Face; opened 2026-10-18) (carried from agentic-ai-15h)",
+   "url": "https://huggingface.co/learn/agents-course/unit0/introduction",
+   "practitioner": true,
+   "standing": "official Hugging Face course, free, large community"
+  },
+  {
+   "id": "bAIE",
+   "kind": "book",
+   "what": "Chip Huyen, AI Engineering (O'Reilly 2025): evaluation, RAG and agents, inference optimisation, monitoring (carried from agentic-ai-15h)",
+   "url": "https://www.oreilly.com/library/view/ai-engineering/9781098166298/",
+   "practitioner": true,
+   "standing": "best-selling practitioner book (O'Reilly, 2025)"
+  },
+  {
+   "id": "cAIP",
+   "kind": "certification",
+   "what": "AWS Certified Generative AI Developer - Professional (AIP-C01) exam guide, opened 2026-10-20: 5 domains (31/26/20/12/11%), 65 scored questions, pass 750/1000; 'implement agentic AI solutions' is a listed task (carried from agentic-ai-15h)",
+   "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-professional-01/ai-professional-01.md",
+   "practitioner": true,
+   "standing": "official AWS professional certification"
+  },
+  {
+   "id": "jP",
+   "kind": "jobs",
+   "what": "446 AI/LLM/agent engineer postings, 48 companies, board APIs 2026-10-16 (research_cache sec 1) (carried from agentic-ai-15h)",
+   "url": "topics/agentic-ai-6-production-v2/RESEARCH.cache-ai-engineering.md"
+  },
+  {
+   "id": "jG2",
+   "kind": "jobs",
+   "what": "243 agent-engineering postings, 24 boards, 2026-10-15 (carried from agentic-ai-15h)",
+   "url": "topics/agentic-ai-2-patterns-memory-rag-v2/RESEARCH.md 5b"
+  },
+  {
+   "id": "iAV",
+   "kind": "interviews",
+   "what": "Analytics Vidhya, 30 Agentic AI interview questions (2026-02; re-opened 2026-10-20) (carried from agentic-ai-15h)",
+   "url": "https://www.analyticsvidhya.com/blog/2026/02/agentic-ai-interview-questions-and-answers/"
+  },
+  {
+   "id": "iCl",
+   "kind": "interviews",
+   "what": "ClavePrep, Agentic AI Interview Questions 2026 (2026-07-03; opened 2026-10-20) (carried from agentic-ai-15h)",
+   "url": "https://claveprep.com/blog/agentic-ai-interview-questions-2026"
+  },
+  {
+   "id": "iCa",
+   "kind": "interviews",
+   "what": "careery.pro AI Engineer Interview Questions 2026 (opened 2026-10-16) (carried from agentic-ai-15h)",
+   "url": "https://careery.pro/blog/ai-careers/ai-engineer-interview-questions"
+  },
+  {
+   "id": "iTI",
+   "kind": "interviews",
+   "what": "techinterview.org Anthropic / OpenAI loop pages and applied-AI page (updated 2026-07) (carried from agentic-ai-15h)",
+   "url": "https://www.techinterview.org/post/3233474914/anthropic-interview-process-ai-collaborative-2026/"
+  },
+  {
+   "id": "jH",
+   "kind": "jobs",
+   "what": "Harness engineer / agent harness engineer postings Apr-Aug 2026 (JAPAN AI, Nomic, Viktor, two remote), found via search 2026-10-26, snippets only",
+   "url": "https://www.employbl.com/jobs/agent-harness-engineer-viktor-1654607"
+  },
+  {
+   "id": "iTIsys",
+   "kind": "interviews",
+   "what": "techinterview.org What the agent system design interview really tests (updated 2026-07-23; opened 2026-10-26)",
+   "url": "https://www.techinterview.org/post/3233476823/agent-system-design-interview/"
+  },
+  {
+   "id": "qGH",
+   "kind": "questions",
+   "what": "GitHub issue search counts 2026-10-26: claude-code infinite loop agent 382, goal loop stuck 64; codex loop runaway cost 50; recent Codex Goal bugs",
+   "url": "https://github.com/anthropics/claude-code/issues"
+  }
+ ],
+ "benchmarks": [
+  "cDL",
+  "cMS",
+  "cHF",
+  "bAIE",
+  "cAIP",
+  "cDLAS",
+  "cAIB"
+ ],
+ "benchmark_items": {
+  "cDL": [
+   "M1 What is agentic AI/degrees of autonomy/benefits/applications",
+   "M1 Task decomposition",
+   "M1 Evaluating agentic AI",
+   "M1 Agentic design patterns",
+   "M2 Reflection (why, chart generation, evaluating impact, external feedback)",
+   "M3 What are tools / creating a tool / tool syntax",
+   "M3 Code execution",
+   "M3 MCP",
+   "M4 Evaluations, error analysis, component-level evals, addressing problems, development process",
+   "M4 Latency and cost optimisation",
+   "M5 Planning workflows, creating/executing plans, planning with code execution",
+   "M5 Multi-agentic workflows",
+   "M5 Communication patterns for multi-agent"
+  ],
+  "cMS": [
+   "01 Intro to agents and use cases",
+   "02 Exploring agentic frameworks",
+   "03 Agentic design patterns",
+   "04 Tool use pattern",
+   "05 Agentic RAG",
+   "06 Building trustworthy agents",
+   "07 Planning pattern",
+   "08 Multi-agent pattern",
+   "09 Metacognition pattern",
+   "10 Agents in production",
+   "11 Agentic protocols (MCP, A2A, NLWeb)",
+   "12 Context engineering",
+   "13 Managing agentic memory",
+   "14 Microsoft Agent Framework",
+   "15 Computer use agents (CUA)",
+   "16 Deploying scalable agents",
+   "17 Creating local AI agents",
+   "18 Securing AI agents"
+  ],
+  "cHF": [
+   "U1 tools",
+   "U1 thoughts-actions-observations",
+   "U1 LLMs, messages, special tokens, chat templates",
+   "U1 Python functions as tools",
+   "U2 smolagents",
+   "U2 LlamaIndex",
+   "U2 LangGraph",
+   "U3 Agentic RAG use case",
+   "U4 final project on a benchmark",
+   "Bonus observability and evaluation",
+   "Bonus function-calling fine-tune (go deeper)",
+   "Bonus agents in games (go deeper)"
+  ],
+  "cAIP": [
+   "D1 FM integration, data management, compliance 31%",
+   "D2 Implementation and integration (agentic solutions, orchestration) 26%",
+   "D3 Safety, security, governance 20%",
+   "D4 Operational efficiency and optimisation 12%",
+   "D5 Testing, validation, troubleshooting 11%"
+  ],
+  "cDLAS": [
+   "Skill basics: why skills, structure of a skill folder, SKILL.md format, progressive disclosure",
+   "Skills vs tools vs MCP vs subagents",
+   "Pre-built skills (Excel, PowerPoint, skill creation) in Claude.ai",
+   "Build a custom skill (practice questions from notes)",
+   "Build a custom skill (time-series analysis)",
+   "Skills with the Claude API (code execution, Files API)",
+   "Skills in Claude Code (generation, review, testing workflows)",
+   "Subagents with skills in Claude Code",
+   "Skills with the Claude Agent SDK (research agent)",
+   "Wrap-up (non-content items excluded: quiz)"
+  ],
+  "cAIB": [
+   "Ch0 career framing: will AI replace me (3 items)",
+   "Ch1 Cognitive calibration, six pillars (4)",
+   "Ch2 Agent loop (5)",
+   "Ch3 Tool system (8)",
+   "Ch4 Context engineering (9)",
+   "Ch5 Memory (3)",
+   "Ch6 Multi-agent (5)",
+   "Ch7 Evaluation and testing (3)",
+   "Ch8 Cost and latency engineering (2)",
+   "Ch9 Harness engineering (6)",
+   "Ch10 Frameworks (1)",
+   "Capstone design your own agent (2)"
+  ]
+ },
+ "gaps": [
+  "No Coursera/Udemy/DeepLearning.AI course on loop engineering exists (search 2026-10-26); benchmarks are adjacent courses.",
+  "Ratings and learner counts not shown for AI Builder Club; DLAI page shows none.",
+  "arXiv 2608.21884 PDF unreadable (binary); only the abstract page was read.",
+  "OpenAI Codex /goal and Automations: official developers.openai.com docs not opened; sources conflict on enablement.",
+  "No posting titled loop engineer found; harness-engineer postings seen via search snippets only.",
+  "No first-hand GCC round write-up.",
+  "research_cache/ai-engineering.md not writable by this session."
+ ],
+ "concepts": [
+  {
+   "concept": "AREA The agent loop and tool calling (turns, tool round trip, termination, what a loop is vs a workflow)",
+   "sources": [
+    "docs",
+    "gOAI",
+    "eBEA",
+    "gOsm",
+    "gIBM",
+    "cDL",
+    "cMS",
+    "cHF",
+    "cAIB",
+    "iTIsys",
+    "iAV",
+    "jP"
+   ],
+   "must": true,
+   "area": true,
+   "interview": true,
+   "implement": true,
+   "posting_share": 23,
+   "module": "claude_agent_sdk / openai / anthropic / google-genai",
+   "adoption": "official vendor SDKs; Agent SDK 0.2.174 on PyPI 2026-10-24"
+  },
+  {
+   "concept": "AREA Goals, verifiers and stop conditions (machine-checkable goal, deterministic verifier, maker/checker, four exits: done, stuck, over budget, hand off)",
+   "sources": [
+    "docs",
+    "gAnthLoops",
+    "gOsm",
+    "gIBM",
+    "gBF",
+    "gHunt",
+    "pVercel",
+    "pArx",
+    "iTIsys",
+    "qGH"
+   ],
+   "must": true,
+   "area": true,
+   "interview": true,
+   "implement": true,
+   "module": "pytest / claude_agent_sdk hooks",
+   "adoption": "pytest is the de-facto Python test runner; Stop hooks documented in Claude Code docs"
+  },
+  {
+   "concept": "AREA Outer loops and autonomous iteration (Ralph loop, /goal, Stop hook, nested outer/inner loop, fresh context per iteration)",
+   "sources": [
+    "docs",
+    "gAnthLoops",
+    "gHunt",
+    "pVercel",
+    "gOsm",
+    "gBF",
+    "pArx",
+    "qGH"
+   ],
+   "must": true,
+   "area": true,
+   "implement": true,
+   "module": "claude_agent_sdk / subprocess",
+   "adoption": "Claude Code /goal and Codex /goal; ralph-loop-agent 842 stars"
+  },
+  {
+   "concept": "AREA State and memory across iterations (progress file, JSON feature list, git history, spine, checkpointer, context compaction)",
+   "sources": [
+    "docs",
+    "eHarness",
+    "gOsm",
+    "gIBM",
+    "pArx",
+    "cAIB",
+    "cMS",
+    "bAIE",
+    "iTIsys"
+   ],
+   "must": true,
+   "area": true,
+   "interview": true,
+   "module": "langgraph (checkpointer) / sqlite3 / git",
+   "adoption": "LangGraph 10.5% of postings; 22.6% of agent listings"
+  },
+  {
+   "concept": "AREA Triggers and scheduling (cron, /loop, event and heartbeat loops, cloud routines, GitHub Actions, proactive loops)",
+   "sources": [
+    "docs",
+    "gAnthLoops",
+    "gOsm",
+    "gIBM",
+    "gBF",
+    "pArx"
+   ],
+   "must": true,
+   "area": true,
+   "module": "GitHub Actions / cron",
+   "adoption": "CI/CD named in 11.4% of postings (jP)"
+  },
+  {
+   "concept": "AREA Isolation and parallelism (git worktrees, sandboxes, subagents, orchestrator-workers, review bandwidth)",
+   "sources": [
+    "docs",
+    "gOsm",
+    "gIBM",
+    "gAnthLoops",
+    "cDLAS",
+    "cAIB",
+    "cDL",
+    "cMS",
+    "iTIsys",
+    "iAV"
+   ],
+   "must": true,
+   "area": true,
+   "module": "git worktree / claude_agent_sdk subagents",
+   "adoption": "worktree isolation is documented by both Claude Code and Codex"
+  },
+  {
+   "concept": "AREA Capabilities: tools, MCP, skills, hooks, plugins",
+   "sources": [
+    "docs",
+    "gOsm",
+    "gIBM",
+    "gAnthLoops",
+    "cDLAS",
+    "cAIB",
+    "cDL",
+    "cMS",
+    "cHF",
+    "jP"
+   ],
+   "must": true,
+   "area": true,
+   "posting_share": 14.3,
+   "module": "mcp / claude_agent_sdk",
+   "adoption": "MCP named in 14.3% of postings (jP)"
+  },
+  {
+   "concept": "AREA Evaluation of loops (golden sets, trajectory scoring, LLM-as-judge limits, regression gate in CI, pass^k)",
+   "sources": [
+    "gAnthLoops",
+    "eHarness",
+    "cDL",
+    "cAIB",
+    "bAIE",
+    "cAIP",
+    "iTIsys",
+    "iCl",
+    "iCa",
+    "iAV",
+    "jP",
+    "jH"
+   ],
+   "must": true,
+   "area": true,
+   "interview": true,
+   "implement": true,
+   "posting_share": 66.1,
+   "module": "pytest / deepeval",
+   "adoption": "evals named in 66.1% of postings (upper bound); deepeval 4.3.1"
+  },
+  {
+   "concept": "AREA Cost, reliability and observability (token and spend budgets, retries, idempotency, durable execution, tracing, loop detection)",
+   "sources": [
+    "docs",
+    "gAnthLoops",
+    "gOsm",
+    "gBF",
+    "cAIB",
+    "bAIE",
+    "cAIP",
+    "iTIsys",
+    "iCa",
+    "iCl",
+    "iAV",
+    "jP",
+    "qGH"
+   ],
+   "must": true,
+   "area": true,
+   "interview": true,
+   "implement": true,
+   "posting_share": 50.4,
+   "module": "tenacity / opentelemetry / langfuse",
+   "adoption": "observability 50.4%, cost 29.4% of postings; langfuse 5.0.4"
+  },
+  {
+   "concept": "AREA Security, permissions and human oversight (permission modes, least privilege, sandbox, injection, reward hacking, approvals, comprehension debt)",
+   "sources": [
+    "docs",
+    "gOsm",
+    "gIBM",
+    "gBF",
+    "gOAI",
+    "cMS",
+    "cAIP",
+    "iCl",
+    "iCa",
+    "iAV",
+    "jP",
+    "jH"
+   ],
+   "must": true,
+   "area": true,
+   "interview": true,
+   "posting_share": 63.2,
+   "module": "claude_agent_sdk permissions / langgraph interrupt",
+   "adoption": "security/safety 63.2% (upper bound), HITL 16.1%, injection 8.1% of postings"
+  },
+  {
+   "concept": "AREA Production and enterprise operation (agent platform, gateway, identity, audit, rollout, governance, org-wide loops)",
+   "sources": [
+    "gIBM",
+    "gOsm",
+    "cAIP",
+    "cMS",
+    "jP",
+    "jH",
+    "iTI",
+    "iCa"
+   ],
+   "must": true,
+   "area": true,
+   "interview": true,
+   "posting_share": 15.2,
+   "module": "opentelemetry / FastAPI",
+   "adoption": "gateway/routing 15.2%, audit logs 8.5% of postings"
+  },
+  {
+   "concept": "Loop engineering vs prompt engineering vs context engineering vs harness engineering",
+   "sources": [
+    "gOsm",
+    "gIBM",
+    "gBF",
+    "gAnthLoops",
+    "pArx",
+    "cAIB"
+   ],
+   "must": true
+  },
+  {
+   "concept": "Four loop types: turn-based, goal-based, time-based, proactive",
+   "sources": [
+    "gAnthLoops",
+    "docs",
+    "gOsm"
+   ],
+   "must": true
+  },
+  {
+   "concept": "Agent SDK max_turns, max_budget_usd and result subtypes (error_max_turns, error_max_budget_usd)",
+   "sources": [
+    "docs"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true,
+   "module": "claude_agent_sdk",
+   "adoption": "official Agent SDK docs"
+  },
+  {
+   "concept": "Repeated identical tool call detection and loop-stuck handling",
+   "sources": [
+    "iTIsys",
+    "iCl",
+    "qGH",
+    "gBF"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true
+  },
+  {
+   "concept": "Tool argument validation against a schema, errors returned as observations",
+   "sources": [
+    "iTIsys",
+    "cAIB",
+    "cHF",
+    "gOAI"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true,
+   "module": "pydantic",
+   "adoption": "schema layer of OpenAI/Anthropic/Gemini SDK helpers"
+  },
+  {
+   "concept": "Idempotent tool calls and resume after restart",
+   "sources": [
+    "iTIsys",
+    "iCl",
+    "iCa"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true
+  },
+  {
+   "concept": "Premature completion: model declares done too early (feature list, one feature per session)",
+   "sources": [
+    "eHarness",
+    "gOsm",
+    "gIBM",
+    "qGH"
+   ],
+   "must": true
+  },
+  {
+   "concept": "Reward hacking in loops (agent deletes the failing test or assertion)",
+   "sources": [
+    "gBF",
+    "gOsm",
+    "gIBM"
+   ],
+   "must": false
+  },
+  {
+   "concept": "Browser or end-to-end testing as verifier (Playwright/Puppeteer via MCP)",
+   "sources": [
+    "eHarness",
+    "gAnthLoops",
+    "cDLAS"
+   ],
+   "must": true,
+   "module": "playwright",
+   "adoption": "used in Anthropic harness post and DeepLearning.AI Claude Code course"
+  },
+  {
+   "concept": "SKILL.md: encode team standards so the loop can verify itself (progressive disclosure)",
+   "sources": [
+    "cDLAS",
+    "gAnthLoops",
+    "gOsm",
+    "cAIB"
+   ],
+   "must": true
+  },
+  {
+   "concept": "Hooks: PreToolUse, PostToolUse, Stop, SubagentStop, PreCompact",
+   "sources": [
+    "docs",
+    "gIBM",
+    "gOsm"
+   ],
+   "must": true,
+   "module": "claude_agent_sdk"
+  },
+  {
+   "concept": "Heartbeat and triage inbox pattern; one worktree per finding",
+   "sources": [
+    "gOsm",
+    "gIBM"
+   ],
+   "must": true
+  },
+  {
+   "concept": "Maker/checker split: verifier subagent with fresh context, different model or instructions",
+   "sources": [
+    "gOsm",
+    "gIBM",
+    "gAnthLoops",
+    "gBF",
+    "cAIB"
+   ],
+   "must": true
+  },
+  {
+   "concept": "Cost control for unattended loops: pilot on a slice, cheaper model for the checker, run no more often than the system changes",
+   "sources": [
+    "gAnthLoops",
+    "gOsm",
+    "gBF",
+    "cAIB",
+    "bAIE"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "Context compaction and fresh-context iterations",
+   "sources": [
+    "docs",
+    "gHunt",
+    "eHarness",
+    "gIBM",
+    "cAIB",
+    "cMS"
+   ],
+   "must": true
+  },
+  {
+   "concept": "Comprehension debt, intent debt and cognitive surrender (human review bandwidth)",
+   "sources": [
+    "gOsm",
+    "gIBM"
+   ],
+   "must": false
+  },
+  {
+   "concept": "Prompt injection through tool output in unattended loops",
+   "sources": [
+    "iCl",
+    "iCa",
+    "gOAI",
+    "cMS",
+    "jP"
+   ],
+   "must": true,
+   "interview": true,
+   "posting_share": 8.1
+  },
+  {
+   "concept": "Human-in-the-loop approval and escalation as a loop exit",
+   "sources": [
+    "gOAI",
+    "gIBM",
+    "iAV",
+    "iTI",
+    "jP"
+   ],
+   "must": true,
+   "interview": true,
+   "implement": true,
+   "posting_share": 16.1,
+   "module": "langgraph interrupt"
+  },
+  {
+   "concept": "OpenTelemetry tracing of an agent run",
+   "sources": [
+    "iAV",
+    "iTI",
+    "bAIE",
+    "jP"
+   ],
+   "must": true,
+   "interview": true,
+   "posting_share": 1.3,
+   "module": "opentelemetry-sdk"
+  },
+  {
+   "concept": "Durable workflows for long-running agents (Temporal, LangGraph checkpointer)",
+   "sources": [
+    "iTIsys",
+    "jP",
+    "cMS"
+   ],
+   "must": true,
+   "posting_share": 10.3,
+   "module": "langgraph"
+  },
+  {
+   "concept": "Multi-agent: when it is worth the cost, handoffs, conflicting agents",
+   "sources": [
+    "iTIsys",
+    "iAV",
+    "cDL",
+    "cMS",
+    "cHF",
+    "eHarness"
+   ],
+   "must": true,
+   "interview": true
+  },
+  {
+   "concept": "RAG as a loop component (retrieval step, citations)",
+   "sources": [
+    "cDL",
+    "cMS",
+    "cHF",
+    "bAIE",
+    "jP",
+    "iCl"
+   ],
+   "must": false,
+   "posting_share": 40.4
+  },
+  {
+   "concept": "Agent identity, gateway, RBAC for enterprise tool access",
+   "sources": [
+    "jP",
+    "iCa",
+    "cAIP"
+   ],
+   "must": true,
+   "posting_share": 10.3
+  },
+  {
+   "concept": "Governance: EU AI Act, audit trail, data residency",
+   "sources": [
+    "cAIP",
+    "jP"
+   ],
+   "must": false,
+   "posting_share": 0.4
+  },
+  {
+   "concept": "Empirical evidence for loop engineering benefits (none yet; 217 loops in 36,710 repos)",
+   "sources": [
+    "pArx"
+   ],
+   "must": false,
+   "level": "research"
+  },
+  {
+   "concept": "Fine-tuning and RL for loop agents",
+   "sources": [
+    "bAIE",
+    "jP"
+   ],
+   "must": false,
+   "level": "research",
+   "posting_share": 19.1
+  }
+ ],
+ "use_cases": [
+  "overnight or CI-triggered fix-until-green loops (Claude Code /goal docs)",
+  "daily heartbeat triage with one worktree and sub-agent per finding plus a reviewer (Osmani)",
+  "PR babysitter loop /loop check CI and address review comments (Claude Code docs)",
+  "product agents with outer verify-and-retry loops, caps and escalation: support triage, research (Rubrik, Coinbase agent verification, LaunchDarkly AgentControl postings)",
+  "agent eval and verification platforms (Datadog, LaunchDarkly, Coinbase postings)"
+ ],
+ "platforms": {
+  "share_of_postings_pct": {
+   "aws": 19.5,
+   "gcp": 14.6,
+   "azure": 10.1,
+   "bedrock": 4.2
+  },
+  "n": 446,
+  "note": "Loop runtimes: Claude Code and Agent SDK, OpenAI Codex and Agents SDK, Vercel AI SDK ralph-loop-agent, LangGraph; vendor-neutral core + Claude Agent SDK primary"
+ }
+}

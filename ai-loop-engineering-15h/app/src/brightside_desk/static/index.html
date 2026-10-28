@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brightside support desk</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; color: #1d1d1f; }
+    h1 { font-size: 1.4rem; margin-bottom: 0.25rem; }
+    .muted { color: #666; font-size: 0.92rem; }
+    form { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+    textarea { min-height: 4.5rem; font: inherit; padding: 0.5rem; }
+    .row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    input[type=number] { width: 4.5rem; font: inherit; padding: 0.25rem; }
+    button { padding: 0.5rem 1.1rem; font: inherit; cursor: pointer; }
+    #result { margin-top: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 0.3rem; font-weight: 600; background: #e8eefc; }
+    .badge.answered { background: #e6f6ea; }
+    .badge.turn_cap, .badge.stuck, .badge.over_budget_tokens, .badge.over_budget_usd { background: #fdecea; }
+    .badge.refund_proposed { background: #fff4d6; }
+    .refund { border: 1px solid #d8dde8; border-radius: 0.4rem; padding: 0.5rem 0.75rem; margin: 0.5rem 0; }
+    .answer { white-space: pre-wrap; background: #f6f6f8; padding: 0.75rem; border-radius: 0.4rem; margin: 0.75rem 0; }
+    .step { border-left: 3px solid #b8c4dd; padding: 0.25rem 0.75rem; margin: 0.4rem 0; font-family: ui-monospace, monospace; font-size: 0.88rem; white-space: pre-wrap; }
+    .error { color: #b00020; }
+    section.queue { margin-top: 2.5rem; border-top: 1px solid #d8dde8; padding-top: 1rem; }
+    h2 { font-size: 1.15rem; margin: 0 0 0.4rem; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 0.5rem 0; }
+    th, td { text-align: left; padding: 0.3rem 0.5rem; border-bottom: 1px solid #e5e8ef; vertical-align: top; }
+    pre { background: #f6f6f8; padding: 0.6rem; border-radius: 0.4rem; overflow-x: auto; font-size: 0.82rem; }
+    .approval { border: 1px solid #e0c97a; background: #fffbea; border-radius: 0.4rem; padding: 0.6rem 0.8rem; margin: 0.6rem 0; }
+    .approval .row { margin-top: 0.5rem; }
+    .status-waiting { background: #fff4d6; }
+    .status-paid, .status-done { background: #e6f6ea; }
+    .status-rejected, .status-failed { background: #fdecea; }
+  </style>
+</head>
+<body>
+  <h1>Brightside support desk</h1>
+  <p class="muted">Ask about an order, for example BS-1042, or ask for a sum or a refund. The desk looks things up with its tools, and it stops at its caps. A refund is only proposed: a checker approves it, and the payment service pays it once.</p>
+
+  <form id="chat">
+    <textarea id="message" required maxlength="2000" placeholder="Customer C-17 asks about order BS-1042. What did they pay?"></textarea>
+    <div class="row">
+      <label>Turn cap <input id="max_turns" type="number" min="1" max="10" value="6"></label>
+      <label>Payment service faults for this request
+        <select id="payment_faults">
+          <option value="">none</option>
+          <option value="503">one 503, then success</option>
+          <option value="lost_reply">a lost reply (written, then no answer)</option>
+          <option value="503,503,lost_reply">two 503s, then a lost reply</option>
+        </select>
+      </label>
+      <button id="send" type="submit">Send</button>
+    </div>
+  </form>
+
+  <section id="result" aria-live="polite"></section>
+
+  <section class="queue">
+    <h2>Scheduled runs and approvals</h2>
+    <p class="muted">The heartbeat adds each ticket once, and a worker claims it with a lease. Each run works in its own
+      git worktree, under a grant list of tools. A refund over the limit waits here for a person. Approve it by echoing
+      the amount you were shown: the lease is checked again in the same step, so a late answer is refused.</p>
+    <div class="row">
+      <button id="tick" type="button">Run the scheduled tick</button>
+      <span class="muted" id="tick_status"></span>
+    </div>
+    <p class="muted" id="grants"></p>
+
+    <h3>Waiting for a reviewer</h3>
+    <div id="approvals" aria-live="polite"></div>
+
+    <h3>Tasks</h3>
+    <div id="tasks"></div>
+  </section>
+
+  <script>
+    const REASONS = {
+      answered: "The model answered in text. The loop finished on its own.",
+      turn_cap: "The turn cap stopped the loop. The tools of the last reply did not run.",
+      over_budget_tokens: "The token cap stopped the loop.",
+      over_budget_usd: "The dollar cap stopped the loop.",
+      stuck: "The stuck check stopped the loop: the same call or the same error kept coming back.",
+      refund_proposed: "The desk proposed a refund. The checker and the payment service decided it below."
+    };
+
+    function el(tag, className, text) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      node.textContent = text;
+      return node;
+    }
+
+    function render(data) {
+      const out = document.getElementById("result");
+      out.replaceChildren();
+      const head = el("p", "", "Stop reason: ");
+      head.append(el("span", "badge " + data.stop, data.stop));
+      head.append(el("span", "muted", "  turns " + data.turns + " · cost $" + data.usd.toFixed(6)));
+      out.append(head);
+      out.append(el("p", "muted", REASONS[data.stop] || ""));
+      if (data.why) out.append(el("p", "muted", "Why: " + data.why));
+      if (data.answer) out.append(el("div", "answer", data.answer));
+      (data.refunds || []).forEach(r => {
+        const box = el("div", "refund", "Refund " + r.order_id + " · $" + r.amount_usd + ": " + (r.approved ? "checker approved" : "checker refused"));
+        box.append(el("div", "muted", "Checker: " + r.reason));
+        if (r.result) box.append(el("div", "muted", "Payment: " + r.result + " · tries " + r.tries));
+        else if (r.tries) box.append(el("div", "muted", "Payment: not confirmed · tries " + r.tries));
+        out.append(box);
+      });
+      data.steps.forEach((step, i) => {
+        out.append(el("h3", "", "Turn " + (i + 1)));
+        step.calls.forEach(c => out.append(el("div", "step", "model asks: " + c.name + "(" + c.args + ")")));
+        step.results.forEach(r => out.append(el("div", "step", "tool " + r.name + " returns: " + r.text)));
+      });
+    }
+
+    async function ask(event) {
+      event.preventDefault();
+      const out = document.getElementById("result");
+      const button = document.getElementById("send");
+      button.disabled = true;
+      out.replaceChildren(el("p", "muted", "The desk is working..."));
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: document.getElementById("message").value,
+            max_turns: Number(document.getElementById("max_turns").value),
+            payment_faults: document.getElementById("payment_faults").value
+              ? document.getElementById("payment_faults").value.split(",") : []
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          const detail = typeof data.detail === "string" ? data.detail : "The request failed.";
+          out.replaceChildren(el("p", "error", detail));
+        } else {
+          render(data);
+        }
+      } catch (err) {
+        out.replaceChildren(el("p", "error", "Could not reach the app. Is uvicorn running?"));
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    function statusCell(status) {
+      const td = document.createElement("td");
+      td.append(el("span", "badge status-" + status, status));
+      return td;
+    }
+
+    function cell(text) {
+      const td = document.createElement("td");
+      td.textContent = text == null ? "" : String(text);
+      return td;
+    }
+
+    async function loadPermissions() {
+      const res = await fetch("/api/permissions");
+      const grants = await res.json();
+      const parts = Object.entries(grants).map(([run, tools]) => run + ": " + tools.join(", "));
+      document.getElementById("grants").textContent = "Grant lists (what each run may call): " + parts.join(" · ");
+    }
+
+    async function loadTasks() {
+      const res = await fetch("/api/tasks");
+      const data = await res.json();
+      const box = document.getElementById("tasks");
+      box.replaceChildren();
+      if (!data.tasks.length) { box.append(el("p", "muted", "No tasks yet. Run the scheduled tick.")); return; }
+      const table = document.createElement("table");
+      const head = document.createElement("tr");
+      ["Ticket", "Status", "Attempt", "Owner", "Reason"].forEach(h => head.append(el("th", "", h)));
+      table.append(head);
+      data.tasks.forEach(t => {
+        const tr = document.createElement("tr");
+        tr.append(cell(t.ticket), statusCell(t.status), cell(t.attempt), cell(t.owner), cell(t.reason));
+        table.append(tr);
+      });
+      box.append(table);
+    }
+
+    function approvalBox(a) {
+      const box = el("div", "approval", "Ticket " + a.ticket + " · attempt " + a.attempt + " · proposed $" + a.total_usd.toFixed(2));
+      const ends = new Date(a.window_ends * 1000).toLocaleTimeString();
+      box.append(el("div", "muted", "The reviewer's window closes at " + ends + ". Answers after it are refused."));
+      box.append(el("pre", "", a.diff));
+      const row = el("div", "row", "");
+      const amount = document.createElement("input");
+      amount.type = "number"; amount.step = "0.01"; amount.min = "0.01"; amount.value = a.total_usd.toFixed(2);
+      amount.setAttribute("aria-label", "amount to approve in USD");
+      const approve = el("button", "", "Approve");
+      const reject = el("button", "", "Reject");
+      const outcome = el("span", "muted", "");
+      approve.addEventListener("click", () => decide(a.ticket, "approve", Number(amount.value), outcome));
+      reject.addEventListener("click", () => decide(a.ticket, "reject", null, outcome));
+      row.append(el("label", "", "Amount to approve (USD) "), amount, approve, reject, outcome);
+      box.append(row);
+      return box;
+    }
+
+    async function loadApprovals() {
+      const res = await fetch("/api/approvals");
+      const data = await res.json();
+      const box = document.getElementById("approvals");
+      box.replaceChildren();
+      if (!data.approvals.length) { box.append(el("p", "muted", "Nothing is waiting.")); return; }
+      data.approvals.forEach(a => box.append(approvalBox(a)));
+    }
+
+    async function refreshQueue() {
+      await Promise.all([loadApprovals(), loadTasks()]);
+    }
+
+    async function decide(ticket, decision, amount, outcomeNode) {
+      const body = decision === "approve" ? { decision, amount_usd: amount } : { decision };
+      const res = await fetch("/api/approvals/" + encodeURIComponent(ticket), {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body)
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        outcomeNode.className = "error";
+        outcomeNode.textContent = typeof data.detail === "string" ? data.detail : "The decision failed.";
+      } else {
+        outcomeNode.className = "muted";
+        outcomeNode.textContent = "Outcome: " + data.outcome + ". " + (data.reason || "");
+      }
+      await refreshQueue();
+    }
+
+    async function tick() {
+      const button = document.getElementById("tick");
+      const status = document.getElementById("tick_status");
+      button.disabled = true;
+      status.textContent = "Running...";
+      try {
+        const res = await fetch("/api/tick", { method: "POST" });
+        const data = await res.json();
+        if (!res.ok) {
+          status.className = "error";
+          status.textContent = typeof data.detail === "string" ? data.detail : "The tick failed.";
+        } else {
+          status.className = "muted";
+          status.textContent = "Added " + data.added + " ticket(s); " + data.runs.length + " run(s) finished their turn.";
+        }
+        await refreshQueue();
+      } catch (err) {
+        status.className = "error";
+        status.textContent = "Could not reach the app. Is uvicorn running?";
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    document.getElementById("chat").addEventListener("submit", ask);
+    document.getElementById("tick").addEventListener("click", tick);
+    loadPermissions().catch(() => {});
+    refreshQueue().catch(() => {});
+  </script>
+</body>
+</html>

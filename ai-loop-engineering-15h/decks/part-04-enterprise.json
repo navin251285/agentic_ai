@@ -1,0 +1,339 @@
+{
+  "title": "Enterprise loops: survive crashes, stay in budget",
+  "subtitle": "AI loop engineering · Part 4 Enterprise · lessons 25 to 30",
+  "course": "AI loop engineering: from zero to enterprise",
+  "audience": "learners of this course",
+  "audience_type": "technical",
+  "scope": {
+    "part": 4
+  },
+  "theme": {
+    "accent": "334155",
+    "accent2": "B45309"
+  },
+  "slides": [
+    {
+      "layout": "title",
+      "title": "Enterprise loops: survive crashes, stay in budget",
+      "subtitle": "AI loop engineering · Part 4 Enterprise · lessons 25 to 30",
+      "notes": "This deck covers the enterprise part of the course: a loop that runs as a service, survives a crashed worker, shows its cost, and stays inside a tenant's budget. Each idea gets an everyday picture first, then the exact concept from the lesson, then real code and its real output from the notebook. Depth lives in these notes."
+    },
+    {
+      "layout": "analogy",
+      "title": "One loop is simpler until work truly separates",
+      "lessons": [
+        "25"
+      ],
+      "everyday": {
+        "name": "A restaurant kitchen",
+        "text": "One cook takes tickets in order. Three cooks help only with separate pans."
+      },
+      "tech": {
+        "name": "One loop vs several agents",
+        "text": "Each agent adds tokens, a handoff and a merge."
+      },
+      "breaks": "A cook sees every pan; an agent sees only the handoff.",
+      "notes": "Start with a restaurant kitchen. One cook makes every dish in order and holds every ticket in their head, so the line slows as tickets pile up. Three cooks sound faster, but they share the same pans, and every plate still passes the head chef. Lesson 25 makes the same point about agents. A single loop re-sends its whole, growing context on every turn, so its bill climbs with each fix. Several agents are faster only when their work is separate. The breaks line matters: an agent knows only what its sender wrote down, and that is the handoff's weak point."
+    },
+    {
+      "layout": "concept",
+      "title": "A second agent pays only for independent, checkable work",
+      "lessons": [
+        "25"
+      ],
+      "definition": "A second agent pays only when its piece of work is independent of the others, needs a context of its own, and its result can be checked.",
+      "parts": [
+        {
+          "term": "Independent",
+          "meaning": "no step waits on another"
+        },
+        {
+          "term": "Own context",
+          "meaning": "a fresh window, own worktree"
+        },
+        {
+          "term": "Checkable",
+          "meaning": "a test says if it worked"
+        },
+        {
+          "term": "Price",
+          "meaning": "tokens, a handoff, a merge"
+        }
+      ],
+      "example": "Pocket-cart fixes to money, tax and coupons",
+      "notes": "Say the definition slowly; it is the one to know for interviews. Four parts. The work is independent, so no step waits on another's output. It has its own context: a fresh window and its own worktree, which is a second working folder for the same repository. Its result can be checked by a test or a checker. And it has a price in tokens, a handoff and a merge, plus a human review of each diff. The lesson reports a token multiplier of about 4x for one agent and about 15x for a multi-agent research system, citing Anthropic's post. The decision rule: one fix, or steps that depend on each other, means one loop with a checker and caps."
+    },
+    {
+      "layout": "diagram",
+      "title": "A run is accepted at once, then queued",
+      "lessons": [
+        "28a",
+        "28b"
+      ],
+      "diagram": {
+        "type": "flow",
+        "items": [
+          "202: accepted, not finished",
+          "Queue row: queued",
+          "Worker claims under a lease",
+          "Refund waits: waiting_approval",
+          "Approve re-queues the run"
+        ]
+      },
+      "caption": "The front desk only writes rows.",
+      "points": [
+        "Second approve: 409, not waiting",
+        "Fleet: one shared Postgres queue (28b)",
+        "No login yet; identity in 29b"
+      ],
+      "notes": "The API is a front desk. POST /runs is an HTTP request, the web's standard request format, and 202 Accepted means the run is accepted but not finished. A separate worker claims the oldest queued row in one transaction, runs the loop, and stops at an answer or at a refund that needs a person. waiting_approval is a state anyone reading the table can see. Approval is one call; a second approval gets 409 Conflict, because the run is no longer waiting, so a retried click cannot pay twice. Lesson 28b runs the same worker as three containers in Docker Compose, all sharing a Postgres queue, with SKIP LOCKED so two workers never take the same row."
+    },
+    {
+      "layout": "analogy",
+      "title": "A resumed run can repeat its last step",
+      "lessons": [
+        "26a"
+      ],
+      "everyday": {
+        "name": "A relay race",
+        "text": "The baton passes on. A dropped leg is run again."
+      },
+      "tech": {
+        "name": "Checkpoint and resume",
+        "text": "State passes to a new worker. A killed step reruns."
+      },
+      "breaks": "A runner cannot check a ledger; code can. So the write needs a key.",
+      "notes": "Everyone knows a relay. In lesson 26a the baton is the checkpoint: the graph's saved state after each step, stored under a thread id. A worker that dies is replaced by another that loads the same thread and continues. The catch is a step killed after its write and before its checkpoint. The checkpoint does not know the write happened, so the step runs again. The relay analogy breaks in one place: a runner cannot look at the ledger, but code can. The lesson's drill makes this concrete: worker A writes a 120 USD refund row and is killed with SIGKILL, which gives no chance to clean up. Its lease runs out, worker B resumes, and the refund runs again. The pass mark is one refund row. A checkpoint keeps the position, not the outside world. That is the most common misunderstanding of durable agents."
+    },
+    {
+      "layout": "concept",
+      "title": "A lease is a claim that lapses unless renewed",
+      "lessons": [
+        "26a",
+        "26b"
+      ],
+      "definition": "A lease is a claim on one run with an owner, an attempt number and an expiry time; a heartbeat renews it.",
+      "parts": [
+        {
+          "term": "Owner",
+          "meaning": "the worker holding the run"
+        },
+        {
+          "term": "Attempt",
+          "meaning": "up one per takeover (fencing token)"
+        },
+        {
+          "term": "Expiry",
+          "meaning": "pushed forward by each heartbeat"
+        },
+        {
+          "term": "Fence",
+          "meaning": "every write checks owner and attempt"
+        }
+      ],
+      "example": "C-17: worker A dies, its lease lapses, B resumes as attempt 2",
+      "notes": "The lease is hand-written in the lesson, about sixteen lines of SQL, because LangGraph's checkpointer saves state but has no lease. The owner is the worker holding the run. The attempt number goes up on every takeover; it is the fencing token that lets a write say which attempt it belongs to. A heartbeat is a background thread that pushes the expiry forward. In the lab the lease lasts 2 seconds and the heartbeat fires every 0.5 seconds; the lesson says these are lab settings, not provider limits, and that production uses a TTL above three heartbeats. The fence is the key point: a write checks owner and attempt in the same transaction, so a worker that only paused is refused. A lease decides who runs a step; it does not stop a duplicate write, which is the key's job."
+    },
+    {
+      "layout": "code",
+      "title": "The loop checks the switch on every iteration",
+      "lessons": [
+        "26b"
+      ],
+      "lang": "python",
+      "code": "def run_loop(db, run, owner, attempt, lost, hang, pause):\n    for i in range(MAX_ITERS):\n        # why = stopped(db, run): the kill switch, read here\n        if why:\n            return why\n        ...\n    return \"over_budget\"",
+      "highlight": [
+        3,
+        4,
+        5
+      ],
+      "output": "worker-B C-17 iteration 1: refund duplicate",
+      "points": [
+        "The switch is read before each call",
+        "A stale write is refused, not repeated",
+        "The loop has a cap: MAX_ITERS"
+      ],
+      "notes": "Start from one loop. The check on lines 3 to 5 is the kill switch: each iteration first asks why it should stop. Line 3 is a comment because the lesson's full line, with its lease_lost fallback, is wider than a slide line can be; it is stopped(db, run), which returns the reason or None. The lesson's stopped() fails closed: if the flag cannot be read, the loop stops. The output line is from the drill: after worker A was killed, worker B took C-17 as attempt 2, and its repeated refund was reported as a duplicate, so the ledger kept one row. The lesson's mistake: a switch read once before the loop let a run do ten iterations after an operator pressed it. A flag only stops a worker at its next check, so lesson 28b also hard-stops processes. The three dots on line 6 stand for the real lines we left out: the provider call, the verifier, the fenced write, and return done after the first good write.",
+      "caption": "A's refund was already written; B's repeat is ignored."
+    },
+    {
+      "layout": "analogy",
+      "title": "A run's trace is a route log of stops",
+      "lessons": [
+        "27"
+      ],
+      "everyday": {
+        "name": "A delivery van's route log",
+        "text": "One trip, one line per stop, the fuel each used."
+      },
+      "tech": {
+        "name": "A trace of spans",
+        "text": "One root span per run, one child per iteration."
+      },
+      "breaks": "A van log can record anything; a span holds ids and counts only.",
+      "notes": "Everyone understands a delivery van's log: one trip, a line for each stop, and the fuel each stop used. Divide the fuel bill by the parcels delivered and you have the cost per parcel, counting the trips that came back with a parcel still on board. Map that to lesson 27. The root span is the run; each iteration is a stop; each model reply is a chat span carrying its token counts; each tool call is an execute_tool span. The breaks line is the rule the lesson enforces: a span is copied to dashboards and vendors, so it may carry only an allow-list of keys, never customer text."
+    },
+    {
+      "layout": "concept",
+      "title": "Cost per success counts the failed runs too",
+      "lessons": [
+        "27"
+      ],
+      "definition": "Cost per success is the whole spend, failed runs included, divided by the runs that succeeded.",
+      "parts": [
+        {
+          "term": "Span",
+          "meaning": "one timed step with attributes"
+        },
+        {
+          "term": "Trace",
+          "meaning": "the tree of spans for one run"
+        },
+        {
+          "term": "loop.iteration",
+          "meaning": "the number on each iteration span"
+        },
+        {
+          "term": "Allow-list",
+          "meaning": "the only keys a span may carry"
+        }
+      ],
+      "example": "R-A answered at 0.000050 USD; R-B hit its cap at 0.000025",
+      "notes": "Say the definition exactly: the whole spend, failed runs included, divided by the successful runs. A span is one timed step with attributes, the key-value facts. A trace is the tree of spans for one run; its root is the run. loop.iteration is a course attribute, not a standard one, so say so if asked. The allow-list is the set of keys a span may carry. In the notebook, run R-A answered and cost 0.000050 USD, while run R-B stopped at its one-reply cap and cost 0.000025 USD. Total spend is 0.000075 with one success, so cost per success is 0.000075 USD. The prices are the list price the lesson read on 2026-10-27. The numbers are tiny because the replies are short; at scale, the lesson's nightly check of 1,000 cases comes to 0.46 USD by its own arithmetic."
+    },
+    {
+      "layout": "code",
+      "title": "Read the tree: which step spent the money",
+      "lessons": [
+        "27"
+      ],
+      "lang": "python",
+      "code": "def walk(s, depth):\n    print(\"  \" * depth + s.name, dict(s.attributes))\n    # kids: every span whose parent is this span\n    for c in sorted(kids, key=lambda c: c.start_time):\n        walk(c, depth + 1)",
+      "highlight": [
+        3,
+        5
+      ],
+      "output": "invoke_agent support-desk {'loop.run_id': 'R-A', 'loop.stop_reason': 'answered', 'loop.cost_usd': 5e-05}\n  iteration {'loop.iteration': 1}\n    chat {'gen_ai.operation.name': 'chat', 'gen_ai.usage.input_tokens': 137, 'gen_ai.usage.output_tokens': 31}\n    execute_tool issue_refund {'gen_ai.operation.name': 'execute_tool', 'gen_ai.tool.name': 'issue_refund'}",
+      "points": [
+        "Each span prints under its parent",
+        "Token counts sit on the chat spans",
+        "A capped run has no tool span after the cap"
+      ],
+      "notes": "Start with the tree, because it answers which step cost the money. The walk function prints each span under its parent with its attributes; the line that builds the list of children picks each span whose parent is this one. Run R-A shows the root with its stop reason and cost, then iteration 1 with a chat span of 137 input and 31 output tokens, then the execute_tool span for issue_refund, then iteration 2, which answered. The tool span keeps the tool's name and never its arguments. Run R-B has one iteration and stops with turn_cap: the cap was checked before its refund tool ran, so nothing was written, but its one reply was paid for. The lesson's rule is that the reply cap is checked before tools run."
+    },
+    {
+      "layout": "compare",
+      "title": "Put ids and counts in spans, never customer text",
+      "lessons": [
+        "27"
+      ],
+      "columns": [
+        {
+          "head": "Customer text in spans",
+          "points": [
+            "Dashboards receive the raw message",
+            "Vendors receive it too",
+            "Value checks catch only known patterns"
+          ]
+        },
+        {
+          "head": "An allow-list of keys",
+          "points": [
+            "Run id, iteration, stop reason, counts",
+            "Any other key is refused",
+            "Text stays in its own database"
+          ]
+        }
+      ],
+      "notes": "The easy mistake is to put the customer's message into a span attribute, as a debugging note. Every dashboard and every vendor that receives spans then receives the message too. The lesson writes that mistake on purpose and shows the check that catches it. The fix is the allow-list: store the run id, the iteration number and the counts, and the customer's text stays in the database that owns it. Be precise about the value check. It is only a backstop for a name typed into an allowed key; the allow-list is the rule. Ask the room which of their current logs would fail this test today, then ask who can read them."
+    },
+    {
+      "layout": "analogy",
+      "title": "A per-run cap is not a monthly limit",
+      "lessons": [
+        "29a"
+      ],
+      "everyday": {
+        "name": "A hotel room budget",
+        "text": "A guest gets a one-night budget; a company, a monthly limit."
+      },
+      "tech": {
+        "name": "Run cap and tenant ceiling",
+        "text": "A run cap stops one run. A monthly window stops one tenant."
+      },
+      "breaks": "A guest books one night; a tenant starts 720 runs.",
+      "notes": "A hotel gives each guest a budget for one night, and a company gets a monthly card limit. A nightly budget per guest does not stop a company that books a new guest every night. Lesson 29a has an hourly scheduled deployment with a $20 cap per run. Each run is capped, yet the tenant can start 720 runs in a month. The gateway is the proxy every model call passes through; it holds the tenant's key, which carries a day window and a month window, in the lesson's example $300 a day and $3,000 a month. Only the gateway's monthly window limits the total. The breaks line is the trap: per-run caps are real protection for one run, not for the account."
+    },
+    {
+      "layout": "code",
+      "title": "A $20 run cap, hourly, is $14,400 a month",
+      "lessons": [
+        "29a"
+      ],
+      "lang": "python",
+      "code": "PER_RUN_USD = 20      # \"2000\" cents = $20 USD per run\nRUNS_PER_DAY = 24     # the hourly cron above\nRUNS_PER_MONTH = RUNS_PER_DAY * 30\nprint(f\"runs per month: {RUNS_PER_MONTH}\")\nprint(f\"cap per run: ${PER_RUN_USD}\")\n# the worst case: $20 times 720 runs",
+      "highlight": [
+        6
+      ],
+      "output": "runs per month: 720\ncap per run: $20\nworst case if every run spends its cap: $14,400",
+      "points": [
+        "Hourly means 24 runs a day, 720 a month",
+        "Each run may spend up to its cap",
+        "The gateway's monthly window is the hard limit"
+      ],
+      "notes": "Real arithmetic from lesson 29a: three values, then the prints. The schedule is hourly, 24 runs a day, so 720 a month. The cap is $20 per run, stored in the deployment as 2000 cents. The notebook's last print is the worst case: every run spends its cap, 720 times 20, which is $14,400 a month. That print line is 83 characters, too wide for a slide, so the slide shows it as a comment and the output shows what it prints. The tenant's monthly ceiling in the lesson is $3,000, so that worst case is 4.8 times too big. The fix is arithmetic too: divide the ceiling by the runs, which gives about $4.17 a run, and cap each run below that. Leave room for overshoot: a reply that starts under the cap is paid in full, so the lesson's example ends at $4.05 against a $4.00 cap. Keep the monthly window at the gateway as the hard limit."
+    },
+    {
+      "layout": "steps",
+      "title": "Build path: one loop becomes enterprise",
+      "lessons": [
+        "26a",
+        "26b",
+        "27",
+        "28a",
+        "28b",
+        "29a",
+        "29b",
+        "30"
+      ],
+      "steps": [
+        {
+          "head": "One loop, a switch",
+          "text": "Read the kill switch each iteration (26b)"
+        },
+        {
+          "head": "Durable resume",
+          "text": "Checkpoint each step; key every write (26a)"
+        },
+        {
+          "head": "A service and a fleet",
+          "text": "Queue runs; claim under leases (28a, 28b)"
+        },
+        {
+          "head": "Traced and governed",
+          "text": "Spans, tenant ceilings, audit (27, 29a, 29b)"
+        }
+      ],
+      "notes": "This is the build path of the part, in the order the course builds it. Start with one loop that reads a kill switch on every iteration and holds a lease on its run (26b). Add durable resume: a checkpoint for each step and a key on every write, so a crashed step cannot pay twice (26a). Put the loop behind a queue, so a request returns 202 at once and workers claim runs under leases, then run the workers as a fleet in Compose (28a, 28b). Add spans and cost per success (27), per-tenant ceilings at the gateway (29a), and identity, audit and a canary with rollback (29b). Lesson 30 joins all of it into one run and checks five requirements, including an eval gate that blocks a planted bad change."
+    },
+    {
+      "layout": "questions",
+      "title": "Questions to ask before a loop runs unattended",
+      "lessons": [
+        "26a",
+        "26b",
+        "29a",
+        "29b",
+        "30"
+      ],
+      "questions": [
+        "Worst case per tenant per month?",
+        "Which lease and key stop a second refund?",
+        "Where is the kill switch read?",
+        "Which audit row shows who approved?",
+        "How do you ship a prompt change safely?"
+      ],
+      "notes": "Use these to review any loop before it runs unattended. First, the worst case per tenant per month: runs times cap, and whether a monthly window exists at the gateway. Second, a worker dies holding a refund: which lease and attempt take over, and which key stops the second write. Third, where the kill switch is read, and whether it fails closed. Fourth, lesson 29b writes one audit row per tool call and per approval, and the result is stored as a hash so customer text stays out. Fifth, ship changes as one bundle: a shadow run, then a 5% canary chosen by a hash of the run id, and rollback by moving a pointer. Close with lesson 30's acceptance list: every reply traced and capped, an injected refund blocked, a fleet that passes the kill drill, and an eval gate that blocks a planted bad change."
+    }
+  ]
+}

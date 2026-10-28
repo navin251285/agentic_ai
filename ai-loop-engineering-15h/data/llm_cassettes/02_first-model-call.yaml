@@ -1,0 +1,132 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "A customer says their jacket arrived
+      torn after one wash and asks for a refund. What should the desk check first?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are the support
+      desk for Brightside Outfitters. Answer in two short sentences."}]}, "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '410'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Please
+        provide your order number so we can locate your purchase. We will then review
+        the product details and your order history to determine the best course of
+        action.\"\n          }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n
+        \   }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 39,\n    \"candidatesTokenCount\":
+        31,\n    \"totalTokenCount\": 70,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 39\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 31\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-2.5-flash-lite\",\n  \"createTime\": \"2026-10-27T14:35:55.258993Z\",\n
+        \ \"responseId\": \"y7bgarHnD-Gg3NoPuM_o6QM\"\n}\n"
+    headers:
+      content-length:
+      - '854'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 14:35:55 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Write the reply to the customer who
+      reported the torn jacket. Say the desk is checking the order."}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are the support desk for Brightside
+      Outfitters. Answer in two short sentences."}]}, "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '394'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"We're sorry to hear\"}]}}],\"usageMetadata\": {\"trafficType\":
+        \"ON_DEMAND\"},\"modelVersion\": \"gemini-2.5-flash-lite\",\"createTime\":
+        \"2026-10-27T14:35:55.923893Z\",\"responseId\": \"y7bgavWxOPiH3NoP-LzxmAg\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \" about the torn jacket! We are currently reviewing your order details to
+        understand what happened.\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"gemini-2.5-flash-lite\",\"createTime\": \"2026-10-27T14:35:55.923893Z\",\"responseId\":
+        \"y7bgavWxOPiH3NoP-LzxmAg\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"\"}]},\"finishReason\": \"STOP\"}],\"usageMetadata\":
+        {\"promptTokenCount\": 36,\"candidatesTokenCount\": 23,\"totalTokenCount\":
+        59,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\": [{\"modality\":
+        \"TEXT\",\"tokenCount\": 36}],\"candidatesTokensDetails\": [{\"modality\":
+        \"TEXT\",\"tokenCount\": 23}]},\"modelVersion\": \"gemini-2.5-flash-lite\",\"createTime\":
+        \"2026-10-27T14:35:55.923893Z\",\"responseId\": \"y7bgavWxOPiH3NoP-LzxmAg\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Tue, 27 Oct 2026 14:35:56 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

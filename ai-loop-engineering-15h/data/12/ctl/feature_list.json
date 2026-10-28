@@ -1,0 +1,10 @@
+[
+ {
+  "id": "tests/test_money.py::test_pads_single_digit_cents",
+  "passes": false
+ },
+ {
+  "id": "tests/test_money.py::test_whole_dollars_keep_two_zeros",
+  "passes": false
+ }
+]

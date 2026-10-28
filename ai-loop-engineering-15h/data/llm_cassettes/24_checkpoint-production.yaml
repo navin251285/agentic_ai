@@ -1,0 +1,232 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Module pocket_cart/money.py:\n\"\"\"Money
+      as integer cents, shown as dollars.\"\"\"\n\n\ndef format_price(cents: int)
+      -> str:\n    \"\"\"Show cents as a dollar string, for example 1250 -> \"$12.50\".\"\"\"\n    return
+      f\"${cents // 100}.{cents % 100}\"  # BUG: the cents are not padded to two digits\n\n\nTest
+      file tests/test_money.py:\nfrom pocket_cart.money import format_price\n\n\ndef
+      test_pads_single_digit_cents():\n    assert format_price(1205) == \"$12.05\"\n\n\ndef
+      test_whole_dollars_keep_two_zeros():\n    assert format_price(300) == \"$3.00\"\n\n\ndef
+      test_nineteen_ninety_nine():\n    assert format_price(1999) == \"$19.99\"\n\n\nPytest
+      says: 2 failed, 1 passed in 0.07s"}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You fix one bug in a small Python shop library. Propose
+      one exact replacement inside the one module you are given. The test file is
+      the spec: never propose a change to a test."}]}, "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024, "responseMimeType":
+      "application/json", "responseJsonSchema": {"properties": {"path": {"title":
+      "Path", "type": "string"}, "old": {"title": "Old", "type": "string"}, "new":
+      {"title": "New", "type": "string"}}, "required": ["path", "old", "new"], "title":
+      "Fix", "type": "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1354'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"path\\\": \\\"pocket_cart/money.py\\\",\\n  \\\"old\\\": \\\"return
+        f\\\\\\\"${cents // 100}.{cents % 100}\\\\\\\"\\\",\\n  \\\"new\\\": \\\"return
+        f\\\\\\\"${cents // 100}.{cents % 100:02d}\\\\\\\"\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1/w39tHX9lPQ2aapolz7sLGGehlqh+qwelTQa0ne+0cnoe0vYwd8CQLPGt72p2jBBBum8jdkUoKLt0Ka333tTJA6zc7bLe5QLZuFhsRNpDAYySlwpKFhsM=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 352,\n    \"candidatesTokenCount\":
+        73,\n    \"totalTokenCount\": 425,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 352\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 73\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-28T08:09:33.532187Z\",\n  \"responseId\": \"va3hatu9II-tidsPn4yMiQ4\"\n}\n"
+    headers:
+      content-length:
+      - '1022'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Wed, 28 Oct 2026 08:09:37 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Module pocket_cart/tax.py:\n\"\"\"Sales
+      tax in cents.\"\"\"\n\n\ndef tax_cents(cents: int, rate_percent: int) -> int:\n    \"\"\"Tax
+      in cents, rounded half up: 1005 at 10 percent is 101, because 100.5 rounds up.\"\"\"\n    return
+      cents * rate_percent // 100  # BUG: floor division drops the half cent\n\n\nTest
+      file tests/test_tax.py:\nfrom pocket_cart.tax import tax_cents\n\n\ndef test_half_cent_rounds_up():\n    assert
+      tax_cents(1005, 10) == 101\n\n\ndef test_five_percent_of_999():\n    assert
+      tax_cents(999, 5) == 50\n\n\ndef test_eight_percent():\n    assert tax_cents(2000,
+      8) == 160\n\n\nPytest says: 2 failed, 1 passed in 0.06s"}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You fix one bug in a small Python
+      shop library. Propose one exact replacement inside the one module you are given.
+      The test file is the spec: never propose a change to a test."}]}, "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024, "responseMimeType": "application/json", "responseJsonSchema": {"properties":
+      {"path": {"title": "Path", "type": "string"}, "old": {"title": "Old", "type":
+      "string"}, "new": {"title": "New", "type": "string"}}, "required": ["path",
+      "old", "new"], "title": "Fix", "type": "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1308'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"path\\\": \\\"pocket_cart/tax.py\\\",\\n  \\\"old\\\": \\\"    return
+        cents * rate_percent // 100  # BUG: floor division drops the half cent\\\",\\n
+        \ \\\"new\\\": \\\"    return (cents * rate_percent + 50) // 100\\\"\\n}\",\n
+        \           \"thoughtSignature\": \"AY89a1/7eAKQV9q73Jb5i+wvdS+RShzUXsYBeBorttMGgWyH8vqHPmTgYSKKa7lr0L2z5C5KXLlsXScj6qijw2CFTa4BLJONgo6IyvXHlxSpnYbwzGhwPR/+RZA=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 353,\n    \"candidatesTokenCount\":
+        71,\n    \"totalTokenCount\": 424,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 353\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 71\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-28T08:09:38.786038Z\",\n  \"responseId\": \"wq3havb8L6qNr8kP6YuX0Qk\"\n}\n"
+    headers:
+      content-length:
+      - '1052'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Wed, 28 Oct 2026 08:09:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Module pocket_cart/coupons.py:\n\"\"\"Coupon
+      codes: each code gives a percent off.\"\"\"\n\nCOUPONS = {\"SAVE10\": 10, \"SAVE20\":
+      20}\n\n\ndef parse_coupon(code: str) -> int:\n    \"\"\"The percent off for
+      a code. Codes ignore case and spaces around them.\"\"\"\n    return COUPONS[code]  #
+      BUG: exact match only, so \"save10\" and \" SAVE20 \" are not found\n\n\nTest
+      file tests/test_coupons.py:\nfrom pocket_cart.coupons import parse_coupon\n\n\ndef
+      test_upper_case_code():\n    assert parse_coupon(\"SAVE10\") == 10\n\n\ndef
+      test_lower_case_code():\n    assert parse_coupon(\"save10\") == 10\n\n\ndef
+      test_spaces_are_ignored():\n    assert parse_coupon(\"  SAVE20 \") == 20\n\n\nPytest
+      says: 2 failed, 1 passed in 0.06s"}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You fix one bug in a small Python shop library. Propose
+      one exact replacement inside the one module you are given. The test file is
+      the spec: never propose a change to a test."}]}, "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024, "responseMimeType":
+      "application/json", "responseJsonSchema": {"properties": {"path": {"title":
+      "Path", "type": "string"}, "old": {"title": "Old", "type": "string"}, "new":
+      {"title": "New", "type": "string"}}, "required": ["path", "old", "new"], "title":
+      "Fix", "type": "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1394'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"path\\\": \\\"pocket_cart/coupons.py\\\",\\n  \\\"old\\\": \\\"    return
+        COUPONS[code]\\\",\\n  \\\"new\\\": \\\"    return COUPONS[code.strip().upper()]\\\"\\n}\",\n
+        \           \"thoughtSignature\": \"AY89a1+xjZXx2umK1WbBoyFVrI2yEdxSm1cv5QqKZLJvwHDmLNNx1WQ3wdF4vYltvrc9ZArLDm89uujQlymgw7pDBRNz1bwRyez9JM4hjdfrwWTe+fu5nKcqG7A=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 350,\n    \"candidatesTokenCount\":
+        49,\n    \"totalTokenCount\": 399,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 350\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 49\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-28T08:09:40.867644Z\",\n  \"responseId\": \"xK3harz6NPSKr8kPhtWhyAQ\"\n}\n"
+    headers:
+      content-length:
+      - '994'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Wed, 28 Oct 2026 08:09:41 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

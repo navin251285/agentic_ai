@@ -1,0 +1,188 @@
+{
+  "title": "AI loop engineering: from zero to enterprise",
+  "subtitle": "Course kickoff · 33 lessons · about 13 hours",
+  "course": "AI loop engineering: from zero to enterprise",
+  "audience": "Developers who write Python and call a web API",
+  "audience_type": "technical",
+  "scope": {"kickoff": true},
+  "theme": {"accent": "4F46E5", "accent2": "F59E0B"},
+  "slides": [
+    {
+      "layout": "title",
+      "title": "AI loop engineering: from zero to enterprise",
+      "subtitle": "Course kickoff · 33 lessons · about 13 hours",
+      "notes": "Welcome to the first teaching session. Over the course you will build an agent loop for a fictional shop, Brightside Outfitters. The loop will stop on a check a machine can run, retry safely, ask a human before risky writes, run unattended on a schedule, survive a crash, and be traced and budgeted like any production service. The course has 33 lessons, about 13 hours of work, four chapters and three levels. Today we look at the core idea, one first line of code, the plan, the setup and how you will know you have learned it."
+    },
+    {
+      "layout": "analogy",
+      "title": "A thermostat is a loop, like your agent",
+      "everyday": {"name": "A thermostat", "text": "You set a target; a sensor checks it; the heater switches."},
+      "tech": {"name": "A loop", "text": "You set the goal and checks; the model works inside them."},
+      "breaks": "The thermostat's sensor is reliable. A weak test passes bad work and still says 'done'.",
+      "lessons": ["01"],
+      "notes": "Start with something everyone has used. A thermostat does not make you switch the heater on every hour. You set a target, a sensor checks the room, and the system decides when to switch on and off. Loop engineering does the same for an AI agent: you set the goal and the checks, the model does the work inside them, and the system decides when to stop. Here the analogy breaks. A thermostat's sensor is reliable. A loop's check is only as good as the test or rule behind it: a weak test passes bad work, and the loop still reports 'done'. So every loop in this course has a check you can run, and a person who reads the handoffs."
+    },
+    {
+      "layout": "cards",
+      "title": "By the end, your loop stops safely",
+      "cards": [
+        {"icon": "target", "head": "Stops on a check", "text": "A test or rule ends the run, not the model."},
+        {"icon": "bolt", "head": "Retries safely", "text": "Backoff; no double refunds."},
+        {"icon": "smile", "head": "Asks a human", "text": "Pauses before a risky write, then resumes."},
+        {"icon": "cloud", "head": "Runs and survives", "text": "Unattended runs with crash recovery and a kill switch."}
+      ],
+      "lessons": ["05", "07", "13", "22", "26a", "26b"],
+      "notes": "Be concrete about the finish line. The course is built to give you a loop that stops on a check the machine can run, not on the model's word, which lessons 05 and 07 teach. It retries transient errors with backoff, and it makes a refund write safe to repeat, as lesson 13 shows with an idempotency key. It pauses for a person before a risky write (lesson 22). It runs unattended, survives a crash, and can be stopped by a kill switch (lessons 26a and 26b). Each card is a chapter's promise, and each chapter will end with a checkpoint that proves it."
+    },
+    {
+      "layout": "concept",
+      "title": "Loop engineering designs the system around the agent",
+      "definition": "Loop engineering is designing the system that prompts, checks, remembers and re-runs an agent, so a person does not drive it turn by turn.",
+      "parts": [
+        {"term": "Trigger", "meaning": "what starts each run"},
+        {"term": "Goal and verifier", "meaning": "a check a machine can run"},
+        {"term": "State", "meaning": "memory outside the model"},
+        {"term": "Stop rules", "meaning": "done, stuck, over budget, or handoff"}
+      ],
+      "example": "Refund: the verifier reads the order; refunds over a limit go to a person.",
+      "lessons": ["01"],
+      "notes": "Use the lesson's own definition and say it slowly. The loop is not the model. It is the system around the model: what starts a run, what counts as done, where memory lives, and when to stop. The popular term is young. Practitioners coined it in 2026; Addy Osmani wrote one of the early essays, dated 7 June 2026 (addyosmani.com/blog/loop-engineering/), and Anthropic's guide names four loop types: turn-based, goal-based, time-based and proactive (claude.com/blog/getting-started-with-loops). The evidence is thin. One workshop paper (arXiv 2608.21884) found 217 autonomous agent loops in 36,710 public GitHub repositories, which is 0.59 percent, and no measured benefit yet. So measure the benefit in your own team."
+    },
+    {
+      "layout": "code",
+      "title": "First taste: the first cap reached stops the run",
+      "lang": "python",
+      "code": "def exceeded(budget):\n    if budget.turns >= budget.max_turns:\n        return \"turn_cap\"\n    ...\nprint(name, \"->\", exceeded(b))",
+      "highlight": [2, 3],
+      "output": "turns -> turn_cap",
+      "caption": "Real output of the lesson's cap checks, shortened to the lines that show them",
+      "points": [
+        "Each cap returns its name; the first one reached is returned.",
+        "The counters count up after each reply, then the caps are checked."
+      ],
+      "lessons": ["05"],
+      "notes": "This is the first code of the course, from lesson 05. A budget is a set of caps for one run: turns, tokens, dollars and time. The lesson's function exceeded returns the name of the first cap reached. The slide shows the turns check, copied from the lesson; the dots stand for the token, dollar and time checks, written the same way. The lesson's cell runs four budgets, one cap each, and prints four rows: turns, tokens, usd and time. Here the output is the turns row. Ask the question the lesson asks: why is a cap checked after a reply, so the last reply can overshoot? You will build this into the desk loop in chapter 1."
+    },
+    {
+      "layout": "diagram",
+      "title": "Every run follows the same five steps",
+      "diagram": {"type": "flow", "items": [
+        "Trigger: schedule, event or person",
+        "Goal: a checkable end state",
+        "Model call and its tools",
+        "Verifier: test or order check",
+        "Stop: done, or hand off"
+      ]},
+      "caption": "Not done and still under the caps: the loop goes back to the model.",
+      "lessons": ["01", "05", "07"],
+      "notes": "Walk the picture left to right, then point at the arrow back. A trigger starts the run: a schedule, an event, or a person. The goal is an end state a machine can check. The model call and its tools do the work inside the run, and each tool result returns to the model as an observation it reads next. The verifier runs the check, and the stop rule decides: done, stuck, over budget, or hand off to a person. The four exits are the lesson 06 vocabulary. If the check fails and the caps allow it, the loop goes back to the model. Everything the course builds is a part of this picture."
+    },
+    {
+      "layout": "diagram",
+      "title": "You grow one support-desk app in four steps",
+      "diagram": {"type": "flow", "items": [
+        "Desk loop with caps",
+        "Retries and a checker",
+        "Approvals and triggers",
+        "Durable, traced fleet"
+      ]},
+      "caption": "Planned as one chapter, one step: a local FastAPI app with one web page.",
+      "lessons": ["08", "18"],
+      "notes": "The running example is the Brightside Outfitters support desk, a fictional shop, and the pocket-cart repo for tests. Each chapter adds one layer to the same app. Checkpoint 08 closes chapter 1 with a desk loop that has caps, a verifier and a stuck detector. Checkpoint 18 closes chapter 2 with a Ralph loop, a checker and a CI eval gate. Chapters 3 and 4 will add approvals, scheduled runs, one git worktree per run, and a durable, traced fleet, one step at a time. The app will live in its own folder, with a step-by-step guide, so the notebooks stay complete on their own."
+    },
+    {
+      "layout": "agenda",
+      "title": "Four chapters, 33 lessons, about 13 hours",
+      "notes": "Each row is a chapter from the syllabus, with its level, lesson count and hours filled in from the course plan. Chapter 1 is the Basic level, chapter 2 is Intermediate, and chapters 3 and 4 are Advanced. Most lessons take 20 to 30 minutes, and the chapter 4 capstone takes longer. Theory lessons, such as 01, 09 and 19, are concept lessons with little or no code. On the Essentials path you skip the professional lessons 15 and 16 and keep the core ones."
+    },
+    {
+      "layout": "steps",
+      "title": "Every lesson runs the same way",
+      "steps": [
+        {"head": "Read the goal", "text": "What you will do, and why it matters."},
+        {"head": "Run the cells", "text": "Recorded model calls replay; no key needed."},
+        {"head": "Try it, then check", "text": "Answers sit in a hidden cell."},
+        {"head": "Finish the interview line", "text": "One question and a strong answer."}
+      ],
+      "lessons": ["02", "08"],
+      "notes": "Open the notebook at the goal, then read Why it matters to see the problem without this idea. Run the cells in order. The model calls are recorded once and replayed later, so the notebook shows real outputs and you need no key to rerun it. Try-it cells ask you to predict or change something; the answer sits in a hidden cell, so check after you have tried. Each core lesson closes with an Interview line, one question and a strong answer, which is the same question you will get in a developer interview. Checkpoints, such as lessons 08 and 18, bring each chapter together."
+    },
+    {
+      "layout": "compare",
+      "title": "Three levels: basic, intermediate, advanced",
+      "columns": [
+        {"head": "Basic, about 3 hours", "points": [
+          "Chapter 1: 8 lessons",
+          "Model call, tools, caps, verifier"
+        ]},
+        {"head": "Intermediate, about 4 hours", "points": [
+          "Chapter 2: 10 lessons",
+          "Outer loops, retries, a checker"
+        ]},
+        {"head": "Advanced, about 6 hours", "points": [
+          "Chapters 3 and 4: 15 lessons",
+          "Approvals, durable runs, traces"
+        ]}
+      ],
+      "lessons": ["08", "18"],
+      "notes": "Basic is for anyone who writes Python and calls a web API. It teaches the model call, the tools, and the loop written by hand, with caps and a verifier. Intermediate adds control: outer loops that start each step with fresh context, state kept outside the model, retries with idempotent writes, and a separate checker. Advanced is production and enterprise: runs that start on a schedule or event, approvals before risky writes, isolated runs, then durable runs and a kill switch. Traces, cost and tenancy come after those. The three levels are one course. Each builds on the one before, and together they come to about 13 hours."
+    },
+    {
+      "layout": "cards",
+      "title": "Before you start: four things to set up",
+      "cards": [
+        {"icon": "gear", "head": "Python 3.12", "text": "Runs every lesson and the app."},
+        {"icon": "cloud", "head": "A model key", "text": "Gemini or Vertex AI, in .env. Anthropic is optional (lesson 16)."},
+        {"icon": "cube", "head": "Docker and Compose", "text": "Only for the fleet lesson, 28b, which comes later."},
+        {"icon": "doc", "head": "git", "text": "Lessons 11, 12 and 21 use it."}
+      ],
+      "lessons": ["02", "11", "12", "16", "21"],
+      "notes": "Set these up before lesson 02. Python 3.12 is the language for everything. The model key is read from this course's .env file; the committed template .env.example lists the names, with placeholders only. Never paste a key into a notebook, a slide or a chat. Gemini is the default model, and Vertex AI works too, with a project and a location. An Anthropic key is optional, for the live Claude walkthrough in lesson 16, which runs without a key. Docker and Compose are needed only for the fleet lesson 28b, which comes later. You will be asked which option you want just before the lessons that need one."
+    },
+    {
+      "layout": "steps",
+      "title": "Each chapter ends in a checkpoint that proves it",
+      "steps": [
+        {"head": "Checkpoint", "text": "Lessons 08 and 18 each run a real loop, end to end."},
+        {"head": "Interview line", "text": "Each core lesson ends with one question to answer."},
+        {"head": "Machine check", "text": "A test or gate decides pass or fail, not the model's word."}
+      ],
+      "lessons": ["08", "18"],
+      "notes": "Learning is proven three ways. The checkpoints are projects: lesson 08 builds a desk loop with caps, a verifier and a stuck detector, and lesson 18 builds a Ralph loop with a checker and a CI eval gate. The later chapters will close with checkpoints of the same kind. The interview lines test whether you can explain the choice, not just run the code; the lesson 05 example is a question you will be asked. The machine check is the idea behind lesson 07: the pytest exit code, not the model's word, decides done."
+    },
+    {
+      "layout": "terms",
+      "title": "Words you will hear, in plain English",
+      "terms": [
+        {"term": "Turn", "plain": "one model call in a run"},
+        {"term": "Verifier", "plain": "a check that decides done"},
+        {"term": "Observation", "plain": "a tool's result, read by the model"},
+        {"term": "Harness", "plain": "a run's tools, permissions and sandbox"},
+        {"term": "Handoff", "plain": "the case goes to a person"},
+        {"term": "Idempotent", "plain": "same request twice, same effect once"}
+      ],
+      "lessons": ["01", "03", "05", "07", "13"],
+      "notes": "These six words come up in almost every lesson. A turn is one model call, and a turn cap limits them. A verifier is the check that decides done; in lesson 07 it is pytest, and its exit code 0 is the only done. An observation is what a tool returns to the model. The harness is the environment one run lives in, and a handoff is the exit that gives the case to a person. Idempotent means safe to repeat: a refund request sent twice must refund once. The lessons explain each word where it first appears; this slide is the glossary you can keep open."
+    },
+    {
+      "layout": "questions",
+      "title": "Questions you will answer by the end",
+      "questions": [
+        "What stops your loop, and at which cap?",
+        "How does a machine decide done?",
+        "Which writes need a person first?",
+        "What survives a crash, and what repeats?"
+      ],
+      "lessons": ["05", "07", "13", "22", "23", "26a"],
+      "notes": "Answer these in your own words by the end. The first is the lesson 05 interview question: caps on turns, tokens, dollars and time, counted after each reply, with the last reply allowed to overshoot. The second is the verifier idea from lesson 07. The third is the approval exit from lesson 22, and lesson 23 covers the permissions behind it. The fourth is durable resume and idempotent writes, from lessons 13 and 26a. Answer each question with the lesson's own example, not a memory of a tool."
+    },
+    {
+      "layout": "big_idea",
+      "title": "Next: lesson 01, then 02",
+      "text": "Open lesson 01 today; lesson 02 makes your first model call.",
+      "icon": "arrow",
+      "lessons": ["01", "02"],
+      "notes": "Close with the action. Open lesson 01 today. It defines a loop and shows the research behind the term, including how little measured evidence exists so far. Then lesson 02 makes your first model call, with recorded replies, so you can rerun it without a key. Before you start, check the four items on the setup slide. If you have a model key, put it in the .env file, never in a notebook, a slide or a chat."
+    }
+  ]
+}

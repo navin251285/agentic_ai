@@ -1,0 +1,4 @@
+worker-B: run C-17, attempt 2
+  worker-B C-17 iteration 1: refund duplicate
+worker-B: run C-17 -> done
+worker-B: nothing to claim; exit

@@ -1,0 +1,367 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer C-17 asks for the status of
+      order BS-1044. Look it up."}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You are the support desk for Brightside Outfitters. Look up the order
+      before any refund. Never refund more than was paid."}]}, "safetySettings": [],
+      "tools": [{"functionDeclarations": [{"description": "Look up one order: customer,
+      item, amount paid and delivery status.", "name": "get_order", "parameters":
+      {"properties": {"order_id": {"type": "STRING"}}, "required": ["order_id"], "type":
+      "OBJECT"}}, {"description": "Refund an amount on one order. The amount may not
+      be more than the amount paid.", "name": "issue_refund", "parameters": {"properties":
+      {"order_id": {"description": "Order id in the form BS-1042", "type": "STRING"},
+      "amount_usd": {"description": "Amount to refund in US dollars, more than 0",
+      "type": "NUMBER"}}, "required": ["order_id", "amount_usd"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1044'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"get_order\",\n              \"args\": {\n                \"order_id\":
+        \"BS-1044\"\n              }\n            }\n          }\n        ]\n      },\n
+        \     \"finishReason\": \"STOP\"\n    }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\":
+        131,\n    \"candidatesTokenCount\": 21,\n    \"totalTokenCount\": 152,\n    \"trafficType\":
+        \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 131\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-2.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T15:15:39.952199Z\",\n  \"responseId\": \"G8DgaoePOviH3NoP-LzxmAg\"\n}\n"
+    headers:
+      content-length:
+      - '824'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 15:15:40 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer C-22 says the rain shell from
+      order BS-1045 arrived torn. Refund the 40 USD paid on BS-1045 now."}], "role":
+      "user"}], "systemInstruction": {"parts": [{"text": "You are the support desk
+      for Brightside Outfitters. Never refund more than was paid. If a refund fails,
+      call issue_refund again with the same amount; the payment service often recovers
+      on a retry."}]}, "safetySettings": [], "tools": [{"functionDeclarations": [{"description":
+      "Look up one order: customer, item, amount paid and delivery status.", "name":
+      "get_order", "parameters": {"properties": {"order_id": {"type": "STRING"}},
+      "required": ["order_id"], "type": "OBJECT"}}, {"description": "Refund an amount
+      on one order. The amount may not be more than the amount paid.", "name": "issue_refund",
+      "parameters": {"properties": {"order_id": {"description": "Order id in the form
+      BS-1042", "type": "STRING"}, "amount_usd": {"description": "Amount to refund
+      in US dollars, more than 0", "type": "NUMBER"}}, "required": ["order_id", "amount_usd"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1161'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"issue_refund\",\n              \"args\": {\n
+        \               \"order_id\": \"BS-1045\",\n                \"amount_usd\":
+        40\n              }\n            }\n          }\n        ]\n      },\n      \"finishReason\":
+        \"STOP\"\n    }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 161,\n
+        \   \"candidatesTokenCount\": 30,\n    \"totalTokenCount\": 191,\n    \"trafficType\":
+        \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 161\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 30\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-2.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T15:15:40.459806Z\",\n  \"responseId\": \"HMDgap6IHKaY3NoP8rCLmQY\"\n}\n"
+    headers:
+      content-length:
+      - '861'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 15:15:40 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer C-22 says the rain shell from
+      order BS-1045 arrived torn. Refund the 40 USD paid on BS-1045 now."}], "role":
+      "user"}, {"parts": [{"functionCall": {"args": {"order_id": "BS-1045", "amount_usd":
+      40}, "name": "issue_refund"}}], "role": "model"}, {"parts": [{"functionResponse":
+      {"name": "issue_refund", "response": {"output": "error: payment service returned
+      503 for BS-1045"}}}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are the support desk for Brightside Outfitters. Never refund more than
+      was paid. If a refund fails, call issue_refund again with the same amount; the
+      payment service often recovers on a retry."}]}, "safetySettings": [], "tools":
+      [{"functionDeclarations": [{"description": "Look up one order: customer, item,
+      amount paid and delivery status.", "name": "get_order", "parameters": {"properties":
+      {"order_id": {"type": "STRING"}}, "required": ["order_id"], "type": "OBJECT"}},
+      {"description": "Refund an amount on one order. The amount may not be more than
+      the amount paid.", "name": "issue_refund", "parameters": {"properties": {"order_id":
+      {"description": "Order id in the form BS-1042", "type": "STRING"}, "amount_usd":
+      {"description": "Amount to refund in US dollars, more than 0", "type": "NUMBER"}},
+      "required": ["order_id", "amount_usd"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1438'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"The
+        refund for order BS-1045 failed. I will try again with the same amount.\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"issue_refund\",\n              \"args\": {\n                \"amount_usd\":
+        40,\n                \"order_id\": \"BS-1045\"\n              }\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 197,\n    \"candidatesTokenCount\":
+        51,\n    \"totalTokenCount\": 248,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 197\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 51\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-2.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T15:15:41.347566Z\",\n  \"responseId\": \"HcDgaq6bFeGg3NoPuM_o6QM\"\n}\n"
+    headers:
+      content-length:
+      - '984'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 15:15:41 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "In one sentence: can the desk refund
+      more than was paid?"}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You are the support desk for Brightside Outfitters. Look up the order before
+      any refund. Never refund more than was paid."}]}, "safetySettings": [], "tools":
+      [{"functionDeclarations": [{"description": "Look up one order: customer, item,
+      amount paid and delivery status.", "name": "get_order", "parameters": {"properties":
+      {"order_id": {"type": "STRING"}}, "required": ["order_id"], "type": "OBJECT"}},
+      {"description": "Refund an amount on one order. The amount may not be more than
+      the amount paid.", "name": "issue_refund", "parameters": {"properties": {"order_id":
+      {"description": "Order id in the form BS-1042", "type": "STRING"}, "amount_usd":
+      {"description": "Amount to refund in US dollars, more than 0", "type": "NUMBER"}},
+      "required": ["order_id", "amount_usd"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1037'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"No,
+        the desk cannot refund more than was paid.\"\n          }\n        ]\n      },\n
+        \     \"finishReason\": \"STOP\"\n    }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\":
+        122,\n    \"candidatesTokenCount\": 11,\n    \"totalTokenCount\": 133,\n    \"trafficType\":
+        \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 122\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 11\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-2.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T15:15:41.939789Z\",\n  \"responseId\": \"HcDgao2uOcbq3NoP_L2uuQI\"\n}\n"
+    headers:
+      content-length:
+      - '736'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 15:15:42 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Module:\n\"\"\"Discounts on a price
+      in cents.\"\"\"\n\n\ndef apply_discount(cents: int, percent: int) -> int:\n    \"\"\"Take
+      percent off a price in cents: 10 percent off 1000 cents is 900.\"\"\"\n    return
+      cents - percent  # BUG: subtracts the percent as cents, not a share of the price\n\nSpec
+      (tests):\nfrom pocket_cart.pricing import apply_discount\n\n\ndef test_ten_percent_off():\n    assert
+      apply_discount(1000, 10) == 900\n\n\ndef test_twenty_percent_off():\n    assert
+      apply_discount(2500, 20) == 2000\n\n\ndef test_no_discount():\n    assert apply_discount(1000,
+      0) == 1000\n\nStill failing:\nFAILED tests/test_pricing.py::test_ten_percent_off
+      - assert 990 == 900\nFAILED tests/test_pricing.py::test_twenty_percent_off -
+      assert 2480 == 2000"}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You fix one module of a small Python shop. Reply with the complete new text
+      of that module only: no explanation and no code fences. The tests are the spec.
+      Never change them."}]}, "safetySettings": [], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1140'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"\\\"\\\"\\\"Discounts
+        on a price in cents.\\\"\\\"\\\"\\n\\n\\ndef apply_discount(cents: int, percent:
+        int) -\\u003e int:\\n    \\\"\\\"\\\"Take percent off a price in cents: 10
+        percent off 1000 cents is 900.\\\"\\\"\\\"\\n    discount_amount = (cents
+        * percent) // 100\\n    return cents - discount_amount\"\n          }\n        ]\n
+        \     },\n      \"finishReason\": \"STOP\"\n    }\n  ],\n  \"usageMetadata\":
+        {\n    \"promptTokenCount\": 288,\n    \"candidatesTokenCount\": 78,\n    \"totalTokenCount\":
+        366,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n
+        \     {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 288\n      }\n
+        \   ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 78\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-2.5-flash-lite\",\n  \"createTime\": \"2026-10-27T15:15:44.903549Z\",\n
+        \ \"responseId\": \"IMDgav2SN_WG3NoP-oP60Ag\"\n}\n"
+    headers:
+      content-length:
+      - '965'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 15:15:45 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

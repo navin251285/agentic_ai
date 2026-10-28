@@ -1,0 +1,5 @@
+{
+  "pass_rate": 1.0,
+  "cases": 6,
+  "note": "accepted by a reviewer after a green run of the golden refund set; the gate only reads this file, and a change to it is a reviewed commit"
+}

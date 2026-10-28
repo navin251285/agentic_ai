@@ -1,0 +1,153 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "### MODULE pocket_cart/money.py\n\"\"\"Money
+      as integer cents, shown as dollars.\"\"\"\n\n\ndef format_price(cents: int)
+      -> str:\n    \"\"\"Show cents as a dollar string, for example 1250 -> \"$12.50\".\"\"\"\n    return
+      f\"${cents // 100}.{cents % 100}\"  # BUG: the cents are not padded to two digits\n\n###
+      TEST FILE tests/test_money.py\nfrom pocket_cart.money import format_price\n\n\ndef
+      test_pads_single_digit_cents():\n    assert format_price(1205) == \"$12.05\"\n\n\ndef
+      test_whole_dollars_keep_two_zeros():\n    assert format_price(300) == \"$3.00\"\n\n\ndef
+      test_nineteen_ninety_nine():\n    assert format_price(1999) == \"$19.99\"\n\n###
+      FAILING TEST tests/test_money.py::test_pads_single_digit_cents\nE   AssertionError:
+      assert ''$12.5'' == ''$12.05''\nE     \nE     - $12.05\nE     ?     -\nE     +
+      $12.5\n"}], "role": "user"}], "systemInstruction": {"parts": [{"text": "You
+      fix one module of a small Python shop. The test file is the spec: never change
+      it. Fix only what the failing test asks. Reply with the complete new text of
+      the module, then one line ''DONE: yes'' or ''DONE: no'' for the whole suite.
+      No prose, no code fences."}]}, "safetySettings": [], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1288'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"\\\"\\\"\\\"Money
+        as integer cents, shown as dollars.\\\"\\\"\\\"\\n\\n\\ndef format_price(cents:
+        int) -\\u003e str:\\n    \\\"\\\"\\\"Show cents as a dollar string, for example
+        1250 -\\u003e \\\"$12.50\\\".\\\"\\\"\\\"\\n    return f\\\"${cents // 100}.{cents
+        % 100:02d}\\\"\\n\\nDONE: yes\"\n          }\n        ]\n      },\n      \"finishReason\":
+        \"STOP\"\n    }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 346,\n
+        \   \"candidatesTokenCount\": 77,\n    \"totalTokenCount\": 423,\n    \"trafficType\":
+        \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 346\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 77\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-2.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T17:48:21.487820Z\",\n  \"responseId\": \"5ePgaozjHamg3NoP97aE6Ao\"\n}\n"
+    headers:
+      content-length:
+      - '939'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 17:48:21 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "### MODULE pocket_cart/pricing.py\n\"\"\"Discounts
+      on a price in cents.\"\"\"\n\n\ndef apply_discount(cents: int, percent: int)
+      -> int:\n    \"\"\"Take percent off a price in cents: 10 percent off 1000 cents
+      is 900.\"\"\"\n    return cents - percent  # BUG: subtracts the percent as cents,
+      not a share of the price\n\n### TEST FILE tests/test_pricing.py\nfrom pocket_cart.pricing
+      import apply_discount\n\n\ndef test_ten_percent_off():\n    assert apply_discount(1000,
+      10) == 900\n\n\ndef test_twenty_percent_off():\n    assert apply_discount(2500,
+      20) == 2000\n\n\ndef test_no_discount():\n    assert apply_discount(1000, 0)
+      == 1000\n\n### FAILING TEST tests/test_pricing.py::test_ten_percent_off\nE   assert
+      990 == 900\nE    +  where 990 = apply_discount(1000, 10)\n"}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You fix one module of a small Python
+      shop. The test file is the spec: never change it. Fix only what the failing
+      test asks. Reply with the complete new text of the module, then one line ''DONE:
+      yes'' or ''DONE: no'' for the whole suite. No prose, no code fences."}]}, "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1240'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"\\\"\\\"\\\"Discounts
+        on a price in cents.\\\"\\\"\\\"\\n\\n\\ndef apply_discount(cents: int, percent:
+        int) -\\u003e int:\\n    \\\"\\\"\\\"Take percent off a price in cents: 10
+        percent off 1000 cents is 900.\\\"\\\"\\\"\\n    discount_amount = cents *
+        percent // 100\\n    return cents - discount_amount\\n\\nDONE: yes\"\n          }\n
+        \       ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n  ],\n  \"usageMetadata\":
+        {\n    \"promptTokenCount\": 324,\n    \"candidatesTokenCount\": 80,\n    \"totalTokenCount\":
+        404,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n
+        \     {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 324\n      }\n
+        \   ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 80\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-2.5-flash-lite\",\n  \"createTime\": \"2026-10-27T17:48:29.419945Z\",\n
+        \ \"responseId\": \"7ePgaunQGeGg3NoPuM_o6QM\"\n}\n"
+    headers:
+      content-length:
+      - '976'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 17:48:29 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

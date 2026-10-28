@@ -1,0 +1,9 @@
+worker-1: run C-17, attempt 1
+  worker-1 C-17 iteration 1: refund written
+worker-1: run C-17 -> done
+worker-1: run C-21, attempt 1
+  worker-1 C-21 iteration 1: HTTP 429 Too Many Requests (injected by the drill); pausing 0.2 s
+  worker-1 C-21 iteration 2: HTTP 429 Too Many Requests (injected by the drill); pausing 0.2 s
+  worker-1 C-21 iteration 3: HTTP 429 Too Many Requests (injected by the drill); pausing 0.2 s
+worker-1: run C-21 -> cancelled
+worker-1: nothing to claim; exit

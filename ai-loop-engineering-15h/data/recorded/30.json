@@ -1,0 +1,17 @@
+{
+  "label": "recorded output: a real run of notebooks/30_capstone.ipynb with Docker 27.5.1 and Compose v5.2.0 on this machine (replayed model calls, 3 workers, kill drill)",
+  "fleet": {
+    "expected_refunds": 5,
+    "refunds_written": 5,
+    "ledger_rows_per_finding": [
+      1
+    ],
+    "takeover_attempt": 2,
+    "killed_attempt": 1,
+    "takeover_by_other_worker": true,
+    "stale_write": "refused",
+    "amount_mismatch": "escalated",
+    "held_until_approved": true,
+    "ledger_over_paid": 0
+  }
+}

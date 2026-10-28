@@ -1,0 +1,1376 @@
+{
+  "topic": "AI loop engineering: from zero to enterprise",
+  "slug": "ai-loop-engineering-15h",
+  "max_hours": 15,
+  "depth": "crisp",
+  "focus": "application",
+  "profile": "system",
+  "audience": "Developers who write Python and call a web API; they build, ship and run agent loops and must pass developer interviews. No machine-learning background assumed.",
+  "outcome": "Build an agent loop that stops on a checkable goal, retries safely, asks a human before risky writes, runs unattended on a schedule, survives crashes, and is traced, budgeted and governed like any production service.",
+  "running_example": {
+    "name": "Brightside Outfitters support desk and the pocket-cart repo",
+    "why": "a refund makes approvals and idempotency real; a failing test suite gives a loop a mechanical stop check; both need no download.",
+    "evolution": "desk loop with caps (chapter 1) -> retries and a checker (chapter 2) -> approvals, triggers and isolated runs (chapter 3) -> durable, traced fleet with tenants (chapter 4)."
+  },
+  "python": "3.12",
+  "llm": {
+    "used": true,
+    "mode": "heavy",
+    "lessons": "most",
+    "why": "every loop calls a real model; each call is recorded once with a key and replayed without one; at most 5 calls per lesson"
+  },
+  "parts": [
+    {
+      "id": 1,
+      "level": "L1",
+      "title": "Foundations: the model call and the loop by hand",
+      "checkpoint": "08",
+      "lessons": [
+        {
+          "id": "01",
+          "slug": "why-loop-engineering",
+          "title": "Why loop engineering, and what a loop is (and is not)",
+          "goal": "Say what loop engineering adds to prompting and harnesses, and draw the inner and outer loop of a real agent.",
+          "concepts": [
+            "Loop engineering vs prompt engineering vs context engineering vs harness engineering",
+            "When not to loop: workflow vs agent vs loop",
+            "Empirical evidence for loop engineering benefits: one workshop paper (arXiv 2608.21884) found 217 loops in 36,710 GitHub repos and no measured benefit yet"
+          ],
+          "builds_on": [],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "concept",
+          "status": "done",
+          "why_lesson": "course",
+          "kit": "2026.11.10",
+          "note": "accepted after 1 fix round"
+        },
+        {
+          "id": "02",
+          "slug": "first-model-call",
+          "title": "Your first model call: messages, usage, cost and streaming",
+          "goal": "Make one model call through the course helper get_llm(), read usage and cost, and stream the answer. get_llm() sets temperature=0 for you, so this lesson never sets temperature, top_p or top_k: the newest Claude models reject them.",
+          "concepts": [
+            "AREA The agent loop and tool calling (turns, tool round trip, termination, what a loop is vs a workflow)"
+          ],
+          "builds_on": [
+            "01"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10",
+          "note": "accepted after 1 fix round"
+        },
+        {
+          "id": "03",
+          "slug": "hand-written-agent-loop",
+          "title": "The agent loop by hand: tool calls, results and stop reasons",
+          "goal": "Write the model-tool-observe cycle yourself so every later lesson makes sense.",
+          "concepts": [
+            "AREA The agent loop and tool calling (turns, tool round trip, termination, what a loop is vs a workflow)"
+          ],
+          "builds_on": [
+            "02"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "hand_code": "topic",
+          "under_the_hood": [
+            "AREA The agent loop and tool calling (turns, tool round trip, termination, what a loop is vs a workflow)"
+          ],
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "04",
+          "slug": "tool-schemas-and-validation",
+          "title": "Tools the model can call safely: schemas, validation, errors as observations",
+          "goal": "Validate tool arguments with pydantic and return failures to the model as observations it can recover from.",
+          "concepts": [
+            "Tool argument validation against a schema, errors returned as observations"
+          ],
+          "builds_on": [
+            "03"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "hand_code": "interview",
+          "under_the_hood": [
+            "Tool argument validation against a schema, errors returned as observations"
+          ],
+          "kit": "2026.11.10",
+          "note": "accepted after 1 fix round"
+        },
+        {
+          "id": "05",
+          "slug": "stop-reasons-and-budgets",
+          "title": "Stop reasons and budgets: caps on turns, tokens, dollars and time",
+          "goal": "Stop a loop on every exit it can take, and say why caps are checked after a response.",
+          "concepts": [
+            "Hard caps on turns, tokens and dollars; caps are checked after a response, so the last response can overshoot; enforced vs advisory budgets; subagent spend rolls up",
+            "AREA Goals, verifiers and stop conditions (machine-checkable goal, deterministic verifier, maker/checker, four exits: done, stuck, over budget, hand off)"
+          ],
+          "builds_on": [
+            "04"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "hand_code": "interview",
+          "under_the_hood": [
+            "Hard caps on turns, tokens and dollars; caps are checked after a response, so the last response can overshoot; enforced vs advisory budgets; subagent spend rolls up"
+          ],
+          "kit": "2026.11.10",
+          "note": "accepted after 1 fix round"
+        },
+        {
+          "id": "06",
+          "slug": "no-progress-detection",
+          "title": "Knowing when the loop is stuck: repeated calls and the four exits",
+          "goal": "Detect a loop that repeats itself, and choose between done, stuck, over budget and hand off.",
+          "concepts": [
+            "Repeated identical tool call detection and loop-stuck handling",
+            "No-progress beyond identical calls: the same error twice, a state hash that stays flat, a verifier score that stays flat"
+          ],
+          "builds_on": [
+            "05"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "hand_code": "interview",
+          "under_the_hood": [
+            "Repeated identical tool call detection and loop-stuck handling"
+          ],
+          "kit": "2026.11.10",
+          "note": "accepted after 1 fix round"
+        },
+        {
+          "id": "07",
+          "slug": "verifiers-and-golden-sets",
+          "title": "Verifiers: a test is the stop signal, and a golden set checks the loop",
+          "goal": "Use a mechanical verifier (pytest exit code) as the stop signal and a golden set to measure the loop.",
+          "concepts": [
+            "AREA Evaluation of loops (golden sets, trajectory scoring, LLM-as-judge limits, regression gate in CI, pass^k)",
+            "AREA Goals, verifiers and stop conditions (machine-checkable goal, deterministic verifier, maker/checker, four exits: done, stuck, over budget, hand off)"
+          ],
+          "builds_on": [
+            "06"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "hand_code": "interview",
+          "under_the_hood": [
+            "AREA Goals, verifiers and stop conditions (machine-checkable goal, deterministic verifier, maker/checker, four exits: done, stuck, over budget, hand off)",
+            "AREA Evaluation of loops (golden sets, trajectory scoring, LLM-as-judge limits, regression gate in CI, pass^k)"
+          ],
+          "kit": "2026.11.10",
+          "note": "accepted after 1 fix round"
+        },
+        {
+          "id": "08",
+          "slug": "checkpoint-basic",
+          "title": "Checkpoint: the desk loop with caps, a verifier and a stuck detector",
+          "goal": "Run the desk loop and the pocket-cart fix loop by hand, each with a mechanical stop and a budget.",
+          "concepts": [
+            "AREA Goals, verifiers and stop conditions (machine-checkable goal, deterministic verifier, maker/checker, four exits: done, stuck, over budget, hand off)"
+          ],
+          "builds_on": [
+            "05",
+            "06",
+            "07"
+          ],
+          "example": "Brightside Outfitters support desk and pocket-cart",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10",
+          "note": "accepted after 1 fix round"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "level": "L3",
+      "title": "Control: outer loops, state, retries and review",
+      "checkpoint": "18",
+      "lessons": [
+        {
+          "id": "09",
+          "slug": "why-outer-loops",
+          "title": "Why one prompt is not enough: outer loops and fresh context per iteration",
+          "goal": "Explain why real work needs an outer loop, and the four loop types Anthropic names.",
+          "concepts": [
+            "Four loop types: turn-based, goal-based, time-based, proactive",
+            "AREA Outer loops and autonomous iteration (Ralph loop, /goal, Stop hook, nested outer/inner loop, fresh context per iteration)"
+          ],
+          "builds_on": [
+            "08"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "concept",
+          "status": "done",
+          "why_lesson": true,
+          "kit": "2026.11.10",
+          "note": "accepted after 1 fix round"
+        },
+        {
+          "id": "10",
+          "slug": "goal-loops-and-stop-hooks",
+          "title": "Goal-based loops: a script Stop hook as the mechanical gate",
+          "goal": "Gate the end of a loop with a script Stop hook that runs the verifier, and say why a model-judged goal (like /goal) is weaker. Also the Agent SDK budgets: max_turns and max_budget_usd (unlimited by default), with the Anthropic key only for the live run.",
+          "concepts": [
+            "Hooks: Stop (a script that runs the verifier and blocks the finish)",
+            "Agent SDK max_turns, max_budget_usd and result subtypes (error_max_turns, error_max_budget_usd)",
+            "Four loop types: turn-based, goal-based, time-based, proactive"
+          ],
+          "builds_on": [
+            "09"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "walkthrough",
+          "status": "done",
+          "hand_code": "interview",
+          "under_the_hood": [
+            "Agent SDK max_turns, max_budget_usd and result subtypes (error_max_turns, error_max_budget_usd)"
+          ],
+          "kit": "2026.11.10",
+          "note": "accepted after 1 fix round"
+        },
+        {
+          "id": "11",
+          "slug": "ralph-loop",
+          "title": "The Ralph loop: one item per iteration, fresh context, commit on green",
+          "goal": "Run an outer loop that fixes one failing test per iteration and reverts when the check goes red.",
+          "concepts": [
+            "AREA Outer loops and autonomous iteration (Ralph loop, /goal, Stop hook, nested outer/inner loop, fresh context per iteration)",
+            "Premature completion: model declares done too early (feature list, one feature per session)"
+          ],
+          "builds_on": [
+            "10"
+          ],
+          "example": "pocket-cart",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "hand_code": "interview",
+          "under_the_hood": [
+            "AREA Outer loops and autonomous iteration (Ralph loop, /goal, Stop hook, nested outer/inner loop, fresh context per iteration)"
+          ],
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "12",
+          "slug": "state-across-iterations",
+          "title": "State outside the context: progress file, feature list, git and SQLite",
+          "goal": "Keep loop state in files and a SQLite table so a fresh iteration knows where it is.",
+          "concepts": [
+            "AREA State and memory across iterations (progress file, JSON feature list, git history, spine, checkpointer, context compaction)"
+          ],
+          "builds_on": [
+            "11"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "13",
+          "slug": "retries-and-idempotent-writes",
+          "title": "Retries, backoff and idempotent writes",
+          "goal": "Retry transient errors with backoff and jitter, and make a refund write safe to repeat.",
+          "concepts": [
+            "Idempotent tool calls and resume after restart",
+            "AREA Cost, reliability and observability (token and spend budgets, retries, idempotency, durable execution, tracing, loop detection)",
+            "Provider failure: per-hop timeout, circuit breaker, model fallback"
+          ],
+          "builds_on": [
+            "12"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "hand_code": "interview",
+          "under_the_hood": [
+            "Idempotent tool calls and resume after restart",
+            "AREA Cost, reliability and observability (token and spend budgets, retries, idempotency, durable execution, tracing, loop detection)"
+          ],
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "14",
+          "slug": "maker-checker",
+          "title": "A separate checker: maker and checker split, and reward hacking",
+          "goal": "Split a loop into a maker and a checker with fresh context, and catch an agent that edits the test instead of the code.",
+          "concepts": [
+            "Maker/checker split: verifier subagent with fresh context, different model or instructions",
+            "Reward hacking in loops (agent deletes the failing test or assertion)",
+            "Block verifier gaming: verifier path read-only or a PreToolUse deny on test paths"
+          ],
+          "builds_on": [
+            "11"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "15",
+          "slug": "context-growth-and-compaction",
+          "title": "Context growth: caching, clearing tool results and compaction",
+          "goal": "Measure how a long loop's context grows and keep it bounded.",
+          "concepts": [
+            "Context compaction and fresh-context iterations",
+            "AREA State and memory across iterations (progress file, JSON feature list, git history, spine, checkpointer, context compaction)"
+          ],
+          "builds_on": [
+            "12"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "professional",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "16",
+          "slug": "capabilities-as-loop-controls",
+          "title": "Tools, MCP, skills and hooks as the loop's controls",
+          "goal": "Choose which capability a loop gets: a tool, an MCP server, a skill file or a hook.",
+          "concepts": [
+            "AREA Capabilities: tools, MCP, skills, hooks, plugins",
+            "SKILL.md: encode team standards so the loop can verify itself (progressive disclosure)"
+          ],
+          "builds_on": [
+            "15"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "professional",
+          "est_minutes": 20,
+          "kind": "walkthrough",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "17",
+          "slug": "evals-as-ci-gate",
+          "title": "Evals in CI: golden sets, trajectory checks and pass^k",
+          "goal": "Run the golden set in CI on recorded model calls, and fail the build when reliability drops.",
+          "concepts": [
+            "AREA Evaluation of loops (golden sets, trajectory scoring, LLM-as-judge limits, regression gate in CI, pass^k)",
+            "Replay recorded model calls in CI; a nightly live run through a batch API"
+          ],
+          "builds_on": [
+            "07",
+            "14"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "18",
+          "slug": "checkpoint-intermediate",
+          "title": "Checkpoint: a Ralph loop with a checker and a CI eval gate",
+          "goal": "Run the outer loop on pocket-cart with a maker/checker split and a golden-set gate that blocks a bad change, started by one run command.",
+          "concepts": [
+            "AREA Outer loops and autonomous iteration (Ralph loop, /goal, Stop hook, nested outer/inner loop, fresh context per iteration)"
+          ],
+          "builds_on": [
+            "13",
+            "14",
+            "17"
+          ],
+          "example": "pocket-cart",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "level": "L5",
+      "title": "Production: triggers, approvals and safety for unattended loops",
+      "checkpoint": "24",
+      "lessons": [
+        {
+          "id": "19",
+          "slug": "why-unattended-loops",
+          "title": "Why loops run unattended, and what goes wrong",
+          "goal": "Name the failure modes of an unattended loop, and decide where a human must stay the verifier.",
+          "concepts": [
+            "Comprehension debt, intent debt and cognitive surrender (human review bandwidth)",
+            "AREA Security, permissions and human oversight (permission modes, least privilege, sandbox, injection, reward hacking, approvals, comprehension debt)"
+          ],
+          "builds_on": [
+            "18"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "concept",
+          "status": "done",
+          "why_lesson": true,
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "20",
+          "slug": "triggers-and-heartbeats",
+          "title": "Triggers: cron, events and heartbeats with leases",
+          "goal": "Start a loop on a schedule or an event, and stop two runs from taking the same task.",
+          "concepts": [
+            "AREA Triggers and scheduling (cron, /loop, event and heartbeat loops, cloud routines, GitHub Actions, proactive loops)",
+            "Heartbeat and triage inbox pattern; one worktree per finding"
+          ],
+          "builds_on": [
+            "12",
+            "19"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "21",
+          "slug": "isolation-and-parallel-runs",
+          "title": "Isolation: one git worktree per run, subagents and review bandwidth",
+          "goal": "Run several loop iterations in parallel without collisions, and keep the review queue short.",
+          "concepts": [
+            "AREA Isolation and parallelism (git worktrees, sandboxes, subagents, orchestrator-workers, review bandwidth)"
+          ],
+          "builds_on": [
+            "20"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "22",
+          "slug": "approvals-as-loop-exit",
+          "title": "Human approval as a loop exit: pause, show arguments, resume",
+          "goal": "Pause a loop before a refund, show the real arguments, and resume or escalate on the reviewer's answer.",
+          "concepts": [
+            "Human-in-the-loop approval and escalation as a loop exit",
+            "LangGraph step cap: an explicit recursion_limit (its default of 1000 is not a cap you chose) and RemainingSteps",
+            "A coding agent that opens a PR, with a human merge gate",
+            "AREA Security, permissions and human oversight (permission modes, least privilege, sandbox, injection, reward hacking, approvals, comprehension debt)"
+          ],
+          "builds_on": [
+            "12",
+            "13",
+            "21"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "hand_code": "interview",
+          "under_the_hood": [
+            "Human-in-the-loop approval and escalation as a loop exit"
+          ],
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "23",
+          "slug": "injection-and-permissions",
+          "title": "Injection and permissions: least privilege for unattended agents",
+          "goal": "Show how a tool output can take over a loop, and limit each run to the tools it needs.",
+          "concepts": [
+            "Prompt injection through tool output in unattended loops",
+            "AREA Capabilities: tools, MCP, skills, hooks, plugins"
+          ],
+          "builds_on": [
+            "22"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "24",
+          "slug": "checkpoint-production",
+          "title": "Checkpoint: a triggered loop with approvals and isolated runs",
+          "goal": "Run a scheduled pocket-cart loop in separate worktrees, with an approval gate and a permission list.",
+          "concepts": [
+            "AREA Production and enterprise operation (agent platform, gateway, identity, audit, rollout, governance, org-wide loops)"
+          ],
+          "builds_on": [
+            "20",
+            "21",
+            "22",
+            "23"
+          ],
+          "example": "Brightside Outfitters support desk and pocket-cart",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 30,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "level": "L6",
+      "title": "Enterprise: durable runs, cost, operation and governance",
+      "checkpoint": "30",
+      "lessons": [
+        {
+          "id": "25",
+          "slug": "multi-agent-when-it-pays",
+          "title": "Why one loop stops being enough: multi-agent cost, durability and scale",
+          "goal": "Decide between one loop and several, from the token multiplier and the failure modes.",
+          "concepts": [
+            "Multi-agent: when it is worth the cost, handoffs, conflicting agents",
+            "AREA Isolation and parallelism (git worktrees, sandboxes, subagents, orchestrator-workers, review bandwidth)"
+          ],
+          "builds_on": [
+            "24"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "concept",
+          "status": "done",
+          "why_lesson": true,
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "26a",
+          "slug": "durable-resume",
+          "title": "Durable resume: checkpoints, replay and the crash drill",
+          "goal": "Resume a loop after a crash from its last checkpoint without repeating a side effect, and prove it with a drill.",
+          "concepts": [
+            "Durable workflows for long-running agents (LangGraph checkpointer; Temporal in Go deeper)",
+            "Idempotent tool calls and resume after restart",
+            "Crash drill: kill a worker mid-iteration, the lease expires, the run resumes from its checkpoint; pass = zero duplicate refunds"
+          ],
+          "builds_on": [
+            "22",
+            "13"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "26b",
+          "slug": "kill-switch-and-leases",
+          "title": "Kill switch and lease expiry: stopping a runaway fleet",
+          "goal": "Stop every run from one switch, and expire leases so a dead worker's task is taken over once.",
+          "concepts": [
+            "Kill switch and lease expiry: a global stop flag, a per-run cancel and a 429 or always-failing verifier as drill inputs"
+          ],
+          "builds_on": [
+            "26a"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "27",
+          "slug": "observability-and-cost",
+          "title": "Observability and cost: traces, loop metrics and per-run budgets",
+          "goal": "Trace one loop run as a span tree (one span per iteration, attribute loop.iteration), and compute cost per success.",
+          "concepts": [
+            "OpenTelemetry tracing of an agent run: span tree, one span per iteration; cost per success = spend / successes",
+            "Trace PII hygiene: no raw customer data in spans",
+            "Cost control for unattended loops: pilot on a slice, cheaper model for the checker, run no more often than the system changes"
+          ],
+          "builds_on": [
+            "26b"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "28a",
+          "slug": "loop-as-a-service",
+          "title": "A loop as a service: a FastAPI run endpoint and an approval queue",
+          "goal": "Serve the loop from FastAPI with a run endpoint, a queue and an approval endpoint.",
+          "concepts": [
+            "AREA Production and enterprise operation (agent platform, gateway, identity, audit, rollout, governance, org-wide loops)",
+            "Queues for runs: Postgres SKIP LOCKED or Redis; the queue in this lesson is SQLite"
+          ],
+          "builds_on": [
+            "27"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "28b",
+          "slug": "worker-fleet-compose",
+          "title": "A worker fleet in Docker Compose: scale, lease expiry and the drill",
+          "goal": "Run docker compose up --scale worker=3, expire a worker's lease, and show which limit breaks first (the provider's requests per minute).",
+          "concepts": [
+            "Scaling workers on one machine with Docker Compose; the provider rate limit (RPM/TPM) breaks first",
+            "Heartbeat and triage inbox pattern; one worktree per finding"
+          ],
+          "builds_on": [
+            "28a",
+            "26b"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-docker"
+          ],
+          "priority": "core",
+          "est_minutes": 25,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "29a",
+          "slug": "tenancy-and-budgets",
+          "title": "Tenancy and budgets: per-tenant limits, per-run traps and gateway keys",
+          "goal": "Set per-tenant budgets and per-run caps, and avoid the trap that a per-run budget is not a ceiling.",
+          "concepts": [
+            "Multi-tenancy: per-tenant budgets, gateway keys and isolation",
+            "Per-run budget trap: a managed-agent max_list_cost of 2000 is about $20 per run, not a monthly ceiling"
+          ],
+          "builds_on": [
+            "28b"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "walkthrough",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "29b",
+          "slug": "identity-audit-and-rollout",
+          "title": "Identity, audit and rollout: agent identity, shadow runs, canary and rollback",
+          "goal": "Give each agent an identity, write an audit trail, and roll a model or prompt change out as shadow, then 5% canary, then rollback.",
+          "concepts": [
+            "Agent identity, gateway, RBAC for enterprise tool access",
+            "Rollout of a loop change: shadow, 5% canary, rollback on the golden set; one config bundle per release",
+            "Audit trail for every tool call and approval"
+          ],
+          "builds_on": [
+            "29a"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [],
+          "priority": "core",
+          "est_minutes": 20,
+          "kind": "walkthrough",
+          "status": "done",
+          "kit": "2026.11.10"
+        },
+        {
+          "id": "30",
+          "slug": "capstone",
+          "title": "Capstone: the enterprise loop, end to end",
+          "goal": "Build the desk loop as a service with approvals, durable runs, an eval gate and traces, and run it end to end. Acceptance: the kill drill passes; the overshoot is shown and capped; an injected refund instruction is blocked; the eval gate fails a planted bad change.",
+          "concepts": [
+            "AREA Production and enterprise operation (agent platform, gateway, identity, audit, rollout, governance, org-wide loops)",
+            "AREA Evaluation of loops (golden sets, trajectory scoring, LLM-as-judge limits, regression gate in CI, pass^k)"
+          ],
+          "builds_on": [
+            "17",
+            "22",
+            "26b",
+            "27",
+            "28b",
+            "29b"
+          ],
+          "example": "Brightside Outfitters support desk",
+          "tags": [
+            "needs-llm",
+            "needs-docker"
+          ],
+          "priority": "core",
+          "est_minutes": 45,
+          "kind": "hands-on",
+          "status": "done",
+          "kit": "2026.11.10"
+        }
+      ]
+    }
+  ],
+  "stack": [
+    {
+      "tool": "Python 3.12",
+      "role": "language for every lesson and the app",
+      "lessons": "01-30",
+      "options": [
+        "local: Python 3.12 (default)"
+      ],
+      "default": "local: Python 3.12 (default)",
+      "verified": "2026-10-26",
+      "source": "https://www.python.org/downloads/"
+    },
+    {
+      "tool": "Gemini API (google-genai)",
+      "role": "default model for every loop lesson",
+      "lessons": "02-30",
+      "options": [
+        "Gemini API key (default)",
+        "Vertex AI project and location"
+      ],
+      "default": "Gemini API key (default)",
+      "settings": [
+        "GOOGLE_CLOUD_API_KEY"
+      ],
+      "verified": "2026-10-26",
+      "source": "https://ai.google.dev/gemini-api/docs",
+      "adoption": "official SDK for Gemini (course uses the get_llm() helper; no vendor import required)"
+    },
+    {
+      "tool": "Anthropic SDK (anthropic 2.3.0)",
+      "role": "optional Claude model for the same lessons",
+      "lessons": "02-30",
+      "options": [
+        "Anthropic API key (optional)"
+      ],
+      "default": "Anthropic API key (optional)",
+      "settings": [
+        "ANTHROPIC_API_KEY"
+      ],
+      "verified": "2026-10-26",
+      "source": "https://docs.anthropic.com/en/api/sdks",
+      "adoption": "official Claude SDK; 2.x is a breaking major release, so pin and test (course uses the get_llm() helper; no vendor import required)"
+    },
+    {
+      "tool": "pydantic",
+      "role": "tool argument schemas and validation",
+      "lessons": "04, 05",
+      "options": [
+        "local: pydantic 2.14.1"
+      ],
+      "default": "local: pydantic 2.14.1",
+      "verified": "2026-10-26",
+      "source": "https://docs.pydantic.dev",
+      "module": "pydantic",
+      "adoption": "the standard Python schema library; used by the official SDK tool layers"
+    },
+    {
+      "tool": "tenacity",
+      "role": "retries with backoff and jitter",
+      "lessons": "13",
+      "options": [
+        "local: tenacity 9.2.1"
+      ],
+      "default": "local: tenacity 9.2.1",
+      "verified": "2026-10-26",
+      "source": "https://tenacity.readthedocs.io",
+      "module": "tenacity",
+      "adoption": "the standard Python retry library"
+    },
+    {
+      "tool": "pytest",
+      "role": "deterministic verifier and CI eval gate",
+      "lessons": "07, 08, 17, 18",
+      "options": [
+        "local: pytest 9.1.1"
+      ],
+      "default": "local: pytest 9.1.1",
+      "verified": "2026-10-26",
+      "source": "https://docs.pytest.org",
+      "module": "pytest",
+      "adoption": "the standard Python test runner"
+    },
+    {
+      "tool": "LangGraph",
+      "role": "checkpointer and interrupts for durable, approval-gated loops",
+      "lessons": "22, 26",
+      "options": [
+        "local: langgraph 1.2.17 with the SQLite checkpointer"
+      ],
+      "default": "local: langgraph 1.2.17 with the SQLite checkpointer",
+      "verified": "2026-10-26",
+      "source": "https://docs.langchain.com/oss/python/langgraph",
+      "module": "langgraph",
+      "adoption": "the most used Python graph runtime for agent loops"
+    },
+    {
+      "tool": "SQLite (standard library)",
+      "role": "loop state, runs and the approval queue",
+      "lessons": "12, 22, 26",
+      "options": [
+        "local: sqlite3 (standard library)"
+      ],
+      "default": "local: sqlite3 (standard library)",
+      "verified": "2026-10-26",
+      "source": "https://docs.python.org/3/library/sqlite3.html",
+      "module": "sqlite3",
+      "adoption": "standard library"
+    },
+    {
+      "tool": "git and git worktree",
+      "role": "state and isolation per run",
+      "lessons": "11, 12, 21",
+      "options": [
+        "local: git (installed)"
+      ],
+      "default": "local: git (installed)",
+      "verified": "2026-10-26",
+      "source": "https://git-scm.com/docs/git-worktree",
+      "adoption": "the version control every loop uses"
+    },
+    {
+      "tool": "FastAPI and uvicorn",
+      "role": "the loop as a service",
+      "lessons": "28, 30",
+      "options": [
+        "local: fastapi 0.162.0, uvicorn 0.54.0"
+      ],
+      "default": "local: fastapi 0.162.0, uvicorn 0.54.0",
+      "verified": "2026-10-26",
+      "source": "https://fastapi.tiangolo.com",
+      "module": "fastapi",
+      "adoption": "the most used Python API framework for services"
+    },
+    {
+      "tool": "OpenTelemetry SDK",
+      "role": "traces of each loop run",
+      "lessons": "27, 28",
+      "options": [
+        "local: opentelemetry-sdk 1.45.1, console exporter"
+      ],
+      "default": "local: opentelemetry-sdk 1.45.1, console exporter",
+      "verified": "2026-10-26",
+      "source": "https://opentelemetry.io/docs/languages/python/",
+      "module": "opentelemetry",
+      "adoption": "the vendor-neutral tracing standard"
+    },
+    {
+      "tool": "Arize Phoenix (local)",
+      "role": "trace viewer for OpenTelemetry spans",
+      "lessons": "28",
+      "options": [
+        "local: Phoenix in Docker Compose"
+      ],
+      "default": "local: Phoenix in Docker Compose",
+      "verified": "2026-10-26",
+      "source": "https://arize.com/docs/phoenix",
+      "adoption": "open-source trace viewer for LLM apps"
+    },
+    {
+      "tool": "Docker Compose",
+      "role": "the worker fleet and the trace viewer",
+      "lessons": "28",
+      "options": [
+        "local: Docker and Compose v2 or later"
+      ],
+      "default": "local: Docker and Compose v2 or later",
+      "verified": "2026-10-26",
+      "source": "https://docs.docker.com/compose/",
+      "adoption": "the standard way to run multi-container labs on one machine"
+    },
+    {
+      "tool": "Claude Agent SDK (claude-agent-sdk 0.2.174)",
+      "role": "hooks, max_turns and max_budget_usd in the walkthroughs",
+      "lessons": "10, 16",
+      "options": [
+        "Anthropic API key (optional, for the walkthroughs)"
+      ],
+      "default": "Anthropic API key (optional, for the walkthroughs)",
+      "settings": [
+        "ANTHROPIC_API_KEY"
+      ],
+      "verified": "2026-10-26",
+      "source": "https://docs.claude.com/en/docs/claude-code/sdk",
+      "module": "claude_agent_sdk",
+      "adoption": "official Anthropic agent SDK; pre-1.0, pin exactly"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "brightside_crm.sqlite",
+      "what": "mock CRM: customers, orders, order_items, tickets, refunds, audit_log (about 200 customers, 400 orders)",
+      "lessons": "02-30",
+      "generated": "seeded generator in src/make_data.py (fixed seed); addresses are name@example.com"
+    },
+    {
+      "name": "pocket-cart",
+      "what": "a generated Python repo: 6 small modules and a pytest suite with about 12 failing tests and a fix plan",
+      "lessons": "07, 08, 11, 14, 18, 24",
+      "generated": "seeded generator in src/make_pocket_cart.py; the loop's fixes are reverted with git"
+    }
+  ],
+  "app": {
+    "name": "Brightside support desk loop",
+    "what": "a local FastAPI service with a one-page UI that runs the desk loop with caps, then approvals, then durable runs; it grows one step after each chapter",
+    "steps": [
+      {
+        "step": 1,
+        "title": "Desk loop with caps and a stuck detector",
+        "after_chapter": 1,
+        "level": "Basic",
+        "adds": "chat page, get_order and calculator tools, caps and stop reasons",
+        "status": "done"
+      },
+      {
+        "step": 2,
+        "title": "Retries, idempotent refunds and a checker",
+        "after_chapter": 2,
+        "level": "Intermediate",
+        "adds": "retry with backoff, idempotency keys, maker/checker, eval gate",
+        "status": "done"
+      },
+      {
+        "step": 3,
+        "title": "Approvals, triggers and isolated runs",
+        "after_chapter": 3,
+        "level": "Advanced",
+        "adds": "approval queue, scheduled runs, one worktree per run, permissions list",
+        "status": "done"
+      },
+      {
+        "step": 4,
+        "title": "Finish and run it",
+        "after_chapter": 4,
+        "level": "Advanced",
+        "adds": "one run command, full tests, README",
+        "final": true,
+        "status": "done"
+      }
+    ]
+  },
+  "developer_coverage": {
+    "D1 Purpose and architecture": [
+      "01",
+      "30"
+    ],
+    "D2 Mental model and core concepts": [
+      "01",
+      "02",
+      "03"
+    ],
+    "D3 Setup and first working app": [
+      "02",
+      "08"
+    ],
+    "D4 Day-to-day API surface": [
+      "02",
+      "03",
+      "04"
+    ],
+    "D5 Data, schemas and configuration": [
+      "04",
+      "12"
+    ],
+    "D6 Integration with the app stack": [
+      "16",
+      "28a"
+    ],
+    "D7 Async, concurrency and performance basics": [
+      "21",
+      "28b"
+    ],
+    "D8 Errors, validation and reliability": [
+      "04",
+      "13"
+    ],
+    "D9 Testing and evaluation": [
+      "07",
+      "17"
+    ],
+    "D10 Debugging and observability": [
+      "06",
+      "27"
+    ],
+    "D11 Security": [
+      "16",
+      "22",
+      "23"
+    ],
+    "D12 Packaging, deployment and operations": [
+      "18",
+      "26b",
+      "28b"
+    ],
+    "D13 Scaling and cost": [
+      "27",
+      "28b"
+    ],
+    "D14 Versions, upgrades and migration": [
+      "02",
+      "29b"
+    ],
+    "D15 Ecosystem and choosing": [
+      "16",
+      "25"
+    ],
+    "D16 Common pitfalls and anti-patterns": [
+      "11",
+      "14"
+    ],
+    "D17 Reference architectures and real use cases": [
+      "28a",
+      "29b"
+    ],
+    "D18 End-to-end capstone": [
+      "30"
+    ]
+  },
+  "enterprise_coverage": {
+    "1 distributed architecture internals": [
+      "26a"
+    ],
+    "2 cluster operations": [
+      "28b"
+    ],
+    "3 failure and recovery": [
+      "26a",
+      "26b"
+    ],
+    "4 extreme scale": [
+      "28b"
+    ],
+    "5 deployment options": [
+      "28a",
+      "28b"
+    ],
+    "6 performance engineering at scale": [
+      "27"
+    ],
+    "7 high availability and disaster recovery": [
+      "26a"
+    ],
+    "8 zero-downtime change": [
+      "29b"
+    ],
+    "9 multi-tenancy and isolation": [
+      "29a"
+    ],
+    "10 security and compliance at scale": [
+      "23"
+    ],
+    "11 cost engineering": [
+      "27"
+    ],
+    "12 platform and organisation patterns": [
+      "29b"
+    ],
+    "13 frontier": [
+      "29b"
+    ],
+    "14 case studies": [
+      "29b"
+    ]
+  },
+  "concept_coverage": {
+    "AREA The agent loop and tool calling (turns, tool round trip, termination, what a loop is vs a workflow)": [
+      "02",
+      "03",
+      "04",
+      "05"
+    ],
+    "AREA Goals, verifiers and stop conditions (machine-checkable goal, deterministic verifier, maker/checker, four exits: done, stuck, over budget, hand off)": [
+      "05",
+      "06",
+      "07",
+      "11"
+    ],
+    "AREA Outer loops and autonomous iteration (Ralph loop, /goal, Stop hook, nested outer/inner loop, fresh context per iteration)": [
+      "09",
+      "10",
+      "11"
+    ],
+    "AREA State and memory across iterations (progress file, JSON feature list, git history, spine, checkpointer, context compaction)": [
+      "12",
+      "15"
+    ],
+    "AREA Triggers and scheduling (cron, /loop, event and heartbeat loops, cloud routines, GitHub Actions, proactive loops)": [
+      "20"
+    ],
+    "AREA Isolation and parallelism (git worktrees, sandboxes, subagents, orchestrator-workers, review bandwidth)": [
+      "21"
+    ],
+    "AREA Capabilities: tools, MCP, skills, hooks, plugins": [
+      "16",
+      "23"
+    ],
+    "AREA Evaluation of loops (golden sets, trajectory scoring, LLM-as-judge limits, regression gate in CI, pass^k)": [
+      "07",
+      "17"
+    ],
+    "AREA Cost, reliability and observability (token and spend budgets, retries, idempotency, durable execution, tracing, loop detection)": [
+      "13",
+      "27"
+    ],
+    "AREA Security, permissions and human oversight (permission modes, least privilege, sandbox, injection, reward hacking, approvals, comprehension debt)": [
+      "22",
+      "23"
+    ],
+    "AREA Production and enterprise operation (agent platform, gateway, identity, audit, rollout, governance, org-wide loops)": [
+      "28a",
+      "28b",
+      "29b"
+    ],
+    "Loop engineering vs prompt engineering vs context engineering vs harness engineering": [
+      "01"
+    ],
+    "Four loop types: turn-based, goal-based, time-based, proactive": [
+      "09",
+      "10"
+    ],
+    "Agent SDK max_turns, max_budget_usd and result subtypes (error_max_turns, error_max_budget_usd)": [
+      "10"
+    ],
+    "Repeated identical tool call detection and loop-stuck handling": [
+      "06"
+    ],
+    "Tool argument validation against a schema, errors returned as observations": [
+      "04"
+    ],
+    "Idempotent tool calls and resume after restart": [
+      "13",
+      "26a"
+    ],
+    "Premature completion: model declares done too early (feature list, one feature per session)": [
+      "11"
+    ],
+    "Reward hacking in loops (agent deletes the failing test or assertion)": [
+      "14"
+    ],
+    "Browser or end-to-end testing as verifier (Playwright/Puppeteer via MCP)": "Go deeper — browser and end-to-end verifiers (Playwright or Puppeteer through MCP): the same verifier pattern as lesson 07, with a browser",
+    "SKILL.md: encode team standards so the loop can verify itself (progressive disclosure)": [
+      "16"
+    ],
+    "Hooks: PreToolUse, PostToolUse, Stop, SubagentStop, PreCompact": [
+      "10",
+      "23"
+    ],
+    "Heartbeat and triage inbox pattern; one worktree per finding": [
+      "20"
+    ],
+    "Maker/checker split: verifier subagent with fresh context, different model or instructions": [
+      "14"
+    ],
+    "Cost control for unattended loops: pilot on a slice, cheaper model for the checker, run no more often than the system changes": [
+      "27"
+    ],
+    "Context compaction and fresh-context iterations": [
+      "15"
+    ],
+    "Comprehension debt, intent debt and cognitive surrender (human review bandwidth)": [
+      "19"
+    ],
+    "Prompt injection through tool output in unattended loops": [
+      "23"
+    ],
+    "Human-in-the-loop approval and escalation as a loop exit": [
+      "22"
+    ],
+    "OpenTelemetry tracing of an agent run": [
+      "27"
+    ],
+    "Durable workflows for long-running agents (Temporal, LangGraph checkpointer)": [
+      "26a"
+    ],
+    "Multi-agent: when it is worth the cost, handoffs, conflicting agents": [
+      "25"
+    ],
+    "RAG as a loop component (retrieval step, citations)": "Go deeper — retrieval as one tool in a loop: taught in the Agentic AI course (RAG part); here a loop only calls it",
+    "Agent identity, gateway, RBAC for enterprise tool access": [
+      "29b"
+    ],
+    "Governance: EU AI Act, audit trail, data residency": "Go deeper — EU AI Act and governance frameworks: a pointer; the audit trail that governance needs is in 29b",
+    "Empirical evidence for loop engineering benefits (none yet; 217 loops in 36,710 repos)": [
+      "01"
+    ],
+    "Fine-tuning and RL for loop agents": "Go deeper — fine-tuning and reinforcement learning for loop agents: research level, out of scope for applied developers"
+  },
+  "out_of_scope": [
+    {
+      "item": "Kubernetes labs",
+      "why": "its own course; the fleet runs on Docker Compose (no Kubernetes labs here)"
+    },
+    {
+      "item": "Fine-tuning and RL for tool use",
+      "why": "research level; papers go to Go deeper"
+    }
+  ],
+  "go_deeper": [
+    {
+      "topic": "Temporal and other durable-execution engines",
+      "why": "a LangGraph checkpointer and SQLite cover the kill drill; Temporal is the next step when runs last days",
+      "link": "https://docs.temporal.io"
+    },
+    {
+      "topic": "Reflexion, LATS and Tree of Thoughts",
+      "why": "search and self-critique cost many calls; the reflection pattern in lesson 14 covers the common case",
+      "link": "https://arxiv.org/abs/2303.11366"
+    },
+    {
+      "topic": "Browser end-to-end verifiers (Playwright through MCP)",
+      "why": "useful for web apps; the verifier pattern is the same as lesson 07",
+      "link": "https://playwright.dev/docs/intro"
+    },
+    {
+      "topic": "Cloud routines and GitHub Actions triggers",
+      "why": "the cron and lease pattern in lesson 20 is the same on any platform; the hosted triggers are product features that change often",
+      "link": "https://code.claude.com/docs/en/agent-sdk/agent-loop"
+    },
+    {
+      "topic": "EU AI Act and governance frameworks",
+      "why": "compliance is an organisation decision; lesson 29b gives the audit trail it needs",
+      "link": "https://artificialintelligenceact.eu"
+    },
+    {
+      "topic": "Loop evidence and benchmarks",
+      "why": "the research is thin (one workshop paper); lesson 01 says what is known",
+      "link": "https://arxiv.org/abs/2608.21884"
+    }
+  ],
+  "approved": "2026-10-27",
+  "version": 3,
+  "history": [
+    {
+      "version": 1,
+      "date": "2026-10-27",
+      "changes": "approved with an earlier kit version"
+    },
+    {
+      "version": 2,
+      "date": "2026-10-27",
+      "changes": "Vendor SDK imports no longer required (course uses the get_llm() helper); lesson 02 goal names get_llm()"
+    },
+    {
+      "version": 3,
+      "date": "2026-10-27",
+      "changes": "Lesson 02 goal: get_llm() sets temperature=0 (checked in llm_setup.py); the lesson never sets it"
+    }
+  ],
+  "port_base": 8000
+}

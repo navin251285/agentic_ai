@@ -1,0 +1,7 @@
+worker-2: run C-30, attempt 1
+  worker-2 C-30 iteration 1: verifier failed
+  worker-2 C-30 iteration 2: verifier failed
+  worker-2 C-30 iteration 3: verifier failed
+  worker-2 C-30 iteration 4: verifier failed
+worker-2: run C-30 -> stopped
+worker-2: nothing to claim; exit

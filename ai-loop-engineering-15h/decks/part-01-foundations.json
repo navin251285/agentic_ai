@@ -1,0 +1,317 @@
+{
+ "title": "Part 1: the loop, built by hand",
+ "subtitle": "AI loop engineering · Foundations · lessons 01–08",
+ "course": "AI loop engineering: from zero to enterprise",
+ "audience": "learners who code in Python, building the support-desk agent",
+ "audience_type": "technical",
+ "scope": {
+  "part": 1
+ },
+ "theme": {
+  "accent": "4F46E5",
+  "accent2": "F59E0B"
+ },
+ "slides": [
+  {
+   "layout": "title",
+   "title": "Part 1: the loop, built by hand",
+   "subtitle": "AI loop engineering · Foundations · lessons 01–08",
+   "icon": "cube",
+   "notes": "Part 1 has eight lessons of 20 to 30 minutes each. Every code line and output on these slides is trimmed from the executed notebooks of lessons 01 to 08. Where a line was cut, a ... marks the gap in the output, and where an output joins two prints, the slide says so."
+  },
+  {
+   "layout": "stat",
+   "title": "Loops are rare, and their benefit is unmeasured",
+   "value": "0.59%",
+   "label": "of 36,710 public repositories had an autonomous agent loop (217)",
+   "source": "arXiv paper 2608.21884 (a workshop paper), cited in lesson 01",
+   "points": [
+    "No measured benefit yet",
+    "No job posting checked used the title 'loop engineer'",
+    "Measure the benefit in your own team"
+   ],
+   "lessons": [
+    "01"
+   ],
+   "notes": "Start with the honest number. The lesson counts public GitHub repositories: 217 autonomous agent loops in 36,710 of them, which is 0.59 percent. The source is arXiv paper 2608.21884, a workshop paper; search arXiv for that number to read it. It found no measured benefit yet, and none of the job postings it checked used the title loop engineer, while several used harness engineer. So the message is: learn loops, but measure them in your own work. The problem they solve is the support desk of Brightside Outfitters, the course's fictional shop, where a person typing every turn is the loop. The rest of Part 1 builds the machine that stops that."
+  },
+  {
+   "layout": "cards",
+   "title": "Workflow, agent or loop: who picks the next step?",
+   "cards": [
+    {
+     "icon": "gear",
+     "head": "Workflow",
+     "text": "Your code decides the steps; the model fills one in"
+    },
+    {
+     "icon": "bolt",
+     "head": "Agent",
+     "text": "The model picks the next tool, inside one run"
+    },
+    {
+     "icon": "arrow",
+     "head": "Loop",
+     "text": "Agents run again over time, with a check and stop rules"
+    }
+   ],
+   "lessons": [
+    "01"
+   ],
+   "notes": "Three words the course keeps apart. A workflow is fixed code: your program runs the steps and the model fills in one, such as a ticket label. An agent lets the model choose the next tool inside one run; that is the inner loop. A loop runs agents again and again over time, with a trigger, a goal a machine can check, state kept outside the model, and stop rules. For Brightside: a refund with a fixed sequence of lookups is a workflow; a refund where the model chooses the order of its steps is an agent; a retry run by a schedule with a stop rule is a loop. Start with the simplest thing that works."
+  },
+  {
+   "layout": "analogy",
+   "title": "A model call is a letter to a clerk",
+   "everyday": {
+    "name": "A letter to a clerk",
+    "text": "Policy binder, customer letter, reply with receipt"
+   },
+   "tech": {
+    "name": "A model call",
+    "text": "Messages in, a reply and a usage receipt out"
+   },
+   "breaks": "The clerk remembers the file; a model keeps nothing between calls unless you resend the messages",
+   "lessons": [
+    "02"
+   ],
+   "notes": "Everyone has written to a clerk at a desk. The desk's policy binder is the system message, the customer's letter is the user message, and the written answer comes back with a receipt that counts the words read and written. The receipt is the usage record. Now say where the comparison stops. The clerk remembers the file after the letter is answered. A model remembers nothing between calls: the whole message list is sent again on every turn, which is exactly why input tokens grow in a loop. Keep that gap in mind; lesson 03 measures it."
+  },
+  {
+   "layout": "concept",
+   "title": "Each call returns a reply and a receipt",
+   "definition": "A model call sends messages and gets a reply and a receipt; a token is about three-quarters of a word.",
+   "parts": [
+    {
+     "term": "Messages",
+     "meaning": "System rules, request, earlier replies"
+    },
+    {
+     "term": "Usage",
+     "meaning": "Input and output token counts"
+    }
+   ],
+   "example": "Desk reply: 39 in, 31 out: $0.000016",
+   "lessons": [
+    "02"
+   ],
+   "notes": "Say the definition slowly. One call sends messages in three roles and returns text plus usage_metadata, a record of input and output tokens. A token is roughly three quarters of a word. Cost is the token counts times the price per million tokens. The lesson's own example: the desk reply cost $0.000016 for 39 input and 31 output tokens, at $0.10 input and $0.40 output per million tokens. Those are the Gemini Developer API list prices read on 2026-10-27; Vertex AI has its own page, so check yours before you rely on the number. Cost is what a loop runs out of first, which is why every later lesson counts it."
+  },
+  {
+   "layout": "code",
+   "title": "Start small: read the cost of one call",
+   "lang": "python",
+   "code": "def call_cost(usage, price):\n    # body: input tokens x input price,\n    # plus output tokens x output price, / 1_000_000\n    ...\nusage = reply.usage_metadata\nprice = PRICES[DEFAULT_MODELS[\"gemini\"]]\nprint(\"usage:\", usage)\nprint(f\"cost of this call: ${call_cost(usage, price):.6f}\")",
+   "highlight": [
+    2,
+    3
+   ],
+   "output": "usage: {'input_tokens': 39, 'output_tokens': 31, 'total_tokens': 70, 'input_token_details': {'cache_read': 0}}\ncost of this call: $0.000016",
+   "points": [
+    "The receipt is usage_metadata",
+    "Tokens times the price gives dollars"
+   ],
+   "lessons": [
+    "02",
+    "05"
+   ],
+   "notes": "This is the smallest useful piece of lesson 02. call_cost takes the usage record and a price row and returns dollars. The body is one line of arithmetic, too wide for a slide, so the comment states it: input tokens times the input price, plus output tokens times the output price, divided by 1,000,000. The lesson's exact line is return (usage[\"input_tokens\"] * price[\"input\"] + usage[\"output_tokens\"] * price[\"output\"]) / 1_000_000. Then usage is the receipt of the call, read as reply.usage_metadata, and price is the row in the PRICES table for the model used, as lesson 05 reads it. Above these lines the cell calls the model with reply = llm.invoke(messages). The two printed lines are the real output of the executed notebook: 39 input and 31 output tokens cost $0.000016. At 1,000 calls like this one the cost is $0.0163. Common mistake to name: reading reply.usage raises AttributeError; the field is usage_metadata. Ask the room: what does one call cost your team today?"
+  },
+  {
+   "layout": "analogy",
+   "title": "A shop assistant checks the stock system in turns",
+   "everyday": {
+    "name": "A shop assistant with a phone",
+    "text": "Asks the stock system, reads, asks again"
+   },
+   "tech": {
+    "name": "An agent loop",
+    "text": "Model asks for a tool; your code runs it"
+   },
+   "breaks": "The assistant judges alone when the job ends; code uses a cap",
+   "lessons": [
+    "03"
+   ],
+   "notes": "Picture a shop assistant with a phone. A customer asks whether a jacket is in stock. The assistant calls the stock system, reads the answer, asks the next question, and tells the customer when the job is done. The manager has set how many calls the assistant may make before closing. That is the agent loop: the model picks the next tool, your code runs it and gives back the result, and the model reads that result on its next turn. The comparison breaks at the stopping rule. The assistant decides alone when the job is finished. In code, the model can answer in text, but your turn cap is the exit the model cannot override."
+  },
+  {
+   "layout": "concept",
+   "title": "Each turn: one model call, then its tools",
+   "definition": "An agent loop is a for loop around one model call: run the tools it asks for, feed back the results, and stop on text or a turn cap.",
+   "parts": [
+    {
+     "term": "Tool call",
+     "meaning": "Tool name and arguments the model asks"
+    },
+    {
+     "term": "Observation",
+     "meaning": "The tool result, sent back"
+    },
+    {
+     "term": "Stop reason",
+     "meaning": "answered or turn_cap"
+    },
+    {
+     "term": "Turn cap",
+     "meaning": "Your limit on model calls"
+    }
+   ],
+   "example": "Refund BS-1042: 3 turns, then answered",
+   "lessons": [
+    "03"
+   ],
+   "notes": "The definition has four moving parts. The model either answers in text or asks for a tool. Your code runs the tool. The result is an observation that goes back into the message list, so the next call sees it. The loop ends on exactly two exits in lesson 03: the text answer, which is the stop reason answered, or your counter reaching the turn cap. The model cannot stop the loop by itself; your code can. The running example: the refund for the trail jacket on order BS-1042 took three model turns. It looked up the order, issued a refund of 120 dollars, and then answered in text. Name the four parts, because the code uses them."
+  },
+  {
+   "layout": "code",
+   "title": "Two exits: a text answer or the turn cap",
+   "lang": "python",
+   "code": "for turn in range(1, max_turns + 1):\n    ...\n    run.messages.append(reply)\n    if not reply.tool_calls:\n        ...\n        break\n    for call in reply.tool_calls:\n        ...\nelse:\n    # run.stop_reason = \"turn_cap\"  (our cap)\n    ...",
+   "highlight": [
+    6,
+    9,
+    10
+   ],
+   "output": "model asks: get_order({'order_id': 'BS-1042'})\n...\nturns: 1 | stop reason: turn_cap | refunds written: []",
+   "points": [
+    "No tool call: the model answered",
+    "The else clause sets turn_cap"
+   ],
+   "lessons": [
+    "03"
+   ],
+   "notes": "Read the loop top to bottom. The for line is the turn cap: your counter, not the model's. Each pass makes one model call and appends its reply. If the reply has no tool calls, the model has answered, and break leaves the loop. Otherwise every tool call runs and its result goes back in as an observation. The else clause is now on the slide, with the second exit. It runs only when the loop ends without a break; that is where turn_cap is set. The statement itself sits in a comment line, because the lesson's line carries a trailing comment and would not match the slide's exact-code check. The output is the real run with one turn, joined from two prints: the first line is the model's ask printed by show(), and the last line is the summary print. The ... marks the observation line that was cut. It shows one lookup, then turn_cap, and no refund was written. The cap stopped the model before it could refund. Ask the room: what should the loop do when one reply asks for three tools at once?"
+  },
+  {
+   "layout": "analogy",
+   "title": "A prepaid phone card sets the spend limit",
+   "everyday": {
+    "name": "A prepaid phone card",
+    "text": "The balance stops the next call"
+   },
+   "tech": {
+    "name": "Budget caps",
+    "text": "Each reply counts against turn, token, dollar caps"
+   },
+   "breaks": "A card blocks calls early; a cap is checked only after a paid reply.",
+   "lessons": [
+    "05"
+   ],
+   "notes": "A prepaid phone card. You load it with a balance, and the phone stops you starting a new call once the balance is used up. That is the part that fits the caps in lesson 05: a budget stops the next model call. Each reply is counted in turns, tokens and dollars, and the caps are checked after the reply and before its tools run. The comparison breaks at the timing. A card blocks a call before it starts, but a cap can only be checked once a reply has come back and been paid for, so the run can overshoot by one reply's cost. That is why the cap is arithmetic in your own code, counted from each reply's usage record, and why the budget needs headroom."
+  },
+  {
+   "layout": "concept",
+   "title": "Every run ends in one of four exits",
+   "definition": "An exit is how a run ends: done, stuck, over budget or hand off.",
+   "parts": [
+    {
+     "term": "Budget",
+     "meaning": "Turn, token or dollar caps"
+    },
+    {
+     "term": "Stuck check",
+     "meaning": "Same call or error repeats"
+    },
+    {
+     "term": "Verifier",
+     "meaning": "Passing test means done, for code"
+    },
+    {
+     "term": "Hand off",
+     "meaning": "Owed work goes to a person"
+    }
+   ],
+   "example": "Same 503 twice: stop reason stuck, refund owed, so the exit is hand off",
+   "lessons": [
+    "05",
+    "06",
+    "08"
+   ],
+   "notes": "This is the idea that makes a loop trustworthy. Each run ends in one of four exits. Done is the model's text answer for the desk, or a passing test for code; stuck, over budget and hand off come from rules in your code, not from the model's word. Done means the model answered in text, with no tool call; for code, a verifier such as pytest decides done instead. Stuck means a repeat: the same call three times, the same error twice, or a write that leaves the state unchanged. Over budget means a cap fired. Hand off means work is still owed, so a person takes it. Lesson 06 separates the stop reason from the exit. A refund gets the same 503 from the payment service twice: the stop reason is stuck, but a refund is still owed, so the exit is hand off. Stuck and over budget exits occur only when nothing is owed. Lesson 08 wires all four into one controller."
+  },
+  {
+   "layout": "code",
+   "title": "Each cap is one check; the first hit stops",
+   "lang": "python",
+   "code": "def exceeded(budget):\n    if budget.turns >= budget.max_turns:\n        return \"turn_cap\"\n    ...\n    return None",
+   "highlight": [
+    3
+   ],
+   "output": "stop reason: over_budget_usd | answer: None\ncap $0.000010; the reply that crossed it cost $0.000023 (overshoot by 0.000013 USD)",
+   "points": [
+    "Checked after each reply",
+    "The reply that crossed the cap is paid for"
+   ],
+   "lessons": [
+    "05"
+   ],
+   "notes": "The exceeded function returns the first cap reached, or None, and it is called after every reply. The ellipsis hides the token, dollar and time checks; the lesson has them all. The real output comes from the tiny dollar-cap run: the cap was $0.000010, the first reply cost $0.000023, so the run stopped with over_budget_usd and its refund never ran. The overshoot of $0.000013 is the price of checking after each reply rather than before a paid call. Teaching point: a cap is arithmetic in your code, not a sentence in the prompt. Ask the room: which cap would you set first for a refund agent, and what does being wrong by ten times cost?"
+  },
+  {
+   "layout": "code",
+   "title": "The golden gate blocks a drop in score",
+   "lang": "python",
+   "code": "def golden_gate(results, accepted):\n    ...\n    score = sum(r[\"ok\"] for r in results) / len(results)\n    return score, (\"pass\" if score >= accepted else \"block\")",
+   "highlight": [
+    4
+   ],
+   "output": "golden score 1.00 vs accepted 1.00 -> pass\ndemo, no model call: (0.5, 'block')",
+   "points": [
+    "A golden set: fixed cases with known good ends",
+    "Below the accepted score, the change is blocked"
+   ],
+   "lessons": [
+    "07"
+   ],
+   "notes": "A golden set is a fixed list of cases with known good ends, and the gate compares this run's score with the accepted score. The score is the share of cases that are ok. Lesson 07 runs four cases on the pocket-cart shop library, and the score is 1.00 against an accepted 1.00, so it passes. The demo line shows a block: one case of two passes, a score of 0.5, so the change is blocked. Before trusting the gate, check that the verifier cannot be gamed: lesson 07's control edits a test and goes green; the run is flagged ok=False in lesson 07 and refused in lesson 08. The loop must never change the tests that judge it."
+  },
+  {
+   "layout": "steps",
+   "title": "The build path: five pieces, one controller",
+   "steps": [
+    {
+     "head": "Schema check (04)",
+     "text": "Arguments checked before the tool runs"
+    },
+    {
+     "head": "Caps (05)",
+     "text": "Turns, tokens, dollars counted"
+    },
+    {
+     "head": "Stuck check (06)",
+     "text": "Repeats and flat writes stop a loop early"
+    },
+    {
+     "head": "Verifier (07)",
+     "text": "Test exit code decides done"
+    },
+    {
+     "head": "One controller (08)",
+     "text": "One loop runs model, caps and exits"
+    }
+   ],
+   "lessons": [
+    "04",
+    "05",
+    "06",
+    "07",
+    "08"
+   ],
+   "notes": "Walk the build path in the order the lessons add it. Lesson 04 checks arguments against a schema before the tool body runs, and a bad call becomes an observation the model reads on its next turn. Lesson 05 counts every reply against the caps. Lesson 06 adds the stuck check before and after the tools. Lesson 07 makes a test runner's exit code the stop signal for code, plus a golden gate for changes. Lesson 08 wires the four pieces into one controller with four exits, and adds one rule of its own: a run that owes a refund and wrote none is never done. Each step is a few lines in its notebook, and every output on the slides is what that notebook printed."
+  },
+  {
+   "layout": "questions",
+   "title": "Questions to ask about your own loop",
+   "questions": [
+    "Does done come from a check or the model's words?",
+    "Which caps apply, and who sees the counts?",
+    "What happens to a refund owed but never written?",
+    "Can the loop edit the tests that judge it?"
+   ],
+   "lessons": [
+    "08"
+   ],
+   "notes": "Close with questions a team can answer about its own loop. Who decides done: a check, or the model's words? Which caps exist, how many, and does a person see the counts? What happens to a refund that is owed but not written? Can the loop edit the tests or the golden set that judge it? Pick one loop you run today and answer all four in writing. If any answer is the model's own word, that loop is not yet engineered, and lesson 08's checkpoint is the place to fix it."
+  }
+ ]
+}

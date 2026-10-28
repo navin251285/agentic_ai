@@ -1,0 +1,332 @@
+{
+ "title": "Control: outer loops, state, retries and review",
+ "subtitle": "AI loop engineering · Part 2 · lessons 09 to 18",
+ "course": "AI loop engineering: from zero to enterprise",
+ "audience": "learners of the course (developers who build agent loops)",
+ "audience_type": "technical",
+ "scope": {
+  "part": 2
+ },
+ "theme": {
+  "accent": "4F46E5",
+  "accent2": "F59E0B"
+ },
+ "slides": [
+  {
+   "layout": "title",
+   "title": "Control: outer loops, state, retries and review",
+   "subtitle": "AI loop engineering · Part 2 · lessons 09 to 18",
+   "icon": "cube",
+   "notes": "Welcome to Part 2. Part 1 ran one loop on one module. Part 2 is about control: what stops a loop, what it remembers between tries, how a write stays safe when it is retried, and who checks the work. Every example runs on the pocket-cart shop repo and a recorded model, so you can replay it with no key."
+  },
+  {
+   "layout": "analogy",
+   "title": "The barrier opens after every tag scans",
+   "lessons": [
+    "10"
+   ],
+   "everyday": {
+    "name": "Shop exit barrier",
+    "text": "The cashier may say all paid; the barrier waits for the scanner."
+   },
+   "tech": {
+    "name": "Gate at the finish",
+    "text": "The model may say DONE; the gate waits for passing tests."
+   },
+   "breaks": "The scanner reads real tags; the gate reads only the tests you wrote.",
+   "notes": "Start with something everyone has done. At a supermarket exit the cashier can say everything is paid, and it may even be true, but the barrier lifts only when the scanner has read every tag. Part 2 asks the same question of an agent: when the model says DONE, who decides? In the loop, the answer is a gate, which Claude Code runs as a Stop hook when the agent tries to finish. The analogy breaks in one place. The scanner checks real tags; the gate checks only the tests you gave it. A green gate with weak tests is still a wrong answer, so the tests are part of the design."
+  },
+  {
+   "layout": "concept",
+   "title": "The gate decides the finish, not the model",
+   "lessons": [
+    "10"
+   ],
+   "definition": "A Stop hook gate runs when an agent tries to finish; exit 2 blocks it.",
+   "parts": [
+    {
+     "term": "Goal tests",
+     "meaning": "pytest on the tests defining done"
+    },
+    {
+     "term": "Exit 2",
+     "meaning": "blocks the finish; stderr gives the reason"
+    },
+    {
+     "term": "Exit 0",
+     "meaning": "finish allowed; all goal tests pass"
+    }
+   ],
+   "notes": "Define the words first. Pytest is Python's test runner: it exits 0 only when every selected test passes. A Stop hook is the event Claude Code raises when the agent tries to finish, and the gate is a command that runs there. The gate never reads what the model wrote, so a claim cannot pass it. It fails closed: any error of its own exits 2, because other non-zero exits are only non-blocking errors and the agent would still finish. In the lesson's runs, turn 1 said DONE: yes with two goal tests still red and the gate exited 2. Turn 2 exited 0 and pytest reported 9 of 9."
+  },
+  {
+   "layout": "code",
+   "title": "Four lines: a red goal blocks the finish",
+   "lessons": [
+    "10"
+   ],
+   "code": "work = fresh_copy(\"gate-check\")\nprint(\"repo:\", SRC.name, \"| goal files:\", len(GOAL))\ncode, message = run_gate(work, GOAL)\nprint(\"exit code:\", code, \"\\n\" + message)",
+   "lang": "python",
+   "highlight": [
+    3
+   ],
+   "output": "repo: pocket-cart | goal files: 3\nexit code: 2\nStop blocked: 6 goal test(s) fail. Fix them, then finish again:",
+   "points": [
+    "Line 3 runs the gate on a copy and keeps its exit code",
+    "Fails closed: a gate error also exits 2, which blocks",
+    "At the start 6 of 9 goal tests are red"
+   ],
+   "notes": "This is the smallest working gate, copied from lesson 10. Line 1 makes a fresh copy of the repo, so the source is never edited. Line 3 runs the gate the way Claude Code does: the hook input arrives as JSON, and the gate returns an exit code with a message on stderr. The output names the repo and its three goal files, and the gate exits 2 with the failing tests listed. Any error inside the gate also exits 2, so a crash cannot let the agent finish; other non-zero exits would not block. Ask the room: what would let a wrong fix pass this gate? The answer is the test list itself, which is why lesson 14 checks the tests too."
+  },
+  {
+   "layout": "analogy",
+   "title": "A restaurant pass sends one ticket at a time",
+   "lessons": [
+    "09",
+    "11"
+   ],
+   "everyday": {
+    "name": "Kitchen pass",
+    "text": "The pass takes one ticket and checks each plate before it leaves."
+   },
+   "tech": {
+    "name": "Outer loop",
+    "text": "One failing test per call, checked before the next starts."
+   },
+   "breaks": "Pytest picks each ticket; only its result says a plate is right.",
+   "notes": "Everyone has seen a busy kitchen. If one cook gets all the orders at once, plates go out mixed and the cook calls them finished. A pass fixes that: one ticket at a time, a check on each plate, and a plate sent back if it is wrong. That is the outer loop of lessons 09 and 11. The loop picks the next item, not the model. The cook's skill is the same either way; the process changes. Where the comparison stops: the pass relies on a chef's judgement, while the loop relies on pytest, so the quality of the tests sets the quality of the check."
+  },
+  {
+   "layout": "before_after",
+   "title": "One big prompt has no second look",
+   "lessons": [
+    "09"
+   ],
+   "before": {
+    "label": "One big prompt",
+    "caption": "One result for everything",
+    "diagram": {
+     "type": "flow",
+     "items": [
+      "All files at once",
+      "One reply, applied at once",
+      "A person runs pytest"
+     ]
+    }
+   },
+   "after": {
+    "label": "Outer loop",
+    "caption": "Each item checked before the next",
+    "diagram": {
+     "type": "flow",
+     "items": [
+      "pytest picks next failing test",
+      "One module, one failure",
+      "Green keeps, red reverts"
+     ]
+    }
+   },
+   "notes": "Lesson 09 measured this with the real model on three modules, then six. In the recorded run the single prompt passed every test on both sizes, and the notebook says plainly that one run is one sample, so this is not proof that one prompt always fails. What the runs did show: one prompt sent 852 input tokens for three modules and 1,785 for six, while each outer-loop turn sent 306 to 318. The loop also gives every item its own green or red result, so a bad module is reverted instead of hidden in one big reply. On this three-module example the loop cost more: 931 vs 852 input tokens, and 3 calls vs 1. Its benefit is the per-item check and a flat input size. Ask: who types the next prompt when the reply is wrong? In the right-hand picture, the loop does."
+  },
+  {
+   "layout": "concept",
+   "title": "An outer loop checks one item at a time",
+   "lessons": [
+    "09",
+    "11"
+   ],
+   "definition": "An outer loop picks each item, gives it a fresh context, and checks it with a verifier.",
+   "parts": [
+    {
+     "term": "Outer loop",
+     "meaning": "picks the next item; decides when done"
+    },
+    {
+     "term": "Fresh context",
+     "meaning": "this module, its test, its one failure"
+    },
+    {
+     "term": "Verifier",
+     "meaning": "pytest: green keeps the edit, red reverts it"
+    },
+    {
+     "term": "Ralph loop (Huntley, Jan 2026)",
+     "meaning": "this pattern, named by Geoffrey Huntley's write-up"
+    }
+   ],
+   "notes": "The outer loop is the loop around the model's turns. It asks pytest for the next failing test, so the to-do list comes from the verifier, never from the model. Fresh context means each call sees one module, its test file and its one failure, and no earlier chat, so the input stays small whatever the iteration number. The stop rule is an empty failing list. The model's DONE line is logged as a claim, not obeyed. Lesson 11 calls this the Ralph loop, the pattern Geoffrey Huntley described in January 2026. The pocket-cart repo has 12 failing tests in six modules, one item per iteration."
+  },
+  {
+   "layout": "code",
+   "title": "pytest picks each item; green edits are kept",
+   "lessons": [
+    "11"
+   ],
+   "code": "while True:\n    todo = failing(work, scope)\n    node = todo[0]\n    ...\n    module.write_text(reply[\"text\"])\n    after = failing(work, scope)\n    ...\n    keep(work, node) if ok else revert(work)",
+   "lang": "python",
+   "highlight": [
+    6,
+    8
+   ],
+   "output": "money: stop done | model calls 1 | left in scope 0\ntest_pads_single_digit_cents claimed done yes input tokens 346 | kept",
+   "points": [
+    "Line 2: pytest's list is the only to-do list",
+    "Line 6: pytest, not the model, says if it is fixed",
+    "Line 8: keep on green, revert on red"
+   ],
+   "notes": "This is the loop body from lesson 11, with the model call and the revert details left out. Line 2 asks pytest for the failing tests, so the model never supplies the to-do list. The first ellipsis is the model call with a fresh context: the module, its test and its failure. The keep test sits in the dropped lines: the source has `ok = node not in after and set(after) <= set(todo) - {node} and not tests_touched(work)`. In words: the item must now pass, no other test may turn red, and the tests folder must be untouched. It is left off the slide because it is 91 characters, past the 60-character limit for a readable code slide. The last line keeps on green or reverts. The recorded run made one call per item: money stopped as done after one call with 346 input tokens. The controls matter too: a hand-made edit that said DONE while still red was reverted, and the loop stopped as stuck after two tries. Huntley's Ralph write-up (January 2026) names this pattern, and lesson 11 cites it."
+  },
+  {
+   "layout": "analogy",
+   "title": "A shift handover works from the chart, not memory",
+   "lessons": [
+    "12"
+   ],
+   "everyday": {
+    "name": "Hospital handover",
+    "text": "The next nurse reads the chart, not last shift's memory."
+   },
+   "tech": {
+    "name": "State outside the context",
+    "text": "A new process reads files, git and a table."
+   },
+   "breaks": "A chart is written by people; the loop checks its state with pytest.",
+   "notes": "A nurse coming on shift does not rely on the last nurse's memory. She reads the chart, and the limit on a medicine is written there, so it holds even if the handover was rushed. Lesson 12 does the same for the loop. A crash ends the process and its memory, but pytest, git and a small database table survive. The rule: tries and model calls are counted from the table, never from a Python variable, because a variable disappears with the process. In the lesson's crash test, process 1 made one call and fixed the money tests, then the power was cut. Process 2 read the table, skipped money and made one call for pricing: two calls in all."
+  },
+  {
+   "layout": "concept",
+   "title": "Four places hold the loop's state",
+   "lessons": [
+    "12"
+   ],
+   "definition": "State outside the context is every fact a new process can read after a crash.",
+   "parts": [
+    {
+     "term": "pytest",
+     "meaning": "what is still red, right now"
+    },
+    {
+     "term": "git",
+     "meaning": "which fixes were kept, one commit each"
+    },
+    {
+     "term": "Progress file",
+     "meaning": "a log a person or new session can read"
+    },
+    {
+     "term": "SQLite table",
+     "meaning": "a small database file: tries and calls used"
+    }
+   ],
+   "notes": "SQLite is a small database held in one file, and Python ships with it. Here it is the loop's counter. Each row records one try: run, item, attempt, whether it was kept, and the model calls used. The key rule from lesson 12 is that the caps are read from the table, so a restart cannot reset them. The progress file and feature list are for people; they are not the to-do list, because a flag can be stale after a crash. The to-do list always comes from pytest. In the lesson's crash control, one try survived the restart, so the item stopped as stuck after two tries in total, not two more."
+  },
+  {
+   "layout": "analogy",
+   "title": "A cheque number stops the same cheque paying twice",
+   "lessons": [
+    "13"
+   ],
+   "everyday": {
+    "name": "A numbered cheque",
+    "text": "Present cheque 1042 twice; the bank pays once."
+   },
+   "tech": {
+    "name": "Repeat-safe key",
+    "text": "One key per refund, sent on every retry."
+   },
+   "breaks": "A bank keeps cheque numbers for years; a provider may delete keys (Stripe: after 24 hours).",
+   "notes": "Lesson 13 starts from a refund that goes wrong. In the naive loop, the first refund is written, the reply times out, and the retry writes it again. The stand-in service recorded two refunds: 240 USD paid out for a 120 USD order. The fix has two parts. Retry only transient errors, such as a 503 or a timeout, with growing waits and random jitter. And send the same idempotency key on every try and after a restart. The key comes from the case, so a restart builds the same one. The lesson's At work section says Stripe's production rule is the same: a repeat with the same key returns the saved response."
+  },
+  {
+   "layout": "code",
+   "title": "One key per case makes a retry safe",
+   "lessons": [
+    "13"
+   ],
+   "code": "def safe_refund(svc, order_id, amount, key):\n    ...\n    return svc.refund(order_id, amount, key=key)",
+   "lang": "python",
+   "highlight": [
+    3
+   ],
+   "output": "result: already refunded 120.0 on BS-1042\nrefunds written, total paid out: (1, 120.0) | calls to the service: 4",
+   "points": [
+    "The key is built once, from the case",
+    "Only transient errors are retried, with backoff",
+    "A repeat returns the first result, not a new refund"
+   ],
+   "notes": "The function is safe_refund from lesson 13. Its docstring and the retry decorator above it are left out here. The decorator uses tenacity: four tries, exponential waits with jitter, and only transient errors retried. The call that produced the output passes case_key(ORDER), a string built from the case, so every try and every restart sends the same value. In the run, two 503s wrote nothing, the third try wrote and lost its reply, and the fourth found the key in the ledger and wrote nothing. Result: one refund of 120 USD in four calls. The mistake to name is a new random key per try: each try looks new to the provider, and the refund is paid twice."
+  },
+  {
+   "layout": "diagram",
+   "title": "The maker proposes; gates and a checker decide",
+   "lessons": [
+    "14"
+   ],
+   "diagram": {
+    "type": "flow",
+    "items": [
+     "Maker proposes files",
+     "Guard: refuse tests/ writes",
+     "Digest: test files unchanged",
+     "pytest: item green",
+     "Checker: fresh model reads diff",
+     "Commit, or revert"
+    ]
+   },
+   "points": [
+    "Before: pytest green, format_price(300) = $3.0",
+    "With the guard: tests unchanged, loop stuck",
+    "The checker caught a hard-coded fix"
+   ],
+   "notes": "Lesson 14 separates the maker from the checker. The maker writes the fix and never grades it. Three things run after it: a guard that refuses any write under tests/ or pytest.ini, a digest (a fingerprint of those files, taken before the maker runs), and pytest on the item. Then a checker with fresh context sees only the spec and the diff, never the maker's reasoning. Two cheats show why. In the naive loop, the maker rewrote a test to assert nothing: pytest was green and the loop said done, while format_price(300) still printed $3.0. With the guard, the test file is unchanged and the loop stops as stuck. A hard-coded fix also passes every test; in the recording, the checker caught it. One sample is not proof, so keep the deterministic gates first."
+  },
+  {
+   "layout": "diagram",
+   "title": "Six steps",
+   "lessons": [
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "17",
+    "18"
+   ],
+   "diagram": {
+    "type": "flow",
+    "items": [
+     "Gate the finish",
+     "One item per call",
+     "Durable state, safe key",
+     "Maker and checker",
+     "Golden-set CI gate",
+     "Checkpoint: parts joined"
+    ]
+   },
+   "caption": "Each step adds one part; step 6 (lesson 18) joins them.",
+   "notes": "This is the build path, six steps in lesson order, one per lesson group. Step 1, lesson 10: a Stop hook gate blocks the finish while goal tests are red. Step 2, lesson 11: one item per call, keep green, revert red. Step 3, lessons 12 and 13: tries and calls live in a SQLite table, and one idempotency key per refund makes a retry safe. Step 4, lesson 14: a maker, a guard on the test files, and a checker with fresh context. Step 5, lesson 17: a CI gate on a golden set, which fails the build when a case turns red, a test was edited, or the pass rate drops below the accepted baseline. Step 6, lesson 18, is the checkpoint: a Ralph loop with a checker, a call budget that counts retries, and a CI gate that replays recorded calls with no key. Lessons 15 and 16 (professional) cover context compaction and hooks."
+  },
+  {
+   "layout": "questions",
+   "title": "Questions for an interview or code review",
+   "lessons": [
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "17",
+    "18"
+   ],
+   "questions": [
+    "What check, not the model's word, says done?",
+    "What can the maker change unseen by the gates?",
+    "Where do tries and calls live after a crash?",
+    "Does every retry send the same key?",
+    "What stops a fix that stays red?"
+   ],
+   "notes": "End with the review questions. Each has a checkable answer in this part: the verifier, the guard list, the table, the key and the stop rule. A good answer names the file or the test. A weak answer says the model will be careful. Ask candidates to show the stop rule in code, and ask yourself the same before you ship: if the model says done at three in the morning with nobody watching, what does the system do? Lessons 15 and 16 add the next questions: how much context a long chat re-sends, and which rules belong in hooks rather than prompts."
+  }
+ ]
+}

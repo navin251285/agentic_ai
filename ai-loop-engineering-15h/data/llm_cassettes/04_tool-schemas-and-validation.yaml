@@ -1,0 +1,239 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer says their jacket from order
+      1042 arrived torn after one wash. They ask for a refund of 150 dollars. Look
+      up the order, then refund what is right."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are the support desk for Brightside Outfitters. Look
+      up the order before any refund. Never refund more than was paid."}]}, "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one order:
+      customer, item, amount paid and delivery status.", "name": "get_order", "parameters":
+      {"properties": {"order_id": {"description": "Order id in the form BS-1042",
+      "type": "STRING"}}, "required": ["order_id"], "type": "OBJECT"}}, {"description":
+      "Refund an amount on one order. The amount may not be more than the amount paid.",
+      "name": "issue_refund", "parameters": {"properties": {"order_id": {"description":
+      "Order id in the form BS-1042", "type": "STRING"}, "amount_usd": {"description":
+      "Amount to refund in US dollars, more than 0", "type": "NUMBER"}}, "required":
+      ["order_id", "amount_usd"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1183'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"get_order\",\n              \"args\": {\n                \"order_id\":
+        \"BS-1042\"\n              },\n              \"id\": \"call_3202901\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a19VabskcacUmxlWYZQsCs6RXBFCDFwH3p8Wi5MoSk7kO40WQTAGjrmykUaRD7pE2iRf38oOxbtH3b7THe7F5uTTVQBRWf1SWq8xQVFg63sAnroIYrMujC0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 184,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 207,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 184\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 23\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T14:43:47.075672Z\",\n  \"responseId\": \"o7jgapjPBP-Qr8kP6P_ksA0\"\n}\n"
+    headers:
+      content-length:
+      - '1020'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 14:43:47 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer says their jacket from order
+      1042 arrived torn after one wash. They ask for a refund of 150 dollars. Look
+      up the order, then refund what is right."}], "role": "user"}, {"parts": [{"functionCall":
+      {"args": {"order_id": "BS-1042"}, "name": "get_order"}, "thoughtSignature":
+      "AY89a19VabskcacUmxlWYZQsCs6RXBFCDFwH3p8Wi5MoSk7kO40WQTAGjrmykUaRD7pE2iRf38oOxbtH3b7THe7F5uTTVQBRWf1SWq8xQVFg63sAnroIYrMujC0="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "get_order", "response":
+      {"output": "{''customer'': ''C-17'', ''item'': ''Trail jacket'', ''paid_usd'':
+      120.0, ''status'': ''delivered''}"}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are the support desk for Brightside Outfitters. Look
+      up the order before any refund. Never refund more than was paid."}]}, "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one order:
+      customer, item, amount paid and delivery status.", "name": "get_order", "parameters":
+      {"properties": {"order_id": {"description": "Order id in the form BS-1042",
+      "type": "STRING"}}, "required": ["order_id"], "type": "OBJECT"}}, {"description":
+      "Refund an amount on one order. The amount may not be more than the amount paid.",
+      "name": "issue_refund", "parameters": {"properties": {"order_id": {"description":
+      "Order id in the form BS-1042", "type": "STRING"}, "amount_usd": {"description":
+      "Amount to refund in US dollars, more than 0", "type": "NUMBER"}}, "required":
+      ["order_id", "amount_usd"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1623'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"issue_refund\",\n              \"args\": {\n
+        \               \"order_id\": \"BS-1042\",\n                \"amount_usd\":
+        120\n              },\n              \"id\": \"call_996735\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a19xc4XO3owjEqMR1WGc0fTquKIZNVzwpFVGSVMn+NtPvuYC+C3CqLKkxticCXGPwlK2fJaD8fQDPGmIB83ZbJ2hlJAlyWVnbTmTG2pRB/Fd6e92jslSoJw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 242,\n    \"candidatesTokenCount\":
+        31,\n    \"totalTokenCount\": 273,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 242\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 31\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T14:43:47.741423Z\",\n  \"responseId\": \"o7jgaq-gLfniidsPxaHS8AI\"\n}\n"
+    headers:
+      content-length:
+      - '1057'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 14:43:48 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Customer says their jacket from order
+      1042 arrived torn after one wash. They ask for a refund of 150 dollars. Look
+      up the order, then refund what is right."}], "role": "user"}, {"parts": [{"functionCall":
+      {"args": {"order_id": "BS-1042"}, "name": "get_order"}, "thoughtSignature":
+      "AY89a19VabskcacUmxlWYZQsCs6RXBFCDFwH3p8Wi5MoSk7kO40WQTAGjrmykUaRD7pE2iRf38oOxbtH3b7THe7F5uTTVQBRWf1SWq8xQVFg63sAnroIYrMujC0="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "get_order", "response":
+      {"output": "{''customer'': ''C-17'', ''item'': ''Trail jacket'', ''paid_usd'':
+      120.0, ''status'': ''delivered''}"}}}], "role": "user"}, {"parts": [{"functionCall":
+      {"args": {"order_id": "BS-1042", "amount_usd": 120}, "name": "issue_refund"},
+      "thoughtSignature": "AY89a19xc4XO3owjEqMR1WGc0fTquKIZNVzwpFVGSVMn-NtPvuYC-C3CqLKkxticCXGPwlK2fJaD8fQDPGmIB83ZbJ2hlJAlyWVnbTmTG2pRB_Fd6e92jslSoJw="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "issue_refund", "response":
+      {"output": "refunded 120.0 on BS-1042"}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are the support desk for Brightside Outfitters. Look
+      up the order before any refund. Never refund more than was paid."}]}, "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one order:
+      customer, item, amount paid and delivery status.", "name": "get_order", "parameters":
+      {"properties": {"order_id": {"description": "Order id in the form BS-1042",
+      "type": "STRING"}}, "required": ["order_id"], "type": "OBJECT"}}, {"description":
+      "Refund an amount on one order. The amount may not be more than the amount paid.",
+      "name": "issue_refund", "parameters": {"properties": {"order_id": {"description":
+      "Order id in the form BS-1042", "type": "STRING"}, "amount_usd": {"description":
+      "Amount to refund in US dollars, more than 0", "type": "NUMBER"}}, "required":
+      ["order_id", "amount_usd"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '2027'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-3.1-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"I have
+        looked up order BS-1042. The jacket was purchased for $120.00. Since I cannot
+        refund more than the amount paid, I have issued a full refund of $120.00 for
+        the damaged item.\",\n            \"thoughtSignature\": \"AY89a1+J6Ql4AGhi92UMICyCdM2svcuQ3oXwZPXJkqi8SLvlji9MwxcYhcTnJsKDLJnLLNA9n7do9mB9cKPkWETMqOA7g1w4p6vI/d85/trTlUuZo6zKlL4lRyY=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 287,\n    \"candidatesTokenCount\":
+        54,\n    \"totalTokenCount\": 341,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 287\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 54\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-3.1-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T14:43:48.373277Z\",\n  \"responseId\": \"pLjgap3kFqGLr8kP9I6dwQ8\"\n}\n"
+    headers:
+      content-length:
+      - '1029'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 14:43:48 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

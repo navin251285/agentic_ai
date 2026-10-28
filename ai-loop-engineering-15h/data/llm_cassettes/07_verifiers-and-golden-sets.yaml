@@ -1,0 +1,297 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Module:\n\"\"\"Money as integer cents,
+      shown as dollars.\"\"\"\n\n\ndef format_price(cents: int) -> str:\n    \"\"\"Show
+      cents as a dollar string, for example 1250 -> \"$12.50\".\"\"\"\n    return
+      f\"${cents // 100}.{cents % 100}\"  # BUG: the cents are not padded to two digits\n\nSpec
+      (tests):\nfrom pocket_cart.money import format_price\n\n\ndef test_pads_single_digit_cents():\n    assert
+      format_price(1205) == \"$12.05\"\n\n\ndef test_whole_dollars_keep_two_zeros():\n    assert
+      format_price(300) == \"$3.00\"\n\n\ndef test_nineteen_ninety_nine():\n    assert
+      format_price(1999) == \"$19.99\"\n\nStill failing:\nFAILED tests/test_money.py::test_pads_single_digit_cents
+      - AssertionError: assert ''$12.5'' == ''$12.05''\nFAILED tests/test_money.py::test_whole_dollars_keep_two_zeros
+      - AssertionError: assert ''$3.0'' == ''$3.00''"}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You fix one module of a small Python shop. Reply with the
+      complete new text of that module only: no explanation and no code fences. The
+      tests are the spec. Never change them."}]}, "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1213'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"\\\"\\\"\\\"Money
+        as integer cents, shown as dollars.\\\"\\\"\\\"\\n\\n\\ndef format_price(cents:
+        int) -\\u003e str:\\n    \\\"\\\"\\\"Show cents as a dollar string, for example
+        1250 -\\u003e \\\"$12.50\\\".\\\"\\\"\\\"\\n    return f\\\"${cents // 100}.{cents
+        % 100:02d}\\\"\\n\"\n          }\n        ]\n      },\n      \"finishReason\":
+        \"STOP\"\n    }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 312,\n
+        \   \"candidatesTokenCount\": 74,\n    \"totalTokenCount\": 386,\n    \"trafficType\":
+        \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 312\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 74\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-2.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T15:06:08.356304Z\",\n  \"responseId\": \"4L3gatDfFfWG3NoP-oP60Ag\"\n}\n"
+    headers:
+      content-length:
+      - '928'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 15:06:08 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Module:\n\"\"\"Sales tax in cents.\"\"\"\n\n\ndef
+      tax_cents(cents: int, rate_percent: int) -> int:\n    \"\"\"Tax in cents, rounded
+      half up: 1005 at 10 percent is 101, because 100.5 rounds up.\"\"\"\n    return
+      cents * rate_percent // 100  # BUG: floor division drops the half cent\n\nSpec
+      (tests):\nfrom pocket_cart.tax import tax_cents\n\n\ndef test_half_cent_rounds_up():\n    assert
+      tax_cents(1005, 10) == 101\n\n\ndef test_five_percent_of_999():\n    assert
+      tax_cents(999, 5) == 50\n\n\ndef test_eight_percent():\n    assert tax_cents(2000,
+      8) == 160\n\nStill failing:\nFAILED tests/test_tax.py::test_half_cent_rounds_up
+      - assert 100 == 101\nFAILED tests/test_tax.py::test_five_percent_of_999 - assert
+      49 == 50"}], "role": "user"}], "systemInstruction": {"parts": [{"text": "You
+      fix one module of a small Python shop. Reply with the complete new text of that
+      module only: no explanation and no code fences. The tests are the spec. Never
+      change them."}]}, "safetySettings": [], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1104'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"\\\"\\\"\\\"Sales
+        tax in cents.\\\"\\\"\\\"\\n\\n\\ndef tax_cents(cents: int, rate_percent:
+        int) -\\u003e int:\\n    \\\"\\\"\\\"Tax in cents, rounded half up: 1005 at
+        10 percent is 101, because 100.5 rounds up.\\\"\\\"\\\"\\n    return (cents
+        * rate_percent + 50) // 100\\n\"\n          }\n        ]\n      },\n      \"finishReason\":
+        \"STOP\"\n    }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 299,\n
+        \   \"candidatesTokenCount\": 82,\n    \"totalTokenCount\": 381,\n    \"trafficType\":
+        \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 299\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 82\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-2.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T15:06:11.325147Z\",\n  \"responseId\": \"473gapvsE-f52PgP5sbM0QI\"\n}\n"
+    headers:
+      content-length:
+      - '933'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 15:06:11 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Module:\n\"\"\"Coupon codes: each code
+      gives a percent off.\"\"\"\n\nCOUPONS = {\"SAVE10\": 10, \"SAVE20\": 20}\n\n\ndef
+      parse_coupon(code: str) -> int:\n    \"\"\"The percent off for a code. Codes
+      ignore case and spaces around them.\"\"\"\n    return COUPONS[code]  # BUG:
+      exact match only, so \"save10\" and \" SAVE20 \" are not found\n\nSpec (tests):\nfrom
+      pocket_cart.coupons import parse_coupon\n\n\ndef test_upper_case_code():\n    assert
+      parse_coupon(\"SAVE10\") == 10\n\n\ndef test_lower_case_code():\n    assert
+      parse_coupon(\"save10\") == 10\n\n\ndef test_spaces_are_ignored():\n    assert
+      parse_coupon(\"  SAVE20 \") == 20\n\nStill failing:\nFAILED tests/test_coupons.py::test_lower_case_code
+      - KeyError: ''save10''\nFAILED tests/test_coupons.py::test_spaces_are_ignored
+      - KeyError: ''  SAVE20 ''"}], "role": "user"}], "systemInstruction": {"parts":
+      [{"text": "You fix one module of a small Python shop. Reply with the complete
+      new text of that module only: no explanation and no code fences. The tests are
+      the spec. Never change them."}]}, "safetySettings": [], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1192'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"\\\"\\\"\\\"Coupon
+        codes: each code gives a percent off.\\\"\\\"\\\"\\n\\nCOUPONS = {\\\"SAVE10\\\":
+        10, \\\"SAVE20\\\": 20}\\n\\n\\ndef parse_coupon(code: str) -\\u003e int:\\n
+        \   \\\"\\\"\\\"The percent off for a code. Codes ignore case and spaces around
+        them.\\\"\\\"\\\"\\n    cleaned_code = code.strip().upper()\\n    return COUPONS[cleaned_code]\\n\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 287,\n    \"candidatesTokenCount\":
+        88,\n    \"totalTokenCount\": 375,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 287\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 88\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"gemini-2.5-flash-lite\",\n  \"createTime\":
+        \"2026-10-27T15:06:14.161684Z\",\n  \"responseId\": \"5r3gapTvCdyr3NoPtf684AU\"\n}\n"
+    headers:
+      content-length:
+      - '1002'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 15:06:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Module:\n\"\"\"Shipping: free from 50
+      USD, else a flat 5.95 USD. An empty cart costs nothing.\"\"\"\n\nFLAT_CENTS
+      = 595\nFREE_FROM_CENTS = 5000\n\n\ndef shipping_cost(total_cents: int) -> int:\n    if
+      total_cents > FREE_FROM_CENTS:  # BUG: \"free from 50 USD\" means 5000 cents
+      or more\n        return 0\n    return FLAT_CENTS  # BUG: an empty cart should
+      cost nothing\n\nSpec (tests):\nfrom pocket_cart.shipping import shipping_cost\n\n\ndef
+      test_free_from_fifty():\n    assert shipping_cost(5000) == 0\n\n\ndef test_empty_cart_is_free():\n    assert
+      shipping_cost(0) == 0\n\n\ndef test_flat_rate_below_fifty():\n    assert shipping_cost(1999)
+      == 595\n\nStill failing:\nFAILED tests/test_shipping.py::test_free_from_fifty
+      - assert 595 == 0\nFAILED tests/test_shipping.py::test_empty_cart_is_free -
+      assert 595 == 0"}], "role": "user"}], "systemInstruction": {"parts": [{"text":
+      "You fix one module of a small Python shop. Reply with the complete new text
+      of that module only: no explanation and no code fences. The tests are the spec.
+      Never change them."}]}, "safetySettings": [], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1203'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.33.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/gemini-2.5-flash-lite:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"FLAT_CENTS
+        = 595\\nFREE_FROM_CENTS = 5000\\n\\n\\ndef shipping_cost(total_cents: int)
+        -\\u003e int:\\n    if total_cents == 0:\\n        return 0\\n    if total_cents
+        \\u003e= FREE_FROM_CENTS:\\n        return 0\\n    return FLAT_CENTS\"\n          }\n
+        \       ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n  ],\n  \"usageMetadata\":
+        {\n    \"promptTokenCount\": 315,\n    \"candidatesTokenCount\": 79,\n    \"totalTokenCount\":
+        394,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n
+        \     {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 315\n      }\n
+        \   ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 79\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"gemini-2.5-flash-lite\",\n  \"createTime\": \"2026-10-27T15:06:17.114875Z\",\n
+        \ \"responseId\": \"6b3garuBB7rb3NoPoKHzGA\"\n}\n"
+    headers:
+      content-length:
+      - '913'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Tue, 27 Oct 2026 15:06:17 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

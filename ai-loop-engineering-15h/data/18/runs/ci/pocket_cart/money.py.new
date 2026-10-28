@@ -1,0 +1,2 @@
+VERDICT: pass
+The code correctly formats the cents to always have two digits.

@@ -1,0 +1,175 @@
+{
+  "updated": "2026-10-26",
+  "next_paths": [
+    {
+      "name": "Harness engineering",
+      "kind": "discipline",
+      "maturity": "growing",
+      "what": "Building the execution environment around a model: tools, guardrails, memory, model routing, evals.",
+      "why_next": "A loop is the control layer above a harness; once loops work you own the environment they run in.",
+      "learn": [
+        "tool and sandbox design",
+        "context assembly",
+        "guardrails and permissions",
+        "regression evals and failure taxonomies"
+      ],
+      "builds_on": [],
+      "evidence": [
+        {
+          "url": "https://www.ibm.com/think/topics/loop-engineering",
+          "what": "IBM names agent harness engineering as the layer under loops",
+          "kind": "writing"
+        },
+        {
+          "url": "https://japan-dev.com/jobs/geniee/geniee-japan-aiagent-harness-engineer-eqek90",
+          "what": "JAPAN AI Agent Harness Engineer posting (Apr 2026): execution engine, guardrails, memory, routing",
+          "kind": "jobs"
+        },
+        {
+          "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+          "what": "Anthropic harness post (2025-11-26)",
+          "kind": "official"
+        }
+      ],
+      "command": "/tutorial \"Harness engineering\" basic reuse:ai-loop-engineering-15h"
+    },
+    {
+      "name": "Agent evaluation and verification platforms",
+      "kind": "technology",
+      "maturity": "growing",
+      "what": "Eval suites, verifiers and release gates for agents at scale.",
+      "why_next": "The verifier is the product of a loop; platforms industrialise it.",
+      "learn": [
+        "golden sets and trajectory scoring",
+        "LLM-as-judge calibration",
+        "eval gates in CI",
+        "online monitoring"
+      ],
+      "builds_on": [],
+      "evidence": [
+        {
+          "url": "https://job-boards.greenhouse.io/launchdarkly",
+          "what": "LaunchDarkly job board: AgentControl posting seen 2026-10-15 (evals at scale, runtime agent config)",
+          "kind": "jobs"
+        },
+        {
+          "url": "https://www.coinbase.com/careers/positions/8174949?gh_jid=8174949",
+          "what": "Coinbase Agent Verification posting (2026-10-13)",
+          "kind": "jobs"
+        },
+        {
+          "url": "https://claude.com/blog/getting-started-with-loops",
+          "what": "Anthropic: verification is the core of a loop",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "name": "Context engineering",
+      "kind": "discipline",
+      "maturity": "growing",
+      "what": "Deciding what enters the context each turn: summaries, retrieval, skills, compaction.",
+      "why_next": "Long loops fail on context before they fail on logic.",
+      "learn": [
+        "compaction and fresh-context iterations",
+        "skills and progressive disclosure",
+        "memory stores",
+        "prompt caching"
+      ],
+      "builds_on": [],
+      "evidence": [
+        {
+          "url": "https://www.ibm.com/think/topics/loop-engineering",
+          "what": "IBM lists context engineering as a loop component",
+          "kind": "writing"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+          "what": "Agent SDK docs on context window and compaction",
+          "kind": "official"
+        }
+      ]
+    },
+    {
+      "name": "AI platform and agent infrastructure engineer",
+      "kind": "role",
+      "maturity": "established",
+      "what": "Runs the gateway, identity, durable runtime, quotas and observability that many teams share.",
+      "why_next": "Org-wide loops need shared guardrails, budgets and audit.",
+      "learn": [
+        "agent gateways and identity",
+        "durable execution",
+        "multi-tenant quotas",
+        "audit and governance"
+      ],
+      "builds_on": [],
+      "evidence": [
+        {
+          "url": "https://www.okta.com/company/careers/opportunity/8211926?gh_jid=8211926",
+          "what": "Okta Senior SWE Agent Gateway (2026-09-21)",
+          "kind": "jobs"
+        },
+        {
+          "url": "https://www.rubrik.com/company/careers/departments/job.8274601?gh_jid=8274601",
+          "what": "Rubrik Senior AI Engineer Agentic Systems (2026-10-15)",
+          "kind": "jobs"
+        }
+      ]
+    },
+    {
+      "name": "Forward deployed engineer",
+      "kind": "role",
+      "maturity": "established",
+      "what": "Embeds with customers to scope, build and run agent solutions on their data.",
+      "why_next": "Loops with verifiers need customer-specific acceptance tests.",
+      "learn": [
+        "customer scoping",
+        "evals on customer data",
+        "secure integration",
+        "deployment reviews"
+      ],
+      "builds_on": [],
+      "evidence": [
+        {
+          "kind": "jobs",
+          "url": "https://www.choppingblock.ai/jobs/forward-deployed-engineer-fde-seattle-at-openai",
+          "what": "OpenAI forward deployed engineer posting (Seattle), posted 2026-09-11: end-to-end rollouts with customers, production Python, LLM work",
+          "checked": "2026-10-26"
+        },
+        {
+          "kind": "jobs",
+          "url": "https://www.databricks.com/company/careers",
+          "what": "employer careers page (generic; lists forward deployed roles)",
+          "checked": "2026-10-26"
+        }
+      ]
+    },
+    {
+      "name": "Agentic software engineering (loop engineering as a practice)",
+      "kind": "discipline",
+      "maturity": "emerging",
+      "what": "Directing coding agents through automated loops; the term dates from June 2026.",
+      "why_next": "This is the course topic taken to team scale.",
+      "learn": [
+        "maker/checker reviews",
+        "comprehension debt management",
+        "loop metrics",
+        "experiment design"
+      ],
+      "builds_on": [],
+      "evidence": [
+        {
+          "url": "https://arxiv.org/abs/2608.21884",
+          "what": "Workshop paper: no empirical evidence of benefits yet; 217 loops in 36,710 repos",
+          "kind": "writing"
+        },
+        {
+          "url": "https://addyosmani.com/blog/loop-engineering/",
+          "what": "Osmani essay 2026-06-07",
+          "kind": "writing"
+        }
+      ]
+    }
+  ],
+  "reading": []
+}

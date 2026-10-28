@@ -1,0 +1,343 @@
+{
+  "title": "Unattended loops: triggers, approvals and least privilege",
+  "subtitle": "AI loop engineering · Part 3 (lessons 19 to 24)",
+  "course": "AI loop engineering: from zero to enterprise",
+  "audience": "developers who build agent loops",
+  "audience_type": "technical",
+  "scope": {
+    "part": 3
+  },
+  "theme": {
+    "accent": "1D4ED8",
+    "accent2": "F59E0B"
+  },
+  "slides": [
+    {
+      "layout": "title",
+      "icon": "gear",
+      "notes": "Part 3 is the step from a loop you watch to a loop that runs alone. It has six lessons: why unattended loops fail, triggers with leases, isolated worktrees, approval gates, least privilege, and a checkpoint that joins them."
+    },
+    {
+      "layout": "analogy",
+      "title": "A company card with a limit",
+      "lessons": [
+        "19"
+      ],
+      "everyday": {
+        "name": "Company card",
+        "text": "Limit set in advance; big payments wait for a signature"
+      },
+      "tech": {
+        "name": "Turn cap and a gate",
+        "text": "Plain code checks each call; the model cannot edit it"
+      },
+      "breaks": "nobody enforces the limit for you; your team writes the gate",
+      "notes": "Start with the company card. Nobody is watching, so the agent spends from a card with a spending limit, and any big payment waits for a signature. The loop cannot rewrite those rules, even if a note in its input asks. In a loop, the limit is the turn cap and the signature is a hold for a person. Where the comparison stops: nobody enforces the limit for you, so your team has to write, test and run the gate itself. Lesson 19 builds that gate in about fifteen lines of plain Python."
+    },
+    {
+      "layout": "concept",
+      "title": "Unwatched loops fail in predictable ways",
+      "lessons": [
+        "19"
+      ],
+      "definition": "An unattended loop is a loop nobody watches while it runs.",
+      "parts": [
+        {
+          "term": "Spend",
+          "meaning": "Cap turns and money"
+        },
+        {
+          "term": "Repeats",
+          "meaning": "Idempotency key per write"
+        },
+        {
+          "term": "Untrusted text",
+          "meaning": "Tool output can give orders"
+        },
+        {
+          "term": "Unread code",
+          "meaning": "Review limits shipping speed"
+        }
+      ],
+      "example": "A timed-out refund, retried with no key, pays twice",
+      "notes": "Say the definition slowly. The lesson names four places the risk comes from. Spend: cost grows with turns times context. In the lesson, a 3,000-token ticket with 1,200 tokens added per turn gives 1.62 million input tokens over 50 turns and 151.2 million over 500, so the turn cap is also a cost control. Repeats: a timeout does not tell you whether the write happened, so only a key or a check that the write is done makes a retry safe. Untrusted text: the lethal trifecta is private data, untrusted text and an outside action; the Rule of Two keeps at most two in one unattended session. Unread code: comprehension debt, intent debt and cognitive surrender. The lesson labels these as qualitative findings, not measured figures."
+    },
+    {
+      "layout": "before_after",
+      "title": "A gate sits between the model and the tools",
+      "lessons": [
+        "19"
+      ],
+      "before": {
+        "label": "Without controls",
+        "caption": "The call runs at once",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Model proposes a call",
+            "Tool runs at once",
+            "Result to the model"
+          ]
+        }
+      },
+      "after": {
+        "label": "With controls",
+        "caption": "Each write passes the gate",
+        "diagram": {
+          "type": "flow",
+          "items": [
+            "Model proposes a call",
+            "Gate: cap and duplicates",
+            "Run, hold or skip"
+          ]
+        }
+      },
+      "notes": "Left is the loop most people build first: the model proposes, the tool runs, the result goes back. Right is the same model and the same tools. The only change is the gate at the boundary. The model's turns are identical; the gate reads each call and answers run, hold, skip or stop. In the lesson's demo, without the gate the night pays 580 units, with the 40 paid twice. With the gate it pays 40 once, skips the repeat and holds the 500 refund for a person. The gate does not make the model smarter. It moves trust from the model's judgement to a few rules your team can read and test."
+    },
+    {
+      "layout": "code",
+      "title": "The gate's first rules fit in eight lines",
+      "lessons": [
+        "19"
+      ],
+      "lang": "python",
+      "code": "def gate(turn, call):\n    if turn > TURN_CAP:\n        return \"stop\", \"turn cap reached\"\n    if call[\"tool\"] not in WRITE_TOOLS:\n        return \"run\", \"read-only\"\n    ...\n    done_writes.add(key)\n    return \"run\", \"write allowed\"",
+      "highlight": [
+        2,
+        3
+      ],
+      "output": "4. skip  issue_refund  same write already made\nrefunds paid: 40 units; the 500 waits for a person",
+      "points": [
+        "The cap is checked before every call",
+        "Reads pass; writes go through the duplicate check"
+      ],
+      "notes": "This is the gate from lesson 19, cut to its first rules. The dots stand for the hold above the limit of 100 units and the duplicate key, which the lesson shows in full. TURN_CAP is a constant set at the top of the cell, 30 in the lesson. The model never sees this code. Run the cell and read the output: the gate decides each of the five proposals, and the fourth is skipped because it repeats the third. The total is 40 units paid. The message to keep: the gate is an ordinary function you can read, test and change, and the model cannot."
+    },
+    {
+      "layout": "analogy",
+      "title": "A housekeeping board lists each room once",
+      "lessons": [
+        "20"
+      ],
+      "everyday": {
+        "name": "Hotel housekeeping board",
+        "text": "Listed once; the housekeeper renews the sign while cleaning"
+      },
+      "tech": {
+        "name": "A task lease",
+        "text": "One row per ticket, with an owner and an expiry"
+      },
+      "breaks": "a paper sign never checks itself",
+      "notes": "Triggers are the doorbell and the morning round. Both can list the same room, so the board must list it once. The housekeeper who signs for the room is the worker, and renewing the sign is the heartbeat of the lease. If the renewals stop, the room returns to the pool and someone else can take it. Where the comparison stops: a paper sign does not expire by itself, and nobody checks it when the housekeeper reports back. In the database, the lease is checked again in the same transaction as the reply, so a stale worker is refused. That check is the part the analogy cannot show."
+    },
+    {
+      "layout": "concept",
+      "title": "A lease records owner, attempt and expiry",
+      "lessons": [
+        "20"
+      ],
+      "definition": "A worker takes a task by writing a lease: an owner, an attempt number and an expiry time.",
+      "parts": [
+        {
+          "term": "Claim",
+          "meaning": "One write sets the lease"
+        },
+        {
+          "term": "Renewal",
+          "meaning": "Extends the expiry"
+        },
+        {
+          "term": "Fenced write",
+          "meaning": "Checks the lease in the same write"
+        }
+      ],
+      "example": "C's late reply after its lease lapsed is refused",
+      "notes": "Say the definition slowly, because the whole lesson is in it. A trigger only starts work; it does not choose the worker. The table key is the ticket id, so the timer and the webhook can both insert the same ticket and only one row results. A claim is one write transaction, so two workers cannot both read the same open task. Renewal keeps the lease alive. The example in the lesson: worker C stops renewing, worker D takes BO-2203 at t=100 as attempt 2, and C wakes at t=102 and tries to reply. The lease is gone, so the write is refused. The lesson uses a fake clock, so every run prints the same result."
+    },
+    {
+      "layout": "diagram",
+      "title": "An expired lease passes the task on",
+      "lessons": [
+        "20"
+      ],
+      "diagram": {
+        "type": "flow",
+        "items": [
+          "One row per ticket",
+          "Claim: owner, attempt, expiry",
+          "Renew while working",
+          "Lease lapses, next claims",
+          "Late reply: refused"
+        ]
+      },
+      "caption": "Lesson 20, step 5: worker C dies, D takes BO-2203",
+      "points": [
+        "Lease 90 s, renewed every 30 s"
+      ],
+      "notes": "Read the flow from top to bottom. The trigger writes the task once. The claim sets owner, attempt and expiry in one transaction. The worker renews while it works, every 30 seconds in the lesson with a 90-second lease. When the renewals stop, the lease lapses and the next claim takes the task with attempt 2. The last box is the safety net: the side effect checks owner and attempt in the same write. Lesson 21 adds the next rule: each run gets its own git worktree and branch, so two runs cannot overwrite each other's files, and a red run reverts only its own folder. The lesson's checklist says the TTL should be at least three times the renewal beat."
+    },
+    {
+      "layout": "analogy",
+      "title": "A payment slip waits for the manager's signature",
+      "lessons": [
+        "22"
+      ],
+      "everyday": {
+        "name": "Manager's signature on a slip",
+        "text": "Above a set amount, the slip waits for a signature"
+      },
+      "tech": {
+        "name": "interrupt() and resume",
+        "text": "The run pauses at a named node until a reply"
+      },
+      "breaks": "a desk slip is not saved to a file; a checkpoint is",
+      "notes": "The slip analogy is the lesson's own. A manager signs for an exact amount, and a different amount on the slip goes back to the desk. The loop works the same way. Above 50 USD, the refund does not write; the gate pauses and shows the reviewer the real arguments: the order, the amount and the amount paid. Where the analogy stops: a paper slip sits on a desk, but a process can die while it waits. The loop's state is saved to a SQLite checkpoint under a thread_id, so a new process can resume the same case later."
+    },
+    {
+      "layout": "concept",
+      "title": "A run pauses at a gate and resumes",
+      "lessons": [
+        "22"
+      ],
+      "definition": "LangGraph's interrupt() saves the graph's state to a checkpointer under a thread_id.",
+      "parts": [
+        {
+          "term": "interrupt()",
+          "meaning": "Pauses at the gate"
+        },
+        {
+          "term": "Checkpointer",
+          "meaning": "Saves state to SQLite"
+        },
+        {
+          "term": "Resume",
+          "meaning": "The reviewer's answer, later"
+        }
+      ],
+      "example": "C-17: paused, process ended, resumed, refunded once",
+      "notes": "Say the definition slowly. The parts are the three things to know. interrupt() is the pause: the node stops and hands the reviewer the arguments. The checkpointer is the memory: the state lives in a file, not in a Python variable. Resume is the answer, and it can come from a process that did not exist when the run paused. The lesson also sets recursion_limit to 10, a step cap you choose, not LangGraph's default of 1000. The lesson's check: the ledger is empty while paused, and holds one refund of 120 USD after the resume."
+    },
+    {
+      "layout": "code",
+      "title": "After approval, the loop writes once or ends",
+      "lessons": [
+        "22"
+      ],
+      "lang": "python",
+      "code": "def approve(s):\n    ...\n    if reply[\"decision\"] == \"hold\":\n        return {\"status\": \"hold\", \"holds\": s[\"holds\"] + 1}\n    ...\ndef after_approve(s):\n    if s[\"status\"] == \"approve\": return \"write\"\n    if s[\"status\"] == \"rejected\": return \"end\"\n    ...",
+      "highlight": [
+        4,
+        7
+      ],
+      "output": "status: refunded | ledger (refunds, total USD): (1, 120.0)",
+      "points": [
+        "A hold runs approve again, so nothing above interrupt() writes",
+        "A second hold escalates"
+      ],
+      "notes": "The routing is the loop's exit. Approve writes once and the ledger holds one refund. Reject ends the case. A hold runs approve again from its first line, so interrupt() pauses again; that is why no write may come before the gate. The lesson allows two holds, MAX_HOLDS = 2, and a third path escalates to a person. The output is the resumed case: status refunded, and the ledger holds one refund of 120 USD. The reviewer's reply must also echo the amount; a different amount escalates instead of writing."
+    },
+    {
+      "layout": "cards",
+      "title": "Least privilege: grants checked on each call",
+      "lessons": [
+        "23"
+      ],
+      "cards": [
+        {
+          "icon": "doc",
+          "head": "Data, not orders",
+          "text": "A stranger's review can say anything"
+        },
+        {
+          "icon": "gear",
+          "head": "Grant list",
+          "text": "Fixed in code per run"
+        },
+        {
+          "icon": "target",
+          "head": "Amount check",
+          "text": "Refund at most the amount paid"
+        },
+        {
+          "icon": "bolt",
+          "head": "Fail closed",
+          "text": "Unknown run gets nothing"
+        }
+      ],
+      "notes": "The attack is a sentence inside data. In the lesson, a review copied into the order notes asks for a 500 USD refund. With no grants, the model asked for the refund and the runner ran it. The fix is not a better prompt. The grant list is fixed in code: the nightly run can read and nothing else, and the amount check refuses anything above the 120 USD paid. The check is plain Python and does not ask a model. Fail closed matters most for a misspelled run name, which must get nothing. The lesson's example: an order paid 120 USD, and a 500 USD refund is refused even for the run that may refund."
+    },
+    {
+      "layout": "code",
+      "title": "The check runs in code, not in the prompt",
+      "lessons": [
+        "23"
+      ],
+      "lang": "python",
+      "code": "def check(run, name, args):\n    grants = RUN_GRANTS.get(run)\n    ...\n    if name == \"issue_refund\":\n        ...\n    return True, \"granted\"",
+      "highlight": [
+        2,
+        4
+      ],
+      "output": "triage-nightly  issue_refund       500.0 -> DENY  issue_refund is not granted to triage-nightly\nrefund-desk     issue_refund       120.0 -> ALLOW granted",
+      "points": [
+        "Grants come from RUN_GRANTS, written before the run",
+        "Mistake: RUN_GRANTS.get(run, ALL_TOOLS) gives unknown runs every tool"
+      ],
+      "notes": "Walk through the two rows. The nightly run asks to refund 500 USD and is denied, because it has no refund grant at all. The refund-desk run has the grant, and 120 USD is within the amount paid, so it is allowed. The lesson's common mistake is a default that grants everything, written as RUN_GRANTS.get(run, ALL_TOOLS). A misspelled run name would then get every tool, with no error. Fail closed: an unknown name gets nothing, and the check returns a reason the model can read."
+    },
+    {
+      "layout": "steps",
+      "title": "The checkpoint joins parts",
+      "lessons": [
+        "20",
+        "21",
+        "22",
+        "23",
+        "24"
+      ],
+      "steps": [
+        {
+          "head": "One task per fix",
+          "text": "A repeat adds nothing"
+        },
+        {
+          "head": "One owner per task",
+          "text": "A claim sets owner, attempt"
+        },
+        {
+          "head": "Grant list",
+          "text": "Each run may edit one module and run one test file"
+        },
+        {
+          "head": "Green, then the gate",
+          "text": "Only green runs park for approval"
+        },
+        {
+          "head": "Fenced merge",
+          "text": "Late approvals are refused"
+        }
+      ],
+      "notes": "This is the build path for lesson 24, from the parts you have seen to one working system. Step one: one task per fix, so the schedule cannot start the same fix twice. Step two: a claim gives one owner and an attempt number. Step three: the grant list limits each run to its module and test file. Step four: each run works in its own git worktree, and only a green run commits and parks at the gate. Step five: the merge checks the lease in the same transaction as the write. In the lesson's run, two reviews arrive inside the window and merge; the one at t=5000 is refused, because its window closed at t=3630."
+    },
+    {
+      "layout": "questions",
+      "title": "Questions to ask before a loop runs alone",
+      "lessons": [
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24"
+      ],
+      "questions": [
+        "Which writes have an idempotency key?",
+        "Is the lease TTL 3x the renewal beat?",
+        "What does an unknown run name get?",
+        "Who reads the review queue, and how many?",
+        "What if an approval arrives after lease lapse?"
+      ],
+      "notes": "End with action. Check these five against your own design before a loop runs without a person. Each question maps to a lesson in this part: the key and the gate (19), the lease and its TTL (20), the review slots per worktree (21), the approval and its arguments (22), the fenced merge that refuses a late approval (24), and the grant list with fail closed (23). A no on any of them means that run needs a person, as the production checklist in lesson 24 says."
+    }
+  ]
+}
