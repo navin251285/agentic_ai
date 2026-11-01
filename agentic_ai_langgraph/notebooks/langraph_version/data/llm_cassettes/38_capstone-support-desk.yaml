@@ -1,0 +1,187 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify the message as exactly one
+      word: status, refund or other.\n\nWhere is order 1003?"}], "role": "user"}],
+      "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024, "thinkingConfig": {"thinking_budget": 0}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '299'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"status\",\n
+        \           \"thoughtSignature\": \"AY89a1/8nddeIU2ZLtLIvjC19M5srgFz/G40SPdg0Jz76kCTcn3PuSIZbBZ3exuCSKICBY/zRJMIe68ta+EXD0MfBPjdSKg8CXHUEAl+piNWgfb0s2YM1siWQmM=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 25,\n    \"candidatesTokenCount\":
+        1,\n    \"totalTokenCount\": 26,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 25\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 1\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"course-model\",\n  \"createTime\": \"2026-11-01T17:47:21.079443Z\",\n
+        \ \"responseId\": \"KXvnatPsBIL_7bEP_K_p-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '851'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:47:21 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify the message as exactly one
+      word: status, refund or other.\n\nOrder 1003 never arrived. Please refund me."}],
+      "role": "user"}], "safetySettings": [], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024, "thinkingConfig": {"thinking_budget":
+      0}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '322'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"refund\",\n
+        \           \"thoughtSignature\": \"AY89a181n/G2Xxw6Gua+qZc0c7J6GKiPIJuC7NY95v3JdXL+Bt3CoVE8cjADi8R6iMO3ZfbanW41DBcoS+xYgUD1s7eX9iG+nHTC4nuQ3HHb17MboHLGs+ObZt0=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 29,\n    \"candidatesTokenCount\":
+        1,\n    \"totalTokenCount\": 30,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 29\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 1\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"course-model\",\n  \"createTime\": \"2026-11-01T17:47:21.922550Z\",\n
+        \ \"responseId\": \"KXvnaranOJiqidsPhp2u8A4\"\n}\n"
+    headers:
+      content-length:
+      - '851'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:47:22 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Classify the message as exactly one
+      word: status, refund or other.\n\nOrder 1093 was lost. I want my money back."}],
+      "role": "user"}], "safetySettings": [], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024, "thinkingConfig": {"thinking_budget":
+      0}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '321'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"refund\",\n
+        \           \"thoughtSignature\": \"AY89a19t/l8PdkBJjhalcp3zqMjtbe/vyV5j4UmzBJlTTbmqj9+Gp9bAaCxffO4A5+ARNqu64Oq3rwrLHzFlVqOH45GWM0Xtyc+dSpHpecPZCPx8yuskZkb2coQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 31,\n    \"candidatesTokenCount\":
+        1,\n    \"totalTokenCount\": 32,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 31\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 1\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"course-model\",\n  \"createTime\": \"2026-11-01T17:47:22.405598Z\",\n
+        \ \"responseId\": \"Knvnat7gGLmvr8kP6Pzu6QM\"\n}\n"
+    headers:
+      content-length:
+      - '851'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:47:22 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

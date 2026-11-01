@@ -1,0 +1,146 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "What is the status of order 1003?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You are the Brightside
+      desk. Use a tool for order facts and policy."}]}, "safetySettings": [], "tools":
+      [{"functionDeclarations": [{"description": "Look up one customer order: its
+      status and days late.", "name": "lookup_order", "parameters": {"properties":
+      {"order_id": {"description": "The order number the customer wrote: four digits,
+      such as 1003.", "type": "STRING"}}, "required": ["order_id"], "type": "OBJECT"}},
+      {"description": "Summarise the desk''s policy on one topic: refunds, returns
+      or delivery.", "name": "policy_summary", "parameters": {"properties": {"topic":
+      {"type": "STRING"}}, "required": ["topic"], "type": "OBJECT"}}]}], "generationConfig":
+      {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '862'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"1003\"\n              },\n              \"id\":
+        \"call_363534\"\n            },\n            \"thoughtSignature\": \"AY89a19Pm0fPtVDTwD/qxIU6MTRciS5YG9vhjiHB+pEA5JuWSe5azJgO89Eojsb8x8ne/nQWbyoqOALWepw4L3nwwchWhPUhXlOOKZXlMBLFwPW4yGSuwgwfaeM=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 114,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 135,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 114\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:27:55.215354Z\",\n  \"responseId\": \"m3bnarqSDZH87bEPsM602Qo\"\n}\n"
+    headers:
+      content-length:
+      - '1019'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:27:55 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "What is the status of order 1003?"}],
+      "role": "user"}, {"parts": [{"functionCall": {"args": {"order_id": "1003"},
+      "name": "lookup_order"}, "thoughtSignature": "AY89a19Pm0fPtVDTwD_qxIU6MTRciS5YG9vhjiHB-pEA5JuWSe5azJgO89Eojsb8x8ne_nQWbyoqOALWepw4L3nwwchWhPUhXlOOKZXlMBLFwPW4yGSuwgwfaeM="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"status": "lost", "days_late": 9, "total": 89.5}}}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are the Brightside desk. Use a tool for order facts
+      and policy."}]}, "safetySettings": [], "tools": [{"functionDeclarations": [{"description":
+      "Look up one customer order: its status and days late.", "name": "lookup_order",
+      "parameters": {"properties": {"order_id": {"description": "The order number
+      the customer wrote: four digits, such as 1003.", "type": "STRING"}}, "required":
+      ["order_id"], "type": "OBJECT"}}, {"description": "Summarise the desk''s policy
+      on one topic: refunds, returns or delivery.", "name": "policy_summary", "parameters":
+      {"properties": {"topic": {"type": "STRING"}}, "required": ["topic"], "type":
+      "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount": 1,
+      "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1254'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Order
+        1003 is currently marked as lost and is 9 days late. I apologize for the inconvenience.
+        Would you like me to look up our policy on how we handle lost orders?\",\n
+        \           \"thoughtSignature\": \"AY89a1+rm6WUOcn2z3uFtz/ddGroBjW8v9+JJstoKtOq72U8SpqYxJHv5G6EXQH54U//ugMB+OWgNjeoUrVMMMw7AxgUqD8x0558OJGXPG7NhZVPaRAjsEUebt4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 146,\n    \"candidatesTokenCount\":
+        40,\n    \"totalTokenCount\": 186,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 146\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 40\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:27:55.995769Z\",\n  \"responseId\": \"m3bnarnjPISpr8kPtJaY0Qw\"\n}\n"
+    headers:
+      content-length:
+      - '1013'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:27:57 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

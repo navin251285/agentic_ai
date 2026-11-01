@@ -1,0 +1,447 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Known facts about this customer: [''size
+      M'']. Answer order facts only from lookup_order. Cite policy chunks by number."}],
+      "role": "user"}, {"parts": [{"text": "Order 1003 still has not arrived. Do you
+      have a jacket in my size? Also, what does the guide say about refunds for late
+      delivery?"}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Look up one customer order: its status and days late. Use
+      it when the customer gives an order number.", "name": "lookup_order", "parameters":
+      {"properties": {"order_id": {"description": "The order number the customer wrote:
+      four digits, such as 1003.", "type": "STRING"}}, "required": ["order_id"], "type":
+      "OBJECT"}}, {"description": "Search the FTC mail-order guide for rules about
+      delivery, refunds or returns. Returns numbered chunks.", "name": "search_guide",
+      "parameters": {"properties": {"query": {"type": "STRING"}}, "required": ["query"],
+      "type": "OBJECT"}}, {"description": "Request a refund. A person must approve
+      it first; the desk pays only after that decision.", "name": "issue_refund",
+      "parameters": {"properties": {"order_id": {"type": "STRING"}, "amount_usd":
+      {"type": "NUMBER"}}, "required": ["order_id", "amount_usd"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1370'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"1003\"\n              },\n              \"id\":
+        \"call_173576\"\n            },\n            \"thoughtSignature\": \"AY89a195I2nMJ/TYUqnm4g2g5891LnN37Q6ePgZFHi2SUzjMFhsO+PM2m7f2KZ0HHspV/sP/Jjy+dnhgrr4HFdB24aqXGTrTWHMLycwEEcxDlPb46HNzbloepyg=\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"search_guide\",\n              \"args\": {\n                \"query\": \"refunds
+        for late delivery\"\n              },\n              \"id\": \"call_173577\"\n
+        \           }\n          }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n
+        \   }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 205,\n    \"candidatesTokenCount\":
+        41,\n    \"totalTokenCount\": 246,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 205\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 41\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:25:09.110145Z\",\n  \"responseId\": \"9XXnasHcBpiqidsPhp2u8A4\"\n}\n"
+    headers:
+      content-length:
+      - '1254'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:25:09 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Known facts about this customer: [''size
+      M'']. Answer order facts only from lookup_order. Cite policy chunks by number."}],
+      "role": "user"}, {"parts": [{"text": "Order 1003 still has not arrived. Do you
+      have a jacket in my size? Also, what does the guide say about refunds for late
+      delivery?"}], "role": "user"}, {"parts": [{"functionCall": {"args": {"order_id":
+      "1003"}, "name": "lookup_order"}, "thoughtSignature": "AY89a195I2nMJ_TYUqnm4g2g5891LnN37Q6ePgZFHi2SUzjMFhsO-PM2m7f2KZ0HHspV_sP_Jjy-dnhgrr4HFdB24aqXGTrTWHMLycwEEcxDlPb46HNzbloepyg="},
+      {"functionCall": {"args": {"query": "refunds for late delivery"}, "name": "search_guide"}}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"status": "lost", "days_late": 9, "total": 89.5}}}, {"functionResponse": {"name":
+      "search_guide", "response": {"output": "[chunk 11] Some businesses adopt internal
+      deadlines that are earlier than those set by the Rule to ensure that their delay
+      notices give all customers a meaningful opportunity to consent to the delay.
+      If businesses fail to ship or give delay notifications by their internal deadlines,
+      they automatically cancel the orders and make refunds.\n\nIn any event, no notification
+      to the customer can take longer than the time you originally promised or, if
+      no time was promised, 30 days. If you cannot ship the order or provide the notice
+      within this time, you must cancel the order and make a prompt refund.\n[chunk
+      32] For example, if you charge a flat fee for shipping and handling regardless
+      of the total number or cost of the items ordered, you need not refund any shipping
+      and handling charges if you ship some items. On the other hand, if your shipping
+      and handling charges are indexed to the number of items or the dollar amount
+      of the order, you can keep only those shipping and handling charges that are
+      appropriate to the number or dollar amount of the items actually shipped.\n\nWhen
+      making Rule-required refunds, you cannot substitute credit toward future purchases,
+      credit vouchers, or scrip.\n[chunk 39] - sales of seeds and growing plants;\n\n-
+      orders made on a collect-on-delivery basis (C.O.D.); and,\n\n- transactions
+      covered by the FTC\u2019s Negative Option Rule (such as book and music clubs).\n\nThe
+      Rule also does not cover services, such as mail order photo-finishing. In the
+      question and answer section that follows, you will notice other circumstances
+      in which mail, Internet, or telephone order merchandise may not be covered by
+      the Rule.\n\nWhy You Should Comply with the Rule"}}}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one customer
+      order: its status and days late. Use it when the customer gives an order number.",
+      "name": "lookup_order", "parameters": {"properties": {"order_id": {"description":
+      "The order number the customer wrote: four digits, such as 1003.", "type": "STRING"}},
+      "required": ["order_id"], "type": "OBJECT"}}, {"description": "Search the FTC
+      mail-order guide for rules about delivery, refunds or returns. Returns numbered
+      chunks.", "name": "search_guide", "parameters": {"properties": {"query": {"type":
+      "STRING"}}, "required": ["query"], "type": "OBJECT"}}, {"description": "Request
+      a refund. A person must approve it first; the desk pays only after that decision.",
+      "name": "issue_refund", "parameters": {"properties": {"order_id": {"type": "STRING"},
+      "amount_usd": {"type": "NUMBER"}}, "required": ["order_id", "amount_usd"], "type":
+      "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount": 1,
+      "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '3627'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Regarding
+        your order 1003, it is currently marked as lost and is 9 days late. I do not
+        have information on current inventory or jacket availability in size M.\\n\\nRegarding
+        refunds for late delivery, the FTC guide states that if a business cannot
+        ship an order or provide a delay notification within the promised time (or
+        within 30 days if no time was promised), they must cancel the order and issue
+        a prompt refund (Chunk 11). Additionally, when making these required refunds,
+        businesses cannot substitute credit vouchers or store credit (Chunk 32).\",\n
+        \           \"thoughtSignature\": \"AY89a19iiW7YxE/Tz4SLERjAAZvcRFRi9QcvgXsn7O5d1U+ohZu/aGAvwchXjFCQa+vOX2nteGp/vOkSs55xuuz0OCB7SiH32IZYPt4PKWFLsWWKZKeJU3yEEEU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 611,\n    \"candidatesTokenCount\":
+        116,\n    \"totalTokenCount\": 727,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 611\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 116\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:25:09.686274Z\",\n  \"responseId\": \"9XXnasLxKazw-O4PoNnOiQs\"\n}\n"
+    headers:
+      content-length:
+      - '1401'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:25:10 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Known facts about this customer: [''size
+      M'']. Answer order facts only from lookup_order. Cite policy chunks by number."}],
+      "role": "user"}, {"parts": [{"text": "Order 1003 was lost. Please refund the
+      89.50 I paid."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Look up one customer order: its status and days late. Use
+      it when the customer gives an order number.", "name": "lookup_order", "parameters":
+      {"properties": {"order_id": {"description": "The order number the customer wrote:
+      four digits, such as 1003.", "type": "STRING"}}, "required": ["order_id"], "type":
+      "OBJECT"}}, {"description": "Search the FTC mail-order guide for rules about
+      delivery, refunds or returns. Returns numbered chunks.", "name": "search_guide",
+      "parameters": {"properties": {"query": {"type": "STRING"}}, "required": ["query"],
+      "type": "OBJECT"}}, {"description": "Request a refund. A person must approve
+      it first; the desk pays only after that decision.", "name": "issue_refund",
+      "parameters": {"properties": {"order_id": {"type": "STRING"}, "amount_usd":
+      {"type": "NUMBER"}}, "required": ["order_id", "amount_usd"], "type": "OBJECT"}}]}],
+      "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1293'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"1003\"\n              },\n              \"id\":
+        \"call_1159243\"\n            },\n            \"thoughtSignature\": \"AY89a1+lsvv9ArGQajEQa3Ioo/ALmi0EW4KqH3N8pqEaTXZ50y2Qkw9RIaZHo4C5P+g3TGId44hKP2Yz8gtC1XkU+6UqKdi/0azhZ6QNWb8NQmKX3UMgtyx8caE=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 193,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 214,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 193\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:25:10.456166Z\",\n  \"responseId\": \"9nXnaubrG7mvr8kP6Pzu6QM\"\n}\n"
+    headers:
+      content-length:
+      - '1020'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:25:11 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Known facts about this customer: [''size
+      M'']. Answer order facts only from lookup_order. Cite policy chunks by number."}],
+      "role": "user"}, {"parts": [{"text": "Order 1003 was lost. Please refund the
+      89.50 I paid."}], "role": "user"}, {"parts": [{"functionCall": {"args": {"order_id":
+      "1003"}, "name": "lookup_order"}, "thoughtSignature": "AY89a1-lsvv9ArGQajEQa3Ioo_ALmi0EW4KqH3N8pqEaTXZ50y2Qkw9RIaZHo4C5P-g3TGId44hKP2Yz8gtC1XkU-6UqKdi_0azhZ6QNWb8NQmKX3UMgtyx8caE="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"status": "lost", "days_late": 9, "total": 89.5}}}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one customer
+      order: its status and days late. Use it when the customer gives an order number.",
+      "name": "lookup_order", "parameters": {"properties": {"order_id": {"description":
+      "The order number the customer wrote: four digits, such as 1003.", "type": "STRING"}},
+      "required": ["order_id"], "type": "OBJECT"}}, {"description": "Search the FTC
+      mail-order guide for rules about delivery, refunds or returns. Returns numbered
+      chunks.", "name": "search_guide", "parameters": {"properties": {"query": {"type":
+      "STRING"}}, "required": ["query"], "type": "OBJECT"}}, {"description": "Request
+      a refund. A person must approve it first; the desk pays only after that decision.",
+      "name": "issue_refund", "parameters": {"properties": {"order_id": {"type": "STRING"},
+      "amount_usd": {"type": "NUMBER"}}, "required": ["order_id", "amount_usd"], "type":
+      "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount": 1,
+      "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1685'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"search_guide\",\n              \"args\": {\n
+        \               \"query\": \"refund for lost order\"\n              },\n              \"id\":
+        \"call_113379\"\n            },\n            \"thoughtSignature\": \"AY89a19adCOjV0BPO0oCOQeKUgF27qBQJ03tR9b7z2LiFid9vF84p2Eim65p+eak8wqpE7QM99YujV5EjTcb9JmnPqjYOrIs9LArja1eZh5Hny0Qs1x+5Xq9+ws=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 225,\n    \"candidatesTokenCount\":
+        19,\n    \"totalTokenCount\": 244,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 225\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 19\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:25:11.041167Z\",\n  \"responseId\": \"93Xnas_BAoSpr8kPtJaY0Qw\"\n}\n"
+    headers:
+      content-length:
+      - '1033'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:25:11 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Known facts about this customer: [''size
+      M'']. Answer order facts only from lookup_order. Cite policy chunks by number."}],
+      "role": "user"}, {"parts": [{"text": "Order 1003 was lost. Please refund the
+      89.50 I paid."}], "role": "user"}, {"parts": [{"functionCall": {"args": {"order_id":
+      "1003"}, "name": "lookup_order"}, "thoughtSignature": "AY89a1-lsvv9ArGQajEQa3Ioo_ALmi0EW4KqH3N8pqEaTXZ50y2Qkw9RIaZHo4C5P-g3TGId44hKP2Yz8gtC1XkU-6UqKdi_0azhZ6QNWb8NQmKX3UMgtyx8caE="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"status": "lost", "days_late": 9, "total": 89.5}}}], "role": "user"}, {"parts":
+      [{"functionCall": {"args": {"query": "refund for lost order"}, "name": "search_guide"},
+      "thoughtSignature": "AY89a19adCOjV0BPO0oCOQeKUgF27qBQJ03tR9b7z2LiFid9vF84p2Eim65p-eak8wqpE7QM99YujV5EjTcb9JmnPqjYOrIs9LArja1eZh5Hny0Qs1x-5Xq9-ws="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "search_guide", "response":
+      {"output": "[chunk 9] What You Must Do If You Learn You Cannot Ship on Time\n\nWhen
+      you learn that you cannot ship on time, you must decide whether you will ever
+      be able to ship the order. If you decide that you cannot, you must promptly
+      cancel the order and make a full refund.\n[chunk 11] Some businesses adopt internal
+      deadlines that are earlier than those set by the Rule to ensure that their delay
+      notices give all customers a meaningful opportunity to consent to the delay.
+      If businesses fail to ship or give delay notifications by their internal deadlines,
+      they automatically cancel the orders and make refunds.\n\nIn any event, no notification
+      to the customer can take longer than the time you originally promised or, if
+      no time was promised, 30 days. If you cannot ship the order or provide the notice
+      within this time, you must cancel the order and make a prompt refund.\n[chunk
+      12] What a First Delay Option Notice Must Say\n\nIn seeking your customer\u2019s
+      consent to delay, the first delay notice you provide to the customer (the \"delay
+      option\" notice) must include:\n\n- a definite revised shipment date or, if
+      unknown, a statement that you are unable to provide a revised shipment date;\n\n-
+      a statement that, if the customer chooses not to wait, the customer can cancel
+      the order and obtain a full and prompt refund; and\n\n- some means for the customer
+      to choose to cancel at your expense (e.g., by providing a postage prepaid reply
+      card, toll-free telephone number, or website)."}}}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one customer
+      order: its status and days late. Use it when the customer gives an order number.",
+      "name": "lookup_order", "parameters": {"properties": {"order_id": {"description":
+      "The order number the customer wrote: four digits, such as 1003.", "type": "STRING"}},
+      "required": ["order_id"], "type": "OBJECT"}}, {"description": "Search the FTC
+      mail-order guide for rules about delivery, refunds or returns. Returns numbered
+      chunks.", "name": "search_guide", "parameters": {"properties": {"query": {"type":
+      "STRING"}}, "required": ["query"], "type": "OBJECT"}}, {"description": "Request
+      a refund. A person must approve it first; the desk pays only after that decision.",
+      "name": "issue_refund", "parameters": {"properties": {"order_id": {"type": "STRING"},
+      "amount_usd": {"type": "NUMBER"}}, "required": ["order_id", "amount_usd"], "type":
+      "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount": 1,
+      "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '3543'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"issue_refund\",\n              \"args\": {\n
+        \               \"order_id\": \"1003\",\n                \"amount_usd\": 89.5\n
+        \             },\n              \"id\": \"call_338227\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18vEiY2PWs4UgQDkufEi+3hKjEVZxVhnz8q8mSBGXx8n+DCzLtzEuWRy9DdH6YAaKAWvqqP10QLlnyfLxpPo+u/aGore3eRuOhsiGDxW3NlrT9zCL5jUJ4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 561,\n    \"candidatesTokenCount\":
+        30,\n    \"totalTokenCount\": 591,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 561\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 30\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:25:11.811303Z\",\n  \"responseId\": \"93XnaqfCMZH87bEPsM602Qo\"\n}\n"
+    headers:
+      content-length:
+      - '1055'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:25:12 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,73 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "My parcel for order 2207 arrived with
+      a torn box. Please refund the 84.00 USD I paid."}], "role": "user"}], "systemInstruction":
+      {"parts": [{"text": "You are the support assistant for Brightside Outfitters.
+      You cannot pay refunds: call propose_refund, and a person approves it."}]},
+      "safetySettings": [], "tools": [{"functionDeclarations": [{"description": "Propose
+      a refund. A person must approve it before any money moves.", "name": "ProposeRefund",
+      "parameters": {"properties": {"order_id": {"description": "The order number,
+      digits only.", "type": "STRING"}, "amount_usd": {"description": "The amount
+      to refund, in USD.", "type": "NUMBER"}}, "required": ["order_id", "amount_usd"],
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '831'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"ProposeRefund\",\n              \"args\": {\n
+        \               \"amount_usd\": 84,\n                \"order_id\": \"2207\"\n
+        \             },\n              \"id\": \"call_374805\"\n            },\n
+        \           \"thoughtSignature\": \"AY89a18EGcLu6Jd1E7E0K3aYbfdwGg6uzJi6QcsiqLRDHUAKaPDMnMofcR5Z4WJ9v2PPjwvJDjP9n2X6mSc2ZCNp0N7k4Iu/00W8o9if5iqdNg/TAeOW+PeBW5o=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 115,\n    \"candidatesTokenCount\":
+        28,\n    \"totalTokenCount\": 143,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 115\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 28\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:22:40.055417Z\",\n  \"responseId\": \"YHXnavmwA5iqidsPhp2u8A4\"\n}\n"
+    headers:
+      content-length:
+      - '1054'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:22:40 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

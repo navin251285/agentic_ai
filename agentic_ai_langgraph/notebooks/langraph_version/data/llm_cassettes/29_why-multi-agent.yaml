@@ -1,0 +1,362 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order 1003 never arrived. What is its
+      status, and what does the policy say about lost parcels?"}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are the Brightside desk. Use the
+      tools for order facts and policy."}]}, "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Look up one order''s status and days late.", "name": "order_status",
+      "parameters": {"properties": {"order_id": {"description": "The order number
+      the customer wrote: four digits, such as 1003.", "type": "STRING"}}, "required":
+      ["order_id"], "type": "OBJECT"}}, {"description": "Look up one order''s total
+      paid.", "name": "order_total", "parameters": {"properties": {"order_id": {"description":
+      "The order number the customer wrote: four digits, such as 1003.", "type": "STRING"}},
+      "required": ["order_id"], "type": "OBJECT"}}, {"description": "The desk''s policy
+      for a parcel that never arrives.", "name": "policy_lost_parcel"}, {"description":
+      "The desk''s returns policy: 30 days, unused, original packaging.", "name":
+      "policy_returns"}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1170'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"order_status\",\n              \"args\": {\n
+        \               \"order_id\": \"1003\"\n              },\n              \"id\":
+        \"call_299853\"\n            },\n            \"thoughtSignature\": \"AY89a19LJSQ2rIb96Pa0OqBUSzIloAd0y7r5HNLuzCPiPMOpDVxTmrprUF4qWcptsHZBXnibBVXPI/FHX3gXTpoFshvu+HSTumVZNP91tPN3VCFh5eTl4hqpaEo=\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"policy_lost_parcel\",\n              \"args\": {},\n              \"id\":
+        \"call_299854\"\n            }\n          }\n        ]\n      },\n      \"finishReason\":
+        \"STOP\"\n    }\n  ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 187,\n
+        \   \"candidatesTokenCount\": 33,\n    \"totalTokenCount\": 220,\n    \"trafficType\":
+        \"ON_DEMAND\",\n    \"promptTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 187\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 33\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T19:22:57.804949Z\",\n  \"responseId\": \"kZHnatWQMcje-O4Pws74iAw\"\n}\n"
+    headers:
+      content-length:
+      - '1192'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 19:22:58 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order 1003 never arrived. What is its
+      status, and what does the policy say about lost parcels?"}], "role": "user"},
+      {"parts": [{"functionCall": {"args": {"order_id": "1003"}, "name": "order_status"},
+      "thoughtSignature": "AY89a19LJSQ2rIb96Pa0OqBUSzIloAd0y7r5HNLuzCPiPMOpDVxTmrprUF4qWcptsHZBXnibBVXPI_FHX3gXTpoFshvu-HSTumVZNP91tPN3VCFh5eTl4hqpaEo="},
+      {"functionCall": {"args": {}, "name": "policy_lost_parcel"}}], "role": "model"},
+      {"parts": [{"functionResponse": {"name": "order_status", "response": {"status":
+      "lost", "days_late": 9, "total": 89.5}}}, {"functionResponse": {"name": "policy_lost_parcel",
+      "response": {"output": "After 10 working days from dispatch, contact the desk;
+      we trace the parcel or send a replacement or refund."}}}], "role": "user"}],
+      "systemInstruction": {"parts": [{"text": "You are the Brightside desk. Use the
+      tools for order facts and policy."}]}, "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Look up one order''s status and days late.", "name": "order_status",
+      "parameters": {"properties": {"order_id": {"description": "The order number
+      the customer wrote: four digits, such as 1003.", "type": "STRING"}}, "required":
+      ["order_id"], "type": "OBJECT"}}, {"description": "Look up one order''s total
+      paid.", "name": "order_total", "parameters": {"properties": {"order_id": {"description":
+      "The order number the customer wrote: four digits, such as 1003.", "type": "STRING"}},
+      "required": ["order_id"], "type": "OBJECT"}}, {"description": "The desk''s policy
+      for a parcel that never arrives.", "name": "policy_lost_parcel"}, {"description":
+      "The desk''s returns policy: 30 days, unused, original packaging.", "name":
+      "policy_returns"}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1813'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Order
+        1003 is currently marked as lost and is 9 days late.\\n\\nRegarding our policy
+        for lost parcels, if a parcel has not arrived after 10 working days from dispatch,
+        please contact us. At that point, we can trace the parcel, send a replacement,
+        or issue a refund. Since your order is currently 9 days late, please reach
+        back out to us tomorrow if it still hasn't arrived, and we will be happy to
+        assist you further.\",\n            \"thoughtSignature\": \"AY89a18E5ebw3Rs/MtJfADIUw3FX2Fl4xNVOra9ffWv1Ohq0CuwNaZpdXNPAizNoVA4CL+TuzRlmBuYROM3ilEj40gRyoGuIjyzv9dOxbInjWB70FoeKrYsUW30=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 262,\n    \"candidatesTokenCount\":
+        99,\n    \"totalTokenCount\": 361,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 262\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 99\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T19:22:58.489687Z\",\n  \"responseId\": \"kpHnatfxHYCKr8kPu6Ky4AE\"\n}\n"
+    headers:
+      content-length:
+      - '1265'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 19:22:59 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Two parts of one customer question follow.
+      For each part, name the specialist that owns it: ''orders'' or ''policy''. Reply
+      with the two names, separated by a comma, in order.\n1. What is the status of
+      order 1003?\n2. What does the policy say about lost parcels?"}], "role": "user"}],
+      "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '425'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"orders,
+        policy\",\n            \"thoughtSignature\": \"AY89a19g6MRbjK+QUPpEq6fzIaIugpzNvT03MhaD2ev+PqTOOu3l4m4MLRWPGtbqIiSnF7oCMdB9uiRZAIvuDNf9X5gCBdcsX+xHappY3GYhx18Ie5XABpntKNo=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 67,\n    \"candidatesTokenCount\":
+        3,\n    \"totalTokenCount\": 70,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 67\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 3\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"course-model\",\n  \"createTime\": \"2026-11-01T19:22:59.287472Z\",\n
+        \ \"responseId\": \"k5HnavDFEZiqidsPhp2u8A4\"\n}\n"
+    headers:
+      content-length:
+      - '859'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 19:22:59 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "What is the status of order 1003?"}],
+      "role": "user"}], "systemInstruction": {"parts": [{"text": "You answer order
+      questions with the order tools only."}]}, "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Look up one order''s status and days late.", "name": "order_status",
+      "parameters": {"properties": {"order_id": {"description": "The order number
+      the customer wrote: four digits, such as 1003.", "type": "STRING"}}, "required":
+      ["order_id"], "type": "OBJECT"}}, {"description": "Look up one order''s total
+      paid.", "name": "order_total", "parameters": {"properties": {"order_id": {"description":
+      "The order number the customer wrote: four digits, such as 1003.", "type": "STRING"}},
+      "required": ["order_id"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '881'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"order_status\",\n              \"args\": {\n
+        \               \"order_id\": \"1003\"\n              },\n              \"id\":
+        \"call_927957\"\n            },\n            \"thoughtSignature\": \"AY89a185BdMVHKwZvO+aVwa+OqdV5HPLhv7hwZTsDiY5j2kXhK3hJz3gcPN8WOlK50lpj/5nWy5R04AY6Gr85MwprOLyS1osJZUum7JQwo9uY5IF0+gt+Tvd8yc=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 122,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 143,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 122\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T19:22:59.789746Z\",\n  \"responseId\": \"k5HnavKZMJH87bEPsM602Qo\"\n}\n"
+    headers:
+      content-length:
+      - '1019'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 19:23:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "What does the policy say about lost
+      parcels?"}], "role": "user"}], "systemInstruction": {"parts": [{"text": "You
+      answer policy questions with the policy tools only."}]}, "safetySettings": [],
+      "tools": [{"functionDeclarations": [{"description": "The desk''s policy for
+      a parcel that never arrives.", "name": "policy_lost_parcel"}, {"description":
+      "The desk''s returns policy: 30 days, unused, original packaging.", "name":
+      "policy_returns"}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '564'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"policy_lost_parcel\",\n              \"args\":
+        {},\n              \"id\": \"call_238868\"\n            },\n            \"thoughtSignature\":
+        \"AY89a19nzJ4C+DybG5EQMT9xO3ikDQ+iKwv0mpex7Hh5JslrO8Px+Chm+MZKKX4/7CizWOEaYFzqR5WmzIxSAceZa9Oqde8jjjz/hJNA2H9TRi5NBiGxwtr847s=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 66,\n    \"candidatesTokenCount\":
+        12,\n    \"totalTokenCount\": 78,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 66\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 12\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"course-model\",\n  \"createTime\": \"2026-11-01T19:23:00.297459Z\",\n
+        \ \"responseId\": \"lJHnavOTEvLi-O4PvKzRoQI\"\n}\n"
+    headers:
+      content-length:
+      - '972'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 19:23:00 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

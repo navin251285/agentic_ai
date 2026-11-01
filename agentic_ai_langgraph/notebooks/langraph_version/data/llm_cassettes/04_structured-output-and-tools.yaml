@@ -1,0 +1,210 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Read the customer message and fill the
+      fields.\nMessage: Order 1003 never arrived and I want my money back."}], "role":
+      "user"}], "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024, "responseMimeType": "application/json", "responseJsonSchema":
+      {"properties": {"order_id": {"description": "The order number, four digits.",
+      "pattern": "^\\d{4}$", "title": "Order Id", "type": "string"}, "issue": {"enum":
+      ["not_arrived", "damaged", "wrong_item", "other"], "title": "Issue", "type":
+      "string"}, "refund_requested": {"title": "Refund Requested", "type": "boolean"}},
+      "required": ["order_id", "issue", "refund_requested"], "title": "Ticket", "type":
+      "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '747'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"order_id\\\": \\\"1003\\\",\\n  \\\"issue\\\": \\\"not_arrived\\\",\\n
+        \ \\\"refund_requested\\\": true\\n}\",\n            \"thoughtSignature\":
+        \"AY89a1+pGJ1A6i8aaZTNvriEHDHEsd6yQ/Sg+joZJdfHqOl7f+xVeHttFid97IG898BQGXPm8jCLJk1uMc2aN02aeGWBhDiXt0YeCAZEu73RzkhopEuF+pN0UnU=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 175,\n    \"candidatesTokenCount\":
+        35,\n    \"totalTokenCount\": 210,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 175\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 35\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:12:11.386363Z\",\n  \"responseId\": \"63LnarvKF8SKr8kPsbb0iQs\"\n}\n"
+    headers:
+      content-length:
+      - '942'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:12:11 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order 1003 never arrived and I want
+      my money back."}], "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations":
+      [{"description": "Look up one order: its status, days late and total. Use it
+      when the customer gives an order number.", "name": "lookup_order", "parameters":
+      {"properties": {"order_id": {"description": "The order number the customer wrote,
+      digits only, such as 1003.", "type": "STRING"}}, "required": ["order_id"], "type":
+      "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount": 1,
+      "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '590'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"1003\"\n              },\n              \"id\":
+        \"call_1292623\"\n            },\n            \"thoughtSignature\": \"AY89a1/kYNpZ9m+Y+aG49cpNPTxZ+qcV6JfcpnmKj0j75GSIlWf4f/u9KLC7bYNT5HHDpQkY7gOZDPgZwdxMv2gEENKPlmU94Xwb7lNFy6QqPIZ4o5SdlWFoDqQ=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 78,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 99,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 78\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 21\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"course-model\",\n  \"createTime\": \"2026-11-01T17:12:12.237136Z\",\n
+        \ \"responseId\": \"7HLnatC8Dqzw-O4PoNnOiQs\"\n}\n"
+    headers:
+      content-length:
+      - '1017'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:12:12 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order 1003 never arrived and I want
+      my money back."}], "role": "user"}, {"parts": [{"functionCall": {"args": {"order_id":
+      "1003"}, "name": "lookup_order"}, "thoughtSignature": "AY89a1_kYNpZ9m-Y-aG49cpNPTxZ-qcV6JfcpnmKj0j75GSIlWf4f_u9KLC7bYNT5HHDpQkY7gOZDPgZwdxMv2gEENKPlmU94Xwb7lNFy6QqPIZ4o5SdlWFoDqQ="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"status": "lost", "days_late": 9, "total": 89.5}}}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one order:
+      its status, days late and total. Use it when the customer gives an order number.",
+      "name": "lookup_order", "parameters": {"properties": {"order_id": {"description":
+      "The order number the customer wrote, digits only, such as 1003.", "type": "STRING"}},
+      "required": ["order_id"], "type": "OBJECT"}}]}], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '982'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"I am
+        very sorry to hear that your order 1003 has not arrived. I have checked the
+        status, and it appears the package is marked as lost.\\n\\nSince it is 9 days
+        late and confirmed lost, I can certainly help you with a refund of $89.50.
+        Would you like me to process that refund to your original payment method now?\",\n
+        \           \"thoughtSignature\": \"AY89a1+iyIL1wZ8wdJZtHHLqjFihES8uSebQHBsgnmS5EWmFjyNXTS1VIh5OwDMVr5kUjAkXzFtYwhnyluf3nkTtDJFzf/a52pFLA6iyjJPUOSr75aP5v6CEJ7w=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 110,\n    \"candidatesTokenCount\":
+        77,\n    \"totalTokenCount\": 187,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 110\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 77\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:12:12.879951Z\",\n  \"responseId\": \"7HLnas_aNbmvr8kP6Pzu6QM\"\n}\n"
+    headers:
+      content-length:
+      - '1159'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:12:13 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

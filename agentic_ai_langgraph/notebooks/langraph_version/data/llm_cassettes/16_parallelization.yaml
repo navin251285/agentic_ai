@@ -1,0 +1,209 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check that every number and status in
+      the reply matches these facts, and that no fact is added: {''1003'': {''status'':
+      ''lost'', ''days_late'': 9, ''total'': 89.5}}.\n\nReply: Order 1003 is lost
+      and is 9 days late. I have refunded the 89.50 you paid, and it will reach your
+      card tomorrow. I am sorry for the wait."}], "role": "user"}], "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024, "responseMimeType": "application/json", "responseJsonSchema": {"properties":
+      {"verdict": {"enum": ["pass", "fail"], "title": "Verdict", "type": "string"},
+      "why": {"title": "Why", "type": "string"}}, "required": ["verdict", "why"],
+      "title": "Review", "type": "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '740'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\\"verdict\\\":
+        \\\"fail\\\", \\\"why\\\": \\\"The reply includes extra information about
+        a refund and apology that was not present in the provided facts.\\\"}\",\n
+        \           \"thoughtSignature\": \"AY89a18CuWwqewRsLp9Xg52/nAck/Na+bo8Kass0lusfDtf22WFbkW14ls+28jvbSuaTfx0bUiX1ZetKBrGdiDNhvcoskIGasj0h3Me/4igEj0NckGK47oDG7Ss=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 181,\n    \"candidatesTokenCount\":
+        31,\n    \"totalTokenCount\": 212,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 181\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 31\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T19:15:18.258352Z\",\n  \"responseId\": \"xo_narDiD5iqidsPhp2u8A4\"\n}\n"
+    headers:
+      content-length:
+      - '995'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 19:15:18 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check that the reply does not promise
+      a refund, a replacement or a date. Only a person may approve those.\n\nReply:
+      Order 1003 is lost and is 9 days late. I have refunded the 89.50 you paid, and
+      it will reach your card tomorrow. I am sorry for the wait."}], "role": "user"}],
+      "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024, "responseMimeType": "application/json", "responseJsonSchema":
+      {"properties": {"verdict": {"enum": ["pass", "fail"], "title": "Verdict", "type":
+      "string"}, "why": {"title": "Why", "type": "string"}}, "required": ["verdict",
+      "why"], "title": "Review", "type": "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '689'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"verdict\\\": \\\"fail\\\",\\n  \\\"why\\\": \\\"The reply promises a
+        refund and provides a specific date for when the funds will reach the card,
+        which violates the instruction that only a person may approve those actions.\\\"\\n}\",\n
+        \           \"thoughtSignature\": \"AY89a19iEXfwNcMTlgShhqcYYM8wmtMihBVT0nMdGAEX9aMoNv3yUbGjUyldAXaUM67DJSfBimWiJNn+JK+iHNlOQf6X7WMKf4VoI/lSdGFA6w2O1fAuypBR7lk=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 155,\n    \"candidatesTokenCount\":
+        50,\n    \"totalTokenCount\": 205,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 155\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 50\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T19:15:18.745566Z\",\n  \"responseId\": \"xo_nat7ALZH87bEPsM602Qo\"\n}\n"
+    headers:
+      content-length:
+      - '1070'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 19:15:19 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Check that the reply is warm, apologetic
+      where needed, and does not blame the customer.\n\nReply: Order 1003 is lost
+      and is 9 days late. I have refunded the 89.50 you paid, and it will reach your
+      card tomorrow. I am sorry for the wait."}], "role": "user"}], "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024, "responseMimeType": "application/json", "responseJsonSchema": {"properties":
+      {"verdict": {"enum": ["pass", "fail"], "title": "Verdict", "type": "string"},
+      "why": {"title": "Why", "type": "string"}}, "required": ["verdict", "why"],
+      "title": "Review", "type": "object"}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '671'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"{\\n
+        \ \\\"verdict\\\": \\\"pass\\\",\\n  \\\"why\\\": \\\"The reply is professional,
+        apologetic, takes responsibility for the issue without blaming the customer,
+        and provides a clear resolution.\\\"\\n}\",\n            \"thoughtSignature\":
+        \"AY89a19vrrDQBGtQrC+MTQ6jIF7URl5F/EwLVPogmQANviaPCBUyVoiulwKTGMfecCJpRFshfOww1Th3Dtd/DFj1OMK4loBHDoVON0R190+9STEgSZwlEnYjlAo=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 151,\n    \"candidatesTokenCount\":
+        42,\n    \"totalTokenCount\": 193,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 151\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 42\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T19:15:19.204628Z\",\n  \"responseId\": \"x4_natS-DIL_7bEP_K_p-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1033'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 19:15:19 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

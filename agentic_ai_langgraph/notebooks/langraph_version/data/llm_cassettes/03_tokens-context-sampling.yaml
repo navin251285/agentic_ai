@@ -1,0 +1,189 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Brightside Outfitters returns policy
+      (made up for this lesson).\nItems can be returned within 30 days of delivery.
+      The item must be unused, in its original packaging, and with the tags on.\nStart
+      a return from your order page; we send a prepaid label by email within one working
+      day. Refunds go back to the original\npayment method within 5 to 10 working
+      days after the returned parcel is scanned at our warehouse. Delivery charges
+      are not\nrefunded unless the item arrived damaged or the wrong item was sent.
+      Sale items marked final sale cannot be returned. Gift\ncards are not refundable;
+      we issue store credit instead. For a lost parcel, contact the desk after 10
+      working days from\ndispatch; we will trace the parcel or send a replacement
+      or refund once the carrier confirms the loss."}]}]}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '829'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:countTokens
+  response:
+    body:
+      string: "{\n  \"totalTokens\": 168,\n  \"totalBillableCharacters\": 646,\n  \"promptTokensDetails\":
+        [\n    {\n      \"modality\": \"TEXT\",\n      \"tokenCount\": 168\n    }\n
+        \ ]\n}\n"
+    headers:
+      content-length:
+      - '153'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:10:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order 1093 cost $84 including $6 delivery.
+      The customer returns the $30 item and keeps the rest. Delivery is not refunded.
+      How much is refunded? Answer with the number and one line of working."}], "role":
+      "user"}], "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024, "thinkingConfig": {"thinking_budget": 0}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '401'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"$30\\n\\nThe
+        refund is for the item price only, as delivery is non-refundable.\",\n            \"thoughtSignature\":
+        \"AY89a18lojG+E2h6x6fJHAxJRnnOz+fSC0nutQR0Uy8zd7ho/fyTAuEjE28UVBn2XCqjz1UwJWyjDEtt2tHp1Nec0tK4mJyg9jLv/QObsM4bT2ANZs3O5bUiSiw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 48,\n    \"candidatesTokenCount\":
+        20,\n    \"totalTokenCount\": 68,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 48\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 20\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"course-model\",\n  \"createTime\": \"2026-11-01T17:10:39.460270Z\",\n
+        \ \"responseId\": \"j3Lnau6LHLmvr8kP6Pzu6QM\"\n}\n"
+    headers:
+      content-length:
+      - '923'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:10:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order 1093 cost $84 including $6 delivery.
+      The customer returns the $30 item and keeps the rest. Delivery is not refunded.
+      How much is refunded? Answer with the number and one line of working."}], "role":
+      "user"}], "safetySettings": [], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024, "thinkingConfig": {"thinking_budget": 2048}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '404'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"$30\\nThe
+        refund is the price of the returned item, as the delivery fee is non-refundable.\",\n
+        \           \"thoughtSignature\": \"AY89a18euEuCs8ROdKqM3uNgIPI5mM5yweTKe+mtfrIatLsARxZ109zTQA/LUdn86erUaP3IaACgCqTjBQvn777CBYGs0i30Qhxs7yhk728EU+DqWYWvlQdm3bJfCvYNa4UZ2vxxZRHCacSkWRzHldAnqykiM2rVrf3wT1irDRZrfui2g/oQLEangCIJxVrFXWnGMVGtFCmxAoPZ+T1F5AGYQEEEcev5JxDh9d2s5A9m4NLN9LPAxSChtAMx3POW7ZtAGE460+5YHbaNGFojE1WkdcKXVIKtk3eT9lNxKupL4gw5GlzHBT0iF+802iKoS9dcbwOq/yqACMZ+SN5kQgsUJ3PiUsg12qbnhanAANLmtSUADaxk0OKRjBHhi2BBAKOSEITXXb2PekqqeyL5+sDC3OYuANAAHCRFJ0jGgc6qGj31AxAhjJ00ZutWxvxvAPw1WhxMwlgZc8bCL7ZqKbQXEnuJvc3opf6V4FUdMkGnOjLnbaZpfltdAxgV9tk1PZdOnX34R0B8H2a75k90j0+eY+PfR7NVCsFtNzgysFns2WEKcdlVg4ws5ityZvR4vo/Y9jC1MWt4ejgY1uXnoP0vpskJE0B2Ry43TI7OfzN/7zRvZp8Ua7GFLn5EVFGSx5BoFrmIMNpX2IQZpAug7OdQNARJJxpFwM0RihiLfi8idb0NgzRrMlwlaUfxZ2Thw2akpb3t4iTV/aUNBML+QK5D67sOTDOicjvTk9Zr3a1WQgUnMZ1YfuCvgV8ZMWnH+31IShiG++pCWXYh9pkaOXP0fvMP9Ugan1PxO8EwtYCF9QoV44SZFh9tf9bGSir7wTl1YlaDn6bLEOJuAGqfL4K3UoUGMATFXfdbCcFbHYtnZL+s5GNvGF4YqwdNKfHJYEKwI2WsfyQOpEytejX27GXVJzy+s04Kfp/fS8t8w9sV24YS8e9NFQmlhh/B8VDxOEXr7g3DLRma8Im9agYJTg+6jKqkGPFHB0o9nZeDfA7h6qG1k8ryHB5NzE+5BVjV7jPlqG/i86glR9n2U5u0RlJmLxzELr4c3AJlmlBsVsVSwMcQYwTfCyYKyo/VlaObkfjji6wye8gy0Bcf8lcyIRVsAxBblSHhVL/QJFQxnszBbrtdIo5E6g+KbAd604t6mb/79ip/2UxrwYAgno9Aqg4stIlCSZQ3fLnGJratZo7e9AP1hrUS5rxBBusW37bbTAs=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 48,\n    \"candidatesTokenCount\":
+        23,\n    \"totalTokenCount\": 318,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 48\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 23\n
+        \     }\n    ],\n    \"thoughtsTokenCount\": 247\n  },\n  \"modelVersion\":
+        \"course-model\",\n  \"createTime\": \"2026-11-01T17:10:40.049438Z\",\n
+        \ \"responseId\": \"kHLnap6CA7mvr8kP6Pzu6QM\"\n}\n"
+    headers:
+      content-length:
+      - '2064'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:10:41 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

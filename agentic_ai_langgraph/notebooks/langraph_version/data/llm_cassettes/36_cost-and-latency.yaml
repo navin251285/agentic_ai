@@ -1,0 +1,124 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order 1003 never arrived. Is this a
+      status question or a refund question? One word."}], "role": "user"}], "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024, "thinkingConfig": {"thinking_budget": 0}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '292'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Status\",\n
+        \           \"thoughtSignature\": \"AY89a1/1jZpx0CXu4YN0Su9puQkU3FaB2xrDbt/NAv9SRYA+boKaIIjY5RucPiWmhc9rPvMx3uUhot1kHzPk0T1ZWhbM88xf0zcqO3KBK51Y0oUgishVgn2OTsw=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 22,\n    \"candidatesTokenCount\":
+        1,\n    \"totalTokenCount\": 23,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 22\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 1\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"course-model\",\n  \"createTime\": \"2026-11-01T17:45:39.133898Z\",\n
+        \ \"responseId\": \"w3rnaoqWCISpr8kPtJaY0Qw\"\n}\n"
+    headers:
+      content-length:
+      - '851'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:45:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Order 1003 never arrived. Is this a
+      status question or a refund question? One word."}], "role": "user"}], "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024, "thinkingConfig": {"thinking_budget": 1024}}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '295'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Status\",\n
+        \           \"thoughtSignature\": \"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\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 22,\n    \"candidatesTokenCount\":
+        1,\n    \"totalTokenCount\": 441,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 22\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 1\n      }\n    ],\n    \"thoughtsTokenCount\":
+        418\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:45:39.628775Z\",\n  \"responseId\": \"w3rnaqewJoSpr8kPtJaY0Qw\"\n}\n"
+    headers:
+      content-length:
+      - '2999'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:45:41 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,282 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where are my orders 1093 and 2207? Check
+      both, then answer in two sentences."}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one order:
+      status and days late.", "name": "lookup_order", "parameters": {"properties":
+      {"order_id": {"description": "The order number the customer wrote, digits only,
+      such as 1093.", "type": "STRING"}}, "required": ["order_id"], "title": "OrderQuery",
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '580'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"1093\"\n              },\n              \"id\":
+        \"call_102637\"\n            },\n            \"thoughtSignature\": \"AY89a19k3tJE0JNvSgHjgZEMxlgI6vcA2BdyCw8v9f+vctBp9i5wfbMEa4CFslLC9seRCb8dcGia7danyTHBr2TZ+qkKB68nZNdQT1/jTblvCl6HbYUWiVwYq54=\"\n
+        \         },\n          {\n            \"functionCall\": {\n              \"name\":
+        \"lookup_order\",\n              \"args\": {\n                \"order_id\":
+        \"2207\"\n              },\n              \"id\": \"call_102638\"\n            }\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 78,\n    \"candidatesTokenCount\":
+        42,\n    \"totalTokenCount\": 120,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 78\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 42\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:28:33.666275Z\",\n  \"responseId\": \"wXbnaqPVKMSKr8kPsbb0iQs\"\n}\n"
+    headers:
+      content-length:
+      - '1234'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:28:34 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Where are my orders 1093 and 2207? Check
+      both, then answer in two sentences."}], "role": "user"}, {"parts": [{"functionCall":
+      {"args": {"order_id": "1093"}, "name": "lookup_order"}, "thoughtSignature":
+      "AY89a19k3tJE0JNvSgHjgZEMxlgI6vcA2BdyCw8v9f-vctBp9i5wfbMEa4CFslLC9seRCb8dcGia7danyTHBr2TZ-qkKB68nZNdQT1_jTblvCl6HbYUWiVwYq54="},
+      {"functionCall": {"args": {"order_id": "2207"}, "name": "lookup_order"}}], "role":
+      "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"status": "in transit", "days_late": 3}}}, {"functionResponse": {"name": "lookup_order",
+      "response": {"status": "delivered", "days_late": 0}}}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one order:
+      status and days late.", "name": "lookup_order", "parameters": {"properties":
+      {"order_id": {"description": "The order number the customer wrote, digits only,
+      such as 1093.", "type": "STRING"}}, "required": ["order_id"], "title": "OrderQuery",
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '1138'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Order
+        1093 is currently in transit and is three days late. Order 2207 has been successfully
+        delivered.\",\n            \"thoughtSignature\": \"AY89a196C3fhMeCsgUabcEOUQ1o1h7jY4Font2fJ3cdQkR/aPGwnDNXr3PD2kZwhE2hC6ap8QrC1cGSi/UALuaHJS/sSa0nDtJJKIfKq30MZJnEKl/tTDM7gMa8=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 133,\n    \"candidatesTokenCount\":
+        27,\n    \"totalTokenCount\": 160,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 133\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 27\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:28:34.767789Z\",\n  \"responseId\": \"wnbnaq3uLpH87bEPsM602Qo\"\n}\n"
+    headers:
+      content-length:
+      - '952'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:28:35 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Look up order 1093. Then look it up
+      a second time to confirm the status has not changed, and tell me the status."}],
+      "role": "user"}], "safetySettings": [], "tools": [{"functionDeclarations": [{"description":
+      "Look up one order: status and days late.", "name": "lookup_order", "parameters":
+      {"properties": {"order_id": {"description": "The order number the customer wrote,
+      digits only, such as 1093.", "type": "STRING"}}, "required": ["order_id"], "title":
+      "OrderQuery", "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0,
+      "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '616'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"1093\"\n              },\n              \"id\":
+        \"call_1324070\"\n            },\n            \"thoughtSignature\": \"AY89a196zCnlugp+06+DIb2+CQ1fJM22giGkcDLgUBuOMkOqYtfYtZWCsqOPOqBYUJxLN7ZjiVRxXrr8V+zFibohNtC6kwBhBXRRDkjbjYa1IjAaaU8mQJIeGkg=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 83,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 104,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 83\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:28:35.350738Z\",\n  \"responseId\": \"w3bnapK0Fbmvr8kP6Pzu6QM\"\n}\n"
+    headers:
+      content-length:
+      - '1018'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:28:36 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Look up order 1093. Then look it up
+      a second time to confirm the status has not changed, and tell me the status."}],
+      "role": "user"}, {"parts": [{"functionCall": {"args": {"order_id": "1093"},
+      "name": "lookup_order"}, "thoughtSignature": "AY89a196zCnlugp-06-DIb2-CQ1fJM22giGkcDLgUBuOMkOqYtfYtZWCsqOPOqBYUJxLN7ZjiVRxXrr8V-zFibohNtC6kwBhBXRRDkjbjYa1IjAaaU8mQJIeGkg="}],
+      "role": "model"}, {"parts": [{"functionResponse": {"name": "lookup_order", "response":
+      {"status": "in transit", "days_late": 3}}}], "role": "user"}], "safetySettings":
+      [], "tools": [{"functionDeclarations": [{"description": "Look up one order:
+      status and days late.", "name": "lookup_order", "parameters": {"properties":
+      {"order_id": {"description": "The order number the customer wrote, digits only,
+      such as 1093.", "type": "STRING"}}, "required": ["order_id"], "title": "OrderQuery",
+      "type": "OBJECT"}}]}], "generationConfig": {"temperature": 0.0, "candidateCount":
+      1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '999'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"functionCall\":
+        {\n              \"name\": \"lookup_order\",\n              \"args\": {\n
+        \               \"order_id\": \"1093\"\n              },\n              \"id\":
+        \"call_225905\"\n            },\n            \"thoughtSignature\": \"AY89a19Ws/fZo2BsQIvIl25kbHFYdq4cYTXuFqeQz3x4YY1WBWzS6SC7cqIB9QijbcdKbkU7AleEnhwggObskGPO+ldsXqVFuRIubdVgHzd0/RV4mtY8eovHjMI=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 111,\n    \"candidatesTokenCount\":
+        21,\n    \"totalTokenCount\": 132,\n    \"trafficType\": \"ON_DEMAND\",\n
+        \   \"promptTokensDetails\": [\n      {\n        \"modality\": \"TEXT\",\n
+        \       \"tokenCount\": 111\n      }\n    ],\n    \"candidatesTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 21\n
+        \     }\n    ]\n  },\n  \"modelVersion\": \"course-model\",\n  \"createTime\":
+        \"2026-11-01T17:28:36.206284Z\",\n  \"responseId\": \"xHbnaszLDIL_7bEP_K_p-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '1019'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:28:36 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

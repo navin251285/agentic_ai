@@ -1,0 +1,281 @@
+interactions:
+- request:
+    body: '{"contents": [{"parts": [{"text": "In one sentence: what is a model call?"}],
+      "role": "user"}], "safetySettings": [], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '205'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"A model
+        call is a request sent to an artificial intelligence model to process an input
+        and generate a corresponding output based on its training.\",\n            \"thoughtSignature\":
+        \"AY89a1/Fumr9M/PG1lUXyfcIVsYcjZtkFUsBJBGYY1aQTD8mxcuTzfE3cFXev2m5otUnDdCAi3haMAG44G6PmJCaH3maq6hogbUr+IehEFvhm9pEKidcBVIWlX4=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 10,\n    \"candidatesTokenCount\":
+        26,\n    \"totalTokenCount\": 36,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 10\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 26\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"course-model\",\n  \"createTime\": \"2026-11-01T17:09:40.200062Z\",\n  \"responseId\":
+        \"VHLnav6aDIL_7bEP_K_p-QQ\"\n}\n"
+    headers:
+      content-length:
+      - '992'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 17:09:40 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Name one reason to stream a model answer."}],
+      "role": "user"}], "safetySettings": [], "generationConfig": {"temperature":
+      0.0, "candidateCount": 1, "maxOutputTokens": 1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '208'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"One\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"course-model\",\"createTime\": \"2026-11-01T17:09:40.991751Z\",\"responseId\":
+        \"VHLnaofEPKzw-O4PoNnOiQs\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \" primary reason to stream a
+        model answer is to **reduce perceived latency** for the user.\\n\\nBy\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"course-model\",\"createTime\":
+        \"2026-11-01T17:09:40.991751Z\",\"responseId\": \"VHLnaofEPKzw-O4PoNnOiQs\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \" displaying the text as it is being generated, the user can begin reading
+        the response immediately rather than waiting for the entire output to be processed\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"course-model\",\"createTime\":
+        \"2026-11-01T17:09:40.991751Z\",\"responseId\": \"VHLnaofEPKzw-O4PoNnOiQs\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \". This significantly improves the user experience, making the interaction
+        feel faster, more responsive, and more conversational.\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"course-model\",\"createTime\":
+        \"2026-11-01T17:09:40.991751Z\",\"responseId\": \"VHLnaofEPKzw-O4PoNnOiQs\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\",\"thoughtSignature\": \"AY89a1/nBuniWF4kcSlHvWdc1usQEO5DLDDzJsr/434Ab8kK7uR59MdWct3bXRF6QE6Z8vYTx4oRefG2GNYguN1V+18JcwkK7zwZCpSI6rt1tJnMnG/DQtaX/qg=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 9,\"candidatesTokenCount\":
+        69,\"totalTokenCount\": 78,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 9}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 69}]},\"modelVersion\": \"course-model\",\"createTime\":
+        \"2026-11-01T17:09:40.991751Z\",\"responseId\": \"VHLnaofEPKzw-O4PoNnOiQs\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Sun, 01 Nov 2026 17:09:41 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "A customer writes: ''My order arrived
+      broken. What do I do?'' Answer in one sentence."}], "role": "user"}], "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '250'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:generateContent
+  response:
+    body:
+      string: "{\n  \"candidates\": [\n    {\n      \"content\": {\n        \"role\":
+        \"model\",\n        \"parts\": [\n          {\n            \"text\": \"Please
+        provide your order number and a photo of the damaged item so we can arrange
+        a replacement or refund for you immediately.\",\n            \"thoughtSignature\":
+        \"AY89a1/Ki7869RClD3Tu+vXTeNASWVp9K7BVQcicKiPNzXngr/YVkCpKfYZVzu/A0zI4gmvKwIOmAQ4ZVXa/WGmWF3YBQS/698qnA+rSKHVDYtMaWrfEUKnnFwY=\"\n
+        \         }\n        ]\n      },\n      \"finishReason\": \"STOP\"\n    }\n
+        \ ],\n  \"usageMetadata\": {\n    \"promptTokenCount\": 20,\n    \"candidatesTokenCount\":
+        24,\n    \"totalTokenCount\": 44,\n    \"trafficType\": \"ON_DEMAND\",\n    \"promptTokensDetails\":
+        [\n      {\n        \"modality\": \"TEXT\",\n        \"tokenCount\": 20\n
+        \     }\n    ],\n    \"candidatesTokensDetails\": [\n      {\n        \"modality\":
+        \"TEXT\",\n        \"tokenCount\": 24\n      }\n    ]\n  },\n  \"modelVersion\":
+        \"course-model\",\n  \"createTime\": \"2026-11-01T18:56:17.826418Z\",\n
+        \ \"responseId\": \"UYvnarK4MvLi-O4PvKzRoQI\"\n}\n"
+    headers:
+      content-length:
+      - '974'
+      content-type:
+      - application/json; charset=UTF-8
+      date:
+      - Sun, 01 Nov 2026 18:56:18 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"contents": [{"parts": [{"text": "Write a one-sentence greeting for a
+      customer who just opened our support chat."}], "role": "user"}], "safetySettings":
+      [], "generationConfig": {"temperature": 0.0, "candidateCount": 1, "maxOutputTokens":
+      1024}}'
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      connection:
+      - keep-alive
+      content-length:
+      - '245'
+      content-type:
+      - application/json
+      host:
+      - aiplatform.googleapis.com
+      user-agent:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13 langchain-google-genai/4.4.2-ChatGoogleGenerativeAI
+      x-goog-api-client:
+      - google-genai-sdk/2.31.0 gl-python/3.12.13
+    method: POST
+    uri: https://aiplatform.googleapis.com/v1beta1/publishers/google/models/course-model:streamGenerateContent?alt=sse
+  response:
+    body:
+      string: "data: {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\":
+        [{\"text\": \"Here are a few options depending on the tone you want to set:\\n\\n*
+        \  **\"}]}}],\"usageMetadata\": {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\":
+        \"course-model\",\"createTime\": \"2026-11-01T18:56:18.334258Z\",\"responseId\":
+        \"UovnarKzFJiqidsPhp2u8A4\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"role\": \"model\",\"parts\": [{\"text\": \"Friendly & Casual:** \\\"Hi
+        there! Thanks for reaching out\u2014how can I help you today?\\\"\\n*   **\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"course-model\",\"createTime\":
+        \"2026-11-01T18:56:18.334258Z\",\"responseId\": \"UovnarKzFJiqidsPhp2u8A4\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"Professional & Direct:** \\\"Hello! Thank you for contacting support; please
+        let me know how I can assist you.\\\"\\n*   \"}]}}],\"usageMetadata\": {\"trafficType\":
+        \"ON_DEMAND\"},\"modelVersion\": \"course-model\",\"createTime\":
+        \"2026-11-01T18:56:18.334258Z\",\"responseId\": \"UovnarKzFJiqidsPhp2u8A4\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"**Proactive:** \\\"Welcome to our support chat\u2014what can I help you
+        get sorted out today?\\\"\\n*   **Short\"}]}}],\"usageMetadata\": {\"trafficType\":
+        \"ON_DEMAND\"},\"modelVersion\": \"course-model\",\"createTime\":
+        \"2026-11-01T18:56:18.334258Z\",\"responseId\": \"UovnarKzFJiqidsPhp2u8A4\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \" & Sweet:** \\\"Hi! How can I help you today?\\\"\"}]}}],\"usageMetadata\":
+        {\"trafficType\": \"ON_DEMAND\"},\"modelVersion\": \"course-model\",\"createTime\":
+        \"2026-11-01T18:56:18.334258Z\",\"responseId\": \"UovnarKzFJiqidsPhp2u8A4\"}\r\n\r\ndata:
+        {\"candidates\": [{\"content\": {\"role\": \"model\",\"parts\": [{\"text\":
+        \"\",\"thoughtSignature\": \"AY89a18U9afw6zrqlVcdMe9ZD51OYgzQWi87kW7PN+qsAXt96iZRuUDu7h8Qscgvk6we7jrUp991yn+fQYQktADxO7156gC3q5m8foxJgCezEvjU039DBIe+A7w=\"}]},\"finishReason\":
+        \"STOP\"}],\"usageMetadata\": {\"promptTokenCount\": 16,\"candidatesTokenCount\":
+        107,\"totalTokenCount\": 123,\"trafficType\": \"ON_DEMAND\",\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 16}],\"candidatesTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 107}]},\"modelVersion\": \"course-model\",\"createTime\":
+        \"2026-11-01T18:56:18.334258Z\",\"responseId\": \"UovnarKzFJiqidsPhp2u8A4\"}\r\n\r\n"
+    headers:
+      content-disposition:
+      - attachment
+      content-type:
+      - text/event-stream
+      date:
+      - Sun, 01 Nov 2026 18:56:18 GMT
+      server:
+      - scaffolding on HTTPServer2
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1
